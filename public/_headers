@@ -1,4 +1,4 @@
-# Cloudflare Pages headers
+# Cloudflare headers (Workers static assets and Pages)
 /*
   X-Content-Type-Options: nosniff
   X-Frame-Options: SAMEORIGIN

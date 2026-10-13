@@ -4,7 +4,7 @@
 export const site = {
   name: "Techub Software",
   shortName: "Techub",
-  // Set NEXT_PUBLIC_SITE_URL in Cloudflare Pages to your real domain.
+  // Set NEXT_PUBLIC_SITE_URL as a Cloudflare build variable if your domain is different.
   url: (process.env.NEXT_PUBLIC_SITE_URL || "https://techubsoftware.com").replace(/\/$/, ""),
   tagline: "Appointment Management Systems in Malaysia",
   description:

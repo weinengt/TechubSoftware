@@ -24,18 +24,22 @@ npm run dev      # http://localhost:3000
 npm run build    # static site in ./out
 ```
 
-## Deploy on Cloudflare Pages
+## Deploy on Cloudflare
 
-1. Cloudflare dashboard → Workers & Pages → Create → Pages → Connect to Git → pick this repo.
-2. Framework preset: **Next.js (Static HTML Export)**
-   - Build command: `npm run build`
-   - Build output directory: `out`
-3. Environment variables:
-   - `NODE_VERSION` = `22`
-   - `NEXT_PUBLIC_SITE_URL` = your real domain, e.g. `https://www.techub.com.my` (used for canonical URLs, sitemap and structured data)
-4. Add your custom domain under the project's **Custom domains** tab.
+The site is served as static files by a Cloudflare Worker. `wrangler.jsonc` tells Cloudflare to serve the `out` folder.
 
-`public/_headers` sets security and caching headers on Cloudflare. `public/_redirects` sends the old `/spa-salon-appointment-system/` address to the spa page.
+1. Cloudflare dashboard → Workers & Pages → Create → Import a repository → pick this repo.
+2. Project name: `techubsoftware` (it must match `name` in `wrangler.jsonc`).
+3. Build command: `npm run build`. Deploy command: `npx wrangler deploy`. Keep the default preview command.
+4. Build variable (only if your domain is not techubsoftware.com): `NEXT_PUBLIC_SITE_URL` = your domain, e.g. `https://www.techub.com.my`.
+   It is used for canonical URLs, the sitemap and structured data. Node.js 22 comes from `.nvmrc`.
+5. Deploy. Then add your domain under the Worker's **Settings → Domains & Routes → Add → Custom domain**.
+
+Every push to `main` deploys again automatically.
+
+`public/_headers` sets security and caching headers. `public/_redirects` sends the old `/spa-salon-appointment-system/` address to the spa page.
+
+Cloudflare Pages also works: use the **Next.js (Static HTML Export)** preset, build command `npm run build`, output directory `out`.
 
 ## Editing content
 

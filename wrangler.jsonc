@@ -1,0 +1,11 @@
+// Cloudflare Workers config: serves the static site that `npm run build` writes to ./out.
+// The name must match the Worker (project) name in the Cloudflare dashboard.
+{
+  "name": "techubsoftware",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./out",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  }
+}
