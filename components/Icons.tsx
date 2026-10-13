@@ -1,0 +1,104 @@
+import type { SVGProps } from "react";
+
+type IconProps = SVGProps<SVGSVGElement>;
+
+const base = (props: IconProps) => ({
+  width: 24,
+  height: 24,
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 1.8,
+  strokeLinecap: "round" as const,
+  strokeLinejoin: "round" as const,
+  "aria-hidden": true,
+  ...props,
+});
+
+export const Icon = {
+  Shield: (p: IconProps) => (
+    <svg {...base(p)}><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6l8-3z" /><path d="M9 12l2 2 4-4" /></svg>
+  ),
+  Megaphone: (p: IconProps) => (
+    <svg {...base(p)}><path d="M3 11v2a1 1 0 001 1h2l5 4V6L6 10H4a1 1 0 00-1 1z" /><path d="M15.5 8.5a5 5 0 010 7" /><path d="M18.5 5.5a9 9 0 010 13" /></svg>
+  ),
+  Whatsapp: (p: IconProps) => (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width={24} height={24} {...p}>
+      <path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35zM12.05 21.5h-.01a9.4 9.4 0 01-4.8-1.32l-.34-.2-3.57.94.95-3.48-.22-.36a9.43 9.43 0 01-1.45-5.03c0-5.2 4.24-9.44 9.45-9.44a9.38 9.38 0 016.68 2.77 9.38 9.38 0 012.76 6.68c0 5.21-4.24 9.44-9.45 9.44zm8.04-17.48A11.3 11.3 0 0012.05.7C5.78.7.68 5.8.68 12.07c0 2 .52 3.96 1.52 5.68L.58 23.7l6.08-1.6a11.33 11.33 0 005.39 1.37h.01c6.27 0 11.37-5.1 11.37-11.37 0-3.04-1.18-5.9-3.34-8.05z" />
+    </svg>
+  ),
+  Devices: (p: IconProps) => (
+    <svg {...base(p)}><rect x="2" y="4" width="14" height="10" rx="1.5" /><path d="M6 18h6" /><rect x="17" y="8" width="5" height="12" rx="1.2" /><path d="M9 14v4" /></svg>
+  ),
+  Users: (p: IconProps) => (
+    <svg {...base(p)}><circle cx="9" cy="8" r="3.5" /><path d="M2.5 20a6.5 6.5 0 0113 0" /><path d="M16 4.5a3.5 3.5 0 010 7" /><path d="M18 14.5a6.5 6.5 0 013.5 5.5" /></svg>
+  ),
+  Lock: (p: IconProps) => (
+    <svg {...base(p)}><rect x="4" y="10" width="16" height="11" rx="2" /><path d="M8 10V7a4 4 0 018 0v3" /><circle cx="12" cy="15.5" r="1.5" /></svg>
+  ),
+  Box: (p: IconProps) => (
+    <svg {...base(p)}><path d="M21 8l-9-5-9 5v8l9 5 9-5V8z" /><path d="M3 8l9 5 9-5" /><path d="M12 13v8" /></svg>
+  ),
+  Sparkles: (p: IconProps) => (
+    <svg {...base(p)}><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8L12 3z" /><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15z" /></svg>
+  ),
+  Scan: (p: IconProps) => (
+    <svg {...base(p)}><path d="M4 8V5a1 1 0 011-1h3" /><path d="M16 4h3a1 1 0 011 1v3" /><path d="M20 16v3a1 1 0 01-1 1h-3" /><path d="M8 20H5a1 1 0 01-1-1v-3" /><path d="M8 9h8M8 12h8M8 15h5" /></svg>
+  ),
+  Route: (p: IconProps) => (
+    <svg {...base(p)}><circle cx="6" cy="19" r="2.5" /><circle cx="18" cy="5" r="2.5" /><path d="M8.5 19H17a3.5 3.5 0 000-7H7a3.5 3.5 0 010-7h8.5" /></svg>
+  ),
+  Pill: (p: IconProps) => (
+    <svg {...base(p)}><rect x="2.5" y="8.5" width="19" height="7" rx="3.5" transform="rotate(-45 12 12)" /><path d="M8.5 8.5l7 7" /></svg>
+  ),
+  Pen: (p: IconProps) => (
+    <svg {...base(p)}><path d="M16.5 3.5a2.1 2.1 0 013 3L8 18l-4 1 1-4L16.5 3.5z" /><path d="M14 6l3 3" /><path d="M14 21c2-1.5 4-1.5 7 0" /></svg>
+  ),
+  Printer: (p: IconProps) => (
+    <svg {...base(p)}><path d="M6 9V3h12v6" /><rect x="3" y="9" width="18" height="8" rx="2" /><path d="M6 14h12v7H6z" /><circle cx="17" cy="12" r=".6" fill="currentColor" /></svg>
+  ),
+  Wrench: (p: IconProps) => (
+    <svg {...base(p)}><path d="M14.7 6.3a4 4 0 00-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 005.4-5.4l-2.5 2.5-2.4-.6-.6-2.4 2.5-2.5z" /></svg>
+  ),
+  Calendar: (p: IconProps) => (
+    <svg {...base(p)}><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M3 10h18M8 3v4M16 3v4" /><path d="M8 14h3v3H8z" /></svg>
+  ),
+  Stethoscope: (p: IconProps) => (
+    <svg {...base(p)}><path d="M6 3v6a4 4 0 008 0V3" /><path d="M4 3h4M12 3h4" /><path d="M10 13v2a5 5 0 0010 0v-2" /><circle cx="20" cy="11" r="2" /></svg>
+  ),
+  Flower: (p: IconProps) => (
+    <svg {...base(p)}><circle cx="12" cy="12" r="2.5" /><path d="M12 9.5C12 6 13.5 3 12 3s0 3-0 6.5zM12 14.5c0 3.5 1.5 6.5 0 6.5s0-3 0-6.5z" /><path d="M12 9.5c0-3 2.5-6.5 4-5.5s-1 3.5-4 5.5zM12 14.5c0 3-2.5 6.5-4 5.5s1-3.5 4-5.5zM14.5 12c3 0 6.5 2.5 5.5 4s-3.5-1-5.5-4zM9.5 12c-3 0-6.5-2.5-5.5-4s3.5 1 5.5 4z" /></svg>
+  ),
+  Check: (p: IconProps) => (
+    <svg {...base(p)}><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
+  ),
+  Arrow: (p: IconProps) => (
+    <svg {...base(p)}><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+  ),
+  Chart: (p: IconProps) => (
+    <svg {...base(p)}><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" /></svg>
+  ),
+  Gift: (p: IconProps) => (
+    <svg {...base(p)}><rect x="3" y="8" width="18" height="5" rx="1" /><path d="M5 13v8h14v-8M12 8v13" /><path d="M12 8C10 4 7 4 7 6s3 2 5 2zM12 8c2-4 5-4 5-2s-3 2-5 2z" /></svg>
+  ),
+  Headset: (p: IconProps) => (
+    <svg {...base(p)}><path d="M4 14v-2a8 8 0 0116 0v2" /><rect x="3" y="14" width="4" height="6" rx="1.5" /><rect x="17" y="14" width="4" height="6" rx="1.5" /><path d="M19 20a3 3 0 01-3 2h-3" /></svg>
+  ),
+  Cloud: (p: IconProps) => (
+    <svg {...base(p)}><path d="M7 18a4.5 4.5 0 01-.6-8.96A6 6 0 0118 9.5a4.25 4.25 0 01-.5 8.5H7z" /></svg>
+  ),
+  Card: (p: IconProps) => (
+    <svg {...base(p)}><rect x="2.5" y="5" width="19" height="14" rx="2" /><path d="M2.5 10h19M6 15h4" /></svg>
+  ),
+  Barcode: (p: IconProps) => (
+    <svg {...base(p)}><path d="M4 5v14M7 5v14M10 5v14M14 5v14M16 5v14M20 5v14" /></svg>
+  ),
+  Menu: (p: IconProps) => (
+    <svg {...base(p)}><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+  ),
+  Close: (p: IconProps) => (
+    <svg {...base(p)}><path d="M6 6l12 12M18 6L6 18" /></svg>
+  ),
+};
+
+export type IconName = keyof typeof Icon;

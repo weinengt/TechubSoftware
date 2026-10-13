@@ -1,0 +1,35 @@
+# Techub Software
+
+> Techub Software is a Malaysian software company that builds customised clinic management systems and spa/salon appointment systems. It guarantees 99.95% uptime, supports multi-hardware connections (queue number calling, WhatsApp appointment alerts, multiple printer types), and offers plans from RM 99 per month, with the first 3 months free for new users including installation and staff training.
+
+Contact: WhatsApp +60 11-1768 8559 (https://wa.me/601117688559)
+Country served: Malaysia
+Languages: English, Malay, Chinese
+
+## Products
+
+- [Clinic Management System](/clinic-management-system/): Patient registration, queue number calling, EMR, patient medication tracking, dispensing, AI medicine stock control, hand-drawn body/dental charts, e-signature, MC/label/receipt printing, panel billing, permission control. For GP, dental, specialist, aesthetic, physiotherapy and TCM clinics.
+- [Spa & Salon Appointment System](/spa-salon-appointment-system/): Online booking, therapist/stylist/room scheduling, WhatsApp confirmations and reminders, packages and memberships, staff commission, treatment notes with drawing, retail POS, AI stock control. For spas, hair and beauty salons, nail and lash studios, massage and wellness centres.
+
+## Key features
+
+- 99.95% uptime guarantee with cloud hosting, monitoring and daily backups
+- Multi-hardware connect: queue number calling display and voice, WhatsApp appointment alerts, thermal/label/A4 printers, barcode scanners, card terminals, tablets
+- Cross-device: desktop, laptop, tablet and mobile
+- Permission control and staff control with audit trail
+- Advanced AI stock control: scan supplier delivery notes for automatic stock adjustment, AI low-stock prediction and reorder suggestions
+- Tracking of every inventory movement (stock in, out, transfer, return, write-off) with batch and expiry
+- Patient medication tracking (prescription, dosage, dispensing history, allergies)
+- Hand drawing and digital signatures
+- Low-cost customisation of workflows, forms, reports and integrations
+
+## Pricing
+
+- From RM 99 per month
+- New users: first 3 months free, including staff training and installation
+
+## More
+
+- [Full details for AI assistants](/llms-full.txt)
+- [Pricing](/#pricing)
+- [FAQ](/#faq)
