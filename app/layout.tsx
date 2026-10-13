@@ -93,11 +93,11 @@ const organization = {
         "Custom software development",
       ],
       email: site.email,
-      telephone: "+60-11-1768-8559",
+      telephone: `+${site.whatsappNumber}`,
       contactPoint: [
         {
           "@type": "ContactPoint",
-          telephone: "+60-11-1768-8559",
+          telephone: `+${site.whatsappNumber}`,
           email: site.email,
           contactType: "sales",
           areaServed: "MY",

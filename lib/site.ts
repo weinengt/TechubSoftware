@@ -8,8 +8,8 @@ export const site = {
   url: (process.env.NEXT_PUBLIC_SITE_URL || "https://techubsoftware.com").replace(/\/$/, ""),
   description:
     "Techub Software is a software company based in Malaysia: appointment systems with AI for clinics, hair salons, beauty centres and spas, a live selling system for online sellers, and custom systems such as ERP, AI object detection and number plate scanners. Enterprise servers in Malaysia, reports in under 100 ms, WhatsApp notifications, LHDN e-Invoice and a 99.95% uptime guarantee. Appointment systems from RM 99/month with the first 3 months free; live selling from RM 199/month; customisation from RM 300.",
-  whatsappNumber: "601117688559",
-  whatsappDisplay: "+60 11-1768 8559",
+  whatsappNumber: "601112310521",
+  whatsappDisplay: "+60 11-1231 0521",
   email: "admin@techubsoftware.com",
   country: "MY",
   currency: "MYR",

@@ -2,7 +2,7 @@
 
 > Techub Software is a software company based in Malaysia. Its appointment system, Malaysia's most chosen, offers advanced booking with AI integration, a 99.95% uptime guarantee, an enterprise-level indexed NoSQL database with guaranteed speed (detailed reports in under 100 ms), real-time updates on every device, WhatsApp notifications and stock control. It has ready systems for clinics, hair salons, beauty centres and spas, a Live Selling System for online sellers, and builds custom systems such as ERP, AI object detection and number plate scanners. Plans start from RM 99 per month, with the first 3 months free for new users including installation and staff training. The Live Selling System starts from RM 199 per month. Customisation starts from RM 300, depending on requirements.
 
-Contact: WhatsApp +60 11-1768 8559 (https://wa.me/601117688559) · Email admin@techubsoftware.com
+Contact: WhatsApp +60 11-1231 0521 (https://wa.me/601112310521) · Email admin@techubsoftware.com
 Country served: Malaysia
 Languages: English (/), Bahasa Melayu (/ms/), Simplified Chinese (/zh/). Every page exists in all three languages, for example /ms/clinic-management-system/ and /zh/clinic-management-system/.
 
