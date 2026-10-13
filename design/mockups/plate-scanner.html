@@ -1,0 +1,250 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<style>
+  :root { --w: 1200px; --h: 750px; }
+  .side .me { white-space: nowrap; }
+  .ic.t { background: #f0fdfa; color: #0d9488; }
+  .seg { margin-left: auto; display: flex; background: #f1f5f9; border-radius: 10px; padding: 3px; gap: 2px; }
+  .seg span { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 12px; border-radius: 8px; font-size: 12px; font-weight: 600; color: var(--muted); white-space: nowrap; }
+  .seg span.on { background: #fff; color: var(--ink); box-shadow: 0 1px 3px rgba(15,23,42,.12); }
+  .seg .dot { width: 7px; height: 7px; border-radius: 99px; background: var(--green); box-shadow: 0 0 0 3px rgba(16,185,129,.18); }
+  .content { gap: 14px; }
+  .r1 { display: flex; gap: 14px; height: 349px; flex-shrink: 0; }
+  /* Live camera */
+  .cam { position: relative; flex: 1; min-width: 0; border-radius: 12px; overflow: hidden; background: #0b1626; box-shadow: 0 12px 28px -18px rgba(11,47,85,.7); }
+  .cam svg.scene { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .hud { position: absolute; display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; color: #e2e8f0; background: rgba(5,12,22,.62); border: 1px solid rgba(255,255,255,.12); border-radius: 8px; padding: 5px 9px; white-space: nowrap; backdrop-filter: blur(4px); }
+  .hud .rec { display: inline-flex; align-items: center; gap: 5px; color: #fff; font-weight: 800; letter-spacing: .06em; font-size: 10px; }
+  .hud .rec i { width: 7px; height: 7px; border-radius: 99px; background: #ef4444; box-shadow: 0 0 0 3px rgba(239,68,68,.3); }
+  .hud .mono { font-variant-numeric: tabular-nums; letter-spacing: .02em; }
+  .hud .sep { width: 1px; height: 12px; background: rgba(255,255,255,.2); }
+  .bb { position: absolute; border: 2px solid; border-radius: 4px; }
+  .bb > span { position: absolute; left: -2px; bottom: 100%; margin-bottom: 3px; font-size: 11px; font-weight: 750; padding: 3px 7px; border-radius: 5px; white-space: nowrap; color: #04121f; }
+  .bb.car { border-color: rgba(56,189,248,.75); border-width: 1.5px; }
+  .bb.car > span { background: #38bdf8; }
+  .bb.plt { border-color: #4ade80; box-shadow: 0 0 0 3px rgba(74,222,128,.22), 0 0 18px rgba(74,222,128,.35); }
+  .bb.plt > span { background: #4ade80; font-size: 12px; padding: 3px 8px; display: inline-flex; gap: 6px; }
+  .bb.plt > span em { font-style: normal; font-weight: 600; opacity: .75; }
+  /* Gate status */
+  .rcol { width: 330px; flex-shrink: 0; display: flex; flex-direction: column; gap: 12px; }
+  .gate { flex-shrink: 0; padding: 0; overflow: hidden; border-color: #86efac; box-shadow: 0 12px 26px -18px rgba(16,185,129,.7); }
+  .gh { display: flex; align-items: center; gap: 10px; padding: 11px 14px; background: linear-gradient(135deg, #059669, #10b981); color: #fff; }
+  .gh .gi { width: 30px; height: 30px; border-radius: 99px; background: rgba(255,255,255,.22); display: grid; place-items: center; }
+  .gh .gi svg { width: 17px; height: 17px; stroke-width: 2.8; }
+  .gh b { display: block; font-size: 14.5px; font-weight: 800; letter-spacing: -.01em; }
+  .gh small { display: block; font-size: 11px; opacity: .9; margin-top: 1px; }
+  .gh .t { margin-left: auto; font-size: 12px; font-weight: 700; font-variant-numeric: tabular-nums; background: rgba(255,255,255,.18); padding: 4px 8px; border-radius: 7px; }
+  .gb { padding: 12px 14px 12px; }
+  .pr { display: flex; align-items: center; gap: 12px; }
+  .plate { display: inline-flex; align-items: center; justify-content: center; background: #0b0d12; color: #fff; font-weight: 800; letter-spacing: .07em; border-radius: 4px; padding: 3px 7px; font-size: 11.5px; box-shadow: inset 0 0 0 1px #475569; white-space: nowrap; }
+  .plate.big { font-size: 25px; padding: 7px 15px; border-radius: 7px; box-shadow: inset 0 0 0 2px #64748b, 0 8px 16px -10px rgba(0,0,0,.7); }
+  .conf { font-size: 11px; color: var(--muted); line-height: 1.35; }
+  .conf b { display: block; font-size: 15px; color: #059669; font-weight: 800; }
+  .kv { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; margin-top: 12px; }
+  .kv span { display: block; font-size: 10.5px; color: var(--muted); } .kv b { font-size: 12.5px; font-weight: 700; white-space: nowrap; }
+  .gf { display: flex; align-items: center; gap: 6px; margin-top: 12px; padding-top: 10px; border-top: 1px solid #eef2f7; font-size: 11px; color: var(--ink2); }
+  .gf svg { width: 13px; height: 13px; color: #059669; } .gf .m { margin-left: auto; color: var(--muted); }
+  .cnts { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .cn { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; display: flex; align-items: center; gap: 10px; }
+  .cn .ic { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; flex-shrink: 0; }
+  .cn .ic svg { width: 17px; height: 17px; }
+  .cn b { display: block; font-size: 19px; font-weight: 800; letter-spacing: -.02em; line-height: 1.1; }
+  .cn small { display: block; font-size: 11px; color: var(--muted); font-weight: 500; }
+  /* Entry / exit log */
+  .log { flex: 1; min-height: 0; padding: 0; overflow: hidden; display: flex; flex-direction: column; }
+  .lh { display: flex; align-items: center; gap: 10px; padding: 11px 14px 10px; }
+  .lh h3 { font-size: 13px; }
+  .flt { display: flex; gap: 6px; margin-left: 10px; }
+  .flt span { font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 99px; border: 1px solid var(--line); color: var(--ink2); white-space: nowrap; }
+  .flt span.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .flt span em { font-style: normal; opacity: .6; margin-left: 3px; }
+  .lh .more { margin-left: auto; font-size: 11px; color: var(--brand); font-weight: 600; }
+  .log td, .log th { padding-top: 5px; padding-bottom: 5px; } .log th { padding-top: 7px; padding-bottom: 7px; }
+  .log td:first-child, .log th:first-child { padding-left: 14px; } .log td:last-child, .log th:last-child { padding-right: 14px; }
+  .log tr:last-child td { border-bottom: 0; }
+  .log tr.new td { background: #f0fdf4; } .log tr.new td:first-child { box-shadow: inset 3px 0 0 var(--green); }
+  .log td .sm { color: var(--muted); font-size: 11px; }
+  .tm { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 600; }
+  .dir { display: inline-flex; align-items: center; gap: 6px; }
+  .dir svg { width: 14px; height: 14px; }
+  .dir.in svg { color: #059669; } .dir.out svg { color: #0396d9; }
+  .th { width: 44px; height: 24px; border-radius: 5px; background: linear-gradient(160deg, #2a3a50, #101a28); position: relative; overflow: hidden; display: block; }
+  .th::before { content: ""; position: absolute; left: 9px; right: 9px; top: 7px; bottom: 4px; border-radius: 4px 4px 2px 2px; background: #4a5b70; }
+  .th::after { content: ""; position: absolute; left: 16px; width: 12px; top: 14px; height: 4px; background: #05080d; box-shadow: 0 0 0 1px rgba(74,222,128,.9); }
+  .th.dn::after { box-shadow: 0 0 0 1px rgba(248,113,113,.95); }
+</style></head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="brand"><img src="icon.png" alt=""><div>Techub Gate<small>Residensi Demo</small></div></div>
+    <nav class="nav">
+      <a class="on"><i data-i="video"></i>Live view</a>
+      <a><i data-i="swap"></i>Entry &amp; exit log</a>
+      <a><i data-x="car"></i>Residents &amp; cars</a>
+      <a><i data-i="user"></i>Visitors<span class="cnt">3</span></a>
+      <a><i data-i="card"></i>Season passes</a>
+      <a><i data-x="ban"></i>Blacklist</a>
+      <a><i data-i="chart"></i>Reports</a>
+      <a><i data-i="gear"></i>Settings</a>
+    </nav>
+    <div class="me"><span class="av">AZ</span><div><b>Ahmad Zulkifli</b><br><span style="color:#8fb3d4">Guard · Shift A</span></div></div>
+  </aside>
+  <section class="main">
+    <header class="top">
+      <div><div class="sub">Residensi Demo · Guard house</div><h1>Gate 1 · Main Entrance</h1></div>
+      <div class="seg"><span class="on"><i class="dot"></i>Entry lane</span><span>Exit lane</span><span>Gate 2 · Back</span></div>
+      <span class="btn"><i data-x="gate"></i>Open barrier</span>
+      <span class="btn pri"><i data-i="plus"></i>Register visitor</span>
+    </header>
+    <div class="content">
+      <div class="r1">
+        <div class="cam">
+          <svg class="scene" viewBox="0 0 640 360" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#091320"/><stop offset="1" stop-color="#1b2d45"/></linearGradient>
+              <linearGradient id="road" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1d2939"/><stop offset="1" stop-color="#121b27"/></linearGradient>
+              <linearGradient id="verge" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#13202f"/><stop offset="1" stop-color="#0b131d"/></linearGradient>
+              <linearGradient id="body" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6b7c92"/><stop offset=".4" stop-color="#4a5a6f"/><stop offset="1" stop-color="#2a3646"/></linearGradient>
+              <linearGradient id="roof" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#55667c"/><stop offset="1" stop-color="#3d4c60"/></linearGradient>
+              <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0a111c"/><stop offset="1" stop-color="#1a2a40"/></linearGradient>
+              <linearGradient id="arm" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#e2e8f0"/><stop offset="1" stop-color="#94a3b8"/></linearGradient>
+              <radialGradient id="glow"><stop offset="0" stop-color="#f87171" stop-opacity=".55"/><stop offset="1" stop-color="#ef4444" stop-opacity="0"/></radialGradient>
+              <radialGradient id="lamp"><stop offset="0" stop-color="#fde68a" stop-opacity=".45"/><stop offset="1" stop-color="#fde68a" stop-opacity="0"/></radialGradient>
+              <radialGradient id="vig" cx=".5" cy=".5" r=".75"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".55"/></radialGradient>
+            </defs>
+            <rect width="640" height="360" fill="url(#sky)"/>
+            <!-- condo towers -->
+            <g fill="#13223a"><rect x="34" y="14" width="124" height="160"/><rect x="170" y="60" width="74" height="114"/><rect x="486" y="-4" width="126" height="178"/></g>
+            <g id="win"></g>
+            <!-- hedge and wall -->
+            <path d="M0 152 Q14 136 30 146 Q46 130 64 144 Q80 134 96 146 Q112 132 130 145 Q150 136 166 148 L166 176 L0 176Z M470 150 Q486 134 502 146 Q520 132 538 146 Q556 136 572 148 Q590 134 608 146 Q626 138 640 148 L640 176 L470 176Z" fill="#0c1827"/>
+            <rect x="0" y="160" width="640" height="16" fill="#192940"/>
+            <rect x="0" y="160" width="640" height="2" fill="#24385a"/>
+            <!-- road and verges -->
+            <path d="M0 176 H640 V360 H0Z" fill="url(#verge)"/>
+            <path d="M58 360 L246 176 L414 176 L602 360Z" fill="url(#road)"/>
+            <path d="M58 360 L246 176" stroke="#c8d3e0" stroke-opacity=".35" stroke-width="3"/>
+            <path d="M602 360 L414 176" stroke="#c8d3e0" stroke-opacity=".35" stroke-width="3"/>
+            <!-- street lamp -->
+            <circle cx="112" cy="70" r="46" fill="url(#lamp)"/>
+            <path d="M112 176 V74 Q112 66 120 66 H126" stroke="#2a3d57" stroke-width="4" fill="none"/>
+            <rect x="104" y="66" width="16" height="6" rx="2" fill="#fde68a" fill-opacity=".8"/>
+            <!-- guard house -->
+            <rect x="470" y="104" width="150" height="112" fill="#1d2d44"/>
+            <rect x="458" y="94" width="174" height="14" rx="2" fill="#24385a"/>
+            <rect x="488" y="128" width="72" height="44" rx="2" fill="#f59e0b" fill-opacity=".28"/>
+            <rect x="488" y="128" width="72" height="44" rx="2" fill="none" stroke="#2f4566" stroke-width="3"/>
+            <circle cx="512" cy="152" r="7" fill="#0e1a2a" fill-opacity=".8"/><path d="M500 172 Q512 158 524 172Z" fill="#0e1a2a" fill-opacity=".8"/>
+            <rect x="574" y="128" width="30" height="88" fill="#16243a"/>
+            <!-- barrier, opened -->
+            <rect x="430" y="150" width="14" height="52" rx="2" fill="#cbd5e1"/>
+            <rect x="430" y="150" width="14" height="10" rx="2" fill="#f59e0b"/>
+            <g transform="rotate(-80 437 154)"><rect x="437" y="150" width="150" height="8" rx="3" fill="url(#arm)"/><g fill="#ef4444"><rect x="452" y="150" width="14" height="8"/><rect x="480" y="150" width="14" height="8"/><rect x="508" y="150" width="14" height="8"/><rect x="536" y="150" width="14" height="8"/><rect x="564" y="150" width="14" height="8"/></g></g>
+            <circle cx="437" cy="155" r="4" fill="#475569"/>
+            <!-- detection zone -->
+            <path d="M118 352 L238 206 L422 206 L542 352Z" fill="#2dd4bf" fill-opacity=".05" stroke="#2dd4bf" stroke-opacity=".55" stroke-width="1.5" stroke-dasharray="7 5"/>
+            <!-- car, seen from behind -->
+            <ellipse cx="300" cy="303" rx="160" ry="15" fill="#000" fill-opacity=".5"/>
+            <rect x="166" y="262" width="36" height="42" rx="7" fill="#06090e"/>
+            <rect x="398" y="262" width="36" height="42" rx="7" fill="#06090e"/>
+            <path d="M190 212 L222 158 Q227 149 238 149 L362 149 Q373 149 378 158 L410 212Z" fill="url(#roof)"/>
+            <path d="M205 207 L232 163 Q236 156 244 156 L356 156 Q364 156 368 163 L395 207Z" fill="url(#glass)"/>
+            <path d="M236 207 L282 156 L304 156 L258 207Z" fill="#fff" fill-opacity=".05"/>
+            <rect x="282" y="159" width="36" height="4" rx="2" fill="#ef4444" fill-opacity=".8"/>
+            <path d="M156 228 Q158 211 178 208 L422 208 Q442 211 444 228 L448 279 Q448 294 432 294 L168 294 Q152 294 152 279Z" fill="url(#body)"/>
+            <path d="M172 226 Q300 221 428 226" stroke="#7d8ea5" stroke-opacity=".6" stroke-width="1.5" fill="none"/>
+            <path d="M178 209 L422 209" stroke="#8a9bb1" stroke-opacity=".7" stroke-width="1.5"/>
+            <ellipse cx="190" cy="232" rx="46" ry="22" fill="url(#glow)"/>
+            <ellipse cx="410" cy="232" rx="46" ry="22" fill="url(#glow)"/>
+            <path d="M161 222 Q162 216 170 216 L222 216 Q226 216 225 220 L221 236 Q220 240 215 240 L166 240 Q159 240 159 233Z" fill="#b91c1c"/>
+            <path d="M166 220 L218 220 L216 228 L164 228Z" fill="#f87171"/>
+            <path d="M439 222 Q438 216 430 216 L378 216 Q374 216 375 220 L379 236 Q380 240 385 240 L434 240 Q441 240 441 233Z" fill="#b91c1c"/>
+            <path d="M434 220 L382 220 L384 228 L436 228Z" fill="#f87171"/>
+            <rect x="258" y="242" width="84" height="28" rx="4" fill="#202b39"/>
+            <rect x="263" y="246" width="74" height="20" rx="2.5" fill="#06080c" stroke="#5b6778" stroke-width="1"/>
+            <text x="300" y="261" fill="#fff" font-family="Inter" font-weight="800" font-size="13.5" letter-spacing=".6" text-anchor="middle">VKM 2318</text>
+            <rect x="168" y="280" width="264" height="9" rx="4" fill="#161f2b"/>
+            <rect x="176" y="282" width="12" height="4" rx="2" fill="#dc2626" fill-opacity=".8"/><rect x="412" y="282" width="12" height="4" rx="2" fill="#dc2626" fill-opacity=".8"/>
+            <rect width="640" height="360" fill="url(#vig)"/>
+          </svg>
+          <div class="hud" style="left:12px;top:12px"><span class="rec"><i></i>LIVE</span><span class="sep"></span>CAM 01 · Entry lane</div>
+          <div class="hud mono" style="right:12px;top:12px"><span class="mono">13/10/2026 · 10:42:18</span></div>
+          <div class="hud" style="left:12px;bottom:12px;color:#94a3b8;font-weight:500">ANPR · 1080p · 25 fps<span class="sep"></span><span style="color:#5eead4;font-weight:650">Detection zone</span></div>
+          <div class="hud" style="right:12px;bottom:12px"><span style="color:#4ade80">●</span>Read in 0.18 s</div>
+          <div class="bb car" style="left:23.4%;top:40.6%;width:47.2%;height:44.4%"><span>Car · 98.6%</span></div>
+          <div class="bb plt" style="left:40.1%;top:66.6%;width:13.4%;height:8.6%"><span>VKM 2318 <em>99.2%</em></span></div>
+        </div>
+        <div class="rcol">
+          <div class="card gate">
+            <div class="gh"><span class="gi"><i data-i="check"></i></span><div><b>Gate opened · Resident</b><small>Auto-matched · barrier up in 0.4 s</small></div><span class="t">10:42:18</span></div>
+            <div class="gb">
+              <div class="pr"><span class="plate big">VKM 2318</span><div class="conf"><b>99.2%</b>Plate match</div></div>
+              <div class="kv">
+                <div><span>Owner</span><b>Tan Wei Ming</b></div>
+                <div><span>Unit</span><b>B-12-03</b></div>
+                <div><span>Vehicle</span><b>Grey sedan</b></div>
+                <div><span>Parking</span><b>Bay B2-118</b></div>
+              </div>
+            </div>
+          </div>
+          <div class="cnts">
+            <div class="cn"><span class="ic g"><i data-x="in"></i></span><div><b>486</b><small>Entries today</small></div></div>
+            <div class="cn"><span class="ic b"><i data-x="out"></i></span><div><b>452</b><small>Exits today</small></div></div>
+            <div class="cn"><span class="ic v"><i data-i="user"></i></span><div><b>37</b><small>Visitors</small></div></div>
+            <div class="cn"><span class="ic r"><i data-x="ban"></i></span><div><b>4</b><small>Denied</small></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="card log">
+        <div class="lh"><h3><i data-i="swap" style="color:#0396d9"></i>Entry &amp; exit log · today</h3>
+          <div class="flt"><span class="on">All<em>938</em></span><span>Residents</span><span>Visitors</span><span>Season pass</span><span>Denied</span></div>
+          <span class="more">Export ↓</span></div>
+        <table id="tb"></table>
+      </div>
+    </div>
+  </section>
+</div>
+<script>
+(() => {
+  // Extra icons used only on this screen
+  const XI = {
+    car: '<path d="M5 17H3.5a1 1 0 01-1-1v-3.2a2 2 0 01.6-1.4L5 9.5l1.6-3.4A2 2 0 018.4 5h7.2a2 2 0 011.8 1.1L19 9.5l1.9 1.9a2 2 0 01.6 1.4V16a1 1 0 01-1 1H19"/><circle cx="7.5" cy="17" r="2"/><circle cx="16.5" cy="17" r="2"/><path d="M9.5 17h5M5 9.5h14"/>',
+    ban: '<circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/>',
+    gate: '<rect x="3" y="8" width="4" height="13" rx="1"/><path d="M7 10h13.5a.5.5 0 01.5.5v3a.5.5 0 01-.5.5H7"/><path d="M11.5 10l-2 4M16.5 10l-2 4"/>',
+    in: '<path d="M14 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4"/><path d="M9 17l5-5-5-5"/><path d="M14 12H3"/>',
+    out: '<path d="M10 21H6a2 2 0 01-2-2V5a2 2 0 012-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/>',
+  };
+
+  // Lit and unlit windows on the condo towers behind the gate
+  let seed = 11; const rnd = () => ((seed = (seed * 9301 + 49297) % 233280) / 233280);
+  let w = "";
+  for (const [x0, y0, cols, rows] of [[42, 22, 7, 9], [176, 68, 4, 6], [494, 6, 7, 10]])
+    for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
+      const lit = rnd() > 0.78;
+      w += `<rect x="${x0 + c * 16.5}" y="${y0 + r * 16}" width="9" height="7" rx="1" fill="${lit ? "#fcd34d" : "#22344f"}" fill-opacity="${lit ? 0.5 : 0.9}"/>`;
+    }
+  document.getElementById("win").innerHTML = w;
+
+  // Entry / exit log: [time, plate, name, note, unit, type, gate, dir, allowed]
+  const TY = { res: ["b", "Resident"], vis: ["v", "Visitor"], sea: ["t", "Season pass"] };
+  const R = [
+    ["10:42:18", "VKM 2318", "Tan Wei Ming", "", "B-12-03", "res", "Gate 1", "in", 1],
+    ["10:40:51", "WXR 7731", "Mohd Hafiz", "QR invite", "A-08-11", "vis", "Gate 1", "in", 1],
+    ["10:38:09", "BMH 4502", "Bina Jaya Renovation", "Contractor", "C-03-02", "sea", "Gate 2", "in", 1],
+    ["10:35:44", "PKB 8890", "Unknown vehicle", "No invite", "—", "vis", "Gate 1", "in", 0],
+    ["10:33:27", "JTU 1126", "Rajesh Kumar", "", "C-05-07", "res", "Gate 1", "out", 1],
+    ["10:31:02", "VFE 3368", "Lim Siew Peng", "", "A-15-02", "res", "Gate 2", "out", 1],
+  ];
+  document.getElementById("tb").innerHTML = `<tr><th>Snapshot</th><th>Time</th><th>Plate</th><th>Name</th><th>Unit</th><th>Type</th><th>Gate</th><th>Status</th></tr>` +
+    R.map(([t, p, n, note, u, ty, g, d, ok], i) => `<tr class="${i ? "" : "new"}"><td><span class="th${ok ? "" : " dn"}"></span></td><td class="tm">${t}</td><td><span class="plate">${p}</span></td>
+      <td><b>${n}</b>${note ? ` <span class="sm">· ${note}</span>` : ""}</td><td>${u}</td><td><span class="chip ${TY[ty][0]}">${TY[ty][1]}</span></td>
+      <td><span class="dir ${d}"><i data-x="${d}"></i>${g} · ${d === "in" ? "In" : "Out"}</span></td>
+      <td>${ok ? `<span class="chip g">✓ Allowed</span>` : `<span class="chip r">✕ Denied</span>`}</td></tr>`).join("");
+
+  document.querySelectorAll("i[data-x]").forEach((el) => {
+    el.outerHTML = `<svg class="i" viewBox="0 0 24 24" style="${el.getAttribute("style") || ""}">${XI[el.dataset.x]}</svg>`;
+  });
+})();
+</script>
+<script src="icons.js"></script>
+</body></html>

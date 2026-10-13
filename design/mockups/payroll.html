@@ -1,0 +1,228 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<style>
+  /* Monthly payroll run, with commission pulled from POS sales. ?v=salon (default) | beauty | spa */
+  :root { --w: 1024px; --h: 720px; }
+  .top { gap: 10px; }
+  .top h1 { white-space: nowrap; }
+  .btn svg { width: 15px; height: 15px; }
+  .fl { display: inline-flex; align-items: center; gap: 7px; height: 34px; padding: 0 11px; border: 1px solid var(--line); border-radius: 9px; background: #fff; font-size: 12px; font-weight: 650; color: var(--ink); white-space: nowrap; }
+  .fl svg { width: 15px; height: 15px; color: var(--muted); }
+  .fl small { font-size: 11px; color: var(--muted); font-weight: 500; }
+  .content { gap: 12px; }
+  .ra { display: flex; gap: 12px; flex-shrink: 0; }
+
+  /* Summary panel */
+  .sum { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 12px; }
+  .figs { display: flex; }
+  .fig { flex: 1; min-width: 0; padding-left: 14px; margin-left: 14px; border-left: 1px solid #eef2f7; }
+  .fig:first-child { padding-left: 0; margin-left: 0; border-left: 0; }
+  .fig .k { display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 500; color: var(--muted); white-space: nowrap; }
+  .fig .k svg { width: 14px; height: 14px; }
+  .fig .v { font-size: 20px; font-weight: 800; letter-spacing: -.02em; margin-top: 3px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .fig .d { font-size: 10.5px; font-weight: 500; color: var(--muted); margin-top: 1px; white-space: nowrap; }
+  .fig .d b { color: #059669; font-weight: 700; }
+  .mix { display: flex; gap: 2px; height: 10px; }
+  .mix i { display: block; height: 100%; }
+  .mix i:first-child { border-radius: 99px 0 0 99px; }
+  .mix i:last-child { border-radius: 0 99px 99px 0; }
+  .leg { display: flex; gap: 16px; margin-top: 8px; font-size: 11px; color: var(--ink2); white-space: nowrap; }
+  .leg span { display: inline-flex; align-items: center; gap: 6px; }
+  .leg i { width: 9px; height: 9px; border-radius: 3px; }
+  .leg b { font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .leg em { font-style: normal; color: var(--muted); }
+
+  /* Callout */
+  .call { width: 400px; flex-shrink: 0; position: relative; overflow: hidden; border-radius: 12px; padding: 14px 16px;
+    background: radial-gradient(circle at calc(100% - 28px) calc(100% - 18px), rgba(0,207,203,.22) 61.5px, transparent 62px),
+      linear-gradient(135deg, #0b2f55, #0050a0 60%, #0396d9); color: #cfe6f7; font-size: 11.5px; line-height: 1.5; }
+  .call h4 { display: flex; align-items: center; gap: 9px; color: #fff; font-size: 12.5px; font-weight: 700; line-height: 1.3; margin-bottom: 6px; white-space: nowrap; }
+  .bolt { width: 22px; height: 22px; border-radius: 99px; background: linear-gradient(135deg, #f59e0b, #fbbf24); display: grid; place-items: center; flex-shrink: 0; box-shadow: 0 2px 6px -2px rgba(217,119,6,.7); }
+  .bolt svg { width: 13px; height: 13px; fill: #fff; stroke: none; }
+  .call p, .call .tags { position: relative; z-index: 1; }
+  .call p b { color: #fff; font-weight: 650; }
+  .call .tags { display: flex; gap: 6px; margin-top: 10px; }
+  .call .tags span { display: inline-flex; align-items: center; gap: 5px; height: 22px; padding: 0 9px; border-radius: 99px; background: rgba(255,255,255,.14); color: #fff; font-size: 10.5px; font-weight: 600; white-space: nowrap; }
+  .call .tags svg { width: 12px; height: 12px; }
+
+  /* Pay table */
+  .tb { padding: 0; overflow: hidden; display: flex; flex-direction: column; flex-shrink: 0; }
+  .tb h3 { padding: 12px 14px 10px; }
+  .card h3 small { font-size: 11px; color: var(--muted); font-weight: 500; }
+  .seg { margin-left: auto; display: flex; background: #eef2f7; border-radius: 8px; padding: 2px; }
+  .seg span { font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 6px; color: var(--muted); white-space: nowrap; }
+  .seg span.on { background: #fff; color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+  .tb th, .tb td { padding: 6.5px 10px; }
+  .tb th { padding-top: 7px; padding-bottom: 7px; }
+  .tb td:first-child, .tb th:first-child { padding-left: 14px; }
+  .tb td:last-child, .tb th:last-child { padding-right: 14px; }
+  .tb th.num { text-align: right; }
+  .tb td { font-variant-numeric: tabular-nums; }
+  .tb td small { line-height: 13px; margin-top: 1px; }
+  .who { display: flex; align-items: center; gap: 9px; }
+  .who .av { width: 28px; height: 28px; font-size: 10px; }
+  .who b { display: block; line-height: 15px; }
+  .who small { margin-top: 0; }
+  .tb .cm { background: #faf8ff; }
+  .tb th.cm { background: #f3efff; color: #6d28d9; }
+  .auto { display: inline-flex; align-items: center; gap: 2px; margin-left: 5px; padding: 1px 6px 1px 4px; border-radius: 99px; background: #ede9fe; color: #6d28d9; font-size: 9.5px; font-weight: 700; letter-spacing: .02em; vertical-align: 1px; }
+  .auto svg { width: 9px; height: 9px; fill: currentColor; stroke: none; }
+  .tb td.nil { color: #94a3b8; }
+  .tb tr.tot td { background: #f8fafc; border-bottom: 0; color: var(--ink); font-weight: 750; }
+  .tb tr.tot td.cm { background: #f3efff; }
+  .pl { display: inline-flex; align-items: center; gap: 4px; color: var(--brand); font-weight: 600; font-size: 11.5px; }
+  .pl svg { width: 14px; height: 14px; }
+  .tfoot { display: flex; align-items: center; gap: 8px; padding: 9px 14px 10px; border-top: 1px solid #eef2f7; font-size: 11.5px; color: var(--ink2); white-space: nowrap; }
+  .tfoot svg { width: 15px; height: 15px; color: #059669; }
+  .tfoot .more { margin-left: auto; color: var(--brand); font-weight: 600; }
+</style></head>
+<body>
+<div class="app">
+  <aside class="side" data-shell="salon"></aside>
+  <section class="main">
+    <header class="top">
+      <div><div class="sub" id="biz"></div><h1>Payroll · October 2026</h1></div>
+      <span class="chip a"><i data-i="clock" style="width:12px;height:12px"></i>Awaiting approval</span>
+      <span class="fl" style="margin-left:auto"><i data-i="cal"></i><small>Pay day</small>Fri, 6 Nov</span>
+      <span class="btn"><i data-i="file"></i>Export payslips</span>
+      <span class="btn pri"><i data-i="check"></i>Approve payroll</span>
+    </header>
+    <div class="content">
+      <div class="ra">
+        <div class="card sum" id="sum"></div>
+        <div class="call" id="call"></div>
+      </div>
+      <div class="card tb" id="table"></div>
+    </div>
+  </section>
+</div>
+<script>
+  const q = new URLSearchParams(location.search).get("v");
+  const V = ["salon", "beauty", "spa"].includes(q) ? q : "salon";
+  const $ = (id) => document.getElementById(id);
+  const BOLT = '<svg viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>';
+
+  // October 2026 payroll for both branches. Commission comes from each staff member's POS sales:
+  // sales are [services, retail] for the salon and one total for beauty and spa (retail: front desk sales only).
+  // al = monthly allowance, ot = overtime hours (paid at 1.5x the hourly rate), adv = salary advance repaid this month.
+  const D = {
+    salon: {
+      biz: "Demo Hair Salon", sites: "Damansara & Cheras", branches: ["Damansara", "Cheras"], split: "Damansara 6 · Cheras 2",
+      doer: "stylist", bills: "1,262", rules: ["Services 10%", "Retail 5%"], vs: "▲ 6%",
+      rate: (s) => s[0] * 0.1 + s[1] * 0.05,
+      staff: [
+        { i: "KL", c: "#0050a0", n: "Kelly Lim", r: "Manager · Damansara", basic: 4200, sales: [6140, 1420], al: 300 },
+        { i: "JT", c: "#0396d9", n: "Jason Tan", r: "Senior Stylist", basic: 2800, sales: [23420, 2888], al: 200 },
+        { i: "MF", c: "#8b5cf6", n: "Mei Fen", r: "Colourist", basic: 2600, sales: [20960, 1936], al: 150 },
+        { i: "RV", c: "#0b2f55", n: "Ravi", r: "Barber", basic: 2200, sales: [10640, 1190], al: 100, ot: 6 },
+        { i: "AM", c: "#14b8a6", n: "Aiman", r: "Junior Stylist", basic: 1800, sales: [8120, 1264], al: 100, adv: 200 },
+        { i: "AR", c: "#ec4899", n: "Amir", r: "Junior Stylist · Cheras", basic: 1800, sales: [7460, 972], al: 100, ot: 4 },
+        { i: "NS", c: "#f59e0b", n: "Nisha", r: "Receptionist", basic: 1900, sales: [0, 3720], retail: 1, al: 100, ot: 10 },
+        { i: "FR", c: "#10b981", n: "Farah", r: "Salon Assistant · Cheras", basic: 1700, sales: [1240, 0], al: 100, ot: 5 },
+      ],
+    },
+    beauty: {
+      biz: "Demo Beauty Centre", sites: "Subang Jaya & Puchong", branches: ["Subang Jaya", "Puchong"], split: "Subang Jaya 6 · Puchong 2",
+      doer: "beautician", bills: "1,148", rules: ["Sales 7.5%", "Refunds deducted"], vs: "▲ 9%",
+      rate: (s) => s * 0.075,
+      staff: [
+        { i: "SN", c: "#0050a0", n: "Sarah Ng", r: "Manager · Subang Jaya", basic: 4000, sales: 5920, al: 300 },
+        { i: "ML", c: "#14b8a6", n: "Mei Ling Wong", r: "Facial Specialist", basic: 2500, sales: 27120, al: 150 },
+        { i: "NA", c: "#ec4899", n: "Nadia", r: "Lash & Brow", basic: 2300, sales: 19620, al: 150 },
+        { i: "KV", c: "#f59e0b", n: "Kavitha", r: "Slimming & Body", basic: 2300, sales: 18240, al: 100 },
+        { i: "YT", c: "#0396d9", n: "Yvonne Tan", r: "Facial Specialist · Puchong", basic: 2200, sales: 13980, al: 100 },
+        { i: "HM", c: "#8b5cf6", n: "Hui Min", r: "Nail Technician", basic: 2000, sales: 9860, al: 100 },
+        { i: "SH", c: "#0b2f55", n: "Siti Hajar", r: "Beautician · Puchong", basic: 1800, sales: 6840, al: 100, ot: 4, adv: 150 },
+        { i: "NH", c: "#10b981", n: "Nur Hidayah", r: "Receptionist", basic: 1800, sales: 1900, retail: 1, al: 100, ot: 8 },
+      ],
+    },
+    spa: {
+      biz: "Demo Day Spa", sites: "Bangsar & Mont Kiara", branches: ["Bangsar", "Mont Kiara"], split: "Bangsar 6 · Mont Kiara 2",
+      doer: "therapist", bills: "742", rules: ["Sales 8%", "Couple treatments split"], vs: "▲ 2%",
+      rate: (s) => s * 0.08,
+      staff: [
+        { i: "JL", c: "#0050a0", n: "Jenny Lau", r: "Manager · Bangsar", basic: 4200, sales: 9860, al: 300 },
+        { i: "AS", c: "#0396d9", n: "Aisyah Salleh", r: "Senior Therapist", basic: 2600, sales: 26480, al: 150 },
+        { i: "LK", c: "#8b5cf6", n: "Lakshmi", r: "Therapist", basic: 2200, sales: 23140, al: 150 },
+        { i: "WT", c: "#14b8a6", n: "Wati", r: "Therapist", basic: 2200, sales: 21560, al: 100 },
+        { i: "WN", c: "#f59e0b", n: "Wani", r: "Therapist · Mont Kiara", basic: 2200, sales: 19380, al: 100, adv: 300 },
+        { i: "NR", c: "#ec4899", n: "Noraini", r: "Therapist · Mont Kiara", basic: 2000, sales: 17240, al: 100 },
+        { i: "HN", c: "#10b981", n: "Hana", r: "Receptionist", basic: 1800, sales: 3120, retail: 1, al: 100, ot: 6 },
+        { i: "SZ", c: "#0b2f55", n: "Siti Zubaidah", r: "Spa Attendant", basic: 1700, sales: 0, al: 100, ot: 8 },
+      ],
+    },
+  }[V];
+
+  // ---------- Pay calculation (all amounts worked in sen to avoid rounding drift) ----------
+  const sen = (n) => Math.round(n * 100);
+  const r5 = (c) => Math.round(c / 5) * 5; // nearest 5 sen
+  const total = (s) => (Array.isArray(s) ? s[0] + s[1] : s);
+  const rows = D.staff.map((p) => {
+    const basic = sen(p.basic), comm = sen(D.rate(p.sales));
+    const otPay = sen(((p.basic / 26 / 8) * 1.5) * (p.ot || 0));
+    const extra = sen(p.al) + otPay;
+    const gross = basic + comm + extra;
+    // One generic deductions figure: contributions + monthly tax estimate (+ any salary advance being repaid)
+    const ded = Math.ceil((basic + comm) * 0.11 / 100) * 100 + r5(Math.min(gross, 600000) * 0.0075) + r5(Math.max(0, gross - 400000) * 0.1) + sen(p.adv || 0);
+    return { ...p, basic, comm, extra, ded, net: gross - ded, gross };
+  });
+  const sum = (k) => rows.reduce((a, r) => a + r[k], 0);
+  const T = { basic: sum("basic"), comm: sum("comm"), extra: sum("extra"), ded: sum("ded"), net: sum("net"), gross: sum("gross") };
+  const money = (c, d = 2) => (c / 100).toLocaleString("en-MY", { minimumFractionDigits: d, maximumFractionDigits: d });
+  const rm = (c) => "RM " + money(c, 0);
+
+  $("biz").textContent = `${D.biz} · ${D.sites}`;
+
+  // ---------- Summary panel ----------
+  const parts = [["Basic salary", T.basic, "#0396d9"], ["Commission", T.comm, "#8b5cf6"], ["Allowance & OT", T.extra, "#f59e0b"]];
+  const pct = parts.map(([, v]) => (v / T.gross) * 100);
+  const whole = pct.map(Math.floor);
+  // largest remainder, so the three shares add up to exactly 100%
+  pct.map((p, i) => [p - whole[i], i]).sort((a, b) => b[0] - a[0]).slice(0, 100 - whole.reduce((a, b) => a + b, 0)).forEach(([, i]) => whole[i]++);
+  $("sum").innerHTML = `<div class="figs">
+      <div class="fig"><div class="k"><i data-i="wallet"></i>Total payroll</div><div class="v">${rm(T.gross)}</div><div class="d">Net pay ${rm(T.net)}</div></div>
+      <div class="fig"><div class="k"><i data-i="percent"></i>Total commission</div><div class="v">${rm(T.comm)}</div><div class="d"><b>${D.vs}</b> vs Sep · auto</div></div>
+      <div class="fig"><div class="k"><i data-i="users"></i>Staff</div><div class="v">${rows.length}</div><div class="d">${D.split}</div></div>
+    </div>
+    <div><div class="mix">${parts.map(([, v, c]) => `<i style="width:${((v / T.gross) * 100).toFixed(2)}%;background:${c}"></i>`).join("")}</div>
+      <div class="leg">${parts.map(([n, v, c], i) => `<span><i style="background:${c}"></i>${n}<b>${whole[i]}%</b></span>`).join("")}</div></div>`;
+
+  // ---------- Callout ----------
+  $("call").innerHTML = `<h4><span class="bolt">${BOLT}</span>Commission calculated automatically from POS sales</h4>
+    <p>Every bill closed from <b>1 to 31 Oct</b> is matched to the ${D.doer} who served it, so nobody totals up commission by hand.</p>
+    <div class="tags"><span><i data-i="card"></i>${D.bills} POS bills</span>${D.rules.map((t) => `<span>${t}</span>`).join("")}</div>`;
+
+  // ---------- Pay table ----------
+  const salesNote = (p) => {
+    const s = total(p.sales);
+    if (!s) return "";
+    return `<small>on RM ${s.toLocaleString("en-MY")} ${p.retail ? "retail" : "sales"}</small>`;
+  };
+  const body = rows.map((p) => `<tr>
+      <td><div class="who"><span class="av" style="background:${p.c}">${p.i}</span><div><b>${p.n}</b><small>${p.r}</small></div></div></td>
+      <td class="num">${money(p.basic)}</td>
+      ${p.comm ? `<td class="num cm"><b>${money(p.comm)}</b>${salesNote(p)}</td>` : `<td class="num cm nil">—<small>Not on commission</small></td>`}
+      <td class="num">${money(p.extra)}${p.ot ? `<small>incl. OT ${p.ot} h</small>` : ""}</td>
+      <td class="num">− ${money(p.ded)}${p.adv ? `<small>incl. advance RM ${p.adv}</small>` : ""}</td>
+      <td class="num"><b>${money(p.net)}</b></td>
+      <td><span class="pl"><i data-i="file"></i>Preview</span></td>
+    </tr>`).join("");
+  $("table").innerHTML = `<h3><i data-i="users" style="color:#0396d9"></i>Staff pay <small>· ${rows.length} staff · amounts in RM</small>
+      <div class="seg"><span class="on">All branches</span>${D.branches.map((b) => `<span>${b}</span>`).join("")}</div></h3>
+    <table>
+      <tr><th>Staff</th><th class="num">Basic salary</th><th class="num cm">Commission<span class="auto">${BOLT}Auto</span></th><th class="num">Allowance / OT</th><th class="num">Deductions</th><th class="num">Net pay</th><th>Payslip</th></tr>
+      ${body}
+      <tr class="tot"><td>Total · ${rows.length} staff</td><td class="num">${money(T.basic)}</td><td class="num cm">${money(T.comm)}</td><td class="num">${money(T.extra)}</td><td class="num">− ${money(T.ded)}</td><td class="num">${money(T.net)}</td><td></td></tr>
+    </table>
+    <div class="tfoot"><i data-i="wa"></i>Once approved, each payslip is sent to the staff member's app and WhatsApp.<span class="more">Payroll settings →</span></div>`;
+</script>
+<script src="shell.js"></script>
+<script>
+  // Payroll sits under the Commission menu; show it as its own active item on this page
+  document.querySelectorAll(".nav a").forEach((a) => {
+    const t = a.lastChild;
+    if (t && t.nodeType === 3 && t.textContent === "Commission") a.insertAdjacentHTML("afterend", '<a class="on"><i data-i="wallet"></i>Payroll</a>');
+  });
+</script>
+<script src="icons.js"></script>
+</body></html>

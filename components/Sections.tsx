@@ -1,7 +1,10 @@
 import type { ReactNode } from "react";
-import { emailLink, faqs, site, whatsappLink } from "@/lib/site";
+import { getDict, type Dict } from "@/content";
+import type { Locale } from "@/lib/i18n";
 import { shotSrc, type Shot } from "@/lib/shots";
+import { emailLink, site, whatsappLink } from "@/lib/site";
 import { Icon, type IconName } from "./Icons";
+import { hl } from "./Text";
 
 export function SectionHeading({
   eyebrow,
@@ -17,7 +20,7 @@ export function SectionHeading({
   return (
     <div className={center ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
       {eyebrow && <p className="eyebrow">{eyebrow}</p>}
-      <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">{title}</h2>
+      <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">{typeof title === "string" ? hl(title) : title}</h2>
       {intro && <p className="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">{intro}</p>}
     </div>
   );
@@ -38,54 +41,68 @@ export function CheckList({ items, className = "" }: { items: string[]; classNam
   );
 }
 
-// Used for the home page feature tiles, structured data (featureList) and llms-full.txt.
-export const allFeatures: { icon: IconName; title: string; text: string }[] = [
-  { icon: "Shield", title: `${site.uptime} uptime guarantee`, text: "Cloud hosting with monitoring and daily backups." },
-  { icon: "Calendar", title: "Appointment calendar", text: "Bookings by staff, room or service, with walk-ins." },
-  { icon: "Whatsapp", title: "WhatsApp appointment alerts", text: "Automatic confirmations, reminders and follow-ups." },
-  { icon: "Megaphone", title: "Queue number calling", text: "TV display and voice announcement for rooms and counters." },
-  { icon: "Devices", title: "Works on iPad, phone & PC", text: "Front desk, staff and managers on any device." },
-  { icon: "Lock", title: "Staff & permission control", text: "Decide who can view, edit, discount, refund or export." },
-  { icon: "Card", title: "POS, packages & commission", text: "Checkout, prepaid packages and staff commission in one place." },
-  { icon: "Sparkles", title: "AI stock control", text: "Low-stock prediction and reorder suggestions." },
-  { icon: "Scan", title: "Scan delivery notes", text: "AI reads supplier delivery notes and adjusts stock automatically." },
-  { icon: "Route", title: "Inventory movement tracking", text: "Every stock in, out, transfer and adjustment is logged." },
-  { icon: "Pen", title: "Hand drawing & e-signature", text: "Draw on charts and capture consent on a tablet." },
-  { icon: "Printer", title: "Multi-printer support", text: "Receipts, labels and A4 documents on thermal, label and A4 printers." },
-];
+/* ---------- Features (Technology page tiles, structured data and llms-full.txt) ---------- */
 
-export function HardwareSection() {
-  const hw: { icon: IconName; label: string }[] = [
-    { icon: "Megaphone", label: "Queue display & speaker" },
-    { icon: "Whatsapp", label: "WhatsApp" },
-    { icon: "Printer", label: "Receipt printer" },
-    { icon: "Barcode", label: "Label printer" },
-    { icon: "Scan", label: "Barcode / QR scanner" },
-    { icon: "Card", label: "Card terminal & cash drawer" },
-    { icon: "Pen", label: "Tablet & stylus" },
-    { icon: "Devices", label: "TV, PC & phone" },
-  ];
+const featureIcons: Record<keyof Dict["features"], IconName> = {
+  uptime: "Shield",
+  booking: "Calendar",
+  whatsapp: "Whatsapp",
+  queue: "Megaphone",
+  realtime: "Sync",
+  reports: "Bolt",
+  ai: "Sparkles",
+  inventory: "Route",
+  profiles: "Users",
+  payroll: "Coins",
+  pos: "Card",
+  permissions: "Lock",
+  einvoice: "Invoice",
+  hardware: "Printer",
+  drawing: "Pen",
+  devices: "Devices",
+};
+
+export function getFeatures(lang: Locale): { icon: IconName; title: string; text: string }[] {
+  const f = getDict(lang).features;
+  return (Object.keys(featureIcons) as (keyof typeof featureIcons)[]).map((k) => ({ icon: featureIcons[k], ...f[k] }));
+}
+
+/* ---------- Hardware ---------- */
+
+const hardwareIcons: Record<keyof Dict["hardware"]["items"], IconName> = {
+  caller: "Megaphone",
+  label: "Barcode",
+  receipt: "Printer",
+  xray: "XRay",
+  scanner: "Scan",
+  card: "Card",
+  tablet: "Pen",
+  devices: "Devices",
+};
+
+export function HardwareSection({ lang }: { lang: Locale }) {
+  const t = getDict(lang).hardware;
   return (
     <section id="hardware" className="relative overflow-hidden bg-brand-950 py-20 text-white sm:py-24">
       <div className="bg-grid absolute inset-0 opacity-40" aria-hidden="true" />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
           <p className="inline-flex rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold tracking-wide text-brand-200 uppercase">
-            Multi-hardware connect
+            {t.eyebrow}
           </p>
-          <h2 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl">Connects to your hardware</h2>
-          <p className="mt-3 text-base text-slate-300 sm:text-lg">We install and set it all up for you.</p>
+          <h2 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl">{t.title}</h2>
+          <p className="mt-3 text-base text-slate-300 sm:text-lg">{t.intro}</p>
         </div>
         <ul className="mt-12 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
-          {hw.map((h) => {
-            const I = Icon[h.icon];
+          {(Object.keys(hardwareIcons) as (keyof typeof hardwareIcons)[]).map((k) => {
+            const I = Icon[hardwareIcons[k]];
             return (
               <li
-                key={h.label}
+                key={k}
                 className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-3.5 backdrop-blur transition hover:border-teal-brand/60 hover:bg-white/10 sm:flex-col sm:p-6 sm:text-center"
               >
                 <I className="h-6 w-6 shrink-0 text-teal-brand sm:h-8 sm:w-8" />
-                <span className="text-[13px] leading-snug font-medium text-slate-200 sm:text-sm">{h.label}</span>
+                <span className="text-[13px] leading-snug font-medium text-slate-200 sm:text-sm">{t.items[k]}</span>
               </li>
             );
           })}
@@ -95,71 +112,79 @@ export function HardwareSection() {
   );
 }
 
-export function PricingSection() {
-  const included = [
-    "Appointment system for your business",
-    "Queue calling & WhatsApp alerts",
-    "AI stock control & delivery note scan",
-    "Works on desktop, tablet & phone",
-    "Staff accounts & permission control",
-    `${site.uptime} uptime & daily backups`,
-    "Free installation & staff training",
-    "Local support on WhatsApp",
-  ];
+/* ---------- Pricing ---------- */
+
+export function PricingSection({ lang }: { lang: Locale }) {
+  const t = getDict(lang).pricing;
   return (
     <section id="pricing" className="py-20 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <SectionHeading eyebrow="Simple pricing" title="Affordable for every business" />
+        <SectionHeading eyebrow={t.eyebrow} title={t.title} />
         <div className="mx-auto mt-12 grid max-w-5xl items-stretch gap-6 lg:grid-cols-5">
           <div className="relative overflow-hidden rounded-3xl bg-brand-gradient p-7 text-white shadow-2xl shadow-brand-500/30 sm:p-8 lg:col-span-3">
             <div className="bg-grid absolute inset-0 opacity-20" aria-hidden="true" />
-            <div className="relative">
+            <div className="relative flex h-full flex-col">
               <p className="inline-flex items-center gap-2 rounded-full bg-white/20 px-3 py-1 text-xs font-bold tracking-wide uppercase">
-                <Icon.Gift className="h-4 w-4" /> New customer offer
+                <Icon.Gift className="h-4 w-4" /> {t.offer}
               </p>
-              <h3 className="mt-5 text-2xl font-bold">Techub Standard Plan</h3>
+              <h3 className="mt-5 text-2xl font-bold">{t.plan}</h3>
               <p className="mt-5 flex flex-wrap items-end gap-x-2">
-                <span className="text-lg font-semibold text-white/80">from</span>
+                <span className="text-lg font-semibold text-white/80">{t.from}</span>
                 <span className="text-5xl font-extrabold tracking-tight sm:text-6xl">RM {site.priceFrom}</span>
-                <span className="pb-1.5 text-lg font-semibold text-white/80">/ month</span>
+                <span className="pb-1.5 text-lg font-semibold text-white/80">{t.perMonth}</span>
               </p>
-              <p className="mt-5 rounded-2xl bg-white/15 p-4 text-base font-semibold">
-                FREE for the first {site.freeMonths} months for new users, including staff training and installation.
-              </p>
-              <a href={whatsappLink("Hi Techub, I want to claim the 3 months free offer.")} target="_blank" rel="noopener"
-                className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-bold text-brand-800 shadow-lg transition hover:bg-brand-50">
-                <Icon.Whatsapp className="h-5 w-5 text-whatsapp" /> Claim 3 Months Free
+              <p className="mt-5 rounded-2xl bg-white/15 p-4 text-base font-semibold">{t.free}</p>
+              <a
+                href={whatsappLink(t.claimMessage)}
+                target="_blank"
+                rel="noopener"
+                className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-bold text-brand-800 shadow-lg transition hover:bg-brand-50 lg:mt-auto"
+              >
+                <Icon.Whatsapp className="h-5 w-5 text-whatsapp" /> {t.claim}
               </a>
             </div>
           </div>
           <div className="card p-7 sm:p-8 lg:col-span-2">
-            <h3 className="text-lg font-bold text-slate-900">Everything included</h3>
-            <CheckList items={included} className="mt-5" />
+            <h3 className="text-lg font-bold text-slate-900">{t.includedTitle}</h3>
+            <CheckList items={t.included} className="mt-5" />
+          </div>
+          <div className="card flex flex-col gap-5 p-6 sm:p-7 lg:col-span-5 lg:flex-row lg:items-center lg:gap-8">
+            <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-brand-gradient text-white shadow-lg shadow-brand-500/25">
+              <Icon.Code className="h-7 w-7" />
+            </span>
+            <div className="min-w-0 flex-1">
+              <h3 className="flex flex-wrap items-baseline gap-x-2 text-lg font-bold text-slate-900">
+                {t.customTitle}
+                <span className="text-sm font-semibold text-slate-500">{t.customFrom}</span>
+                <span className="text-gradient text-3xl font-extrabold tracking-tight">RM {site.customFrom}</span>
+              </h3>
+              <p className="mt-1 text-sm leading-relaxed text-slate-600 sm:text-base">{t.customText}</p>
+            </div>
+            <div className="flex shrink-0 flex-col gap-3 sm:flex-row">
+              <a href={whatsappLink(t.customMessage)} target="_blank" rel="noopener" className="btn-primary">
+                <Icon.Whatsapp className="h-5 w-5" /> {t.customCta}
+              </a>
+              <a href={emailLink(t.customEmailSubject)} className="btn-secondary">
+                <Icon.Mail className="h-5 w-5" /> {t.customEmail}
+              </a>
+            </div>
           </div>
         </div>
-        <p className="mx-auto mt-8 max-w-2xl text-center text-sm text-slate-500">
-          Need something special? We customise at a low cost.{" "}
-          <a className="font-semibold text-brand-600 hover:underline" href={whatsappLink("Hi Techub, I need a customised system quote.")} target="_blank" rel="noopener">
-            WhatsApp
-          </a>{" "}
-          or{" "}
-          <a className="font-semibold text-brand-600 hover:underline" href={emailLink("Customised system quote")}>
-            email us
-          </a>{" "}
-          for a quote.
-        </p>
       </div>
     </section>
   );
 }
 
-export function FaqSection({ items = faqs }: { items?: { q: string; a: string }[] }) {
+/* ---------- FAQ ---------- */
+
+export function FaqSection({ lang, items }: { lang: Locale; items?: { q: string; a: string }[] }) {
+  const t = getDict(lang).faq;
   return (
     <section id="faq" className="bg-slate-50 py-20 sm:py-24">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-        <SectionHeading eyebrow="FAQ" title="Questions? We have answers" />
+        <SectionHeading eyebrow={t.eyebrow} title={t.title} />
         <div className="mt-10 space-y-3">
-          {items.map((f) => (
+          {(items ?? t.items).map((f) => (
             <details key={f.q} className="card group p-0 [&_summary::-webkit-details-marker]:hidden">
               <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 p-4 text-left font-semibold text-slate-900 sm:p-5">
                 <h3 className="text-[15px] sm:text-base">{f.q}</h3>
@@ -190,7 +215,15 @@ export function faqJsonLd(items: { q: string; a: string }[]) {
   };
 }
 
-export function softwareJsonLd(opts: { name: string; description: string; url: string; category: string; features: string[]; screenshots?: Shot[] }) {
+export function softwareJsonLd(opts: {
+  lang: Locale;
+  name: string;
+  description: string;
+  url: string;
+  category: string;
+  features: string[];
+  screenshots?: Shot[];
+}) {
   return {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -220,7 +253,7 @@ export function softwareJsonLd(opts: { name: string; description: string; url: s
         unitText: "MONTH",
         referenceQuantity: { "@type": "QuantitativeValue", value: 1, unitCode: "MON" },
       },
-      description: `From RM ${site.priceFrom} per month. First ${site.freeMonths} months free for new users, including installation and staff training.`,
+      description: getDict(opts.lang).pricing.offerText,
       availability: "https://schema.org/InStock",
       areaServed: "MY",
     },

@@ -1,37 +1,55 @@
 # Techub Software
 
-> Techub Software is a Malaysian software company that provides appointment management systems and customises them for each business. It has ready systems for clinics, hair salons, beauty centres and spas. It guarantees 99.95% uptime, supports multi-hardware connections (queue number calling, WhatsApp appointment alerts, multiple printer types), works on iPad, phone and PC, and offers plans from RM 99 per month, with the first 3 months free for new users including installation and staff training.
+> Techub Software is a Malaysian software company. Its appointment system, Malaysia's most chosen, offers advanced booking with AI integration, a 99.95% uptime guarantee, an enterprise-level indexed NoSQL database with guaranteed speed (detailed reports in under 100 ms), real-time updates on every device, WhatsApp notifications and stock control. It has ready systems for clinics, hair salons, beauty centres and spas, and builds custom systems such as ERP, AI object detection and number plate scanners. Plans start from RM 99 per month, with the first 3 months free for new users including installation and staff training. Customisation starts from RM 300, depending on requirements.
 
 Contact: WhatsApp +60 11-1768 8559 (https://wa.me/601117688559) · Email admin@techubsoftware.com
 Country served: Malaysia
-Languages: English, Malay, Chinese
+Languages: English (/), Bahasa Melayu (/ms/), Simplified Chinese (/zh/). Every page exists in all three languages, for example /ms/clinic-management-system/ and /zh/clinic-management-system/.
 
-## Appointment systems
+## Services
 
-- [Clinic Management System](/clinic-management-system/): Patient registration, queue number calling, EMR, patient medication tracking, dispensing, AI medicine stock control, hand-drawn body and dental charts, e-signature, MC, label and receipt printing, permission control. For GP, dental, specialist, aesthetic, physiotherapy and TCM clinics.
-- [Salon Appointment System](/salon-appointment-system/): Booking calendar by stylist, walk-in queue, WhatsApp reminders, customer history and colour formulas, packages and member points, POS with stylist commission, AI product stock control. For hair salons and barbershops.
-- [Beauty Centre Appointment System](/beauty-appointment-system/): Booking calendar, WhatsApp reminders, treatment packages and sessions, face charts with before and after photos and e-signature consent, POS with staff commission, AI product stock control. For beauty centres, facial, lash and brow, nail and slimming centres.
-- [Spa Appointment System](/spa-appointment-system/): Therapist and room scheduling, couple bookings, WhatsApp reminders, packages and memberships, treatment maps with e-signature, POS with therapist commission, AI stock control. For day spas, massage, reflexology and wellness centres.
-- Other appointment-based businesses: Techub customises the system at a low cost.
+- Ready-made appointment systems for clinics, hair salons, beauty centres and spas
+- Custom system development: ERP, AI object detection, number plate scanners and more, from RM 300
+- Hardware setup: label printers, number calling systems, X-ray machines, receipt printers, scanners and card terminals
+- Installation, staff training and local support on WhatsApp
+
+## Use cases
+
+- [Clinic Management System](/clinic-management-system/): Patient records tracking, medication tracking system, queue number calling on TV with voice, consultation and EMR, hand-drawn body and dental charts with e-signature, AI medicine stock control, MC, label and receipt printing, X-ray machine connection, billing and panel claims, LHDN e-Invoice, detailed reports in under 100 ms, permission control. For GP, dental, specialist, aesthetic, physiotherapy and TCM clinics.
+- [Salon Appointment System](/salon-appointment-system/): Booking calendar by stylist, automatic WhatsApp customer notifications, cross-platform (iPad, phone and PC), a profile for each staff member to view and manage their own appointments, inventory tracking, payroll calculation with commission, POS, customer colour formulas, detailed reports in under 100 ms. For hair salons and barbershops.
+- [Beauty Centre Appointment System](/beauty-appointment-system/): Booking calendar, automatic WhatsApp reminders, treatment packages and sessions, face charts with photos and e-signature consent, staff profiles, payroll calculation, POS, inventory tracking, detailed reports in under 100 ms. For beauty centres, facial, lash and brow, nail and slimming centres.
+- [Spa Appointment System](/spa-appointment-system/): Therapist and room scheduling, automatic WhatsApp reminders, packages and memberships, treatment maps with e-signature, staff profiles, payroll calculation, POS, inventory tracking, detailed reports in under 100 ms. For day spas, massage, reflexology and wellness centres.
+- [Custom systems](/#custom-systems): ERP, AI object detection, number plate scanners, or a new system for any business, from RM 300.
+
+## Technology
+
+- [Technology overview](/technology/): Malaysian enterprise-level servers such as IPServerOne and Amazon Web Services, with full transparency about where data is kept; indexed NoSQL database so detailed reports load in under 100 ms; all stored data encrypted, with multi-layer backups across multiple regions; AI that reads delivery notes and manages stock; real-time updates across iPad, phone and PC; WhatsApp notifications; LHDN e-Invoice through MyInvois; multi-hardware connect for label printers, number calling systems and X-ray machines.
 
 ## Key features
 
-- 99.95% uptime guarantee with cloud hosting, monitoring and daily backups
-- Multi-hardware connect: queue number calling display and voice, WhatsApp appointment alerts, thermal, label and A4 printers, barcode scanners, card terminals, tablets
-- Cross-device: iPad and other tablets, phones, laptops and desktop computers
-- Permission control and staff control with audit trail
-- Advanced AI stock control: scan supplier delivery notes for automatic stock adjustment, AI low-stock prediction and reorder suggestions
-- Tracking of every inventory movement (stock in, out, transfer, adjustment) with batch and expiry
+- 99.95% uptime guarantee (less than 22 minutes of downtime a month on average)
+- Advanced booking calendar with AI integration
+- Detailed reports generated in under 100 ms, without lag
+- Real-time updates on every device
+- Automatic WhatsApp confirmations and reminders
+- AI stock control and tracking of every inventory movement
+- Staff profiles, payroll calculation and permission control with audit trail
+- LHDN e-Invoice support
+- Multi-hardware connect: label printers, number calling systems, X-ray machines, printers, scanners, card terminals, tablets
 - Hand drawing and digital signatures
-- Low-cost customisation of workflows, forms, reports and integrations
 
 ## Pricing
 
 - From RM 99 per month
 - New users: first 3 months free, including staff training and installation
+- Customisation: from RM 300, depending on requirements
 
 ## More
 
 - [Full details for AI assistants](/llms-full.txt)
+- [About Techub](/#about)
+- [Services](/#services)
 - [Pricing](/#pricing)
 - [FAQ](/#faq)
+- [Bahasa Melayu site](/ms/)
+- [Chinese site](/zh/)

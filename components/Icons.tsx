@@ -111,6 +111,51 @@ export const Icon = {
   Close: (p: IconProps) => (
     <svg {...base(p)}><path d="M6 6l12 12M18 6L6 18" /></svg>
   ),
+  Chevron: (p: IconProps) => (
+    <svg {...base(p)}><path d="M6 9l6 6 6-6" /></svg>
+  ),
+  Code: (p: IconProps) => (
+    <svg {...base(p)}><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 4l-3 16" /></svg>
+  ),
+  Coins: (p: IconProps) => (
+    <svg {...base(p)}><ellipse cx="9" cy="7" rx="6" ry="3" /><path d="M3 7v4c0 1.7 2.7 3 6 3s6-1.3 6-3V7" /><path d="M9 14v3c0 1.7 2.7 3 6 3s6-1.3 6-3v-4c0-1.6-2.4-2.9-5.5-3" /></svg>
+  ),
+  Rocket: (p: IconProps) => (
+    <svg {...base(p)}><path d="M12 15l-3-3c1.2-4.7 4.6-8.3 11-9-.7 6.4-4.3 9.8-9 11z" /><path d="M9 12l-4 .5L3 15l4.5.5M12 15l-.5 4L9 21l-.5-4.5" /><circle cx="15" cy="9" r="1.5" /></svg>
+  ),
+  Database: (p: IconProps) => (
+    <svg {...base(p)}><ellipse cx="12" cy="5.5" rx="7.5" ry="2.8" /><path d="M4.5 5.5v13c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8v-13" /><path d="M4.5 12c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8" /></svg>
+  ),
+  Bolt: (p: IconProps) => (
+    <svg {...base(p)}><path d="M13 2.5L4.5 13.5H11l-1 8 8.5-11H12l1-8z" /></svg>
+  ),
+  Sync: (p: IconProps) => (
+    <svg {...base(p)}><path d="M20 11a8 8 0 00-14.6-4.5L4 8" /><path d="M4 4v4h4" /><path d="M4 13a8 8 0 0014.6 4.5L20 16" /><path d="M20 20v-4h-4" /></svg>
+  ),
+  Server: (p: IconProps) => (
+    <svg {...base(p)}><rect x="3.5" y="3.5" width="17" height="7" rx="1.5" /><rect x="3.5" y="13.5" width="17" height="7" rx="1.5" /><path d="M7 7h.01M7 17h.01M11 7h6M11 17h6" /></svg>
+  ),
+  Invoice: (p: IconProps) => (
+    <svg {...base(p)}><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z" /><path d="M14 3v5h5" /><path d="M8.5 12.5h7M8.5 15.5h3.5" /><rect x="13.5" y="15" width="3" height="3" rx=".5" /></svg>
+  ),
+  XRay: (p: IconProps) => (
+    <svg {...base(p)}><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M12 6v12" /><path d="M8 9c1.5-.8 2.8-.8 4 0 1.2-.8 2.5-.8 4 0M7.5 12.5c1.6-.8 3-.8 4.5 0 1.5-.8 2.9-.8 4.5 0M8 16c1.5-.8 2.8-.8 4 0 1.2-.8 2.5-.8 4 0" /></svg>
+  ),
+  Star: (p: IconProps) => (
+    <svg {...base(p)}><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z" /></svg>
+  ),
+  Globe: (p: IconProps) => (
+    <svg {...base(p)}><circle cx="12" cy="12" r="9" /><path d="M3 12h18" /><path d="M12 3c2.5 2.5 3.8 5.5 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.5-3.8-9S9.5 5.5 12 3z" /></svg>
+  ),
+  Detect: (p: IconProps) => (
+    <svg {...base(p)}><path d="M4 8V5a1 1 0 011-1h3M16 4h3a1 1 0 011 1v3M20 16v3a1 1 0 01-1 1h-3M8 20H5a1 1 0 01-1-1v-3" /><path d="M6.5 12s2-3.5 5.5-3.5 5.5 3.5 5.5 3.5-2 3.5-5.5 3.5S6.5 12 6.5 12z" /><circle cx="12" cy="12" r="1.5" /></svg>
+  ),
+  Car: (p: IconProps) => (
+    <svg {...base(p)}><path d="M5 12l1.8-4.6A2 2 0 018.7 6h6.6a2 2 0 011.9 1.4L19 12" /><rect x="3.5" y="12" width="17" height="5.5" rx="1" /><path d="M6 17.5v2M18 17.5v2" /><rect x="9.5" y="13.7" width="5" height="2" rx=".4" /></svg>
+  ),
+  Layers: (p: IconProps) => (
+    <svg {...base(p)}><path d="M12 3l9 4.5-9 4.5-9-4.5z" /><path d="M3 12l9 4.5 9-4.5" /><path d="M3 16.5L12 21l9-4.5" /></svg>
+  ),
 };
 
 export type IconName = keyof typeof Icon;

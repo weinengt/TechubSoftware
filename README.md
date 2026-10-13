@@ -1,19 +1,25 @@
 # Techub Software website
 
-Marketing website for Techub Software, a provider of appointment management systems in Malaysia, with a page for each business type: clinic, hair salon, beauty centre and spa.
+Marketing website for Techub Software, a Malaysian software company: ready appointment systems for clinics,
+hair salons, beauty centres and spas, and custom systems (ERP, AI object detection, number plate scanners).
+The whole site is in English, Bahasa Melayu and Simplified Chinese.
 
-Built with **Next.js (App Router) + Tailwind CSS**, exported as a fully static site so it can be hosted for free on **Cloudflare Pages**.
+Built with **Next.js (App Router) + Tailwind CSS**, exported as a fully static site and served by a **Cloudflare Worker**.
 
 ## Pages
 
+Every page exists in three languages: English at the address below, Bahasa Melayu under `/ms/`, Chinese under `/zh/`
+(for example `/ms/clinic-management-system/`). The language switch is in the menu and the footer.
+
 | URL | Purpose |
 | --- | --- |
-| `/` | Home: company intro, tappable cards for each business type, AI stock, devices, hardware, features, pricing, FAQ, contact |
+| `/` | Home: company introduction, highlights, services, use cases, custom systems, technology, pricing, FAQ, contact |
+| `/technology/` | Technology: servers, NoSQL database and speed, real-time updates, AI, WhatsApp, hardware, LHDN e-Invoice, security |
 | `/clinic-management-system/` | Clinic system, with example screens on iPad and phone |
 | `/salon-appointment-system/` | Hair salon system |
 | `/beauty-appointment-system/` | Beauty centre system |
 | `/spa-appointment-system/` | Spa & massage system |
-| `/sitemap.xml`, `/robots.txt` | Search engine files (AI crawlers explicitly allowed) |
+| `/sitemap.xml`, `/robots.txt` | Search engine files, with every language version of each page (AI crawlers explicitly allowed) |
 | `/llms.txt`, `/llms-full.txt` | Summaries for AI assistants (ChatGPT, Claude, Perplexity, Gemini) |
 
 ## Develop
@@ -43,11 +49,13 @@ Cloudflare Pages also works: use the **Next.js (Static HTML Export)** preset, bu
 
 ## Editing content
 
-- Company details (WhatsApp number, email, price, free months, uptime, keywords): `lib/site.ts`
-- Business types shown as cards on the home page and in the menu: `lib/site.ts` → `systems`
-- Home page FAQ: `lib/site.ts` → `faqs`
-- One page per business type: `app/clinic-management-system/page.tsx`, `app/salon-appointment-system/page.tsx`,
-  `app/beauty-appointment-system/page.tsx`, `app/spa-appointment-system/page.tsx` (text, pictures, modules and FAQ)
+- **All words on the site**, in each language: `content/en.ts` (English), `content/ms.ts` (Bahasa Melayu),
+  `content/zh.ts` (Chinese). The three files have the same structure, so change the same line in each.
+  `{price}`, `{months}`, `{custom}`, `{uptime}`, `{phone}` and `{email}` are filled in from `lib/site.ts`;
+  words between `*stars*` are shown in the blue gradient.
+- Company details (WhatsApp number, email, monthly price, free months, customisation price, uptime, keywords): `lib/site.ts`
+- Business types in the Use Cases menu and their addresses: `lib/site.ts` → `systems`
+- Which picture goes with which part of a business page: `components/ProductPage.tsx` → `specs`
 - Logo: `public/images/logo.webp` / `logo.png`; icons: `public/icon-192.png`, `public/icon-512.png`, `public/favicon.ico`
 - Social share image (WhatsApp/Facebook link preview): `public/og-image.jpg` (1200×630)
 
@@ -55,7 +63,8 @@ Cloudflare Pages also works: use the **Next.js (Static HTML Export)** preset, bu
 
 The product pictures are example screens with sample data (Demo Clinic, Demo Hair Salon, Demo Beauty Centre,
 Demo Day Spa and made-up customers). They live in `public/images/screens/` as `<name>.webp` (full size) and
-`<name>-sm.webp` (half size, for phones). Their captions and alt text are in `lib/shots.ts`.
+`<name>-sm.webp` (half size, for phones). Their sizes are in `lib/shots.ts`; their captions and alt text are in
+`content/*.ts` under `shots`.
 
 **To use real screenshots of your system:** take a screenshot of the same screen, crop it to the same
 aspect ratio, save it as `<name>.webp` and a half-width copy as `<name>-sm.webp`, replacing the old files.
@@ -76,6 +85,12 @@ aspect ratio, save it as `<name>.webp` and a half-width copy as `<name>-sm.webp`
 | `salon-customer-profile`, `beauty-customer-package`, `spa-customer-package` | 720×1520 (phone) | Customer profile and packages |
 | `queue-number-calling-display` | 1920×1080 (TV) | Queue calling TV screen |
 | `printouts-receipt-label-mc` | 1500×1050 | Receipt, MC and medicine label (transparent background) |
+| `reports-clinic-ipad`, `-salon`, `-beauty`, `-spa` | 1536×1080 (iPad) | Detailed reports, generated in under 100 ms |
+| `staff-profile-salon`, `-beauty`, `-spa` | 720×1520 (phone) | A staff member's own appointments |
+| `payroll-salon-ipad`, `-beauty`, `-spa` | 1536×1080 (iPad) | Payroll with basic pay, commission and allowances |
+| `lhdn-e-invoice` | 1500×1050 | LHDN e-Invoice with QR code (transparent background) |
+| `clinic-dashboard-desktop` | 1800×1125 (PC) | Dashboard in a browser |
+| `custom-erp-desktop`, `ai-object-detection-desktop`, `number-plate-scanner-desktop` | 1800×1125 (PC) | Custom system examples |
 
 **To change the example screens instead:** edit the HTML in `design/mockups/` and re-render:
 
@@ -88,6 +103,7 @@ node scripts/render-mockups.mjs whatsapp   # only matching names
 ## After going live (SEO checklist)
 
 - Submit `https://<your-domain>/sitemap.xml` in Google Search Console and Bing Webmaster Tools (Bing also feeds ChatGPT search and Copilot).
+  The sitemap lists the English, Malay and Chinese version of every page, so all three get indexed.
 - Create a Google Business Profile with the same name, WhatsApp number and website.
 - Add your social profiles to `sameAs` in `app/layout.tsx` once they exist.
 - Test the link preview by sending your URL to yourself on WhatsApp.

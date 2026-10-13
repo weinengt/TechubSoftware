@@ -1,0 +1,162 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<style>
+  :root { --w: 1000px; --h: 700px; --ok: #047857; --ok2: #059669; }
+  .stage { position: relative; width: 100%; height: 100%; }
+  /* A5 e-Invoice */
+  .inv { position: absolute; left: 70px; top: 46px; width: 420px; height: 594px; background: #fff; border-radius: 4px; transform: rotate(-3deg); box-shadow: 0 30px 50px -20px rgba(15,23,42,.45), 0 2px 6px rgba(15,23,42,.12); padding: 22px 24px 18px; overflow: hidden; color: #1f2937; display: flex; flex-direction: column; }
+  .hd { display: flex; gap: 10px; align-items: flex-start; padding-bottom: 10px; border-bottom: 2px solid #0050a0; }
+  .hd img { width: 30px; height: 30px; border-radius: 7px; margin-top: 1px; }
+  .co b { display: block; font-size: 12.5px; font-weight: 800; color: #0b2f55; letter-spacing: .01em; }
+  .co small { display: block; font-size: 7.6px; color: #64748b; line-height: 1.45; }
+  .tt { margin-left: auto; text-align: right; }
+  .tt h2 { font-size: 17px; font-weight: 850; color: #0b2f55; letter-spacing: .04em; line-height: 1.1; }
+  .tt small { display: block; font-size: 7.6px; color: #64748b; margin-top: 2px; }
+  .tt .smp { display: inline-block; margin-top: 4px; font-size: 7px; font-weight: 800; letter-spacing: .14em; color: #b91c1c; border: 1px solid #fca5a5; border-radius: 3px; padding: 1px 4px; }
+  .pt { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 11px; }
+  .pt > div { background: #f8fafc; border-radius: 6px; padding: 8px 10px; }
+  .pt h4 { font-size: 7px; font-weight: 800; letter-spacing: .12em; color: #0396d9; text-transform: uppercase; margin-bottom: 4px; }
+  .pt .nm { font-size: 10px; font-weight: 750; color: #0f172a; }
+  .pt p { font-size: 7.8px; color: #475569; line-height: 1.5; }
+  .pt dl { display: grid; grid-template-columns: auto 1fr; gap: 1px 8px; font-size: 7.8px; line-height: 1.5; }
+  .pt dt { color: #64748b; white-space: nowrap; } .pt dd { color: #0f172a; font-weight: 600; text-align: right; white-space: nowrap; }
+  .it { margin-top: 11px; width: 100%; border-collapse: collapse; font-size: 8.2px; }
+  .it th { font-size: 6.8px; font-weight: 700; letter-spacing: .06em; color: #475569; background: #eef4fa; text-transform: uppercase; padding: 5px 6px; border-bottom: 1px solid #d5e0eb; }
+  .it td { padding: 6px 6px; border-bottom: 1px solid #edf1f6; color: #1f2937; white-space: nowrap; }
+  .it td small { display: block; font-size: 6.9px; color: #64748b; margin-top: 1px; }
+  .it .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .it .c { text-align: center; }
+  .lo { display: flex; align-items: flex-start; margin-top: 10px; gap: 12px; }
+  .note { flex: 1; font-size: 7.3px; color: #64748b; line-height: 1.5; padding-top: 2px; }
+  .note b { color: #334155; font-weight: 650; }
+  .tot { width: 190px; font-size: 8.2px; }
+  .tot div { display: flex; justify-content: space-between; padding: 2.5px 0; color: #475569; }
+  .tot div span:last-child { font-variant-numeric: tabular-nums; color: #0f172a; font-weight: 600; }
+  .tot .pay { margin-top: 4px; padding: 6px 8px; background: #0b2f55; color: #fff; border-radius: 5px; font-size: 9.5px; font-weight: 750; }
+  .tot .pay span:last-child { color: #fff; font-weight: 800; }
+  .val { margin-top: auto; display: flex; gap: 12px; align-items: center; border: 1.5px solid #a7f3d0; background: #f0fdf4; border-radius: 8px; padding: 9px 10px; }
+  .val .qr { width: 76px; height: 76px; flex-shrink: 0; background: #fff; padding: 3px; border-radius: 3px; }
+  .badge { display: inline-flex; align-items: center; gap: 5px; background: var(--ok2); color: #fff; font-size: 9.5px; font-weight: 800; padding: 4px 9px 4px 6px; border-radius: 99px; letter-spacing: .01em; }
+  .badge svg { width: 11px; height: 11px; stroke-width: 3; }
+  .val dl { display: grid; grid-template-columns: auto 1fr; gap: 2px 8px; margin-top: 6px; font-size: 7.6px; line-height: 1.45; }
+  .val dt { color: #64748b; } .val dd { color: #0f172a; font-weight: 650; }
+  .mono { font-family: "DejaVu Sans Mono", monospace; letter-spacing: -.02em; font-size: 7.4px; }
+  .ft { margin-top: 8px; font-size: 6.8px; color: #94a3b8; display: flex; justify-content: space-between; }
+  .stamp { position: absolute; left: 34px; top: 404px; transform: rotate(-9deg); border: 2.5px solid rgba(5,150,105,.78); outline: 1px solid rgba(5,150,105,.55); outline-offset: 2px; border-radius: 7px; padding: 5px 12px 6px; color: rgba(4,120,87,.85); text-align: center; font-weight: 900; mix-blend-mode: multiply; }
+  .stamp b { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 17px; letter-spacing: .14em; line-height: 1.1; }
+  .stamp b svg { width: 16px; height: 16px; stroke-width: 3.2; }
+  .stamp span { display: block; font-size: 7.6px; letter-spacing: .16em; font-weight: 800; margin-top: 2px; }
+  /* Thermal receipt (same paper as printouts.html) */
+  .rcw { position: absolute; left: 560px; top: 30px; width: 262px; transform: rotate(4deg); filter: drop-shadow(0 26px 30px rgba(15,23,42,.35)); }
+  .rc { background: #fff; padding: 20px 18px 34px; font-family: "DejaVu Sans Mono", monospace; font-size: 10.2px; color: #111827;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 8px), 95% 100%, 90% calc(100% - 8px), 85% 100%, 80% calc(100% - 8px), 75% 100%, 70% calc(100% - 8px), 65% 100%, 60% calc(100% - 8px), 55% 100%, 50% calc(100% - 8px), 45% 100%, 40% calc(100% - 8px), 35% 100%, 30% calc(100% - 8px), 25% 100%, 20% calc(100% - 8px), 15% 100%, 10% calc(100% - 8px), 5% 100%, 0 calc(100% - 8px)); }
+  .rc .c { text-align: center; } .rc .big { font-size: 13.5px; font-weight: 700; letter-spacing: .04em; }
+  .rc .hr { border-top: 1.5px dashed #9ca3af; margin: 8px 0; }
+  .rc .l { display: flex; justify-content: space-between; line-height: 1.7; } .rc .tot2 { font-size: 13.5px; font-weight: 700; }
+  .rc .qr { width: 92px; height: 92px; margin: 6px auto 4px; display: block; }
+  .rc .ok { display: flex; align-items: center; justify-content: center; gap: 6px; font-weight: 700; font-size: 11px; margin-top: 2px; }
+  .rc .ok i { width: 15px; height: 15px; border-radius: 99px; background: #111827; color: #fff; display: grid; place-items: center; font-style: normal; font-size: 10px; }
+  .rc .sm { font-size: 9px; color: #374151; }
+  /* Validation notice from the system */
+  .toast { position: absolute; left: 640px; top: 548px; width: 318px; background: #fff; border-radius: 12px; transform: rotate(-2.5deg); box-shadow: 0 24px 40px -16px rgba(15,23,42,.45), 0 2px 6px rgba(15,23,42,.12); padding: 12px 14px; display: flex; gap: 11px; align-items: center; border-top: 5px solid var(--ok2); }
+  .toast .ic { width: 36px; height: 36px; border-radius: 99px; background: #d1fae5; color: var(--ok); display: grid; place-items: center; flex-shrink: 0; }
+  .toast .ic svg { width: 19px; height: 19px; stroke-width: 2.8; }
+  .toast b { display: block; font-size: 12.5px; font-weight: 800; color: #0f172a; }
+  .toast small { display: block; font-size: 10.5px; color: #64748b; margin-top: 2px; }
+  .toast .t { margin-left: auto; text-align: right; font-size: 10px; color: #64748b; white-space: nowrap; }
+  .toast .t strong { display: block; font-size: 13px; color: var(--ok); font-weight: 800; }
+</style></head>
+<body>
+<div class="stage">
+  <div class="inv">
+    <div class="hd">
+      <img src="icon.png" alt="">
+      <div class="co"><b>DEMO CLINIC SDN BHD</b>
+        <small>Reg. No. 202401012345 (1551234-X) · TIN C2584563209</small>
+        <small>No. 1, Jalan Contoh, 50000 Kuala Lumpur · 03-0000 0000</small>
+        <small>MSIC 86201 · General medical services</small></div>
+      <div class="tt"><h2>e-INVOICE</h2><small>Type 01 · Invoice · v1.0</small><span class="smp">SAMPLE</span></div>
+    </div>
+    <div class="pt">
+      <div><h4>Buyer</h4><div class="nm">Mewah Logistik Sdn Bhd</div>
+        <p>TIN C1092837465<br>Reg. No. 201901023456 (1330987-K)<br>Lot 12, Jalan Perusahaan 3,<br>40300 Shah Alam, Selangor</p></div>
+      <div><h4>e-Invoice details</h4>
+        <dl><dt>e-Invoice no.</dt><dd>INV-2026-004218</dd><dt>Issued</dt><dd>13/10/2026 10:45:01</dd><dt>Currency</dt><dd>MYR</dd><dt>Due date</dt><dd>12/11/2026</dd><dt>Attention</dt><dd>Pn. Rohana (HR)</dd></dl></div>
+    </div>
+    <table class="it">
+      <tr><th style="text-align:left">#</th><th style="text-align:left">Description</th><th class="c">Qty</th><th class="num">Unit (RM)</th><th class="c">Tax</th><th class="num">Amount (RM)</th></tr>
+      <tr><td>1</td><td>Pre-employment medical check-up<small>Staff health screening · Oct 2026</small></td><td class="c">6</td><td class="num">180.00</td><td class="c">E</td><td class="num">1,080.00</td></tr>
+      <tr><td>2</td><td>Full blood count &amp; lipid profile</td><td class="c">6</td><td class="num">85.00</td><td class="c">E</td><td class="num">510.00</td></tr>
+      <tr><td>3</td><td>Chest X-ray with doctor's report</td><td class="c">6</td><td class="num">60.00</td><td class="c">E</td><td class="num">360.00</td></tr>
+      <tr><td>4</td><td>Urine drug screening</td><td class="c">6</td><td class="num">45.00</td><td class="c">E</td><td class="num">270.00</td></tr>
+    </table>
+    <div class="lo">
+      <div class="note"><b>Tax E</b> = SST exempt (healthcare services)<br>Payment by bank transfer within 30 days<br>Quote INV-2026-004218 as reference</div>
+      <div class="tot">
+        <div><span>Total excluding tax</span><span>2,220.00</span></div>
+        <div><span>SST (exempt)</span><span>0.00</span></div>
+        <div><span>Total including tax</span><span>2,220.00</span></div>
+        <div class="pay"><span>Total payable</span><span>RM 2,220.00</span></div>
+      </div>
+    </div>
+    <div class="val">
+      <svg class="qr" id="qr1" viewBox="0 0 25 25" shape-rendering="crispEdges"></svg>
+      <div>
+        <span class="badge"><i data-i="check"></i>Validated · LHDN MyInvois</span>
+        <dl><dt>UIN</dt><dd class="mono">7QK2V9XB4TZ1M8RW6HDN3CJ5PA</dd><dt>Validated on</dt><dd>13/10/2026 10:45:03</dd><dt>Status</dt><dd>Valid · scan QR to verify</dd></dl>
+      </div>
+    </div>
+    <div class="ft"><span>This document is a visual representation of an e-Invoice.</span><span>Page 1 of 1 · Techub</span></div>
+    <div class="stamp"><b><i data-i="check"></i>VALIDATED</b><span>LHDN MYINVOIS · 13 OCT 2026</span></div>
+  </div>
+
+  <div class="rcw"><div class="rc">
+    <div class="c big">DEMO CLINIC SDN BHD</div>
+    <div class="c">No. 1, Jalan Contoh<br>50000 Kuala Lumpur<br>TIN: C2584563209</div>
+    <div class="hr"></div>
+    <div class="c" style="font-weight:700">RECEIPT · SAMPLE</div>
+    <div class="l"><span>No: R-102951</span><span>13/10/26 11:02</span></div>
+    <div class="l"><span>Patient: Wong Siew Lan</span></div>
+    <div class="l"><span>Buyer TIN: IG204185****</span></div>
+    <div class="hr"></div>
+    <div class="l"><span>Consultation</span><span>35.00</span></div>
+    <div class="l"><span>Amoxicillin 250mg x21</span><span>21.00</span></div>
+    <div class="l"><span>Paracetamol 500mg x10</span><span>5.00</span></div>
+    <div class="hr"></div>
+    <div class="l tot2"><span>TOTAL</span><span>RM 61.00</span></div>
+    <div class="l"><span>Card ****4417</span><span>61.00</span></div>
+    <div class="hr"></div>
+    <svg class="qr" id="qr2" viewBox="0 0 25 25" shape-rendering="crispEdges"></svg>
+    <div class="ok"><i>✓</i>e-Invoice validated</div>
+    <div class="c sm">LHDN MyInvois · 13/10/2026 11:02:41</div>
+    <div class="c sm" style="margin-top:2px">UIN 3F9KQ2DW7HX5TCB8RM4NV1ZJ6P</div>
+    <div class="hr"></div>
+    <div class="c" style="font-weight:700">Thank you, get well soon!</div>
+    <div class="c" style="font-size:9px;color:#6b7280;margin-top:3px">Powered by Techub</div>
+  </div></div>
+
+  <div class="toast">
+    <span class="ic"><i data-i="check"></i></span>
+    <div><b>e-Invoice validated</b><small>INV-2026-004218 · LHDN MyInvois</small></div>
+    <div class="t"><strong>1.8 s</strong>10:45:03</div>
+  </div>
+</div>
+<script>
+(() => {
+  // Decorative QR-like patterns (random modules, not a real code)
+  const qr = (id, s0) => {
+    let seed = s0; const rnd = () => ((seed = (seed * 9301 + 49297) % 233280) / 233280);
+    const finder = (x, y) => `<rect x="${x}" y="${y}" width="7" height="7" fill="#111"/><rect x="${x + 1}" y="${y + 1}" width="5" height="5" fill="#fff"/><rect x="${x + 2}" y="${y + 2}" width="3" height="3" fill="#111"/>`;
+    let h = "";
+    for (let y = 0; y < 25; y++) for (let x = 0; x < 25; x++) {
+      const inF = (x < 8 && y < 8) || (x > 16 && y < 8) || (x < 8 && y > 16);
+      if (!inF && rnd() > 0.52) h += `<rect x="${x}" y="${y}" width="1" height="1" fill="#111"/>`;
+    }
+    document.getElementById(id).innerHTML = h + finder(0, 0) + finder(18, 0) + finder(0, 18);
+  };
+  qr("qr1", 23);
+  qr("qr2", 41);
+})();
+</script>
+<script src="icons.js"></script>
+</body></html>

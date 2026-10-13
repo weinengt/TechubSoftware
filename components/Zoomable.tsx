@@ -1,10 +1,12 @@
 "use client";
 
 import { useRef, type ReactNode } from "react";
+import { useLang } from "./LangProvider";
 
 // Wraps an image frame so a tap/click opens the full-size picture.
 export default function Zoomable({ src, alt, children, className = "" }: { src: string; alt: string; children: ReactNode; className?: string }) {
   const dialog = useRef<HTMLDialogElement>(null);
+  const { enlarge } = useLang();
   const position = /\b(absolute|fixed)\b/.test(className) ? "" : "relative";
   return (
     <div className={`group ${position} ${className}`}>
@@ -13,7 +15,7 @@ export default function Zoomable({ src, alt, children, className = "" }: { src: 
         type="button"
         onClick={() => dialog.current?.showModal()}
         className="absolute inset-0 cursor-zoom-in rounded-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-500"
-        aria-label={`Enlarge picture: ${alt}`}
+        aria-label={`${enlarge}: ${alt}`}
       >
         <span className="absolute right-2 bottom-2 flex h-9 w-9 items-center justify-center rounded-full bg-white/95 text-slate-700 shadow-lg ring-1 ring-slate-200 transition sm:opacity-0 sm:group-hover:opacity-100">
           <svg viewBox="0 0 24 24" className="h-4.5 w-4.5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true">

@@ -1,0 +1,169 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css"><link rel="stylesheet" href="phone.css">
+<style>
+  /* A staff member's own profile in the staff app: their day, their commission. ?v=salon (default) | beauty | spa */
+  :root { --w: 360px; --h: 760px; }
+  .ph { width: 100%; height: 100%; display: flex; flex-direction: column; background: #f4f7fb; }
+  .bar { display: flex; align-items: center; gap: 10px; padding: 2px 16px 7px; font-size: 16px; font-weight: 750; }
+  .bar .r { margin-left: auto; display: flex; gap: 16px; color: var(--ink2); }
+  .bar svg { width: 22px; height: 22px; }
+  .bell { position: relative; display: flex; }
+  .bell::after { content: ""; position: absolute; top: 0; right: 0; width: 8px; height: 8px; border-radius: 99px; background: var(--red); box-shadow: 0 0 0 2px #f4f7fb; }
+  .scroll { flex: 1; overflow: hidden; padding: 0 14px; display: flex; flex-direction: column; gap: 9px; }
+  /* Profile header */
+  .prof { background: radial-gradient(circle at calc(100% - 29px) 29px, rgba(255,255,255,.12) 64.5px, transparent 65px), linear-gradient(135deg, #0050a0, #0396d9 60%, #00cfcb);
+    color: #fff; border-radius: 18px; padding: 13px 14px; position: relative; overflow: hidden; flex-shrink: 0; }
+  .who { display: flex; gap: 12px; align-items: center; position: relative; z-index: 1; }
+  .who .av { width: 52px; height: 52px; background: #fff; color: #0050a0; font-size: 17px; font-weight: 800; box-shadow: 0 0 0 3px rgba(255,255,255,.28); }
+  .who b { font-size: 17px; font-weight: 800; display: block; white-space: nowrap; }
+  .who small { font-size: 11.5px; opacity: .92; display: block; margin-top: 1px; white-space: nowrap; }
+  .duty { display: inline-flex; align-items: center; gap: 5px; margin-top: 5px; font-size: 10.5px; font-weight: 650; background: rgba(255,255,255,.18); padding: 2px 8px 2px 6px; border-radius: 99px; white-space: nowrap; }
+  .duty i { width: 7px; height: 7px; border-radius: 99px; background: #4ade80; box-shadow: 0 0 0 2px rgba(74,222,128,.35); }
+  .st { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 11px; position: relative; z-index: 1; }
+  .st div { background: rgba(255,255,255,.16); border-radius: 11px; padding: 6px 9px; }
+  .st span { font-size: 10px; opacity: .88; display: block; white-space: nowrap; }
+  .st b { font-size: 14px; font-weight: 800; white-space: nowrap; display: flex; align-items: center; gap: 3px; }
+  .st b svg { width: 13px; height: 13px; fill: #fde68a; stroke: none; }
+  h4 { font-size: 13px; font-weight: 800; display: flex; align-items: baseline; margin-top: 2px; }
+  h4 span { margin-left: auto; font-size: 11.5px; color: var(--muted); font-weight: 600; }
+  /* Appointment cards */
+  .list { display: flex; flex-direction: column; gap: 7px; }
+  .ap { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 8px 11px; display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
+  .r1 { display: flex; gap: 10px; align-items: stretch; }
+  .tm { width: 54px; flex-shrink: 0; padding-top: 1px; }
+  .tm b { display: block; font-size: 12.5px; font-weight: 800; white-space: nowrap; }
+  .tm small { display: block; font-size: 10px; color: var(--muted); margin-top: 2px; white-space: nowrap; }
+  .cat { width: 3px; border-radius: 3px; background: var(--c); flex-shrink: 0; }
+  .tx { flex: 1; min-width: 0; }
+  .l1 { display: flex; align-items: center; gap: 6px; }
+  .l1 b { font-size: 13px; font-weight: 750; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .l1 .chip { margin-left: auto; flex-shrink: 0; }
+  .chip svg { width: 11px; height: 11px; stroke-width: 2.6; }
+  .chip .dot { width: 6px; height: 6px; border-radius: 99px; background: currentColor; box-shadow: 0 0 0 2.5px rgba(3,150,217,.22); }
+  .l2 { display: flex; align-items: center; gap: 6px; margin-top: 2px; font-size: 11px; color: var(--muted); white-space: nowrap; }
+  .l2 em { font-style: normal; margin-left: auto; font-weight: 700; color: #059669; }
+  .tags { display: flex; gap: 5px; margin-top: 5px; flex-wrap: wrap; }
+  .tags span { font-size: 9.5px; font-weight: 700; line-height: 16px; padding: 0 7px; border-radius: 6px; background: #f1f5f9; color: var(--ink2); white-space: nowrap; display: inline-flex; align-items: center; gap: 4px; }
+  .tags span.dep { background: #ccfbf1; color: #0f766e; } .tags span.pk { background: #ede9fe; color: #6d28d9; } .tags span.nw { background: var(--brand-100); color: #036295; }
+  .tags span.pf { background: #fce7f3; color: #be185d; } .tags span.wa { background: #dcfce7; color: #15803d; }
+  .tags svg { width: 10px; height: 10px; stroke-width: 2.6; }
+  .ap.done { background: #fbfcfe; padding-top: 7px; padding-bottom: 7px; } .ap.done .l1 b { color: var(--ink2); } .ap.done .tm b { color: var(--ink2); }
+  .ap.live { border: 1.5px solid var(--brand); padding: 7.5px 10.5px; box-shadow: 0 10px 22px -14px rgba(3,150,217,.75); }
+  .prog { display: flex; align-items: center; gap: 8px; font-size: 10.5px; color: var(--muted); white-space: nowrap; }
+  .prog u { flex: 1; height: 6px; border-radius: 9px; background: var(--brand-50); overflow: hidden; display: block; }
+  .prog u i { display: block; height: 100%; border-radius: 9px; background: linear-gradient(90deg, #0396d9, #00cfcb); }
+  .prog b { color: #036295; font-weight: 700; }
+  .acts { display: flex; gap: 8px; }
+  .acts span { flex: 1; height: 32px; border-radius: 9px; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 12px; font-weight: 700; white-space: nowrap; }
+  .acts svg { width: 14px; height: 14px; }
+  .acts .go { background: linear-gradient(135deg, #0396d9, #0287c4); color: #fff; box-shadow: 0 6px 14px -8px rgba(3,150,217,.9); }
+  .acts .ok { background: linear-gradient(135deg, #10b981, #059669); color: #fff; box-shadow: 0 6px 14px -8px rgba(5,150,105,.9); }
+  .acts .sec { border: 1px solid var(--line); color: var(--ink2); background: #fff; }
+  .brk { display: flex; align-items: center; gap: 8px; font-size: 10.5px; font-weight: 650; color: #94a3b8; padding: 0 4px; }
+  .brk::before, .brk::after { content: ""; flex: 1; border-top: 1.5px dashed #d8e0ea; }
+  .brk svg { width: 13px; height: 13px; }
+  /* Bottom tabs */
+  .tabs { height: 62px; flex-shrink: 0; background: #fff; border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(4, 1fr); align-items: center; text-align: center; font-size: 10px; font-weight: 600; color: #94a3b8; }
+  .tabs div { display: flex; flex-direction: column; align-items: center; gap: 3px; position: relative; }
+  .tabs svg { width: 21px; height: 21px; } .tabs .on { color: var(--brand); }
+  .tabs .n { position: absolute; top: -4px; left: 50%; margin-left: 6px; background: var(--red); color: #fff; font-size: 9px; font-weight: 700; line-height: 14px; padding: 0 5px; border-radius: 99px; }
+</style></head>
+<body>
+<div class="ph">
+  <div class="status"><span id="clock"></span><span class="r"><span class="sig"><i style="height:4px"></i><i style="height:6px"></i><i style="height:8px"></i><i style="height:10px"></i></span><span style="font-size:11px">5G</span><span class="bat"><i></i></span></span></div>
+  <div class="bar">My Profile<span class="r"><span class="bell"><i data-i="bell"></i></span><i data-i="gear"></i></span></div>
+  <div class="scroll">
+    <div class="prof" id="prof"></div>
+    <h4>My appointments today<span>Tue, 13 Oct</span></h4>
+    <div class="list" id="list"></div>
+  </div>
+  <div class="tabs"><div><i data-i="home"></i>Home</div><div><i data-i="cal"></i>My bookings</div><div><i data-i="users"></i>Customers</div><div class="on"><i data-i="user"></i>Profile</div></div>
+</div>
+<script>
+  const q = new URLSearchParams(location.search).get("v");
+  const V = ["beauty", "spa"].includes(q) ? q : "salon";
+  const C = { blue: "#0396d9", violet: "#8b5cf6", teal: "#14b8a6", amber: "#f59e0b", pink: "#ec4899" };
+  // Bookings match this staff member's column in calendar.html.
+  // [start h, end h, customer, service, category colour, tags, commission earned when done]
+  // tag prefixes: $ deposit, P package, N first visit, F preference, W walk-in, R room
+  const D = {
+    salon: {
+      now: 14 + 20 / 60, ini: "JT", name: "Jason Tan", role: "Senior Stylist", biz: "Demo Hair Salon", since: "9:52 AM",
+      stats: [["Today", "5 bookings"], ["Oct commission", "RM 1,086"], ["Rating", "4.9"]],
+      extra: ["cam", "Photo"],
+      ap: [
+        [10, 12.5, "Nur Syafiqah", "Rebonding", "amber", ["$Deposit paid"], 32],
+        [13, 14, "Wong Siew Lan", "Cut & Blow", "blue", [], 7.5],
+        [14, 14.75, "Rachel Lim", "Cut & Blow", "blue", ["FPrefers Jason"]],
+        [15, 17, "Amanda Koh", "Keratin Treatment", "teal", ["$Deposit paid", "Wconfirmed"]],
+        [17.5, 18.5, "Lim Jia Hui", "Cut & Blow", "blue", ["WWalk-in"]],
+      ],
+    },
+    beauty: {
+      now: 14 + 20 / 60, ini: "ML", name: "Mei Ling Wong", role: "Facial Specialist", biz: "Demo Beauty Centre", since: "9:46 AM",
+      stats: [["Today", "5 bookings"], ["Oct commission", "RM 948"], ["Rating", "4.9"]],
+      extra: ["pen", "Notes"],
+      ap: [
+        [10, 11.5, "Chloe Tan", "Hydra Facial", "teal", ["PPackage 4/10"], 18],
+        [12, 13, "Nurul Ain", "Acne Facial", "teal", ["PPackage 2/6"], 12.6],
+        [13.5, 15, "Tan Pei Shan", "Hydra Facial", "teal", ["PPackage 7/10", "FSensitive skin"]],
+        [15.5, 16.5, "Grace Lim", "Acne Facial", "teal", ["PPackage 5/6", "Wconfirmed"]],
+        [17, 18.5, "Deepa Raj", "Hydra Facial", "teal", ["N1st visit"]],
+      ],
+    },
+    spa: {
+      now: 12 + 40 / 60, ini: "AS", name: "Aisyah Salleh", role: "Senior Therapist", biz: "Demo Day Spa", since: "9:38 AM",
+      stats: [["Today", "4 bookings"], ["Oct commission", "RM 812"], ["Rating", "4.9"]],
+      extra: ["pen", "Notes"],
+      brk: [13.5, 14, "Lunch break"],
+      ap: [
+        [10, 11.5, "Nur Izzati", "Balinese Massage 90 min", "blue", ["RRoom 2"], 18],
+        [12, 13.5, "Michelle Ong", "Hot Stone Massage 90 min", "blue", ["RRoom 2", "PPackage 3/5", "FFirm pressure"]],
+        [14.5, 16, "Revathi Pillai", "Balinese Massage 90 min", "blue", ["RRoom 2", "Wconfirmed"]],
+        [16.5, 18, "Jessica Lau", "Hot Stone Massage 90 min", "blue", ["RRoom 3"]],
+      ],
+    },
+  }[V];
+
+  const fmt = (h) => { const hh = Math.floor(h), mm = Math.round((h - hh) * 60); return `${((hh + 11) % 12) + 1}:${String(mm).padStart(2, "0")}`; };
+  const ap = (h) => (h >= 12 ? "PM" : "AM");
+  const dur = (d) => (d < 1 ? `${Math.round(d * 60)} min` : `${+d.toFixed(2)} h`.replace(".5 h", " h 30").replace(".75 h", " h 45").replace(".25 h", " h 15"));
+  const star = '<svg viewBox="0 0 24 24"><path d="M12 3l2.8 5.7 6.2.9-4.5 4.4 1 6.2L12 17.3 6.5 20.2l1-6.2L3 9.6l6.2-.9z"/></svg>';
+  const PLAY = '<svg class="i" viewBox="0 0 24 24"><path d="M7 4.5v15l12-7.5z" fill="currentColor"/></svg>';
+  const WA = '<svg viewBox="0 0 16 16" style="width:11px;height:11px"><circle cx="8" cy="8" r="8" fill="#22c55e"/><path d="M4.6 8.2l2.3 2.3 4.6-4.8" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+  document.getElementById("clock").textContent = fmt(D.now);
+  document.getElementById("prof").innerHTML = `<div class="who"><span class="av">${D.ini}</span><div><b>${D.name}</b><small>${D.role} · ${D.biz}</small>
+      <span class="duty"><i></i>On duty · clocked in ${D.since}</span></div></div>
+    <div class="st">${D.stats.map(([k, v]) => `<div><span>${k}</span><b>${v}${k === "Rating" ? star : ""}</b></div>`).join("")}</div>`;
+
+  const tag = (t) => {
+    const k = t[0], x = t.slice(1);
+    if (k === "W" && x === "confirmed") return `<span class="wa">${WA}Confirmed on WhatsApp</span>`;
+    const cls = { $: "dep", P: "pk", N: "nw", F: "pf", W: "", R: "" }[k];
+    return `<span class="${cls}">${x}</span>`;
+  };
+  // Status comes from the clock: done, in progress, the next one, then booked
+  const next = D.ap.find((a) => a[0] > D.now);
+  let html = "";
+  D.ap.forEach((a) => {
+    const [s, e, who, svc, c, tags, comm] = a;
+    if (D.brk && s >= D.brk[1] && !html.includes("brk")) html += `<div class="brk"><i data-i="clock"></i>${D.brk[2]} · ${fmt(D.brk[0])} – ${fmt(D.brk[1])} PM</div>`;
+    const st = e <= D.now ? "done" : s <= D.now ? "live" : a === next ? "next" : "booked";
+    const chip = { done: `<span class="chip g"><i data-i="check"></i>Done</span>`, live: `<span class="chip b"><span class="dot"></span>In progress</span>`,
+      next: `<span class="chip v">Next</span>`, booked: `<span class="chip s">Booked</span>` }[st];
+    let body = `<div class="r1"><div class="tm"><b>${fmt(s)} ${ap(s)}</b><small>to ${fmt(e)} ${ap(e)}</small></div><span class="cat" style="--c:${C[c]}"></span>
+      <div class="tx"><div class="l1"><b>${who}</b>${chip}</div><div class="l2">${/min$/.test(svc) ? svc : `${svc} · ${dur(e - s)}`}${st === "done" ? `<em>+RM ${comm.toFixed(2)}</em>` : ""}</div>
+      ${st !== "done" && tags.length ? `<div class="tags">${tags.map(tag).join("")}</div>` : ""}</div></div>`;
+    if (st === "live") {
+      const left = Math.round((e - D.now) * 60), pct = ((D.now - s) / (e - s)) * 100;
+      body += `<div class="prog">Started ${fmt(s)} ${ap(s)}<u><i style="width:${pct.toFixed(0)}%"></i></u><b>${left} min left</b></div>
+        <div class="acts"><span class="ok"><i data-i="check"></i>Complete</span><span class="sec"><i data-i="${D.extra[0]}"></i>${D.extra[1]}</span></div>`;
+    }
+    if (st === "next") body += `<div class="acts"><span class="go">${PLAY}Start</span><span class="sec"><i data-i="cal"></i>Reschedule</span></div>`;
+    html += `<div class="ap ${st}">${body}</div>`;
+  });
+  document.getElementById("list").innerHTML = html;
+</script>
+<script src="icons.js"></script>
+</body></html>

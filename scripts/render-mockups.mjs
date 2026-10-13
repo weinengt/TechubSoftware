@@ -57,8 +57,25 @@ export const screens = [
   { name: "whatsapp-appointment-reminder-spa", file: "whatsapp.html?v=spa", ...phone },
   { name: "spa-customer-package", file: "customer-package.html?v=spa", ...phone },
   { name: "ai-delivery-note-scan-spa", file: "delivery-scan.html?v=spa", ...phone },
-  // Desktop (PC) screen for the "works on every device" picture on the home page
+  // Desktop (PC) screens for the "works on every device" pictures
   { name: "staff-permission-control-desktop", file: "permissions.html?v=salon", w: 1200, h: 750, scale: 1.5 },
+  { name: "clinic-dashboard-desktop", file: "clinic-dashboard.html", w: 1200, h: 750, scale: 1.5 },
+  // Reports, staff profiles and payroll for each business
+  { name: "reports-clinic-ipad", file: "reports.html?v=clinic", ...ipad },
+  { name: "reports-salon-ipad", file: "reports.html?v=salon", ...ipad },
+  { name: "reports-beauty-ipad", file: "reports.html?v=beauty", ...ipad },
+  { name: "reports-spa-ipad", file: "reports.html?v=spa", ...ipad },
+  { name: "staff-profile-salon", file: "staff-app.html?v=salon", ...phone },
+  { name: "staff-profile-beauty", file: "staff-app.html?v=beauty", ...phone },
+  { name: "staff-profile-spa", file: "staff-app.html?v=spa", ...phone },
+  { name: "payroll-salon-ipad", file: "payroll.html?v=salon", ...ipad },
+  { name: "payroll-beauty-ipad", file: "payroll.html?v=beauty", ...ipad },
+  { name: "payroll-spa-ipad", file: "payroll.html?v=spa", ...ipad },
+  // LHDN e-Invoice and examples of custom systems
+  { name: "lhdn-e-invoice", file: "e-invoice.html", w: 1000, h: 700, scale: 1.5, transparent: true },
+  { name: "custom-erp-desktop", file: "erp.html", w: 1200, h: 750, scale: 1.5 },
+  { name: "number-plate-scanner-desktop", file: "plate-scanner.html", w: 1200, h: 750, scale: 1.5 },
+  { name: "ai-object-detection-desktop", file: "object-detection.html", w: 1200, h: 750, scale: 1.5 },
   // Social share picture (WhatsApp, Facebook, LinkedIn previews). Rendered last: it uses the screens above.
   { name: "og-image", file: "og.html", w: 1200, h: 630, scale: 1, out: "public/og-image.jpg" },
 ];

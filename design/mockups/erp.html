@@ -1,0 +1,224 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<style>
+  :root { --w: 1200px; --h: 750px; }
+  .search { white-space: nowrap; width: 260px; }
+  .side .me { white-space: nowrap; }
+  .ic.t { background: #f0fdfa; color: #0d9488; } .ic.p { background: #fdf2f8; color: #db2777; }
+  .stat .v { font-size: 20px; }
+  .dash { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) 318px; grid-template-rows: 250px minmax(0, 1fr); gap: 14px; }
+  .card { min-height: 0; }
+  .card h3 .sub2 { font-size: 11.5px; font-weight: 500; color: var(--muted); }
+  /* Sales vs purchases */
+  .chart { display: flex; flex-direction: column; }
+  .lg { margin-left: auto; display: flex; gap: 14px; font-size: 11.5px; font-weight: 500; color: var(--ink2); }
+  .lg span { display: inline-flex; align-items: center; gap: 6px; } .lg b { color: var(--ink); font-weight: 700; }
+  .sw { width: 9px; height: 9px; border-radius: 3px; display: inline-block; }
+  .plot { flex: 1; min-height: 0; margin-top: 8px; position: relative; }
+  .plot svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .tip { position: absolute; background: #fff; border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 10px 24px -10px rgba(15,23,42,.35); padding: 8px 10px; font-size: 11px; color: var(--ink2); line-height: 1.55; white-space: nowrap; }
+  .tip b { color: var(--ink); font-weight: 700; } .tip .h { font-size: 11px; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
+  .tip .l { display: flex; align-items: center; gap: 6px; } .tip .l b { margin-left: 12px; font-variant-numeric: tabular-nums; }
+  .tip .l b.r { margin-left: auto; padding-left: 12px; }
+  /* Pending approvals */
+  .appr { display: flex; flex-direction: column; padding-bottom: 8px; }
+  .ap { display: flex; align-items: center; gap: 10px; padding: 9px 8px; margin: 0 -8px; border-radius: 9px; }
+  .ap + .ap { border-top: 1px solid #f1f5f9; }
+  .ap.on { background: #f8fafc; border-top-color: transparent; }
+  .ap.on + .ap { border-top-color: transparent; }
+  .ap .ic { width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center; flex-shrink: 0; }
+  .ap .ic svg { width: 15px; height: 15px; }
+  .ap .tx { min-width: 0; flex: 1; font-size: 12px; line-height: 1.3; }
+  .ap .tx b { display: block; font-weight: 650; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .ap .tx small { display: block; font-size: 10.5px; color: var(--muted); white-space: nowrap; }
+  .ap .rt { text-align: right; font-size: 12px; line-height: 1.3; flex-shrink: 0; }
+  .ap .rt b { display: block; font-weight: 750; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .ap .rt small { display: block; font-size: 10.5px; color: var(--muted); }
+  .acts { display: flex; gap: 5px; justify-content: flex-end; margin-top: 3px; }
+  .acts span { width: 22px; height: 20px; border-radius: 6px; display: grid; place-items: center; }
+  .acts span svg { width: 12px; height: 12px; stroke-width: 2.6; }
+  .acts .no { background: #fee2e2; color: #b91c1c; } .acts .ok { background: #dcfce7; color: #15803d; }
+  /* Recent sales orders */
+  .tbl { padding: 0; overflow: hidden; display: flex; flex-direction: column; }
+  .tbl h3 { padding: 12px 14px 10px; }
+  .tbl td, .tbl th { padding-top: 8px; padding-bottom: 8px; }
+  .tbl td:first-child, .tbl th:first-child { padding-left: 14px; } .tbl td:last-child, .tbl th:last-child { padding-right: 14px; }
+  .tbl tr:last-child td { border-bottom: 0; }
+  .tbl td b { font-size: 12px; }
+  .so { letter-spacing: -.01em; }
+  /* Cash flow */
+  .cash { display: flex; flex-direction: column; }
+  .bal { margin-top: 10px; }
+  .bal .k { font-size: 11px; color: var(--muted); font-weight: 500; }
+  .bal .v { font-size: 24px; font-weight: 800; letter-spacing: -.02em; margin-top: 1px; display: flex; align-items: baseline; gap: 8px; }
+  .bal .v span { font-size: 11px; font-weight: 650; color: #059669; letter-spacing: 0; }
+  .io { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+  .io div { background: #f8fafc; border-radius: 9px; padding: 7px 10px; }
+  .io span { display: block; font-size: 10.5px; color: var(--muted); } .io b { font-size: 14px; font-weight: 750; }
+  .mini { position: relative; flex: 1; min-height: 0; margin-top: 10px; }
+  .mini svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .note { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--ink2); background: var(--brand-50); border-radius: 9px; padding: 7px 10px; margin-top: 10px; }
+  .note svg { width: 14px; height: 14px; color: var(--brand); }
+  .note b { color: var(--ink); }
+</style></head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="brand"><img src="icon.png" alt=""><div>Techub ERP<small>Demo Trading Sdn Bhd</small></div></div>
+    <nav class="nav">
+      <a class="on"><i data-i="home"></i>Dashboard</a>
+      <a><i data-x="cart"></i>Sales</a>
+      <a><i data-x="truck"></i>Purchasing<span class="cnt">2</span></a>
+      <a><i data-i="box"></i>Inventory</a>
+      <a><i data-i="wallet"></i>Accounting</a>
+      <a><i data-i="users"></i>HR &amp; Payroll<span class="cnt">2</span></a>
+      <a><i data-i="chart"></i>Reports</a>
+      <a><i data-i="gear"></i>Settings</a>
+    </nav>
+    <div class="me"><span class="av">OK</span><div><b>Ong Kah Heng</b><br><span style="color:#8fb3d4">Director</span></div></div>
+  </aside>
+  <section class="main">
+    <header class="top">
+      <div><h1>Business overview</h1><div class="sub">Tuesday, 13 October 2026 · All branches</div></div>
+      <div class="search"><i data-i="search"></i>Search orders, customers, items…</div>
+      <span class="btn"><i data-i="cal"></i>This month<i data-i="chevD" style="width:13px;height:13px"></i></span>
+      <span class="btn"><i data-i="bell"></i></span>
+      <span class="btn pri"><i data-i="plus"></i>New sales order</span>
+    </header>
+    <div class="content">
+      <div class="stats">
+        <div class="stat"><span class="ic g"><i data-i="money"></i></span><div><div class="k">Revenue MTD</div><div class="v">RM 486,920</div><div class="d">▲ 11.4% vs Sep MTD</div></div></div>
+        <div class="stat"><span class="ic b"><i data-x="cart"></i></span><div><div class="k">Open orders</div><div class="v">38</div><div class="d" style="color:#0396d9">RM 214,560 to deliver</div></div></div>
+        <div class="stat"><span class="ic a"><i data-i="file"></i></span><div><div class="k">Receivables</div><div class="v">RM 318,640</div><div class="d" style="color:#dc2626">RM 46,180 overdue</div></div></div>
+        <div class="stat"><span class="ic v"><i data-i="box"></i></span><div><div class="k">Stock value</div><div class="v">RM 1.26M</div><div class="d" style="color:#64748b">2,846 SKUs · 3 warehouses</div></div></div>
+      </div>
+      <div class="dash">
+        <div class="card chart">
+          <h3><i data-i="chart" style="color:#0396d9"></i>Sales vs purchases <span class="sub2">· last 12 months</span>
+            <span class="lg"><span><i class="sw" style="background:#0396d9"></i>Sales <b>RM 12.5M</b></span><span><i class="sw" style="background:#8b5cf6"></i>Purchases <b>RM 9.44M</b></span></span></h3>
+          <div class="plot" id="plot"></div>
+        </div>
+        <div class="card appr">
+          <h3><i data-i="bell" style="color:#d97706"></i>Pending approvals<span class="chip a" style="margin-left:auto">4 waiting</span></h3>
+          <div style="margin-top:6px" id="ap"></div>
+        </div>
+        <div class="card tbl">
+          <h3><i data-x="cart" style="color:#0396d9"></i>Recent sales orders<span class="more">View all →</span></h3>
+          <table id="so"></table>
+        </div>
+        <div class="card cash">
+          <h3><i data-i="wallet" style="color:#0396d9"></i>Cash flow<span class="more" style="color:var(--muted);font-weight:500">Last 8 weeks</span></h3>
+          <div class="bal"><div class="k">Bank balance · 3 accounts</div><div class="v">RM 1,284,560<span>▲ RM 225k</span></div></div>
+          <div class="io"><div><span>Cash in</span><b>RM 1.06M</b></div><div><span>Cash out</span><b>RM 839k</b></div></div>
+          <div class="mini" id="mini"></div>
+          <div class="note"><i data-i="clock"></i><span><b>12 invoices</b> (RM 96,200) due this week</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<script>
+(() => {
+  // Extra icons used only on this screen
+  const XI = {
+    cart: '<circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2.5 3.5h2.8l2.4 11.1a1.8 1.8 0 001.8 1.4h8.2a1.8 1.8 0 001.7-1.3L21 8H6.1"/>',
+    truck: '<path d="M2.5 6.5h11v9.5h-11z"/><path d="M13.5 9.5h4l3 3.2V16h-7"/><circle cx="6.5" cy="17.5" r="1.9"/><circle cx="17" cy="17.5" r="1.9"/>',
+  };
+  document.querySelectorAll("i[data-x]").forEach((el) => {
+    el.outerHTML = `<svg class="i" viewBox="0 0 24 24" style="${el.getAttribute("style") || ""}">${XI[el.dataset.x]}</svg>`;
+  });
+
+  // Column with a 4px rounded data end, square at the baseline
+  const col = (x, y, w, h, r = 4) => {
+    r = Math.min(r, h, w / 2);
+    return `M${x} ${y + h}V${y + r}A${r} ${r} 0 0 1 ${x + r} ${y}H${x + w - r}A${r} ${r} 0 0 1 ${x + w} ${y + r}V${y + h}Z`;
+  };
+
+  // Sales vs purchases, RM thousand
+  const M = ["Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"];
+  const S = [905, 962, 1148, 1036, 874, 1012, 958, 1043, 1097, 1121, 1158, 1186];
+  const P = [690, 812, 868, 702, 735, 744, 720, 801, 812, 836, 845, 872];
+  const plot = document.getElementById("plot");
+  {
+    const W = plot.clientWidth, H = plot.clientHeight;
+    const L = 36, T = 4, B = 20, max = 1200;
+    const ph = H - T - B, gw = (W - L) / 12, bw = 13;
+    const y = (v) => T + ph - (v / max) * ph;
+    let s = "";
+    for (const t of [0, 300, 600, 900, 1200]) {
+      s += `<line x1="${L}" x2="${W}" y1="${y(t)}" y2="${y(t)}" stroke="${t ? "#eef2f7" : "#dbe2ea"}" stroke-width="1"/>`;
+      s += `<text x="${L - 8}" y="${y(t) + 3.5}" font-size="10" fill="#94a3b8" text-anchor="end" font-family="Inter">${t ? (t >= 1000 ? (t / 1000).toFixed(1) + "M" : t + "K") : "0"}</text>`;
+    }
+    const hi = 11; // hovered month
+    M.forEach((m, i) => {
+      const cx = L + gw * i + gw / 2;
+      if (i === hi) s += `<rect x="${cx - gw / 2 + 3}" y="${T}" width="${gw - 6}" height="${ph}" rx="6" fill="#f1f5f9"/>`;
+      s += `<path d="${col(cx - bw - 1, y(S[i]), bw, y(0) - y(S[i]))}" fill="#0396d9"/>`;
+      s += `<path d="${col(cx + 1, y(P[i]), bw, y(0) - y(P[i]))}" fill="#8b5cf6"/>`;
+      s += `<text x="${cx}" y="${H - 5}" font-size="10" fill="${i === hi ? "#0f172a" : "#94a3b8"}" font-weight="${i === hi ? 650 : 400}" text-anchor="middle" font-family="Inter">${m}</text>`;
+    });
+    plot.innerHTML = `<svg viewBox="0 0 ${W} ${H}">${s}</svg>`;
+    const tip = document.createElement("div");
+    tip.className = "tip";
+    tip.innerHTML = `<div class="h">Sep 2026</div>
+      <div class="l"><i class="sw" style="background:#0396d9"></i>Sales<b class="r">RM 1.19M</b></div>
+      <div class="l"><i class="sw" style="background:#8b5cf6"></i>Purchases<b class="r">RM 872k</b></div>`;
+    plot.appendChild(tip);
+    const cx = L + gw * hi + gw / 2;
+    tip.style.left = `${cx - gw / 2 - tip.offsetWidth - 4}px`;
+    tip.style.top = `${T + 2}px`;
+  }
+
+  // Pending approvals: [icon, tone, title, detail, value, when]
+  const AP = [
+    ["file", "v", "Kilang Plastik Seng Heng", "PO-26-0912 · Purchasing", "RM 24,800", ""],
+    ["cal", "t", "Nurul Huda · Annual leave", "20–22 Oct · Sales team", "3 days", "1h ago"],
+    ["file", "v", "Ace Packaging Supplies", "PO-26-0915 · Purchasing", "RM 6,420", "2h ago"],
+    ["heart", "p", "Gopal Krishnan · Medical leave", "13 Oct · MC attached", "1 day", "Today"],
+  ];
+  document.getElementById("ap").innerHTML = AP.map(([ic, c, t, d, v, w], i) =>
+    `<div class="ap${i ? "" : " on"}"><span class="ic ${c}"><i data-i="${ic}"></i></span><div class="tx"><b>${t}</b><small>${d}</small></div>
+      <div class="rt"><b>${v}</b>${i ? `<small>${w}</small>` : `<span class="acts"><span class="no"><i data-i="x"></i></span><span class="ok"><i data-i="check"></i></span></span>`}</div></div>`).join("");
+
+  // Recent sales orders: [no, date, customer, place, amount, e-invoice, status]
+  const E = { v: ["g", "✓ Validated"], n: ["s", "Not yet"], p: ["a", "Pending"] };
+  const ST = { pick: ["b", "Picking"], conf: ["v", "Confirmed"], del: ["t", "Delivered"], inv: ["a", "Invoiced"], paid: ["g", "Paid"] };
+  const SO = [
+    ["SO-26-10418", "13 Oct", "Syarikat Maju Jaya Sdn Bhd", "Klang · Farid", "18,640.00", "n", "pick"],
+    ["SO-26-10417", "13 Oct", "Kedai Runcit Ah Seng", "Ipoh · Mei Ling", "2,315.50", "n", "conf"],
+    ["SO-26-10416", "12 Oct", "Restoran Sri Murugan", "Brickfields · Ravi", "1,284.00", "p", "del"],
+    ["SO-26-10415", "12 Oct", "Mewah Hardware Trading", "Johor Bahru · Farid", "26,400.00", "v", "inv"],
+    ["SO-26-10414", "11 Oct", "Pasaraya Nadia Enterprise", "Kota Bharu · Mei Ling", "9,880.00", "v", "paid"],
+  ];
+  document.getElementById("so").innerHTML = `<tr><th>Order</th><th>Customer</th><th class="num">Amount (RM)</th><th>e-Invoice</th><th>Status</th></tr>` +
+    SO.map(([no, d, c, pl, a, e, st]) => `<tr><td><b class="so">${no}</b><small>${d}</small></td><td><b>${c}</b><small>${pl}</small></td>
+      <td class="num"><b>${a}</b></td><td><span class="chip ${E[e][0]}">${E[e][1]}</span></td><td><span class="chip ${ST[st][0]}">${ST[st][1]}</span></td></tr>`).join("");
+
+  // Weekly net cash flow, RM thousand (blue = in, orange = out)
+  const NW = [48, 22, -31, 56, 39, -14, 44, 61];
+  const WK = ["18 Aug", "25 Aug", "1 Sep", "8 Sep", "15 Sep", "22 Sep", "29 Sep", "6 Oct"];
+  const mini = document.getElementById("mini");
+  {
+    const W = mini.clientWidth, H = mini.clientHeight;
+    const T = 14, B = 16, lo = -40, hi = 70;
+    const ph = H - T - B, y = (v) => T + ph * (hi - v) / (hi - lo);
+    const gw = W / NW.length, bw = 16;
+    let s = "";
+    NW.forEach((v, i) => {
+      const x = gw * i + (gw - bw) / 2;
+      if (v >= 0) s += `<path d="${col(x, y(v), bw, y(0) - y(v))}" fill="#0396d9"/>`;
+      else s += `<path d="${col(x, y(0), bw, y(v) - y(0))}" transform="rotate(180 ${x + bw / 2} ${(y(0) + y(v)) / 2})" fill="#f97316"/>`;
+    });
+    s += `<line x1="0" x2="${W}" y1="${y(0)}" y2="${y(0)}" stroke="#cbd5e1" stroke-width="1"/>`;
+    const last = gw * 7 + gw / 2;
+    s += `<text x="${last}" y="${y(61) - 5}" font-size="10" font-weight="700" fill="#0f172a" text-anchor="middle" font-family="Inter">+61k</text>`;
+    s += `<text x="${gw * 2 + gw / 2}" y="${y(-31) + 12}" font-size="10" font-weight="700" fill="#0f172a" text-anchor="middle" font-family="Inter">−31k</text>`;
+    s += `<text x="0" y="9" font-size="10" fill="#64748b" font-family="Inter">Net cash flow per week</text>`;
+    s += `<text x="0" y="${H - 2}" font-size="10" fill="#94a3b8" font-family="Inter">${WK[0]}</text>`;
+    s += `<text x="${W}" y="${H - 2}" font-size="10" fill="#94a3b8" text-anchor="end" font-family="Inter">Week of ${WK[7]}</text>`;
+    mini.innerHTML = `<svg viewBox="0 0 ${W} ${H}">${s}</svg>`;
+  }
+})();
+</script>
+<script src="icons.js"></script>
+</body></html>

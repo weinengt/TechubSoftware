@@ -1,20 +1,53 @@
 import type { MetadataRoute } from "next";
+import { locales, lp } from "@/lib/i18n";
+import { languageAlternates } from "@/lib/seo";
+import { shotFiles, shotSrc, type ShotKey } from "@/lib/shots";
 import { site } from "@/lib/site";
-import { shots, shotSrc, type Shot } from "@/lib/shots";
 
 export const dynamic = "force-static";
 
+// The main pictures on each page, so they can show in image search.
+const pages: { path: string; priority: number; images: ShotKey[] }[] = [
+  {
+    path: "/",
+    priority: 1,
+    images: ["clinicDashboardDesktop", "salonCalendar", "whatsappSpa", "clinicDashboard", "staffSalon", "faceChart", "spaCalendar", "erpDesktop", "objectDetection", "plateScanner"],
+  },
+  { path: "/technology/", priority: 0.9, images: ["reportsClinic", "permissionsDesktop", "clinicStock", "scanClinic", "whatsappClinic", "queueTv", "eInvoice", "clinicPermissions"] },
+  {
+    path: "/clinic-management-system/",
+    priority: 0.9,
+    images: ["clinicDashboard", "whatsappClinic", "queueTv", "medication", "bodyChart", "printouts", "clinicStock", "reportsClinic", "clinicPermissions"],
+  },
+  {
+    path: "/salon-appointment-system/",
+    priority: 0.9,
+    images: ["salonCalendar", "whatsappSalon", "payrollSalon", "staffSalon", "salonCustomer", "salonPos", "salonStock", "reportsSalon", "salonPermissions"],
+  },
+  {
+    path: "/beauty-appointment-system/",
+    priority: 0.9,
+    images: ["beautyCalendar", "whatsappBeauty", "beautyPackage", "payrollBeauty", "staffBeauty", "faceChart", "beautyPos", "beautyStock", "reportsBeauty"],
+  },
+  {
+    path: "/spa-appointment-system/",
+    priority: 0.9,
+    images: ["spaCalendar", "whatsappSpa", "payrollSpa", "staffSpa", "spaPackage", "bodyChartSpa", "spaPos", "spaStock", "reportsSpa"],
+  },
+];
+
+// Every page in every language, each listing its versions in the other languages.
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
-  const img = (...list: Shot[]) => list.map((s) => `${site.url}${shotSrc(s)}`);
-  const page = (path: string, images: string[]) =>
-    ({ url: `${site.url}${path}`, lastModified, changeFrequency: "monthly", priority: 0.9, images }) as const;
-  return [
-    { url: `${site.url}/`, lastModified, changeFrequency: "weekly", priority: 1,
-      images: img(shots.salonCalendar, shots.whatsappSalon, shots.clinicDashboard, shots.faceChart, shots.spaCalendar, shots.beautyStock, shots.permissionsDesktop) },
-    page("/clinic-management-system/", img(shots.clinicDashboard, shots.whatsappClinic, shots.queueTv, shots.medication, shots.bodyChart, shots.printouts, shots.clinicStock, shots.scanClinic, shots.clinicPermissions)),
-    page("/salon-appointment-system/", img(shots.salonCalendar, shots.whatsappSalon, shots.salonCustomer, shots.salonPos, shots.salonStock, shots.scanSalon, shots.salonPermissions)),
-    page("/beauty-appointment-system/", img(shots.beautyCalendar, shots.whatsappBeauty, shots.beautyPackage, shots.faceChart, shots.beautyPos, shots.beautyStock, shots.scanBeauty)),
-    page("/spa-appointment-system/", img(shots.spaCalendar, shots.whatsappSpa, shots.spaPackage, shots.bodyChartSpa, shots.spaPos, shots.spaStock, shots.scanSpa, shots.spaPermissions)),
-  ];
+  const abs = (path: string) => `${site.url}${path}`;
+  return pages.flatMap((p) =>
+    locales.map((lang) => ({
+      url: abs(lp(lang, p.path)),
+      lastModified,
+      changeFrequency: p.path === "/" ? ("weekly" as const) : ("monthly" as const),
+      priority: lang === "en" ? p.priority : +(p.priority - 0.1).toFixed(1),
+      alternates: { languages: Object.fromEntries(Object.entries(languageAlternates(p.path)).map(([k, v]) => [k, abs(v)])) },
+      images: p.images.map((k) => abs(shotSrc(shotFiles[k]))),
+    })),
+  );
 }

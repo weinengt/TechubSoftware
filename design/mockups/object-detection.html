@@ -1,0 +1,526 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<style>
+  :root { --w: 1200px; --h: 750px; --tx: #e6edf6; --tx2: #a9b8cc; --mu: #71859f; --ln: rgba(255,255,255,.09); --pn: rgba(255,255,255,.04);
+    --person: #22d3ee; --helmet: #4ade80; --nohelmet: #fb7185; --box: #fbbf24; --forklift: #c084fc; --car: #60a5fa; }
+  html, body { background: #06101d; }
+  .vx { width: 100%; height: 100%; display: flex; flex-direction: column; color: var(--tx);
+    background: radial-gradient(circle at 8% -10%, rgba(3,150,217,.22), transparent 38%), radial-gradient(circle at 100% 110%, rgba(0,207,203,.13), transparent 42%), linear-gradient(180deg, #081628, #06101d); }
+  /* Top bar */
+  .bar { height: 56px; flex-shrink: 0; display: flex; align-items: center; gap: 20px; padding: 0 16px; border-bottom: 1px solid var(--ln); background: rgba(4,12,24,.55); }
+  .logo { display: flex; align-items: center; gap: 10px; white-space: nowrap; }
+  .logo img { width: 30px; height: 30px; border-radius: 8px; }
+  .logo b { display: block; font-size: 15px; font-weight: 800; letter-spacing: -.01em; }
+  .logo small { display: block; font-size: 10.5px; color: var(--mu); font-weight: 500; margin-top: 1px; }
+  .tabs { display: flex; gap: 4px; }
+  .tabs a { white-space: nowrap; display: inline-flex; align-items: center; gap: 7px; height: 32px; padding: 0 12px; border-radius: 8px; font-size: 12.5px; font-weight: 600; color: var(--tx2); }
+  .tabs a.on { background: rgba(34,211,238,.12); color: #fff; box-shadow: inset 0 0 0 1px rgba(34,211,238,.28); }
+  .tabs a .cnt { background: #e11d48; color: #fff; font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 99px; }
+  .bar .rt { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+  .pill { display: inline-flex; align-items: center; gap: 7px; height: 30px; padding: 0 11px; border-radius: 8px; font-size: 11.5px; font-weight: 600; color: var(--tx2); background: var(--pn); border: 1px solid var(--ln); white-space: nowrap; }
+  .pill .d { width: 7px; height: 7px; border-radius: 99px; background: #34d399; box-shadow: 0 0 0 3px rgba(52,211,153,.2); }
+  .pill b { color: #fff; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .ib { width: 32px; height: 30px; border-radius: 8px; display: grid; place-items: center; background: var(--pn); border: 1px solid var(--ln); color: var(--tx2); position: relative; }
+  .ib .dot { position: absolute; top: 6px; right: 7px; width: 7px; height: 7px; border-radius: 99px; background: #fb7185; box-shadow: 0 0 0 2px #0a1729; }
+  .av { width: 30px; height: 30px; font-size: 11px; }
+  /* Body */
+  .body { flex: 1; min-height: 0; display: flex; gap: 14px; padding: 12px 16px 14px; }
+  .left { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+  .tool { display: flex; align-items: center; gap: 12px; height: 30px; flex-shrink: 0; }
+  .tool h2 { font-size: 14.5px; font-weight: 750; letter-spacing: -.01em; white-space: nowrap; }
+  .models { display: flex; gap: 6px; margin-left: auto; }
+  .models span { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 9px; border-radius: 99px; font-size: 11px; font-weight: 600; color: var(--tx2); background: var(--pn); border: 1px solid var(--ln); white-space: nowrap; }
+  .models i { width: 8px; height: 8px; border-radius: 3px; display: inline-block; }
+  .lay { display: flex; gap: 3px; padding: 3px; border-radius: 8px; background: var(--pn); border: 1px solid var(--ln); }
+  .lay span { width: 24px; height: 22px; border-radius: 6px; display: grid; place-items: center; color: var(--mu); }
+  .lay span.on { background: rgba(255,255,255,.1); color: #fff; }
+  .lay svg { width: 14px; height: 14px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; flex-shrink: 0; }
+  .tile { position: relative; aspect-ratio: 16 / 9; border-radius: 10px; overflow: hidden; background: #0b1422; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); }
+  .tile svg.sc { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .tile.alert { box-shadow: 0 0 0 2px #fb7185, 0 0 24px -4px rgba(251,113,133,.65); }
+  .hud { position: absolute; display: inline-flex; align-items: center; gap: 6px; font-size: 10.5px; font-weight: 600; color: #e2e8f0; background: rgba(3,9,18,.66); border: 1px solid rgba(255,255,255,.12); border-radius: 6px; padding: 3px 7px; white-space: nowrap; z-index: 2; }
+  .hud b { font-weight: 800; color: #fff; }
+  .hud .rec { width: 6px; height: 6px; border-radius: 99px; background: #ef4444; }
+  .hud.hal { background: #e11d48; border-color: #fb7185; color: #fff; font-weight: 750; }
+  .hud .mono { font-variant-numeric: tabular-nums; }
+  .bb { position: absolute; border: 1.8px solid var(--c); border-radius: 3px; z-index: 1; }
+  .bb.tag { border: 0; }
+  .bb > span { position: absolute; left: -1.8px; bottom: 100%; margin-bottom: 2px; background: var(--c); color: #04111e; font-size: 10px; font-weight: 750; line-height: 1; padding: 3px 5px; border-radius: 3px; white-space: nowrap; }
+  .bb.r > span { left: 100%; bottom: auto; top: -1.8px; margin: 0 0 0 3px; }
+  .bb.in > span { bottom: auto; top: 0; left: 0; margin: 0; border-radius: 0 0 3px 0; }
+  .bb.person { --c: var(--person); } .bb.helmet { --c: var(--helmet); } .bb.box { --c: var(--box); } .bb.forklift { --c: var(--forklift); } .bb.car { --c: var(--car); } .bb.vac { --c: #4ade80; }
+  .bb.nohelmet { --c: var(--nohelmet); border-width: 2.2px; box-shadow: 0 0 0 3px rgba(251,113,133,.25), 0 0 16px rgba(251,113,133,.45); }
+  .bb.nohelmet > span { color: #fff; background: #e11d48; }
+  /* Timeline */
+  .tl { flex: 1; min-height: 0; background: var(--pn); border: 1px solid var(--ln); border-radius: 12px; padding: 9px 14px 8px; display: flex; flex-direction: column; }
+  .tl .hd { display: flex; align-items: center; gap: 10px; font-size: 12.5px; font-weight: 700; }
+  .tl .hd .muted { color: var(--mu); font-weight: 500; font-size: 11.5px; }
+  .tl .lg { margin-left: auto; display: flex; gap: 12px; font-size: 11px; color: var(--tx2); font-weight: 500; }
+  .tl .lg span { display: inline-flex; align-items: center; gap: 5px; } .tl .lg i { width: 4px; height: 11px; border-radius: 2px; display: inline-block; }
+  .tlp { flex: 1; min-height: 0; position: relative; margin-top: 6px; }
+  .tlp svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  /* Side panel */
+  .panel { width: 300px; flex-shrink: 0; display: flex; flex-direction: column; gap: 12px; }
+  .pc { background: var(--pn); border: 1px solid var(--ln); border-radius: 12px; padding: 12px 14px; }
+  .pc h3 { font-size: 12.5px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+  .pc h3 svg { color: #22d3ee; }
+  .pc h3 .r { margin-left: auto; font-size: 11px; color: var(--mu); font-weight: 500; }
+  .chipx { font-size: 10.5px; font-weight: 700; padding: 3px 8px; border-radius: 99px; background: rgba(251,113,133,.16); color: #fda4af; }
+  .cts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; }
+  .ct { background: rgba(255,255,255,.035); border: 1px solid rgba(255,255,255,.06); border-radius: 9px; padding: 7px 9px; }
+  .ct span { display: flex; align-items: center; gap: 5px; font-size: 10.5px; color: var(--tx2); font-weight: 500; white-space: nowrap; }
+  .ct span i { width: 7px; height: 7px; border-radius: 2px; display: inline-block; flex-shrink: 0; }
+  .ct b { display: block; font-size: 19px; font-weight: 800; letter-spacing: -.02em; margin-top: 2px; }
+  .ct.bad { background: rgba(225,29,72,.12); border-color: rgba(251,113,133,.35); } .ct.bad b { color: #fda4af; }
+  .al { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.06); }
+  .al:last-child { border-bottom: 0; padding-bottom: 0; }
+  .th { width: 56px; height: 34px; border-radius: 6px; flex-shrink: 0; position: relative; overflow: hidden; background: linear-gradient(160deg, #1d2c42, #0a121e); box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); }
+  .th i { position: absolute; border: 1.5px solid var(--c); border-radius: 2px; }
+  .th em { position: absolute; border-radius: 3px 3px 1px 1px; background: #4a5d78; }
+  .al .tx { min-width: 0; flex: 1; font-size: 12px; line-height: 1.3; }
+  .al .tx b { display: block; font-weight: 700; color: #fff; white-space: nowrap; }
+  .al .tx small { display: block; font-size: 10.5px; color: var(--mu); white-space: nowrap; }
+  .al .tg { font-size: 10px; font-weight: 700; padding: 3px 7px; border-radius: 99px; white-space: nowrap; flex-shrink: 0; }
+  .tg.r { background: rgba(225,29,72,.18); color: #fda4af; } .tg.a { background: rgba(251,191,36,.15); color: #fcd34d; } .tg.b { background: rgba(96,165,250,.16); color: #93c5fd; } .tg.s { background: rgba(255,255,255,.07); color: var(--tx2); }
+  .ph { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+  .ph .big { display: flex; align-items: baseline; gap: 8px; margin-top: 8px; }
+  .ph .big b { font-size: 22px; font-weight: 800; letter-spacing: -.02em; }
+  .ph .big span { font-size: 11px; color: var(--mu); }
+  .ph .big em { font-style: normal; margin-left: auto; font-size: 11px; font-weight: 650; color: #34d399; }
+  .hp { flex: 1; min-height: 0; position: relative; margin-top: 8px; }
+  .hp svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .edge { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--tx2); margin-top: 10px; padding-top: 9px; border-top: 1px solid rgba(255,255,255,.06); }
+  .edge svg { width: 14px; height: 14px; color: #34d399; }
+  .edge b { color: #fff; font-weight: 650; }
+</style></head>
+<body>
+<div class="vx">
+  <header class="bar">
+    <div class="logo"><img src="icon.png" alt=""><div><b>Vision AI</b><small>Demo Logistics · Shah Alam</small></div></div>
+    <nav class="tabs"><a class="on"><i data-i="video"></i>Live view</a><a><i data-i="bell"></i>Events<span class="cnt">12</span></a><a><i data-i="chart"></i>Analytics</a><a><i data-i="shield"></i>Zones &amp; rules</a><a><i data-i="cam"></i>Cameras</a></nav>
+    <div class="rt">
+      <span class="pill"><i class="d"></i><b>4/4</b> online</span>
+      <span class="pill"><b>10:42:16</b></span>
+      <span class="ib"><i data-i="bell"></i><i class="dot"></i></span>
+      <span class="av">FA</span>
+    </div>
+  </header>
+  <div class="body">
+    <div class="left">
+      <div class="tool">
+        <h2>All zones · live</h2>
+        <div class="models" id="models"></div>
+        <div class="lay"><span><i data-x="g1"></i></span><span class="on"><i data-x="g2"></i></span><span><i data-x="g3"></i></span></div>
+      </div>
+      <div class="grid">
+        <div class="tile alert" id="t1"></div>
+        <div class="tile" id="t2"></div>
+        <div class="tile" id="t3"></div>
+        <div class="tile" id="t4"></div>
+      </div>
+      <div class="tl">
+        <div class="hd">Event timeline <span class="muted">· last 60 min</span>
+          <div class="lg"><span><i style="background:#fb7185"></i>Safety (PPE)</span><span><i style="background:#fbbf24"></i>Zone &amp; crowd</span><span><i style="background:#60a5fa"></i>Vehicle</span></div></div>
+        <div class="tlp" id="tlp"></div>
+      </div>
+    </div>
+    <aside class="panel">
+      <div class="pc">
+        <h3><i data-x="eye"></i>Live detections<span class="r">4 cameras</span></h3>
+        <div class="cts" id="cts"></div>
+      </div>
+      <div class="pc">
+        <h3><i data-i="alert"></i>Recent alerts<span class="chipx" style="margin-left:auto">3 new</span></h3>
+        <div id="alerts" style="margin-top:4px"></div>
+      </div>
+      <div class="pc ph">
+        <h3><i data-i="chart"></i>Detections per hour<span class="r">Today</span></h3>
+        <div class="big"><b>2,771</b><span>objects tracked</span><em>▲ 9% vs last Tue</em></div>
+        <div class="hp" id="hp"></div>
+        <div class="edge"><i data-i="flash"></i><span>On-site AI · <b>23 ms</b> per frame · 4 streams</span></div>
+      </div>
+    </aside>
+  </div>
+</div>
+<script>
+(() => {
+  const XI = {
+    g1: '<rect x="4" y="4" width="16" height="16" rx="2"/>',
+    g2: '<rect x="4" y="4" width="16" height="16" rx="2"/><path d="M12 4v16M4 12h16"/>',
+    g3: '<rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9.3 4v16M14.7 4v16M4 9.3h16M4 14.7h16"/>',
+    eye: '<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+  };
+  const C = { person: "#22d3ee", helmet: "#4ade80", nohelmet: "#fb7185", box: "#fbbf24", forklift: "#c084fc", car: "#60a5fa" };
+  const f = (n) => Math.round(n * 10) / 10;
+
+  // ---------- drawing helpers (scene units: 640 x 360) ----------
+  // Shade a hex colour: k > 0 lightens, k < 0 darkens
+  const shade = (hex, k) => {
+    const n = parseInt(hex.slice(1), 16), c = [n >> 16, (n >> 8) & 255, n & 255];
+    return "#" + c.map((v) => Math.round(k > 0 ? v + (255 - v) * k : v * (1 + k)).toString(16).padStart(2, "0")).join("");
+  };
+  // A standing person, front or back view. Returns svg + bounding box.
+  function person(o) {
+    const { x, foot, h, shirt = "#3b4a5f", pants = "#1b2433", skin = "#86685a", head = "hair", vest = false } = o;
+    const r = h * 0.068, hy = foot - h + r * 1.05, sh = foot - h * 0.8, hip = foot - h * 0.47;
+    const sw = h * 0.13, hw = h * 0.1, aw = h * 0.058, lw = h * 0.078, al = h * 0.34;
+    let s = "";
+    s += `<ellipse cx="${f(x)}" cy="${f(foot)}" rx="${f(h * 0.17)}" ry="${f(h * 0.025)}" fill="#000" fill-opacity=".45"/>`;
+    s += `<rect x="${f(x - hw + 0.5)}" y="${f(hip - 3)}" width="${f(lw)}" height="${f(foot - hip + 1)}" rx="${f(lw / 2.4)}" fill="${pants}"/>`;
+    s += `<rect x="${f(x + hw - lw - 0.5)}" y="${f(hip - 3)}" width="${f(lw)}" height="${f(foot - hip + 1)}" rx="${f(lw / 2.4)}" fill="${pants}"/>`;
+    for (const side of [-1, 1]) {
+      const ax = x + side * (sw - aw * 0.15);
+      s += `<g transform="rotate(${side * -7} ${f(ax)} ${f(sh + 2)})"><rect x="${f(ax - aw / 2)}" y="${f(sh + 1)}" width="${f(aw)}" height="${f(al)}" rx="${f(aw / 2)}" fill="${shade(shirt, -0.12)}"/>
+        <circle cx="${f(ax)}" cy="${f(sh + al - aw * 0.1)}" r="${f(aw * 0.55)}" fill="${skin}"/></g>`;
+    }
+    const torso = (c) => `<path d="M${f(x - sw)} ${f(sh + r * 0.7)} Q${f(x - sw)} ${f(sh)} ${f(x - sw + r)} ${f(sh)} L${f(x + sw - r)} ${f(sh)} Q${f(x + sw)} ${f(sh)} ${f(x + sw)} ${f(sh + r * 0.7)} L${f(x + hw + 1)} ${f(hip)} L${f(x - hw - 1)} ${f(hip)}Z" fill="${c}"/>`;
+    s += torso(shirt);
+    if (vest) {
+      s += torso("#d29f1c");
+      const by = sh + (hip - sh) * 0.58;
+      s += `<rect x="${f(x - sw + 1)}" y="${f(by)}" width="${f(sw * 2 - 2)}" height="${f(h * 0.028)}" fill="#e5ebf2" fill-opacity=".8"/>`;
+      s += `<rect x="${f(x - h * 0.012)}" y="${f(sh)}" width="${f(h * 0.024)}" height="${f(hip - sh)}" fill="${shade("#d29f1c", -0.25)}"/>`;
+    }
+    if (head === "tudung") {
+      const sc = o.scarf || "#7d6380";
+      s += `<path d="M${f(x - r * 1.18)} ${f(hy)} L${f(x - sw * 0.92)} ${f(sh + h * 0.07)} Q${f(x)} ${f(sh + h * 0.12)} ${f(x + sw * 0.92)} ${f(sh + h * 0.07)} L${f(x + r * 1.18)} ${f(hy)}Z" fill="${sc}"/>`;
+      s += `<circle cx="${f(x)}" cy="${f(hy)}" r="${f(r * 1.2)}" fill="${sc}"/>`;
+      if (!o.back) s += `<ellipse cx="${f(x)}" cy="${f(hy + r * 0.15)}" rx="${f(r * 0.6)}" ry="${f(r * 0.74)}" fill="${skin}"/>`;
+    } else {
+      s += `<rect x="${f(x - r * 0.42)}" y="${f(hy + r * 0.6)}" width="${f(r * 0.84)}" height="${f(sh - hy - r * 0.5)}" fill="${skin}"/>`;
+      s += `<circle cx="${f(x)}" cy="${f(hy)}" r="${f(r)}" fill="${o.back ? "#16110f" : skin}"/>`;
+      if (head === "hair" && !o.back) s += `<path d="M${f(x - r * 1.03)} ${f(hy + r * 0.15)} A${f(r * 1.03)} ${f(r * 1.06)} 0 0 1 ${f(x + r * 1.03)} ${f(hy + r * 0.15)} Q${f(x)} ${f(hy - r * 0.5)} ${f(x - r * 1.03)} ${f(hy + r * 0.15)}Z" fill="#16110f"/>`;
+      if (head === "helmet") s += `<path d="M${f(x - r * 1.18)} ${f(hy + r * 0.05)} A${f(r * 1.18)} ${f(r * 1.2)} 0 0 1 ${f(x + r * 1.18)} ${f(hy + r * 0.05)}Z" fill="#f4c430"/><rect x="${f(x - r * 1.42)}" y="${f(hy - r * 0.08)}" width="${f(r * 2.84)}" height="${f(r * 0.3)}" rx="${f(r * 0.15)}" fill="#d9a91f"/>`;
+    }
+    if (o.bag) s += `<rect x="${f(x + sw + aw * 0.1)}" y="${f(sh + al * 0.8)}" width="${f(h * 0.1)}" height="${f(h * 0.12)}" rx="2" fill="${o.bag}"/>`;
+    return { s, box: [x - h * 0.2, foot - h - 3, h * 0.4, h + 5], head: [x - r * 1.5, hy - r * 1.35, r * 3, r * 2] };
+  }
+  // A car seen from behind (same drawing as the gate camera), scaled to width w with tyres on y = base
+  let gid = 0;
+  function car(cx, base, w, color, lit = false) {
+    const k = w / 296, id = `cg${gid++}`;
+    const tl = lit ? "#b91c1c" : "#6b1f24", hl = lit ? "#f87171" : "#8f3a3f";
+    const s = `<defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${shade(color, 0.18)}"/><stop offset=".45" stop-color="${color}"/><stop offset="1" stop-color="${shade(color, -0.45)}"/></linearGradient>
+      <linearGradient id="${id}g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0a111c"/><stop offset="1" stop-color="#1a2a40"/></linearGradient></defs>
+      <g transform="translate(${f(cx - 300 * k)} ${f(base - 304 * k)}) scale(${k.toFixed(4)})">
+      <ellipse cx="300" cy="303" rx="162" ry="15" fill="#000" fill-opacity=".5"/>
+      <rect x="166" y="262" width="36" height="42" rx="7" fill="#06090e"/><rect x="398" y="262" width="36" height="42" rx="7" fill="#06090e"/>
+      <path d="M190 212 L222 158 Q227 149 238 149 L362 149 Q373 149 378 158 L410 212Z" fill="${shade(color, 0.05)}"/>
+      <path d="M205 207 L232 163 Q236 156 244 156 L356 156 Q364 156 368 163 L395 207Z" fill="url(#${id}g)"/>
+      <path d="M236 207 L282 156 L304 156 L258 207Z" fill="#fff" fill-opacity=".05"/>
+      <path d="M156 228 Q158 211 178 208 L422 208 Q442 211 444 228 L448 279 Q448 294 432 294 L168 294 Q152 294 152 279Z" fill="url(#${id})"/>
+      <path d="M178 209 L422 209" stroke="${shade(color, 0.35)}" stroke-opacity=".7" stroke-width="2"/>
+      <path d="M161 222 Q162 216 170 216 L222 216 Q226 216 225 220 L221 236 Q220 240 215 240 L166 240 Q159 240 159 233Z" fill="${tl}"/><path d="M166 220 L218 220 L216 228 L164 228Z" fill="${hl}"/>
+      <path d="M439 222 Q438 216 430 216 L378 216 Q374 216 375 220 L379 236 Q380 240 385 240 L434 240 Q441 240 441 233Z" fill="${tl}"/><path d="M434 220 L382 220 L384 228 L436 228Z" fill="${hl}"/>
+      <rect x="258" y="242" width="84" height="28" rx="4" fill="${shade(color, -0.55)}"/><rect x="263" y="246" width="74" height="20" rx="2.5" fill="#06080c"/>
+      <rect x="276" y="254" width="48" height="4" rx="2" fill="#cbd5e1" fill-opacity=".55"/>
+      <rect x="168" y="280" width="264" height="9" rx="4" fill="#161f2b"/></g>`;
+    return { s, box: [cx - 150 * k, base - 157 * k, 300 * k, 157 * k] };
+  }
+  const glow = (cx, cy, rx, ry, col, op) => `<ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}" fill="${col}" fill-opacity="${op}" filter="url(#blur)"/>`;
+  const defs = (extra = "") => `<defs><filter id="blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>
+    <radialGradient id="vig" cx=".5" cy=".5" r=".75"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".55"/></radialGradient>${extra}</defs>`;
+  let seed = 5; const rnd = () => ((seed = (seed * 9301 + 49297) % 233280) / 233280);
+
+  // ---------- CAM 01 · warehouse aisle ----------
+  function aisle() {
+    const VX = 320, VY = 150, BW = 255; // vanishing point, x of the far wall (left side)
+    const ly = (y0, x) => y0 + (VY - y0) * (x / VX); // line through (0, y0) and the vanishing point
+    const top = -80, base = 408;
+    let s = defs(`<linearGradient id="fl1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f2c40"/><stop offset="1" stop-color="#121b29"/></linearGradient>`);
+    s += `<rect width="640" height="360" fill="#0a121e"/>`;
+    s += `<rect x="${BW}" y="${f(ly(top, BW))}" width="${640 - 2 * BW}" height="${f(ly(base, BW) - ly(top, BW))}" fill="#16243a"/>`;
+    s += `<rect x="306" y="112" width="28" height="9" rx="1.5" fill="#22c55e" fill-opacity=".85"/>` + glow(320, 116, 26, 10, "#22c55e", 0.35);
+    s += `<path d="M0 ${base} L${BW} ${f(ly(base, BW))} L${640 - BW} ${f(ly(base, BW))} L640 ${base}Z" fill="url(#fl1)"/>`;
+    s += `<path d="M120 ${base} L${f(120 + 200 * 0.797)} ${f(ly(base, BW))} M520 ${base} L${f(520 - 200 * 0.797)} ${f(ly(base, BW))}" stroke="#d4a017" stroke-opacity=".5" stroke-width="3"/>`;
+    s += glow(320, 300, 60, 120, "#9fb3cc", 0.06);
+    // ceiling lights
+    [[12, 96, 6], [46, 58, 4], [68, 38, 3], [82, 26, 2.2], [91, 18, 1.6]].forEach(([y, w, h]) => {
+      s += glow(320, y + 8, w * 0.7, h * 3, "#dbe7f5", 0.25) + `<rect x="${320 - w / 2}" y="${y}" width="${w}" height="${h}" rx="${h / 2}" fill="#e8eef6" fill-opacity=".9"/>`;
+    });
+    const ups = [0, 113.5, 168.4, 199.2, 220.3, 235.3, 246.6, BW];
+    const levels = [base, 300, 190, 80];
+    const tones = ["#6b5133", "#5e472d", "#735737", "#56412a"];
+    const keep = {};
+    const rack = (mir) => {
+      const X = (x) => (mir ? 640 - x : x);
+      let r = `<path d="M${X(0)} ${top} L${X(BW)} ${f(ly(top, BW))} L${X(BW)} ${f(ly(base, BW))} L${X(0)} ${base}Z" fill="#0f1a2a"/>`;
+      // boxes on every shelf
+      for (let i = 0; i < ups.length - 1; i++) for (let l = 0; l < levels.length; l++) {
+        const pinned = mir && ((i === 1 && l === 2) || (i === 0 && l === 1));
+        if (rnd() < 0.14 && !pinned) continue;
+        const sY = levels[l], hb = (l ? 110 : 108) * (0.5 + rnd() * 0.28);
+        const span = ups[i + 1] - ups[i], pad = span * 0.1;
+        const two = span > 30 && rnd() > 0.45;
+        const parts = two ? [[ups[i] + pad, ups[i] + span / 2 - pad * 0.3], [ups[i] + span / 2 + pad * 0.3, ups[i + 1] - pad]] : [[ups[i] + pad, ups[i + 1] - pad]];
+        parts.forEach(([a, b], j) => {
+          const hh = j ? hb * (0.85 + rnd() * 0.25) : hb;
+          const col = tones[Math.floor(rnd() * tones.length)];
+          const p = [[a, ly(sY - hh, a)], [b, ly(sY - hh, b)], [b, ly(sY, b)], [a, ly(sY, a)]];
+          r += `<path d="M${p.map(([x, y]) => `${f(X(x))} ${f(y)}`).join(" L")}Z" fill="${col}"/>`;
+          r += `<path d="M${f(X(a))} ${f(ly(sY - hh * 0.55, a))} L${f(X(b))} ${f(ly(sY - hh * 0.55, b))}" stroke="${shade(col, -0.3)}" stroke-width="${f(Math.max(0.6, 2.4 * (VX - a) / VX))}"/>`;
+          if (rnd() > 0.55) {
+            const la = a + (b - a) * 0.15, lb = a + (b - a) * 0.42;
+            r += `<path d="M${f(X(la))} ${f(ly(sY - hh * 0.4, la))} L${f(X(lb))} ${f(ly(sY - hh * 0.4, lb))} L${f(X(lb))} ${f(ly(sY - hh * 0.18, lb))} L${f(X(la))} ${f(ly(sY - hh * 0.18, la))}Z" fill="#dfe6ee" fill-opacity=".45"/>`;
+          }
+          if (mir && i === 1 && l === 2 && j === 0) keep.box = [X(b), ly(sY - hh, a), X(a) - X(b), ly(sY, a) - ly(sY - hh, a)];
+          if (mir && i === 0 && l === 1 && j === 0) keep.box2 = [X(b), ly(sY - hh, a), X(a) - X(b), ly(sY, a) - ly(sY - hh, a)];
+        });
+      }
+      // orange beams, blue uprights
+      levels.slice(1).forEach((y0) => {
+        r += `<path d="M${X(0)} ${y0} L${X(BW)} ${f(ly(y0, BW))} L${X(BW)} ${f(ly(y0 + 12, BW))} L${X(0)} ${y0 + 12}Z" fill="#8a4f1a"/>`;
+      });
+      ups.slice(0, -1).forEach((x) => {
+        const w = 15 * (VX - x) / VX;
+        r += `<path d="M${f(X(x))} ${f(ly(top, x))} L${f(X(x + w))} ${f(ly(top, x + w))} L${f(X(x + w))} ${f(ly(base, x + w))} L${f(X(x))} ${f(ly(base, x))}Z" fill="#1f4b73"/>`;
+      });
+      return r;
+    };
+    s += rack(false) + rack(true);
+    const w1 = person({ x: 356, foot: 240, h: 116, head: "helmet", vest: true, shirt: "#334155" });
+    const w2 = person({ x: 228, foot: 306, h: 192, head: "hair", vest: true, shirt: "#3f4c63", skin: "#7a5a48" });
+    s += w1.s + w2.s + `<rect width="640" height="360" fill="url(#vig)"/>`;
+    return { s, boxes: [["box", "Box 92%", keep.box], ["box", "Box 88%", keep.box2, "in"], ["person", "Person 97%", w1.box], ["helmet", "Helmet 94%", w1.head, "r"], ["nohelmet", "No helmet 91%", w2.box]] };
+  }
+
+  // ---------- CAM 02 · shop entrance ----------
+  function shop() {
+    let s = defs(`<linearGradient id="gl2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5b7ba0"/><stop offset="1" stop-color="#2e4767"/></linearGradient>
+      <linearGradient id="fl2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1e2a3c"/><stop offset="1" stop-color="#0f1724"/></linearGradient>`);
+    s += `<rect width="640" height="360" fill="#121d2e"/><rect width="640" height="44" fill="#0b1422"/>`;
+    [[90, 14, 120, 7], [430, 14, 120, 7], [262, 28, 116, 5]].forEach(([x, y, w, h]) => {
+      s += glow(x + w / 2, y + 10, w * 0.6, 14, "#dbe7f5", 0.22) + `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="2" fill="#e2e8f0" fill-opacity=".85"/>`;
+    });
+    // glass shop front with daylight outside
+    const panes = [[22, 150], [158, 262], [270, 318], [322, 370], [378, 482], [490, 618]];
+    panes.forEach(([a, b]) => { s += `<rect x="${a}" y="64" width="${b - a}" height="174" fill="url(#gl2)"/>`; });
+    s += `<g fill="#3d5b7d"><circle cx="70" cy="122" r="34"/><circle cx="118" cy="132" r="28"/><circle cx="548" cy="118" r="36"/><circle cx="600" cy="134" r="26"/><rect x="0" y="196" width="640" height="42"/></g>`;
+    s += `<path d="M408 214 Q412 196 432 194 L470 194 Q486 196 490 214 L492 228 L406 228Z" fill="#33506f"/>`;
+    s += `<rect x="0" y="236" width="640" height="3" fill="#0b1422"/>`;
+    panes.forEach(([a, b]) => { s += `<rect x="${a}" y="64" width="${b - a}" height="174" fill="none" stroke="#0b1422" stroke-width="6"/>`; });
+    s += `<rect x="312" y="136" width="3" height="30" rx="1.5" fill="#b8c6d6"/><rect x="325" y="136" width="3" height="30" rx="1.5" fill="#b8c6d6"/>`;
+    s += `<rect x="276" y="49" width="88" height="11" rx="2" fill="#0f766e"/><g fill="#d1fae5" fill-opacity=".85"><rect x="286" y="53" width="30" height="3" rx="1"/><rect x="322" y="53" width="32" height="3" rx="1"/></g>`;
+    // floor with tiles
+    s += `<path d="M0 238 H640 V360 H0Z" fill="url(#fl2)"/>`;
+    for (const xb of [-360, -150, 60, 230, 410, 580, 790, 1000]) {
+      const xt = 320 + (xb - 320) * ((238 - 120) / (360 - 120));
+      s += `<path d="M${f(xt)} 238 L${xb} 360" stroke="#26344b" stroke-width="1"/>`;
+    }
+    [252, 270, 294, 326].forEach((y) => { s += `<path d="M0 ${y} H640" stroke="#26344b" stroke-width="1"/>`; });
+    s += `<path d="M258 240 L382 240 L398 262 L242 262Z" fill="#0a111b"/>`;
+    // shelves on both sides
+    const gondola = (mir) => {
+      const X = (x) => (mir ? 640 - x : x);
+      let g = `<path d="M${X(0)} 118 L${X(84)} 146 L${X(84)} 304 L${X(0)} 338Z" fill="#17253a"/>`;
+      [[170, 172], [222, 218], [274, 264], [326, 308]].forEach(([y0, y1], i) => {
+        g += `<path d="M${X(0)} ${y0} L${X(84)} ${y1}" stroke="#2c3e58" stroke-width="3"/>`;
+        if (i === 3) return;
+        for (let k = 0; k < 6; k++) {
+          const a = 4 + k * 13.5, b = a + 10, yt0 = y0 - 26 + a * ((y1 - y0) / 84), yt1 = y0 - 26 + b * ((y1 - y0) / 84);
+          const col = ["#3d5a80", "#6b4f7a", "#2f6b5e", "#7a5c38", "#4b5563", "#7b3f4c"][(k + i * 2 + (mir ? 3 : 0)) % 6];
+          g += `<path d="M${f(X(a))} ${f(yt0)} L${f(X(b))} ${f(yt1)} L${f(X(b))} ${f(yt1 + 22)} L${f(X(a))} ${f(yt0 + 22)}Z" fill="${col}"/>`;
+        }
+      });
+      return g;
+    };
+    s += gondola(false) + gondola(true);
+    // people counting line
+    s += `<path d="M96 300 H544" stroke="#22d3ee" stroke-width="2" stroke-dasharray="8 6" stroke-opacity=".9"/>`;
+    [200, 320, 440].forEach((x) => { s += `<path d="M${x - 7} 307 L${x} 313 L${x + 7} 307" stroke="#22d3ee" stroke-width="2" fill="none" stroke-opacity=".9"/>`; });
+    const p3 = person({ x: 334, foot: 246, h: 112, shirt: "#2f6b6b", pants: "#1f2937", bag: "#cbd5e1" });
+    const p2 = person({ x: 446, foot: 298, h: 156, shirt: "#5d4f78", pants: "#272c38", head: "tudung", scarf: "#8b6c86", back: true });
+    const p1 = person({ x: 236, foot: 346, h: 202, shirt: "#4b5d77", pants: "#1d2635", skin: "#8d6b56" });
+    s += p3.s + p2.s + p1.s + `<rect width="640" height="360" fill="url(#vig)"/>`;
+    return { s, boxes: [["person", "Person 89%", p3.box], ["person", "Person 95%", p2.box], ["person", "Person 97%", p1.box]] };
+  }
+
+  // ---------- CAM 03 · loading bay ----------
+  function bay() {
+    let s = defs(`<linearGradient id="fl3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1c2737"/><stop offset="1" stop-color="#101824"/></linearGradient>`);
+    s += `<rect width="640" height="360" fill="#142036"/><rect width="640" height="34" fill="#0b1422"/><rect y="30" width="640" height="6" fill="#1b2a42"/>`;
+    for (let y = 46; y < 262; y += 18) s += `<path d="M0 ${y} H640" stroke="#18263d" stroke-width="2"/>`;
+    const doors = [[34, 196, 0], [240, 400, 1], [444, 606, 0]];
+    doors.forEach(([a, b, open]) => {
+      const cx = (a + b) / 2;
+      s += `<rect x="${a - 6}" y="68" width="${b - a + 12}" height="188" fill="#0e1828"/>`;
+      if (open) {
+        s += `<rect x="${a}" y="74" width="${b - a}" height="178" fill="#05090f"/>`;
+        s += `<rect x="${a + 12}" y="84" width="${b - a - 24}" height="164" fill="#070c14" stroke="#34465f" stroke-width="5"/>`;
+        s += `<path d="M${a + 14} 86 L${a + 44} 116 M${b - 14} 86 L${b - 44} 116 M${a + 14} 246 L${a + 44} 212 M${b - 14} 246 L${b - 44} 212" stroke="#1b2638" stroke-width="2"/>`;
+        s += `<rect x="${a + 44}" y="116" width="${b - a - 88}" height="96" fill="none" stroke="#1b2638" stroke-width="2"/>`;
+        s += `<g fill="#4a3a28"><rect x="${a + 48}" y="176" width="22" height="36"/><rect x="${a + 72}" y="186" width="20" height="26"/><rect x="${a + 48}" y="150" width="22" height="25" fill="#55432e"/></g>`;
+        s += `<rect x="${a - 2}" y="250" width="${b - a + 4}" height="10" fill="#3b4a5f"/>`;
+        for (let k = a; k < b; k += 12) s += `<rect x="${k}" y="250" width="6" height="3" fill="#facc15" fill-opacity=".8"/>`;
+        s += `<circle cx="${cx}" cy="60" r="4" fill="#22c55e"/>` + glow(cx, 60, 12, 8, "#22c55e", 0.5);
+      } else {
+        s += `<rect x="${a}" y="74" width="${b - a}" height="178" fill="#24354e"/>`;
+        for (let y = 82; y < 252; y += 9) s += `<path d="M${a} ${y} H${b}" stroke="#1b2a40" stroke-width="2"/>`;
+        s += `<rect x="${a}" y="244" width="${b - a}" height="8" fill="#334766"/>`;
+        s += `<circle cx="${cx}" cy="60" r="4" fill="#ef4444"/>` + glow(cx, 60, 12, 8, "#ef4444", 0.45);
+      }
+      s += `<rect x="${a - 4}" y="224" width="9" height="30" rx="2" fill="#05080d"/><rect x="${b - 5}" y="224" width="9" height="30" rx="2" fill="#05080d"/>`;
+    });
+    s += `<path d="M0 262 H640 V360 H0Z" fill="url(#fl3)"/>`;
+    s += `<path d="M0 266 H640" stroke="#d4a017" stroke-opacity=".6" stroke-width="3"/>`;
+    s += `<path d="M120 360 L200 268 M520 360 L440 268" stroke="#d4a017" stroke-opacity=".35" stroke-width="2.5"/>`;
+    // restricted forklift zone
+    s += `<path d="M228 270 L412 270 L468 346 L172 346Z" fill="#fb7185" fill-opacity=".09" stroke="#fb7185" stroke-opacity=".6" stroke-width="1.6" stroke-dasharray="7 5"/>`;
+    // forklift, facing right, carrying a pallet of boxes
+    s += `<ellipse cx="312" cy="331" rx="124" ry="9" fill="#000" fill-opacity=".5"/>`;
+    s += glow(474, 336, 26, 7, "#3b82f6", 0.7) + `<ellipse cx="474" cy="336" rx="14" ry="3.5" fill="#60a5fa" fill-opacity=".8"/>`;
+    s += `<path d="M248 252 L252 166 M330 252 L322 166" stroke="#2f4058" stroke-width="5" stroke-linecap="round"/>`;
+    s += `<rect x="240" y="160" width="92" height="8" rx="2.5" fill="#33465f"/>`;
+    s += `<rect x="252" y="220" width="14" height="34" rx="4" fill="#1f2937"/>`;
+    const drv = person({ x: 279, foot: 300, h: 112, head: "helmet", vest: true, shirt: "#334155" });
+    s += `<g clip-path="url(#cut3)">${drv.s}</g><clipPath id="cut3"><rect x="200" y="150" width="200" height="104"/></clipPath>`;
+    s += `<path d="M298 238 L314 222" stroke="#0b1018" stroke-width="4" stroke-linecap="round"/>`;
+    s += `<path d="M200 300 Q198 262 214 254 L248 250 L248 306 L206 306 Q200 306 200 300Z" fill="#a87418"/>`;
+    s += `<path d="M236 252 L330 252 Q340 252 340 262 L340 296 Q340 306 330 306 L236 306Z" fill="#c99520"/>`;
+    s += `<path d="M214 256 L332 256" stroke="#e7bb48" stroke-opacity=".55" stroke-width="2"/>`;
+    s += `<rect x="204" y="292" width="138" height="14" rx="4" fill="#7d5a10"/>`;
+    s += `<circle cx="232" cy="314" r="16" fill="#0b1018"/><circle cx="232" cy="314" r="6" fill="#3b4656"/><circle cx="320" cy="310" r="20" fill="#0b1018"/><circle cx="320" cy="310" r="7.5" fill="#3b4656"/>`;
+    s += `<rect x="340" y="140" width="6" height="178" fill="#3a4a5f"/><rect x="350" y="140" width="6" height="178" fill="#3a4a5f"/>`;
+    [152, 212, 272].forEach((y) => { s += `<rect x="340" y="${y}" width="16" height="4" fill="#2a3646"/>`; });
+    s += `<rect x="356" y="228" width="8" height="84" fill="#26313f"/><rect x="360" y="306" width="64" height="5" fill="#4b5563"/>`;
+    s += `<rect x="362" y="296" width="60" height="9" fill="#5c4632"/><g fill="#3f3022"><rect x="370" y="299" width="8" height="6"/><rect x="388" y="299" width="8" height="6"/><rect x="406" y="299" width="8" height="6"/></g>`;
+    [[363, 266, "#7a5c38"], [392, 266, "#6d5231"], [363, 236, "#735737"], [392, 236, "#66502f"]].forEach(([x, y, c]) => {
+      s += `<rect x="${x}" y="${y}" width="28" height="29" fill="${c}"/><path d="M${x} ${y + 14} H${x + 28}" stroke="${shade(c, -0.3)}" stroke-width="2"/>`;
+    });
+    const wk = person({ x: 550, foot: 302, h: 150, head: "helmet", vest: true, shirt: "#2b3646", skin: "#7a5a48" });
+    s += wk.s + `<rect width="640" height="360" fill="url(#vig)"/>`;
+    return { s, boxes: [["forklift", "Forklift 96%", [196, 156, 230, 178]], ["box", "Box 92%", [360, 233, 64, 74], "r"], ["person", "Person 94%", wk.box]] };
+  }
+
+  // ---------- CAM 04 · car park ----------
+  function park() {
+    let s = defs(`<linearGradient id="fl4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a2536"/><stop offset="1" stop-color="#0e1622"/></linearGradient>`);
+    s += `<rect width="640" height="360" fill="#0b1422"/>`;
+    [[0, 16], [44, 8], [74, 5], [94, 3], [106, 2]].forEach(([y, h]) => { s += `<rect x="0" y="${y}" width="640" height="${h}" fill="#18263c"/>`; });
+    s += `<rect x="0" y="110" width="640" height="40" fill="#121e31"/>`;
+    [[28, 84, 5], [62, 50, 3.5], [86, 30, 2.5], [101, 18, 1.6]].forEach(([y, w, h]) => {
+      s += glow(320, y + 6, w * 0.7, h * 3, "#dbe7f5", 0.25) + `<rect x="${320 - w / 2}" y="${y}" width="${w}" height="${h}" rx="${h / 2}" fill="#e8eef6" fill-opacity=".88"/>`;
+    });
+    s += `<path d="M0 150 H640 V360 H0Z" fill="url(#fl4)"/>`;
+    const L = (y) => 200 + 120 * (360 - y) / 232, R = (y) => 440 - 120 * (360 - y) / 232; // driveway edges
+    s += `<path d="M200 360 L${f(L(150))} 150 M440 360 L${f(R(150))} 150" stroke="#d6dee8" stroke-opacity=".35" stroke-width="2"/>`;
+    [352, 262, 208, 182, 166, 157].forEach((y, i) => {
+      const w = Math.max(1, 2.6 - i * 0.35);
+      s += `<path d="M0 ${y} H${f(L(y))} M${f(R(y))} ${y} H640" stroke="#d6dee8" stroke-opacity=".32" stroke-width="${w}"/>`;
+    });
+    [[320, 330, 16], [320, 250, 9], [320, 200, 5]].forEach(([x, y, k]) => {
+      s += `<path d="M${x - k} ${y + k * 0.6} L${x} ${y} L${x + k} ${y + k * 0.6}" stroke="#d6dee8" stroke-opacity=".35" stroke-width="${k / 4}" fill="none"/>`;
+    });
+    // pillars
+    s += `<rect x="0" y="0" width="34" height="348" fill="#1c2a40"/><rect x="0" y="300" width="34" height="18" fill="#d4a017" fill-opacity=".6"/><rect x="6" y="150" width="22" height="14" rx="2" fill="#0f766e"/>`;
+    s += `<rect x="606" y="0" width="34" height="340" fill="#1c2a40"/><rect x="606" y="294" width="34" height="18" fill="#d4a017" fill-opacity=".6"/><rect x="612" y="146" width="22" height="14" rx="2" fill="#0f766e"/>`;
+    s += `<rect x="152" y="58" width="11" height="166" fill="#1a273c"/><rect x="477" y="58" width="11" height="166" fill="#1a273c"/><rect x="232" y="98" width="6" height="84" fill="#172437"/><rect x="402" y="98" width="6" height="84" fill="#172437"/>`;
+    const c3 = car(254, 192, 56, "#4a5361"), c5 = car(394, 190, 54, "#c4ced9");
+    const c2 = car(196, 234, 98, "#8a3a3a");
+    const c1 = car(102, 338, 184, "#9aa8b9"), c4 = car(528, 324, 176, "#33506f");
+    const w = person({ x: 318, foot: 268, h: 104, shirt: "#41546e", pants: "#1d2533", back: true });
+    const vb = [[R(210) + 4, 210], [600, 210], [600, 260], [R(260) + 4, 260]];
+    s += c3.s + c5.s + c2.s + `<path d="M${vb.map(([x, y]) => `${f(x)} ${y}`).join(" L")}Z" fill="#4ade80" fill-opacity=".14" stroke="#4ade80" stroke-width="1.6" stroke-dasharray="6 4"/>`;
+    s += w.s + c1.s + c4.s + `<rect width="640" height="360" fill="url(#vig)"/>`;
+    return { s, boxes: [["car", "Car 98%", c1.box], ["car", "Car 96%", c4.box, "in"], ["car", "Car 93%", c2.box], ["person", "Person 90%", w.box], ["vac tag", "Vacant bay", [R(210) + 3, 210, 0, 0]]] };
+  }
+
+  // ---------- tiles ----------
+  const TILES = [
+    ["t1", aisle, "CAM 01", "Aisle B · Zone B", "Person 2 · Box 38", "No helmet"],
+    ["t2", shop, "CAM 02", "Shop entrance", "In 128 · Out 117", ""],
+    ["t3", bay, "CAM 03", "Loading bay 2", "Forklift 1 · Person 2", ""],
+    ["t4", park, "CAM 04", "Car park P1", "Bays 42 / 60 taken", ""],
+  ];
+  const pct = (v, of) => `${((v / of) * 100).toFixed(2)}%`;
+  TILES.forEach(([id, fn, cam, name, foot, alert]) => {
+    const { s, boxes } = fn();
+    const el = document.getElementById(id);
+    el.innerHTML = `<svg class="sc" viewBox="0 0 640 360" preserveAspectRatio="xMidYMid slice">${s}</svg>` +
+      boxes.map(([cls, label, [x, y, w, h], pos]) => `<div class="bb ${cls}${pos ? " " + pos : ""}" style="left:${pct(x, 640)};top:${pct(y, 360)};width:${pct(w, 640)};height:${pct(h, 360)}"><span>${label}</span></div>`).join("") +
+      `<div class="hud" style="left:8px;top:8px"><b>${cam}</b>${name}</div>` +
+      `<div class="hud" style="right:8px;top:8px"><i class="rec"></i><span class="mono">10:42:16</span></div>` +
+      `<div class="hud" style="left:8px;bottom:8px">${foot}</div>` +
+      (alert ? `<div class="hud hal" style="right:8px;bottom:8px"><i data-i="alert" style="width:12px;height:12px"></i>${alert}</div>` : "");
+  });
+
+  // ---------- model legend ----------
+  document.getElementById("models").innerHTML = [["Person", C.person], ["Helmet", C.helmet], ["No helmet", C.nohelmet], ["Box", C.box], ["Forklift", C.forklift], ["Vehicle", C.car]]
+    .map(([n, c]) => `<span><i style="background:${c}"></i>${n}</span>`).join("");
+
+  // ---------- live counts ----------
+  document.getElementById("cts").innerHTML = [["Person", C.person, 8], ["Helmet", C.helmet, 3], ["No helmet", C.nohelmet, 1, 1], ["Box", C.box, 39], ["Forklift", C.forklift, 1], ["Vehicle", C.car, 5]]
+    .map(([n, c, v, bad]) => `<div class="ct${bad ? " bad" : ""}"><span><i style="background:${c}"></i>${n}</span><b>${v}</b></div>`).join("");
+
+  // ---------- recent alerts: [colour, title, where, tag class, tag, thumb person/box] ----------
+  const AL = [
+    ["#fb7185", "No helmet detected", "Zone B · CAM 01 · 10:42", "r", "New"],
+    ["#fbbf24", "Person in forklift zone", "Loading bay · CAM 03 · 10:31", "r", "New"],
+    ["#fbbf24", "Crowd at entrance (9)", "Shop · CAM 02 · 10:18", "a", "New"],
+    ["#60a5fa", "Car parked over 3 hours", "Car park P1 · CAM 04 · 09:57", "s", "Seen"],
+  ];
+  document.getElementById("alerts").innerHTML = AL.map(([c, t, w, tc, tg], i) => {
+    const th = i === 3 ? `<em style="left:15px;top:12px;width:26px;height:16px"></em><i style="--c:${c};left:12px;top:9px;width:32px;height:22px"></i>`
+      : `<em style="left:${22 + i * 3}px;top:8px;width:10px;height:22px;border-radius:5px 5px 2px 2px"></em><i style="--c:${c};left:${18 + i * 3}px;top:5px;width:18px;height:27px"></i>`;
+    return `<div class="al"><span class="th">${th}</span><div class="tx"><b>${t}</b><small>${w}</small></div><span class="tg ${tc}">${tg}</span></div>`;
+  }).join("");
+
+  // ---------- detections per hour (single series) ----------
+  const HRS = [62, 41, 33, 28, 30, 74, 268, 512, 604, 688, 431];
+  const hp = document.getElementById("hp");
+  {
+    const W = hp.clientWidth, H = hp.clientHeight, T = 14, B = 16, ph = H - T - B, max = 750;
+    const gw = W / HRS.length, bw = Math.min(14, gw - 6);
+    const y = (v) => T + ph - (v / max) * ph;
+    let s = "";
+    [0, 250, 500, 750].forEach((t) => { s += `<line x1="0" x2="${W}" y1="${f(y(t))}" y2="${f(y(t))}" stroke="${t ? "rgba(255,255,255,.06)" : "rgba(255,255,255,.16)"}"/>`; });
+    HRS.forEach((v, i) => {
+      const x = gw * i + (gw - bw) / 2, top = y(v), h = y(0) - top, r = Math.min(4, h);
+      const last = i === HRS.length - 1;
+      s += `<path d="M${f(x)} ${f(y(0))}V${f(top + r)}A${r} ${r} 0 0 1 ${f(x + r)} ${f(top)}H${f(x + bw - r)}A${r} ${r} 0 0 1 ${f(x + bw)} ${f(top + r)}V${f(y(0))}Z" fill="#22d3ee" fill-opacity="${last ? 0.4 : 0.85}"/>`;
+      if (i % 4 === 0 || last) s += `<text x="${f(x + bw / 2)}" y="${H - 2}" font-size="10" fill="#71859f" text-anchor="middle" font-family="Inter">${last ? "Now" : String(i).padStart(2, "0") + ":00"}</text>`;
+    });
+    const pk = 9, px = gw * pk + gw / 2;
+    s += `<text x="${f(px)}" y="${f(y(HRS[pk]) - 5)}" font-size="10" font-weight="700" fill="#e6edf6" text-anchor="middle" font-family="Inter">688</text>`;
+    hp.innerHTML = `<svg viewBox="0 0 ${W} ${H}">${s}</svg>`;
+  }
+
+  // ---------- event timeline (09:42 to 10:42) ----------
+  const tlp = document.getElementById("tlp");
+  {
+    const W = tlp.clientWidth, H = tlp.clientHeight, LBL = 124, B = 14;
+    const rows = ["CAM 01 · Aisle B", "CAM 02 · Shop", "CAM 03 · Loading bay", "CAM 04 · Car park"];
+    const rh = (H - B) / rows.length, x = (m) => LBL + (m / 60) * (W - LBL - 6);
+    // events: [row, minute, colour]
+    const EV = [[0, 59.4, "#fb7185"], [0, 25, "#fb7185"], [0, 10, "#fbbf24"], [1, 36, "#fbbf24"], [2, 49, "#fbbf24"], [2, 18, "#fbbf24"], [3, 15, "#60a5fa"], [3, 41, "#60a5fa"]];
+    let s = "";
+    rows.forEach((r, i) => {
+      const cy = rh * i + rh / 2;
+      s += `<text x="0" y="${f(cy + 3.5)}" font-size="10.5" fill="#a9b8cc" font-family="Inter">${r}</text>`;
+      s += `<rect x="${LBL}" y="${f(cy - 5)}" width="${f(W - LBL - 6)}" height="10" rx="3" fill="rgba(255,255,255,.035)"/>`;
+      for (let m = 0; m < 60; m += 1) {
+        const a = 0.15 + 0.55 * Math.abs(Math.sin(m * 0.37 + i * 1.7) * Math.cos(m * 0.11 + i));
+        const hh = 2 + 6 * a;
+        s += `<rect x="${f(x(m) + 1)}" y="${f(cy - hh / 2)}" width="${f((W - LBL - 6) / 60 - 2)}" height="${f(hh)}" rx="1" fill="#7dd3fc" fill-opacity="${f(a * 0.45)}"/>`;
+      }
+    });
+    s += `<line x1="${f(x(60))}" x2="${f(x(60))}" y1="-2" y2="${H - B + 2}" stroke="#22d3ee" stroke-width="1.5"/>`;
+    EV.forEach(([r, m, c]) => {
+      const cy = rh * r + rh / 2;
+      s += `<rect x="${f(x(m) - 2.5)}" y="${f(cy - 7)}" width="5" height="14" rx="2" fill="${c}" stroke="#0b1729" stroke-width="1.5"/>`;
+    });
+    [[0, "09:42"], [15, "09:57"], [30, "10:12"], [45, "10:27"]].forEach(([m, t]) => {
+      s += `<text x="${f(x(m))}" y="${H - 1}" font-size="10" fill="#71859f" text-anchor="${m ? "middle" : "start"}" font-family="Inter">${t}</text>`;
+    });
+    s += `<text x="${f(x(60))}" y="${H - 1}" font-size="10" font-weight="700" fill="#22d3ee" text-anchor="end" font-family="Inter">Now</text>`;
+    tlp.innerHTML = `<svg viewBox="0 0 ${W} ${H}">${s}</svg>`;
+  }
+
+  document.querySelectorAll("i[data-x]").forEach((el) => {
+    el.outerHTML = `<svg class="i" viewBox="0 0 24 24" style="${el.getAttribute("style") || ""}">${XI[el.dataset.x]}</svg>`;
+  });
+})();
+</script>
+<script src="icons.js"></script>
+</body></html>

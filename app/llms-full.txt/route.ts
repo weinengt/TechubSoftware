@@ -1,10 +1,28 @@
-import { allFeatures } from "@/components/Sections";
-import { faqs, site, systems } from "@/lib/site";
+import { getDict } from "@/content";
+import { customSystems, services, techIcons } from "@/components/Company";
+import { getFeatures } from "@/components/Sections";
+import { plain } from "@/components/Text";
+import { localeName, locales, lp } from "@/lib/i18n";
+import { site, systems } from "@/lib/site";
 
 export const dynamic = "force-static";
 
-// Plain-text summary for AI assistants and answer engines (llmstxt.org).
+// Plain-text summary for AI assistants and answer engines (llmstxt.org), from the English text.
 export function GET() {
+  const t = getDict("en");
+  const list = (items: string[]) => items.map((x) => `- ${x}`).join("\n");
+  const product = (k: (typeof systems)[number]["key"]) => {
+    const p = t.products[k];
+    const sys = systems.find((s) => s.key === k)!;
+    return `### ${t.systems[k].name} (${site.url}${sys.path})
+${p.meta.description}
+For: ${p.whoFor.join(", ")}.
+Modules: ${Object.values(p.modules).join(", ")}.
+${Object.values(p.spotlights)
+  .map((s) => `- ${s.eyebrow}: ${s.points.join("; ")}`)
+  .join("\n")}`;
+  };
+
   const body = `# ${site.name}
 
 > ${site.description}
@@ -13,22 +31,52 @@ Website: ${site.url}
 WhatsApp: ${site.whatsappDisplay} (https://wa.me/${site.whatsappNumber})
 Email: ${site.email}
 Country: Malaysia
+Languages: ${locales.map((l) => `${localeName[l]} (${site.url}${lp(l, "/")})`).join(", ")}
 
-## What Techub Software does
-${site.name} is a Malaysian company that provides appointment management systems and customises them for each business. Ready systems:
-${systems.map((s, i) => `${i + 1}. ${s.name} (${site.url}${s.href}): ${s.blurb}`).join("\n")}
-Other appointment-based businesses can have the system customised at a low cost.
+## About
+${t.about.intro}
+${t.home.hero.badge}. ${t.home.hero.intro}
+${Object.values(t.about.values)
+  .map((v) => `- ${v.title}: ${v.text}`)
+  .join("\n")}
+
+## Highlights
+${Object.values(t.home.highlights.items)
+  .map((v) => `- ${v.title}: ${v.text}`)
+  .join("\n")}
+
+## Services
+${services.map((s) => `- ${t.services.items[s.key].title}: ${t.services.items[s.key].text}`).join("\n")}
+
+## Use cases (ready systems)
+${systems.map((s) => product(s.key)).join("\n\n")}
+
+## Custom systems
+${plain(t.custom.intro)}
+${customSystems.map((c) => `- ${t.custom.items[c.key].title}: ${t.custom.items[c.key].text}`).join("\n")}
+
+## Technology (${site.url}/technology/)
+${(Object.keys(techIcons) as (keyof typeof techIcons)[]).map((k) => `- ${t.tech.items[k].title}: ${t.tech.items[k].text}`).join("\n")}
+${Object.values(t.techPage.spotlights)
+  .map((s) => `- ${s.eyebrow}: ${s.points.join("; ")}`)
+  .join("\n")}
 
 ## Features
-${allFeatures.map((f) => `- ${f.title}: ${f.text}`).join("\n")}
+${getFeatures("en")
+  .map((f) => `- ${f.title}: ${f.text}`)
+  .join("\n")}
+
+## Hardware
+${list(Object.values(t.hardware.items))}
 
 ## Pricing
-- From RM ${site.priceFrom} per month.
-- New users get the first ${site.freeMonths} months free, including installation and staff training.
-- Custom features and integrations are available at a low cost.
+- ${t.pricing.plan}: from RM ${site.priceFrom} per month.
+- ${t.pricing.free}
+- ${t.pricing.customTitle}: from RM ${site.customFrom}. ${t.pricing.customText}
+- Included: ${t.pricing.included.join("; ")}.
 
 ## Frequently asked questions
-${faqs.map((f) => `Q: ${f.q}\nA: ${f.a}`).join("\n\n")}
+${[...t.faq.items, ...t.techPage.faqs].map((f) => `Q: ${f.q}\nA: ${f.a}`).join("\n\n")}
 `;
   return new Response(body, { headers: { "Content-Type": "text/plain; charset=utf-8" } });
 }

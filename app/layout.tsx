@@ -1,10 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton";
 import JsonLd from "@/components/JsonLd";
+import { htmlLang, locales } from "@/lib/i18n";
 import { site } from "@/lib/site";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -16,7 +14,7 @@ const jakarta = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `Appointment Management System Malaysia | ${site.name}`,
+    default: `Appointment System Malaysia | ${site.name}`,
     template: `%s | ${site.name}`,
   },
   description: site.description,
@@ -26,19 +24,18 @@ export const metadata: Metadata = {
   creator: site.name,
   publisher: site.name,
   category: "Software",
-  alternates: { canonical: "/" },
+  // Each page sets its own canonical URL, language links and social tags (lib/seo.ts).
   openGraph: {
     type: "website",
     locale: "en_MY",
-    url: "/",
     siteName: site.name,
-    title: `Appointment Management System Malaysia | ${site.name}`,
+    title: `Appointment System Malaysia | ${site.name}`,
     description: site.description,
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Techub Software appointment management system on iPad and phone" }],
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Techub Software systems on iPad and phone" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: `Appointment Management System Malaysia | ${site.name}`,
+    title: `Appointment System Malaysia | ${site.name}`,
     description: site.description,
     images: ["/og-image.jpg"],
   },
@@ -85,6 +82,14 @@ const organization = {
         "Queue number calling system",
         "WhatsApp appointment reminders",
         "AI inventory management",
+        "Cloud business software",
+        "WhatsApp automation",
+        "POS and hardware integration",
+        "Staff payroll and commission",
+        "LHDN e-Invoice (MyInvois)",
+        "ERP systems",
+        "AI object detection",
+        "Number plate recognition",
         "Custom software development",
       ],
       email: site.email,
@@ -112,24 +117,20 @@ const organization = {
       "@id": `${site.url}/#website`,
       url: site.url,
       name: site.name,
-      inLanguage: "en-MY",
+      inLanguage: locales.map((l) => htmlLang[l]),
       publisher: { "@id": `${site.url}/#organization` },
     },
   ],
 };
 
+// The header, footer and page text come from each language's layout (app/(en) and app/[lang]).
+// <html lang> is set for /ms/ and /zh/ pages after the build by scripts/set-html-lang.mjs.
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en-MY" className={jakarta.variable}>
+    <html lang="en-MY" className={jakarta.variable} suppressHydrationWarning>
       <body>
         <JsonLd data={organization} />
-        <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:shadow">
-          Skip to content
-        </a>
-        <Header />
-        <main id="main">{children}</main>
-        <Footer />
-        <WhatsAppButton />
+        {children}
       </body>
     </html>
   );
