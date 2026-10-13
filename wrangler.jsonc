@@ -7,5 +7,7 @@
     "directory": "./out",
     "not_found_handling": "404-page",
     "html_handling": "auto-trailing-slash"
-  }
+  },
+  // Pushes to branches other than main run `npx wrangler preview`, which needs this block (it can stay empty).
+  "previews": {}
 }
