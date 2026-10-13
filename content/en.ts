@@ -36,6 +36,7 @@ const en = {
     useCases: "Use cases",
     otherTitle: "Another kind of business?",
     otherText: "We build custom systems too.",
+    all: "See all use cases",
   },
 
   // The business types with a ready system. Each has its own page.
@@ -96,7 +97,7 @@ const en = {
 
   footer: {
     blurb:
-      "{name} is a Malaysian software company. We build smart, low-cost systems for clinics, hair salons, beauty centres and spas, and custom systems such as ERP, AI object detection and number plate scanners. {uptime} uptime guarantee, from RM {price}/month.",
+      "{name} is a software company based in Malaysia. We build smart, low-cost systems for clinics, hair salons, beauty centres and spas across Malaysia, and custom systems such as ERP, AI object detection and number plate scanners. {uptime} uptime guarantee, from RM {price}/month.",
     useCases: "Use cases",
     custom: "Custom systems",
     company: "Company",
@@ -151,7 +152,7 @@ const en = {
       badge: "Malaysia's most chosen appointment system",
       title: "Advanced booking system with *AI integration*",
       intro:
-        "Real-time updates, WhatsApp notifications and stock control on an enterprise-level database, with {uptime} uptime and guaranteed speed.",
+        "Real-time updates, WhatsApp notifications and stock control on an enterprise-level database in Malaysia, with {uptime} uptime and guaranteed speed.",
       secondary: "Explore use cases",
       note: "First {months} months free, including installation and staff training.",
       statUptime: "Uptime",
@@ -168,7 +169,7 @@ const en = {
         booking: { title: "Advanced booking", text: "Staff, rooms, services and walk-ins in one calendar." },
         ai: { title: "AI integration", text: "AI reads delivery notes and predicts stock." },
         uptime: { title: "{uptime} uptime", text: "Your system stays online, guaranteed." },
-        database: { title: "Enterprise-level database", text: "Indexed NoSQL on enterprise servers." },
+        database: { title: "Enterprise-level database", text: "Indexed NoSQL on enterprise servers in Malaysia." },
         speed: { title: "Guaranteed speed", text: "Detailed reports in under 100 ms." },
         realtime: { title: "Real-time updates", text: "Every device updates instantly." },
         whatsapp: { title: "WhatsApp notifications", text: "Confirmations and reminders, sent for you." },
@@ -183,9 +184,9 @@ const en = {
 
   about: {
     eyebrow: "About Techub",
-    title: "Malaysian software, *simple and affordable*",
+    title: "Made in Malaysia, *simple and affordable*",
     intro:
-      "We build systems that help businesses take bookings, serve customers and manage stock. Then we set everything up for you.",
+      "We are based in Malaysia and build systems that help local businesses take bookings, serve customers and manage stock. Then we set everything up for you.",
     values: {
       cost: { title: "Low cost", text: "From RM {price}/month. Customisation from RM {custom}, based on your needs." },
       online: { title: "Always online", text: "{uptime} uptime guarantee, with multi-region backups." },
@@ -203,7 +204,7 @@ const en = {
   services: {
     eyebrow: "Our services",
     title: "What we do for you",
-    intro: "Ready-made or built for you. We set it all up and train your team.",
+    intro: "Ready-made or built for you, for businesses across Malaysia. We set it all up and train your team.",
     items: {
       systems: { title: "Ready-made systems", text: "Appointment systems for clinics, salons, beauty centres and spas." },
       custom: {
@@ -214,7 +215,7 @@ const en = {
         title: "Hardware setup",
         text: "Label printers, number calling systems, X-ray machines and more, installed and connected.",
       },
-      support: { title: "Training & support", text: "Free installation and staff training, then local support on WhatsApp." },
+      support: { title: "Training & support", text: "Free installation and staff training, then local support in Malaysia on WhatsApp." },
     },
     howTitle: "How we work",
     howText: "Customisation starts from RM {custom}, based on your requirements.",
@@ -233,14 +234,13 @@ const en = {
   useCases: {
     eyebrow: "Use cases",
     title: "Ready for your industry",
-    intro: "Tap a business to see its system on iPad and phone.",
-    tabsLabel: "Use cases",
+    intro: "Built for clinics, salons, beauty centres and spas in Malaysia. Tap one to see its system on iPad and phone.",
   },
 
   custom: {
     eyebrow: "Custom systems",
     title: "Need another system? *We build it.*",
-    intro: "Beyond appointment systems, we build custom systems for any business. Customisation from RM {custom}, based on your requirements.",
+    intro: "Beyond appointment systems, we build custom systems for any business in Malaysia. Customisation from RM {custom}, based on your requirements.",
     items: {
       erp: { title: "ERP system", text: "Sales, purchasing, inventory, accounting and HR in one system." },
       detection: { title: "AI object detection", text: "Cameras that spot people, vehicles, safety gear and objects automatically." },
@@ -257,12 +257,12 @@ const en = {
   tech: {
     eyebrow: "Technology",
     title: "Enterprise technology, *easy to use*",
-    intro: "Malaysian enterprise servers, a fast NoSQL database, AI and WhatsApp, working together on every device.",
+    intro: "Enterprise servers in Malaysia, a fast NoSQL database, AI and WhatsApp, working together on every device.",
     explore: "Explore our technology",
     items: {
       servers: {
         title: "Enterprise servers in Malaysia",
-        text: "Hosted on servers such as IPServerOne and Amazon Web Services. We are open about where your data is kept.",
+        text: "Hosted in Malaysia on servers such as IPServerOne and Amazon Web Services. We are open about where your data is kept.",
       },
       database: { title: "Fast NoSQL database", text: "Indexed data, so detailed reports load in under 100 ms." },
       security: { title: "Encrypted & backed up", text: "All saved data is encrypted, with multi-layer backups across regions." },
@@ -291,7 +291,7 @@ const en = {
   /* ---------- Technology page ---------- */
   techPage: {
     meta: {
-      title: "Technology | Malaysian Servers, NoSQL, AI, WhatsApp & e-Invoice",
+      title: "Technology | Servers in Malaysia, NoSQL, AI, WhatsApp & e-Invoice",
       socialTitle: "Technology | Techub Software",
       description:
         "The technology behind {name}: enterprise servers in Malaysia (IPServerOne, Amazon Web Services), an indexed NoSQL database with reports in under 100 ms, encrypted multi-region backups, AI, WhatsApp, LHDN e-Invoice and hardware such as label printers and X-ray machines. {uptime} uptime.",
@@ -313,7 +313,7 @@ const en = {
     crumb: "Technology",
     eyebrow: "Technology",
     title: "Enterprise technology, *simple to use*",
-    intro: "Malaysian enterprise servers, a fast NoSQL database, AI and WhatsApp, on any device. {uptime} uptime guaranteed.",
+    intro: "Enterprise servers in Malaysia, a fast NoSQL database, AI and WhatsApp, on any device. {uptime} uptime guaranteed.",
     demoMessage: "Hi Techub, I'd like a free demo and to know more about your technology.",
     seeUseCases: "See use cases",
     spotlights: {
@@ -415,7 +415,7 @@ const en = {
       "Enterprise servers in Malaysia",
       "Multi-layer, multi-region backups",
       "All saved data encrypted",
-      "Local support on WhatsApp",
+      "Local support in Malaysia on WhatsApp",
     ],
     featuresEyebrow: "Features",
     featuresTitle: "Everything in one system",
@@ -436,7 +436,7 @@ const en = {
       },
       {
         q: "Why are Techub reports so fast?",
-        a: "Techub uses an indexed NoSQL database, so even detailed reports are generated in under 100 milliseconds, without lag. Servers in Malaysia keep the response fast for Malaysian businesses.",
+        a: "Techub uses an indexed NoSQL database, so even detailed reports are generated in under 100 milliseconds, without lag. Our servers are in Malaysia, so businesses across Malaysia get a fast response.",
       },
       {
         q: "What does the {uptime} uptime guarantee mean?",
@@ -499,7 +499,7 @@ const en = {
 
   pricing: {
     eyebrow: "Simple pricing",
-    title: "Affordable for every business",
+    title: "Affordable for every business in Malaysia",
     offer: "New customer offer",
     plan: "Techub Standard Plan",
     from: "from",
@@ -518,7 +518,7 @@ const en = {
       "Staff profiles & permission control",
       "{uptime} uptime & encrypted backups",
       "Free installation & staff training",
-      "Local support on WhatsApp",
+      "Local support in Malaysia on WhatsApp",
     ],
     customTitle: "Customisation",
     customFrom: "from",
@@ -537,7 +537,7 @@ const en = {
     items: [
       {
         q: "What does Techub Software do?",
-        a: "Techub Software is a Malaysian software company. We build smart, low-cost systems for businesses: ready appointment systems for clinics, hair salons, beauty centres and spas, and custom systems such as ERP, AI object detection and number plate scanners.",
+        a: "Techub Software is a software company based in Malaysia. We build smart, low-cost systems for businesses across Malaysia: ready appointment systems for clinics, hair salons, beauty centres and spas, and custom systems such as ERP, AI object detection and number plate scanners.",
       },
       {
         q: "How much does it cost?",
@@ -557,7 +557,7 @@ const en = {
       },
       {
         q: "What technology does Techub use?",
-        a: "Techub runs in the cloud on Malaysian enterprise servers, with an indexed NoSQL database, AI that reads delivery notes and manages stock, automatic WhatsApp notifications, LHDN e-Invoice, and connections to hardware such as label printers, number calling systems and X-ray machines.",
+        a: "Techub runs in the cloud on enterprise servers in Malaysia, with an indexed NoSQL database, AI that reads delivery notes and manages stock, automatic WhatsApp notifications, LHDN e-Invoice, and connections to hardware such as label printers, number calling systems and X-ray machines.",
       },
       {
         q: "Do you support LHDN e-Invoice?",
@@ -589,9 +589,62 @@ const en = {
   contact: {
     badge: "Free demo · {months} months free",
     title: "See Techub running in your business",
-    text: "From RM {price}/month. Installation and staff training included.",
+    text: "From RM {price}/month, for businesses across Malaysia. Installation and staff training included.",
     whatsappLabel: "WhatsApp · fastest reply",
     emailLabel: "Email us",
+  },
+
+  /* ---------- Pages opened from the menu and footer (each part of the company has its own page) ---------- */
+  pages: {
+    useCases: {
+      meta: {
+        title: "Use Cases | Systems for Clinics, Salons, Beauty Centres & Spas in Malaysia",
+        description:
+          "Ready appointment systems for clinics, hair salons, beauty centres and spas in Malaysia: WhatsApp reminders, staff profiles, stock control and reports in under 100 ms. See each one on iPad and phone.",
+      },
+    },
+    customSystems: {
+      meta: {
+        title: "Custom Systems | ERP, AI Object Detection & Number Plate Scanner",
+        description:
+          "{name} builds custom systems for businesses in Malaysia, such as ERP, AI object detection and number plate scanners. Customisation from RM {custom}, based on your requirements.",
+      },
+    },
+    services: {
+      meta: {
+        title: "Services | Ready Systems, Custom Development, Hardware & Training",
+        description:
+          "What {name} does for businesses in Malaysia: ready appointment systems, custom system development, hardware setup, installation, staff training and local support on WhatsApp.",
+      },
+    },
+    pricing: {
+      meta: {
+        title: "Pricing | From RM {price}/month, First {months} Months Free",
+        description:
+          "Techub plans start from RM {price}/month. New customers in Malaysia get the first {months} months free, with installation and staff training included. Customisation from RM {custom}.",
+      },
+    },
+    about: {
+      meta: {
+        title: "About Us | A Software Company Based in Malaysia",
+        description:
+          "{name} is a software company based in Malaysia. We build smart, low-cost systems for clinics, salons, beauty centres and spas, with a {uptime} uptime guarantee and local support.",
+      },
+    },
+    faq: {
+      meta: {
+        title: "FAQ | Questions About Techub Systems",
+        description:
+          "Answers about Techub in Malaysia: pricing, speed, the {uptime} uptime guarantee, data security, LHDN e-Invoice, hardware, devices, installation and training.",
+      },
+    },
+    contact: {
+      meta: {
+        title: "Contact Us | Free Demo on WhatsApp or Email",
+        description:
+          "Talk to {name} on WhatsApp at {phone} or email {email}. Book a free demo for your business in Malaysia, with the first {months} months free.",
+      },
+    },
   },
 
   /* ---------- System pages ---------- */
@@ -609,7 +662,7 @@ const en = {
         title: "Clinic Management System Malaysia | Patient Records, Queue & Medication",
         socialTitle: "Clinic Management System Malaysia | Techub Software",
         description:
-          "Clinic management system for Malaysian clinics: patient records and medication tracking, queue number calling, EMR, AI medicine stock, X-ray and printer connection, LHDN e-Invoice and reports in under 100 ms. From RM {price}/month, {months} months free.",
+          "Clinic management system for clinics in Malaysia: patient records and medication tracking, queue number calling, EMR, AI medicine stock, X-ray and printer connection, LHDN e-Invoice and reports in under 100 ms. From RM {price}/month, {months} months free.",
         keywords: [
           "clinic management system Malaysia",
           "clinic system",
@@ -627,7 +680,7 @@ const en = {
       category: "Clinic management, EMR and patient queue",
       eyebrow: "Clinic Management System",
       heading: "A smarter *clinic system* for faster, safer care",
-      intro: "Patient records, medication tracking, queue, billing and stock. On iPad, phone and PC.",
+      intro: "Built for clinics in Malaysia: patient records, medication tracking, queue, billing and stock. On iPad, phone and PC.",
       heroBadge: "{uptime} uptime",
       whoFor: ["GP clinics", "Dental clinics", "Specialist clinics", "Aesthetic clinics", "Physiotherapy", "TCM", "Multi-branch groups"],
       highlights: {
@@ -766,7 +819,7 @@ const en = {
       category: "Hair salon booking, staff, payroll and POS",
       eyebrow: "Hair Salon Appointment System",
       heading: "Keep every *stylist* fully booked",
-      intro: "Bookings, automatic WhatsApp notifications, staff profiles, payroll and POS. On iPad, phone and PC.",
+      intro: "Built for salons in Malaysia: bookings, automatic WhatsApp notifications, staff profiles, payroll and POS. On iPad, phone and PC.",
       heroBadge: "Confirmed on WhatsApp",
       whoFor: ["Hair salons", "Barbershops", "Unisex salons", "Colour & treatment studios", "Bridal hair & make-up", "Multi-branch salons"],
       highlights: {
@@ -896,7 +949,7 @@ const en = {
       category: "Beauty centre booking, packages and treatment records",
       eyebrow: "Beauty Centre Appointment System",
       heading: "The *beauty centre system* that brings customers back",
-      intro: "Bookings, packages, face charts, staff payroll and automatic WhatsApp reminders. On iPad, phone and PC.",
+      intro: "Built for beauty centres in Malaysia: bookings, packages, face charts, staff payroll and WhatsApp reminders. On iPad, phone and PC.",
       heroBadge: "Package sessions tracked",
       whoFor: ["Beauty centres", "Facial & skincare", "Lash & brow studios", "Nail salons", "Slimming centres", "Aesthetic centres", "Bridal make-up"],
       highlights: {
@@ -1022,7 +1075,7 @@ const en = {
       category: "Spa and massage booking, rooms and memberships",
       eyebrow: "Spa Appointment System",
       heading: "A calm front desk and *fully booked* therapists",
-      intro: "Therapists, rooms, packages, payroll and automatic WhatsApp reminders. On iPad, phone and PC.",
+      intro: "Built for spas in Malaysia: therapists, rooms, packages, payroll and WhatsApp reminders. On iPad, phone and PC.",
       heroBadge: "Confirmed on WhatsApp",
       whoFor: ["Day spas", "Massage centres", "Foot reflexology", "Wellness centres", "Hotel & resort spas", "Couple spas"],
       highlights: {

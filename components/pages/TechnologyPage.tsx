@@ -11,7 +11,7 @@ import { hl } from "@/components/Text";
 import { htmlLang, lp, type Locale } from "@/lib/i18n";
 import { pageMetadata } from "@/lib/seo";
 import type { Shot, ShotKey } from "@/lib/shots";
-import { site, systems, whatsappLink } from "@/lib/site";
+import { companyPages, site, systems, whatsappLink } from "@/lib/site";
 
 const path = "/technology/";
 
@@ -107,7 +107,7 @@ export default function TechnologyPage({ lang }: { lang: Locale }) {
               <a href={whatsappLink(t.demoMessage)} target="_blank" rel="noopener" className="btn-primary !py-3.5">
                 <Icon.Whatsapp className="h-5 w-5" /> {d.ui.getFreeDemo}
               </a>
-              <Link href={lp(lang, "/#use-cases")} className="btn-secondary !py-3.5">
+              <Link href={lp(lang, companyPages.useCases)} className="btn-secondary !py-3.5">
                 {t.seeUseCases} <Icon.Arrow className="h-4 w-4" />
               </Link>
             </div>

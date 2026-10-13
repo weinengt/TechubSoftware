@@ -17,8 +17,8 @@
   --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
+/* No smooth scrolling: every link opens a new page, and the new page should start at the top straight away. */
 html {
-  scroll-behavior: smooth;
   scroll-padding-top: 5rem;
 }
 
@@ -125,6 +125,5 @@ html:lang(zh) h1 {
 .tech-flow { animation: tech-flow 1.4s linear infinite; }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
   .animate-float, .wa-pulse::before, .tech-flow { animation: none; }
 }

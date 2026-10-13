@@ -1,6 +1,6 @@
 # Techub Software website
 
-Marketing website for Techub Software, a Malaysian software company: ready appointment systems for clinics,
+Marketing website for Techub Software, a software company based in Malaysia: ready appointment systems for clinics,
 hair salons, beauty centres and spas, and custom systems (ERP, AI object detection, number plate scanners).
 The whole site is in English, Bahasa Melayu and Simplified Chinese.
 
@@ -10,6 +10,7 @@ Built with **Next.js (App Router) + Tailwind CSS**, exported as a fully static s
 
 Every page exists in three languages: English at the address below, Bahasa Melayu under `/ms/`, Chinese under `/zh/`
 (for example `/ms/clinic-management-system/`). The language switch is in the menu and the footer.
+Every menu item, footer link and button opens a page; none of them scrolls down the same page.
 
 | URL | Purpose |
 | --- | --- |
@@ -19,6 +20,10 @@ Every page exists in three languages: English at the address below, Bahasa Melay
 | `/salon-appointment-system/` | Hair salon system |
 | `/beauty-appointment-system/` | Beauty centre system |
 | `/spa-appointment-system/` | Spa & massage system |
+| `/use-cases/` | All four systems with their iPad and phone screens, and custom systems |
+| `/custom-systems/` | Custom systems: ERP, AI object detection, number plate scanner |
+| `/services/`, `/pricing/`, `/about/`, `/faq/`, `/contact/` | One page for each part of the company, opened from the menu and footer |
+| `/terms/`, `/privacy/` | Terms of Use and Privacy Policy (PDPA 2010 notice), linked from the footer |
 | `/sitemap.xml`, `/robots.txt` | Search engine files, with every language version of each page (AI crawlers explicitly allowed) |
 | `/llms.txt`, `/llms-full.txt` | Summaries for AI assistants (ChatGPT, Claude, Perplexity, Gemini) |
 
@@ -53,6 +58,8 @@ Cloudflare Pages also works: use the **Next.js (Static HTML Export)** preset, bu
   `content/zh.ts` (Chinese). The three files have the same structure, so change the same line in each.
   `{price}`, `{months}`, `{custom}`, `{uptime}`, `{phone}` and `{email}` are filled in from `lib/site.ts`;
   words between `*stars*` are shown in the blue gradient.
+- **Terms of Use and Privacy Policy**: `content/legal/en.ts`, `ms.ts` and `zh.ts`, same structure. Change the date in `updated`
+  when you change them. Under the PDPA the privacy notice must be available in Bahasa Melayu and English, so keep `ms.ts` in step.
 - Company details (WhatsApp number, email, monthly price, free months, customisation price, uptime, keywords): `lib/site.ts`
 - Business types in the Use Cases menu and their addresses: `lib/site.ts` → `systems`
 - Which picture goes with which part of a business page: `components/ProductPage.tsx` → `specs`

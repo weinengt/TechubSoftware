@@ -34,6 +34,19 @@ const pages: { path: string; priority: number; images: ShotKey[] }[] = [
     priority: 0.9,
     images: ["spaCalendar", "whatsappSpa", "payrollSpa", "staffSpa", "spaPackage", "bodyChartSpa", "spaPos", "spaStock", "reportsSpa"],
   },
+  {
+    path: "/use-cases/",
+    priority: 0.9,
+    images: ["clinicDashboard", "whatsappClinic", "salonCalendar", "staffSalon", "faceChart", "beautyPackage", "spaCalendar", "spaPackage"],
+  },
+  { path: "/custom-systems/", priority: 0.8, images: ["erpDesktop", "objectDetection", "plateScanner"] },
+  { path: "/services/", priority: 0.8, images: ["salonCalendar", "permissionsDesktop", "queueTv"] },
+  { path: "/pricing/", priority: 0.8, images: [] },
+  { path: "/about/", priority: 0.7, images: [] },
+  { path: "/faq/", priority: 0.7, images: [] },
+  { path: "/contact/", priority: 0.7, images: ["whatsappSalon"] },
+  { path: "/terms/", priority: 0.3, images: [] },
+  { path: "/privacy/", priority: 0.3, images: [] },
 ];
 
 // Every page in every language, each listing its versions in the other languages.

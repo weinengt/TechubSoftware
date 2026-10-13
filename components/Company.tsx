@@ -3,13 +3,12 @@ import type { ReactNode } from "react";
 import { getDict, getShots, type Dict } from "@/content";
 import { lp, type Locale } from "@/lib/i18n";
 import type { ShotKey } from "@/lib/shots";
-import { emailLink, site, systems, whatsappLink, type SystemKey } from "@/lib/site";
+import { companyPages, emailLink, site, systems, whatsappLink, type SystemKey } from "@/lib/site";
 import Device from "./Device";
 import { Icon, type IconName } from "./Icons";
-import { CheckList, SectionHeading } from "./Sections";
+import { CheckList, SectionHeading, pageTop, type PageOf } from "./Sections";
 import { Combo } from "./Showcase";
 import { hl } from "./Text";
-import UseCaseTabs from "./UseCaseTabs";
 
 const keysOf = <T extends object>(o: T) => Object.keys(o) as (keyof T)[];
 
@@ -102,13 +101,13 @@ export function UptimeRing({ lang }: { lang: Locale }) {
   );
 }
 
-export function AboutSection({ lang }: { lang: Locale }) {
+export function AboutSection({ lang, page }: { lang: Locale; page?: PageOf }) {
   const t = getDict(lang).about;
   return (
-    <section id="about" className="py-20 sm:py-24">
+    <section id="about" className={`${page ? pageTop : "pt-20 sm:pt-24"} pb-20 sm:pb-24`}>
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-8">
         <div className="lg:col-span-7">
-          <SectionHeading center={false} eyebrow={t.eyebrow} title={t.title} intro={t.intro} />
+          <SectionHeading center={false} eyebrow={t.eyebrow} title={t.title} intro={t.intro} page={page} />
           <ul className="mt-10 grid gap-4 sm:grid-cols-2">
             {keysOf(valueIcons).map((k) => {
               const I = Icon[valueIcons[k]];
@@ -164,13 +163,48 @@ export const services: { key: keyof Dict["services"]["items"]; icon: IconName; s
   { key: "support", icon: "Headset" },
 ];
 
-export function ServicesSection({ lang }: { lang: Locale }) {
+/** How a project goes, from the first talk to going live, with a button to start on WhatsApp. */
+export function HowWeWork({ lang }: { lang: Locale }) {
+  const t = getDict(lang).services;
+  return (
+    <div className="grid items-center gap-8 rounded-3xl bg-white p-6 ring-1 ring-slate-200 sm:p-10 lg:grid-cols-2">
+      <div>
+        <h3 className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">{t.howTitle}</h3>
+        <p className="mt-3 text-slate-600">{t.howText}</p>
+        <a href={whatsappLink(t.howMessage)} target="_blank" rel="noopener" className="btn-primary mt-6">
+          {t.howCta} <Icon.Arrow className="h-4 w-4" />
+        </a>
+      </div>
+      <ol className="grid grid-cols-2 gap-3">
+        {t.steps.map((step, i) => (
+          <li key={step} className="rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-200">
+            <span className="text-gradient text-2xl font-extrabold">0{i + 1}</span>
+            <p className="mt-1 font-bold text-slate-900">{step}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  );
+}
+
+/** "How we work" as a section of its own, for pages that don't show the services. */
+export function HowWeWorkSection({ lang }: { lang: Locale }) {
+  return (
+    <section className="border-y border-slate-200 bg-slate-50 py-16 sm:py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <HowWeWork lang={lang} />
+      </div>
+    </section>
+  );
+}
+
+export function ServicesSection({ lang, page }: { lang: Locale; page?: PageOf }) {
   const t = getDict(lang).services;
   const shots = getShots(lang);
   return (
-    <section id="services" className="border-y border-slate-200 bg-slate-50 py-20 sm:py-24">
+    <section id="services" className={page ? `${pageTop} border-b border-slate-200 bg-slate-50 pb-20 sm:pb-24` : "border-y border-slate-200 bg-slate-50 py-20 sm:py-24"}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <SectionHeading eyebrow={t.eyebrow} title={t.title} intro={t.intro} />
+        <SectionHeading eyebrow={t.eyebrow} title={t.title} intro={t.intro} page={page} />
         <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((s) => {
             const I = Icon[s.icon];
@@ -200,22 +234,8 @@ export function ServicesSection({ lang }: { lang: Locale }) {
           })}
         </ul>
 
-        <div className="mt-10 grid items-center gap-8 rounded-3xl bg-white p-6 ring-1 ring-slate-200 sm:p-10 lg:grid-cols-2">
-          <div>
-            <h3 className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">{t.howTitle}</h3>
-            <p className="mt-3 text-slate-600">{t.howText}</p>
-            <a href={whatsappLink(t.howMessage)} target="_blank" rel="noopener" className="btn-primary mt-6">
-              {t.howCta} <Icon.Arrow className="h-4 w-4" />
-            </a>
-          </div>
-          <ol className="grid grid-cols-2 gap-3">
-            {t.steps.map((step, i) => (
-              <li key={step} className="rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-200">
-                <span className="text-gradient text-2xl font-extrabold">0{i + 1}</span>
-                <p className="mt-1 font-bold text-slate-900">{step}</p>
-              </li>
-            ))}
-          </ol>
+        <div className="mt-10">
+          <HowWeWork lang={lang} />
         </div>
       </div>
     </section>
@@ -232,48 +252,112 @@ export const useCaseShots: Record<SystemKey, { tablet: ShotKey; phone: ShotKey }
   spa: { tablet: "spaCalendar", phone: "spaPackage" },
 };
 
+/** Home page: one card per business type, each opening that system's page. */
 export function UseCasesSection({ lang }: { lang: Locale }) {
   const d = getDict(lang);
   const t = d.useCases;
   const shots = getShots(lang);
-  const panels = systems.map((s) => {
-    const I = Icon[s.icon];
-    const sys = d.systems[s.key];
-    return (
-      <div key={s.key} className="grid gap-y-8 lg:grid-cols-12 lg:gap-x-14 lg:gap-y-6">
-        <div className="lg:col-span-5 lg:col-start-8 lg:row-start-1 lg:self-end">
-          <div className="flex items-center gap-3">
-            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand-gradient text-white shadow-lg shadow-brand-500/30">
-              <I className="h-6 w-6" />
-            </span>
-            <h3 className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">{sys.name}</h3>
-          </div>
-          <p className="mt-4 text-slate-600">{sys.blurb}</p>
-        </div>
-        <div className="self-center lg:col-span-7 lg:col-start-1 lg:row-span-2 lg:row-start-1">
-          <Combo main={shots[useCaseShots[s.key].tablet]} phone={shots[useCaseShots[s.key].phone]} />
-        </div>
-        <div className="lg:col-span-5 lg:col-start-8 lg:row-start-2 lg:self-start">
-          <CheckList items={sys.points} />
-          <Link href={lp(lang, s.path)} className="btn-primary mt-8">
-            {sys.cta} <Icon.Arrow className="h-4 w-4" />
+  return (
+    <section id="use-cases" className="py-20 sm:py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <SectionHeading eyebrow={t.eyebrow} title={t.title} intro={t.intro} />
+        <ul className="mt-12 grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-4">
+          {systems.map((s) => {
+            const I = Icon[s.icon];
+            const sys = d.systems[s.key];
+            return (
+              <li key={s.key}>
+                <Link
+                  href={lp(lang, s.path)}
+                  className="card group flex h-full flex-col overflow-hidden transition hover:-translate-y-1 hover:shadow-xl hover:ring-brand-300"
+                >
+                  <div className="relative overflow-hidden bg-gradient-to-br from-brand-50 via-white to-cyan-50 px-3 pt-4 pb-3 sm:px-5 sm:pt-6 sm:pb-5">
+                    <div className="bg-grid absolute inset-0 opacity-60" aria-hidden="true" />
+                    <Device shot={shots[useCaseShots[s.key].tablet]} sizes="(min-width: 1024px) 270px, (min-width: 640px) 45vw, 44vw" zoom={false} className="relative" />
+                  </div>
+                  <div className="flex flex-1 flex-col p-3.5 sm:p-5">
+                    <span className="flex items-center gap-2.5">
+                      <span className="hidden h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-md shadow-brand-500/25 sm:flex">
+                        <I className="h-5 w-5" />
+                      </span>
+                      <h3 className="text-[15px] leading-snug font-extrabold text-slate-900 sm:text-base">{sys.name}</h3>
+                    </span>
+                    <p className="mt-2 flex-1 text-[13px] leading-relaxed text-slate-600 sm:text-sm">{sys.blurb}</p>
+                    <span className="mt-3 inline-flex items-center gap-1.5 text-[13px] font-bold text-brand-700 sm:mt-4 sm:text-sm">
+                      {sys.cta} <Icon.Arrow className="h-4 w-4 shrink-0 transition group-hover:translate-x-0.5" />
+                    </span>
+                  </div>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+        <div className="mt-10 text-center">
+          <Link href={lp(lang, companyPages.useCases)} className="btn-secondary">
+            {d.menu.all} <Icon.Arrow className="h-4 w-4" />
           </Link>
         </div>
       </div>
-    );
-  });
+    </section>
+  );
+}
 
+/** Use Cases page: every business type with its iPad and phone screens, then custom systems. */
+export function UseCasesList({ lang, page }: { lang: Locale; page: PageOf }) {
+  const d = getDict(lang);
+  const t = d.useCases;
+  const shots = getShots(lang);
   return (
-    <section id="use-cases" className="overflow-hidden py-20 sm:py-24">
+    <section id="use-cases" className={`overflow-hidden ${pageTop} pb-20 sm:pb-24`}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <SectionHeading eyebrow={t.eyebrow} title={t.title} intro={t.intro} />
-        <div className="mt-10">
-          <UseCaseTabs
-            label={t.tabsLabel}
-            tabs={systems.map((s) => ({ key: s.key, label: d.systems[s.key].label, icon: s.icon }))}
-            panels={panels}
-          />
+        <SectionHeading eyebrow={t.eyebrow} title={t.title} intro={t.intro} page={page} />
+        <div className="mt-14 space-y-20 sm:mt-20 sm:space-y-28">
+          {systems.map((s, i) => {
+            const I = Icon[s.icon];
+            const sys = d.systems[s.key];
+            const flip = i % 2 === 1;
+            return (
+              <div key={s.key} className="grid gap-y-8 lg:grid-cols-12 lg:gap-x-14 lg:gap-y-6">
+                <div className={`lg:col-span-5 lg:row-start-1 lg:self-end ${flip ? "lg:col-start-1" : "lg:col-start-8"}`}>
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand-gradient text-white shadow-lg shadow-brand-500/30">
+                      <I className="h-6 w-6" />
+                    </span>
+                    <h2 className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">{sys.name}</h2>
+                  </div>
+                  <p className="mt-4 text-slate-600">{sys.blurb}</p>
+                </div>
+                <div className={`self-center lg:col-span-7 lg:row-span-2 lg:row-start-1 ${flip ? "lg:col-start-6" : "lg:col-start-1"}`}>
+                  <Combo main={shots[useCaseShots[s.key].tablet]} phone={shots[useCaseShots[s.key].phone]} side={flip ? "left" : "right"} />
+                </div>
+                <div className={`lg:col-span-5 lg:row-start-2 lg:self-start ${flip ? "lg:col-start-1" : "lg:col-start-8"}`}>
+                  <CheckList items={sys.points} />
+                  <Link href={lp(lang, s.path)} className="btn-primary mt-8">
+                    {sys.cta} <Icon.Arrow className="h-4 w-4" />
+                  </Link>
+                </div>
+              </div>
+            );
+          })}
         </div>
+
+        <Link
+          href={lp(lang, companyPages.customSystems)}
+          className="group mt-20 flex flex-col items-center justify-between gap-6 rounded-3xl bg-slate-50 p-6 text-center ring-1 ring-slate-200 transition hover:ring-brand-300 sm:mt-28 sm:p-8 lg:flex-row lg:text-left"
+        >
+          <span className="flex flex-col items-center gap-4 lg:flex-row">
+            <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-brand-gradient text-white shadow-lg shadow-brand-500/25">
+              <Icon.Code className="h-7 w-7" />
+            </span>
+            <span>
+              <span className="block text-xl font-extrabold text-slate-900 sm:text-2xl">{d.menu.otherTitle}</span>
+              <span className="mt-1 block text-slate-600">{d.menu.otherText}</span>
+            </span>
+          </span>
+          <span className="btn-secondary shrink-0">
+            {d.footer.custom} <Icon.Arrow className="h-4 w-4 transition group-hover:translate-x-0.5" />
+          </span>
+        </Link>
       </div>
     </section>
   );
@@ -287,13 +371,13 @@ export const customSystems: { key: keyof Dict["custom"]["items"]; icon: IconName
   { key: "plate", icon: "Car", shot: "plateScanner" },
 ];
 
-export function CustomSystemsSection({ lang }: { lang: Locale }) {
+export function CustomSystemsSection({ lang, page }: { lang: Locale; page?: PageOf }) {
   const t = getDict(lang).custom;
   const shots = getShots(lang);
   return (
-    <section id="custom-systems" className="border-y border-slate-200 bg-slate-50 py-20 sm:py-24">
+    <section id="custom-systems" className={page ? `${pageTop} pb-20 sm:pb-24` : "border-y border-slate-200 bg-slate-50 py-20 sm:py-24"}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <SectionHeading eyebrow={t.eyebrow} title={t.title} intro={t.intro} />
+        <SectionHeading eyebrow={t.eyebrow} title={t.title} intro={t.intro} page={page} />
         <ul className="mt-12 grid gap-6 md:grid-cols-3">
           {customSystems.map((c) => {
             const I = Icon[c.icon];

@@ -13,12 +13,12 @@ import {
 } from "@/components/Company";
 import { Icon } from "@/components/Icons";
 import JsonLd from "@/components/JsonLd";
-import { FaqSection, PricingSection, faqJsonLd, getFeatures, softwareJsonLd } from "@/components/Sections";
+import { FaqSection, PricingSection, getFeatures, softwareJsonLd } from "@/components/Sections";
 import { ContactSection, DeviceFamily, FloatBadge } from "@/components/Showcase";
 import { hl } from "@/components/Text";
 import { lp, type Locale } from "@/lib/i18n";
 import { pageMetadata } from "@/lib/seo";
-import { site, systems, whatsappLink } from "@/lib/site";
+import { companyPages, site, systems, whatsappLink } from "@/lib/site";
 
 export function homeMetadata(lang: Locale) {
   const m = getDict(lang).home.meta;
@@ -66,7 +66,6 @@ export default function HomePage({ lang }: { lang: Locale }) {
               itemOffered: { "@type": "Service", name: s.title, description: s.text, provider: org, areaServed: "MY" },
             })),
           },
-          faqJsonLd(d.faq.items),
         ]}
       />
 
@@ -83,11 +82,11 @@ export default function HomePage({ lang }: { lang: Locale }) {
               {hl(h.title)}
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-slate-600">{h.intro}</p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a href={whatsappLink(d.ui.whatsappMessage)} target="_blank" rel="noopener" className="btn-primary !py-3.5">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <a href={whatsappLink(d.ui.whatsappMessage)} target="_blank" rel="noopener" className="btn-primary !py-3.5 whitespace-nowrap">
                 <Icon.Whatsapp className="h-5 w-5" /> {d.ui.getFreeDemo}
               </a>
-              <Link href={lp(lang, "/#use-cases")} className="btn-secondary !py-3.5">
+              <Link href={lp(lang, companyPages.useCases)} className="btn-secondary !py-3.5 whitespace-nowrap">
                 {h.secondary} <Icon.Arrow className="h-4 w-4" />
               </Link>
             </div>

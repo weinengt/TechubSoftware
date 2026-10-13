@@ -6,7 +6,7 @@ import type { Shot } from "@/lib/shots";
 import { emailLink, site, systems, whatsappLink, type SystemKey } from "@/lib/site";
 import Device from "./Device";
 import { Icon, type IconName } from "./Icons";
-import { CheckList } from "./Sections";
+import { CheckList, Crumbs, pageTop, type PageOf } from "./Sections";
 import { hl } from "./Text";
 
 /* ---------- Picture compositions ---------- */
@@ -161,12 +161,14 @@ export function FeatureTiles({ items }: { items: { icon: IconName; title: string
 
 /* ---------- Contact ---------- */
 
-export function ContactSection({ lang, title, phoneShot }: { lang: Locale; title?: string; phoneShot?: Shot }) {
+export function ContactSection({ lang, title, phoneShot, page }: { lang: Locale; title?: string; phoneShot?: Shot; page?: PageOf }) {
   const t = getDict(lang);
   const c = t.contact;
+  const H = page ? "h1" : "h2";
   return (
-    <section id="contact" className="py-20 sm:py-24">
+    <section id="contact" className={`${page ? pageTop : "pt-20 sm:pt-24"} pb-20 sm:pb-24`}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {page && <Crumbs lang={page.lang} current={page.crumb} />}
         <div className="relative overflow-hidden rounded-[2rem] bg-brand-gradient px-6 pt-12 text-white sm:px-12 lg:px-16 lg:pt-0">
           <div className="bg-grid absolute inset-0 opacity-25" aria-hidden="true" />
           <div className="relative grid items-center gap-10 lg:grid-cols-2">
@@ -174,7 +176,7 @@ export function ContactSection({ lang, title, phoneShot }: { lang: Locale; title
               <p className="inline-flex rounded-full bg-white/15 px-3 py-1 text-xs font-bold tracking-wide uppercase ring-1 ring-white/25">
                 {c.badge}
               </p>
-              <h2 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl">{title ?? c.title}</h2>
+              <H className={`mt-4 font-extrabold tracking-tight ${page ? "text-4xl sm:text-5xl" : "text-3xl sm:text-4xl"}`}>{title ?? c.title}</H>
               <p className="mt-3 text-lg text-white/90">{c.text}</p>
               <div className="mt-8 grid max-w-md gap-3">
                 <a href={whatsappLink(t.ui.whatsappMessage)} target="_blank" rel="noopener"

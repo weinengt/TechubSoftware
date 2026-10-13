@@ -11,7 +11,7 @@ export type HeaderText = {
   homeHref: string;
   nav: { key: string; href: string; label: string; menu?: boolean }[];
   systems: { key: string; href: string; icon: IconName; label: string; blurb: string }[];
-  menu: { useCases: string; otherTitle: string; otherText: string; otherHref: string };
+  menu: { useCases: string; otherTitle: string; otherText: string; otherHref: string; all: string; allHref: string };
   ui: { logoAlt: string; logoHome: string; openMenu: string; closeMenu: string; language: string; freeDemo: string };
   whatsapp: { href: string; label: string };
   email: { href: string; label: string };
@@ -38,14 +38,15 @@ function useDismiss(open: boolean, ref: RefObject<HTMLElement | null>, setOpen: 
   }, [open, ref, setOpen]);
 }
 
-/** "Use Cases" in the desktop menu: opens a panel listing each business type. */
-function UseCasesMenu({ label, t }: { label: string; t: HeaderText }) {
+/** "Use Cases" in the desktop menu: a link to the Use Cases page that also shows each business type
+ *  in a panel while the mouse is over it or the keyboard is on it. */
+function UseCasesMenu({ label, href, t }: { label: string; href: string; t: HeaderText }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLLIElement>(null);
   const closeTimer = useRef<number | undefined>(undefined);
   useDismiss(open, ref, setOpen);
 
-  // Open on hover with a mouse; touch and keyboard use the button.
+  // Open on hover with a mouse and on keyboard focus. A tap opens the Use Cases page.
   const hoverOpen = (e: ReactPointerEvent) => {
     if (e.pointerType !== "mouse") return;
     window.clearTimeout(closeTimer.current);
@@ -57,17 +58,24 @@ function UseCasesMenu({ label, t }: { label: string; t: HeaderText }) {
   };
 
   return (
-    <li ref={ref} className="relative" onPointerEnter={hoverOpen} onPointerLeave={hoverClose}>
-      <button
-        type="button"
+    <li
+      ref={ref}
+      className="relative"
+      onPointerEnter={hoverOpen}
+      onPointerLeave={hoverClose}
+      onKeyUp={(e) => e.key === "Tab" && setOpen(true)}
+      onBlur={(e) => !e.currentTarget.contains(e.relatedTarget as Node | null) && setOpen(false)}
+    >
+      <Link
+        href={href}
         className={`${linkClass} inline-flex items-center gap-1 ${open ? "bg-brand-50 text-brand-700" : ""}`}
         aria-expanded={open}
         aria-controls="use-cases-menu"
-        onClick={() => setOpen((v) => !v)}
+        onClick={() => setOpen(false)}
       >
         {label}
         <Icon.Chevron className={`h-4 w-4 transition ${open ? "rotate-180" : ""}`} />
-      </button>
+      </Link>
       <div id="use-cases-menu" hidden={!open} className="absolute top-full left-1/2 w-[36rem] -translate-x-1/2 pt-3">
         <div className="card p-3 shadow-2xl shadow-slate-900/10">
           <ul className="grid grid-cols-2 gap-1">
@@ -186,7 +194,7 @@ export default function Header({ lang, t }: { lang: Locale; t: HeaderText }) {
         <ul className="hidden items-center gap-1 lg:flex">
           {t.nav.map((item) =>
             item.menu ? (
-              <UseCasesMenu key={item.key} label={item.label} t={t} />
+              <UseCasesMenu key={item.key} label={item.label} href={item.href} t={t} />
             ) : (
               <li key={item.key}>
                 <Link href={item.href} className={linkClass}>
@@ -218,7 +226,16 @@ export default function Header({ lang, t }: { lang: Locale; t: HeaderText }) {
 
       {open && (
         <div id="mobile-menu" className="max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-slate-200 bg-white px-4 pt-4 pb-6 lg:hidden">
-          <p className="px-1 text-xs font-bold tracking-wide text-slate-500 uppercase">{t.menu.useCases}</p>
+          <Link
+            href={t.menu.allHref}
+            onClick={() => setOpen(false)}
+            className="flex items-center justify-between gap-3 rounded-lg px-1 py-1 text-xs font-bold tracking-wide text-slate-500 uppercase"
+          >
+            {t.menu.useCases}
+            <span className="inline-flex items-center gap-1 text-sm font-semibold tracking-normal text-brand-700 normal-case">
+              {t.menu.all} <Icon.Arrow className="h-4 w-4" />
+            </span>
+          </Link>
           <ul className="mt-2 grid grid-cols-2 gap-2">
             {t.systems.map((s) => {
               const I = Icon[s.icon];
@@ -238,6 +255,16 @@ export default function Header({ lang, t }: { lang: Locale; t: HeaderText }) {
               );
             })}
           </ul>
+          <Link
+            href={t.menu.otherHref}
+            onClick={() => setOpen(false)}
+            className="mt-2 flex items-center justify-between gap-3 rounded-xl bg-slate-50 px-3 py-3 text-sm text-slate-600 ring-1 ring-slate-200 hover:bg-brand-50"
+          >
+            <span>
+              <b className="text-slate-900">{t.menu.otherTitle}</b> {t.menu.otherText}
+            </span>
+            <Icon.Arrow className="h-4 w-4 shrink-0 text-brand-600" />
+          </Link>
           <ul className="mt-3 flex flex-col border-t border-slate-100 pt-2">
             {t.nav
               .filter((item) => !item.menu)

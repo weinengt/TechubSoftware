@@ -1,4 +1,5 @@
 import { getDict } from "@/content";
+import { getLegal } from "@/content/legal";
 import { customSystems, services, techIcons } from "@/components/Company";
 import { getFeatures } from "@/components/Sections";
 import { plain } from "@/components/Text";
@@ -10,6 +11,7 @@ export const dynamic = "force-static";
 // Plain-text summary for AI assistants and answer engines (llmstxt.org), from the English text.
 export function GET() {
   const t = getDict("en");
+  const legal = getLegal("en");
   const list = (items: string[]) => items.map((x) => `- ${x}`).join("\n");
   const product = (k: (typeof systems)[number]["key"]) => {
     const p = t.products[k];
@@ -33,7 +35,7 @@ Email: ${site.email}
 Country: Malaysia
 Languages: ${locales.map((l) => `${localeName[l]} (${site.url}${lp(l, "/")})`).join(", ")}
 
-## About
+## About (${site.url}/about/)
 ${t.about.intro}
 ${t.home.hero.badge}. ${t.home.hero.intro}
 ${Object.values(t.about.values)
@@ -45,13 +47,13 @@ ${Object.values(t.home.highlights.items)
   .map((v) => `- ${v.title}: ${v.text}`)
   .join("\n")}
 
-## Services
+## Services (${site.url}/services/)
 ${services.map((s) => `- ${t.services.items[s.key].title}: ${t.services.items[s.key].text}`).join("\n")}
 
-## Use cases (ready systems)
+## Use cases: ready systems (${site.url}/use-cases/)
 ${systems.map((s) => product(s.key)).join("\n\n")}
 
-## Custom systems
+## Custom systems (${site.url}/custom-systems/)
 ${plain(t.custom.intro)}
 ${customSystems.map((c) => `- ${t.custom.items[c.key].title}: ${t.custom.items[c.key].text}`).join("\n")}
 
@@ -69,14 +71,18 @@ ${getFeatures("en")
 ## Hardware
 ${list(Object.values(t.hardware.items))}
 
-## Pricing
+## Pricing (${site.url}/pricing/)
 - ${t.pricing.plan}: from RM ${site.priceFrom} per month.
 - ${t.pricing.free}
 - ${t.pricing.customTitle}: from RM ${site.customFrom}. ${t.pricing.customText}
 - Included: ${t.pricing.included.join("; ")}.
 
-## Frequently asked questions
+## Frequently asked questions (${site.url}/faq/)
 ${[...t.faq.items, ...t.techPage.faqs].map((f) => `Q: ${f.q}\nA: ${f.a}`).join("\n\n")}
+
+## Legal
+- ${legal.nav.terms}: ${site.url}/terms/
+- ${legal.nav.privacy}: ${site.url}/privacy/ (${legal.privacy.meta.description})
 `;
   return new Response(body, { headers: { "Content-Type": "text/plain; charset=utf-8" } });
 }

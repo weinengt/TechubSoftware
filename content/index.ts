@@ -22,7 +22,8 @@ const values: Record<string, string> = {
 export const fill = (s: string, extra: Record<string, string> = {}) =>
   s.replace(/\{(\w+)\}/g, (m, k: string) => extra[k] ?? values[k] ?? m);
 
-function fillAll<T>(v: T): T {
+/** Fills in the {placeholders} in every string of a text object. */
+export function fillAll<T>(v: T): T {
   if (typeof v === "string") return fill(v) as T;
   if (Array.isArray(v)) return v.map(fillAll) as T;
   if (v && typeof v === "object") return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, fillAll(x)])) as T;

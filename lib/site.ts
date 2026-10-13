@@ -7,7 +7,7 @@ export const site = {
   // Set NEXT_PUBLIC_SITE_URL as a Cloudflare build variable if your domain is different.
   url: (process.env.NEXT_PUBLIC_SITE_URL || "https://techubsoftware.com").replace(/\/$/, ""),
   description:
-    "Techub Software is a Malaysian software company: appointment systems with AI for clinics, hair salons, beauty centres and spas, and custom systems such as ERP, AI object detection and number plate scanners. Enterprise servers in Malaysia, reports in under 100 ms, WhatsApp notifications, LHDN e-Invoice and a 99.95% uptime guarantee. From RM 99/month with the first 3 months free; customisation from RM 300.",
+    "Techub Software is a software company based in Malaysia: appointment systems with AI for clinics, hair salons, beauty centres and spas, and custom systems such as ERP, AI object detection and number plate scanners. Enterprise servers in Malaysia, reports in under 100 ms, WhatsApp notifications, LHDN e-Invoice and a 99.95% uptime guarantee. From RM 99/month with the first 3 months free; customisation from RM 300.",
   whatsappNumber: "601117688559",
   whatsappDisplay: "+60 11-1768 8559",
   email: "admin@techubsoftware.com",
@@ -49,14 +49,36 @@ export const systems = [
 
 export type SystemKey = (typeof systems)[number]["key"];
 
-/** Main menu. "Use Cases" opens a list of the systems above. Labels are under `nav` in content/en.ts. */
+/** A page for each part of the company. Every menu item, footer link and button opens a page (none scrolls
+ *  down the same page). Their titles are under `pages` in content/en.ts. */
+export const companyPages = {
+  useCases: "/use-cases/",
+  customSystems: "/custom-systems/",
+  services: "/services/",
+  pricing: "/pricing/",
+  about: "/about/",
+  faq: "/faq/",
+  contact: "/contact/",
+} as const;
+
+export type CompanyPageKey = keyof typeof companyPages;
+
+/** Main menu. "Use Cases" opens the Use Cases page, and on hover a list of the systems above.
+ *  Labels are under `nav` in content/en.ts. */
 export const nav = [
-  { key: "useCases", path: "/#use-cases", menu: true },
+  { key: "useCases", path: companyPages.useCases, menu: true },
   { key: "technology", path: "/technology/" },
-  { key: "services", path: "/#services" },
-  { key: "pricing", path: "/#pricing" },
-  { key: "contact", path: "/#contact" },
+  { key: "services", path: companyPages.services },
+  { key: "pricing", path: companyPages.pricing },
+  { key: "contact", path: companyPages.contact },
 ] as const;
 
-/** Every page, for the sitemap and the language links. */
-export const pagePaths = ["/", "/technology/", ...systems.map((s) => s.path)] as const;
+/** Every page. */
+export const pagePaths = [
+  "/",
+  "/technology/",
+  ...systems.map((s) => s.path),
+  ...Object.values(companyPages),
+  "/terms/",
+  "/privacy/",
+] as const;

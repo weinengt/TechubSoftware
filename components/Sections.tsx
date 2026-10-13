@@ -1,26 +1,50 @@
+import Link from "next/link";
 import type { ReactNode } from "react";
 import { getDict, type Dict } from "@/content";
-import type { Locale } from "@/lib/i18n";
+import { lp, type Locale } from "@/lib/i18n";
 import { shotSrc, type Shot } from "@/lib/shots";
 import { emailLink, site, whatsappLink } from "@/lib/site";
 import { Icon, type IconName } from "./Icons";
 import { hl } from "./Text";
+
+/** When a section is the main part of its own page: the page's language and its name in the breadcrumb. */
+export type PageOf = { lang: Locale; crumb: string };
+
+/** "Home / <page>" above a page's heading. */
+export function Crumbs({ lang, current, className = "" }: { lang: Locale; current: string; className?: string }) {
+  return (
+    <nav aria-label="Breadcrumb" className={`mb-5 text-sm text-slate-500 ${className}`}>
+      <Link href={lp(lang, "/")} className="hover:text-brand-700">{getDict(lang).ui.home}</Link> <span aria-hidden="true">/</span>{" "}
+      <span className="text-slate-700">{current}</span>
+    </nav>
+  );
+}
+
+/** Top padding of a section that starts its own page, so it clears the fixed header. */
+export const pageTop = "pt-28 sm:pt-36";
 
 export function SectionHeading({
   eyebrow,
   title,
   intro,
   center = true,
+  page,
 }: {
   eyebrow?: string;
   title: ReactNode;
   intro?: ReactNode;
   center?: boolean;
+  /** Set when this section is its own page: the title becomes the page's h1, with a breadcrumb above. */
+  page?: PageOf;
 }) {
+  const H = page ? "h1" : "h2";
   return (
     <div className={center ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
+      {page && <Crumbs lang={page.lang} current={page.crumb} />}
       {eyebrow && <p className="eyebrow">{eyebrow}</p>}
-      <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">{typeof title === "string" ? hl(title) : title}</h2>
+      <H className={`mt-4 font-extrabold tracking-tight text-slate-900 ${page ? "text-4xl sm:text-5xl" : "text-3xl sm:text-4xl"}`}>
+        {typeof title === "string" ? hl(title) : title}
+      </H>
       {intro && <p className="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">{intro}</p>}
     </div>
   );
@@ -114,12 +138,12 @@ export function HardwareSection({ lang }: { lang: Locale }) {
 
 /* ---------- Pricing ---------- */
 
-export function PricingSection({ lang }: { lang: Locale }) {
+export function PricingSection({ lang, page }: { lang: Locale; page?: PageOf }) {
   const t = getDict(lang).pricing;
   return (
-    <section id="pricing" className="py-20 sm:py-24">
+    <section id="pricing" className={`${page ? pageTop : "pt-20 sm:pt-24"} pb-20 sm:pb-24`}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <SectionHeading eyebrow={t.eyebrow} title={t.title} />
+        <SectionHeading eyebrow={t.eyebrow} title={t.title} page={page} />
         <div className="mx-auto mt-12 grid max-w-5xl items-stretch gap-6 lg:grid-cols-5">
           <div className="relative overflow-hidden rounded-3xl bg-brand-gradient p-7 text-white shadow-2xl shadow-brand-500/30 sm:p-8 lg:col-span-3">
             <div className="bg-grid absolute inset-0 opacity-20" aria-hidden="true" />
@@ -177,12 +201,12 @@ export function PricingSection({ lang }: { lang: Locale }) {
 
 /* ---------- FAQ ---------- */
 
-export function FaqSection({ lang, items }: { lang: Locale; items?: { q: string; a: string }[] }) {
+export function FaqSection({ lang, items, page }: { lang: Locale; items?: { q: string; a: string }[]; page?: PageOf }) {
   const t = getDict(lang).faq;
   return (
-    <section id="faq" className="bg-slate-50 py-20 sm:py-24">
+    <section id="faq" className={page ? `${pageTop} pb-20 sm:pb-24` : "bg-slate-50 py-20 sm:py-24"}>
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-        <SectionHeading eyebrow={t.eyebrow} title={t.title} />
+        <SectionHeading eyebrow={t.eyebrow} title={t.title} page={page} />
         <div className="mt-10 space-y-3">
           {(items ?? t.items).map((f) => (
             <details key={f.q} className="card group p-0 [&_summary::-webkit-details-marker]:hidden">

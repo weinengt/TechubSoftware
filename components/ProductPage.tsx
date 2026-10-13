@@ -3,7 +3,7 @@ import { getDict, getShots, type Dict } from "@/content";
 import { lp, type Locale } from "@/lib/i18n";
 import { pageMetadata } from "@/lib/seo";
 import type { ShotKey } from "@/lib/shots";
-import { site, systems, whatsappLink, type SystemKey } from "@/lib/site";
+import { companyPages, site, systems, whatsappLink, type SystemKey } from "@/lib/site";
 import JsonLd from "./JsonLd";
 import { Icon, type IconName } from "./Icons";
 import { FaqSection, HardwareSection, PricingSection, SectionHeading, breadcrumbJsonLd, faqJsonLd, softwareJsonLd } from "./Sections";
@@ -195,7 +195,7 @@ export default function ProductPage({ lang, k }: { lang: Locale; k: SystemKey })
           <div className="mx-auto max-w-3xl text-center">
             <nav aria-label="Breadcrumb" className="mb-5 text-sm text-slate-500">
               <Link href={lp(lang, "/")} className="hover:text-brand-700">{d.ui.home}</Link> <span aria-hidden="true">/</span>{" "}
-              <Link href={lp(lang, "/#use-cases")} className="hover:text-brand-700">{d.product.useCases}</Link> <span aria-hidden="true">/</span>{" "}
+              <Link href={lp(lang, companyPages.useCases)} className="hover:text-brand-700">{d.product.useCases}</Link> <span aria-hidden="true">/</span>{" "}
               <span className="text-slate-700">{name}</span>
             </nav>
             <p className="eyebrow">{t.eyebrow}</p>
@@ -205,7 +205,7 @@ export default function ProductPage({ lang, k }: { lang: Locale; k: SystemKey })
               <a href={whatsappLink(t.demoMessage)} target="_blank" rel="noopener" className="btn-primary !py-3.5">
                 <Icon.Whatsapp className="h-5 w-5" /> {d.ui.bookFreeDemo}
               </a>
-              <Link href="#pricing" className="btn-secondary !py-3.5">
+              <Link href={lp(lang, companyPages.pricing)} className="btn-secondary !py-3.5">
                 {d.ui.priceLine}
               </Link>
             </div>
