@@ -18,8 +18,8 @@
   .paper tr.hit td:last-child { border-right: 1px solid rgba(0,207,203,.7); border-radius: 0 3px 3px 0; padding-right: 12px; }
   .paper table { border-collapse: separate; border-spacing: 0 2px; }
   .paper .ok { position: absolute; right: -7px; top: 50%; margin-top: -6px; width: 13px; height: 13px; border-radius: 99px; background: #10b981; color: #fff; font-size: 8px; display: grid; place-items: center; font-weight: 800; }
-  .paper .sig { margin-top: 10px; display: flex; justify-content: space-between; font-size: 7px; color: #6b7280; }
-  .paper .sig .hand { font-size: 17px; color: #1d4ed8; line-height: 1; }
+  .paper .sg { margin-top: 10px; display: flex; justify-content: space-between; font-size: 7px; color: #6b7280; }
+  .paper .sg .hand { font-size: 17px; color: #1d4ed8; line-height: 1; }
   .brk { position: absolute; width: 34px; height: 34px; border: 3.5px solid #2ee6d6; }
   .brk.tl { top: 22px; left: 32px; border-right: 0; border-bottom: 0; border-radius: 10px 0 0 0; } .brk.tr { top: 22px; right: 32px; border-left: 0; border-bottom: 0; border-radius: 0 10px 0 0; }
   .brk.bl { bottom: 18px; left: 32px; border-right: 0; border-top: 0; border-radius: 0 0 0 10px; } .brk.br { bottom: 18px; right: 32px; border-left: 0; border-top: 0; border-radius: 0 0 10px 0; }
@@ -32,7 +32,8 @@
   .sh .ic { width: 38px; height: 38px; border-radius: 11px; display: grid; place-items: center; background: linear-gradient(135deg, #0050a0, #0396d9 60%, #00cfcb); color: #fff; } .sh .ic svg { width: 20px; height: 20px; }
   .sh b { font-size: 15px; font-weight: 800; display: block; } .sh small { font-size: 11.5px; color: var(--muted); }
   .it { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid #f1f5f9; }
-  .it .bx { width: 32px; height: 32px; border-radius: 9px; background: var(--brand-50); color: var(--brand); display: grid; place-items: center; }
+  .it .bx { width: 34px; height: 34px; border-radius: 10px; background: var(--brand-50); color: var(--brand); display: grid; place-items: center; flex-shrink: 0; }
+  .it .bx svg.i { width: 18px; height: 18px; } .it .bx svg.ill { width: 28px; height: 28px; }
   .it b { font-size: 12.5px; display: block; } .it small { font-size: 10.5px; color: var(--muted); }
   .it .q { margin-left: auto; font-size: 13px; font-weight: 800; color: #059669; text-align: right; } .it .q small { display: block; font-weight: 500; }
   .go { margin-top: auto; height: 46px; border-radius: 13px; background: linear-gradient(135deg, #0396d9, #0287c4); color: #fff; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 8px 20px -8px rgba(3,150,217,.8); }
@@ -56,25 +57,46 @@
   </div>
 </div>
 <script>
-  const V = new URLSearchParams(location.search).get("v") === "spa" ? "spa" : "clinic";
+  const q = new URLSearchParams(location.search).get("v");
+  const V = ["clinic", "salon", "beauty", "spa"].includes(q) ? q : "clinic";
+  // Small product illustrations (48px box), tinted with the item colour
+  const label = (x, y, w, h, c) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="2" fill="#fff" opacity=".92"/><rect x="${x + 3}" y="${y + 3}" width="${w - 6}" height="2.2" rx="1.1" fill="${c}" opacity=".75"/>`;
+  const ILL = {
+    bottle: (c) => `<rect x="19" y="4" width="10" height="7" rx="2" fill="#334155"/><path d="M18 11h12v3c3.5 1.2 5.5 3.8 5.5 7.5V40a4 4 0 01-4 4h-15a4 4 0 01-4-4V21.5c0-3.7 2-6.3 5.5-7.5z" fill="${c}"/>${label(15.5, 24, 17, 11, c)}`,
+    dropper: (c) => `<path d="M21 2.5h6a1.5 1.5 0 011.5 1.5v5h-9V4A1.5 1.5 0 0121 2.5z" fill="#1f2937"/><rect x="18" y="9" width="12" height="6" rx="1.5" fill="#64748b"/><rect x="13.5" y="15" width="21" height="29" rx="5" fill="${c}"/>${label(17, 24, 14, 11, c)}`,
+    tube: (c) => `<rect x="12" y="3.5" width="24" height="5" rx="1.2" fill="${c}" opacity=".75"/><path d="M13 8h22l-3.5 28h-15z" fill="${c}"/><rect x="17.5" y="36" width="13" height="8" rx="2" fill="#334155"/>${label(17, 15, 14, 11, c)}`,
+    jar: (c) => `<rect x="10" y="13" width="28" height="8" rx="2.5" fill="#334155"/><rect x="9" y="20" width="30" height="23" rx="5.5" fill="${c}"/>${label(15, 26, 18, 10, c)}`,
+    sachet: (c) => `<rect x="11" y="4" width="26" height="40" rx="3" fill="${c}"/><ellipse cx="24" cy="22" rx="7.5" ry="9" fill="#fff" opacity=".92"/>`,
+    candle: (c) => `<path d="M24 3.5c3.2 3.6 3.6 6.6 0 9.8-3.6-3.2-3.2-6.2 0-9.8z" fill="#f59e0b"/><rect x="23.3" y="13" width="1.4" height="5" fill="#334155"/><rect x="11" y="17" width="26" height="27" rx="5" fill="${c}"/>${label(16, 27, 16, 10, c)}`,
+  };
+  const art = (a, c) => a.startsWith("p:") ? `<svg class="ill" viewBox="0 0 48 48">${ILL[a.slice(2)](c)}</svg>` : `<i data-i="${a}" style="color:${c}"></i>`;
+  // items: [code, description, batch, expiry, qty, unit, art, colour]
   const D = {
-    clinic: { sup: "SAMPLE MEDICAL SUPPLIES", to: "Demo Clinic", items: [
-      ["PCM500", "Paracetamol 500mg tab", "B2409", "08/28", "1,000", "tabs"], ["AMX250", "Amoxicillin 250mg cap", "A1021", "05/28", "500", "caps"],
-      ["CTZ10", "Cetirizine 10mg tab", "CT1122", "01/28", "300", "tabs"], ["OMZ20", "Omeprazole 20mg cap", "OM0611", "11/27", "200", "caps"],
-      ["MSK50", "Surgical Mask 3ply (50s)", "MK2209", "09/29", "20", "boxes"], ["ALS100", "Alcohol Swab (100s)", "AS0815", "04/29", "10", "boxes"]] },
-    spa: { sup: "SAMPLE BEAUTY SUPPLIES", to: "Demo Spa & Salon", items: [
-      ["MO1L", "Massage Oil Lavender 1L", "MO0712", "07/28", "12", "btl"], ["HS30", "Hydrating Serum 30ml", "S1190", "03/28", "24", "btl"],
-      ["SM10", "Sheet Mask (10s)", "FM0931", "12/27", "20", "packs"], ["HC71", "Hair Colour 7.1", "H3305", "06/28", "18", "tubes"],
-      ["KS1L", "Keratin Shampoo 1L", "KS0420", "10/28", "6", "btl"], ["GTC", "Nail Gel Top Coat", "GT0099", "02/28", "10", "pcs"]] },
+    clinic: { sup: "SAMPLE MEDICAL SUPPLIES", addr: "No. 8, Jalan Contoh 1/2, 47300 Petaling Jaya", dn: "DN-20481", to: "Demo Clinic", rcv: "Aina", chk: "J. Wong", items: [
+      ["PCM500", "Paracetamol 500mg tab", "B2409", "08/28", "1,000", "tabs", "pill", "#0396d9"], ["MET500", "Metformin 500mg tab", "MF1021", "05/28", "500", "tabs", "pill", "#8b5cf6"],
+      ["LRT10", "Loratadine 10mg tab", "LR1122", "01/28", "300", "tabs", "pill", "#14b8a6"], ["OMZ20", "Omeprazole 20mg cap", "OM0611", "11/27", "200", "caps", "pill", "#ec4899"],
+      ["SYR3", "Syringe 3ml (100s)", "SY2209", "09/29", "10", "boxes", "box", "#0396d9"], ["ALS100", "Alcohol Swab (100s)", "AS0815", "04/29", "10", "boxes", "box", "#0396d9"]] },
+    salon: { sup: "SAMPLE SALON SUPPLIES", addr: "No. 21, Jalan Contoh 3/1, 40150 Shah Alam", dn: "DN-31207", to: "Demo Hair Salon", rcv: "Kelly", chk: "R. Kumar", items: [
+      ["HC60", "Hair Colour 6.0 60ml", "HC2409", "09/29", "24", "tubes", "p:tube", "#8b5cf6"], ["HC71", "Hair Colour 7.1 60ml", "HC2410", "09/29", "12", "tubes", "p:tube", "#6366f1"],
+      ["PSH1L", "Purple Shampoo 1L", "PS0815", "08/28", "6", "btl", "p:bottle", "#7c3aed"], ["SCS100", "Scalp Serum 100ml", "SS0604", "06/28", "12", "btl", "p:dropper", "#14b8a6"],
+      ["CCS300", "Colour Shampoo 300ml", "CS0921", "09/28", "24", "btl", "p:bottle", "#ec4899"], ["FOIL", "Hair Foil Roll 100m", "FR1010", "–", "4", "rolls", "box", "#64748b"]] },
+    beauty: { sup: "SAMPLE BEAUTY SUPPLIES", addr: "No. 5, Jalan Contoh 7/3, 47500 Subang Jaya", dn: "DN-17734", to: "Demo Beauty Centre", rcv: "Sarah", chk: "A. Rahman", items: [
+      ["HY30", "Hyaluronic Serum 30ml", "HY2409", "09/28", "24", "btl", "p:dropper", "#0396d9"], ["SM10", "Hydrating Mask (10s)", "SM0930", "03/28", "20", "packs", "p:sachet", "#14b8a6"],
+      ["LP15", "Lash Primer 15ml", "LP1003", "04/28", "10", "btl", "p:dropper", "#ec4899"], ["GP12", "Gel Polish #12 Nude", "GP0712", "07/28", "12", "btl", "p:bottle", "#f9a8d4"],
+      ["HWB1K", "Hard Wax Beads 1kg", "HW0820", "08/28", "6", "packs", "p:jar", "#f59e0b"], ["CM500", "Clay Mask 500g", "CM1001", "10/28", "4", "tubs", "p:jar", "#94a3b8"]] },
+    spa: { sup: "SAMPLE SPA SUPPLIES", addr: "No. 14, Jalan Contoh 2/5, 46000 Petaling Jaya", dn: "DN-40516", to: "Demo Day Spa", rcv: "Jenny", chk: "M. Tan", items: [
+      ["MO1L", "Lavender Massage Oil 1L", "MO0712", "07/28", "12", "btl", "p:bottle", "#8b5cf6"], ["GBS1K", "Ginger Body Scrub 1kg", "GB0918", "09/27", "6", "tubs", "p:jar", "#d97706"],
+      ["AC200", "Aromatherapy Candle 200g", "AC0815", "08/29", "24", "pcs", "p:candle", "#f59e0b"], ["LGO10", "Lemongrass Oil 10ml", "LO1002", "10/28", "12", "btl", "p:dropper", "#10b981"],
+      ["HCB", "Herbal Compress Ball", "HB0930", "03/27", "30", "pcs", "leaf", "#65a30d"], ["BT70", "Bath Towel 70×140", "–", "–", "40", "pcs", "box", "#0396d9"]] },
   }[V];
-  document.getElementById("paper").innerHTML = `<h5>${D.sup} SDN BHD</h5><div class="a">No. 8, Jalan Contoh 1/2, 47300 Petaling Jaya · Tel 03-0000 0000</div>
-    <div class="t"><b>DELIVERY NOTE</b><span>No: <b style="font-size:8px;letter-spacing:0">DN-20481</b><br>Date: 13/10/2026<br>To: ${D.to}</span></div>
+  document.getElementById("paper").innerHTML = `<h5>${D.sup} SDN BHD</h5><div class="a">${D.addr} · Tel 03-0000 0000</div>
+    <div class="t"><b>DELIVERY NOTE</b><span>No: <b style="font-size:8px;letter-spacing:0">${D.dn}</b><br>Date: 13/10/2026<br>To: ${D.to}</span></div>
     <table><tr><th>CODE</th><th>DESCRIPTION</th><th>BATCH</th><th>EXP</th><th class="num">QTY</th></tr>
-    ${D.items.map(([c, d, b, e, q, u]) => `<tr class="hit"><td>${c}</td><td>${d}</td><td>${b}</td><td>${e}</td><td class="num">${q}<span class="ok">✓</span></td></tr>`).join("")}</table>
-    <div class="sig"><span>Received by:<br><span class="hand">Aina</span></span><span>Checked by:<br><span class="hand">J. Wong</span></span></div>`;
+    ${D.items.map(([c, d, b, e, q]) => `<tr class="hit"><td>${c}</td><td>${d}</td><td>${b}</td><td>${e}</td><td class="num">${q}<span class="ok">✓</span></td></tr>`).join("")}</table>
+    <div class="sg"><span>Received by:<br><span class="hand">${D.rcv}</span></span><span>Checked by:<br><span class="hand">${D.chk}</span></span></div>`;
   document.getElementById("cnt").textContent = `AI found ${D.items.length} items`;
-  document.getElementById("items").innerHTML = D.items.slice(0, 3).map(([c, d, b, e, q, u]) =>
-    `<div class="it"><span class="bx"><i data-i="box"></i></span><div><b>${d}</b><small>Batch ${b} · Exp ${e}</small></div><span class="q">+${q}<small>${u}</small></span></div>`).join("") +
+  document.getElementById("items").innerHTML = D.items.slice(0, 3).map(([c, d, b, e, q, u, a, col]) =>
+    `<div class="it"><span class="bx" style="background:${col}1f">${art(a, col)}</span><div><b>${d}</b><small>Batch ${b} · Exp ${e}</small></div><span class="q">+${q}<small>${u}</small></span></div>`).join("") +
     `<div style="font-size:11.5px;color:#0396d9;font-weight:650;padding-top:8px">+ ${D.items.length - 3} more items</div>`;
 </script>
 <script src="icons.js"></script>

@@ -19,22 +19,46 @@ const src = path.join(root, "design/mockups");
 const out = path.join(root, "public/images/screens");
 
 // name, html file (+ optional ?v= variant), CSS size, pixel scale, transparent background
+const ipad = { w: 1024, h: 720, scale: 1.5 }; // iPad, landscape
+const phone = { w: 360, h: 760, scale: 2 };
 export const screens = [
-  { name: "clinic-dashboard", file: "clinic-dashboard.html", w: 1200, h: 750, scale: 1.5 },
-  { name: "patient-medication-tracking", file: "patient-medication.html", w: 1200, h: 750, scale: 1.5 },
-  { name: "spa-salon-appointment-calendar", file: "spa-calendar.html", w: 1200, h: 750, scale: 1.5 },
-  { name: "inventory-movement-ai-stock", file: "inventory.html", w: 1200, h: 750, scale: 1.5 },
-  { name: "staff-permission-control", file: "permissions.html", w: 1200, h: 750, scale: 1.5 },
-  { name: "staff-permission-control-spa", file: "permissions.html?v=spa", w: 1200, h: 750, scale: 1.5 },
+  // Clinic
+  { name: "clinic-dashboard-ipad", file: "clinic-dashboard.html", ...ipad },
+  { name: "patient-medication-tracking-ipad", file: "patient-medication.html", ...ipad },
+  { name: "body-chart-hand-drawing", file: "body-chart.html", ...ipad },
+  { name: "clinic-inventory-ai-stock-ipad", file: "inventory.html?v=clinic", ...ipad },
+  { name: "clinic-staff-permissions-ipad", file: "permissions.html?v=clinic", ...ipad },
+  { name: "whatsapp-appointment-reminder-clinic", file: "whatsapp.html?v=clinic", ...phone },
+  { name: "ai-delivery-note-scan", file: "delivery-scan.html?v=clinic", ...phone },
   { name: "queue-number-calling-display", file: "queue-display.html", w: 1280, h: 720, scale: 1.5 },
-  { name: "whatsapp-appointment-reminder", file: "whatsapp.html?v=spa", w: 360, h: 760, scale: 2 },
-  { name: "whatsapp-appointment-reminder-clinic", file: "whatsapp.html", w: 360, h: 760, scale: 2 },
-  { name: "ai-delivery-note-scan", file: "delivery-scan.html", w: 360, h: 760, scale: 2 },
-  { name: "ai-delivery-note-scan-spa", file: "delivery-scan.html?v=spa", w: 360, h: 760, scale: 2 },
-  { name: "spa-customer-package", file: "customer-package.html", w: 360, h: 760, scale: 2 },
-  { name: "body-chart-hand-drawing", file: "body-chart.html", w: 1024, h: 720, scale: 1.5 },
-  { name: "body-chart-hand-drawing-spa", file: "body-chart.html?v=spa", w: 1024, h: 720, scale: 1.5 },
   { name: "printouts-receipt-label-mc", file: "printouts.html", w: 1000, h: 700, scale: 1.5, transparent: true },
+  // Hair salon
+  { name: "salon-appointment-calendar-ipad", file: "calendar.html?v=salon", ...ipad },
+  { name: "salon-pos-checkout-ipad", file: "pos.html?v=salon", ...ipad },
+  { name: "salon-inventory-ai-stock-ipad", file: "inventory.html?v=salon", ...ipad },
+  { name: "salon-staff-permissions-ipad", file: "permissions.html?v=salon", ...ipad },
+  { name: "whatsapp-appointment-reminder-salon", file: "whatsapp.html?v=salon", ...phone },
+  { name: "salon-customer-profile", file: "customer-package.html?v=salon", ...phone },
+  { name: "ai-delivery-note-scan-salon", file: "delivery-scan.html?v=salon", ...phone },
+  // Beauty centre
+  { name: "beauty-appointment-calendar-ipad", file: "calendar.html?v=beauty", ...ipad },
+  { name: "beauty-face-chart-ipad", file: "body-chart.html?v=beauty", ...ipad },
+  { name: "beauty-pos-checkout-ipad", file: "pos.html?v=beauty", ...ipad },
+  { name: "beauty-inventory-ai-stock-ipad", file: "inventory.html?v=beauty", ...ipad },
+  { name: "whatsapp-appointment-reminder-beauty", file: "whatsapp.html?v=beauty", ...phone },
+  { name: "beauty-customer-package", file: "customer-package.html?v=beauty", ...phone },
+  { name: "ai-delivery-note-scan-beauty", file: "delivery-scan.html?v=beauty", ...phone },
+  // Spa
+  { name: "spa-appointment-calendar-ipad", file: "calendar.html?v=spa", ...ipad },
+  { name: "body-chart-hand-drawing-spa", file: "body-chart.html?v=spa", ...ipad },
+  { name: "spa-pos-checkout-ipad", file: "pos.html?v=spa", ...ipad },
+  { name: "spa-inventory-ai-stock-ipad", file: "inventory.html?v=spa", ...ipad },
+  { name: "spa-staff-permissions-ipad", file: "permissions.html?v=spa", ...ipad },
+  { name: "whatsapp-appointment-reminder-spa", file: "whatsapp.html?v=spa", ...phone },
+  { name: "spa-customer-package", file: "customer-package.html?v=spa", ...phone },
+  { name: "ai-delivery-note-scan-spa", file: "delivery-scan.html?v=spa", ...phone },
+  // Desktop (PC) screen for the "works on every device" picture on the home page
+  { name: "staff-permission-control-desktop", file: "permissions.html?v=salon", w: 1200, h: 750, scale: 1.5 },
   // Social share picture (WhatsApp, Facebook, LinkedIn previews). Rendered last: it uses the screens above.
   { name: "og-image", file: "og.html", w: 1200, h: 630, scale: 1, out: "public/og-image.jpg" },
 ];

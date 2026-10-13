@@ -1,0 +1,233 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<style>
+  /* iPad Day view of the booking calendar. ?v=salon|beauty|spa (default spa) */
+  :root { --w: 1024px; --h: 720px; --hour: 58px; --n: 4; }
+  .seg { display: flex; background: #f1f5f9; border-radius: 9px; padding: 3px; }
+  .seg span { font-size: 11.5px; font-weight: 600; padding: 6px 12px; border-radius: 7px; color: var(--muted); }
+  .seg span.on { background: #fff; color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+  .datenav { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; margin-left: 10px; white-space: nowrap; }
+  .datenav .btn { height: 30px; padding: 0 8px; }
+  .legend { display: flex; gap: 14px; align-items: center; font-size: 11.5px; color: var(--ink2); font-weight: 500; white-space: nowrap; }
+  .legend i { width: 10px; height: 10px; border-radius: 3px; display: inline-block; margin-right: 6px; vertical-align: -1px; }
+  .legend i.walk { background: #fff; border: 1.5px dashed #64748b; }
+  .legend .chips { margin-left: auto; display: flex; gap: 6px; }
+  .chip svg { width: 12px; height: 12px; }
+  .cal { flex: 1; min-height: 0; background: #fff; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
+  .cols { display: grid; grid-template-columns: 52px repeat(var(--n), 1fr); border-bottom: 1px solid var(--line); }
+  .colh { display: flex; align-items: center; gap: 9px; padding: 9px 10px; border-left: 1px solid var(--line); min-width: 0; }
+  .colh .av { width: 32px; height: 32px; font-size: 11.5px; }
+  .colh .av svg { width: 17px; height: 17px; }
+  .colh b { font-size: 13px; display: block; } .colh small { font-size: 11px; color: var(--muted); white-space: nowrap; }
+  .colh .load { margin-left: auto; font-size: 10.5px; font-weight: 700; color: var(--brand); background: var(--brand-50); padding: 2px 8px; border-radius: 99px; white-space: nowrap; }
+  .body { position: relative; display: grid; grid-template-columns: 52px repeat(var(--n), 1fr); flex: 1; min-height: 0; }
+  .times div { height: var(--hour); font-size: 10.5px; color: var(--muted); text-align: right; padding-right: 8px; transform: translateY(-6px); }
+  .lane { position: relative; border-left: 1px solid var(--line); background-image: repeating-linear-gradient(180deg, transparent 0, transparent calc(var(--hour) - 1px), #eef2f7 calc(var(--hour) - 1px), #eef2f7 var(--hour)); }
+  .ev { position: absolute; left: 5px; right: 5px; border-radius: 8px; padding: 5px 8px 5px 9px; overflow: hidden;
+    background: var(--bg); border-left: 3px solid var(--c); color: var(--tx); }
+  .ev .r1 { display: flex; align-items: center; gap: 5px; height: 14px; }
+  .ev .t { font-size: 10.5px; font-weight: 650; white-space: nowrap; }
+  .ev .r1 svg { margin-left: auto; width: 13px; height: 13px; flex-shrink: 0; }
+  .ev b { display: block; font-size: 12.5px; font-weight: 700; color: var(--ink); white-space: nowrap; margin-top: 2px; line-height: 16px; }
+  .ev .s { display: flex; align-items: center; gap: 6px; color: var(--ink2); font-size: 11.5px; white-space: nowrap; line-height: 15px; }
+  .ev .tags { display: flex; gap: 4px; margin-top: 5px; flex-wrap: wrap; }
+  .ev .tg { font-size: 9.5px; font-weight: 700; line-height: 14px; padding: 0 6px; border-radius: 5px; background: rgba(255,255,255,.85); color: var(--tx); white-space: nowrap; }
+  .ev .tg.dep { color: #0f766e; } .ev .tg.ann { color: #be185d; } .ev .tg.new { color: #036295; }
+  .ev .nt { display: flex; align-items: center; gap: 5px; margin-top: 7px; font-size: 10.5px; font-weight: 600; color: var(--tx); white-space: nowrap; }
+  .ev .nt svg { width: 12px; height: 12px; }
+  .ev.walk { background: #fff; border: 1.5px dashed var(--c); border-left: 3px solid var(--c); padding-top: 4px; }
+  .ev.walk .tg.wk { background: var(--bg); }
+  .ev.brk { background: repeating-linear-gradient(135deg, #f8fafc 0 6px, #eef2f7 6px 12px); border-left-color: #cbd5e1; color: #94a3b8;
+    display: flex; align-items: center; justify-content: center; gap: 5px; font-size: 10.5px; font-weight: 650; padding: 0 8px; }
+  .ev.brk svg { width: 12px; height: 12px; }
+  .nowline { position: absolute; left: 46px; right: 0; height: 2px; background: #ef4444; z-index: 5; }
+  .nowline::before { content: ""; position: absolute; left: -4px; top: -4px; width: 10px; height: 10px; border-radius: 9px; background: #ef4444; }
+  .nowline span { position: absolute; left: -46px; top: -8px; font-size: 10px; font-weight: 700; color: #fff; background: #ef4444; border-radius: 5px; padding: 1px 5px; }
+</style></head>
+<body>
+<div class="app">
+  <aside class="side" data-shell="spa" data-active="Calendar"></aside>
+  <section class="main">
+    <header class="top">
+      <div><div class="sub" id="biz"></div><h1>Calendar</h1></div>
+      <div class="datenav"><span class="btn"><i data-i="chevL"></i></span>Today · Tue, 13 Oct 2026<span class="btn"><i data-i="chevR"></i></span></div>
+      <div class="seg" style="margin-left:auto"><span class="on">Day</span><span>Week</span><span>Month</span></div>
+      <span class="btn"><i data-i="users"></i><span id="who"></span><i data-i="chevD"></i></span>
+      <span class="btn pri"><i data-i="plus"></i>New Booking</span>
+    </header>
+    <div class="content" style="gap:10px">
+      <div class="legend" id="legend"></div>
+      <div class="cal">
+        <div class="cols" id="heads"><div></div></div>
+        <div class="body" id="body"><div class="times" id="times"></div></div>
+      </div>
+    </div>
+  </section>
+</div>
+<script>
+  const q = new URLSearchParams(location.search).get("v");
+  const V = ["salon", "beauty", "spa"].includes(q) ? q : "spa";
+  // Colour sets: border / background / text
+  const C = {
+    blue: ["#0396d9", "#e8f4fd", "#036295"], violet: ["#8b5cf6", "#f3efff", "#6d28d9"], teal: ["#14b8a6", "#e6fbf9", "#0f766e"],
+    amber: ["#f59e0b", "#fff6e5", "#b45309"], pink: ["#ec4899", "#fdedf5", "#be185d"],
+  };
+  // Event: [column, start hour, duration h, category, customer, service, tags, status]
+  // status: 1 = confirmed on WhatsApp, 0 = reminder sent, "w" = walk-in, "brk" = break
+  const D = {
+    salon: {
+      biz: "Demo Hair Salon",
+      who: "All stylists",
+      cats: { cut: ["Cut & Style", "blue"], colour: ["Colour", "violet"], treat: ["Treatment", "teal"], chem: ["Rebond & Perm", "amber"] },
+      walkLegend: true,
+      chips: ["wa", "walk", "util:88"],
+      staff: [["JT", "Jason", "Senior Stylist", "#0396d9"], ["MF", "Mei Fen", "Colourist", "#8b5cf6"], ["AM", "Aiman", "Junior Stylist", "#14b8a6"], ["RV", "Ravi", "Barber", "#0b2f55"]],
+      ev: [
+        [0, 10, 2.5, "chem", "Nur Syafiqah", "Rebonding", ["Deposit paid"], 1],
+        [0, 12.5, 0.5, "", "", "Lunch", [], "brk"],
+        [0, 13, 1, "cut", "Wong Siew Lan", "Cut & Blow", [], 1],
+        [0, 14, 0.75, "cut", "Rachel Lim", "Cut & Blow", [], 1],
+        [0, 15, 2, "treat", "Amanda Koh", "Keratin Treatment", ["Deposit paid"], 1],
+        [0, 17.5, 1, "cut", "Lim Jia Hui", "Cut & Blow", [], "w"],
+        [1, 10, 1, "colour", "Joanne Lim", "Colour Retouch", [], 1],
+        [1, 11.5, 2.5, "colour", "Tan Hui Ying", "Colour & Treatment", ["Deposit paid"], 1, ["drop", "Formula 6.3 + 6%"]],
+        [1, 14, 0.5, "", "", "Lunch", [], "brk"],
+        [1, 14.5, 3, "colour", "Priya Nair", "Highlights", ["Deposit paid", "1st visit"], 1, ["image", "Reference photo"]],
+        [2, 10, 1.5, "treat", "Grace Lee", "Scalp Treatment", [], 1],
+        [2, 11.75, 0.75, "cut", "Ethan Lau", "Kids' Cut", [], "w"],
+        [2, 12.5, 0.75, "cut", "Siti Nora", "Wash & Blow", [], 1],
+        [2, 13.25, 0.5, "", "", "Lunch", [], "brk"],
+        [2, 14, 2.5, "chem", "Siti Aishah", "Digital Perm", ["Deposit paid"], 1],
+        [2, 17, 1, "cut", "Melissa Ho", "Cut & Blow", [], 0],
+        [3, 10.25, 0.75, "cut", "Daniel Wong", "Men's Cut", [], 1],
+        [3, 11.5, 0.75, "cut", "Arif Hakimi", "Men's Cut", [], "w"],
+        [3, 12.5, 1, "cut", "Kumar Selvam", "Men's Cut & Beard", [], 1],
+        [3, 13.5, 0.5, "", "", "Lunch", [], "brk"],
+        [3, 14, 0.75, "cut", "Haris Iskandar", "Men's Cut", [], 1],
+        [3, 15, 1.5, "colour", "Kenneth Yap", "Men's Cut & Colour", [], 1],
+        [3, 16.75, 0.75, "cut", "Faizal Rahman", "Men's Cut", [], 1],
+        [3, 18, 0.75, "cut", "Jonathan Teh", "Men's Cut", [], 0],
+      ],
+    },
+    beauty: {
+      biz: "Demo Beauty Centre",
+      who: "All beauticians",
+      cats: { facial: ["Facial", "teal"], lash: ["Lash & Brow", "pink"], nails: ["Nails", "violet"], body: ["Slimming & Body", "amber"] },
+      chips: ["wa", "pkg", "util:84"],
+      staff: [["ML", "Mei Ling", "Facial Specialist", "#14b8a6"], ["NA", "Nadia", "Lash & Brow", "#ec4899"], ["HM", "Hui Min", "Nail Technician", "#8b5cf6"], ["KV", "Kavitha", "Slimming & Body", "#f59e0b"]],
+      ev: [
+        [0, 10, 1.5, "facial", "Chloe Tan", "Hydra Facial", ["Pkg 4/10"], 1],
+        [0, 12, 1, "facial", "Nurul Ain", "Acne Facial", ["Pkg 2/6"], 1],
+        [0, 13, 0.5, "", "", "Lunch", [], "brk"],
+        [0, 13.5, 1.5, "facial", "Tan Pei Shan", "Hydra Facial", ["Pkg 7/10"], 1],
+        [0, 15.5, 1, "facial", "Grace Lim", "Acne Facial", ["Pkg 5/6"], 1],
+        [0, 17, 1.5, "facial", "Deepa Raj", "Hydra Facial", ["1st visit"], 0],
+        [1, 10, 1, "lash", "Amira Zain", "Brow Shape & Tint", [], 1],
+        [1, 11.5, 2, "lash", "Rachel Goh", "Lash Extension", ["Deposit paid"], 1],
+        [1, 13.5, 0.5, "", "", "Lunch", [], "brk"],
+        [1, 14, 2.5, "lash", "Nur Izzati", "Brow Embroidery", ["Deposit paid"], 1, ["check", "Patch test done"]],
+        [1, 17, 1, "lash", "Vanessa Ong", "Lash Refill", ["Pkg 2/5"], 1],
+        [2, 10, 1, "nails", "Sharon Ng", "Gel Manicure", [], 1],
+        [2, 11.5, 1, "nails", "Siti Rahmah", "Gel Pedicure", [], 1],
+        [2, 12.5, 0.5, "", "", "Lunch", [], "brk"],
+        [2, 13, 1.5, "nails", "Jessica Lau", "Gel Manicure", ["Nail art"], 1],
+        [2, 15, 1, "nails", "Aishah Malik", "Gel Manicure", [], "w"],
+        [2, 16.5, 1, "nails", "Lim Siew Peng", "Gel Pedicure", [], 1],
+        [3, 10, 1.5, "body", "Wong Mei Yee", "Slimming Wrap", ["Pkg 4/10"], 1],
+        [3, 12, 1, "body", "Lee Pei Ling", "Body Contouring", ["Pkg 6/12"], 1],
+        [3, 13, 1, "body", "Yap Siew Ling", "Full Leg Wax", [], 1],
+        [3, 14, 0.5, "", "", "Lunch", [], "brk"],
+        [3, 14.5, 1.5, "body", "Nadhirah Aziz", "Slimming Wrap", ["Pkg 2/10"], 1],
+        [3, 16.5, 1.5, "body", "Shalini Menon", "Slimming Wrap", ["Pkg 9/10"], 0],
+      ],
+    },
+    spa: {
+      biz: "Demo Day Spa",
+      who: "All therapists",
+      cats: { massage: ["Massage", "blue"], aroma: ["Aromatherapy", "violet"], scrub: ["Body Scrub", "pink"], reflex: ["Reflexology", "teal"], couple: ["Couple Package", "amber"] },
+      chips: ["wa", "util:82"],
+      staff: [["AS", "Aisyah", "Senior Therapist", "#0396d9"], ["LK", "Lakshmi", "Therapist", "#8b5cf6"], ["WT", "Wati", "Therapist", "#14b8a6"], ["bed", "Couple Suite", "Room · 2 beds", "#f59e0b"]],
+      ev: [
+        [0, 10, 1.5, "massage", "Nur Izzati", "Balinese Massage 90 min", ["Room 2"], 1],
+        [0, 12, 1.5, "massage", "Michelle Ong", "Hot Stone Massage 90 min", ["Room 2", "Pkg 3/5"], 1],
+        [0, 13.5, 0.5, "", "", "Lunch", [], "brk"],
+        [0, 14.5, 1.5, "massage", "Revathi Pillai", "Balinese Massage 90 min", ["Room 2"], 1],
+        [0, 16.5, 1.5, "massage", "Jessica Lau", "Hot Stone Massage 90 min", ["Room 3"], 0],
+        [1, 10, 1, "aroma", "Jasmine Chua", "Aromatherapy 60 min", [], 1],
+        [1, 11.5, 1, "reflex", "Kumar Selvam", "Foot Reflexology", [], 1],
+        [1, 13, 0.5, "", "", "Lunch", [], "brk"],
+        [1, 14, 1.5, "aroma", "Siti Rahmah", "Aromatherapy 90 min", ["Room 3", "Pkg 6/10"], 1],
+        [1, 16, 1, "scrub", "Tan Mei Kuan", "Body Scrub", [], 1],
+        [1, 17.5, 1, "reflex", "Gan Kok Leong", "Foot Reflexology", [], "w"],
+        [2, 10, 1.5, "aroma", "Grace Ho", "Aromatherapy 90 min", ["Room 1", "Pkg 8/10"], 1],
+        [2, 11.5, 1, "scrub", "Farhana Idris", "Body Scrub", [], 1],
+        [2, 12.5, 0.5, "", "", "Lunch", [], "brk"],
+        [2, 13.5, 1.5, "massage", "Wong Siew Lan", "Balinese Massage 90 min", ["Room 1"], 1],
+        [2, 15.5, 1, "reflex", "Suresh Kumar", "Foot Reflexology", [], 1],
+        [2, 17, 1, "reflex", "Lim Chee Keong", "Foot Reflexology", [], 0],
+        [3, 11.5, 2, "couple", "Mr & Mrs Lee", "Couple Spa Package", ["Anniversary", "Deposit paid"], 1, ["heart", "Rose petal set-up"]],
+        [3, 13.5, 0.5, "", "", "Room reset", [], "brk"],
+        [3, 14.5, 2, "couple", "Hafiz & Nabila", "Couple Spa Package", ["Deposit paid"], 1],
+        [3, 17, 1.5, "couple", "Daniel & Sharon", "Couple Balinese 90 min", ["Deposit paid"], 1],
+      ],
+    },
+  }[V];
+
+  const SVG = {
+    wa: '<svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8" fill="#22c55e"/><path d="M4.6 8.2l2.3 2.3 4.6-4.8" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    wait: '<svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8" fill="#f59e0b"/><path d="M8 4.4V8l2.3 1.5" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    coffee: '<svg class="i" viewBox="0 0 24 24"><path d="M4 9h13v5a5 5 0 01-5 5H9a5 5 0 01-5-5V9z"/><path d="M17 11h1.5a2.5 2.5 0 010 5H17"/><path d="M8 3v3M12 3v3"/></svg>',
+  };
+
+  document.getElementById("who").textContent = D.who;
+  document.getElementById("biz").textContent = D.biz;
+  // Summary chips are counted from the bookings below, so they always match the calendar
+  const bk = D.ev.filter((e) => e[7] !== "brk");
+  const chip = (c) => {
+    if (c === "wa") return `<span class="chip g">${SVG.wa}${bk.filter((e) => e[7] === 1).length} of ${bk.filter((e) => e[7] !== "w").length} confirmed on WhatsApp</span>`;
+    if (c === "walk") return `<span class="chip s"><i data-i="queue"></i>${bk.filter((e) => e[7] === "w").length} walk-ins</span>`;
+    if (c === "pkg") return `<span class="chip v"><i data-i="gift"></i>${bk.filter((e) => e[6].some((t) => /^Pkg/.test(t))).length} package sessions</span>`;
+    return `<span class="chip b">Utilisation ${c.split(":")[1]}%</span>`;
+  };
+  document.getElementById("legend").innerHTML = Object.values(D.cats).map(([t, c]) => `<span><i style="background:${C[c][0]}"></i>${t}</span>`).join("") +
+    (D.walkLegend ? `<span><i class="walk"></i>Walk-in</span>` : "") + `<span class="chips">${D.chips.map(chip).join("")}</span>`;
+
+  document.documentElement.style.setProperty("--n", D.staff.length);
+  const start = 10, end = 19;
+  const heads = document.getElementById("heads"), body = document.getElementById("body"), times = document.getElementById("times");
+  const fmt = (h, ap = true) => { const hh = Math.floor(h), mm = Math.round((h - hh) * 60); return `${((hh + 11) % 12) + 1}:${String(mm).padStart(2, "0")}${ap ? (hh >= 12 ? "pm" : "am") : ""}`; };
+  const range = (s, e) => ((s >= 12) === (e >= 12) ? `${fmt(s, false)} – ${fmt(e)}` : `${fmt(s)} – ${fmt(e)}`);
+
+  // Column headers first, so the body height is final before the hour height is measured
+  D.staff.forEach(([ini, name, role, col], i) => {
+    const n = D.ev.filter((e) => e[0] === i && e[7] !== "brk").length;
+    const av = ini === "bed" ? '<i data-i="bed"></i>' : ini;
+    heads.insertAdjacentHTML("beforeend", `<div class="colh"><span class="av" style="background:${col}">${av}</span><div><b>${name}</b><small>${role}</small></div><span class="load">${n}</span></div>`);
+  });
+  const H = Math.floor(body.clientHeight / (end - start));
+  document.documentElement.style.setProperty("--hour", H + "px");
+  for (let h = start; h < end; h++) times.insertAdjacentHTML("beforeend", `<div>${h === start ? "" : fmt(h).replace(":00", "")}</div>`);
+
+  D.staff.forEach((_, i) => {
+    const lane = document.createElement("div"); lane.className = "lane"; body.appendChild(lane);
+    D.ev.filter((e) => e[0] === i).forEach(([, s, d, cat, who, what, tags, st, note]) => {
+      const h = d * H - 4;
+      const pos = `top:${(s - start) * H + 2}px;height:${h}px`;
+      if (st === "brk") { lane.insertAdjacentHTML("beforeend", `<div class="ev brk" style="${pos}">${SVG.coffee}${what}</div>`); return; }
+      const [c, bg, tx] = C[D.cats[cat][1]];
+      const tg = (t) => `<span class="tg ${/Deposit/.test(t) ? "dep" : /Anniv/.test(t) ? "ann" : /1st/.test(t) ? "new" : ""}">${t}</span>`;
+      const all = st === "w" ? [`<span class="tg wk">Walk-in</span>`, ...tags.map(tg)] : tags.map(tg);
+      const icon = st === 1 ? SVG.wa : st === 0 ? SVG.wait : "";
+      const tall = h >= 80; // room for a row of tags
+      lane.insertAdjacentHTML("beforeend", `<div class="ev ${st === "w" ? "walk" : ""}" style="${pos};--c:${c};--bg:${bg};--tx:${tx}">
+        <div class="r1"><span class="t">${range(s, s + d)}</span>${d < 1 && all.length ? all[0] : ""}${icon}</div>
+        <b>${who}</b>${d >= 1 ? `<span class="s">${what}${!tall && all.length ? all[0] : ""}</span>` : ""}
+        ${tall && all.length ? `<div class="tags">${all.join("")}</div>` : ""}
+        ${note && h >= 100 ? `<div class="nt"><i data-i="${note[0]}"></i>${note[1]}</div>` : ""}</div>`);
+    });
+  });
+  body.insertAdjacentHTML("beforeend", `<div class="nowline" style="top:${(11 + 20 / 60 - start) * H}px"><span>11:20</span></div>`);
+</script>
+<script src="shell.js"></script>
+<script src="icons.js"></script>
+</body></html>

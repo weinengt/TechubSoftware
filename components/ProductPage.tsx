@@ -3,13 +3,14 @@ import type { ReactNode } from "react";
 import JsonLd from "./JsonLd";
 import { Icon, type IconName } from "./Icons";
 import { FaqSection, HardwareSection, PricingSection, SectionHeading, breadcrumbJsonLd, faqJsonLd, softwareJsonLd } from "./Sections";
-import { Combo, ContactSection, FeatureTiles, FloatBadge, PhoneShowcase, Spotlight } from "./Showcase";
+import { Combo, ContactSection, FeatureTiles, FloatBadge, OtherSystems, PhoneShowcase, Spotlight } from "./Showcase";
 import type { Shot } from "@/lib/shots";
-import { site, whatsappLink } from "@/lib/site";
+import { site, whatsappLink, type SystemKey } from "@/lib/site";
 
 type Visual = { main: Shot; phone?: Shot; side?: "left" | "right" } | { phoneOnly: Shot; badges?: ReactNode[] };
 
 export type ProductContent = {
+  key: SystemKey;
   path: string;
   name: string;
   category: string;
@@ -105,6 +106,7 @@ export default function ProductPage({ c }: { c: ProductContent }) {
       <HardwareSection />
       <PricingSection />
       <FaqSection items={c.faqs} />
+      <OtherSystems current={c.key} />
       <ContactSection phoneShot={c.contactPhone} />
     </>
   );

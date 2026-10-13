@@ -6,7 +6,8 @@
   .top2 { background: #008069; color: #fff; }
   .hdr { height: 56px; display: flex; align-items: center; gap: 8px; padding: 0 10px 0 6px; }
   .hdr img { width: 38px; height: 38px; border-radius: 99px; background: #fff; }
-  .hdr b { font-size: 15.5px; font-weight: 650; display: flex; align-items: center; gap: 4px; } .hdr small { font-size: 12px; opacity: .85; display: block; }
+  .hdr b { font-size: 15.5px; font-weight: 650; display: flex; align-items: center; gap: 4px; white-space: nowrap; }
+  .hdr.long b { font-size: 15px; } .hdr.long .ic { gap: 13px; } .hdr small { font-size: 12px; opacity: .85; display: block; }
   .hdr .ic { margin-left: auto; display: flex; gap: 16px; } .hdr svg { width: 21px; height: 21px; }
   .chat { flex: 1; padding: 8px 10px; display: flex; flex-direction: column; gap: 6px; overflow: hidden;
     background-color: #efeae2; background-image: radial-gradient(rgba(0,0,0,.035) 1.2px, transparent 1.2px); background-size: 18px 18px; }
@@ -34,18 +35,43 @@
   <div class="bar"><div class="inp"><span style="font-size:20px">🙂</span>Message<span style="margin-left:auto;display:flex;gap:14px"><i data-i="clip"></i><i data-i="cam"></i></span></div><span class="mic"><i data-i="mic"></i></span></div>
 </div>
 <script>
-  const V = new URLSearchParams(location.search).get("v") === "spa" ? "spa" : "clinic";
+  const q = new URLSearchParams(location.search).get("v");
+  const V = ["spa", "salon", "beauty"].includes(q) ? q : "clinic";
   const D = {
     spa: {
-      biz: "Demo Spa &amp; Salon",
+      biz: "Demo Day Spa",
       msgs: [
         ["day", "Yesterday"],
-        ["in", "<b>Booking confirmed</b> ✅\nHi Priya, thank you for booking with us!\n\n💆‍♀️ Signature Facial (60 min)\n📅 Wed, 14 Oct 2026\n⏰ 10:30 AM\n👩 Therapist: Mei Ling", "3:12 PM"],
+        ["in", "<b>Booking confirmed</b> ✅\nHi Priya, thanks for booking with us!\n\n💆‍♀️ Balinese Massage (90 min)\n📅 Wed, 14 Oct 2026\n⏰ 10:30 AM\n👩 Therapist: Aisyah", "3:12 PM"],
         ["day", "Today"],
-        ["in", "<b>Appointment reminder</b> ⏰\nHi Priya, see you <b>tomorrow at 10:30 AM</b> for your Signature Facial.\n\nPlease reply below to confirm.", "9:00 AM"],
+        ["in", "<b>Appointment reminder</b> ⏰\nHi Priya, see you <b>tomorrow at 10:30 AM</b> for your Balinese Massage.\nCome 10 min early for a welcome tea 🍵", "9:00 AM"],
         ["btns", ["✅ Confirm", "📅 Reschedule"]],
         ["out", "✅ Confirm", "9:04 AM"],
-        ["in", "Thank you, Priya! 🙏 You're all set.\nYou have <b>6 facial sessions</b> left in your package. See you tomorrow!", "9:04 AM"],
+        ["in", "Thank you, Priya! 🙏 You're all set.\nYou have <b>6 massage sessions</b> left in your package. See you tomorrow!", "9:04 AM"],
+      ],
+    },
+    salon: {
+      biz: "Demo Hair Salon",
+      msgs: [
+        ["day", "Yesterday"],
+        ["in", "<b>Booking confirmed</b> ✅\nHi Wen Qi, thanks for booking with us!\n\n✂️ Colour &amp; Treatment\n📅 Wed, 14 Oct 2026\n⏰ 11:00 AM\n💇‍♀️ Stylist: Mei Fen\n💳 Deposit RM 50 received", "6:20 PM"],
+        ["day", "Today"],
+        ["in", "<b>Appointment reminder</b> ⏰\nHi Wen Qi, see you <b>tomorrow at 11:00 AM</b> with Mei Fen.\nNeed another time? Tap Reschedule.", "9:00 AM"],
+        ["btns", ["✅ Confirm", "📅 Reschedule"]],
+        ["out", "✅ Confirm", "9:07 AM"],
+        ["in", "Thank you, Wen Qi! 🙏 You're all set.\nTip: come with unwashed hair for the best colour result 💇‍♀️", "9:07 AM"],
+      ],
+    },
+    beauty: {
+      biz: "Demo Beauty Centre",
+      msgs: [
+        ["day", "Yesterday"],
+        ["in", "<b>Booking confirmed</b> ✅\nHi Aqilah, your facial is booked!\n\n✨ Hydra Facial (60 min)\n📅 Wed, 14 Oct 2026\n⏰ 2:00 PM\n👩 Beautician: Mei Ling\n🎁 Package: 6 of 10 sessions left", "5:46 PM"],
+        ["day", "Today"],
+        ["in", "<b>Appointment reminder</b> ⏰\nHi Aqilah, see you <b>tomorrow at 2:00 PM</b> for your Hydra Facial.\nTip: come with a clean face, no makeup 💧", "9:00 AM"],
+        ["btns", ["✅ Confirm", "📅 Reschedule"]],
+        ["out", "✅ Confirm", "9:12 AM"],
+        ["in", "Thank you, Aqilah! 🙏 You're all set.\nAfter tomorrow you'll have <b>5 of 10 sessions</b> left. See you! ✨", "9:12 AM"],
       ],
     },
     clinic: {
@@ -61,6 +87,7 @@
       ],
     },
   }[V];
+  if (D.biz.length > 16) document.querySelector(".hdr").classList.add("long");
   document.getElementById("biz").innerHTML = D.biz + ' <svg viewBox="0 0 24 24" width="15" height="15"><circle cx="12" cy="12" r="10" fill="#25d366"/><path d="M7.5 12.5l3 3 6-6.5" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   const chat = document.getElementById("chat");
   chat.innerHTML = D.msgs.map(([t, x, tm]) => {

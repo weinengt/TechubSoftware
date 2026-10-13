@@ -1,7 +1,8 @@
 <!doctype html>
 <html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
 <style>
-  :root { --w: 1200px; --h: 750px; }
+  :root { --w: 1024px; --h: 720px; }
+  .search { white-space: nowrap; }
   .now { background: linear-gradient(135deg, #0050a0, #0396d9 60%, #00cfcb); color: #fff; border-radius: 12px; padding: 16px; width: 210px; flex-shrink: 0; position: relative; overflow: hidden; }
   .now::after { content: ""; position: absolute; right: -40px; top: -40px; width: 140px; height: 140px; border-radius: 99px; background: rgba(255,255,255,.12); }
   .now .lbl { font-size: 11px; font-weight: 600; opacity: .85; display: flex; align-items: center; gap: 6px; }
@@ -21,8 +22,12 @@
   .ai { display: flex; gap: 10px; align-items: flex-start; background: linear-gradient(135deg, #fffbeb, #fff7ed); border: 1px solid #fde68a; border-radius: 10px; padding: 10px; font-size: 11.5px; color: #92400e; margin-top: 10px; }
   .low { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px solid #f1f5f9; font-size: 12px; }
   .low:last-of-type { border-bottom: 0; }
-  .meter { width: 70px; height: 6px; border-radius: 9px; background: #f1f5f9; margin-left: auto; overflow: hidden; }
+  .low .left { margin-left: auto; font-size: 11px; font-weight: 650; color: #dc2626; }
+  .meter { width: 56px; height: 6px; border-radius: 9px; background: #f1f5f9; overflow: hidden; }
   .meter i { display: block; height: 100%; border-radius: 9px; background: var(--red); }
+  .ai .po { display: flex; width: max-content; align-items: center; gap: 6px; margin-top: 8px; background: #fff; border: 1px solid #fcd34d; color: #b45309; border-radius: 8px; padding: 5px 10px; font-weight: 700; font-size: 11px; }
+  .ai .po svg { width: 13px; height: 13px; }
+  @media (max-width: 1100px) { .search { width: 236px; } }
 </style></head>
 <body>
 <div class="app">
@@ -102,14 +107,15 @@
             <tr><td><b>14:30</b></td><td><b>Chong Mei Yee</b></td><td>Dr. Lim</td><td>Wound dressing review</td><td><span class="chip g">✓ Confirmed</span></td><td><span class="chip s">Booked</span></td></tr>
           </table>
         </div>
-        <div class="card" style="width:300px">
-          <h3><i data-i="box" style="color:#0396d9"></i>Low stock<span class="chip r" style="margin-left:auto">3 items</span></h3>
+        <div class="card" style="width:300px;display:flex;flex-direction:column">
+          <h3><i data-i="box" style="color:#0396d9"></i>Low stock<span class="chip r" style="margin-left:auto">4 items</span></h3>
           <div style="margin-top:8px">
-            <div class="low"><b style="font-weight:600">Amoxicillin 250mg</b><span class="meter"><i style="width:18%"></i></span></div>
-            <div class="low"><b style="font-weight:600">Cetirizine 10mg</b><span class="meter"><i style="width:26%"></i></span></div>
-            <div class="low"><b style="font-weight:600">Surgical Mask (50s)</b><span class="meter"><i style="width:32%"></i></span></div>
+            <div class="low"><b style="font-weight:600">Amoxicillin 250mg</b><span class="left">40 caps</span><span class="meter"><i style="width:18%"></i></span></div>
+            <div class="low"><b style="font-weight:600">Cetirizine 10mg</b><span class="left">58 tabs</span><span class="meter"><i style="width:26%"></i></span></div>
+            <div class="low"><b style="font-weight:600">Surgical Mask (50s)</b><span class="left">6 boxes</span><span class="meter"><i style="width:30%"></i></span></div>
+            <div class="low"><b style="font-weight:600">Alcohol Swab (100s)</b><span class="left">4 boxes</span><span class="meter"><i style="width:34%"></i></span></div>
           </div>
-          <div class="ai"><i data-i="spark" style="color:#d97706;width:18px;height:18px"></i><div><b>AI suggestion:</b> reorder 500 caps of Amoxicillin by Thu to avoid running out.</div></div>
+          <div class="ai" style="margin-top:auto"><i data-i="spark" style="color:#d97706;width:18px;height:18px"></i><div><b>AI suggestion:</b> reorder 500 caps of Amoxicillin by Thu to avoid running out.<span class="po"><i data-i="file"></i>Create purchase order</span></div></div>
         </div>
       </div>
     </div>

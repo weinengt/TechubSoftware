@@ -87,6 +87,15 @@ export const Icon = {
   Cloud: (p: IconProps) => (
     <svg {...base(p)}><path d="M7 18a4.5 4.5 0 01-.6-8.96A6 6 0 0118 9.5a4.25 4.25 0 01-.5 8.5H7z" /></svg>
   ),
+  Scissors: (p: IconProps) => (
+    <svg {...base(p)}><circle cx="6" cy="6" r="3" /><circle cx="6" cy="18" r="3" /><path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12" /></svg>
+  ),
+  Lotus: (p: IconProps) => (
+    <svg {...base(p)}><path d="M12 20c-4.5 0-8-2.5-9-6 2.5-.5 5 .2 7 1.8" /><path d="M12 20c4.5 0 8-2.5 9-6-2.5-.5-5 .2-7 1.8" /><path d="M12 20c-2.2-1.6-3.5-4-3.5-6.8S9.8 7.6 12 5c2.2 2.6 3.5 5.4 3.5 8.2S14.2 18.4 12 20z" /></svg>
+  ),
+  Mirror: (p: IconProps) => (
+    <svg {...base(p)}><ellipse cx="12" cy="9" rx="6" ry="7" /><path d="M12 16v5M9 21h6" /><path d="M9.5 6.5a3.5 3.5 0 012.5-1.5" /></svg>
+  ),
   Card: (p: IconProps) => (
     <svg {...base(p)}><rect x="2.5" y="5" width="19" height="14" rx="2" /><path d="M2.5 10h19M6 15h4" /></svg>
   ),

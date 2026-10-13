@@ -1,9 +1,12 @@
+import Link from "next/link";
 import type { ReactNode } from "react";
 import Device from "./Device";
 import { Icon, type IconName } from "./Icons";
 import { CheckList } from "./Sections";
 import { shots, type Shot } from "@/lib/shots";
-import { emailLink, site, whatsappLink } from "@/lib/site";
+import { emailLink, site, systems, whatsappLink, type SystemKey } from "@/lib/site";
+
+type System = (typeof systems)[number];
 
 /* ---------- Picture compositions ---------- */
 
@@ -16,14 +19,16 @@ const sizesFor: Record<Shot["kind"], string> = {
 };
 
 /** A large screen with a phone overlapping its corner. */
-export function Combo({ main, phone, side = "right", priority, badge }: { main: Shot; phone?: Shot; side?: "left" | "right"; priority?: boolean; badge?: ReactNode }) {
+export function Combo({
+  main, phone, side = "right", priority, badge, zoom = true, glow = true,
+}: { main: Shot; phone?: Shot; side?: "left" | "right"; priority?: boolean; badge?: ReactNode; zoom?: boolean; glow?: boolean }) {
   return (
     <div className={`relative ${phone ? "pb-10 sm:pb-12" : ""}`}>
-      <div className="absolute -inset-8 -z-10 rounded-[3rem] bg-brand-gradient opacity-[0.13] blur-3xl" aria-hidden="true" />
-      <Device shot={main} sizes={sizesFor[main.kind]} priority={priority} className={phone ? (side === "right" ? "mr-[8%]" : "ml-[8%]") : ""} />
+      {glow && <div className="absolute -inset-8 -z-10 rounded-[3rem] bg-brand-gradient opacity-[0.13] blur-3xl" aria-hidden="true" />}
+      <Device shot={main} sizes={sizesFor[main.kind]} priority={priority} zoom={zoom} className={phone ? (side === "right" ? "mr-[8%]" : "ml-[8%]") : ""} />
       {phone && (
         <div className={`absolute bottom-0 w-[27%] max-w-[13rem] ${side === "right" ? "right-0" : "left-0"}`}>
-          <Device shot={phone} sizes={sizesFor.phone} priority={priority} />
+          <Device shot={phone} sizes={sizesFor.phone} priority={priority} zoom={zoom} />
         </div>
       )}
       {badge && <div className="absolute -top-4 left-2 sm:-left-4">{badge}</div>}
@@ -71,82 +76,68 @@ export function FloatBadge({ icon, children, tone = "brand" }: { icon: IconName;
   );
 }
 
-/* ---------- "See it live" gallery ---------- */
+/* ---------- Business types ---------- */
 
-type GalleryItem = { shot: Shot; title: string; text: string; tag: string; wide?: boolean };
-
-const stagePos: Record<Shot["kind"], string> = {
-  browser: "absolute inset-x-5 top-7 sm:inset-x-8 sm:top-8",
-  tv: "absolute inset-x-5 top-1/2 mx-auto max-w-[33rem] -translate-y-1/2 sm:inset-x-8",
-  phone: "absolute top-7 left-1/2 w-[46%] max-w-[12.5rem] -translate-x-1/2 sm:top-8",
-  tablet: "absolute inset-x-5 top-1/2 mx-auto max-w-[28rem] -translate-y-1/2 sm:inset-x-7",
-  paper: "absolute inset-x-0 top-1/2 mx-auto max-w-[36rem] -translate-y-1/2 scale-110",
-};
-
-function stageSizes(item: GalleryItem) {
-  if (item.shot.kind === "phone") return "(min-width: 1024px) 200px, (min-width: 640px) 22vw, 40vw";
-  if (item.shot.kind === "tablet" || item.shot.kind === "tv") return "(min-width: 1024px) 528px, (min-width: 640px) 60vw, 78vw";
-  return item.wide ? "(min-width: 1024px) 740px, (min-width: 640px) 88vw, 78vw" : "(min-width: 1024px) 340px, (min-width: 640px) 44vw, 78vw";
-}
-
-export function Gallery({ items, cta = true }: { items: GalleryItem[]; cta?: boolean }) {
+/** Tappable card for one business type: its iPad and phone screens, name and a one-line summary. */
+export function SystemCard({ system, tablet, phone }: { system: System; tablet: Shot; phone: Shot }) {
+  const I = Icon[system.icon];
   return (
-    <>
-      <ul className="no-scrollbar -mx-4 mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 lg:grid-cols-3">
-        {items.map((it) => (
-          <li key={it.shot.file} className={`w-[84%] shrink-0 snap-center sm:w-auto ${it.wide ? "sm:col-span-2" : ""}`}>
-            <figure className="h-full">
-              <div className="relative h-72 overflow-hidden rounded-3xl bg-gradient-to-br from-brand-50 via-white to-cyan-50 ring-1 ring-slate-200/80 sm:h-80 lg:h-[22rem]">
-                <div className="bg-grid absolute inset-0 opacity-60" aria-hidden="true" />
-                <Device shot={it.shot} sizes={stageSizes(it)} className={stagePos[it.shot.kind]} />
-              </div>
-              <figcaption className="mt-4 px-1">
-                <span className="inline-block rounded-full bg-brand-50 px-2.5 py-0.5 text-[11px] font-bold tracking-wide text-brand-700 uppercase ring-1 ring-brand-100">
-                  {it.tag}
-                </span>
-                <h3 className="mt-2 text-lg font-bold text-slate-900">{it.title}</h3>
-                <p className="mt-1 text-sm text-slate-600">{it.text}</p>
-              </figcaption>
-            </figure>
-          </li>
-        ))}
-        {cta && (
-          <li className="w-[84%] shrink-0 snap-center sm:col-span-2 sm:w-auto lg:col-span-3">
-            <div className="relative flex h-72 flex-col justify-center overflow-hidden rounded-3xl bg-brand-gradient p-7 text-white sm:h-auto sm:p-10">
-              <div className="bg-grid absolute inset-0 opacity-25" aria-hidden="true" />
-              <div className="relative lg:flex lg:items-center lg:justify-between lg:gap-10">
-                <div>
-                  <p className="text-sm font-bold tracking-wide text-white/80 uppercase">Free demo</p>
-                  <h3 className="mt-2 text-2xl font-extrabold tracking-tight sm:text-3xl">Want to see it with your own data?</h3>
-                  <p className="mt-2 text-white/90">We will show you the system live, for free.</p>
-                </div>
-                <div className="mt-6 flex shrink-0 flex-col gap-3 sm:flex-row lg:mt-0">
-                  <a href={whatsappLink("Hi Techub, I'd like a free live demo.")} target="_blank" rel="noopener"
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-brand-800 shadow-lg hover:bg-brand-50">
-                    <Icon.Whatsapp className="h-5 w-5 text-whatsapp" /> Book on WhatsApp
-                  </a>
-                  <a href={emailLink("Free demo request")}
-                    className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold text-white ring-1 ring-white/50 hover:bg-white/10">
-                    <Icon.Mail className="h-5 w-5" /> Email us
-                  </a>
-                </div>
-              </div>
-            </div>
-          </li>
-        )}
-      </ul>
-      <p className="mt-4 text-center text-xs font-medium text-slate-500 sm:hidden">Swipe for more · Tap a picture to enlarge</p>
-      <p className="mt-8 hidden text-center text-sm text-slate-500 sm:block">Click any picture to enlarge it.</p>
-    </>
+    <Link
+      href={system.href}
+      className="group card block overflow-hidden transition hover:-translate-y-1 hover:shadow-xl hover:ring-brand-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-500"
+    >
+      <div className="relative overflow-hidden bg-gradient-to-br from-brand-50 via-white to-cyan-50 px-6 pt-7 pb-5 sm:px-9 sm:pt-9 sm:pb-7">
+        <div className="bg-grid absolute inset-0 opacity-60" aria-hidden="true" />
+        <div className="relative transition duration-300 group-hover:scale-[1.02]">
+          <Combo main={tablet} phone={phone} zoom={false} glow={false} />
+        </div>
+      </div>
+      <div className="flex items-center gap-4 p-5 sm:p-6">
+        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand-gradient text-white shadow-lg shadow-brand-500/30">
+          <I className="h-6 w-6" />
+        </span>
+        <span className="min-w-0 flex-1">
+          <span className="block text-xl font-extrabold text-slate-900">{system.label}</span>
+          <span className="mt-0.5 block text-sm text-slate-600">{system.blurb}</span>
+        </span>
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-600 transition group-hover:bg-brand-600 group-hover:text-white" aria-hidden="true">
+          <Icon.Arrow className="h-5 w-5" />
+        </span>
+      </div>
+    </Link>
   );
 }
 
-export const homeGallery: GalleryItem[] = [
-  { shot: shots.queueTv, wide: true, tag: "Clinic", title: "Queue number calling", text: "Patients see and hear their number on the TV. No crowding at the counter." },
-  { shot: shots.whatsappSpa, tag: "WhatsApp", title: "Automatic WhatsApp reminders", text: "Confirm and remind every booking. Fewer no-shows." },
-  { shot: shots.printouts, tag: "Printing", title: "Receipts, MC & labels", text: "Prints to thermal, label and A4 printers." },
-  { shot: shots.bodyChart, wide: true, tag: "Hand drawing", title: "Draw & sign on a tablet", text: "Body charts, treatment notes and patient e-signatures." },
-];
+/** Links to the other business types, shown near the end of each system page. */
+export function OtherSystems({ current }: { current: SystemKey }) {
+  return (
+    <section aria-labelledby="other-systems" className="pb-4">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <h2 id="other-systems" className="text-center text-sm font-bold tracking-wide text-slate-500 uppercase">
+          Also available for
+        </h2>
+        <ul className="mx-auto mt-5 grid max-w-5xl gap-3 sm:grid-cols-3">
+          {systems
+            .filter((s) => s.key !== current)
+            .map((s) => {
+              const I = Icon[s.icon];
+              return (
+                <li key={s.key}>
+                  <Link href={s.href} className="card group flex items-center gap-3 p-4 transition hover:-translate-y-0.5 hover:ring-brand-200">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600 ring-1 ring-brand-100">
+                      <I className="h-5 w-5" />
+                    </span>
+                    <span className="min-w-0 flex-1 font-bold text-slate-900">{s.label}</span>
+                    <Icon.Arrow className="h-4 w-4 text-brand-600 transition group-hover:translate-x-0.5" />
+                  </Link>
+                </li>
+              );
+            })}
+        </ul>
+      </div>
+    </section>
+  );
+}
 
 /* ---------- Image + short text rows ---------- */
 
@@ -197,7 +188,7 @@ export function FeatureTiles({ items }: { items: { icon: IconName; title: string
 
 /* ---------- Contact ---------- */
 
-export function ContactSection({ title, phoneShot = shots.whatsappClinic }: { title?: string; phoneShot?: Shot }) {
+export function ContactSection({ title, phoneShot = shots.whatsappSalon }: { title?: string; phoneShot?: Shot }) {
   return (
     <section id="contact" className="py-20 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

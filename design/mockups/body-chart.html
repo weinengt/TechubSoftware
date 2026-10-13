@@ -5,6 +5,8 @@
   .tab { width: 100%; height: 100%; display: flex; flex-direction: column; background: #f4f7fb; }
   .tb { height: 60px; background: #fff; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 12px; padding: 0 16px; }
   .tb h1 { font-size: 16px; font-weight: 800; } .tb .pt { font-size: 11.5px; color: var(--muted); }
+  .biz { display: inline-flex; align-items: center; gap: 7px; margin-left: 4px; padding: 4px 11px 4px 4px; border-radius: 99px; background: #f1f5f9; font-size: 11.5px; font-weight: 650; color: var(--ink2); white-space: nowrap; }
+  .biz img { width: 22px; height: 22px; border-radius: 7px; }
   .tools { margin-left: auto; display: flex; align-items: center; gap: 6px; background: #f1f5f9; border-radius: 12px; padding: 5px; }
   .tool { width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center; color: var(--ink2); } .tool.on { background: #fff; color: var(--brand); box-shadow: 0 1px 3px rgba(0,0,0,.12); }
   .tool svg { width: 18px; height: 18px; }
@@ -22,18 +24,34 @@
   .sigbox .hand { position: absolute; left: 22px; top: 22px; font-size: 44px; color: #1e3a8a; transform: rotate(-4deg); font-weight: 700; }
   .sigbox .ln { position: absolute; left: 16px; right: 16px; bottom: 30px; border-top: 1px solid #cbd5e1; }
   .sigbox small { position: absolute; left: 16px; bottom: 9px; font-size: 10.5px; color: var(--muted); }
-  .save { height: 44px; border-radius: 12px; background: linear-gradient(135deg, #0396d9, #0287c4); color: #fff; font-weight: 750; font-size: 13.5px; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: auto; }
+  .save { height: 44px; border-radius: 12px; background: linear-gradient(135deg, #0396d9, #0287c4); color: #fff; font-weight: 750; font-size: 13.5px; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: auto; flex-shrink: 0; }
   .save svg { width: 18px; height: 18px; }
+  /* Beauty: skin analysis meters and before / after photos */
+  .sk { display: flex; align-items: center; gap: 10px; font-size: 12.5px; color: var(--ink2); font-weight: 600; padding: 4px 0; }
+  .sk .seg { margin-left: auto; display: flex; gap: 3px; }
+  .sk .seg i { width: 17px; height: 7px; border-radius: 4px; background: #e2e8f0; }
+  .sk b { width: 64px; text-align: right; font-size: 11.5px; font-weight: 700; }
+  .ba { display: flex; gap: 10px; margin-top: 10px; }
+  .ba > div { flex: 1; min-width: 0; }
+  .ba svg { display: block; width: 100%; height: auto; border-radius: 10px; }
+  .ba .cap { font-size: 10.5px; font-weight: 600; color: #64748b; margin-top: 5px; }
+  .ba .cap b { color: var(--ink); font-weight: 700; }
+  /* Spa: session details */
+  .kv { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+  .kv div { background: #f8fafc; border: 1px solid #eef2f7; border-radius: 10px; padding: 8px 10px; }
+  .kv span { display: block; font-size: 10.5px; color: var(--muted); font-weight: 600; }
+  .kv b { display: block; font-size: 13px; font-weight: 700; margin-top: 1px; }
 </style></head>
 <body>
 <div class="tab">
   <div class="tb">
     <i data-i="chevL" style="width:22px;height:22px"></i>
     <div><h1 id="title"></h1><div class="pt" id="pt"></div></div>
+    <span class="biz"><img src="icon.png" alt=""><span id="biz"></span></span>
     <div class="tools">
       <span class="tool on"><i data-i="pen"></i></span><span class="tool"><i data-i="eraser"></i></span><span class="tool"><i data-i="undo"></i></span>
       <span class="sep"></span>
-      <span class="sw on" id="sw1" style="background:#ef4444"></span><span class="sw" style="background:#2563eb"></span><span class="sw" style="background:#14b8a6"></span><span class="sw" style="background:#0f172a"></span>
+      <span class="sw on" style="background:#ef4444"></span><span class="sw" id="sw2" style="background:#2563eb"></span><span class="sw" style="background:#14b8a6"></span><span class="sw" style="background:#0f172a"></span>
       <span class="sep"></span>
       <span class="tool"><i data-i="cam"></i></span>
     </div>
@@ -41,20 +59,24 @@
   <div class="body">
     <div class="canvas" id="canvas">
       <svg viewBox="0 0 640 600" preserveAspectRatio="xMidYMid meet" id="art"></svg>
-      <span class="lbl" style="left:22.5%">FRONT</span><span class="lbl" style="left:69%">BACK</span>
     </div>
-    <div class="panel">
-      <div class="card notes"><h3><i data-i="file" style="color:#0396d9"></i><span id="nt"></span></h3><p id="np"></p><div class="tags" id="tags"></div></div>
-      <div class="card"><h3><i data-i="pen" style="color:#0396d9"></i><span id="ct"></span></h3>
-        <div class="sigbox"><span class="hand" id="sig"></span><span class="ln"></span><small id="sd"></small></div>
-      </div>
-      <div class="card"><h3><i data-i="cam" style="color:#0396d9"></i>Photos &amp; files</h3><div style="display:flex;gap:8px;margin-top:10px" id="att"></div></div>
-      <div class="save"><i data-i="check"></i>Save to record</div>
-    </div>
+    <div class="panel" id="panel"></div>
   </div>
 </div>
 <script>
-  const V = new URLSearchParams(location.search).get("v") === "spa" ? "spa" : "clinic";
+  const q = new URLSearchParams(location.search).get("v");
+  const V = ["spa", "beauty"].includes(q) ? q : "clinic";
+  const $ = (id) => document.getElementById(id);
+  const CAM = '<svg class="i" viewBox="0 0 24 24" style="width:20px;height:20px"><path d="M3 8a2 2 0 012-2h2l2-2h6l2 2h2a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><circle cx="12" cy="13" r="3.5"/></svg>';
+  const pen = (x, y, r = -42) => `<g transform="translate(${x} ${y}) rotate(${r})"><path d="M0 0 L-4 11 L4 11 Z" fill="#64748b"/><rect x="-5" y="10" width="10" height="150" rx="5" fill="#fff" stroke="#cbd5e1" stroke-width="1.2"/><rect x="-5" y="128" width="10" height="5" fill="#0396d9"/></g>`;
+  const card = (icon, title, inner, cls = "") => `<div class="card ${cls}"><h3><i data-i="${icon}" style="color:#0396d9"></i>${title}</h3>${inner}</div>`;
+  const sig = (name) => `<div class="sigbox"><span class="hand">${name}</span><span class="ln"></span><small>Signed by ${name} · 13 Oct 2026, 10:42 AM</small></div>`;
+  const chips = (t) => `<div class="tags">${t.map(([c, x]) => `<span class="chip ${c}">${x}</span>`).join("")}</div>`;
+  const thumbs = (t) => `<div style="display:flex;gap:8px;margin-top:10px">${t.map(([x, bg]) => `<div style="flex:1"><div style="height:58px;border-radius:10px;background:${bg};display:grid;place-items:center;color:rgba(15,23,42,.35)">${CAM}</div><div style="font-size:10.5px;color:#64748b;margin-top:4px;font-weight:600">${x}</div></div>`).join("")}</div>`;
+  const skin = (rows) => rows.map(([k, n, c, t]) => `<div class="sk">${k}<span class="seg">${[1, 2, 3, 4, 5].map((i) => `<i style="${i <= n ? `background:${c}` : ""}"></i>`).join("")}</span><b style="color:${c}">${t}</b></div>`).join("");
+  const label = (t, x) => `<span class="lbl" style="left:${x / 6.4}%;transform:translateX(-50%)">${t}</span>`; // x in SVG units (0-640)
+
+  // ---------- Clinic body chart and spa treatment map: front and back figures ----------
   const fig = `
     <path d="M-50 80 C-60 110 -66 150 -70 190 C-72 210 -74 225 -73 240 L-60 242 C-58 225 -56 205 -54 190 C-50 160 -46 130 -44 110 Z"/>
     <path d="M50 80 C60 110 66 150 70 190 C72 210 74 225 73 240 L60 242 C58 225 56 205 54 190 C50 160 46 130 44 110 Z"/>
@@ -65,43 +87,123 @@
     <path d="M-14 60 C-30 62 -46 66 -50 82 L-44 150 C-42 168 -41 178 -41 192 L41 192 C41 178 42 168 44 150 L50 82 C46 66 30 62 14 60 Z"/>
     <rect x="-9" y="46" width="18" height="18" rx="4"/>
     <ellipse cx="0" cy="26" rx="22" ry="26"/>`;
-  const people = { clinic: ["Body Chart", "Tan Mei Ling · P-001042 · 13 Oct 2026", "Tan Mei Ling", "Clinical notes", "Patient consent",
-      "Fell on stairs 2 days ago. Pain and mild swelling over right knee, worse when climbing stairs. Lower back pain 6/10. Advised rest, ice and X-ray if no improvement in 1 week.",
-      [["r", "R knee swelling"], ["b", "Lower back pain"], ["s", "X-ray if needed"]]],
-    spa: ["Treatment Map", "Priya Devi · Gold member · 13 Oct 2026", "Priya Devi", "Therapist notes", "Customer consent",
-      "Tight shoulders and upper back from desk work. Deep tissue on marked area, medium pressure elsewhere. Avoid right forearm (mild sunburn). Lavender oil.",
-      [["t", "Deep tissue"], ["b", "Medium pressure"], ["r", "Avoid R forearm"]]] }[V];
-  const [title, pt, name, nt, ct, np, tags] = people;
-  document.getElementById("title").textContent = title; document.getElementById("pt").textContent = pt;
-  document.getElementById("nt").textContent = nt; document.getElementById("ct").textContent = ct;
-  document.getElementById("np").textContent = np; document.getElementById("sig").textContent = name;
-  document.getElementById("sd").textContent = `Signed by ${name} · 13 Oct 2026, 10:42 AM`;
-  document.getElementById("tags").innerHTML = tags.map(([c, t]) => `<span class="chip ${c}">${t}</span>`).join("");
-  const pen = (x, y) => `<g transform="translate(${x} ${y}) rotate(-42)"><path d="M0 0 L-4 11 L4 11 Z" fill="#64748b"/><rect x="-5" y="10" width="10" height="150" rx="5" fill="#fff" stroke="#cbd5e1" stroke-width="1.2"/><rect x="-5" y="128" width="10" height="5" fill="#0396d9"/></g>`;
-  const thumbs = V === "clinic" ? [["Knee photo", "linear-gradient(135deg,#fde2d4,#f9b9a0)"], ["X-ray form", "linear-gradient(135deg,#e2e8f0,#cbd5e1)"], ["Referral", "linear-gradient(135deg,#dbeafe,#bfdbfe)"]]
-    : [["Before", "linear-gradient(135deg,#fde2d4,#f6c1a6)"], ["After", "linear-gradient(135deg,#fdeee4,#f9d6c2)"], ["Consent", "linear-gradient(135deg,#dbeafe,#bfdbfe)"]];
-  document.getElementById("att").innerHTML = thumbs.map(([t, bg]) => `<div style="flex:1"><div style="height:58px;border-radius:10px;background:${bg};display:grid;place-items:center;color:rgba(15,23,42,.35)"><svg class="i" viewBox="0 0 24 24" style="width:20px;height:20px"><path d="M3 8a2 2 0 012-2h2l2-2h6l2 2h2a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><circle cx="12" cy="13" r="3.5"/></svg></div><div style="font-size:10.5px;color:#64748b;margin-top:4px;font-weight:600">${t}</div></div>`).join("");
   const S = 1.32;
-  const front = V === "clinic" ? `
+  const bodies = (front, back) => {
+    const g = (x, extra, ann) => `<g transform="translate(${x} 40) scale(${S})"><g fill="#f8fafc" stroke="#94a3b8" stroke-width="1.6" stroke-linejoin="round">${fig}${extra}</g>${ann}</g>`;
+    return g(178, "", front) + g(462, '<path d="M0 66 L0 186" stroke-dasharray="4 5" fill="none"/>', back);
+  };
+
+  // ---------- Beauty face chart: one front view of the face ----------
+  const FACE = "M320 78 C395 78 448 128 450 205 C452 255 448 300 438 335 C426 378 398 418 366 440 C350 451 336 456 320 456 C304 456 290 451 274 440 C242 418 214 378 202 335 C192 300 188 255 190 205 C192 128 245 78 320 78 Z";
+  const faceLine = `
+    <defs><clipPath id="head"><path d="${FACE}"/></clipPath></defs>
+    <g fill="none"><path d="M270 430 C270 470 268 500 258 524 C240 540 200 548 168 560"/><path d="M370 430 C370 470 372 500 382 524 C400 540 440 548 472 560"/></g>
+    <path d="M444 258 C462 248 476 260 474 282 C472 304 462 320 442 322"/>
+    <path d="M196 258 C178 248 164 260 166 282 C168 304 178 320 198 322"/>
+    <path d="${FACE}"/>
+    <path d="M140 40 H500 V232 H448 C440 176 392 140 320 142 C248 140 200 176 192 232 H140 Z" clip-path="url(#head)" fill="#eef2f7" stroke="none"/>
+    <g fill="none">
+      <path d="M318 84 C286 92 246 116 222 162" stroke="#cbd5e1" stroke-width="1.4"/><path d="M322 84 C354 92 394 116 418 162" stroke="#cbd5e1" stroke-width="1.4"/>
+      <path d="M196 214 C204 158 250 120 320 122 C390 120 436 158 444 214 L448 232 C440 176 392 140 320 142 C248 140 200 176 192 232 Z" fill="#fbe7f1" clip-path="url(#head)"/>
+      <path d="${FACE}"/>
+      <path d="M458 270 C465 280 464 296 455 305"/><path d="M182 270 C175 280 176 296 185 305"/>
+      <path d="M236 240 C252 226 278 224 298 232" stroke-width="2.6" stroke-linecap="round"/><path d="M404 240 C388 226 362 224 342 232" stroke-width="2.6" stroke-linecap="round"/>
+      <g stroke-linecap="round">
+        <path d="M242 262 C254 273 282 273 294 262" stroke-width="2"/><path d="M398 262 C386 273 358 273 346 262" stroke-width="2"/>
+        <path d="M249 268 L245 275 M258 271 L256 278 M268 272 L268 279 M278 271 L280 278 M287 268 L291 275"/>
+        <path d="M391 268 L395 275 M382 271 L384 278 M372 272 L372 279 M362 271 L360 278 M353 268 L349 275"/>
+        <path d="M247 254 C259 247 279 247 289 254" stroke="#cbd5e1"/><path d="M393 254 C381 247 361 247 351 254" stroke="#cbd5e1"/>
+      </g>
+      <path d="M336 274 C338 296 342 314 350 330"/>
+      <path d="M296 332 C288 340 294 350 306 348 C314 354 326 354 334 348 C346 350 352 340 344 332"/>
+      <path d="M282 388 C296 380 306 374 314 378 C318 380 322 380 326 378 C334 374 344 380 358 388 C344 404 296 404 282 388 Z" fill="#fdf2f8"/>
+      <path d="M282 388 C300 393 340 393 358 388"/>
+    </g>`;
+  const dots = (pts, fill) => pts.map(([x, y, r]) => `<circle cx="${x}" cy="${y}" r="${r}" fill="${fill}"/>`).join("");
+  const pimple = (x, y) => `<circle cx="${x}" cy="${y}" r="6" fill="rgba(239,68,68,.16)" stroke="#ef4444" stroke-width="2.2"/><circle cx="${x}" cy="${y}" r="1.8" fill="#ef4444"/>`;
+  const BR = "#b45309", RD = "#ef4444", TL = "#0f766e";
+  const hand = (x, y, t, c, s = 23, r = -5) => `<text x="${x}" y="${y}" class="hand" font-size="${s}" fill="${c}" font-weight="700" transform="rotate(${r} ${x} ${y})">${t}</text>`;
+  const arrow = (d, head, c) => `<path d="${d}" stroke="${c}" stroke-width="2.2" fill="none" stroke-linecap="round"/><path d="${head}" stroke="${c}" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`;
+  const faceMarks = `
+    <path d="M258 163 C294 158 348 158 384 164 C391 178 390 200 385 214 C372 217 360 216 346 218 C343 254 346 302 342 340 C330 346 310 346 298 340 C294 302 297 254 294 218 C280 216 268 217 255 214 C250 198 250 178 258 163 Z"
+      fill="rgba(20,184,166,.13)" stroke="#14b8a6" stroke-width="2.2" stroke-dasharray="7 6" stroke-linecap="round"/>
+    ${pimple(300, 186)}${pimple(326, 177)}${pimple(352, 190)}${pimple(330, 204)}
+    ${pimple(306, 430)}${pimple(332, 425)}${pimple(320, 443)}
+    ${dots([[238, 300, 4.2], [252, 292, 3], [256, 308, 4.8], [242, 318, 3.2], [268, 316, 2.6], [228, 312, 2.4], [262, 326, 3]], "rgba(180,83,9,.55)")}
+    ${dots([[386, 296, 3.4], [400, 306, 4.6], [384, 314, 2.8], [412, 318, 3], [396, 322, 3.6], [374, 306, 2.4]], "rgba(180,83,9,.5)")}
+    <path d="M220 290 C222 278 244 274 264 282 C280 290 282 316 270 330 C256 340 228 336 220 322 C216 312 216 300 222 290" fill="none" stroke="${BR}" stroke-width="2.2" stroke-linecap="round"/>
+    ${arrow("M152 302 C172 300 192 302 211 306", "M202 300 L212 306 L202 311", BR)}
+    ${hand(44, 292, "pigmentation", BR)}${hand(56, 318, "both cheeks", BR, 21)}
+    ${arrow("M154 176 C198 172 246 176 289 185", "M280 178 L290 185 L279 191", RD)}
+    ${hand(86, 168, "acne ×4", RD)}
+    ${arrow("M468 136 C446 140 414 152 392 166", "M395 157 L391 166 L401 168", TL)}
+    ${hand(470, 128, "oily T-zone", TL)}
+    ${arrow("M450 482 C418 480 372 456 345 440", "M355 436 L345 440 L351 448", RD)}
+    ${hand(454, 494, "chin: 3 active", RD, 22)}
+    ${hand(470, 330, "SPF 50 daily!", "#1e3a8a", 22, -4)}
+    ${pen(414, 320, -36)}`;
+  const face = `<g transform="translate(320 290) scale(1.06) translate(-320 -300)"><g fill="#f8fafc" stroke="#94a3b8" stroke-width="1.6" stroke-linejoin="round">${faceLine}</g>${faceMarks}</g>`;
+
+  // ---------- Before / after photos for the beauty variant (abstract, no real faces) ----------
+  const portrait = (id, spots, bg1, bg2) => `<svg viewBox="0 0 140 92"><defs><linearGradient id="${id}" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="${bg1}"/><stop offset="1" stop-color="${bg2}"/></linearGradient></defs>
+    <rect width="140" height="92" fill="url(#${id})"/>
+    <path d="M36 92 C40 76 54 70 70 70 C86 70 100 76 104 92 Z" fill="rgba(255,255,255,.5)"/>
+    <ellipse cx="70" cy="42" rx="23" ry="29" fill="rgba(255,255,255,.62)"/>
+    ${spots.map(([x, y, r, o]) => `<circle cx="${x}" cy="${y}" r="${r}" fill="rgba(146,64,14,${o})"/>`).join("")}</svg>`;
+  const before = [[58, 46, 2.4, .55], [62, 52, 1.8, .5], [55, 54, 1.6, .5], [82, 46, 2.2, .55], [79, 53, 1.8, .5], [86, 52, 1.5, .45], [66, 24, 1.6, .5], [74, 22, 1.4, .45]];
+  const after = [[58, 47, 1.6, .28], [82, 47, 1.5, .26], [70, 23, 1.2, .25]];
+
+  const X = {
+    clinic: {
+      title: "Body Chart", pt: "Tan Mei Ling · P-001042 · 13 Oct 2026", biz: "Demo Clinic",
+      art: bodies(`
       <path d="M-40 290 C-46 298 -46 316 -38 324 C-28 334 -10 332 -6 320 C-2 306 -10 290 -24 288 C-32 287 -40 292 -42 298" fill="rgba(239,68,68,.08)" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"/>
-      <path d="M-80 250 C-70 262 -60 272 -48 282" stroke="#ef4444" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M-55 282 L-48 283 L-50 276" stroke="#ef4444" stroke-width="2" fill="none" stroke-linecap="round"/>
-      <text x="-124" y="222" class="hand" font-size="21" fill="#ef4444" font-weight="700" transform="rotate(-6 -90 222)">swelling</text>
-      <text x="-112" y="242" class="hand" font-size="19" fill="#ef4444" font-weight="700" transform="rotate(-6 -90 242)">~3 cm</text>
-      ${pen(-8, 318)}` : `
+      <path d="M-84 340 C-74 334 -62 328 -50 322" stroke="#ef4444" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M-57 320 L-50 322 L-53 329" stroke="#ef4444" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <text x="-122" y="362" class="hand" font-size="21" fill="#ef4444" font-weight="700" transform="rotate(-6 -90 362)">swelling</text>
+      <text x="-112" y="382" class="hand" font-size="19" fill="#ef4444" font-weight="700" transform="rotate(-6 -90 382)">~3 cm</text>
+      ${pen(-8, 318)}`, `
+      <g stroke="#2563eb" stroke-width="2" stroke-linecap="round"><path d="M-22 170 L0 154"/><path d="M-20 178 L8 158"/><path d="M-16 185 L16 162"/><path d="M-8 189 L20 169"/><path d="M2 190 L22 177"/></g>
+      <path d="M80 142 C62 148 44 156 26 166" stroke="#2563eb" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M33 160 L26 166 L34 169" stroke="#2563eb" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <text x="82" y="126" class="hand" font-size="20" fill="#2563eb" font-weight="700" transform="rotate(-5 82 126)">pain</text>
+      <text x="84" y="148" class="hand" font-size="20" fill="#2563eb" font-weight="700" transform="rotate(-5 84 148)">6/10</text>`),
+      labels: label("FRONT", 178) + label("BACK", 462),
+      panel: card("file", "Clinical notes", `<p>Fell on stairs 2 days ago. Pain and mild swelling over right knee, worse when climbing stairs. Lower back pain 6/10. Advised rest, ice and X-ray if no improvement in 1 week.</p>${chips([["r", "R knee swelling"], ["b", "Lower back pain"], ["s", "X-ray if needed"]])}`, "notes")
+        + card("pen", "Patient consent", sig("Tan Mei Ling"))
+        + card("cam", "Photos &amp; files", thumbs([["Knee photo", "linear-gradient(135deg,#fde2d4,#f9b9a0)"], ["X-ray form", "linear-gradient(135deg,#e2e8f0,#cbd5e1)"], ["Referral", "linear-gradient(135deg,#dbeafe,#bfdbfe)"]])),
+    },
+    spa: {
+      title: "Treatment Map", pt: "Priya Devi · Gold member · 13 Oct 2026", biz: "Demo Day Spa",
+      art: bodies(`
       <g stroke="#ef4444" stroke-width="2.4" stroke-linecap="round"><path d="M-70 196 L-54 214"/><path d="M-54 196 L-70 214"/></g>
       <path d="M-74 220 C-84 232 -92 238 -100 242" stroke="#ef4444" stroke-width="2" fill="none" stroke-linecap="round"/>
       <text x="-124" y="262" class="hand" font-size="20" fill="#ef4444" font-weight="700" transform="rotate(-6 -90 262)">avoid:</text>
-      <text x="-124" y="282" class="hand" font-size="20" fill="#ef4444" font-weight="700" transform="rotate(-6 -90 282)">sunburn</text>`;
-  const back = V === "clinic" ? `
-      <g stroke="#2563eb" stroke-width="2" stroke-linecap="round"><path d="M-22 170 L0 154"/><path d="M-20 178 L8 158"/><path d="M-16 185 L16 162"/><path d="M-8 189 L20 169"/><path d="M2 190 L22 177"/></g>
-      <path d="M26 160 C36 150 44 140 52 132" stroke="#2563eb" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M46 131 L53 131 L52 138" stroke="#2563eb" stroke-width="2" fill="none" stroke-linecap="round"/>
-      <text x="40" y="122" class="hand" font-size="20" fill="#2563eb" font-weight="700" transform="rotate(-5 80 122)">pain 6/10</text>` : `
+      <text x="-124" y="282" class="hand" font-size="20" fill="#ef4444" font-weight="700" transform="rotate(-6 -90 282)">sunburn</text>`, `
       <path d="M-52 70 C-30 56 30 56 52 70 C58 90 56 108 40 116 C14 122 -14 122 -40 116 C-56 108 -58 90 -52 70 Z" fill="rgba(20,184,166,.22)" stroke="#14b8a6" stroke-width="2.4" stroke-linecap="round"/>
       <path d="M50 66 C58 56 64 48 72 42" stroke="#14b8a6" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M66 40 L72 42 L70 48" stroke="#14b8a6" stroke-width="2" fill="none" stroke-linecap="round"/>
       <text x="30" y="30" class="hand" font-size="20" fill="#0f766e" font-weight="700" transform="rotate(-5 70 30)">deep tissue</text>
-      ${pen(40, 112)}`;
-  const g = (x, extra, ann) => `<g transform="translate(${x} 40) scale(${S})"><g fill="#f8fafc" stroke="#94a3b8" stroke-width="1.6" stroke-linejoin="round">${fig}${extra}</g>${ann}</g>`;
-  document.getElementById("art").innerHTML = g(165, "", front) + g(468, '<path d="M0 66 L0 186" stroke-dasharray="4 5" fill="none"/>', back);
+      ${pen(40, 112)}`),
+      labels: label("FRONT", 178) + label("BACK", 462),
+      panel: card("file", "Therapist notes", `<p>Tight shoulders and upper back from desk work. Deep tissue on marked area, medium pressure elsewhere. Avoid right forearm (mild sunburn).</p>${chips([["t", "Deep tissue"], ["b", "Medium pressure"], ["r", "Avoid R forearm"]])}`, "notes")
+        + card("pen", "Customer consent", sig("Priya Devi"))
+        + card("leaf", "Session details", `<div class="kv"><div><span>Treatment</span><b>Deep Tissue</b></div><div><span>Duration</span><b>90 min</b></div><div><span>Oil</span><b>Lavender</b></div><div><span>Room</span><b>Room 3</b></div><div><span>Therapist</span><b>Aisyah</b></div><div><span>Next visit</span><b>27 Oct</b></div></div>`),
+    },
+    beauty: {
+      title: "Face Chart", pt: "Farah Hanim · Facial package 4/6 · 13 Oct 2026", biz: "Demo Beauty Centre",
+      art: face,
+      labels: label("FRONT", 320),
+      panel: card("face", "Skin analysis", `<div style="margin-top:8px">${skin([["Oiliness · T-zone", 4, "#f59e0b", "High"], ["Hydration", 2, "#0396d9", "Low"], ["Pigmentation", 3, "#b45309", "Moderate"], ["Acne", 2, "#ef4444", "Mild"]])}</div>`
+          + chips([["t", "Combination skin"], ["v", "Brightening serum"], ["r", "Gentle extraction"]]))
+        + card("pen", "Customer consent", sig("Farah Hanim"))
+        + `<div class="card"><h3><i data-i="image" style="color:#0396d9"></i>Before &amp; after<span class="chip p" style="margin-left:auto">Session 4 of 6</span></h3>
+            <div class="ba"><div>${portrait("gb", before, "#f3d3c0", "#e7b79c")}<div class="cap"><span><b>Before</b> · 15 Sep</span></div></div><div>${portrait("ga", after, "#f8e3d6", "#f0cdb7")}<div class="cap"><span><b>After</b> · today</span></div></div></div></div>`,
+    },
+  }[V];
+
+  $("title").textContent = X.title; $("pt").textContent = X.pt; $("biz").textContent = X.biz;
+  $("art").innerHTML = X.art;
+  $("canvas").insertAdjacentHTML("beforeend", X.labels);
+  $("panel").innerHTML = X.panel + `<div class="save"><i data-i="check"></i>Save to record</div>`;
+  if (V === "beauty") $("sw2").style.background = "#b45309";
 </script>
 <script src="icons.js"></script>
 </body></html>

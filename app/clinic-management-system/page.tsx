@@ -19,13 +19,14 @@ export const metadata: Metadata = {
 };
 
 const c: ProductContent = {
+  key: "clinic",
   path: "/clinic-management-system/",
   name: "Clinic Management System",
   category: "Clinic management, EMR and patient queue",
   description,
   eyebrow: "Clinic Management System",
   heading: <>A smarter <span className="text-gradient">clinic system</span> for faster, safer care</>,
-  intro: "Registration, queue, consultation, prescriptions, dispensing, billing and stock. All in one place.",
+  intro: "Registration, queue, consultation, prescriptions, dispensing, billing and stock. On iPad, phone and PC.",
   hero: { main: shots.clinicDashboard, phone: shots.whatsappClinic, badge: <FloatBadge icon="Shield">{site.uptime} uptime</FloatBadge> },
   whoFor: ["GP clinics", "Dental clinics", "Specialist clinics", "Aesthetic clinics", "Physiotherapy", "TCM", "Multi-branch groups"],
   spotlights: [
@@ -57,13 +58,13 @@ const c: ProductContent = {
       eyebrow: "AI stock control",
       title: "Scan the delivery note. Stock updates itself.",
       points: ["AI reads items, batch & expiry", "Stock deducts when you dispense", "Every movement logged", "Low-stock & expiry alerts"],
-      visual: { main: shots.inventory, phone: shots.scanClinic },
+      visual: { main: shots.clinicStock, phone: shots.scanClinic },
     },
     {
       eyebrow: "Permission control",
       title: "The right access for every staff",
       points: ["Doctor, nurse, pharmacy & cashier roles", "Manager approval for discounts", "Branch access control", "Full audit trail"],
-      visual: { main: shots.permissions },
+      visual: { main: shots.clinicPermissions },
     },
   ],
   modules: [

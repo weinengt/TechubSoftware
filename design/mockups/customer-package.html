@@ -1,32 +1,68 @@
 <!doctype html>
 <html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css"><link rel="stylesheet" href="phone.css">
 <style>
+  /* Customer profile in the business app. ?v=spa (default) | salon | beauty */
   :root { --w: 360px; --h: 760px; }
-  .ph { width: 100%; height: 100%; display: flex; flex-direction: column; background: #f4f7fb; }
+  .ph { width: 100%; height: 100%; display: flex; flex-direction: column; background: #f4f7fb; position: relative; }
   .bar { display: flex; align-items: center; gap: 10px; padding: 4px 14px 8px; font-size: 16px; font-weight: 750; }
   .bar svg { width: 22px; height: 22px; } .bar .r { margin-left: auto; display: flex; gap: 14px; color: var(--ink2); }
   .scroll { flex: 1; overflow: hidden; padding: 0 14px; display: flex; flex-direction: column; gap: 12px; }
-  .prof { background: linear-gradient(135deg, #0050a0, #0396d9 60%, #00cfcb); color: #fff; border-radius: 18px; padding: 14px; position: relative; overflow: hidden; }
+  .prof { background: linear-gradient(135deg, #0050a0, #0396d9 60%, #00cfcb); color: #fff; border-radius: 18px; padding: 14px; position: relative; overflow: hidden; flex-shrink: 0; }
   .prof::after { content: ""; position: absolute; right: -36px; top: -36px; width: 130px; height: 130px; border-radius: 99px; background: rgba(255,255,255,.12); }
   .who { display: flex; gap: 12px; align-items: center; }
   .who .av { width: 50px; height: 50px; background: #fff; color: #0050a0; font-size: 16px; font-weight: 800; }
-  .who b { font-size: 17px; font-weight: 800; display: block; } .who small { font-size: 11.5px; opacity: .9; }
+  .who b { font-size: 17px; font-weight: 800; display: block; white-space: nowrap; } .who small { font-size: 11.5px; opacity: .9; }
   .gold { display: inline-flex; align-items: center; gap: 4px; background: #fde68a; color: #92400e; font-size: 10.5px; font-weight: 800; padding: 2px 8px; border-radius: 99px; margin-left: 6px; vertical-align: 2px; }
   .gold svg { width: 11px; height: 11px; fill: currentColor; }
   .st { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; position: relative; z-index: 1; }
-  .st div { background: rgba(255,255,255,.16); border-radius: 11px; padding: 7px 9px; } .st span { font-size: 10px; opacity: .85; display: block; } .st b { font-size: 14px; font-weight: 800; }
-  h4 { font-size: 13px; font-weight: 800; display: flex; align-items: center; } h4 span { margin-left: auto; font-size: 11.5px; color: var(--brand); font-weight: 650; }
-  .pk { background: #fff; border: 1px solid var(--line); border-radius: 15px; padding: 11px 12px; display: flex; gap: 12px; align-items: center; }
+  .st div { background: rgba(255,255,255,.16); border-radius: 11px; padding: 7px 9px; } .st span { font-size: 10px; opacity: .85; display: block; } .st b { font-size: 14px; font-weight: 800; white-space: nowrap; }
+  h4 { font-size: 13px; font-weight: 800; display: flex; align-items: center; margin-bottom: -4px; } h4 span { margin-left: auto; font-size: 11.5px; color: var(--brand); font-weight: 650; }
+  .box { background: #fff; border: 1px solid var(--line); border-radius: 15px; padding: 11px 12px; flex-shrink: 0; }
+  .pk { display: flex; gap: 12px; align-items: center; }
   .ring { width: 54px; height: 54px; position: relative; flex-shrink: 0; } .ring svg { width: 54px; height: 54px; transform: rotate(-90deg); }
   .ring b { position: absolute; inset: 0; display: grid; place-items: center; font-size: 14px; font-weight: 850; } .ring b small { font-size: 9px; color: var(--muted); font-weight: 600; display: block; text-align: center; margin-top: -3px; }
-  .pk .tx b { font-size: 13.5px; display: block; } .pk .tx small { font-size: 11px; color: var(--muted); display: block; margin-top: 1px; }
-  .pk .rd { margin-left: auto; font-size: 11.5px; font-weight: 700; color: #fff; background: var(--brand); border-radius: 9px; padding: 7px 10px; }
-  .ap { background: #fff; border: 1px solid var(--line); border-radius: 15px; padding: 11px 12px; display: flex; gap: 12px; align-items: center; }
+  .tx { min-width: 0; } .tx b { font-size: 13.5px; display: block; white-space: nowrap; } .tx small { font-size: 11px; color: var(--muted); display: block; margin-top: 1px; white-space: nowrap; }
+  .rd { margin-left: auto; font-size: 11.5px; font-weight: 700; color: #fff; background: var(--brand); border-radius: 9px; padding: 7px 10px; }
+  .ap { display: flex; gap: 12px; align-items: center; }
   .date { width: 50px; height: 54px; border-radius: 12px; background: var(--brand-50); color: #0050a0; text-align: center; padding-top: 6px; flex-shrink: 0; }
   .date b { font-size: 20px; font-weight: 850; display: block; line-height: 1.1; } .date span { font-size: 10px; font-weight: 700; letter-spacing: .06em; }
-  .ap .tx b { font-size: 13.5px; display: block; } .ap .tx small { font-size: 11px; color: var(--muted); display: block; margin: 1px 0 5px; }
-  .notes { background: #fff; border: 1px solid var(--line); border-radius: 15px; padding: 11px 12px; display: flex; flex-wrap: wrap; gap: 6px; }
-  .tabs { height: 62px; background: #fff; border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(5, 1fr); align-items: center; text-align: center; font-size: 10px; font-weight: 600; color: #94a3b8; }
+  .ap .tx small { margin: 1px 0 5px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip svg { width: 12px; height: 12px; }
+  /* Spa: pressure slider */
+  .pres { display: flex; align-items: center; gap: 10px; font-size: 11.5px; margin-bottom: 10px; }
+  .pres > span { color: var(--muted); font-weight: 600; width: 58px; }
+  .trk { flex: 1; height: 8px; border-radius: 9px; background: #e2e8f0; position: relative; }
+  .trk i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 9px; background: linear-gradient(90deg, #7dd3fc, #0396d9); }
+  .trk em { position: absolute; top: 50%; width: 18px; height: 18px; margin: -9px 0 0 -9px; border-radius: 99px; background: #fff; border: 3px solid #0396d9; box-shadow: 0 2px 6px rgba(3,150,217,.35); }
+  .trk u { position: absolute; top: 13px; font-size: 9.5px; color: var(--muted); text-decoration: none; font-weight: 600; }
+  .pres b { font-size: 12.5px; color: #036295; width: 52px; text-align: right; }
+  /* Two-up package tiles (beauty) */
+  .pk2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; flex-shrink: 0; }
+  .pk2 .box { display: flex; gap: 10px; align-items: center; padding: 10px; }
+  .pk2 .ring, .pk2 .ring svg { width: 48px; height: 48px; }
+  .pk2 .tx b { font-size: 12.5px; } .pk2 .tx small { font-size: 10.5px; }
+  /* Salon: colour formula and visit history */
+  .fm { display: flex; gap: 12px; align-items: center; }
+  .sw { width: 48px; height: 48px; border-radius: 13px; flex-shrink: 0; position: relative; overflow: hidden;
+    background: repeating-linear-gradient(100deg, rgba(255,255,255,.14) 0 2px, transparent 2px 6px), linear-gradient(160deg, #a89784, #85735f 55%, #6f5f4e); }
+  .fm .tx small:first-child { margin: 0 0 1px; font-weight: 600; }
+  .fm .tx b { font-size: 16px; font-weight: 850; letter-spacing: -.01em; }
+  .vr { display: flex; align-items: center; gap: 11px; padding: 7px 0; border-bottom: 1px solid #f1f5f9; }
+  .vr:first-child { padding-top: 0; } .vr:last-child { border-bottom: 0; padding-bottom: 0; }
+  .vr .dt { width: 38px; height: 38px; border-radius: 10px; background: #f5f3ff; color: #6d28d9; text-align: center; flex-shrink: 0; padding-top: 3px; }
+  .vr .dt b { display: block; font-size: 15px; font-weight: 850; line-height: 1.1; } .vr .dt span { font-size: 9px; font-weight: 700; letter-spacing: .06em; }
+  .vr .tx b { font-size: 12.5px; } .vr .amt { margin-left: auto; font-size: 12.5px; font-weight: 750; color: var(--ink); }
+  /* Before / after photo placeholders (illustrations, never real faces) */
+  .ba { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; flex-shrink: 0; }
+  .ph2 { position: relative; height: 100px; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); }
+  .ph2 svg { width: 100%; height: 100%; display: block; }
+  .ph2 span { position: absolute; left: 7px; top: 7px; font-size: 10px; font-weight: 750; color: #fff; background: rgba(15,23,42,.55); padding: 2px 8px; border-radius: 99px; }
+  .ph2.after span { background: linear-gradient(135deg, #0396d9, #00b7c9); }
+  .cap { font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 6px; margin-top: -4px; }
+  .grp { display: flex; flex-direction: column; gap: 9px; flex-shrink: 0; }
+  .cap svg { width: 13px; height: 13px; }
+  .tabs { height: 62px; flex-shrink: 0; background: #fff; border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(5, 1fr); align-items: center; text-align: center; font-size: 10px; font-weight: 600; color: #94a3b8; }
   .tabs div { display: flex; flex-direction: column; align-items: center; gap: 3px; } .tabs svg { width: 21px; height: 21px; } .tabs .on { color: var(--brand); }
   .fab { position: absolute; right: 16px; bottom: 76px; height: 46px; padding: 0 18px; border-radius: 99px; background: linear-gradient(135deg, #0396d9, #00b7c9); color: #fff; font-weight: 750; font-size: 13.5px; display: flex; align-items: center; gap: 7px; box-shadow: 0 10px 24px -8px rgba(3,150,217,.8); }
   .fab svg { width: 18px; height: 18px; }
@@ -35,27 +71,106 @@
 <div class="ph">
   <div class="status"><span>9:41</span><span class="r"><span class="sig"><i style="height:4px"></i><i style="height:6px"></i><i style="height:8px"></i><i style="height:10px"></i></span><span style="font-size:11px">5G</span><span class="bat"><i></i></span></span></div>
   <div class="bar"><i data-i="chevL"></i>Customer<span class="r"><i data-i="wa"></i><i data-i="more"></i></span></div>
-  <div class="scroll">
-    <div class="prof">
-      <div class="who"><span class="av">PD</span><div><b>Priya Devi<span class="gold"><svg viewBox="0 0 24 24"><path d="M12 3l2.8 5.7 6.2.9-4.5 4.4 1 6.2L12 17.3 6.5 20.2l1-6.2L3 9.6l6.2-.9z"/></svg>GOLD</span></b><small>012-xxx 4567 · Member since 2024</small></div></div>
-      <div class="st"><div><span>Visits</span><b>18</b></div><div><span>Total spent</span><b>RM 3,240</b></div><div><span>Credit</span><b>RM 150</b></div></div>
-    </div>
-    <h4>Active packages<span>History</span></h4>
-    <div class="pk">
-      <div class="ring"><svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="15" fill="none" stroke="#e0f2fe" stroke-width="4"/><circle cx="18" cy="18" r="15" fill="none" stroke="url(#gr)" stroke-width="4" stroke-linecap="round" stroke-dasharray="56.5 94.2"/><defs><linearGradient id="gr"><stop offset="0" stop-color="#0396d9"/><stop offset="1" stop-color="#00cfcb"/></linearGradient></defs></svg><b><span>6<small>left</small></span></b></div>
-      <div class="tx"><b>Signature Facial × 10</b><small>6 of 10 sessions left</small><small>Valid until 31 Mar 2027</small></div><span class="rd">Redeem</span>
-    </div>
-    <div class="pk">
-      <div class="ring"><svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="15" fill="none" stroke="#f3e8ff" stroke-width="4"/><circle cx="18" cy="18" r="15" fill="none" stroke="#8b5cf6" stroke-width="4" stroke-linecap="round" stroke-dasharray="37.7 94.2"/></svg><b><span>2<small>left</small></span></b></div>
-      <div class="tx"><b>Hair Spa Treatment × 5</b><small>2 of 5 sessions left</small><small>Valid until 15 Jan 2027</small></div><span class="rd" style="background:#8b5cf6">Redeem</span>
-    </div>
-    <h4>Next appointment</h4>
-    <div class="ap"><div class="date"><b>14</b><span>OCT</span></div><div class="tx"><b>Signature Facial · 10:30 AM</b><small>with Mei Ling · Room 3</small><span class="chip g">✓ Confirmed on WhatsApp</span></div></div>
-    <h4>Preferences</h4>
-    <div class="notes"><span class="chip t">Sensitive skin</span><span class="chip b">Medium pressure</span><span class="chip v">Lavender oil</span><span class="chip p">Prefers Mei Ling</span></div>
-  </div>
+  <div class="scroll" id="scroll"></div>
   <div class="fab"><i data-i="plus"></i>Book again</div>
   <div class="tabs"><div><i data-i="home"></i>Home</div><div><i data-i="cal"></i>Calendar</div><div class="on"><i data-i="users"></i>Customers</div><div><i data-i="card"></i>POS</div><div><i data-i="more"></i>More</div></div>
 </div>
+<script>
+  const q = new URLSearchParams(location.search).get("v");
+  const V = ["salon", "beauty"].includes(q) ? q : "spa";
+  const star = '<svg viewBox="0 0 24 24"><path d="M12 3l2.8 5.7 6.2.9-4.5 4.4 1 6.2L12 17.3 6.5 20.2l1-6.2L3 9.6l6.2-.9z"/></svg>';
+  let gid = 0;
+  // Package ring: sessions left of total, in a colour or the brand gradient
+  const ring = (left, total, col, track) => {
+    const len = (left / total) * 94.2, id = `g${gid++}`;
+    const stroke = col ? col : `url(#${id})`;
+    return `<div class="ring"><svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="15" fill="none" stroke="${track}" stroke-width="4"/><circle cx="18" cy="18" r="15" fill="none" stroke="${stroke}" stroke-width="4" stroke-linecap="round" stroke-dasharray="${len.toFixed(1)} 94.2"/>${col ? "" : `<defs><linearGradient id="${id}"><stop offset="0" stop-color="#0396d9"/><stop offset="1" stop-color="#00cfcb"/></linearGradient></defs>`}</svg><b><span>${left}<small>left</small></span></b></div>`;
+  };
+  const prof = (ini, name, badge, sub, stats) => `<div class="prof">
+      <div class="who"><span class="av">${ini}</span><div><b>${name}<span class="gold">${star}${badge}</span></b><small>${sub}</small></div></div>
+      <div class="st">${stats.map(([k, v]) => `<div><span>${k}</span><b>${v}</b></div>`).join("")}</div></div>`;
+  const pkg = (left, total, col, track, name, valid) => `<div class="box pk">${ring(left, total, col, track)}
+      <div class="tx"><b>${name} × ${total}</b><small>${left} of ${total} sessions left</small><small>Valid until ${valid}</small></div><span class="rd"${col ? ` style="background:${col}"` : ""}>Redeem</span></div>`;
+  const appt = (d, m, what, withWho) => `<div class="box ap"><div class="date"><b>${d}</b><span>${m}</span></div>
+      <div class="tx"><b>${what}</b><small>${withWho}</small><span class="chip g">✓ Confirmed on WhatsApp</span></div></div>`;
+
+  // Illustrations for before/after photos: hair seen from behind (salon), closed-eye lash line (beauty)
+  const hair = (after) => `<svg viewBox="0 0 160 100" preserveAspectRatio="xMidYMid slice">
+      <defs><linearGradient id="bg${after}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${after ? "#eef6fb" : "#f1f5f9"}"/><stop offset="1" stop-color="${after ? "#d9ecf7" : "#e2e8f0"}"/></linearGradient>
+      <linearGradient id="hr${after}" x1="0" y1="0" x2="0" y2="1">${after
+        ? '<stop offset="0" stop-color="#4b382b"/><stop offset=".38" stop-color="#7d6650"/><stop offset=".75" stop-color="#b8a284"/><stop offset="1" stop-color="#cfbea2"/>'
+        : '<stop offset="0" stop-color="#2f221b"/><stop offset="1" stop-color="#4a372b"/>'}</linearGradient></defs>
+      <rect width="160" height="100" fill="url(#bg${after})"/>
+      <g transform="translate(0 6)"><path d="M41 100c2-14 16-21 39-21s37 7 39 21z" fill="#334155"/>
+      <path d="M80 22c-16 0-25 11-25 25 0 12-2 24-6 38 10 5 20 6 31 6s21-1 31-6c-4-14-6-26-6-38 0-14-9-25-25-25z" fill="url(#hr${after})"/>
+      <path d="M68 36c-3 14-4 30-8 46M80 30c0 18 0 36-1 56M92 36c3 14 4 30 8 46M74 33c-2 16-2 33-5 51M86 33c2 16 2 33 5 51" stroke="${after ? "rgba(255,248,235,.3)" : "rgba(255,255,255,.1)"}" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <path d="M64 37q6-10 18-11" stroke="#fff" stroke-width="3.2" fill="none" stroke-linecap="round" opacity="${after ? .3 : .16}"/></g>
+    </svg>`;
+  const lash = (after) => {
+    // Closed eye: lid is a quadratic curve P0-C-P1; lashes grow out of it, longer and curling toward the outer corner (right)
+    const P0 = [30, 50], C = [76, 86], P1 = [124, 46], n = after ? 17 : 9, out = [];
+    for (let i = 0; i < n; i++) {
+      const t = 0.07 + (0.86 * i) / (n - 1), u = 1 - t;
+      const x = u * u * P0[0] + 2 * u * t * C[0] + t * t * P1[0], y = u * u * P0[1] + 2 * u * t * C[1] + t * t * P1[1];
+      let dx = 2 * u * (C[0] - P0[0]) + 2 * t * (P1[0] - C[0]), dy = 2 * u * (C[1] - P0[1]) + 2 * t * (P1[1] - C[1]);
+      const m = Math.hypot(dx, dy); dx /= m; dy /= m;
+      const nx = -dy, ny = dx; // normal pointing down/out of the lid
+      const len = after ? 9 + 12 * t : 4.5 + 2.5 * t, curl = after ? 4 + 5 * t : 1;
+      const cx = x + nx * len * 0.65, cy = y + ny * len * 0.65;
+      const ex = x + nx * len + dx * curl, ey = y + ny * len * 0.92 - curl * 0.35;
+      out.push(`<path d="M${x.toFixed(1)} ${y.toFixed(1)}Q${cx.toFixed(1)} ${cy.toFixed(1)} ${ex.toFixed(1)} ${ey.toFixed(1)}"/>`);
+    }
+    return `<svg viewBox="0 0 150 100" preserveAspectRatio="xMidYMid slice">
+      <defs><linearGradient id="lb${after}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fdf2f8"/><stop offset="1" stop-color="${after ? "#fbcfe8" : "#f3e3ea"}"/></linearGradient></defs>
+      <rect width="150" height="100" fill="url(#lb${after})"/>
+      <path d="M44 33q40-13 80-3" stroke="#a9798d" stroke-width="3" fill="none" stroke-linecap="round" opacity=".45"/>
+      <path d="M${P0}Q${C} ${P1}" stroke="#5b2e43" stroke-width="${after ? 2.8 : 2.2}" fill="none" stroke-linecap="round"/>
+      <g stroke="#3a1d2b" stroke-width="${after ? 1.6 : 1.2}" fill="none" stroke-linecap="round">${out.join("")}</g>
+    </svg>`;
+  };
+  const ba = (fn, after) => `<div class="ba"><div class="ph2">${fn(0)}<span>Before</span></div><div class="ph2 after">${fn(1)}<span>${after}</span></div></div>`;
+
+  const S = {
+    spa: () => `
+      ${prof("PD", "Priya Devi", "GOLD", "012-xxx 4567 · Member since 2024", [["Visits", "18"], ["Total spent", "RM 3,240"], ["Credit", "RM 150"]])}
+      <h4>Active packages<span>History</span></h4>
+      ${pkg(6, 10, "", "#e0f2fe", "Balinese Massage", "31 Mar 2027")}
+      ${pkg(2, 5, "#14b8a6", "#ccfbf1", "Foot Reflexology", "15 Jan 2027")}
+      <h4>Next appointment</h4>
+      ${appt(14, "OCT", "Balinese Massage · 10:30 AM", "with Aisyah · Room 2")}
+      <h4>Massage preferences</h4>
+      <div class="box">
+        <div class="pres"><span>Pressure</span><div class="trk"><i style="width:62%"></i><em style="left:62%"></em></div><b>Medium</b></div>
+        <div class="chips"><span class="chip v"><i data-i="leaf"></i>Lavender</span><span class="chip b">Neck &amp; shoulders</span><span class="chip p">Female therapist</span></div>
+      </div>`,
+    salon: () => `
+      ${prof("JL", "Joanne Lim", "GOLD", "016-xxx 2381 · Member since 2023", [["Visits", "26"], ["Points", "1,280"], ["Fav. stylist", "Mei Fen"]])}
+      <div class="box fm"><span class="sw"></span><div class="tx"><small>Colour formula</small><b>7.1 + 6% (20 vol)</b><small>Roots 35 min · by Mei Fen</small></div><span class="chip v" style="margin-left:auto;align-self:flex-start">Saved</span></div>
+      <h4>Before &amp; after<span>All photos</span></h4>
+      ${ba(hair, "After · 16 Sep")}
+      <h4>Visit history<span>See all</span></h4>
+      <div class="box">
+        <div class="vr"><span class="dt"><b>16</b><span>SEP</span></span><div class="tx"><b>Colour &amp; Treatment</b><small>Mei Fen · 2 h 30 min</small></div><span class="amt">RM 280</span></div>
+        <div class="vr"><span class="dt"><b>19</b><span>AUG</span></span><div class="tx"><b>Cut &amp; Blow</b><small>Jason · 1 h</small></div><span class="amt">RM 68</span></div>
+        <div class="vr"><span class="dt"><b>05</b><span>JUL</span></span><div class="tx"><b>Keratin Treatment</b><small>Jason · 2 h</small></div><span class="amt">RM 420</span></div>
+      </div>`,
+    beauty: () => `
+      ${prof("AR", "Aqilah Razak", "VIP", "019-xxx 6624 · Member since 2025", [["Visits", "12"], ["Total spent", "RM 2,860"], ["Credit", "RM 100"]])}
+      <h4>Active packages<span>History</span></h4>
+      <div class="pk2">
+        <div class="box">${ring(6, 10, "", "#e0f2fe")}<div class="tx"><b>Hydra Facial</b><small>6 of 10 left</small></div></div>
+        <div class="box">${ring(3, 5, "#ec4899", "#fce7f3")}<div class="tx"><b>Lash Refill</b><small>3 of 5 left</small></div></div>
+      </div>
+      <h4>Next appointment</h4>
+      ${appt(14, "OCT", "Hydra Facial · 2:00 PM", "with Mei Ling · Room 1")}
+      <div class="grp">
+        <h4 style="margin:0">Treatment notes<span>Face chart</span></h4>
+        <div class="chips"><span class="chip t">Combination skin</span><span class="chip b">Acne-prone</span><span class="chip r"><i data-i="alert"></i>Fragrance allergy</span></div>
+        ${ba(lash, "After · 30 Sep")}
+        <div class="cap" style="margin:0"><i data-i="image"></i>Lash extension, natural set</div>
+      </div>`,
+  };
+  document.getElementById("scroll").innerHTML = S[V]();
+</script>
 <script src="icons.js"></script>
 </body></html>

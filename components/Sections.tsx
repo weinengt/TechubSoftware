@@ -38,20 +38,20 @@ export function CheckList({ items, className = "" }: { items: string[]; classNam
   );
 }
 
-// Used for the feature tiles, structured data (featureList) and llms-full.txt.
+// Used for the home page feature tiles, structured data (featureList) and llms-full.txt.
 export const allFeatures: { icon: IconName; title: string; text: string }[] = [
   { icon: "Shield", title: `${site.uptime} uptime guarantee`, text: "Cloud hosting with monitoring and daily backups." },
-  { icon: "Megaphone", title: "Queue number calling", text: "TV display and voice announcement for rooms and counters." },
+  { icon: "Calendar", title: "Appointment calendar", text: "Bookings by staff, room or service, with walk-ins." },
   { icon: "Whatsapp", title: "WhatsApp appointment alerts", text: "Automatic confirmations, reminders and follow-ups." },
-  { icon: "Devices", title: "Works on any device", text: "Desktop, laptop, tablet and phone." },
-  { icon: "Lock", title: "Permission control", text: "Decide who can view, edit, discount, refund or export." },
-  { icon: "Users", title: "Staff management", text: "Accounts, schedules, commission and branch access." },
+  { icon: "Megaphone", title: "Queue number calling", text: "TV display and voice announcement for rooms and counters." },
+  { icon: "Devices", title: "Works on iPad, phone & PC", text: "Front desk, staff and managers on any device." },
+  { icon: "Lock", title: "Staff & permission control", text: "Decide who can view, edit, discount, refund or export." },
+  { icon: "Card", title: "POS, packages & commission", text: "Checkout, prepaid packages and staff commission in one place." },
   { icon: "Sparkles", title: "AI stock control", text: "Low-stock prediction and reorder suggestions." },
   { icon: "Scan", title: "Scan delivery notes", text: "AI reads supplier delivery notes and adjusts stock automatically." },
   { icon: "Route", title: "Inventory movement tracking", text: "Every stock in, out, transfer and adjustment is logged." },
-  { icon: "Pill", title: "Patient medication tracking", text: "Prescription and dispensing history with allergy alerts." },
-  { icon: "Pen", title: "Hand drawing & e-signature", text: "Draw on body charts and capture consent on a tablet." },
-  { icon: "Printer", title: "Multi-printer support", text: "Receipts, labels, MC and invoices on thermal, label and A4 printers." },
+  { icon: "Pen", title: "Hand drawing & e-signature", text: "Draw on charts and capture consent on a tablet." },
+  { icon: "Printer", title: "Multi-printer support", text: "Receipts, labels and A4 documents on thermal, label and A4 printers." },
 ];
 
 export function HardwareSection() {
@@ -97,7 +97,7 @@ export function HardwareSection() {
 
 export function PricingSection() {
   const included = [
-    "Clinic or spa/salon system",
+    "Appointment system for your business",
     "Queue calling & WhatsApp alerts",
     "AI stock control & delivery note scan",
     "Works on desktop, tablet & phone",
@@ -109,7 +109,7 @@ export function PricingSection() {
   return (
     <section id="pricing" className="py-20 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <SectionHeading eyebrow="Simple pricing" title="Affordable for every clinic, spa and salon" />
+        <SectionHeading eyebrow="Simple pricing" title="Affordable for every business" />
         <div className="mx-auto mt-12 grid max-w-5xl items-stretch gap-6 lg:grid-cols-5">
           <div className="relative overflow-hidden rounded-3xl bg-brand-gradient p-7 text-white shadow-2xl shadow-brand-500/30 sm:p-8 lg:col-span-3">
             <div className="bg-grid absolute inset-0 opacity-20" aria-hidden="true" />

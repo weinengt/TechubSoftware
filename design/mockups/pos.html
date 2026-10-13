@@ -1,0 +1,240 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<style>
+  :root { --w: 1024px; --h: 720px; }
+  .top .btn .n { background: var(--red); color: #fff; font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 99px; }
+  /* Catalogue */
+  .cat { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+  .find { display: flex; gap: 8px; }
+  .find .search { margin: 0; flex: 1; width: auto; height: 38px; font-size: 12.5px; white-space: nowrap; }
+  .find .btn { height: 38px; }
+  .tabs { display: flex; gap: 6px; }
+  .tabs span { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 650; padding: 7px 13px; border-radius: 99px; border: 1px solid var(--line); color: var(--ink2); background: #fff; white-space: nowrap; }
+  .tabs span.on { background: var(--ink); border-color: var(--ink); color: #fff; }
+  .tabs span svg { width: 13px; height: 13px; }
+  .grid { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: repeat(3, minmax(0, 1fr)); gap: 10px; }
+  .tile { position: relative; border: 1px solid var(--line); border-radius: 12px; padding: 6px 6px 9px; display: flex; flex-direction: column; background: #fff; min-height: 0; }
+  .tile.sel { border: 2px solid var(--brand); padding: 5px 5px 8px; box-shadow: 0 6px 16px -10px rgba(3,150,217,.7); }
+  .th { flex: 1; min-height: 0; border-radius: 9px; display: grid; place-items: center; }
+  .th svg.i { width: 42px; height: 42px; stroke-width: 1.55; }
+  .th svg.ill { width: 62px; height: 62px; filter: drop-shadow(0 6px 6px rgba(15,23,42,.12)); }
+  .tile b { font-size: 12.5px; font-weight: 700; margin: 8px 2px 0; line-height: 1.2; white-space: nowrap; }
+  .tile .ft { display: flex; align-items: baseline; justify-content: space-between; margin: 3px 2px 0; }
+  .tile .ft strong { font-size: 13.5px; font-weight: 800; letter-spacing: -.01em; }
+  .tile .ft span { font-size: 10.5px; color: var(--muted); font-weight: 500; }
+  .tile .q { position: absolute; top: 8px; right: 8px; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 99px; background: var(--brand); color: #fff; font-size: 11.5px; font-weight: 800; display: grid; place-items: center; box-shadow: 0 0 0 2px #fff; }
+  /* Bill */
+  .bill { width: 356px; flex-shrink: 0; padding: 0; display: flex; flex-direction: column; overflow: hidden; }
+  .bh { display: flex; align-items: center; gap: 11px; padding: 13px 14px 12px; border-bottom: 1px solid var(--line); }
+  .bh .av { width: 40px; height: 40px; font-size: 13px; }
+  .bh b { font-size: 14.5px; font-weight: 800; display: flex; align-items: center; gap: 6px; }
+  .bh small { font-size: 11px; color: var(--muted); display: block; margin-top: 2px; }
+  .tier { display: inline-flex; align-items: center; gap: 3px; background: #fde68a; color: #92400e; font-size: 9.5px; font-weight: 800; padding: 2px 7px; border-radius: 99px; letter-spacing: .03em; }
+  .tier svg { width: 10px; height: 10px; fill: currentColor; }
+  .bh .bno { margin-left: auto; text-align: right; font-size: 10.5px; color: var(--muted); }
+  .bh .bno b { font-size: 12px; color: var(--ink2); display: block; font-weight: 700; }
+  .lines { flex: 1; min-height: 0; padding: 2px 14px 12px; display: flex; flex-direction: column; }
+  .ln { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px dashed #e3e9f0; }
+  .ln .li { width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center; flex-shrink: 0; }
+  .ln .li svg.i { width: 19px; height: 19px; }
+  .ln .li svg.ill { width: 32px; height: 32px; }
+  .ln .nm { font-size: 13px; font-weight: 700; white-space: nowrap; }
+  .ln .nm em { font-style: normal; color: var(--muted); font-weight: 600; margin-left: 3px; }
+  .ln .by { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--muted); margin-top: 3px; white-space: nowrap; }
+  .ln .by .mini { width: 18px; height: 18px; border-radius: 99px; color: #fff; font-size: 8px; font-weight: 800; display: grid; place-items: center; }
+  .ln .by b { color: var(--ink2); font-weight: 650; }
+  .ln .pr { margin-left: auto; text-align: right; font-size: 13px; font-weight: 750; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .pk { display: inline-block; margin-top: 4px; font-size: 9.5px; font-weight: 750; padding: 2px 7px; border-radius: 99px; background: #fef3c7; color: #b45309; }
+  .wa { margin-top: auto; display: flex; align-items: center; gap: 10px; background: #effcf3; border: 1px solid #c9f2d6; border-radius: 11px; padding: 8px 11px; }
+  .wa .wi { width: 30px; height: 30px; border-radius: 99px; background: #22c55e; color: #fff; display: grid; place-items: center; flex-shrink: 0; }
+  .wa .wi svg { width: 17px; height: 17px; }
+  .wa b { font-size: 12px; font-weight: 700; display: block; color: var(--ink); } .wa small { font-size: 10.5px; color: var(--muted); }
+  .tg { margin-left: auto; width: 36px; height: 21px; border-radius: 99px; background: #22c55e; position: relative; flex-shrink: 0; }
+  .tg::after { content: ""; position: absolute; right: 2.5px; top: 2.5px; width: 16px; height: 16px; border-radius: 99px; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.2); }
+  .sum { padding: 10px 14px 11px; background: #f8fafc; border-top: 1px solid var(--line); }
+  .sum div { display: flex; justify-content: space-between; font-size: 12px; color: var(--ink2); padding: 2.5px 0; font-variant-numeric: tabular-nums; }
+  .sum .dis { color: #059669; font-weight: 600; }
+  .sum .tot { align-items: baseline; margin-top: 6px; padding-top: 8px; border-top: 1px dashed #cbd5e1; color: var(--ink); }
+  .sum .tot span:first-child { font-size: 13px; font-weight: 700; }
+  .sum .tot span:last-child { font-size: 22px; font-weight: 850; letter-spacing: -.02em; }
+  .pay { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; padding: 12px 14px 0; }
+  .pay span { height: 56px; border: 1px solid var(--line); border-radius: 11px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; font-size: 11px; font-weight: 650; color: var(--ink2); background: #fff; white-space: nowrap; }
+  .pay span svg { width: 19px; height: 19px; color: var(--brand); }
+  .pay span.on { border: 2px solid var(--brand); background: var(--brand-50); color: #036295; }
+  .charge { margin: 12px 14px 14px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, var(--brand), #0287c4); color: #fff; font-size: 15px; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 8px 18px -8px rgba(3,150,217,.8); }
+  .charge svg { width: 18px; height: 18px; }
+</style></head>
+<body>
+<div class="app">
+  <aside class="side" data-shell="salon" data-active="POS"></aside>
+  <section class="main">
+    <header class="top">
+      <div><div class="sub">POS · Counter 1</div><h1>Checkout</h1></div>
+      <span class="btn" style="margin-left:auto"><i data-i="clock"></i>Held bills<span class="n">2</span></span>
+      <span class="btn"><i data-i="print"></i>Receipts</span>
+      <span class="btn pri"><i data-i="plus"></i>New bill</span>
+    </header>
+    <div class="content">
+      <div class="row" style="flex:1;min-height:0">
+        <div class="card cat">
+          <div class="find"><div class="search"><i data-i="search"></i><span id="ph"></span></div><span class="btn"><i data-i="scan"></i>Scan barcode</span></div>
+          <div class="tabs" id="tabs"></div>
+          <div class="grid" id="grid"></div>
+        </div>
+        <div class="card bill">
+          <div class="bh" id="cust"></div>
+          <div class="lines" id="lines"></div>
+          <div class="sum" id="sum"></div>
+          <div class="pay"><span><i data-i="money"></i>Cash</span><span><i data-i="card"></i>Card</span><span class="on"><i data-i="qr"></i>DuitNow QR</span><span><i data-i="wallet"></i>e-Wallet</span></div>
+          <div class="charge" id="charge"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<script>
+  const q = new URLSearchParams(location.search).get("v");
+  const V = ["salon", "beauty", "spa"].includes(q) ? q : "salon";
+  const COL = { blue: "#0396d9", violet: "#8b5cf6", teal: "#14b8a6", pink: "#ec4899", amber: "#f59e0b", green: "#10b981", rose: "#f43f5e" };
+
+  // Line icons not in icons.js (same 24px stroke style)
+  const ICON = {
+    lotus: '<path d="M12 4.5c2 2.1 3 4.4 3 6.9s-1.1 4.5-3 6.1c-1.9-1.6-3-3.6-3-6.1s1-4.8 3-6.9z"/><path d="M12 17.5c-3 0-6.7-1.6-8.5-5.7 2.6-.3 4.6.4 6 1.6"/><path d="M12 17.5c3 0 6.7-1.6 8.5-5.7-2.6-.3-4.6.4-6 1.6"/><path d="M5 20.5h14"/>',
+    stones: '<ellipse cx="12" cy="18" rx="8.5" ry="2.8"/><ellipse cx="12" cy="12.6" rx="6.2" ry="2.4"/><ellipse cx="12" cy="7.6" rx="4" ry="2"/>',
+    foot: '<path d="M7.2 13.5c-.3-3.3 1.5-5.6 4.3-5.6 2.7 0 4.5 2 4.3 5-.2 2.6-1.5 3.6-1.7 5.8-.2 1.9-1.3 3.1-3.1 3.1-1.9 0-3.1-1.2-3.2-3.2-.1-2-.4-3-.6-5.1z"/><g fill="currentColor" stroke="none"><ellipse cx="8.3" cy="4.6" rx="1.7" ry="2"/><circle cx="11.8" cy="3.3" r="1.2"/><circle cx="14.6" cy="4" r="1.05"/><circle cx="16.8" cy="5.6" r=".95"/><circle cx="18.2" cy="7.8" r=".85"/></g>',
+    lash: '<path d="M3 10c2.5 3.3 5.5 5 9 5s6.5-1.7 9-5"/><path d="M12 15v4M7 13.6l-1.6 3.4M17 13.6l1.6 3.4M3.8 11.5L1.8 14M20.2 11.5l2 2.5"/>',
+    wax: '<path d="M4 14h16v3a4 4 0 01-4 4H8a4 4 0 01-4-4z"/><path d="M6 14c0-2 1.5-3 3-3h6c1.5 0 3 1 3 3"/><path d="M12 3c1.6 1.9 2 3.1 0 5-2-1.9-1.6-3.1 0-5z"/>',
+    bowl: '<path d="M3 11h18a9 9 0 01-18 0z"/><path d="M9 7c0-1.5 1-2 1-3.5M13 7c0-1.5 1-2 1-3.5"/>',
+    eye: '<path d="M2.5 13s3.5-5.5 9.5-5.5 9.5 5.5 9.5 5.5-3.5 5.5-9.5 5.5S2.5 13 2.5 13z"/><circle cx="12" cy="13" r="2.8"/><path d="M12 3.5v2M6.5 5l1 1.7M17.5 5l-1 1.7"/>',
+    polish: '<rect x="7" y="11" width="10" height="10" rx="2.5"/><path d="M9.5 11V8h5v3"/><path d="M10.5 8V3h3v5"/>',
+    brush: '<path d="M18.5 3.5l2 2-8 8-2-2z"/><path d="M10.5 11.5l2 2c0 3-2 5.5-5.5 5.5H4c1.5-1 1.5-2.5 1.5-3.5 0-2.4 2-4.3 5-4z"/>',
+    couple: '<path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 00-7.8 7.8L12 21.2l8.8-8.8a5.5 5.5 0 000-7.8z"/>',
+  };
+  // Small retail product illustrations (48px box), tinted with the item colour
+  const label = (x, y, w, h, c) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="2" fill="#fff" opacity=".92"/><rect x="${x + 3}" y="${y + 3}" width="${w - 6}" height="2.2" rx="1.1" fill="${c}" opacity=".75"/><rect x="${x + 3}" y="${y + 7}" width="${(w - 6) * .6}" height="1.8" rx=".9" fill="#94a3b8"/>`;
+  const shine = (x, y, h) => `<rect x="${x}" y="${y}" width="2.4" height="${h}" rx="1.2" fill="#fff" opacity=".35"/>`;
+  const ILL = {
+    bottle: (c) => `<rect x="19" y="4" width="10" height="7" rx="2" fill="#334155"/><path d="M18 11h12v3c3.5 1.2 5.5 3.8 5.5 7.5V40a4 4 0 01-4 4h-15a4 4 0 01-4-4V21.5c0-3.7 2-6.3 5.5-7.5z" fill="${c}"/>${label(15.5, 24, 17, 12, c)}${shine(14.5, 20, 18)}`,
+    dropper: (c) => `<path d="M21 2.5h6a1.5 1.5 0 011.5 1.5v5h-9V4A1.5 1.5 0 0121 2.5z" fill="#1f2937"/><rect x="18" y="9" width="12" height="6" rx="1.5" fill="#64748b"/><rect x="13.5" y="15" width="21" height="29" rx="5" fill="${c}"/>${label(17, 24, 14, 12, c)}${shine(16, 19, 20)}`,
+    pump: (c) => `<path d="M17 4h12v4h-5v4h-4V8h-3z" fill="#334155"/><rect x="19.5" y="11.5" width="9" height="4" rx="1" fill="#64748b"/><rect x="13.5" y="15.5" width="21" height="28.5" rx="5" fill="${c}"/>${label(17, 24, 14, 12, c)}${shine(16, 19, 20)}`,
+    jar: (c) => `<rect x="10" y="13" width="28" height="8" rx="2.5" fill="#334155"/><rect x="9" y="20" width="30" height="23" rx="5.5" fill="${c}"/>${label(15, 26, 18, 11, c)}${shine(12, 24, 14)}`,
+    tube: (c) => `<rect x="12" y="3.5" width="24" height="5" rx="1.2" fill="${c}" opacity=".75"/><path d="M13 8h22l-3.5 28h-15z" fill="${c}"/><rect x="17.5" y="36" width="13" height="8" rx="2" fill="#334155"/>${label(17, 15, 14, 12, c)}`,
+    candle: (c) => `<path d="M24 3.5c3.2 3.6 3.6 6.6 0 9.8-3.6-3.2-3.2-6.2 0-9.8z" fill="#f59e0b"/><path d="M24 7.8c1.5 1.7 1.7 3.1 0 4.6-1.7-1.5-1.5-2.9 0-4.6z" fill="#fde68a"/><rect x="23.3" y="13" width="1.4" height="5" fill="#334155"/><rect x="11" y="17" width="26" height="27" rx="5" fill="${c}"/><ellipse cx="24" cy="19.6" rx="11" ry="2.4" fill="#fff" opacity=".45"/>${label(16, 27, 16, 11, c)}`,
+    sachet: (c) => `<rect x="11" y="4" width="26" height="40" rx="3" fill="${c}"/><path d="M11 8.5h26M11 39.5h26" stroke="#fff" stroke-opacity=".7" stroke-width="1.2" stroke-dasharray="2 1.6"/><ellipse cx="24" cy="22" rx="7.5" ry="9" fill="#fff" opacity=".92"/><path d="M20.8 20.5h2M25.2 20.5h2M21.8 26c1.4 1 3 1 4.4 0" stroke="${c}" stroke-width="1.3" stroke-linecap="round" fill="none"/>`,
+  };
+  const art = (k, c) => {
+    const [t, n] = k.split(":");
+    if (t === "p") return `<svg class="ill" viewBox="0 0 48 48">${ILL[n](c)}</svg>`;
+    if (ICON[n]) return `<svg class="i" viewBox="0 0 24 24" style="color:${c}">${ICON[n]}</svg>`;
+    return `<i data-i="${n}" style="color:${c}"></i>`;
+  };
+  const tint = (c) => c + "1c";
+  const rm = (n) => "RM " + n.toLocaleString("en-MY", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+  // tiles: [name, meta, price, colour, art, qty in bill]
+  // lines: [name, qty, staff, commission, price, colour, art, package?]
+  const D = {
+    salon: {
+      find: "Search service, product or barcode…", bill: "S-10248",
+      cust: ["JL", "Joanne Lim", "GOLD", "016-xxx 2381 · 26 visits"],
+      tabs: ["Popular", "Cut & Style", "Colour", "Treatment", "Retail"],
+      staff: { JT: ["Jason Tan", "#0396d9"], MF: ["Mei Fen", "#8b5cf6"], AI: ["Aiman", "#14b8a6"] },
+      tiles: [
+        ["Women's Cut & Blow", "45 min", 75, "blue", "i:scissors", 1],
+        ["Men's Haircut", "30 min", 38, "blue", "i:scissors"],
+        ["Colour Retouch", "75 min", 150, "violet", "c:brush", 1],
+        ["Full Head Colour", "2 hr", 220, "violet", "c:brush"],
+        ["Keratin Treatment", "2.5 hr", 380, "teal", "i:spark"],
+        ["Hair Spa Treatment", "60 min", 120, "teal", "i:leaf", 1],
+        ["Colour Care Shampoo", "18 in stock", 68, "pink", "p:bottle", 2],
+        ["Argan Hair Oil", "9 in stock", 89, "amber", "p:dropper"],
+        ["Keratin Hair Mask", "12 in stock", 75, "teal", "p:jar"],
+      ],
+      lines: [
+        ["Colour Retouch", 1, "MF", 15, 150, "violet", "c:brush"],
+        ["Women's Cut & Blow", 1, "JT", 7.5, 75, "blue", "i:scissors"],
+        ["Hair Spa Treatment", 1, "AI", 12, 120, "teal", "i:leaf", "3 of 5"],
+        ["Colour Care Shampoo", 2, "JT", 6.8, 136, "pink", "p:bottle"],
+      ],
+      pkg: "Package · Hair Spa × 5", disc: ["Gold member · 10% off services", 22.5],
+    },
+    beauty: {
+      find: "Search treatment, product or barcode…", bill: "B-20417",
+      cust: ["CT", "Chloe Tan", "VIP", "016-xxx 2281 · 31 visits"],
+      tabs: ["Popular", "Facial", "Lash & Brow", "Nails", "Waxing", "Retail"],
+      staff: { ML: ["Mei Ling", "#14b8a6"], NA: ["Nadia", "#ec4899"], HM: ["Hui Min", "#8b5cf6"] },
+      tiles: [
+        ["Signature Facial", "60 min", 168, "teal", "i:face"],
+        ["Hydra Facial", "75 min", 238, "teal", "i:drop", 1],
+        ["Classic Lash Extension", "90 min", 158, "pink", "c:lash", 1],
+        ["Lash Lift & Tint", "60 min", 128, "pink", "c:eye"],
+        ["Gel Manicure", "60 min", 82, "violet", "c:polish", 1],
+        ["Full Leg Wax", "45 min", 120, "amber", "c:wax"],
+        ["Vitamin C Serum", "14 in stock", 129, "amber", "p:dropper", 1],
+        ["Hydrating Sheet Mask", "32 in stock", 45, "teal", "p:sachet"],
+        ["Sunscreen SPF50", "20 in stock", 79, "blue", "p:tube"],
+      ],
+      lines: [
+        ["Hydra Facial", 1, "ML", 20, 238, "teal", "i:drop", "4 of 10"],
+        ["Classic Lash Extension", 1, "NA", 15.8, 158, "pink", "c:lash"],
+        ["Gel Manicure", 1, "HM", 8.2, 82, "violet", "c:polish"],
+        ["Vitamin C Serum 30ml", 1, "ML", 6.45, 129, "amber", "p:dropper"],
+      ],
+      pkg: "Package · Facial × 10", disc: ["VIP member · 10% off services", 24],
+    },
+    spa: {
+      find: "Search treatment, product or barcode…", bill: "D-30562",
+      cust: ["MO", "Michelle Ong", "GOLD", "012-xxx 8830 · 15 visits"],
+      tabs: ["Popular", "Massage", "Body", "Rituals", "Retail"],
+      staff: { AS: ["Aisyah", "#0396d9"], WA: ["Wati", "#14b8a6"], LK: ["Lakshmi", "#8b5cf6"] },
+      tiles: [
+        ["Balinese Massage", "90 min", 198, "blue", "c:lotus"],
+        ["Aromatherapy Massage", "90 min", 218, "blue", "c:lotus"],
+        ["Hot Stone Massage", "90 min", 248, "blue", "c:stones", 1],
+        ["Foot Reflexology", "60 min", 108, "teal", "c:foot", 1],
+        ["Coconut Body Scrub", "45 min", 138, "teal", "c:bowl"],
+        ["Couple Retreat", "2 hr", 588, "rose", "c:couple"],
+        ["Lavender Massage Oil", "16 in stock", 59, "violet", "p:bottle", 1],
+        ["Aromatherapy Candle", "22 in stock", 69, "amber", "p:candle", 2],
+        ["Rose Bath Salt", "10 in stock", 49, "pink", "p:jar"],
+      ],
+      lines: [
+        ["Hot Stone Massage 90 min", 1, "AS", 25, 248, "blue", "c:stones", "3 of 5"],
+        ["Foot Reflexology 60 min", 1, "WA", 10.8, 108, "teal", "c:foot"],
+        ["Lavender Massage Oil", 1, "AS", 2.95, 59, "violet", "p:bottle"],
+        ["Aromatherapy Candle", 2, "LK", 6.9, 138, "amber", "p:candle"],
+      ],
+      pkg: "Package · Spa Ritual × 5", disc: ["Gold member · 10% off services", 10.8],
+    },
+  }[V];
+
+  document.getElementById("ph").textContent = D.find;
+  document.getElementById("tabs").innerHTML = D.tabs.map((t, i) => `<span class="${i ? "" : "on"}">${i ? "" : '<i data-i="star"></i>'}${t}</span>`).join("");
+  document.getElementById("grid").innerHTML = D.tiles.map(([n, m, p, c, a, qty]) => `
+    <div class="tile${qty ? " sel" : ""}">${qty ? `<span class="q">${qty}</span>` : ""}
+      <div class="th" style="background:linear-gradient(155deg, ${COL[c]}2b, ${COL[c]}0d)">${art(a, COL[c])}</div>
+      <b>${n}</b><div class="ft"><strong>RM ${p}</strong><span>${m}</span></div></div>`).join("");
+
+  const star = '<svg viewBox="0 0 24 24"><path d="M12 3l2.8 5.7 6.2.9-4.5 4.4 1 6.2L12 17.3 6.5 20.2l1-6.2L3 9.6l6.2-.9z"/></svg>';
+  const [ini, name, tier, meta] = D.cust;
+  document.getElementById("cust").innerHTML = `<span class="av">${ini}</span><div><b>${name}<span class="tier">${star}${tier}</span></b><small>${meta}</small></div>
+    <div class="bno"><b>${D.bill}</b>${D.lines.length} items</div>`;
+  document.getElementById("lines").innerHTML = D.lines.map(([n, qty, s, cm, p, c, a, pk]) => {
+    const [sn, sc] = D.staff[s];
+    return `<div class="ln"><span class="li" style="background:${tint(COL[c])}">${art(a, COL[c])}</span>
+      <div><div class="nm">${n}${qty > 1 ? `<em>× ${qty}</em>` : ""}</div>
+      <div class="by"><span class="mini" style="background:${sc}">${s}</span><b>${sn}</b>· comm. ${rm(cm)}</div></div>
+      <div class="pr">${rm(p)}${pk ? `<br><span class="pk">Package ${pk}</span>` : ""}</div></div>`;
+  }).join("") + `<div class="wa"><span class="wi"><i data-i="wa"></i></span><div><b>e-Receipt via WhatsApp</b><small>${D.cust[3].split(" · ")[0]}</small></div><span class="tg"></span></div>`;
+  const sub = D.lines.reduce((t, l) => t + l[4], 0);
+  const pkgAmt = D.lines.filter((l) => l[7]).reduce((t, l) => t + l[4], 0);
+  const total = sub - pkgAmt - D.disc[1];
+  document.getElementById("sum").innerHTML = `<div><span>Subtotal</span><span>${rm(sub)}</span></div>
+    <div class="dis"><span>${D.pkg}</span><span>− ${rm(pkgAmt)}</span></div>
+    <div class="dis"><span>${D.disc[0]}</span><span>− ${rm(D.disc[1])}</span></div>
+    <div class="tot"><span>Total</span><span>${rm(total)}</span></div>`;
+  document.getElementById("charge").innerHTML = `<i data-i="check"></i>Charge ${rm(total)}`;
+</script>
+<script src="shell.js"></script>
+<script src="icons.js"></script>
+</body></html>

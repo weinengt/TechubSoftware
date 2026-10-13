@@ -1,5 +1,5 @@
 import { allFeatures } from "@/components/Sections";
-import { faqs, site } from "@/lib/site";
+import { faqs, site, systems } from "@/lib/site";
 
 export const dynamic = "force-static";
 
@@ -15,9 +15,9 @@ Email: ${site.email}
 Country: Malaysia
 
 ## What Techub Software does
-${site.name} is a Malaysian company providing customised system solutions. It specialises in:
-1. Clinic Management System (${site.url}/clinic-management-system/) for GP, dental, specialist, aesthetic, physiotherapy and TCM clinics.
-2. Spa & Salon Appointment System (${site.url}/spa-salon-appointment-system/) for spas, hair and beauty salons, nail and lash studios, massage and wellness centres.
+${site.name} is a Malaysian company that provides appointment management systems and customises them for each business. Ready systems:
+${systems.map((s, i) => `${i + 1}. ${s.name} (${site.url}${s.href}): ${s.blurb}`).join("\n")}
+Other appointment-based businesses can have the system customised at a low cost.
 
 ## Features
 ${allFeatures.map((f) => `- ${f.title}: ${f.text}`).join("\n")}

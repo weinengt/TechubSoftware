@@ -16,7 +16,7 @@ const jakarta = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} | Clinic Management & Spa/Salon Appointment System Malaysia`,
+    default: `Appointment Management System Malaysia | ${site.name}`,
     template: `%s | ${site.name}`,
   },
   description: site.description,
@@ -32,13 +32,13 @@ export const metadata: Metadata = {
     locale: "en_MY",
     url: "/",
     siteName: site.name,
-    title: `${site.name} | Clinic & Spa/Salon Management System Malaysia`,
+    title: `Appointment Management System Malaysia | ${site.name}`,
     description: site.description,
-    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Techub Software clinic and spa/salon management system" }],
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Techub Software appointment management system on iPad and phone" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} | Clinic & Spa/Salon System Malaysia`,
+    title: `Appointment Management System Malaysia | ${site.name}`,
     description: site.description,
     images: ["/og-image.jpg"],
   },
@@ -77,9 +77,11 @@ const organization = {
       description: site.description,
       areaServed: { "@type": "Country", name: "Malaysia" },
       knowsAbout: [
+        "Appointment management system",
         "Clinic management system",
+        "Salon appointment system",
+        "Beauty centre appointment system",
         "Spa appointment system",
-        "Salon booking system",
         "Queue number calling system",
         "WhatsApp appointment reminders",
         "AI inventory management",

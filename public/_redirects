@@ -1,0 +1,3 @@
+# Cloudflare Pages redirects. The combined spa & salon page was split into separate pages.
+/spa-salon-appointment-system/ /spa-appointment-system/ 301
+/spa-salon-appointment-system /spa-appointment-system/ 301
