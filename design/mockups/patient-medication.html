@@ -1,0 +1,89 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<style>
+  :root { --w: 1200px; --h: 750px; }
+  .crumb { font-size: 12px; color: var(--muted); } .crumb b { color: var(--ink); }
+  .ph { display: flex; align-items: center; gap: 16px; }
+  .ph .av { width: 56px; height: 56px; font-size: 18px; }
+  .ph h2 { font-size: 19px; font-weight: 800; letter-spacing: -.01em; display: flex; align-items: center; gap: 8px; }
+  .meta { font-size: 12px; color: var(--muted); margin-top: 3px; }
+  .chips { display: flex; gap: 6px; margin-top: 8px; }
+  .mini { margin-left: auto; display: flex; gap: 10px; }
+  .mini div { background: #f8fafc; border: 1px solid var(--line); border-radius: 10px; padding: 8px 14px; text-align: center; }
+  .mini b { display: block; font-size: 18px; font-weight: 800; } .mini span { font-size: 10.5px; color: var(--muted); }
+  .tabs { display: flex; gap: 22px; border-bottom: 1px solid var(--line); padding: 0 4px; margin-top: -2px; }
+  .tabs span { font-size: 12.5px; font-weight: 600; color: var(--muted); padding: 10px 0; }
+  .tabs span.on { color: var(--brand); border-bottom: 2px solid var(--brand); }
+  .rx { width: 340px; flex-shrink: 0; display: flex; flex-direction: column; gap: 10px; }
+  .fld label { display: block; font-size: 10.5px; font-weight: 600; color: var(--muted); margin-bottom: 4px; text-transform: uppercase; letter-spacing: .04em; }
+  .inp { height: 36px; border: 1px solid var(--line); border-radius: 9px; display: flex; align-items: center; gap: 8px; padding: 0 10px; font-size: 12.5px; font-weight: 600; }
+  .inp.err { border: 1.5px solid #f87171; background: #fff5f5; }
+  .warn { display: flex; gap: 10px; background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; border-radius: 10px; padding: 10px 12px; font-size: 11.5px; line-height: 1.45; }
+  .warn svg { width: 18px; height: 18px; color: #dc2626; margin-top: 1px; }
+  .sug { display: flex; gap: 10px; align-items: center; background: var(--brand-50); border: 1px solid var(--brand-100); border-radius: 10px; padding: 10px 12px; font-size: 11.5px; color: #035b8a; }
+  .sug .btn { height: 28px; margin-left: auto; }
+  .three { display: grid; grid-template-columns: 1fr 1.3fr 1fr; gap: 8px; }
+  td { padding: 9px 8px; } th { padding: 8px 8px; }
+  .dot { width: 8px; height: 8px; border-radius: 9px; display: inline-block; margin-right: 6px; }
+</style></head>
+<body>
+<div class="app">
+  <aside class="side" data-shell="clinic" data-active="Patients"></aside>
+  <section class="main">
+    <header class="top">
+      <div><div class="crumb">Patients › <b>Tan Mei Ling</b></div><h1>Patient Record</h1></div>
+      <div class="search"><i data-i="search"></i>Search patient, IC or phone…</div>
+      <span class="btn"><i data-i="print"></i>Print label</span>
+      <span class="btn pri"><i data-i="steth"></i>Start consultation</span>
+    </header>
+    <div class="content">
+      <div class="card ph">
+        <span class="av">TM</span>
+        <div>
+          <h2>Tan Mei Ling <span class="chip s">P-001042</span></h2>
+          <div class="meta">Female · 34 yrs · IC ******-**-5523 · 012-345 6789 · Panel: Company ABC</div>
+          <div class="chips"><span class="chip r"><i data-i="alert" style="width:12px;height:12px"></i>Allergy: Penicillin</span><span class="chip a">Hypertension</span><span class="chip s">Last visit 2 Oct 2026</span></div>
+        </div>
+        <div class="mini"><div><b>14</b><span>Visits</span></div><div><b>3</b><span>Active meds</span></div><div><b>RM 0</b><span>Balance</span></div></div>
+      </div>
+      <div class="tabs"><span>Overview</span><span>Visits</span><span class="on">Medications</span><span>Body Chart</span><span>Documents</span><span>Billing</span></div>
+      <div class="row" style="flex:1;min-height:0">
+        <div class="card grow" style="padding:0;overflow:hidden">
+          <h3 style="padding:12px 14px"><i data-i="pill" style="color:#0396d9"></i>Medication history<span class="more">Export ↓</span></h3>
+          <table>
+            <tr><th>Date</th><th>Medicine</th><th>Dosage</th><th class="num">Qty</th><th>Doctor</th><th>Status</th></tr>
+            <tr><td>13 Oct 2026</td><td><b>Azithromycin 250mg</b><small>Batch AZ0921 · Exp 06/2028</small></td><td>1 tab daily × 3 days</td><td class="num">3</td><td>Dr. Lim</td><td><span class="chip g"><span class="dot" style="background:#16a34a;margin:0"></span>Active</span></td></tr>
+            <tr><td>13 Oct 2026</td><td><b>Paracetamol 500mg</b><small>Batch B2409 · Exp 08/2028</small></td><td>2 tabs 3×/day if fever</td><td class="num">20</td><td>Dr. Lim</td><td><span class="chip g"><span class="dot" style="background:#16a34a;margin:0"></span>Active</span></td></tr>
+            <tr><td>02 Oct 2026</td><td><b>Amlodipine 5mg</b><small>Long-term · repeat monthly</small></td><td>1 tab every morning</td><td class="num">30</td><td>Dr. Aisyah</td><td><span class="chip v">Long-term</span></td></tr>
+            <tr><td>02 Oct 2026</td><td><b>Cetirizine 10mg</b><small>Batch CT1120 · Exp 01/2028</small></td><td>1 tab at night</td><td class="num">10</td><td>Dr. Aisyah</td><td><span class="chip s">Completed</span></td></tr>
+            <tr><td>18 Sep 2026</td><td><b>Omeprazole 20mg</b><small>Batch OM0533 · Exp 11/2027</small></td><td>1 cap before breakfast</td><td class="num">14</td><td>Dr. Lim</td><td><span class="chip s">Completed</span></td></tr>
+            <tr><td>03 Sep 2026</td><td><b>Amlodipine 5mg</b><small>Repeat prescription</small></td><td>1 tab every morning</td><td class="num">30</td><td>Dr. Aisyah</td><td><span class="chip s">Completed</span></td></tr>
+            <tr><td>12 Aug 2026</td><td><b>Loratadine 10mg</b><small>Batch LR0418 · Exp 03/2028</small></td><td>1 tab daily</td><td class="num">7</td><td>Dr. Lim</td><td><span class="chip s">Completed</span></td></tr>
+          </table>
+        </div>
+        <div class="rx">
+          <div class="card" style="display:flex;flex-direction:column;gap:10px">
+            <h3><i data-i="plus" style="color:#0396d9"></i>New prescription</h3>
+            <div class="fld"><label>Medicine</label><div class="inp err"><i data-i="search" style="color:#94a3b8"></i>Amoxicillin 250mg capsule</div></div>
+            <div class="warn"><i data-i="alert"></i><div><b>Allergy alert</b><br>Patient is allergic to Penicillin. Amoxicillin is a penicillin-class antibiotic.</div></div>
+            <div class="sug"><i data-i="spark" style="width:18px;height:18px"></i><div>Suggested alternative<br><b>Azithromycin 250mg</b></div><span class="btn pri">Use</span></div>
+            <div class="three">
+              <div class="fld"><label>Dose</label><div class="inp">1 tab</div></div>
+              <div class="fld"><label>Frequency</label><div class="inp">Once daily</div></div>
+              <div class="fld"><label>Days</label><div class="inp">3</div></div>
+            </div>
+            <span class="btn pri" style="justify-content:center;height:38px">Add to prescription</span>
+          </div>
+          <div class="card" style="display:flex;align-items:center;gap:10px;font-size:12px">
+            <span class="ic b" style="width:34px;height:34px;border-radius:9px;display:grid;place-items:center"><i data-i="undo"></i></span>
+            <div><b>Repeat last prescription</b><div class="muted" style="font-size:11px">Amlodipine 5mg · 30 tabs</div></div>
+            <i data-i="chevR" style="margin-left:auto;color:#94a3b8"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<script src="shell.js"></script>
+<script src="icons.js"></script>
+</body></html>

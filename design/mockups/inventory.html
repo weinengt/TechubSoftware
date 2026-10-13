@@ -1,0 +1,86 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<style>
+  :root { --w: 1200px; --h: 750px; }
+  td { padding: 8px 9px; } th { padding: 8px 9px; }
+  .typ { display: inline-flex; align-items: center; gap: 5px; font-size: 10.5px; font-weight: 650; padding: 3px 8px; border-radius: 99px; }
+  .in { background: #dcfce7; color: #15803d; } .out { background: var(--brand-100); color: #036295; } .sale { background: #ede9fe; color: #6d28d9; }
+  .tr { background: #e0f2fe; color: #075985; } .adj { background: #fef3c7; color: #b45309; } .wo { background: #fee2e2; color: #b91c1c; }
+  .side2 { width: 320px; flex-shrink: 0; display: flex; flex-direction: column; gap: 12px; }
+  .item h4 { font-size: 15px; font-weight: 800; } .item .meta { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .kv { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; }
+  .kv div { background: #f8fafc; border-radius: 9px; padding: 7px 9px; } .kv span { font-size: 10px; color: var(--muted); display: block; } .kv b { font-size: 14px; }
+  .ai { background: linear-gradient(135deg, #0b2f55, #0050a0 60%, #0396d9); color: #e0f2fe; border-radius: 12px; padding: 14px; font-size: 12px; line-height: 1.5; position: relative; overflow: hidden; }
+  .ai::after { content: ""; position: absolute; right: -30px; bottom: -30px; width: 110px; height: 110px; border-radius: 99px; background: rgba(0,207,203,.25); }
+  .ai h4 { color: #fff; font-size: 13px; display: flex; gap: 8px; align-items: center; margin-bottom: 6px; }
+  .ai .btn { margin-top: 10px; background: #fff; color: #0050a0; border: 0; height: 30px; position: relative; z-index: 1; }
+  .filters { display: flex; gap: 6px; padding: 0 14px 10px; }
+  .filters span { font-size: 11px; font-weight: 600; padding: 5px 10px; border-radius: 99px; border: 1px solid var(--line); color: var(--ink2); }
+  .filters span.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+</style></head>
+<body>
+<div class="app">
+  <aside class="side" data-shell="clinic" data-active="Inventory"></aside>
+  <section class="main">
+    <header class="top">
+      <div><div class="sub">Inventory</div><h1>Stock Movement Log</h1></div>
+      <div class="search"><i data-i="search"></i>Search item, batch or barcode…</div>
+      <span class="btn"><i data-i="sliders"></i>Adjust stock</span>
+      <span class="btn pri"><i data-i="scan"></i>Scan delivery note</span>
+    </header>
+    <div class="content">
+      <div class="stats">
+        <div class="stat"><span class="ic b"><i data-i="box"></i></span><div><div class="k">Stock value</div><div class="v">RM 48,250</div><div class="d" style="color:#64748b">412 items · 2 branches</div></div></div>
+        <div class="stat"><span class="ic g"><i data-i="swap"></i></span><div><div class="k">Movements today</div><div class="v">126</div><div class="d">All auto-recorded</div></div></div>
+        <div class="stat"><span class="ic r"><i data-i="alert"></i></span><div><div class="k">Low stock</div><div class="v">5 items</div><div class="d" style="color:#dc2626">Reorder suggested</div></div></div>
+        <div class="stat"><span class="ic a"><i data-i="clock"></i></span><div><div class="k">Expiring in 60 days</div><div class="v">3 batches</div><div class="d" style="color:#d97706">RM 640 value</div></div></div>
+      </div>
+      <div class="row" style="flex:1;min-height:0">
+        <div class="card grow" style="padding:0;overflow:hidden">
+          <h3 style="padding:12px 14px 10px"><i data-i="swap" style="color:#0396d9"></i>Every movement, tracked<span class="more">Export ↓</span></h3>
+          <div class="filters"><span class="on">All</span><span>Stock in</span><span>Dispensed</span><span>Sales</span><span>Transfers</span><span>Adjustments</span></div>
+          <table>
+            <tr><th>Time</th><th>Item</th><th>Type</th><th class="num">Qty</th><th class="num">Balance</th><th>By</th></tr>
+            <tr><td>10:42</td><td><b>Paracetamol 500mg</b><small>Batch B2409 · Exp 08/2028</small></td><td><span class="typ in">Stock in · DN scanned</span></td><td class="num pos">+1,000</td><td class="num">1,240</td><td>AI · Aina</td></tr>
+            <tr><td>10:38</td><td><b>Amoxicillin 250mg</b><small>Batch A0921</small></td><td><span class="typ out">Dispensed · P-001042</span></td><td class="num neg">−21</td><td class="num">96</td><td>Pharmacy</td></tr>
+            <tr><td>10:31</td><td><b>Hydrating Serum 30ml</b><small>Batch S1187</small></td><td><span class="typ out">Used in treatment</span></td><td class="num neg">−1</td><td class="num">14</td><td>Mei Ling</td></tr>
+            <tr><td>10:25</td><td><b>Hair Colour 7.1</b><small>Batch H3301</small></td><td><span class="typ sale">Retail sale · INV-5521</span></td><td class="num neg">−2</td><td class="num">23</td><td>Cashier</td></tr>
+            <tr><td>10:12</td><td><b>Surgical Mask (50s)</b><small>KL → PJ branch</small></td><td><span class="typ tr">Transfer</span></td><td class="num neg">−10</td><td class="num">32</td><td>Manager</td></tr>
+            <tr><td>09:58</td><td><b>Cetirizine 10mg</b><small>Stock count</small></td><td><span class="typ adj">Adjustment · approved</span></td><td class="num neg">−3</td><td class="num">58</td><td>Supervisor</td></tr>
+            <tr><td>09:40</td><td><b>Massage Oil 1L</b><small>Batch MO0712</small></td><td><span class="typ in">Stock in · DN scanned</span></td><td class="num pos">+12</td><td class="num">20</td><td>AI · Jenny</td></tr>
+            <tr><td>09:15</td><td><b>Omeprazole 20mg</b><small>Batch OM0201 · expired</small></td><td><span class="typ wo">Write-off</span></td><td class="num neg">−14</td><td class="num">186</td><td>Pharmacist</td></tr>
+            <tr><td>09:02</td><td><b>Sheet Mask (10s)</b><small>Batch FM0930</small></td><td><span class="typ out">Used in treatment</span></td><td class="num neg">−1</td><td class="num">41</td><td>Aisyah</td></tr>
+          </table>
+        </div>
+        <div class="side2">
+          <div class="card item">
+            <h4>Paracetamol 500mg</h4><div class="meta">SKU PCM-500 · Shelf A3 · 2 batches</div>
+            <svg viewBox="0 0 290 110" style="width:100%;margin-top:10px">
+              <defs><linearGradient id="g" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#0396d9" stop-opacity=".28"/><stop offset="1" stop-color="#0396d9" stop-opacity="0"/></linearGradient></defs>
+              <line x1="0" x2="290" y1="80" y2="80" stroke="#ef4444" stroke-dasharray="4 4" stroke-width="1.2"/>
+              <text x="288" y="75" font-size="9" fill="#ef4444" text-anchor="end" font-family="Inter">Reorder level</text>
+              <path d="M0 30 L30 38 L60 47 L90 55 L120 63 L150 71 L180 86 L190 90 L190 12 L220 20 L250 28 L290 36 L290 110 L0 110 Z" fill="url(#g)"/>
+              <path d="M0 30 L30 38 L60 47 L90 55 L120 63 L150 71 L180 86 L190 90 L190 12 L220 20 L250 28 L290 36" fill="none" stroke="#0396d9" stroke-width="2.4" stroke-linejoin="round"/>
+              <circle cx="190" cy="12" r="4.5" fill="#fff" stroke="#10b981" stroke-width="2.4"/>
+              <text x="198" y="10" font-size="9.5" font-weight="700" fill="#059669" font-family="Inter">+1,000 received</text>
+            </svg>
+            <div class="kv"><div><span>On hand</span><b>1,240</b></div><div><span>Used / day</span><b>48</b></div><div><span>Days left</span><b>26</b></div></div>
+          </div>
+          <div class="ai">
+            <h4><i data-i="spark" style="width:18px;height:18px;color:#5eead4"></i>AI stock insight</h4>
+            Amoxicillin 250mg will run out in <b style="color:#fff">~2 days</b> at the current rate. Suggest ordering <b style="color:#fff">500 caps</b> from your usual supplier by Thursday.
+            <br><span class="btn"><i data-i="file"></i>Create purchase order</span>
+          </div>
+          <div class="card" style="flex:1">
+            <h3><i data-i="clock" style="color:#d97706"></i>Expiring soon</h3>
+            <div style="display:flex;align-items:center;gap:10px;margin-top:10px;font-size:12px"><div><b>Omeprazole 20mg</b><div class="muted" style="font-size:10.5px">Batch OM0533 · 40 caps</div></div><span class="chip a" style="margin-left:auto">18 Nov</span></div>
+            <div style="display:flex;align-items:center;gap:10px;margin-top:9px;font-size:12px"><div><b>Vitamin C Serum</b><div class="muted" style="font-size:10.5px">Batch VC0212 · 6 bottles</div></div><span class="chip a" style="margin-left:auto">2 Dec</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<script src="shell.js"></script>
+<script src="icons.js"></script>
+</body></html>

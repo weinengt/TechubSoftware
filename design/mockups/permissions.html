@@ -1,0 +1,98 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<style>
+  :root { --w: 1200px; --h: 750px; }
+  .roles { width: 250px; flex-shrink: 0; display: flex; flex-direction: column; gap: 8px; }
+  .role { display: flex; align-items: center; gap: 10px; background: #fff; border: 1px solid var(--line); border-radius: 11px; padding: 10px 12px; }
+  .role.on { border: 1.5px solid var(--brand); box-shadow: 0 6px 16px -10px rgba(3,150,217,.7); }
+  .role .ic { width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center; }
+  .role b { font-size: 12.5px; display: block; } .role small { font-size: 10.5px; color: var(--muted); }
+  .role .cnt { margin-left: auto; font-size: 11px; font-weight: 700; color: var(--muted); }
+  .mx th, .mx td { text-align: center; } .mx th:first-child, .mx td:first-child { text-align: left; }
+  .mx td { padding: 7px 10px; }
+  .tg { display: inline-block; width: 34px; height: 19px; border-radius: 99px; background: #e2e8f0; position: relative; vertical-align: middle; }
+  .tg::after { content: ""; position: absolute; top: 2px; left: 2px; width: 15px; height: 15px; border-radius: 99px; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.2); }
+  .tg.on { background: linear-gradient(135deg, var(--brand), var(--teal)); } .tg.on::after { left: 17px; }
+  .tg.ap { background: #f59e0b; } .tg.ap::after { left: 17px; }
+  .tg.sm { width: 24px; height: 14px; } .tg.sm::after { width: 10px; height: 10px; } .tg.sm.on::after, .tg.sm.ap::after { left: 12px; }
+  .lg { display: inline-flex; align-items: center; gap: 6px; }
+  .mod { display: flex; align-items: center; gap: 8px; font-weight: 600; color: var(--ink); }
+  .mod svg { color: var(--muted); }
+  .br { display: flex; gap: 6px; flex-wrap: wrap; }
+  .log { display: flex; gap: 10px; align-items: flex-start; font-size: 11.5px; padding: 7px 0; border-bottom: 1px solid #f1f5f9; color: var(--ink2); }
+  .log:last-child { border-bottom: 0; }
+  .log time { font-weight: 700; color: var(--muted); width: 38px; flex-shrink: 0; }
+</style></head>
+<body>
+<div class="app">
+  <aside class="side" data-shell="clinic" data-active="Staff & Roles"></aside>
+  <section class="main">
+    <header class="top">
+      <div><div class="sub">Settings</div><h1>Staff &amp; Permission Control</h1></div>
+      <div class="search"><i data-i="search"></i>Search staff…</div>
+      <span class="btn"><i data-i="users"></i><span id="staffN">14</span> staff</span>
+      <span class="btn pri"><i data-i="plus"></i>Add staff</span>
+    </header>
+    <div class="content">
+      <div class="row" style="flex:1;min-height:0">
+        <div class="roles" id="roles"></div>
+        <div class="grow" style="display:flex;flex-direction:column;gap:12px;min-width:0">
+          <div class="card" style="padding:0;overflow:hidden">
+            <div style="display:flex;align-items:center;gap:10px;padding:12px 14px">
+              <h3><i data-i="shield" style="color:#0396d9"></i>Permissions · <span id="roleName"></span></h3>
+              <span style="margin-left:auto;font-size:11px;color:var(--muted);display:flex;gap:6px;align-items:center" id="branches"></span>
+              <span class="chip g">Changes saved</span>
+            </div>
+            <table class="mx" id="mx"><tr><th>Module</th><th>View</th><th>Create</th><th>Edit</th><th>Delete</th><th>Export</th></tr></table>
+            <div style="display:flex;gap:16px;align-items:center;padding:10px 14px;font-size:11px;color:var(--muted);border-top:1px solid #eef2f7">
+              <span class="lg"><span class="tg sm on"></span>Allowed</span><span class="lg"><span class="tg sm ap"></span>Needs manager approval</span><span class="lg"><span class="tg sm"></span>Blocked</span>
+            </div>
+          </div>
+          <div class="card" style="flex:1;min-height:0">
+            <h3><i data-i="file" style="color:#0396d9"></i>Audit trail<span class="more">View all →</span></h3>
+            <div id="log" style="margin-top:6px"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<script>
+  const V = new URLSearchParams(location.search).get("v") === "spa" ? "spa" : "clinic";
+  const D = {
+    clinic: {
+      staff: 14, role: "Nurse",
+      roles: [["shield", "b", "Owner", "Full access", 1], ["steth", "v", "Doctor", "Consult & prescribe", 3], ["users", "b", "Nurse", "Triage & queue", 4],
+        ["pill", "g", "Pharmacy", "Dispense & stock", 2], ["card", "a", "Cashier", "Billing & payment", 3], ["chart", "r", "Manager", "Reports & approvals", 1]],
+      mx: [["users", "Patients", 1, 1, 1, 0, 0], ["queue", "Queue & calling", 1, 1, 1, 0, 0], ["steth", "Consultation notes", 1, 0, 0, 0, 0],
+        ["pill", "Prescriptions", 1, 0, 0, 0, 0], ["box", "Inventory", 1, 0, 2, 0, 0], ["card", "Billing & discounts", 1, 1, 2, 0, 0], ["chart", "Reports", 0, 0, 0, 0, 0]],
+      branches: ["KL ✓", "PJ ✓", "Cheras ✗"],
+      log: [["10:42", "<b>Nurse Aina</b> opened patient record of Tan Mei Ling"], ["10:40", "<b>Cashier Kumar</b> requested 10% discount · <span class='chip g'>Approved by Manager</span>"],
+        ["10:31", "<b>Dr. Lim</b> prescribed Azithromycin 250mg for P-001042"], ["10:12", "<b>Manager Jason</b> transferred 10 boxes of masks KL → PJ"],
+        ["09:58", "<b>Pharmacist Wong</b> adjusted Cetirizine 10mg stock (−3) · <span class='chip a'>Reason: stock count</span>"], ["09:30", "<b>Nurse Aina</b> signed in on Tablet 2 · KL branch"]],
+    },
+    spa: {
+      staff: 11, role: "Therapist",
+      roles: [["shield", "b", "Owner", "Full access", 1], ["chart", "r", "Manager", "Reports & approvals", 1], ["cal", "b", "Receptionist", "Bookings & POS", 2],
+        ["users", "v", "Therapist", "Own schedule & notes", 5], ["star", "g", "Stylist", "Own schedule & notes", 2], ["box", "a", "Stock keeper", "Inventory", 1]],
+      mx: [["cal", "Calendar & bookings", 1, 1, 2, 0, 0], ["users", "Customer profiles", 1, 0, 1, 0, 0], ["pen", "Treatment notes", 1, 1, 1, 0, 0],
+        ["gift", "Packages & credits", 1, 0, 0, 0, 0], ["card", "POS & discounts", 0, 0, 0, 0, 0], ["box", "Inventory usage", 1, 1, 0, 0, 0], ["chart", "Own commission", 1, 0, 0, 0, 0]],
+      branches: ["Bangsar ✓", "Mont Kiara ✓", "Subang ✗"],
+      log: [["11:05", "<b>Therapist Mei Ling</b> added treatment notes for Priya Devi"], ["10:48", "<b>Receptionist Hana</b> gave RM 20 voucher · <span class='chip g'>Approved by Manager</span>"],
+        ["10:31", "<b>Mei Ling</b> used 1 × Hydrating Serum (auto stock deduct)"], ["10:05", "<b>Manager Jenny</b> changed Kelly's Saturday shift"],
+        ["09:50", "<b>Receptionist Hana</b> redeemed 1 session from Priya Devi's facial package"], ["09:30", "<b>Therapist Aisyah</b> signed in on iPad · Bangsar"]],
+    },
+  }[V];
+  document.getElementById("staffN").textContent = D.staff;
+  document.getElementById("roleName").textContent = D.role;
+  document.getElementById("roles").innerHTML = D.roles.map(([i, c, n, d, k]) =>
+    `<div class="role ${n === D.role ? "on" : ""}"><span class="ic ${c}"><i data-i="${i}"></i></span><div><b>${n}</b><small>${d}</small></div><span class="cnt">${k}</span></div>`).join("") +
+    `<div class="role" style="border-style:dashed;color:var(--brand);font-size:12px;font-weight:650;justify-content:center"><i data-i="plus"></i>Create custom role</div>`;
+  const tg = (x) => `<span class="tg ${x === 1 ? "on" : x === 2 ? "ap" : ""}"></span>`;
+  document.getElementById("mx").insertAdjacentHTML("beforeend", D.mx.map(([i, n, ...p]) => `<tr><td><span class="mod"><i data-i="${i}"></i>${n}</span></td>${p.map((x) => `<td>${tg(x)}</td>`).join("")}</tr>`).join(""));
+  document.getElementById("branches").innerHTML = "Branch access: " + D.branches.map((b) => `<span class="chip ${b.includes("✓") ? "b" : "s"}">${b}</span>`).join("");
+  document.getElementById("log").innerHTML = D.log.map(([t, m]) => `<div class="log"><time>${t}</time><div>${m}</div></div>`).join("");
+</script>
+<script src="shell.js"></script>
+<script src="icons.js"></script>
+</body></html>

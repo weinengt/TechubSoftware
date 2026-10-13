@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { nav, whatsappLink } from "@/lib/site";
+import { emailLink, nav, site, whatsappLink } from "@/lib/site";
 import { Icon } from "./Icons";
 
 export default function Header() {
@@ -24,7 +24,7 @@ export default function Header() {
     >
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8" aria-label="Main">
         <Link href="/" className="flex items-center" aria-label="Techub Software home">
-          <img src="/images/logo.webp" alt="Techub Software logo" width={125} height={40} className="h-9 w-auto" />
+          <img src="/images/logo.webp" alt="Techub Software logo" width={125} height={40} className="h-8 w-auto sm:h-9" />
         </Link>
 
         <ul className="hidden items-center gap-1 lg:flex">
@@ -41,7 +41,7 @@ export default function Header() {
         </ul>
 
         <div className="flex items-center gap-2">
-          <a href={whatsappLink()} target="_blank" rel="noopener" className="btn-primary hidden !py-2.5 sm:inline-flex">
+          <a href={whatsappLink()} target="_blank" rel="noopener" className="btn-primary !px-4 !py-2 text-xs sm:!px-6 sm:!py-2.5 sm:text-sm">
             Free Demo
           </a>
           <button
@@ -73,7 +73,10 @@ export default function Header() {
             ))}
           </ul>
           <a href={whatsappLink()} target="_blank" rel="noopener" className="btn-primary mt-3 w-full">
-            Get a Free Demo on WhatsApp
+            <Icon.Whatsapp className="h-5 w-5" /> WhatsApp {site.whatsappDisplay}
+          </a>
+          <a href={emailLink()} className="btn-secondary mt-3 w-full">
+            <Icon.Mail className="h-5 w-5" /> {site.email}
           </a>
         </div>
       )}

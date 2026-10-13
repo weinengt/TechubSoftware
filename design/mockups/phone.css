@@ -1,0 +1,6 @@
+/* Shared phone status bar */
+body { font-family: Inter, "Noto Color Emoji", sans-serif; }
+.status { height: 30px; display: flex; align-items: center; padding: 0 20px 0 24px; font-size: 13px; font-weight: 650; }
+.status .r { margin-left: auto; display: flex; gap: 5px; align-items: center; }
+.sig { display: flex; gap: 1.5px; align-items: flex-end; height: 10px; } .sig i { width: 3px; background: currentColor; border-radius: 1px; display: block; }
+.bat { width: 22px; height: 11px; border: 1.5px solid currentColor; border-radius: 3px; padding: 1px; opacity: .9; } .bat i { display: block; height: 100%; width: 75%; background: currentColor; border-radius: 1px; }

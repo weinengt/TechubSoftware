@@ -2,19 +2,12 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import JsonLd from "./JsonLd";
 import { Icon, type IconName } from "./Icons";
-import {
-  CheckList,
-  CtaSection,
-  FaqSection,
-  FeatureCard,
-  HardwareSection,
-  PricingSection,
-  SectionHeading,
-  breadcrumbJsonLd,
-  faqJsonLd,
-  softwareJsonLd,
-} from "./Sections";
+import { FaqSection, HardwareSection, PricingSection, SectionHeading, breadcrumbJsonLd, faqJsonLd, softwareJsonLd } from "./Sections";
+import { Combo, ContactSection, FeatureTiles, FloatBadge, PhoneShowcase, Spotlight } from "./Showcase";
+import type { Shot } from "@/lib/shots";
 import { site, whatsappLink } from "@/lib/site";
+
+type Visual = { main: Shot; phone?: Shot; side?: "left" | "right" } | { phoneOnly: Shot; badges?: ReactNode[] };
 
 export type ProductContent = {
   path: string;
@@ -24,30 +17,28 @@ export type ProductContent = {
   eyebrow: string;
   heading: ReactNode;
   intro: string;
+  hero: { main: Shot; phone?: Shot; badge?: ReactNode };
   whoFor: string[];
-  modules: { icon: IconName; title: string; text: string }[];
-  workflowTitle: string;
-  workflow: { t: string; d: string }[];
-  highlightTitle: string;
-  highlightText: string;
-  highlights: string[];
+  spotlights: { eyebrow: string; title: string; points: string[]; visual: Visual }[];
+  modules: { icon: IconName; title: string }[];
   faqs: { q: string; a: string }[];
   demoMessage: string;
+  contactPhone: Shot;
 };
+
+function renderVisual(v: Visual) {
+  if ("phoneOnly" in v) return <PhoneShowcase shot={v.phoneOnly} badges={v.badges} />;
+  return <Combo main={v.main} phone={v.phone} side={v.side} />;
+}
 
 export default function ProductPage({ c }: { c: ProductContent }) {
   const url = `${site.url}${c.path}`;
+  const pics = [c.hero.main, ...c.spotlights.map((s) => ("phoneOnly" in s.visual ? s.visual.phoneOnly : s.visual.main))];
   return (
     <>
       <JsonLd
         data={[
-          softwareJsonLd({
-            name: c.name,
-            description: c.description,
-            url,
-            category: c.category,
-            features: c.modules.map((m) => m.title),
-          }),
+          softwareJsonLd({ name: c.name, description: c.description, url, category: c.category, features: c.modules.map((m) => m.title), screenshots: pics }),
           faqJsonLd(c.faqs),
           breadcrumbJsonLd([
             { name: "Home", url: `${site.url}/` },
@@ -56,27 +47,30 @@ export default function ProductPage({ c }: { c: ProductContent }) {
         ]}
       />
 
-      <section className="relative overflow-hidden pt-28 pb-20 sm:pt-36">
-        <div className="bg-grid absolute inset-0 [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_70%)]" />
-        <div className="relative mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
-          <nav aria-label="Breadcrumb" className="mb-6 text-sm text-slate-500">
-            <Link href="/" className="hover:text-brand-700">Home</Link> <span aria-hidden="true">/</span>{" "}
-            <span className="text-slate-700">{c.name}</span>
-          </nav>
-          <p className="eyebrow">{c.eyebrow}</p>
-          <h1 className="mt-6 text-4xl font-extrabold leading-tight tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
-            {c.heading}
-          </h1>
-          <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-slate-600">{c.intro}</p>
-          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-            <a href={whatsappLink(c.demoMessage)} target="_blank" rel="noopener" className="btn-primary">
-              <Icon.Whatsapp className="h-5 w-5" /> Book a Free Demo
-            </a>
-            <Link href="#pricing" className="btn-secondary">
-              From RM {site.priceFrom}/month · {site.freeMonths} months free
-            </Link>
+      <section className="relative overflow-hidden pt-24 pb-14 sm:pt-32 sm:pb-20">
+        <div className="bg-grid absolute inset-0 [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_70%)]" aria-hidden="true" />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <nav aria-label="Breadcrumb" className="mb-5 text-sm text-slate-500">
+              <Link href="/" className="hover:text-brand-700">Home</Link> <span aria-hidden="true">/</span>{" "}
+              <span className="text-slate-700">{c.name}</span>
+            </nav>
+            <p className="eyebrow">{c.eyebrow}</p>
+            <h1 className="mt-5 text-[2.3rem] leading-[1.1] font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">{c.heading}</h1>
+            <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-slate-600">{c.intro}</p>
+            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+              <a href={whatsappLink(c.demoMessage)} target="_blank" rel="noopener" className="btn-primary !py-3.5">
+                <Icon.Whatsapp className="h-5 w-5" /> Book a Free Demo
+              </a>
+              <Link href="#pricing" className="btn-secondary !py-3.5">
+                From RM {site.priceFrom}/month · {site.freeMonths} months free
+              </Link>
+            </div>
           </div>
-          <ul className="mx-auto mt-12 flex max-w-3xl flex-wrap justify-center gap-2">
+          <div className="mx-auto mt-14 max-w-5xl">
+            <Combo main={c.hero.main} phone={c.hero.phone} priority badge={c.hero.badge} />
+          </div>
+          <ul className="mx-auto mt-10 flex max-w-4xl flex-wrap justify-center gap-2">
             {c.whoFor.map((w) => (
               <li key={w} className="rounded-full bg-white px-4 py-1.5 text-sm font-medium text-slate-700 shadow-sm ring-1 ring-slate-200">
                 {w}
@@ -86,50 +80,34 @@ export default function ProductPage({ c }: { c: ProductContent }) {
         </div>
       </section>
 
-      <section className="bg-slate-50 py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeading eyebrow="Modules" title={`What's inside the ${c.name}`} />
-          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {c.modules.map((m) => (
-              <FeatureCard key={m.title} icon={m.icon} title={m.title}>{m.text}</FeatureCard>
-            ))}
+      {c.spotlights.map((s, i) => (
+        <section key={s.title} className={`overflow-hidden py-16 sm:py-20 ${i % 2 === 0 ? "bg-slate-50" : ""}`}>
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <Spotlight
+              eyebrow={s.eyebrow}
+              title={s.title}
+              points={s.points}
+              reverse={i % 2 === 1}
+              visual={renderVisual(s.visual)}
+              cta={i === 1 ? { label: "Ask for a demo", message: c.demoMessage } : undefined}
+            />
           </div>
-        </div>
-      </section>
+        </section>
+      ))}
 
-      <section className="py-24">
+      <section className="py-20 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeading eyebrow="How it works" title={c.workflowTitle} />
-          <ol className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-            {c.workflow.map((s, i) => (
-              <li key={s.t} className="card relative p-6">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-gradient text-sm font-extrabold text-white">
-                  {i + 1}
-                </span>
-                <h3 className="mt-4 text-lg font-bold text-slate-900">{s.t}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-600">{s.d}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      <section className="pb-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid items-center gap-10 rounded-3xl bg-brand-50 p-8 ring-1 ring-brand-100 sm:p-12 lg:grid-cols-2">
-            <div>
-              <h2 className="text-3xl font-extrabold tracking-tight text-slate-900">{c.highlightTitle}</h2>
-              <p className="mt-4 text-lg leading-relaxed text-slate-600">{c.highlightText}</p>
-            </div>
-            <CheckList items={c.highlights} />
-          </div>
+          <SectionHeading eyebrow="All modules" title={`Inside the ${c.name}`} />
+          <FeatureTiles items={c.modules} />
         </div>
       </section>
 
       <HardwareSection />
       <PricingSection />
       <FaqSection items={c.faqs} />
-      <CtaSection />
+      <ContactSection phoneShot={c.contactPhone} />
     </>
   );
 }
+
+export { FloatBadge };

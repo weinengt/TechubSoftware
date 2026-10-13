@@ -1,0 +1,69 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<style>
+  :root { --w: 1280px; --h: 720px; }
+  body { font-family: Inter, "WenQuanYi Zen Hei", sans-serif; }
+  .tv { width: 100%; height: 100%; color: #fff; display: flex; flex-direction: column; padding: 26px 30px 0; gap: 20px;
+    background: radial-gradient(circle at 15% 20%, rgba(3,150,217,.35), transparent 45%), radial-gradient(circle at 90% 90%, rgba(0,207,203,.25), transparent 40%), linear-gradient(135deg, #061a31, #0b2f55); position: relative; overflow: hidden; }
+  .tv::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px); background-size: 48px 48px; }
+  .tv > * { position: relative; }
+  .hd { display: flex; align-items: center; gap: 14px; }
+  .hd img { width: 52px; height: 52px; border-radius: 14px; }
+  .hd h1 { font-size: 26px; font-weight: 800; letter-spacing: .02em; } .hd small { display: block; font-size: 14px; color: #93c5fd; font-weight: 500; letter-spacing: 0; }
+  .clock { margin-left: auto; text-align: right; } .clock b { font-size: 38px; font-weight: 800; letter-spacing: -.02em; } .clock div { font-size: 14px; color: #93c5fd; }
+  .grid { flex: 1; display: grid; grid-template-columns: 1.55fr 1fr; gap: 20px; min-height: 0; }
+  .now { border-radius: 26px; background: linear-gradient(135deg, #0050a0, #0396d9 55%, #00cfcb); display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; box-shadow: 0 30px 60px -30px rgba(0,207,203,.6); }
+  .now::before, .now::after { content: ""; position: absolute; border-radius: 999px; border: 2px solid rgba(255,255,255,.18); }
+  .now::before { width: 520px; height: 520px; } .now::after { width: 380px; height: 380px; border-color: rgba(255,255,255,.28); }
+  .now .lbl { font-size: 20px; font-weight: 700; letter-spacing: .25em; display: flex; gap: 12px; align-items: center; z-index: 1; }
+  .now .lbl svg { width: 26px; height: 26px; }
+  .now .no { font-size: 200px; font-weight: 900; letter-spacing: -.04em; line-height: 1; margin: 6px 0 12px; z-index: 1; text-shadow: 0 10px 30px rgba(0,0,0,.25); }
+  .now .to { z-index: 1; background: #fff; color: #0050a0; border-radius: 99px; padding: 12px 30px; font-size: 30px; font-weight: 850; display: flex; gap: 14px; align-items: center; }
+  .now .to svg { width: 30px; height: 30px; stroke-width: 2.6; }
+  .now .dr { z-index: 1; margin-top: 14px; font-size: 18px; font-weight: 600; opacity: .95; }
+  .right { display: flex; flex-direction: column; gap: 14px; }
+  .pane { flex: 1; display: flex; flex-direction: column; justify-content: center; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); border-radius: 18px; padding: 14px 18px; }
+  .pane h2 { font-size: 13px; font-weight: 700; letter-spacing: .14em; color: #7dd3fc; display: flex; justify-content: space-between; }
+  .pane h2 span { color: #94a3b8; letter-spacing: .05em; font-weight: 600; }
+  .ln { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; }
+  .ln b { font-size: 34px; font-weight: 850; letter-spacing: -.02em; }
+  .ln span { font-size: 17px; font-weight: 700; color: #e0f2fe; background: rgba(255,255,255,.1); padding: 6px 14px; border-radius: 10px; }
+  .ln.dim b { color: #94a3b8; font-size: 26px; } .ln.dim span { color: #94a3b8; font-size: 15px; }
+  .next { display: flex; align-items: center; gap: 12px; }
+  .next .t { font-size: 13px; font-weight: 700; letter-spacing: .16em; color: #7dd3fc; margin-right: 6px; }
+  .next b { font-size: 22px; font-weight: 800; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12); border-radius: 12px; padding: 6px 16px; }
+  .ticker { margin: 0 -30px; background: rgba(0,0,0,.35); border-top: 1px solid rgba(255,255,255,.1); padding: 12px 30px; font-size: 16px; color: #cbd5e1; display: flex; gap: 22px; white-space: nowrap; }
+  .ticker em { font-style: normal; color: #5eead4; }
+</style></head>
+<body>
+<div class="tv">
+  <div class="hd">
+    <img src="icon.png" alt="">
+    <h1>DEMO CLINIC<small>Klinik Demo · Kuala Lumpur</small></h1>
+    <div class="clock"><b>10:24 AM</b><div>Tuesday, 13 October 2026</div></div>
+  </div>
+  <div class="grid">
+    <div class="now">
+      <div class="lbl"><i data-i="queue"></i>NOW CALLING · SILA KE</div>
+      <div class="no">A023</div>
+      <div class="to">ROOM 2 · BILIK 2 <i data-i="arrowR"></i></div>
+      <div class="dr">Dr. Lim Wei Jie · General Consultation</div>
+    </div>
+    <div class="right">
+      <div class="pane"><h2>CONSULTATION<span>KONSULTASI</span></h2>
+        <div class="ln"><b>A022</b><span>Room 1</span></div>
+        <div class="ln dim"><b>A021</b><span>Room 3</span></div>
+      </div>
+      <div class="pane"><h2>PHARMACY<span>FARMASI · 药房</span></h2>
+        <div class="ln"><b>P015</b><span>Counter 1</span></div>
+      </div>
+      <div class="pane"><h2>PAYMENT<span>BAYARAN · 付款</span></h2>
+        <div class="ln"><b>C009</b><span>Counter 2</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="next"><span class="t">NEXT</span><b>A024</b><b>A025</b><b>A026</b><b>A027</b><b>A028</b><span style="margin-left:auto;font-size:14px;color:#94a3b8">Estimated waiting time: <b style="background:none;border:0;padding:0;font-size:16px;color:#fff">12 min</b></span></div>
+  <div class="ticker"><span><em>●</em> Please have your MyKad ready</span><span><em>●</em> Sila sediakan MyKad anda</span><span><em>●</em> 请准备好您的身份证</span><span><em>●</em> Get appointment reminders on WhatsApp</span></div>
+</div>
+<script src="icons.js"></script>
+</body></html>

@@ -93,6 +93,9 @@ export const Icon = {
   Barcode: (p: IconProps) => (
     <svg {...base(p)}><path d="M4 5v14M7 5v14M10 5v14M14 5v14M16 5v14M20 5v14" /></svg>
   ),
+  Mail: (p: IconProps) => (
+    <svg {...base(p)}><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3.5 6.5l8.5 6.5 8.5-6.5" /></svg>
+  ),
   Menu: (p: IconProps) => (
     <svg {...base(p)}><path d="M4 7h16M4 12h16M4 17h16" /></svg>
   ),

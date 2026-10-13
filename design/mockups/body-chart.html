@@ -1,0 +1,107 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<style>
+  :root { --w: 1024px; --h: 720px; }
+  .tab { width: 100%; height: 100%; display: flex; flex-direction: column; background: #f4f7fb; }
+  .tb { height: 60px; background: #fff; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 12px; padding: 0 16px; }
+  .tb h1 { font-size: 16px; font-weight: 800; } .tb .pt { font-size: 11.5px; color: var(--muted); }
+  .tools { margin-left: auto; display: flex; align-items: center; gap: 6px; background: #f1f5f9; border-radius: 12px; padding: 5px; }
+  .tool { width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center; color: var(--ink2); } .tool.on { background: #fff; color: var(--brand); box-shadow: 0 1px 3px rgba(0,0,0,.12); }
+  .tool svg { width: 18px; height: 18px; }
+  .sw { width: 20px; height: 20px; border-radius: 99px; margin: 0 3px; } .sw.on { outline: 2.5px solid #fff; box-shadow: 0 0 0 4.5px var(--brand); }
+  .sep { width: 1px; height: 22px; background: #cbd5e1; margin: 0 4px; }
+  .body { flex: 1; display: flex; gap: 14px; padding: 14px; min-height: 0; }
+  .canvas { flex: 1; background: #fff; border: 1px solid var(--line); border-radius: 16px; position: relative; overflow: hidden;
+    background-image: radial-gradient(#dbe3ee 1px, transparent 1px); background-size: 20px 20px; }
+  .canvas svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .lbl { position: absolute; bottom: 14px; font-size: 11px; font-weight: 700; letter-spacing: .14em; color: #94a3b8; }
+  .panel { width: 330px; flex-shrink: 0; display: flex; flex-direction: column; gap: 12px; }
+  .notes p { font-size: 12.5px; line-height: 1.55; color: var(--ink2); margin-top: 8px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .sigbox { margin-top: 10px; height: 120px; border: 1.5px dashed #cbd5e1; border-radius: 12px; position: relative; background: #fbfdff; }
+  .sigbox .hand { position: absolute; left: 22px; top: 22px; font-size: 44px; color: #1e3a8a; transform: rotate(-4deg); font-weight: 700; }
+  .sigbox .ln { position: absolute; left: 16px; right: 16px; bottom: 30px; border-top: 1px solid #cbd5e1; }
+  .sigbox small { position: absolute; left: 16px; bottom: 9px; font-size: 10.5px; color: var(--muted); }
+  .save { height: 44px; border-radius: 12px; background: linear-gradient(135deg, #0396d9, #0287c4); color: #fff; font-weight: 750; font-size: 13.5px; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: auto; }
+  .save svg { width: 18px; height: 18px; }
+</style></head>
+<body>
+<div class="tab">
+  <div class="tb">
+    <i data-i="chevL" style="width:22px;height:22px"></i>
+    <div><h1 id="title"></h1><div class="pt" id="pt"></div></div>
+    <div class="tools">
+      <span class="tool on"><i data-i="pen"></i></span><span class="tool"><i data-i="eraser"></i></span><span class="tool"><i data-i="undo"></i></span>
+      <span class="sep"></span>
+      <span class="sw on" id="sw1" style="background:#ef4444"></span><span class="sw" style="background:#2563eb"></span><span class="sw" style="background:#14b8a6"></span><span class="sw" style="background:#0f172a"></span>
+      <span class="sep"></span>
+      <span class="tool"><i data-i="cam"></i></span>
+    </div>
+  </div>
+  <div class="body">
+    <div class="canvas" id="canvas">
+      <svg viewBox="0 0 640 600" preserveAspectRatio="xMidYMid meet" id="art"></svg>
+      <span class="lbl" style="left:22.5%">FRONT</span><span class="lbl" style="left:69%">BACK</span>
+    </div>
+    <div class="panel">
+      <div class="card notes"><h3><i data-i="file" style="color:#0396d9"></i><span id="nt"></span></h3><p id="np"></p><div class="tags" id="tags"></div></div>
+      <div class="card"><h3><i data-i="pen" style="color:#0396d9"></i><span id="ct"></span></h3>
+        <div class="sigbox"><span class="hand" id="sig"></span><span class="ln"></span><small id="sd"></small></div>
+      </div>
+      <div class="card"><h3><i data-i="cam" style="color:#0396d9"></i>Photos &amp; files</h3><div style="display:flex;gap:8px;margin-top:10px" id="att"></div></div>
+      <div class="save"><i data-i="check"></i>Save to record</div>
+    </div>
+  </div>
+</div>
+<script>
+  const V = new URLSearchParams(location.search).get("v") === "spa" ? "spa" : "clinic";
+  const fig = `
+    <path d="M-50 80 C-60 110 -66 150 -70 190 C-72 210 -74 225 -73 240 L-60 242 C-58 225 -56 205 -54 190 C-50 160 -46 130 -44 110 Z"/>
+    <path d="M50 80 C60 110 66 150 70 190 C72 210 74 225 73 240 L60 242 C58 225 56 205 54 190 C50 160 46 130 44 110 Z"/>
+    <ellipse cx="-67" cy="254" rx="8" ry="13"/><ellipse cx="67" cy="254" rx="8" ry="13"/>
+    <path d="M-40 186 C-43 230 -41 270 -37 312 C-35 337 -35 357 -33 374 L-13 374 C-11 352 -9 322 -7 292 C-5 262 -3 232 -1 202 Z"/>
+    <path d="M40 186 C43 230 41 270 37 312 C35 337 35 357 33 374 L13 374 C11 352 9 322 7 292 C5 262 3 232 1 202 Z"/>
+    <ellipse cx="-24" cy="380" rx="13" ry="6"/><ellipse cx="24" cy="380" rx="13" ry="6"/>
+    <path d="M-14 60 C-30 62 -46 66 -50 82 L-44 150 C-42 168 -41 178 -41 192 L41 192 C41 178 42 168 44 150 L50 82 C46 66 30 62 14 60 Z"/>
+    <rect x="-9" y="46" width="18" height="18" rx="4"/>
+    <ellipse cx="0" cy="26" rx="22" ry="26"/>`;
+  const people = { clinic: ["Body Chart", "Tan Mei Ling · P-001042 · 13 Oct 2026", "Tan Mei Ling", "Clinical notes", "Patient consent",
+      "Fell on stairs 2 days ago. Pain and mild swelling over right knee, worse when climbing stairs. Lower back pain 6/10. Advised rest, ice and X-ray if no improvement in 1 week.",
+      [["r", "R knee swelling"], ["b", "Lower back pain"], ["s", "X-ray if needed"]]],
+    spa: ["Treatment Map", "Priya Devi · Gold member · 13 Oct 2026", "Priya Devi", "Therapist notes", "Customer consent",
+      "Tight shoulders and upper back from desk work. Deep tissue on marked area, medium pressure elsewhere. Avoid right forearm (mild sunburn). Lavender oil.",
+      [["t", "Deep tissue"], ["b", "Medium pressure"], ["r", "Avoid R forearm"]]] }[V];
+  const [title, pt, name, nt, ct, np, tags] = people;
+  document.getElementById("title").textContent = title; document.getElementById("pt").textContent = pt;
+  document.getElementById("nt").textContent = nt; document.getElementById("ct").textContent = ct;
+  document.getElementById("np").textContent = np; document.getElementById("sig").textContent = name;
+  document.getElementById("sd").textContent = `Signed by ${name} · 13 Oct 2026, 10:42 AM`;
+  document.getElementById("tags").innerHTML = tags.map(([c, t]) => `<span class="chip ${c}">${t}</span>`).join("");
+  const pen = (x, y) => `<g transform="translate(${x} ${y}) rotate(-42)"><path d="M0 0 L-4 11 L4 11 Z" fill="#64748b"/><rect x="-5" y="10" width="10" height="150" rx="5" fill="#fff" stroke="#cbd5e1" stroke-width="1.2"/><rect x="-5" y="128" width="10" height="5" fill="#0396d9"/></g>`;
+  const thumbs = V === "clinic" ? [["Knee photo", "linear-gradient(135deg,#fde2d4,#f9b9a0)"], ["X-ray form", "linear-gradient(135deg,#e2e8f0,#cbd5e1)"], ["Referral", "linear-gradient(135deg,#dbeafe,#bfdbfe)"]]
+    : [["Before", "linear-gradient(135deg,#fde2d4,#f6c1a6)"], ["After", "linear-gradient(135deg,#fdeee4,#f9d6c2)"], ["Consent", "linear-gradient(135deg,#dbeafe,#bfdbfe)"]];
+  document.getElementById("att").innerHTML = thumbs.map(([t, bg]) => `<div style="flex:1"><div style="height:58px;border-radius:10px;background:${bg};display:grid;place-items:center;color:rgba(15,23,42,.35)"><svg class="i" viewBox="0 0 24 24" style="width:20px;height:20px"><path d="M3 8a2 2 0 012-2h2l2-2h6l2 2h2a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><circle cx="12" cy="13" r="3.5"/></svg></div><div style="font-size:10.5px;color:#64748b;margin-top:4px;font-weight:600">${t}</div></div>`).join("");
+  const S = 1.32;
+  const front = V === "clinic" ? `
+      <path d="M-40 290 C-46 298 -46 316 -38 324 C-28 334 -10 332 -6 320 C-2 306 -10 290 -24 288 C-32 287 -40 292 -42 298" fill="rgba(239,68,68,.08)" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M-80 250 C-70 262 -60 272 -48 282" stroke="#ef4444" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M-55 282 L-48 283 L-50 276" stroke="#ef4444" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <text x="-124" y="222" class="hand" font-size="21" fill="#ef4444" font-weight="700" transform="rotate(-6 -90 222)">swelling</text>
+      <text x="-112" y="242" class="hand" font-size="19" fill="#ef4444" font-weight="700" transform="rotate(-6 -90 242)">~3 cm</text>
+      ${pen(-8, 318)}` : `
+      <g stroke="#ef4444" stroke-width="2.4" stroke-linecap="round"><path d="M-70 196 L-54 214"/><path d="M-54 196 L-70 214"/></g>
+      <path d="M-74 220 C-84 232 -92 238 -100 242" stroke="#ef4444" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <text x="-124" y="262" class="hand" font-size="20" fill="#ef4444" font-weight="700" transform="rotate(-6 -90 262)">avoid:</text>
+      <text x="-124" y="282" class="hand" font-size="20" fill="#ef4444" font-weight="700" transform="rotate(-6 -90 282)">sunburn</text>`;
+  const back = V === "clinic" ? `
+      <g stroke="#2563eb" stroke-width="2" stroke-linecap="round"><path d="M-22 170 L0 154"/><path d="M-20 178 L8 158"/><path d="M-16 185 L16 162"/><path d="M-8 189 L20 169"/><path d="M2 190 L22 177"/></g>
+      <path d="M26 160 C36 150 44 140 52 132" stroke="#2563eb" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M46 131 L53 131 L52 138" stroke="#2563eb" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <text x="40" y="122" class="hand" font-size="20" fill="#2563eb" font-weight="700" transform="rotate(-5 80 122)">pain 6/10</text>` : `
+      <path d="M-52 70 C-30 56 30 56 52 70 C58 90 56 108 40 116 C14 122 -14 122 -40 116 C-56 108 -58 90 -52 70 Z" fill="rgba(20,184,166,.22)" stroke="#14b8a6" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M50 66 C58 56 64 48 72 42" stroke="#14b8a6" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M66 40 L72 42 L70 48" stroke="#14b8a6" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <text x="30" y="30" class="hand" font-size="20" fill="#0f766e" font-weight="700" transform="rotate(-5 70 30)">deep tissue</text>
+      ${pen(40, 112)}`;
+  const g = (x, extra, ann) => `<g transform="translate(${x} 40) scale(${S})"><g fill="#f8fafc" stroke="#94a3b8" stroke-width="1.6" stroke-linejoin="round">${fig}${extra}</g>${ann}</g>`;
+  document.getElementById("art").innerHTML = g(165, "", front) + g(468, '<path d="M0 66 L0 186" stroke-dasharray="4 5" fill="none"/>', back);
+</script>
+<script src="icons.js"></script>
+</body></html>

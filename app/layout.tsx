@@ -34,13 +34,13 @@ export const metadata: Metadata = {
     siteName: site.name,
     title: `${site.name} | Clinic & Spa/Salon Management System Malaysia`,
     description: site.description,
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Techub Software clinic and spa salon system" }],
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Techub Software clinic and spa/salon management system" }],
   },
   twitter: {
     card: "summary_large_image",
     title: `${site.name} | Clinic & Spa/Salon System Malaysia`,
     description: site.description,
-    images: ["/og-image.png"],
+    images: ["/og-image.jpg"],
   },
   robots: {
     index: true,
@@ -85,13 +85,24 @@ const organization = {
         "AI inventory management",
         "Custom software development",
       ],
-      contactPoint: {
-        "@type": "ContactPoint",
-        telephone: "+60-11-1768-8559",
-        contactType: "sales",
-        areaServed: "MY",
-        availableLanguage: ["English", "Malay", "Chinese"],
-      },
+      email: site.email,
+      telephone: "+60-11-1768-8559",
+      contactPoint: [
+        {
+          "@type": "ContactPoint",
+          telephone: "+60-11-1768-8559",
+          email: site.email,
+          contactType: "sales",
+          areaServed: "MY",
+          availableLanguage: ["English", "Malay", "Chinese"],
+        },
+        {
+          "@type": "ContactPoint",
+          email: site.email,
+          contactType: "customer support",
+          areaServed: "MY",
+        },
+      ],
       sameAs: [`https://wa.me/${site.whatsappNumber}`],
     },
     {

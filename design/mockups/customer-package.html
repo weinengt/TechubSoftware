@@ -1,0 +1,61 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css"><link rel="stylesheet" href="phone.css">
+<style>
+  :root { --w: 360px; --h: 760px; }
+  .ph { width: 100%; height: 100%; display: flex; flex-direction: column; background: #f4f7fb; }
+  .bar { display: flex; align-items: center; gap: 10px; padding: 4px 14px 8px; font-size: 16px; font-weight: 750; }
+  .bar svg { width: 22px; height: 22px; } .bar .r { margin-left: auto; display: flex; gap: 14px; color: var(--ink2); }
+  .scroll { flex: 1; overflow: hidden; padding: 0 14px; display: flex; flex-direction: column; gap: 12px; }
+  .prof { background: linear-gradient(135deg, #0050a0, #0396d9 60%, #00cfcb); color: #fff; border-radius: 18px; padding: 14px; position: relative; overflow: hidden; }
+  .prof::after { content: ""; position: absolute; right: -36px; top: -36px; width: 130px; height: 130px; border-radius: 99px; background: rgba(255,255,255,.12); }
+  .who { display: flex; gap: 12px; align-items: center; }
+  .who .av { width: 50px; height: 50px; background: #fff; color: #0050a0; font-size: 16px; font-weight: 800; }
+  .who b { font-size: 17px; font-weight: 800; display: block; } .who small { font-size: 11.5px; opacity: .9; }
+  .gold { display: inline-flex; align-items: center; gap: 4px; background: #fde68a; color: #92400e; font-size: 10.5px; font-weight: 800; padding: 2px 8px; border-radius: 99px; margin-left: 6px; vertical-align: 2px; }
+  .gold svg { width: 11px; height: 11px; fill: currentColor; }
+  .st { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 12px; position: relative; z-index: 1; }
+  .st div { background: rgba(255,255,255,.16); border-radius: 11px; padding: 7px 9px; } .st span { font-size: 10px; opacity: .85; display: block; } .st b { font-size: 14px; font-weight: 800; }
+  h4 { font-size: 13px; font-weight: 800; display: flex; align-items: center; } h4 span { margin-left: auto; font-size: 11.5px; color: var(--brand); font-weight: 650; }
+  .pk { background: #fff; border: 1px solid var(--line); border-radius: 15px; padding: 11px 12px; display: flex; gap: 12px; align-items: center; }
+  .ring { width: 54px; height: 54px; position: relative; flex-shrink: 0; } .ring svg { width: 54px; height: 54px; transform: rotate(-90deg); }
+  .ring b { position: absolute; inset: 0; display: grid; place-items: center; font-size: 14px; font-weight: 850; } .ring b small { font-size: 9px; color: var(--muted); font-weight: 600; display: block; text-align: center; margin-top: -3px; }
+  .pk .tx b { font-size: 13.5px; display: block; } .pk .tx small { font-size: 11px; color: var(--muted); display: block; margin-top: 1px; }
+  .pk .rd { margin-left: auto; font-size: 11.5px; font-weight: 700; color: #fff; background: var(--brand); border-radius: 9px; padding: 7px 10px; }
+  .ap { background: #fff; border: 1px solid var(--line); border-radius: 15px; padding: 11px 12px; display: flex; gap: 12px; align-items: center; }
+  .date { width: 50px; height: 54px; border-radius: 12px; background: var(--brand-50); color: #0050a0; text-align: center; padding-top: 6px; flex-shrink: 0; }
+  .date b { font-size: 20px; font-weight: 850; display: block; line-height: 1.1; } .date span { font-size: 10px; font-weight: 700; letter-spacing: .06em; }
+  .ap .tx b { font-size: 13.5px; display: block; } .ap .tx small { font-size: 11px; color: var(--muted); display: block; margin: 1px 0 5px; }
+  .notes { background: #fff; border: 1px solid var(--line); border-radius: 15px; padding: 11px 12px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .tabs { height: 62px; background: #fff; border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(5, 1fr); align-items: center; text-align: center; font-size: 10px; font-weight: 600; color: #94a3b8; }
+  .tabs div { display: flex; flex-direction: column; align-items: center; gap: 3px; } .tabs svg { width: 21px; height: 21px; } .tabs .on { color: var(--brand); }
+  .fab { position: absolute; right: 16px; bottom: 76px; height: 46px; padding: 0 18px; border-radius: 99px; background: linear-gradient(135deg, #0396d9, #00b7c9); color: #fff; font-weight: 750; font-size: 13.5px; display: flex; align-items: center; gap: 7px; box-shadow: 0 10px 24px -8px rgba(3,150,217,.8); }
+  .fab svg { width: 18px; height: 18px; }
+</style></head>
+<body>
+<div class="ph">
+  <div class="status"><span>9:41</span><span class="r"><span class="sig"><i style="height:4px"></i><i style="height:6px"></i><i style="height:8px"></i><i style="height:10px"></i></span><span style="font-size:11px">5G</span><span class="bat"><i></i></span></span></div>
+  <div class="bar"><i data-i="chevL"></i>Customer<span class="r"><i data-i="wa"></i><i data-i="more"></i></span></div>
+  <div class="scroll">
+    <div class="prof">
+      <div class="who"><span class="av">PD</span><div><b>Priya Devi<span class="gold"><svg viewBox="0 0 24 24"><path d="M12 3l2.8 5.7 6.2.9-4.5 4.4 1 6.2L12 17.3 6.5 20.2l1-6.2L3 9.6l6.2-.9z"/></svg>GOLD</span></b><small>012-xxx 4567 · Member since 2024</small></div></div>
+      <div class="st"><div><span>Visits</span><b>18</b></div><div><span>Total spent</span><b>RM 3,240</b></div><div><span>Credit</span><b>RM 150</b></div></div>
+    </div>
+    <h4>Active packages<span>History</span></h4>
+    <div class="pk">
+      <div class="ring"><svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="15" fill="none" stroke="#e0f2fe" stroke-width="4"/><circle cx="18" cy="18" r="15" fill="none" stroke="url(#gr)" stroke-width="4" stroke-linecap="round" stroke-dasharray="56.5 94.2"/><defs><linearGradient id="gr"><stop offset="0" stop-color="#0396d9"/><stop offset="1" stop-color="#00cfcb"/></linearGradient></defs></svg><b><span>6<small>left</small></span></b></div>
+      <div class="tx"><b>Signature Facial × 10</b><small>6 of 10 sessions left</small><small>Valid until 31 Mar 2027</small></div><span class="rd">Redeem</span>
+    </div>
+    <div class="pk">
+      <div class="ring"><svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="15" fill="none" stroke="#f3e8ff" stroke-width="4"/><circle cx="18" cy="18" r="15" fill="none" stroke="#8b5cf6" stroke-width="4" stroke-linecap="round" stroke-dasharray="37.7 94.2"/></svg><b><span>2<small>left</small></span></b></div>
+      <div class="tx"><b>Hair Spa Treatment × 5</b><small>2 of 5 sessions left</small><small>Valid until 15 Jan 2027</small></div><span class="rd" style="background:#8b5cf6">Redeem</span>
+    </div>
+    <h4>Next appointment</h4>
+    <div class="ap"><div class="date"><b>14</b><span>OCT</span></div><div class="tx"><b>Signature Facial · 10:30 AM</b><small>with Mei Ling · Room 3</small><span class="chip g">✓ Confirmed on WhatsApp</span></div></div>
+    <h4>Preferences</h4>
+    <div class="notes"><span class="chip t">Sensitive skin</span><span class="chip b">Medium pressure</span><span class="chip v">Lavender oil</span><span class="chip p">Prefers Mei Ling</span></div>
+  </div>
+  <div class="fab"><i data-i="plus"></i>Book again</div>
+  <div class="tabs"><div><i data-i="home"></i>Home</div><div><i data-i="cal"></i>Calendar</div><div class="on"><i data-i="users"></i>Customers</div><div><i data-i="card"></i>POS</div><div><i data-i="more"></i>More</div></div>
+</div>
+<script src="icons.js"></script>
+</body></html>

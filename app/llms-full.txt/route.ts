@@ -11,6 +11,7 @@ export function GET() {
 
 Website: ${site.url}
 WhatsApp: ${site.whatsappDisplay} (https://wa.me/${site.whatsappNumber})
+Email: ${site.email}
 Country: Malaysia
 
 ## What Techub Software does

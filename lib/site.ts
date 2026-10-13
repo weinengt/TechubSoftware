@@ -12,6 +12,7 @@ export const site = {
   whatsappNumber: "601117688559",
   whatsappDisplay: "+60 11-1768 8559",
   whatsappMessage: "Hi Techub Software, I'm interested in your system. Can I get a free demo?",
+  email: "admin@techubsoftware.com",
   country: "MY",
   currency: "MYR",
   priceFrom: 99,
@@ -40,12 +41,15 @@ export const site = {
 export const whatsappLink = (message: string = site.whatsappMessage) =>
   `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(message)}`;
 
+export const emailLink = (subject = "Enquiry about Techub system") =>
+  `mailto:${site.email}?subject=${encodeURIComponent(subject)}`;
+
 export const nav = [
   { href: "/clinic-management-system/", label: "Clinic System" },
   { href: "/spa-salon-appointment-system/", label: "Spa & Salon System" },
-  { href: "/#features", label: "Features" },
+  { href: "/#demo", label: "Examples" },
   { href: "/#pricing", label: "Pricing" },
-  { href: "/#faq", label: "FAQ" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export const faqs = [
@@ -76,6 +80,10 @@ export const faqs = [
   {
     q: "Can I control what each staff member can see and do?",
     a: "Yes. Role-based permission control lets you decide exactly which modules, reports and actions each staff member or branch can access, with an audit trail of who did what.",
+  },
+  {
+    q: "How do I contact Techub Software?",
+    a: "WhatsApp us at +60 11-1768 8559 or email admin@techubsoftware.com. We can arrange a free demo of the clinic or spa/salon system.",
   },
   {
     q: "Can you customise the system for my business?",

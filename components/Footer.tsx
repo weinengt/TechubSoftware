@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { site, whatsappLink } from "@/lib/site";
+import { emailLink, site, whatsappLink } from "@/lib/site";
 import { Icon } from "./Icons";
 
 export default function Footer() {
@@ -14,14 +14,14 @@ export default function Footer() {
             Malaysia. {site.uptime} uptime, WhatsApp alerts, queue calling, AI stock control and multi-printer support,
             from RM {site.priceFrom}/month.
           </p>
-          <a
-            href={whatsappLink()}
-            target="_blank"
-            rel="noopener"
-            className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-slate-800 hover:text-brand-700"
-          >
-            <Icon.Whatsapp className="h-5 w-5 text-whatsapp" /> {site.whatsappDisplay}
-          </a>
+          <div className="mt-5 flex flex-col gap-3 text-sm font-semibold text-slate-800">
+            <a href={whatsappLink()} target="_blank" rel="noopener" className="inline-flex items-center gap-2 hover:text-brand-700">
+              <Icon.Whatsapp className="h-5 w-5 text-whatsapp" /> {site.whatsappDisplay}
+            </a>
+            <a href={emailLink()} className="inline-flex items-center gap-2 hover:text-brand-700">
+              <Icon.Mail className="h-5 w-5 text-brand-500" /> {site.email}
+            </a>
+          </div>
         </div>
 
         <div>
@@ -29,7 +29,7 @@ export default function Footer() {
           <ul className="mt-4 space-y-3 text-sm text-slate-600">
             <li><Link className="hover:text-brand-700" href="/clinic-management-system/">Clinic Management System</Link></li>
             <li><Link className="hover:text-brand-700" href="/spa-salon-appointment-system/">Spa & Salon Appointment System</Link></li>
-            <li><Link className="hover:text-brand-700" href="/#custom">Custom System Development</Link></li>
+            <li><Link className="hover:text-brand-700" href="/#features">Custom System Development</Link></li>
             <li><Link className="hover:text-brand-700" href="/#ai-stock">AI Stock Control</Link></li>
           </ul>
         </div>
@@ -37,10 +37,11 @@ export default function Footer() {
         <div>
           <h2 className="text-sm font-semibold text-slate-900">Company</h2>
           <ul className="mt-4 space-y-3 text-sm text-slate-600">
+            <li><Link className="hover:text-brand-700" href="/#demo">Examples</Link></li>
             <li><Link className="hover:text-brand-700" href="/#features">Features</Link></li>
             <li><Link className="hover:text-brand-700" href="/#pricing">Pricing</Link></li>
             <li><Link className="hover:text-brand-700" href="/#faq">FAQ</Link></li>
-            <li><a className="hover:text-brand-700" href={whatsappLink()} target="_blank" rel="noopener">Contact</a></li>
+            <li><Link className="hover:text-brand-700" href="/#contact">Contact</Link></li>
           </ul>
         </div>
       </div>

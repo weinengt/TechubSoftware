@@ -1,0 +1,119 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<style>
+  :root { --w: 1200px; --h: 750px; }
+  .now { background: linear-gradient(135deg, #0050a0, #0396d9 60%, #00cfcb); color: #fff; border-radius: 12px; padding: 16px; width: 210px; flex-shrink: 0; position: relative; overflow: hidden; }
+  .now::after { content: ""; position: absolute; right: -40px; top: -40px; width: 140px; height: 140px; border-radius: 99px; background: rgba(255,255,255,.12); }
+  .now .lbl { font-size: 11px; font-weight: 600; opacity: .85; display: flex; align-items: center; gap: 6px; }
+  .now .no { font-size: 50px; font-weight: 850; letter-spacing: -.03em; line-height: 1; margin-top: 10px; }
+  .now .rm { font-size: 13px; font-weight: 600; margin-top: 6px; opacity: .95; }
+  .now .call { margin-top: 14px; display: flex; gap: 6px; }
+  .now .call span { background: rgba(255,255,255,.2); border-radius: 8px; padding: 6px 9px; font-size: 11px; font-weight: 700; }
+  .ql { display: grid; grid-template-columns: 1fr; gap: 6px; }
+  .qi { display: flex; align-items: center; gap: 10px; border: 1px solid #eef2f7; border-radius: 10px; padding: 7px 10px; }
+  .qi .n { font-weight: 800; font-size: 14px; width: 44px; color: var(--brand-d); }
+  .qi .who { font-size: 12px; font-weight: 650; } .qi .who small { font-size: 11px; color: var(--muted); font-weight: 500; margin-left: 6px; }
+  .qi .chip { margin-left: auto; }
+  .bars { display: flex; align-items: flex-end; gap: 12px; height: 128px; margin-top: 14px; padding: 0 4px; }
+  .bars div { flex: 1; border-radius: 6px 6px 3px 3px; background: linear-gradient(180deg, #2fb1e6, #0396d9); position: relative; }
+  .bars div.dim { background: #d6f0fc; }
+  .bars div span { position: absolute; bottom: -18px; left: 0; right: 0; text-align: center; font-size: 10px; color: var(--muted); }
+  .ai { display: flex; gap: 10px; align-items: flex-start; background: linear-gradient(135deg, #fffbeb, #fff7ed); border: 1px solid #fde68a; border-radius: 10px; padding: 10px; font-size: 11.5px; color: #92400e; margin-top: 10px; }
+  .low { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px solid #f1f5f9; font-size: 12px; }
+  .low:last-of-type { border-bottom: 0; }
+  .meter { width: 70px; height: 6px; border-radius: 9px; background: #f1f5f9; margin-left: auto; overflow: hidden; }
+  .meter i { display: block; height: 100%; border-radius: 9px; background: var(--red); }
+</style></head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="brand"><img src="icon.png" alt=""><div>Techub<small>Demo Clinic · KL</small></div></div>
+    <nav class="nav">
+      <a class="on"><i data-i="home"></i>Dashboard</a>
+      <a><i data-i="queue"></i>Queue<span class="cnt">7</span></a>
+      <a><i data-i="cal"></i>Appointments</a>
+      <a><i data-i="users"></i>Patients</a>
+      <a><i data-i="steth"></i>Consultation</a>
+      <a><i data-i="pill"></i>Pharmacy</a>
+      <a><i data-i="box"></i>Inventory</a>
+      <a><i data-i="card"></i>Billing</a>
+      <a><i data-i="chart"></i>Reports</a>
+      <a><i data-i="lock"></i>Staff &amp; Roles</a>
+      <a><i data-i="gear"></i>Settings</a>
+    </nav>
+    <div class="me"><span class="av">LW</span><div><b>Dr. Lim Wei Jie</b><br><span style="color:#8fb3d4">Doctor · Room 2</span></div></div>
+  </aside>
+  <section class="main">
+    <header class="top">
+      <div><h1>Good morning, Dr. Lim</h1><div class="sub">Tuesday, 13 October 2026</div></div>
+      <div class="search"><i data-i="search"></i>Search patient, IC or phone…</div>
+      <span class="btn"><i data-i="bell"></i></span>
+      <span class="btn pri"><i data-i="plus"></i>New Registration</span>
+    </header>
+    <div class="content">
+      <div class="stats">
+        <div class="stat"><span class="ic b"><i data-i="users"></i></span><div><div class="k">Patients today</div><div class="v">64</div><div class="d">▲ 8% vs last Tue</div></div></div>
+        <div class="stat"><span class="ic a"><i data-i="clock"></i></span><div><div class="k">Avg. waiting time</div><div class="v">12 min</div><div class="d">▼ 4 min faster</div></div></div>
+        <div class="stat"><span class="ic v"><i data-i="cal"></i></span><div><div class="k">Appointments</div><div class="v">28</div><div class="d" style="color:#0396d9">26 confirmed via WhatsApp</div></div></div>
+        <div class="stat"><span class="ic g"><i data-i="money"></i></span><div><div class="k">Collection today</div><div class="v">RM 8,420</div><div class="d">▲ 12% vs last Tue</div></div></div>
+      </div>
+      <div class="row">
+        <div class="card grow">
+          <h3><i data-i="queue" style="color:#0396d9"></i>Live Queue <span class="chip g" style="margin-left:6px">● Live</span><span class="more">Open TV display →</span></h3>
+          <div class="row" style="margin-top:12px">
+            <div class="now">
+              <div class="lbl"><i data-i="queue"></i>NOW CALLING</div>
+              <div class="no">A023</div>
+              <div class="rm">Room 2 · Dr. Lim</div>
+              <div class="call"><span>Recall</span><span>Next ›</span></div>
+            </div>
+            <div class="grow">
+              <div class="ql">
+                <div class="qi"><span class="n">A024</span><div class="who">Ahmad Faizal<small>Follow-up · 8 min</small></div><span class="chip a">Waiting</span></div>
+                <div class="qi"><span class="n">A025</span><div class="who">Wong Siew Lan<small>Fever, cough · 6 min</small></div><span class="chip a">Waiting</span></div>
+                <div class="qi"><span class="n">A026</span><div class="who">Nurul Aina<small>Vaccination · 4 min</small></div><span class="chip b">Triage</span></div>
+                                <div class="qi"><span class="n">P015</span><div class="who">Tan Mei Ling<small>Pharmacy · Counter 1</small></div><span class="chip v">Dispensing</span></div>
+                <div class="qi"><span class="n">C009</span><div class="who">Lee Chong Ming<small>Payment · Counter 2</small></div><span class="chip g">Paying</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="width:300px;display:flex;flex-direction:column">
+          <h3><i data-i="chart" style="color:#0396d9"></i>Revenue this week<span class="more">RM 46.2k</span></h3>
+          <div class="bars">
+            <div style="height:58%"><span>Wed</span></div><div style="height:72%"><span>Thu</span></div><div style="height:64%"><span>Fri</span></div>
+            <div style="height:92%"><span>Sat</span></div><div class="dim" style="height:30%"><span>Sun</span></div><div style="height:80%"><span>Mon</span></div><div style="height:86%"><span>Tue</span></div>
+          </div>
+          <div style="display:flex;gap:8px;margin-top:auto;padding-top:26px">
+            <div style="flex:1;background:#f8fafc;border-radius:9px;padding:8px 10px"><div class="muted" style="font-size:10.5px">Consultations</div><b style="font-size:14px">RM 28.9k</b></div>
+            <div style="flex:1;background:#f8fafc;border-radius:9px;padding:8px 10px"><div class="muted" style="font-size:10.5px">Pharmacy</div><b style="font-size:14px">RM 17.3k</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="flex:1;min-height:0">
+        <div class="card grow" style="padding:0;overflow:hidden">
+          <h3 style="padding:12px 14px"><i data-i="cal" style="color:#0396d9"></i>Today's appointments<span class="more">View calendar →</span></h3>
+          <table>
+            <tr><th>Time</th><th>Patient</th><th>Doctor</th><th>Visit</th><th>WhatsApp</th><th>Status</th></tr>
+            <tr><td><b>10:30</b></td><td><b>Lee Chong Ming</b></td><td>Dr. Lim</td><td>Blood test review</td><td><span class="chip g">✓ Confirmed</span></td><td><span class="chip b">Checked in</span></td></tr>
+            <tr><td><b>11:00</b></td><td><b>Siti Aminah</b></td><td>Dr. Aisyah</td><td>Antenatal check</td><td><span class="chip g">✓ Confirmed</span></td><td><span class="chip s">Booked</span></td></tr>
+            <tr><td><b>11:30</b></td><td><b>Gan Kok Leong</b></td><td>Dr. Lim</td><td>Diabetes follow-up</td><td><span class="chip a">Reminder sent</span></td><td><span class="chip s">Booked</span></td></tr>
+            <tr><td><b>12:00</b></td><td><b>Kavitha Raman</b></td><td>Dr. Aisyah</td><td>Child vaccination</td><td><span class="chip g">✓ Confirmed</span></td><td><span class="chip s">Booked</span></td></tr>
+            <tr><td><b>14:30</b></td><td><b>Chong Mei Yee</b></td><td>Dr. Lim</td><td>Wound dressing review</td><td><span class="chip g">✓ Confirmed</span></td><td><span class="chip s">Booked</span></td></tr>
+          </table>
+        </div>
+        <div class="card" style="width:300px">
+          <h3><i data-i="box" style="color:#0396d9"></i>Low stock<span class="chip r" style="margin-left:auto">3 items</span></h3>
+          <div style="margin-top:8px">
+            <div class="low"><b style="font-weight:600">Amoxicillin 250mg</b><span class="meter"><i style="width:18%"></i></span></div>
+            <div class="low"><b style="font-weight:600">Cetirizine 10mg</b><span class="meter"><i style="width:26%"></i></span></div>
+            <div class="low"><b style="font-weight:600">Surgical Mask (50s)</b><span class="meter"><i style="width:32%"></i></span></div>
+          </div>
+          <div class="ai"><i data-i="spark" style="color:#d97706;width:18px;height:18px"></i><div><b>AI suggestion:</b> reorder 500 caps of Amoxicillin by Thu to avoid running out.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<script src="icons.js"></script>
+</body></html>
