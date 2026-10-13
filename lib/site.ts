@@ -7,7 +7,7 @@ export const site = {
   // Set NEXT_PUBLIC_SITE_URL as a Cloudflare build variable if your domain is different.
   url: (process.env.NEXT_PUBLIC_SITE_URL || "https://techubsoftware.com").replace(/\/$/, ""),
   description:
-    "Techub Software is a software company based in Malaysia: appointment systems with AI for clinics, hair salons, beauty centres and spas, and custom systems such as ERP, AI object detection and number plate scanners. Enterprise servers in Malaysia, reports in under 100 ms, WhatsApp notifications, LHDN e-Invoice and a 99.95% uptime guarantee. From RM 99/month with the first 3 months free; customisation from RM 300.",
+    "Techub Software is a software company based in Malaysia: appointment systems with AI for clinics, hair salons, beauty centres and spas, a live selling system for online sellers, and custom systems such as ERP, AI object detection and number plate scanners. Enterprise servers in Malaysia, reports in under 100 ms, WhatsApp notifications, LHDN e-Invoice and a 99.95% uptime guarantee. Appointment systems from RM 99/month with the first 3 months free; live selling from RM 199/month; customisation from RM 300.",
   whatsappNumber: "601117688559",
   whatsappDisplay: "+60 11-1768 8559",
   email: "admin@techubsoftware.com",
@@ -16,6 +16,8 @@ export const site = {
   priceFrom: 99,
   freeMonths: 3,
   customFrom: 300,
+  /** Live Selling System, per month. */
+  livePriceFrom: 199,
   uptime: "99.95%",
   keywords: [
     "appointment system Malaysia",
@@ -28,6 +30,7 @@ export const site = {
     "WhatsApp appointment reminder",
     "AI stock control",
     "LHDN e-Invoice system",
+    "live selling system Malaysia",
     "custom software Malaysia",
     "software company Malaysia",
     "Techub Software",
@@ -39,12 +42,13 @@ export const whatsappLink = (message: string) => `https://wa.me/${site.whatsappN
 export const emailLink = (subject: string) => `mailto:${site.email}?subject=${encodeURIComponent(subject)}`;
 
 /** The business types with a ready system. Each has its own page, listed under "Use Cases" in the menu
- *  and in the tabs on the home page. Their names and descriptions are under `systems` in content/en.ts. */
+ *  and on the home page. Their names and descriptions are under `systems` in content/en.ts. */
 export const systems = [
   { key: "clinic", path: "/clinic-management-system/", icon: "Stethoscope" },
   { key: "salon", path: "/salon-appointment-system/", icon: "Scissors" },
   { key: "beauty", path: "/beauty-appointment-system/", icon: "Mirror" },
   { key: "spa", path: "/spa-appointment-system/", icon: "Lotus" },
+  { key: "live", path: "/live-selling-system/", icon: "Live" },
 ] as const;
 
 export type SystemKey = (typeof systems)[number]["key"];

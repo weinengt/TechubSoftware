@@ -35,9 +35,14 @@ const pages: { path: string; priority: number; images: ShotKey[] }[] = [
     images: ["spaCalendar", "whatsappSpa", "payrollSpa", "staffSpa", "spaPackage", "bodyChartSpa", "spaPos", "spaStock", "reportsSpa"],
   },
   {
+    path: "/live-selling-system/",
+    priority: 0.9,
+    images: ["liveDashboard", "liveShop", "liveQueue", "liveCheckout", "liveProduct", "liveProducts", "liveVisitors", "reportsLive"],
+  },
+  {
     path: "/use-cases/",
     priority: 0.9,
-    images: ["clinicDashboard", "whatsappClinic", "salonCalendar", "staffSalon", "faceChart", "beautyPackage", "spaCalendar", "spaPackage"],
+    images: ["clinicDashboard", "whatsappClinic", "salonCalendar", "staffSalon", "faceChart", "beautyPackage", "spaCalendar", "spaPackage", "liveDashboard", "liveShop"],
   },
   { path: "/custom-systems/", priority: 0.8, images: ["erpDesktop", "objectDetection", "plateScanner"] },
   { path: "/services/", priority: 0.8, images: ["salonCalendar", "permissionsDesktop", "queueTv"] },

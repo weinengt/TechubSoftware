@@ -1,14 +1,21 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Icon } from "./Icons";
 
-export type BubbleText = { href: string; hello: string; text: string; chat: string; close: string; label: string };
+/** `live` is used on the Live Selling System page, which has its own price and demo message. */
+export type BubbleText = {
+  href: string; hello: string; text: string; chat: string; close: string; label: string;
+  live: { path: string; href: string; text: string };
+};
 
 const KEY = "techub-wa-bubble-closed";
 
 export default function WhatsAppButton({ t }: { t: BubbleText }) {
   const [bubble, setBubble] = useState(false);
+  const onLive = usePathname() === t.live.path;
+  const href = onLive ? t.live.href : t.href;
 
   // Show a small greeting a few seconds after the visitor arrives (once per visit).
   useEffect(() => {
@@ -36,8 +43,8 @@ export default function WhatsAppButton({ t }: { t: BubbleText }) {
             <Icon.Close className="h-4 w-4" />
           </button>
           <p className="font-bold text-slate-900">{t.hello}</p>
-          <p className="mt-1 text-slate-600">{t.text}</p>
-          <a href={t.href} target="_blank" rel="noopener" onClick={close}
+          <p className="mt-1 text-slate-600">{onLive ? t.live.text : t.text}</p>
+          <a href={href} target="_blank" rel="noopener" onClick={close}
             className="mt-3 inline-flex items-center gap-2 rounded-full bg-[#0b7a6f] px-4 py-2 text-xs font-bold text-white hover:bg-[#086359]">
             <Icon.Whatsapp className="h-4 w-4" /> {t.chat}
           </a>
@@ -45,7 +52,7 @@ export default function WhatsAppButton({ t }: { t: BubbleText }) {
         </div>
       )}
       <a
-        href={t.href}
+        href={href}
         target="_blank"
         rel="noopener"
         onClick={close}

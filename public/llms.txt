@@ -1,6 +1,6 @@
 # Techub Software
 
-> Techub Software is a software company based in Malaysia. Its appointment system, Malaysia's most chosen, offers advanced booking with AI integration, a 99.95% uptime guarantee, an enterprise-level indexed NoSQL database with guaranteed speed (detailed reports in under 100 ms), real-time updates on every device, WhatsApp notifications and stock control. It has ready systems for clinics, hair salons, beauty centres and spas, and builds custom systems such as ERP, AI object detection and number plate scanners. Plans start from RM 99 per month, with the first 3 months free for new users including installation and staff training. Customisation starts from RM 300, depending on requirements.
+> Techub Software is a software company based in Malaysia. Its appointment system, Malaysia's most chosen, offers advanced booking with AI integration, a 99.95% uptime guarantee, an enterprise-level indexed NoSQL database with guaranteed speed (detailed reports in under 100 ms), real-time updates on every device, WhatsApp notifications and stock control. It has ready systems for clinics, hair salons, beauty centres and spas, a Live Selling System for online sellers, and builds custom systems such as ERP, AI object detection and number plate scanners. Plans start from RM 99 per month, with the first 3 months free for new users including installation and staff training. The Live Selling System starts from RM 199 per month. Customisation starts from RM 300, depending on requirements.
 
 Contact: WhatsApp +60 11-1768 8559 (https://wa.me/601117688559) · Email admin@techubsoftware.com
 Country served: Malaysia
@@ -9,6 +9,7 @@ Languages: English (/), Bahasa Melayu (/ms/), Simplified Chinese (/zh/). Every p
 ## Services
 
 - Ready-made appointment systems for clinics, hair salons, beauty centres and spas
+- Live Selling System for selling online during live sessions, from RM 199 per month
 - Custom system development: ERP, AI object detection, number plate scanners and more, from RM 300
 - Hardware setup: label printers, number calling systems, X-ray machines, receipt printers, scanners and card terminals
 - Installation, staff training and local support on WhatsApp
@@ -19,6 +20,7 @@ Languages: English (/), Bahasa Melayu (/ms/), Simplified Chinese (/zh/). Every p
 - [Salon Appointment System](/salon-appointment-system/): Booking calendar by stylist, automatic WhatsApp customer notifications, cross-platform (iPad, phone and PC), a profile for each staff member to view and manage their own appointments, inventory tracking, payroll calculation with commission, POS, customer colour formulas, detailed reports in under 100 ms. For hair salons and barbershops.
 - [Beauty Centre Appointment System](/beauty-appointment-system/): Booking calendar, automatic WhatsApp reminders, treatment packages and sessions, face charts with photos and e-signature consent, staff profiles, payroll calculation, POS, inventory tracking, detailed reports in under 100 ms. For beauty centres, facial, lash and brow, nail and slimming centres.
 - [Spa Appointment System](/spa-appointment-system/): Therapist and room scheduling, automatic WhatsApp reminders, packages and memberships, treatment maps with e-signature, staff profiles, payroll calculation, POS, inventory tracking, detailed reports in under 100 ms. For day spas, massage, reflexology and wellness centres.
+- [Live Selling System](/live-selling-system/): A sale page for selling during Facebook, TikTok or Instagram live sessions that handles big crowds of buyers at the same moment with Kafka order queueing, prevents overselling by checking stock on every order and closing items when sold out, lets the seller add products and choose each one's selling date and time, shows how many visitors are on the shop right now and which page each is on, and gives advanced reports on sales, best sellers, visitors and conversion. From RM 199 per month; request a demo on WhatsApp.
 - [Custom systems](/custom-systems/): ERP, AI object detection, number plate scanners, or a new system for any business, from RM 300.
 
 ## Technology
@@ -28,20 +30,24 @@ Languages: English (/), Bahasa Melayu (/ms/), Simplified Chinese (/zh/). Every p
 ## Key features
 
 - 99.95% uptime guarantee (less than 22 minutes of downtime a month on average)
-- Advanced booking calendar with AI integration
+- Bookings in under 10 seconds, with an advanced booking calendar and AI integration
+- Online deposit payment when customers book
+- Automatic accounting documents: invoices, credit notes, refund notes and official receipts, with no accounting staff needed
 - Detailed reports generated in under 100 ms, without lag
 - Real-time updates on every device
 - Automatic WhatsApp confirmations and reminders
 - AI stock control and tracking of every inventory movement
 - Staff profiles, payroll calculation and permission control with audit trail
+- Cross-platform: Windows, Mac, iPad, Android and iPhone
 - LHDN e-Invoice support
 - Multi-hardware connect: label printers, number calling systems, X-ray machines, printers, scanners, card terminals, tablets
 - Hand drawing and digital signatures
 
 ## Pricing
 
-- From RM 99 per month
+- Appointment systems: from RM 99 per month
 - New users: first 3 months free, including staff training and installation
+- Live Selling System: from RM 199 per month
 - Customisation: from RM 300, depending on requirements
 
 ## More

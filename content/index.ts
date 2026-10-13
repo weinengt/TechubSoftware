@@ -13,6 +13,7 @@ const values: Record<string, string> = {
   price: String(site.priceFrom),
   months: String(site.freeMonths),
   custom: String(site.customFrom),
+  livePrice: String(site.livePriceFrom),
   uptime: site.uptime,
   phone: site.whatsappDisplay,
   email: site.email,

@@ -1,0 +1,232 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<style>
+  /* Live selling: who is on the shop right now and what they are doing (Tue 13 Oct 2026, 8:42 PM) */
+  :root { --w: 1024px; --h: 720px; }
+  .top h1 { display: flex; align-items: center; gap: 9px; white-space: nowrap; }
+  .live { display: inline-flex; align-items: center; gap: 6px; height: 21px; padding: 0 8px 0 7px; border-radius: 6px; background: #ef4444; color: #fff; font-size: 10px; font-weight: 800; letter-spacing: .08em; box-shadow: 0 0 0 3px rgba(239,68,68,.16), 0 4px 10px -4px rgba(239,68,68,.8); }
+  .live i { width: 7px; height: 7px; border-radius: 99px; background: #fff; box-shadow: 0 0 0 2.5px rgba(255,255,255,.38); }
+  .seg { display: flex; background: #e9eef5; border-radius: 9px; padding: 3px; }
+  .seg span { font-size: 11.5px; font-weight: 600; padding: 6px 11px; border-radius: 7px; color: var(--muted); white-space: nowrap; }
+  .seg span.on { background: #fff; color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+  .btn svg { width: 15px; height: 15px; }
+  .content { gap: 12px; }
+  .ldot { width: 7px; height: 7px; border-radius: 99px; background: #22c55e; box-shadow: 0 0 0 3px rgba(34,197,94,.22); flex-shrink: 0; display: inline-block; }
+  .colL { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+  .card h3 small { font-size: 11px; color: var(--muted); font-weight: 500; }
+  /* Live counter */
+  .hero { height: 214px; flex-shrink: 0; border-radius: 12px; padding: 16px 18px 14px; color: #fff; position: relative; overflow: hidden; display: flex; flex-direction: column;
+    background: linear-gradient(130deg, #0050a0 0%, #0379c4 48%, #0396d9 70%, #00b7c9 100%); box-shadow: 0 10px 24px -14px rgba(0,80,160,.7); }
+  .hero::after { content: ""; position: absolute; right: -60px; top: -80px; width: 220px; height: 220px; border-radius: 99px; background: rgba(255,255,255,.08); }
+  .hero .hd { display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; letter-spacing: .06em; color: #dbeefe; position: relative; z-index: 1; }
+  .hero .hd .ldot { background: #4ade80; box-shadow: 0 0 0 3px rgba(74,222,128,.3); }
+  .hero .hd em { margin-left: auto; font-style: normal; font-weight: 500; letter-spacing: 0; color: #cde6fb; }
+  .hero .body { display: flex; gap: 18px; flex: 1; min-height: 0; margin-top: 6px; position: relative; z-index: 1; }
+  .hero .cn { width: 190px; flex-shrink: 0; }
+  .hero .cn b { display: block; font-size: 56px; font-weight: 850; letter-spacing: -.035em; line-height: 1.02; }
+  .hero .cn span { display: block; font-size: 12px; color: #dbeefe; margin-top: 4px; }
+  .hero .cn .dl { display: inline-flex; align-items: center; gap: 5px; margin-top: 9px; background: rgba(255,255,255,.16); border-radius: 99px; padding: 3px 9px; font-size: 10.5px; font-weight: 650; color: #fff; white-space: nowrap; }
+  .hero .spk { flex: 1; min-width: 0; position: relative; }
+  .hero .spk svg { position: absolute; inset: 0; display: block; overflow: visible; }
+  .hero .spk text { font-family: Inter, sans-serif; font-size: 10px; fill: #cde6fb; }
+  .hero .spk text.b { fill: #fff; font-weight: 700; }
+  .hero .ms { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; position: relative; z-index: 1; }
+  .hero .ms div { background: rgba(255,255,255,.13); border: 1px solid rgba(255,255,255,.14); border-radius: 9px; padding: 6px 10px; }
+  .hero .ms span { display: block; font-size: 10.5px; color: #cde6fb; white-space: nowrap; }
+  .hero .ms b { font-size: 14px; font-weight: 750; white-space: nowrap; }
+  .hero .ms b small { font-size: 10.5px; font-weight: 500; color: #cde6fb; margin-left: 4px; }
+  /* Pages */
+  .tb { padding: 0; overflow: hidden; display: flex; flex-direction: column; flex: 1; min-height: 0; }
+  .tb h3 { padding: 12px 14px 10px; }
+  .tb th { padding: 7px 8px; white-space: nowrap; }
+  .tb td { padding: 7px 8px; }
+  .tb td:first-child, .tb th:first-child { padding-left: 14px; } .tb td:last-child, .tb th:last-child { padding-right: 14px; }
+  .tb th.num { text-align: right; }
+  .pg { display: flex; align-items: center; gap: 9px; }
+  .pg .pi { width: 26px; height: 26px; border-radius: 8px; display: grid; place-items: center; flex-shrink: 0; background: var(--brand-50); color: var(--brand); }
+  .pg .pi svg { width: 14px; height: 14px; }
+  .pg b { display: block; font-size: 12px; line-height: 15px; } .pg small { line-height: 13px; margin-top: 0; }
+  .share { display: flex; align-items: center; gap: 8px; }
+  .share u { width: 66px; height: 6px; border-radius: 9px; background: #eef4fa; overflow: hidden; display: inline-block; flex-shrink: 0; }
+  .share u i { display: block; height: 100%; border-radius: 9px; background: #0396d9; }
+  .share span { font-size: 11.5px; color: var(--ink2); font-variant-numeric: tabular-nums; width: 36px; }
+  .up { color: #059669; font-weight: 700; } .dn { color: var(--muted); font-weight: 600; }
+  .foot { margin-top: auto; display: grid; grid-template-columns: 214px minmax(0, 1fr); gap: 0; border-top: 1px solid #eef2f7; }
+  .foot > div { padding: 10px 14px 12px; min-width: 0; }
+  .foot > div + div { border-left: 1px solid #eef2f7; }
+  .foot h4 { font-size: 11px; font-weight: 650; color: var(--muted); display: flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: .04em; }
+  .split { display: flex; height: 8px; border-radius: 9px; overflow: hidden; margin-top: 9px; gap: 2px; }
+  .split i { display: block; height: 100%; }
+  .lgd { display: flex; gap: 12px; margin-top: 8px; font-size: 11px; color: var(--ink2); white-space: nowrap; }
+  .lgd span { display: inline-flex; align-items: center; gap: 6px; }
+  .lgd span svg { width: 14px; height: 14px; color: var(--muted); }
+  .lgd b { color: var(--ink); font-weight: 700; }
+  .lgd small { font-size: 10.5px; color: var(--muted); }
+  .lgd em { width: 8px; height: 8px; border-radius: 3px; display: inline-block; }
+  /* Live activity */
+  .feed { width: 322px; flex-shrink: 0; display: flex; flex-direction: column; padding-bottom: 6px; }
+  .fl { display: flex; gap: 6px; margin-top: 10px; }
+  .fl span { font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 99px; border: 1px solid var(--line); color: var(--ink2); white-space: nowrap; }
+  .fl span.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .ev { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px solid #f1f5f9; }
+  .ev:last-child { border-bottom: 0; }
+  .ev .av { width: 32px; height: 32px; font-size: 10px; letter-spacing: -.02em; position: relative; overflow: visible; }
+  .ev .av em { position: absolute; right: -5px; bottom: -5px; width: 15px; height: 15px; border-radius: 99px; display: grid; place-items: center; box-shadow: 0 0 0 2px #fff; }
+  .ev .av em svg { width: 9px; height: 9px; stroke-width: 2.6; }
+  .ev .tx { flex: 1; min-width: 0; font-size: 12px; line-height: 1.32; }
+  .ev .tx b { font-weight: 700; color: var(--ink); }
+  .ev .tx span { color: var(--muted); font-size: 11px; }
+  .ev .tx div { color: var(--ink2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .ev .tx div strong { color: var(--ink); font-weight: 700; }
+  .ev .t { font-size: 10.5px; color: var(--muted); white-space: nowrap; align-self: flex-start; padding-top: 2px; }
+  .ev .t.now { color: #059669; font-weight: 700; }
+  .ev.hl { background: linear-gradient(90deg, #f0fdf4, rgba(240,253,244,0)); margin: 0 -14px; padding-left: 14px; padding-right: 14px; }
+  .joined { display: flex; align-items: center; gap: 8px; margin-top: auto; background: #f8fafc; border: 1px solid #eef2f7; border-radius: 9px; padding: 8px 10px; font-size: 11.5px; color: var(--ink2); }
+  .joined .stack { display: flex; }
+  .joined .stack i { width: 18px; height: 18px; border-radius: 99px; border: 2px solid #f8fafc; margin-left: -6px; display: block; }
+  .joined .stack i:first-child { margin-left: 0; }
+  .joined b { color: var(--ink); }
+</style></head>
+<body>
+<div class="app">
+  <aside class="side" data-shell="live" data-active="Visitors"></aside>
+  <section class="main">
+    <header class="top">
+      <div><div class="sub">Mega Live Sale · 8:00 PM – 10:00 PM</div><h1>Visitors<span class="live"><i></i>LIVE</span></h1></div>
+      <div class="seg" style="margin-left:auto"><span class="on">Right now</span><span>Tonight</span><span>Last 7 days</span></div>
+      <span class="btn"><i data-i="file"></i>Export</span>
+    </header>
+    <div class="content">
+      <div class="row" style="flex:1;min-height:0">
+        <div class="colL">
+          <div class="hero">
+            <div class="hd"><span class="ldot"></span>ONLINE NOW<em>Updated 8:42:14 PM · every second</em></div>
+            <div class="body">
+              <div class="cn"><b>1,286</b><span>people on your shop right now</span><span class="dl"><i data-i="flash" style="width:12px;height:12px"></i>Peak 3,164 at 8:01 PM</span></div>
+              <div class="spk" id="spk"></div>
+            </div>
+            <div class="ms">
+              <div><span>Unique visitors tonight</span><b>7,812</b></div>
+              <div><span>Bought something</span><b>31.0%<small>2,418 orders</small></b></div>
+              <div><span>Avg. time in shop</span><b>4m 36s</b></div>
+            </div>
+          </div>
+          <div class="card tb">
+            <h3><i data-x="eye" style="color:#0396d9"></i>Where they are right now <small>· by page</small><span class="more">Live map →</span></h3>
+            <table id="pages"></table>
+            <div class="foot">
+              <div>
+                <h4>Devices</h4>
+                <div class="split"><i style="width:91%;background:#0396d9"></i><i style="width:9%;background:#8b5cf6"></i></div>
+                <div class="lgd"><span><em style="background:#0396d9"></em>Phone <b>91%</b></span><span><em style="background:#8b5cf6"></em>Desktop <b>9%</b></span></div>
+              </div>
+              <div>
+                <h4>Came from</h4>
+                <div class="split"><i style="width:52%;background:#0396d9"></i><i style="width:35%;background:#8b5cf6"></i><i style="width:13%;background:#14b8a6"></i></div>
+                <div class="lgd"><span><em style="background:#0396d9"></em>Facebook <b>52%</b></span><span><em style="background:#8b5cf6"></em>TikTok <b>35%</b></span><span><em style="background:#14b8a6"></em>WhatsApp <b>13%</b></span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card feed">
+          <h3><i data-x="activity" style="color:#0396d9"></i>Live activity<span class="chip g" style="margin-left:auto"><span class="ldot" style="width:6px;height:6px;box-shadow:none"></span>Live</span></h3>
+          <div class="fl"><span class="on">All</span><span>Orders</span><span>Carts</span><span>Payments</span></div>
+          <div id="feed" style="margin-top:4px"></div>
+          <div class="joined"><span class="stack"><i style="background:#0396d9"></i><i style="background:#ec4899"></i><i style="background:#14b8a6"></i><i style="background:#f59e0b"></i></span><span><b>+46 people</b> joined in the last minute</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  const XI = {
+    cart: '<circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2.5 3.5h2.8l2.4 11.1a1.8 1.8 0 001.8 1.4h8.2a1.8 1.8 0 001.7-1.3L21 8H6.1"/>',
+    eye: '<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+    store: '<path d="M3.5 9l1.6-5h13.8l1.6 5"/><path d="M3.5 9a2.8 2.8 0 005.6 0 2.8 2.8 0 005.8 0 2.8 2.8 0 005.6 0"/><path d="M5 12.5V20h14v-7.5"/><path d="M10 20v-4.5h4V20"/>',
+    mobile: '<rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/>',
+    monitor: '<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/>',
+    activity: '<path d="M3 12h4l3-8 4 16 3-8h4"/>',
+    join: '<path d="M5 12h14M13 6l6 6-6 6"/>',
+  };
+
+  // ---------- Online now, last 30 minutes (8:12 to 8:42 PM) ----------
+  const S = [1412, 1398, 1421, 1506, 1618, 1587, 1522, 1463, 1418, 1386, 1362, 1341, 1329, 1318, 1306, 1297, 1302, 1334, 1402, 1455,
+    1431, 1386, 1349, 1322, 1301, 1318, 1362, 1377, 1339, 1305, 1286];
+  const smooth = (p) => {
+    const n = p.length, m = [], t = [];
+    for (let i = 0; i < n - 1; i++) m[i] = (p[i + 1][1] - p[i][1]) / (p[i + 1][0] - p[i][0]);
+    t[0] = m[0]; t[n - 1] = m[n - 2];
+    for (let i = 1; i < n - 1; i++) t[i] = m[i - 1] * m[i] <= 0 ? 0 : (m[i - 1] + m[i]) / 2;
+    for (let i = 0; i < n - 1; i++) {
+      if (!m[i]) { t[i] = t[i + 1] = 0; continue; }
+      const a = t[i] / m[i], b = t[i + 1] / m[i], s = a * a + b * b;
+      if (s > 9) { const k = 3 / Math.sqrt(s); t[i] = k * a * m[i]; t[i + 1] = k * b * m[i]; }
+    }
+    let d = `M${p[0][0].toFixed(1)} ${p[0][1].toFixed(1)}`;
+    for (let i = 0; i < n - 1; i++) {
+      const h = (p[i + 1][0] - p[i][0]) / 3;
+      d += `C${(p[i][0] + h).toFixed(1)} ${(p[i][1] + t[i] * h).toFixed(1)} ${(p[i + 1][0] - h).toFixed(1)} ${(p[i + 1][1] - t[i + 1] * h).toFixed(1)} ${p[i + 1][0].toFixed(1)} ${p[i + 1][1].toFixed(1)}`;
+    }
+    return d;
+  };
+  {
+    const el = $("spk"), W = el.clientWidth, H = el.clientHeight;
+    const L = 2, R = 6, T = 22, B = 16, pw = W - L - R, ph = H - T - B, lo = 1200, hi = 1650;
+    const x = (i) => L + (i / 30) * pw, y = (v) => T + ph - ((v - lo) / (hi - lo)) * ph;
+    let g = `<defs><linearGradient id="wf" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".28"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>`;
+    g += `<text x="${L}" y="10">Online · last 30 minutes</text>`;
+    for (const v of [1300, 1450, 1600]) g += `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}" stroke="#fff" stroke-opacity=".12"/>`;
+    const line = smooth(S.map((v, i) => [x(i), y(v)]));
+    g += `<path d="${line}L${x(30)} ${T + ph}L${x(0)} ${T + ph}Z" fill="url(#wf)"/>`;
+    g += `<path d="${line}" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`;
+    // Durian Crepe Box shown on the live
+    g += `<circle cx="${x(4)}" cy="${y(1618)}" r="3.5" fill="#0379c4" stroke="#fff" stroke-width="1.8"/><text class="b" x="${x(4) + 8}" y="${y(1618) + 3.5}">1,618 · Durian Crepe on live</text>`;
+    g += `<circle cx="${x(30)}" cy="${y(1286)}" r="9" fill="#fff" opacity=".22"/><circle cx="${x(30)}" cy="${y(1286)}" r="4" fill="#4ade80" stroke="#fff" stroke-width="2"/>`;
+    g += `<text x="${x(0)}" y="${H - 2}">8:12 PM</text><text x="${x(15)}" y="${H - 2}" text-anchor="middle">8:27</text><text class="b" x="${x(30)}" y="${H - 2}" text-anchor="end">Now</text>`;
+    el.innerHTML = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">${g}</svg>`;
+  }
+
+  // ---------- Where they are: [icon, page, detail, visitors, avg time, change vs 5 min ago] ----------
+  const PAGES = [["store", "Sale page", "Mega Live Sale · all products", 512, "2m 41s", -46], ["tag", "Tudung Bawal Premium", "Product · RM 29.90", 288, "1m 12s", -12],
+    ["tag", "Lipstick Matte Set", "Product · RM 39.90", 174, "58s", -21], ["tag", "MagSafe Phone Case", "Product · only 3 left", 121, "1m 05s", 38],
+    ["cart", "Cart", "RM 6,180 in carts", 109, "44s", 6], ["card", "Checkout", "Paying now", 82, "1m 21s", 3]];
+  const ON = PAGES.reduce((t, p) => t + p[3], 0); // 1,286
+  $("pages").innerHTML = `<tr><th>Page</th><th class="num">Online</th><th>Share</th><th class="num">Avg. time</th><th class="num">Last 5 min</th></tr>` +
+    PAGES.map(([ic, n, d, v, t, c]) => `<tr><td><div class="pg"><span class="pi">${XI[ic] ? `<i data-x="${ic}"></i>` : `<i data-i="${ic}"></i>`}</span><div><b>${n}</b><small>${d}</small></div></div></td>
+      <td class="num"><b>${v.toLocaleString("en-MY")}</b></td>
+      <td><div class="share"><u><i style="width:${((v / ON) * 100 / 0.4).toFixed(1)}%"></i></u><span>${((v / ON) * 100).toFixed(1)}%</span></div></td>
+      <td class="num">${t}</td><td class="num"><span class="${c > 0 ? "up" : "dn"}">${c > 0 ? "▲ " : "▼ "}${Math.abs(c)}</span></td></tr>`).join("");
+
+  // ---------- Live activity: [initials, colour, name, place, type, text, time] ----------
+  const TY = { order: ["#10b981", "check"], cart: ["#0396d9", "cart"], pay: ["#10b981", "money"], checkout: ["#8b5cf6", "card"],
+    stop: ["#ef4444", "x"], view: ["#64748b", "eye"], join: ["#14b8a6", "join"] };
+  const EV = [
+    ["ML", "#ec4899", "Mei Ling", "Penang", "order", "Placed an order · <strong>RM 69.80</strong>", "just now"],
+    ["JT", "#0396d9", "Jason Tan", "Johor Bahru", "cart", "Added <strong>MagSafe Phone Case</strong> to cart", "5s"],
+    ["PR", "#8b5cf6", "Priya", "Petaling Jaya", "checkout", "Is on <strong>Checkout</strong> · 2 items", "8s"],
+    ["FA", "#14b8a6", "Farah", "Shah Alam", "pay", "Paid by e-wallet · <strong>RM 47.70</strong>", "12s"],
+    ["SI", "#f59e0b", "Siti", "Shah Alam", "pay", "Paid by online banking · <strong>RM 59.80</strong>", "19s"],
+    ["HA", "#0b2f55", "Hafiz", "Ipoh", "stop", "Baju Kurung sold out · <strong>not charged</strong>", "27s"],
+    ["NA", "#db2777", "Nur Aisyah", "Kota Kinabalu", "pay", "Paid by card · <strong>RM 39.90</strong>", "34s"],
+    ["KL", "#0396d9", "Kevin Lim", "Kuching", "join", "Joined from <strong>TikTok</strong> live link", "41s"],
+    ["JT", "#0396d9", "Jason Tan", "Johor Bahru", "view", "Viewing <strong>MagSafe Phone Case</strong>", "48s"],
+    ["FA", "#14b8a6", "Farah", "Shah Alam", "cart", "Added <strong>Sambal Garing Bilis × 3</strong>", "52s"],
+    ["PR", "#8b5cf6", "Priya", "Petaling Jaya", "cart", "Added <strong>Lipstick Matte Set</strong> to cart", "1m"],
+  ];
+  $("feed").innerHTML = EV.map(([ini, c, n, pl, ty, tx, t], i) => {
+    const [bg, ic] = TY[ty];
+    const icon = XI[ic] ? `<i data-x="${ic}"></i>` : `<i data-i="${ic}"></i>`;
+    return `<div class="ev${i ? "" : " hl"}"><span class="av" style="background:${c}">${ini}<em style="background:${bg};color:#fff">${icon}</em></span>
+      <div class="tx"><b>${n}</b> <span>· ${pl}</span><div>${tx}</div></div><span class="t${i ? "" : " now"}">${t}</span></div>`;
+  }).join("");
+
+  document.querySelectorAll("i[data-x]").forEach((el) => {
+    el.outerHTML = `<svg class="i" viewBox="0 0 24 24" style="${el.getAttribute("style") || ""}">${XI[el.dataset.x]}</svg>`;
+  });
+})();
+</script>
+<script src="shell.js"></script>
+<script src="icons.js"></script>
+</body></html>

@@ -102,6 +102,23 @@ const specs: { [K in SystemKey]: Spec<K> } = {
     },
     contactPhone: "whatsappSpa",
   },
+  live: {
+    hero: { main: "liveDashboard", phone: "liveShop", badgeIcon: "Live" },
+    highlights: { crowd: "Users", queue: "Server", oversell: "Shield", schedule: "Calendar", visitors: "Live", reports: "Chart" },
+    spotlights: {
+      crowd: { main: "liveQueue", phone: "liveCheckout" },
+      oversell: { phoneOnly: "liveProduct", badges: ["Lock", "Box"] },
+      schedule: { main: "liveProducts" },
+      visitors: { main: "liveVisitors" },
+      reports: { main: "reportsLive", speed: true },
+    },
+    modules: {
+      salePage: "Live", products: "Box", schedule: "Calendar", queue: "Server", oversell: "Shield", stock: "Sync",
+      visitors: "Users", pages: "Globe", checkout: "Bolt", payment: "Card", orders: "Route", receipts: "Layers",
+      einvoice: "Invoice", reports: "Chart", permissions: "Lock", devices: "Devices",
+    },
+    contactPhone: "liveCheckout",
+  },
 };
 
 const pathOf = (k: SystemKey) => systems.find((s) => s.key === k)!.path;
@@ -139,6 +156,9 @@ export function productMetadata(lang: Locale, k: SystemKey) {
 
 export default function ProductPage({ lang, k }: { lang: Locale; k: SystemKey }) {
   const { d, t, spec, name, highlights, spotlights, modules } = content(lang, k);
+  // The Live Selling System has its own price and asks for a demo; the appointment systems share one plan.
+  const live = k === "live";
+  const offer = "contact" in t ? { ...t.contact, message: t.demoMessage } : undefined;
   const shots = getShots(lang);
   const path = pathOf(k);
   const url = `${site.url}${lp(lang, path)}`;
@@ -180,6 +200,7 @@ export default function ProductPage({ lang, k }: { lang: Locale; k: SystemKey })
             category: t.category,
             features: modules.map((m) => m.title),
             screenshots: pics,
+            ...(live && { price: site.livePriceFrom, offerText: d.pricing.liveOfferText }),
           }),
           faqJsonLd(t.faqs),
           breadcrumbJsonLd([
@@ -203,10 +224,10 @@ export default function ProductPage({ lang, k }: { lang: Locale; k: SystemKey })
             <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-slate-600">{t.intro}</p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <a href={whatsappLink(t.demoMessage)} target="_blank" rel="noopener" className="btn-primary !py-3.5">
-                <Icon.Whatsapp className="h-5 w-5" /> {d.ui.bookFreeDemo}
+                <Icon.Whatsapp className="h-5 w-5" /> {live ? d.ui.requestDemo : d.ui.bookFreeDemo}
               </a>
               <Link href={lp(lang, companyPages.pricing)} className="btn-secondary !py-3.5">
-                {d.ui.priceLine}
+                {live ? d.ui.livePriceLine : d.ui.priceLine}
               </Link>
             </div>
           </div>
@@ -267,12 +288,12 @@ export default function ProductPage({ lang, k }: { lang: Locale; k: SystemKey })
         </div>
       </section>
 
-      {/* The clinic page already has its own hardware spotlight. */}
-      {!spotlights.some((s) => s.id === "hardware") && <HardwareSection lang={lang} />}
-      <PricingSection lang={lang} />
+      {/* The clinic page already has its own hardware spotlight, and live selling needs no counter hardware. */}
+      {!live && !spotlights.some((s) => s.id === "hardware") && <HardwareSection lang={lang} />}
+      <PricingSection lang={lang} plan={live ? "live" : "standard"} />
       <FaqSection lang={lang} items={t.faqs} />
       <OtherSystems lang={lang} current={k} />
-      <ContactSection lang={lang} phoneShot={shots[spec.contactPhone]} />
+      <ContactSection lang={lang} phoneShot={shots[spec.contactPhone]} title={offer?.title} offer={offer} />
     </>
   );
 }

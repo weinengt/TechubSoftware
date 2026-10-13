@@ -1,0 +1,243 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<style>
+  /* Live selling: the Kafka order queue and the stock guard that stops overselling (Tue 13 Oct 2026, 8:42 PM) */
+  :root { --w: 1024px; --h: 720px; }
+  .btn svg { width: 15px; height: 15px; }
+  .auto { margin-left: auto; display: inline-flex; align-items: center; gap: 7px; font-size: 11.5px; color: var(--muted); white-space: nowrap; }
+  .auto b { color: var(--ink2); font-weight: 650; }
+  .ldot { width: 7px; height: 7px; border-radius: 99px; background: #22c55e; box-shadow: 0 0 0 3px rgba(34,197,94,.22); flex-shrink: 0; display: inline-block; }
+  .content { gap: 12px; }
+  .card h3 small { font-size: 11px; color: var(--muted); font-weight: 500; }
+  .r1 { height: 104px; flex-shrink: 0; }
+  .r2 { height: 254px; flex-shrink: 0; }
+  .cc { display: flex; flex-direction: column; min-height: 0; }
+  /* Queue status */
+  .qs { width: 366px; flex-shrink: 0; border-radius: 12px; padding: 11px 16px 12px; color: #dbeafe; position: relative; overflow: hidden;
+    background: linear-gradient(135deg, #0b2f55, #0a3d6e 55%, #0050a0); box-shadow: 0 10px 24px -14px rgba(11,47,85,.8); display: flex; flex-direction: column; }
+  .qs::after { content: ""; position: absolute; right: -36px; bottom: -56px; width: 150px; height: 150px; border-radius: 99px; background: rgba(0,207,203,.16); }
+  .qs .hd { display: flex; align-items: center; gap: 8px; font-size: 12.5px; font-weight: 700; color: #fff; position: relative; z-index: 1; }
+  .qs .hd svg { width: 17px; height: 17px; color: #5eead4; }
+  .qs .ok { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; font-size: 10.5px; font-weight: 700; color: #bbf7d0; background: rgba(34,197,94,.18); border: 1px solid rgba(74,222,128,.35); border-radius: 99px; padding: 3px 9px; }
+  .qs .ok i { width: 6px; height: 6px; border-radius: 99px; background: #4ade80; }
+  .qs .bg { display: flex; align-items: baseline; gap: 9px; margin-top: 4px; position: relative; z-index: 1; }
+  .qs .bg b { font-size: 34px; font-weight: 850; color: #fff; letter-spacing: -.03em; line-height: 1; }
+  .qs .bg span { font-size: 13px; font-weight: 650; color: #fff; }
+  .qs .bg em { margin-left: auto; font-style: normal; font-size: 11px; color: #9cc3e6; text-align: right; line-height: 1.35; }
+  .qs .bg em strong { color: #fff; font-weight: 700; }
+  .qs .mt { display: flex; gap: 6px; margin-top: auto; position: relative; z-index: 1; }
+  .qs .mt span { font-size: 10.5px; font-weight: 600; color: #cfe3f7; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.1); border-radius: 6px; padding: 3px 7px; white-space: nowrap; }
+  .qs .mt span b { color: #fff; }
+  /* Stats 2x2 */
+  .st4 { flex: 1; min-width: 0; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 10px; }
+  .st4 .stat { padding: 0 12px; gap: 10px; min-width: 0; }
+  .st4 .stat .ic { width: 32px; height: 32px; border-radius: 9px; }
+  .st4 .stat .ic svg { width: 17px; height: 17px; }
+  .ic.s { background: #f1f5f9; color: #64748b; }
+  .st4 .stat .k { white-space: nowrap; }
+  .st4 .stat .v { font-size: 18px; line-height: 1.1; display: flex; align-items: baseline; gap: 7px; white-space: nowrap; }
+  .st4 .stat .v small { font-size: 10.5px; font-weight: 600; color: var(--muted); letter-spacing: 0; }
+  .st4 .stat .v small.g { color: #059669; }
+  /* Throughput */
+  .lg { margin-left: auto; display: flex; gap: 12px; font-size: 11px; font-weight: 500; color: var(--ink2); white-space: nowrap; }
+  .lg span { display: inline-flex; align-items: center; gap: 5px; }
+  .lg .sw { width: 9px; height: 9px; border-radius: 3px; display: inline-block; }
+  .lg .ln { width: 12px; height: 2px; border-radius: 2px; display: inline-block; }
+  .plot { flex: 1; min-height: 0; position: relative; margin-top: 8px; }
+  .plot svg { position: absolute; inset: 0; display: block; overflow: visible; }
+  .plot text { font-family: Inter, sans-serif; font-size: 10px; fill: #94a3b8; }
+  .plot text.pl { fill: #64748b; font-weight: 600; font-size: 9.5px; }
+  .tip { position: absolute; z-index: 2; background: #0f172a; color: #cbd5e1; border-radius: 8px; padding: 6px 9px; font-size: 10.5px; font-weight: 500; line-height: 15px; white-space: nowrap; box-shadow: 0 8px 18px -8px rgba(15,23,42,.6); }
+  .tip b { color: #fff; font-weight: 700; }
+  .tip .k { display: inline-block; width: 10px; height: 2px; border-radius: 2px; vertical-align: middle; margin-right: 5px; }
+  .tip .g { color: #4ade80; font-weight: 650; }
+  .tip::before { content: ""; position: absolute; left: -4px; top: var(--ay, 50%); width: 8px; height: 8px; margin-top: -4px; background: #0f172a; transform: rotate(45deg); border-radius: 1px; }
+  /* Stock guard */
+  .guard { width: 312px; flex-shrink: 0; }
+  .gi { display: flex; align-items: flex-start; gap: 10px; padding: 4px 0 5px; border-bottom: 1px solid #f1f5f9; }
+  .gi:last-of-type { border-bottom: 0; }
+  .gi .pt { width: 32px; height: 32px; border-radius: 9px; display: grid; place-items: center; flex-shrink: 0; }
+  .gi .pt svg { width: 26px; height: 26px; display: block; }
+  .gi .tx { flex: 1; min-width: 0; font-size: 12px; line-height: 1.32; }
+  .gi .tx .nm { display: flex; align-items: center; gap: 8px; margin-bottom: 2px; }
+  .gi .tx .nm b { font-weight: 700; color: var(--ink); white-space: nowrap; }
+  .gi .tx .nm .chip { margin-left: auto; }
+  .gi .tx strong { color: var(--ink2); font-weight: 650; }
+  .gi .tx small { display: block; font-size: 10.5px; color: var(--muted); white-space: nowrap; }
+    .gnote { margin-top: auto; display: flex; align-items: center; gap: 8px; flex-shrink: 0; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 9px; padding: 6px 10px; font-size: 11px; color: #166534; white-space: nowrap; }
+  .gnote svg { width: 15px; height: 15px; color: #16a34a; }
+  .gnote b { color: #14532d; }
+  /* Latest orders */
+  .tb { padding: 0; overflow: hidden; display: flex; flex-direction: column; flex: 1; min-height: 0; }
+  .tb h3 { padding: 11px 14px 9px; }
+  .tb th { padding: 6px 8px; white-space: nowrap; }
+  .tb td { padding: 3px 8px; }
+  .tb td:first-child, .tb th:first-child { padding-left: 14px; } .tb td:last-child, .tb th:last-child { padding-right: 14px; }
+  .tb tr:last-child td { border-bottom: 0; }
+  .tb th.num { text-align: right; }
+  .tb td b { font-size: 12px; }
+  .ono { font-weight: 700; color: var(--ink); letter-spacing: -.01em; }
+  .ono.none { color: #94a3b8; font-weight: 500; }
+  .who b { display: block; line-height: 15px; } .who small { line-height: 13px; margin-top: 0; }
+  .qt { display: inline-flex; align-items: center; gap: 6px; justify-content: flex-end; font-variant-numeric: tabular-nums; }
+  .qt u { width: 34px; height: 5px; border-radius: 9px; background: #eef2f7; overflow: hidden; display: inline-block; }
+  .qt u i { display: block; height: 100%; border-radius: 9px; background: #0396d9; }
+  tr.stop td { background: #fffafa; }
+  tr.stop td:first-child { box-shadow: inset 3px 0 0 #f87171; }
+  tr.stop .amt { color: #94a3b8; text-decoration: line-through; text-decoration-color: #cbd5e1; }
+  .chip svg { width: 11px; height: 11px; stroke-width: 2.4; }
+  .flt { margin-left: auto; display: flex; gap: 6px; }
+  .flt span { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 99px; border: 1px solid var(--line); color: var(--ink2); white-space: nowrap; }
+  .flt span.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .flt span em { font-style: normal; color: var(--muted); font-weight: 500; margin-left: 3px; }
+  .flt span.on em { color: #cbd5e1; }
+</style></head>
+<body>
+<div class="app">
+  <aside class="side" data-shell="live" data-active="Orders"></aside>
+  <section class="main">
+    <header class="top">
+      <div><div class="sub">Mega Live Sale · Orders</div><h1>Order queue</h1></div>
+      <span class="auto"><span class="ldot"></span>Live · updated <b>8:42:14 PM</b></span>
+      <span class="btn"><i data-i="shield"></i>Stock guard rules</span>
+      <span class="btn pri"><i data-i="box"></i>All orders</span>
+    </header>
+    <div class="content">
+      <div class="row r1">
+        <div class="qs">
+          <div class="hd"><i data-x="layers"></i>Kafka order queue<span class="ok"><i></i>Healthy</span></div>
+          <div class="bg"><b>0</b><span>orders waiting</span><em>Now <strong>21 orders/min</strong><br>Lag 0 · all orders up to date</em></div>
+          <div class="mt"><span><b>6</b> partitions</span><span><b>4</b> consumers</span><span>Stock checked one by one</span></div>
+        </div>
+        <div class="st4">
+          <div class="stat"><span class="ic g"><i data-i="check"></i></span><div><div class="k">Processed</div><div class="v">2,418<small>orders confirmed</small></div></div></div>
+          <div class="stat"><span class="ic b"><i data-i="clock"></i></span><div><div class="k">Avg. processing</div><div class="v">0.4 s<small>queue → confirmed</small></div></div></div>
+          <div class="stat"><span class="ic r"><i data-i="shield"></i></span><div><div class="k">Orders over stock stopped</div><div class="v">186<small>would have oversold</small></div></div></div>
+          <div class="stat"><span class="ic s"><i data-i="alert"></i></span><div><div class="k">Failed</div><div class="v">0<small class="g">no orders lost tonight</small></div></div></div>
+        </div>
+      </div>
+      <div class="row r2">
+        <div class="card grow cc">
+          <h3><i data-i="chart" style="color:#0396d9"></i>Throughput <small>· per minute, 8:00 PM to now</small>
+            <span class="lg"><span><i class="sw" style="background:#9fd5f0"></i>Received</span><span><i class="ln" style="background:#0396d9"></i>Processed</span><span><i class="sw" style="background:#8b5cf6"></i>Waiting</span></span></h3>
+          <div class="plot" id="plot"></div>
+        </div>
+        <div class="card guard cc">
+          <h3><i data-i="shield" style="color:#0396d9"></i>Stock guard<span class="chip g" style="margin-left:auto">On · every order</span></h3>
+          <div id="guard" style="margin-top:3px"></div>
+          <div class="gnote"><i data-i="check"></i><span><b>186 stopped</b> before payment · none charged</span></div>
+        </div>
+      </div>
+      <div class="card tb">
+        <h3><i data-x="layers" style="color:#0396d9"></i>Latest orders through the queue
+          <span class="flt"><span class="on">All<em>2,604</em></span><span>Paid<em>2,236</em></span><span>Confirmed<em>182</em></span><span>Stopped<em>186</em></span></span></h3>
+        <table id="orders"></table>
+      </div>
+    </div>
+  </section>
+</div>
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  const XI = {
+    layers: '<path d="M12 3l9 4.8-9 4.8-9-4.8z"/><path d="M3 12.2l9 4.8 9-4.8"/><path d="M3 16.6l9 4.8 9-4.8"/>',
+    stop: '<path d="M8 3h8l5 5v8l-5 5H8l-5-5V8z"/><path d="M8.5 12h7"/>',
+  };
+  const star = (cx, cy, ro, ri, n) => Array.from({ length: n * 2 }, (_, k) => {
+    const a = (Math.PI * k) / n - Math.PI / 2, r = k % 2 ? ri : ro;
+    return `${(cx + r * Math.cos(a)).toFixed(2)},${(cy + r * Math.sin(a)).toFixed(2)}`;
+  }).join(" ");
+  const ART = {
+    kurung: ["#10b981", `<path d="M15.6 28.5h16.8L36 44H12z" fill="#047857"/>
+      <path d="M18.6 5h10.8l9.6 7.6-4 6.4-3.6-2.6V31h-14.8V16.4L13 19l-4-6.4z" fill="#10b981"/>
+      <path d="M19.6 5.3c1.2 2.9 2.7 4.3 4.4 4.3s3.2-1.4 4.4-4.3" fill="none" stroke="#fff" stroke-width="1.4" stroke-opacity=".85"/>
+      <path d="M16.6 29.6h14.8" stroke="#fbbf24" stroke-width="1.6"/><path d="M24 10v6" stroke="#fbbf24" stroke-width="1.2" stroke-dasharray="1.2 1.4"/>`],
+    case: ["#0396d9", `<rect x="13" y="3.5" width="22" height="41" rx="5.5" fill="#0b2f55"/><rect x="15.4" y="5.9" width="10.4" height="11" rx="3.2" fill="#1d4a7a"/>
+      <circle cx="18.7" cy="9.3" r="1.9" fill="#0f172a" stroke="#7aa7d6" stroke-width=".8"/><circle cx="22.5" cy="13.4" r="1.9" fill="#0f172a" stroke="#7aa7d6" stroke-width=".8"/>
+      <circle cx="24" cy="27.5" r="6.6" fill="none" stroke="#7dd3fc" stroke-width="1.6"/><path d="M24 34.1v4.4" stroke="#7dd3fc" stroke-width="1.6"/>
+      <rect x="14.6" y="19" width="1.8" height="22" rx=".9" fill="#fff" opacity=".18"/>`],
+    durian: ["#f59e0b", `<rect x="8" y="12.5" width="10.4" height="13" rx="5" fill="#fef3c7" stroke="#eab308" stroke-width="1.2"/>
+      <rect x="18.8" y="11" width="10.4" height="14.5" rx="5" fill="#fef9c3" stroke="#eab308" stroke-width="1.2"/>
+      <rect x="29.6" y="12.5" width="10.4" height="13" rx="5" fill="#fef3c7" stroke="#eab308" stroke-width="1.2"/>
+      <path d="M5 21.5h38v18.5a4 4 0 01-4 4H9a4 4 0 01-4-4z" fill="#f59e0b"/><path d="M5 21.5h38v3.2H5z" fill="#d97706"/>
+      <polygon points="${star(24, 33.6, 6.2, 4.4, 12)}" fill="#65a30d"/><circle cx="24" cy="33.6" r="3.9" fill="#a3e635"/>`],
+  };
+  const pic = (k) => { const [c, svg] = ART[k]; return `<span class="pt" style="background:linear-gradient(155deg, ${c}30, ${c}0f)"><svg viewBox="0 0 48 48">${svg}</svg></span>`; };
+
+  // ---------- Throughput, 8:00 to 8:42 PM ----------
+  // Orders received per minute (sums to 2,418; peak 412 at 8:01). Every minute was processed in the same minute.
+  const OPM = [176, 412, 272, 179, 122, 81, 60, 49, 42, 38, 35, 32, 30, 29, 28, 44, 71, 63, 47, 34,
+    27, 25, 23, 22, 21, 20, 20, 19, 19, 21, 33, 45, 36, 27, 22, 20, 19, 21, 29, 36, 25, 23, 21];
+  // Most orders waiting in the queue at any moment of each minute
+  const WAIT = [12, 37, 21, 9, 4, 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 2, 6, 4, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    3, 5, 2, 1, 0, 0, 0, 0, 2, 3, 1, 0, 0];
+  const col = (x, y, w, h, r = 3) => { r = Math.min(r, h, w / 2); return `M${x} ${y + h}V${y + r}A${r} ${r} 0 0 1 ${x + r} ${y}H${x + w - r}A${r} ${r} 0 0 1 ${x + w} ${y + r}V${y + h}Z`; };
+  {
+    const el = $("plot"), W = el.clientWidth, H = el.clientHeight;
+    const L = 30, R = 6, T = 4, B = 18, gap = 16, wH = 30;          // bottom strip: waiting
+    const oH = H - T - B - gap - wH;                                 // top panel: orders per minute
+    const n = OPM.length, band = (W - L - R) / n, bw = Math.min(8, band * 0.62);
+    const max = 440, yo = (v) => T + oH - (v / max) * oH;
+    const wTop = T + oH + gap, wMax = 40, yw = (v) => wTop + wH - (v / wMax) * wH;
+    const cx = (i) => L + i * band + band / 2;
+    let g = "";
+    for (const v of [0, 200, 400]) g += `<line x1="${L}" x2="${W - R}" y1="${yo(v)}" y2="${yo(v)}" stroke="${v ? "#eef2f7" : "#dfe6ee"}"/><text x="${L - 7}" y="${yo(v) + 3.5}" text-anchor="end">${v}</text>`;
+    g += `<line x1="${L}" x2="${W - R}" y1="${yw(0)}" y2="${yw(0)}" stroke="#dfe6ee"/><text x="${L - 7}" y="${yw(0) + 3.5}" text-anchor="end">0</text>`;
+    g += `<rect x="${cx(1) - band / 2}" y="${T}" width="${band}" height="${yw(0) - T}" rx="3" fill="#f1f7fc"/>`;
+    OPM.forEach((v, i) => { g += `<path d="${col(cx(i) - bw / 2, yo(v), bw, yo(0) - yo(v))}" fill="${i === 1 ? "#5bb8e6" : "#9fd5f0"}"/>`; });
+    // Processed: the line sits on top of every bar (nothing left behind)
+    g += `<path d="${OPM.map((v, i) => `${i ? "L" : "M"}${cx(i).toFixed(1)} ${yo(v).toFixed(1)}`).join("")}" fill="none" stroke="#0396d9" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>`;
+    WAIT.forEach((v, i) => { if (v) g += `<path d="${col(cx(i) - bw / 2, yw(v), bw, yw(0) - yw(v), 2)}" fill="#8b5cf6"/>`; });
+    g += `<text class="pl" x="${cx(1) + 9}" y="${yw(37) + 8}" style="fill:#334155">37 waiting · cleared in 1.2 s</text>`;
+    g += `<circle cx="${cx(1)}" cy="${yo(412)}" r="4" fill="#0396d9" stroke="#fff" stroke-width="2"/>`;
+    [[0, "8:00 PM", "start"], [10, "8:10"], [20, "8:20"], [30, "8:30"], [42, "8:42 PM", "end"]].forEach(([i, t, a = "middle"]) => {
+      g += `<text x="${a === "start" ? L : a === "end" ? W - R : cx(i)}" y="${H - 3}" text-anchor="${a}"${i === 42 ? ' style="fill:#0f172a;font-weight:700"' : ""}>${t}</text>`;
+    });
+    el.insertAdjacentHTML("afterbegin", `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">${g}</svg>`);
+    const tip = document.createElement("div");
+    tip.className = "tip";
+    tip.innerHTML = `<b>8:01 PM</b> · busiest minute<br><i class="k" style="background:#9fd5f0"></i>Received <b>412</b> · <i class="k" style="background:#0396d9"></i>Processed <b>412</b><br><span class="g">0 failed · 0 oversold</span>`;
+    el.appendChild(tip);
+    const top = Math.max(0, yo(412) - 12), tx = cx(4) + 2;
+    el.querySelector("svg").insertAdjacentHTML("beforeend", `<line x1="${cx(1) + 5}" x2="${tx - 4}" y1="${yo(412)}" y2="${yo(412)}" stroke="#0f172a" stroke-width="1"/>`);
+    tip.style.left = `${tx}px`;
+    tip.style.top = `${top}px`;
+    tip.style.setProperty("--ay", `${yo(412) - top}px`);
+  }
+
+  // ---------- Stock guard: [picture, product, line 1, line 2, chip, chip text, note] ----------
+  const G = [
+    ["kurung", "Baju Kurung Moden", "Closed automatically at 8:04:12 PM", "300 of 300 sold", "r", "Sold out", "118 orders stopped"],
+    ["durian", "Durian Crepe Box", "Closed automatically at 8:19:37 PM", "250 of 250 sold", "r", "Sold out", "61 orders stopped"],
+    ["case", "MagSafe Phone Case", "Guarding the last 3 units", "397 of 400 sold", "a", "Only 3 left", "7 asked for more"],
+  ];
+  $("guard").innerHTML = G.map(([k, n, a, b, c, ct, note]) => `<div class="gi">${pic(k)}<div class="tx">
+    <div class="nm"><b>${n}</b><span class="chip ${c}">${ct}</span></div><small>${a}</small><small>${b} · <strong>${note}</strong></small></div></div>`).join("");
+
+  // ---------- Latest orders: [time, order no., buyer, place, items, amount, queue time (s), status] ----------
+  const ST = {
+    conf: `<span class="chip b">Confirmed</span>`, paid: `<span class="chip g"><i data-i="check"></i>Paid</span>`,
+    out: `<span class="chip r"><i data-x="stop"></i>Stopped: sold out</span>`, few: `<span class="chip r"><i data-x="stop"></i>Stopped: only 3 left</span>`,
+  };
+  const O = [
+    ["8:42:14 PM", "#LS-24180", "Mei Ling", "Penang", "Tudung Bawal Premium, Lipstick Matte Set", "2 items", 69.8, 0.3, "conf"],
+    ["8:42:06 PM", "", "Kevin Lim", "Kuching", "MagSafe Phone Case × 4", "asked for 4", 100, 0.2, "few"],
+    ["8:42:02 PM", "#LS-24179", "Farah", "Shah Alam", "Sambal Garing Bilis × 3", "e-wallet", 47.7, 0.4, "paid"],
+    ["8:41:55 PM", "#LS-24178", "Siti", "Shah Alam", "Tudung Bawal Premium × 2", "online banking", 59.8, 0.4, "paid"],
+    ["8:41:47 PM", "", "Hafiz", "Ipoh", "Baju Kurung Moden × 1", "from an old cart", 89, 0.2, "out"],
+  ];
+  $("orders").innerHTML = `<tr><th>Time</th><th>Order no.</th><th>Buyer</th><th>Items</th><th class="num">Amount</th><th class="num">In queue</th><th>Status</th></tr>` +
+    O.map(([t, no, nm, pl, it, sub, amt, q, s]) => `<tr class="${no ? "" : "stop"}"><td>${t}</td>
+      <td>${no ? `<span class="ono">${no}</span>` : `<span class="ono none">No order</span><small>not charged</small>`}</td>
+      <td class="who"><b>${nm}</b><small>${pl}</small></td><td><b style="font-weight:600">${it}</b><small>${sub}</small></td>
+      <td class="num"><b class="amt">RM ${amt.toFixed(2)}</b></td>
+      <td class="num"><span class="qt"><u><i style="width:${(q / 0.6) * 100}%"></i></u>${q.toFixed(1)} s</span></td><td>${ST[s]}</td></tr>`).join("");
+
+  document.querySelectorAll("i[data-x]").forEach((el) => {
+    el.outerHTML = `<svg class="i" viewBox="0 0 24 24" style="${el.getAttribute("style") || ""}">${XI[el.dataset.x]}</svg>`;
+  });
+})();
+</script>
+<script src="shell.js"></script>
+<script src="icons.js"></script>
+</body></html>

@@ -16,9 +16,11 @@ const zh: Dict = {
     getFreeDemo: "我要免费 Demo",
     bookFreeDemo: "预约免费 Demo",
     askDemo: "我想看 Demo",
+    requestDemo: "申请 Demo",
     whatsappMessage: "Hi Techub Software，我对你们的系统有兴趣，可以安排免费 Demo 吗？",
     emailSubject: "Techub 系统咨询",
     priceLine: "RM {price}/月起 · 前 {months} 个月免费",
+    livePriceLine: "RM {livePrice}/月起",
     enlarge: "放大图片",
   },
 
@@ -90,11 +92,24 @@ const zh: Dict = {
       ],
       cta: "看看 SPA 系统",
     },
+    live: {
+      label: "直播带货",
+      name: "直播带货系统",
+      blurb: "大批买家同时抢购，也不会超卖。",
+      points: [
+        "Kafka 订单排队技术，人再多也撑得住",
+        "每张订单都查库存，不会超卖",
+        "每件产品自己设定开卖日期和时间",
+        "即时看到有多少访客、在看哪一页",
+        "高级报表，月费 RM {livePrice} 起",
+      ],
+      cta: "看看直播带货系统",
+    },
   },
 
   footer: {
     blurb:
-      "{name} 是马来西亚本地的软件公司，为全马的诊所、发廊、美容中心和 SPA 开发智能又实惠的系统，也定制 ERP、AI 物体识别和车牌识别等系统。保证 {uptime} 在线率，月费 RM {price} 起。",
+      "{name} 是马来西亚本地的软件公司，为全马的诊所、发廊、美容中心、SPA 和直播卖家开发智能又实惠的系统，也定制 ERP、AI 物体识别和车牌识别等系统。保证 {uptime} 在线率，月费 RM {price} 起。",
     useCases: "适用行业",
     custom: "定制系统",
     company: "公司",
@@ -111,6 +126,7 @@ const zh: Dict = {
   bubble: {
     hello: "Hi 老板！👋",
     text: "想看免费 Demo 吗？前 {months} 个月免费哦！",
+    liveText: "想看看直播带货系统吗？WhatsApp 我们申请 Demo 吧！",
     chat: "跟我们聊聊",
     close: "关闭讯息",
     label: "在 WhatsApp {phone} 跟 Techub Software 聊天",
@@ -141,6 +157,8 @@ const zh: Dict = {
         "AI库存管理",
         "LHDN电子发票",
         "LHDN e-Invoice",
+        "直播带货系统",
+        "马来西亚直播带货系统",
         "马来西亚软件公司",
         "ERP系统",
         "appointment system Malaysia",
@@ -164,16 +182,23 @@ const zh: Dict = {
     },
     highlights: {
       eyebrow: "为什么选 Techub",
-      title: "又快又聪明，*24 小时在线*",
+      title: "马来西亚商家为什么*都选 Techub*",
       items: {
-        booking: { title: "高级预约", text: "员工、房间、服务和 walk-in 顾客，一个日历全搞定。" },
-        ai: { title: "内置 AI", text: "AI 帮你看送货单，还会预测库存。" },
-        uptime: { title: "{uptime} 在线率", text: "系统稳稳在线，有保证。" },
-        database: { title: "企业级数据库", text: "NoSQL 数据库经过索引优化，服务器就在马来西亚。" },
-        speed: { title: "速度有保证", text: "详细报表 100 毫秒内出来。" },
-        realtime: { title: "即时更新", text: "所有设备马上同步。" },
-        whatsapp: { title: "WhatsApp 通知", text: "确认和提醒，系统自动帮你发。" },
-        stock: { title: "库存管理", text: "每件货进进出出，都有记录。" },
+        booking: { title: "10 秒内搞定预约", text: "选好服务、员工和时间，一下就预约好。Walk-in 顾客也可以。" },
+        realtime: { title: "即时更新", text: "一台设备有新预约或新销售，所有设备马上看到。" },
+        deposit: { title: "网上付订金", text: "顾客预约时就在网上付订金，放飞机少很多。" },
+        whatsapp: { title: "WhatsApp 提醒", text: "预约确认和提醒，系统自动帮你用 WhatsApp 发。" },
+        accounting: {
+          title: "会计单据自动生成",
+          text: "发票、Credit Note、退款单和正式收据（OR）系统自动开好，不需要会计人员来操作。",
+        },
+        einvoice: { title: "LHDN 电子发票", text: "电子发票直接从系统提交到 LHDN MyInvois。" },
+        inventory: { title: "库存追踪", text: "每次卖出或用掉，库存自动更新，快没货还会提醒你。" },
+        reports: { title: "高级报表", text: "销售、员工、库存和顾客报表，100 毫秒内出来。" },
+        permissions: { title: "权限管理", text: "谁可以打折、退款或看报表，由你决定。" },
+        devices: { title: "跨平台，什么设备都能用", text: "Windows、Mac、iPad、Android 和 iPhone 都可以，用你现有的设备就行。" },
+        easy: { title: "简单易用", text: "画面简单，员工很快就上手。我们帮你设定好，也会培训员工。" },
+        uptime: { title: "{uptime} 在线率", text: "马来西亚企业级服务器，还有多区域备份。" },
       },
     },
     softwareName: "Techub 预约管理系统",
@@ -206,7 +231,7 @@ const zh: Dict = {
     title: "我们可以帮你做什么",
     intro: "现成系统或帮你定制都可以，服务全马商家。我们帮你全部设定好，还会培训你的团队。",
     items: {
-      systems: { title: "现成系统", text: "诊所、发廊、美容中心和 SPA 的预约系统，拿来就能用。" },
+      systems: { title: "现成系统", text: "诊所、发廊、美容中心和 SPA 的预约系统，还有直播带货系统，拿来就能用。" },
       custom: {
         title: "定制系统开发",
         text: "ERP、AI 物体识别、车牌识别等等。定制 RM {custom} 起。",
@@ -234,7 +259,7 @@ const zh: Dict = {
   useCases: {
     eyebrow: "适用行业",
     title: "现成系统，适合你的行业",
-    intro: "专为马来西亚的诊所、发廊、美容中心和 SPA 而设。点一下，看看系统在 iPad 和手机上的样子。",
+    intro: "专为马来西亚的诊所、发廊、美容中心、SPA 和直播卖家而设。点一下，看看系统在 iPad 和手机上的样子。",
   },
 
   custom: {
@@ -532,6 +557,29 @@ const zh: Dict = {
     customEmail: "电邮联络",
     customEmailSubject: "定制系统报价",
     offerText: "每月 RM {price} 起。新用户前 {months} 个月免费，包安装和员工培训。",
+    // Live Selling System: a row on the pricing page, and the main card on its own page
+    liveTitle: "直播带货系统",
+    liveFrom: "低至",
+    liveText: "专为直播卖家而设：Kafka 订单排队撑得住大批买家，不会超卖，即时看到访客，还有高级报表。",
+    liveCta: "申请 Demo",
+    liveMessage: "Hi Techub，我想了解一下直播带货系统，可以安排 Demo 吗？",
+    liveSee: "看看系统",
+    livePlan: "Techub 直播带货配套",
+    liveBadge: "直播带货",
+    liveNote: "申请 Demo，我们会用你自己的产品，让你看看系统怎样运作。",
+    liveIncluded: [
+      "直播专用的销售页面",
+      "Kafka 订单排队，大批买家也撑得住",
+      "每张订单都查库存，不会超卖",
+      "产品可设定开卖日期和时间",
+      "即时访客人数，每一页都看得到",
+      "网上付款和订单管理",
+      "自动开发票和正式收据",
+      "高级报表 100 毫秒内出来",
+      "马来西亚服务器，{uptime} 在线率",
+      "马来西亚本地团队 WhatsApp 支援",
+    ],
+    liveOfferText: "直播带货系统每月 RM {livePrice} 起。",
   },
 
   faq: {
@@ -540,11 +588,15 @@ const zh: Dict = {
     items: [
       {
         q: "Techub Software 是做什么的？",
-        a: "Techub Software 是马来西亚本地的软件公司，为全马商家开发智能又实惠的系统：诊所、发廊、美容中心和 SPA 有现成的预约系统，也可以定制 ERP、AI 物体识别、车牌识别等系统。",
+        a: "Techub Software 是马来西亚本地的软件公司，为全马商家开发智能又实惠的系统：诊所、发廊、美容中心和 SPA 有现成的预约系统，网上卖家有直播带货系统，也可以定制 ERP、AI 物体识别、车牌识别等系统。",
       },
       {
         q: "收费多少？",
-        a: "月费 RM {price} 起，新客户前 {months} 个月免费，包安装和员工培训。定制 RM {custom} 起，看你的需要而定。",
+        a: "月费 RM {price} 起，新客户前 {months} 个月免费，包安装和员工培训。直播带货系统月费 RM {livePrice} 起。定制 RM {custom} 起，看你的需要而定。",
+      },
+      {
+        q: "顾客可以在网上付订金吗？",
+        a: "可以。顾客预约时就能在网上付订金，帮你减少放飞机。",
       },
       {
         q: "系统有多快？",
@@ -567,8 +619,16 @@ const zh: Dict = {
         a: "有。Techub 支援 LHDN 电子发票，发票可以通过 MyInvois 提交和验证。",
       },
       {
+        q: "系统可以自动开发票和收据吗？",
+        a: "可以。Techub 会按照你的生意流程，自动开发票、Credit Note、退款单和正式收据（OR），不需要会计人员来准备。",
+      },
+      {
         q: "可以做其他系统吗？例如 ERP？",
         a: "可以。我们定制 ERP、AI 物体识别、车牌识别等系统，也可以为其他行业调整我们的系统。WhatsApp {phone} 跟我们聊聊你的想法吧。",
+      },
+      {
+        q: "有直播带货系统吗？",
+        a: "有。Techub 直播带货系统让你在直播时网上卖货：Kafka 订单排队技术撑得住大批买家同时下单，不会超卖，每件产品可以自己设定开卖日期，访客也即时看得到。月费 RM {livePrice} 起。",
       },
       {
         q: "可以连接哪些硬件？",
@@ -601,9 +661,9 @@ const zh: Dict = {
   pages: {
     useCases: {
       meta: {
-        title: "适用行业 | 马来西亚诊所、发廊、美容中心和 SPA 系统",
+        title: "适用行业 | 马来西亚诊所、发廊、美容、SPA 和直播带货系统",
         description:
-          "专为马来西亚诊所、发廊、美容中心和 SPA 而设的现成预约系统：WhatsApp 提醒、员工账号、库存管理，报表 100 毫秒内出来。点进去看看 iPad 和手机上的样子。",
+          "专为马来西亚诊所、发廊、美容中心、SPA 和直播卖家而设的现成系统：WhatsApp 提醒、员工账号、库存管理、直播卖货不超卖，报表 100 毫秒内出来。点进去看看 iPad 和手机上的样子。",
       },
     },
     customSystems: {
@@ -615,13 +675,13 @@ const zh: Dict = {
     services: {
       meta: {
         title: "服务 | 现成系统、定制开发、硬件安装和培训",
-        description: "{name} 为马来西亚商家提供现成预约系统、定制系统开发、硬件安装、系统安装和员工培训，还有大马本地团队在 WhatsApp 支援你。",
+        description: "{name} 为马来西亚商家提供现成预约系统、直播带货系统、定制系统开发、硬件安装、系统安装和员工培训，还有大马本地团队在 WhatsApp 支援你。",
       },
     },
     pricing: {
       meta: {
         title: "价格 | RM {price}/月起，前 {months} 个月免费",
-        description: "Techub 配套 RM {price}/月起。马来西亚新客户前 {months} 个月免费，包安装和员工培训。定制 RM {custom} 起。",
+        description: "Techub 配套 RM {price}/月起。马来西亚新客户前 {months} 个月免费，包安装和员工培训。直播带货系统 RM {livePrice}/月起；定制 RM {custom} 起。",
       },
     },
     about: {
@@ -1200,6 +1260,158 @@ const zh: Dict = {
       ],
       demoMessage: "Hi Techub，我想了解一下 SPA 预约系统，可以安排免费 Demo 吗？",
     },
+
+    live: {
+      meta: {
+        title: "马来西亚直播带货系统 | 撑得住大批买家，不会超卖",
+        socialTitle: "马来西亚直播带货系统 | Techub Software",
+        description:
+          "专为马来西亚网上卖家而设的直播带货系统：Kafka 订单排队技术撑得住大批买家同时下单，不会超卖，每件产品可以设定开卖日期，每一页的访客也即时看得到，还有高级报表。月费 RM {livePrice} 起。",
+        keywords: [
+          "直播带货系统",
+          "马来西亚直播带货系统",
+          "直播卖货系统",
+          "直播电商系统",
+          "直播下单系统",
+          "抢购系统",
+          "限时抢购系统",
+          "秒杀系统",
+          "防超卖",
+          "网上卖货系统",
+          "Facebook直播卖货",
+          "TikTok直播带货",
+          "Kafka订单排队",
+          "live selling system Malaysia",
+          "flash sale system",
+        ],
+      },
+      category: "直播带货和网上限时抢购",
+      eyebrow: "直播带货系统",
+      heading: "直播带货，人再多也\u200b*不会超卖*",
+      intro:
+        "专为马来西亚直播卖家而设：上架产品、设定开卖日期，让大批买家同时下单。Kafka 订单排队技术让每张订单按顺序处理，访客也即时看得到。",
+      heroBadge: "每页访客即时显示",
+      whoFor: ["Facebook 直播卖家", "TikTok 直播卖家", "Instagram 网店", "服装和头巾", "美妆和护肤", "食品和零食", "限时抢购和预购"],
+      highlights: {
+        crowd: "大批买家也撑得住",
+        queue: "Kafka 订单排队",
+        oversell: "不会超卖",
+        schedule: "自己设定开卖日期",
+        visitors: "每页访客即时显示",
+        reports: "高级报表",
+      },
+      spotlights: {
+        crowd: {
+          eyebrow: "人多也不 lag",
+          title: "大批买家同一秒下单，也没问题",
+          points: [
+            "直播一喊“开抢”，大批买家涌进来也不怕",
+            "Kafka 订单排队技术，每张订单按顺序处理",
+            "人流再多，销售页面一样快",
+            "马来西亚企业级服务器，{uptime} 在线率",
+          ],
+        },
+        oversell: {
+          eyebrow: "不会超卖",
+          title: "有多少货，就卖多少",
+          points: [
+            "每一张订单都会检查库存",
+            "卖完自动停止下单",
+            "人最多的时候，也不会一货两卖",
+            "买家看得到还剩几件",
+          ],
+          badges: ["库存即时检查", "卖完？自动关闭"],
+        },
+        schedule: {
+          eyebrow: "产品和开卖日期",
+          title: "上架产品，再选开卖日期",
+          points: [
+            "照片、价钱和库存，点几下就好",
+            "每件产品的开卖日期和时间，自己选",
+            "时间一到自动开卖，也准时结束",
+            "接下来几场直播，可以提早安排",
+          ],
+        },
+        visitors: {
+          eyebrow: "即时访客",
+          title: "谁在逛你的网店，即时看得到",
+          points: [
+            "网店访客人数即时显示",
+            "每位访客在看哪一页",
+            "订单和付款，一进来就看到",
+            "抓准时机，推对产品",
+          ],
+        },
+        reports: {
+          eyebrow: "高级报表",
+          title: "每场直播卖得怎样，一目了然",
+          points: [
+            "每场直播的销售额、订单和热卖产品",
+            "访客、转化率和最旺的那几分钟",
+            "付款方式和每件产品的售出率",
+            "报表 100 毫秒内出来，不会 lag",
+          ],
+        },
+      },
+      modules: {
+        salePage: "直播销售页面",
+        products: "产品上架，附照片",
+        schedule: "开卖日期和时间",
+        queue: "Kafka 订单排队",
+        oversell: "防超卖",
+        stock: "即时库存数量",
+        visitors: "即时访客人数",
+        pages: "每页访客人数",
+        checkout: "手机快速结账",
+        payment: "网上付款",
+        orders: "订单管理",
+        receipts: "自动开发票和收据",
+        einvoice: "LHDN 电子发票",
+        reports: "高级销售报表",
+        permissions: "员工权限管理",
+        devices: "手机、iPad、电脑都能用",
+      },
+      faqs: [
+        {
+          q: "Techub 直播带货系统是什么？",
+          a: "这是让你在直播时网上卖货的系统，专为马来西亚卖家而设。你先上架产品、选好开卖日期，直播时分享销售页面，买家就用手机下单。人多也撑得住，不会超卖，访客也即时看得到。",
+        },
+        {
+          q: "很多买家同时下单，撑得住吗？",
+          a: "撑得住。订单会经过 Kafka 订单排队，同一时间涌进来的大量订单会一张一张按顺序处理，销售页面一样快。",
+        },
+        {
+          q: "怎样做到不超卖？",
+          a: "每张订单一下单，系统马上检查并扣除库存。产品卖完就自动关闭，所以绝对不会卖超过你有的货。",
+        },
+        {
+          q: "可以自己决定每件产品什么时候开卖吗？",
+          a: "可以。上架产品时加上照片、价钱和库存，再选开卖日期和时间，时间一到就自动开卖。",
+        },
+        {
+          q: "可以看到网店现在有多少人吗？",
+          a: "可以。即时 Dashboard 会显示现在有多少访客在你的网店、每位在看哪一页，还有刚进来的订单。",
+        },
+        {
+          q: "有哪些报表？",
+          a: "每场直播的销售额、订单、热卖产品、访客、转化率、高峰时段和付款方式，全部 100 毫秒内出来。",
+        },
+        {
+          q: "直播带货系统收费多少？",
+          a: "月费 RM {livePrice} 起，看你的需要而定。WhatsApp {phone} 跟我们申请 Demo。",
+        },
+        {
+          q: "怎样申请 Demo？",
+          a: "WhatsApp {phone} 或发电邮到 {email}，我们会用你自己的产品，Demo 直播带货系统给你看。",
+        },
+      ],
+      demoMessage: "Hi Techub，我想了解一下直播带货系统，可以安排 Demo 吗？",
+      contact: {
+        badge: "申请 Demo",
+        title: "看看直播带货系统怎样运作",
+        text: "月费 RM {livePrice} 起，全马网上卖家都适用。",
+      },
+    },
   },
 
   /* ---------- Example screens: picture titles and alt text ---------- */
@@ -1391,6 +1603,38 @@ const zh: Dict = {
     objectDetection: {
       title: "AI 物体识别",
       alt: "AI 物体识别系统示例：在 CCTV 画面中标出人、安全帽、箱子和车辆",
+    },
+    liveDashboard: {
+      title: "直播销售 Dashboard",
+      alt: "直播进行中，iPad 上的直播带货 Dashboard 显示 1,286 位访客在线、每分钟订单数、目前销售额和每件产品的剩余库存",
+    },
+    liveVisitors: {
+      title: "每页即时访客",
+      alt: "iPad 上的即时访客画面，显示现在有多少人在网店、每位在看哪一页，还有即时的订单和付款动态",
+    },
+    liveQueue: {
+      title: "Kafka 订单排队",
+      alt: "iPad 上的订单排队监控：Kafka 队列运作正常，0 张订单在等；每分钟 412 张订单的高峰也顺利处理，超过库存的订单都被挡下",
+    },
+    liveProducts: {
+      title: "产品和开卖日期",
+      alt: "iPad 上的产品列表，正在上架一件新产品，填上价钱、库存和开卖的日期与时间",
+    },
+    reportsLive: {
+      title: "直播销售报表",
+      alt: "iPad 上 100 毫秒内出来的直播销售报表：销售额、订单、访客、转化率、付款方式和热卖产品",
+    },
+    liveShop: {
+      title: "买家手机上的销售页面",
+      alt: "手机上的直播销售页面，有 LIVE 标志、1,286 人在网店、每件产品的剩余库存，卖完的产品已关闭",
+    },
+    liveProduct: {
+      title: "只剩 3 件",
+      alt: "手机上的产品页面，显示只剩 3 件、即时库存条、121 人在看，还有 Buy now 按钮",
+    },
+    liveCheckout: {
+      title: "订单已确认",
+      alt: "买家手机上的订单确认画面，用网上银行付款，正式收据已发到 WhatsApp",
     },
   },
 };

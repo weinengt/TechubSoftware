@@ -1,0 +1,282 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<style>
+  /* Live selling: the seller's dashboard while "Mega Live Sale" is running (Tue 13 Oct 2026, 8:42 PM) */
+  :root { --w: 1024px; --h: 720px; }
+  .top h1 { display: flex; align-items: center; gap: 9px; white-space: nowrap; }
+  .live { display: inline-flex; align-items: center; gap: 6px; height: 21px; padding: 0 8px 0 7px; border-radius: 6px; background: #ef4444; color: #fff; font-size: 10px; font-weight: 800; letter-spacing: .08em; box-shadow: 0 0 0 3px rgba(239,68,68,.16), 0 4px 10px -4px rgba(239,68,68,.8); }
+  .live i { width: 7px; height: 7px; border-radius: 99px; background: #fff; box-shadow: 0 0 0 2.5px rgba(255,255,255,.38); }
+  .slot { display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 11px; border: 1px solid var(--line); border-radius: 9px; background: #f8fafc; font-size: 12px; font-weight: 650; color: var(--ink); white-space: nowrap; }
+  .slot svg { width: 15px; height: 15px; color: var(--muted); }
+  .slot .pg { width: 46px; height: 5px; border-radius: 9px; background: #e2e8f0; overflow: hidden; }
+  .slot .pg i { display: block; width: 35%; height: 100%; background: #ef4444; border-radius: 9px; }
+  .slot em { font-style: normal; font-weight: 500; color: var(--muted); }
+  .btn svg { width: 15px; height: 15px; }
+  .content { gap: 12px; }
+  /* KPI row */
+  .stat { padding: 10px 13px; gap: 11px; }
+  .stat .ic { width: 36px; height: 36px; }
+  .stat .k { display: flex; align-items: center; gap: 6px; white-space: nowrap; }
+  .stat .v { font-size: 20px; white-space: nowrap; }
+  .stat .d { white-space: nowrap; color: var(--muted); font-weight: 500; }
+  .stat .d b { color: var(--ink2); font-weight: 650; }
+  .ldot { width: 7px; height: 7px; border-radius: 99px; background: #22c55e; box-shadow: 0 0 0 3px rgba(34,197,94,.22); flex-shrink: 0; }
+  /* Layout */
+  .r2 { height: 230px; flex-shrink: 0; }
+  .r3 { flex: 1; min-height: 0; }
+  .cc { display: flex; flex-direction: column; min-height: 0; }
+  .aside { width: 300px; flex-shrink: 0; }
+  .card h3 small { font-size: 11px; color: var(--muted); font-weight: 500; }
+  .card h3 .rt { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; color: var(--ink2); white-space: nowrap; }
+  /* Orders per minute */
+  .plot { flex: 1; min-height: 0; position: relative; margin-top: 6px; }
+  .plot svg { position: absolute; inset: 0; display: block; overflow: visible; }
+  .plot text { font-family: Inter, sans-serif; font-size: 10px; fill: #94a3b8; }
+  .plot text.ev { fill: #64748b; font-size: 9.5px; font-weight: 600; }
+  .plot text.now { fill: #0f172a; font-size: 10px; font-weight: 700; }
+  .tip { position: absolute; z-index: 2; background: #0f172a; color: #cbd5e1; border-radius: 8px; padding: 6px 9px; font-size: 10.5px; font-weight: 500; line-height: 15px; white-space: nowrap; box-shadow: 0 8px 18px -8px rgba(15,23,42,.6); }
+  .tip b { color: #fff; font-weight: 700; }
+  .tip .ok { color: #4ade80; font-weight: 650; }
+  .tip::before { content: ""; position: absolute; left: -4px; top: var(--ay, 50%); width: 8px; height: 8px; margin-top: -4px; background: #0f172a; transform: rotate(45deg); border-radius: 1px; }
+  /* Visitors right now */
+  .pg-list { flex: 1; display: flex; flex-direction: column; justify-content: space-between; margin-top: 10px; min-height: 0; }
+  .pr { display: flex; align-items: center; gap: 9px; }
+  .pr .pi { width: 24px; height: 24px; border-radius: 7px; display: grid; place-items: center; flex-shrink: 0; background: #f1f5f9; color: #475569; }
+  .pr .pi svg { width: 13px; height: 13px; }
+  .pr .bd { flex: 1; min-width: 0; }
+  .pr .ln { display: flex; align-items: baseline; gap: 6px; font-size: 11.5px; white-space: nowrap; }
+  .pr .ln b { font-weight: 650; color: var(--ink); overflow: hidden; text-overflow: ellipsis; }
+  .pr .ln span { margin-left: auto; font-weight: 750; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .pr .ln small { font-size: 10.5px; color: var(--muted); font-weight: 500; width: 34px; text-align: right; font-variant-numeric: tabular-nums; }
+  .pr .br { height: 5px; border-radius: 9px; background: #eef4fa; margin-top: 4px; overflow: hidden; }
+  .pr .br i { display: block; height: 100%; border-radius: 9px; background: #0396d9; }
+  /* Stock left */
+  .tb { padding: 0; overflow: hidden; display: flex; flex-direction: column; }
+  .tb h3 { padding: 12px 14px 10px; }
+  .tb th { padding: 7px 8px; }
+  .tb td { padding: 4px 8px; }
+  .tb td:first-child, .tb th:first-child { padding-left: 14px; } .tb td:last-child, .tb th:last-child { padding-right: 14px; }
+  .tb tr:last-child td { border-bottom: 0; }
+  .prod { display: flex; align-items: center; gap: 10px; }
+  .pt { width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center; flex-shrink: 0; }
+  .pt svg { width: 25px; height: 25px; display: block; }
+  .prod b { display: block; font-size: 12px; line-height: 15px; } .prod small { line-height: 13px; margin-top: 0; }
+  .sold { display: flex; align-items: center; gap: 9px; }
+  .sold u { width: 82px; height: 6px; border-radius: 9px; background: #eef2f7; overflow: hidden; display: inline-block; flex-shrink: 0; }
+  .sold u i { display: block; height: 100%; border-radius: 9px; }
+  .sold span { font-size: 11.5px; color: var(--ink2); font-variant-numeric: tabular-nums; }
+  .sold span b { font-weight: 700; }
+  .spd b { font-size: 12px; } .spd small { line-height: 13px; }
+  tr.out td { background: #fcfcfd; }
+  tr.out .prod b { color: var(--ink2); }
+  /* Order queue */
+  .q-top { display: flex; align-items: flex-end; gap: 10px; margin-top: 12px; }
+  .q-top .big { font-size: 34px; font-weight: 850; letter-spacing: -.03em; line-height: 1; }
+  .q-top .lb { font-size: 12px; font-weight: 650; color: var(--ink2); padding-bottom: 3px; }
+  .q-top .lb small { display: block; font-size: 10.5px; color: var(--muted); font-weight: 500; margin-top: 1px; }
+  .q-top .sp { margin-left: auto; text-align: right; padding-bottom: 2px; }
+  .q-top .sp b { font-size: 17px; font-weight: 800; letter-spacing: -.01em; display: block; line-height: 1.1; }
+  .q-top .sp small { font-size: 10.5px; color: var(--muted); }
+  .kv { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+  .kv div { background: #f8fafc; border: 1px solid #eef2f7; border-radius: 9px; padding: 7px 10px; }
+  .kv span { display: block; font-size: 10.5px; color: var(--muted); white-space: nowrap; }
+  .kv b { font-size: 15px; font-weight: 800; letter-spacing: -.01em; }
+  .kv b small { font-size: 10.5px; font-weight: 600; color: var(--muted); margin-left: 3px; letter-spacing: 0; }
+  .parts { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 10.5px; color: var(--muted); white-space: nowrap; }
+  .parts .pp { display: flex; gap: 3px; margin-left: auto; }
+  .parts .pp i { width: 13px; height: 8px; border-radius: 3px; background: #34d399; }
+  .parts em { font-style: normal; font-weight: 650; color: #059669; }
+  .guard { margin-top: auto; display: flex; align-items: center; gap: 9px; background: linear-gradient(135deg, #ecfdf5, #f0fdfa); border: 1px solid #bbf7d0; border-radius: 10px; padding: 8px 10px; font-size: 11px; color: #065f46; line-height: 1.35; }
+  .guard .gi { width: 26px; height: 26px; border-radius: 8px; background: #10b981; color: #fff; display: grid; place-items: center; flex-shrink: 0; }
+  .guard .gi svg { width: 15px; height: 15px; }
+  .guard b { color: #064e3b; }
+</style></head>
+<body>
+<div class="app">
+  <aside class="side" data-shell="live" data-active="Dashboard"></aside>
+  <section class="main">
+    <header class="top">
+      <div><div class="sub">Demo Live Shop · Tue, 13 Oct 2026</div><h1>Mega Live Sale<span class="live"><i></i>LIVE</span></h1></div>
+      <span class="slot"><i data-i="clock"></i>8:00 PM – 10:00 PM<span class="pg"><i></i></span><em>1h 18m left</em></span>
+      <span class="btn" style="margin-left:auto"><i data-x="link"></i>Copy shop link</span>
+      <span class="btn"><i data-x="pause"></i>Pause sale</span>
+      <span class="btn pri"><i data-i="flash"></i>Flash deal</span>
+    </header>
+    <div class="content">
+      <div class="stats">
+        <div class="stat"><span class="ic g"><i data-i="users"></i></span><div><div class="k"><span class="ldot"></span>Visitors online now</div><div class="v">1,286</div><div class="d">7,812 unique tonight</div></div></div>
+        <div class="stat"><span class="ic b"><i data-x="cart"></i></span><div><div class="k">Orders</div><div class="v">2,418</div><div class="d">Peak <b>412/min</b> at 8:01 PM</div></div></div>
+        <div class="stat"><span class="ic v"><i data-i="money"></i></span><div><div class="k">Sales</div><div class="v">RM 101,165</div><div class="d">Avg. order <b>RM 41.84</b></div></div></div>
+        <div class="stat"><span class="ic a"><i data-i="tag"></i></span><div><div class="k">Items sold</div><div class="v">3,106</div><div class="d" style="color:#dc2626;font-weight:600">2 products sold out</div></div></div>
+      </div>
+      <div class="row r2">
+        <div class="card grow cc">
+          <h3><i data-i="chart" style="color:#0396d9"></i>Orders per minute <small>· 8:00 PM to now</small><span class="rt"><span class="ldot"></span>Updating live</span></h3>
+          <div class="plot" id="plot"></div>
+        </div>
+        <div class="card aside cc">
+          <h3><i data-x="eye" style="color:#0396d9"></i>Visitors right now<span class="rt"><b style="font-size:12px;color:var(--ink)">1,286</b> online</span></h3>
+          <div class="pg-list" id="pages"></div>
+        </div>
+      </div>
+      <div class="row r3">
+        <div class="card grow tb">
+          <h3><i data-i="box" style="color:#0396d9"></i>Stock left <small>· 6 products on sale</small><span class="more">Manage products →</span></h3>
+          <table id="stock"></table>
+        </div>
+        <div class="card aside cc">
+          <h3><i data-x="layers" style="color:#0396d9"></i>Order queue<span class="chip g" style="margin-left:auto">● Healthy</span></h3>
+          <div class="q-top">
+            <span class="big">0</span><span class="lb">waiting<small>Kafka order queue</small></span>
+            <span class="sp"><b>0.4 s</b><small>avg. processing</small></span>
+          </div>
+          <div class="kv">
+            <div><span>Processed</span><b>2,418</b></div>
+            <div><span>Failed</span><b>0</b></div>
+            <div><span>Stopped · over stock</span><b>186<small>no oversell</small></b></div>
+            <div><span>Most waiting · 8:01 PM</span><b>37<small>cleared in 1.2 s</small></b></div>
+          </div>
+          <div class="parts"><span>6 partitions · 4 consumers</span><span class="pp"><i></i><i></i><i></i><i></i><i></i><i></i></span><em>lag 0</em></div>
+          <div class="guard"><span class="gi"><i data-i="shield"></i></span><span><b>Stock checked on every order.</b> Sold-out items close by themselves.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  // Icons used only on the live selling screens (same 24px stroke style as icons.js)
+  const XI = {
+    cart: '<circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2.5 3.5h2.8l2.4 11.1a1.8 1.8 0 001.8 1.4h8.2a1.8 1.8 0 001.7-1.3L21 8H6.1"/>',
+    eye: '<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+    link: '<path d="M10 13.5a4.5 4.5 0 006.8.5l2.9-2.9a4.5 4.5 0 00-6.4-6.4l-1.6 1.6"/><path d="M14 10.5a4.5 4.5 0 00-6.8-.5l-2.9 2.9a4.5 4.5 0 006.4 6.4l1.6-1.6"/>',
+    pause: '<rect x="6.5" y="5" width="3.6" height="14" rx="1.2" fill="currentColor" stroke="none"/><rect x="13.9" y="5" width="3.6" height="14" rx="1.2" fill="currentColor" stroke="none"/>',
+    layers: '<path d="M12 3l9 4.8-9 4.8-9-4.8z"/><path d="M3 12.2l9 4.8 9-4.8"/><path d="M3 16.6l9 4.8 9-4.8"/>',
+    store: '<path d="M3.5 9l1.6-5h13.8l1.6 5"/><path d="M3.5 9a2.8 2.8 0 005.6 0 2.8 2.8 0 005.8 0 2.8 2.8 0 005.6 0"/><path d="M5 12.5V20h14v-7.5"/><path d="M10 20v-4.5h4V20"/>',
+  };
+
+  // ---------- Product pictures (48px box) ----------
+  const star = (cx, cy, ro, ri, n) => Array.from({ length: n * 2 }, (_, k) => {
+    const a = (Math.PI * k) / n - Math.PI / 2, r = k % 2 ? ri : ro;
+    return `${(cx + r * Math.cos(a)).toFixed(2)},${(cy + r * Math.sin(a)).toFixed(2)}`;
+  }).join(" ");
+  const ART = {
+    tudung: ["#ec4899", `<path d="M7.5 44c1.2-8.6 6.6-14 16.5-14s15.3 5.4 16.5 14z" fill="#be185d"/>
+      <path d="M24 4.5c-7.9 0-12.9 6.1-12.9 13.8 0 6.3 2.2 11 4.8 14.2h16.2c2.6-3.2 4.8-7.9 4.8-14.2C36.9 10.6 31.9 4.5 24 4.5z" fill="#ec4899"/>
+      <ellipse cx="24" cy="19.2" rx="6.5" ry="8.1" fill="#f9dcc8"/><path d="M15.2 13.5c2-4.6 5.1-6.6 8.8-6.6s6.8 2 8.8 6.6" fill="none" stroke="#fff" stroke-opacity=".45" stroke-width="1.3"/>
+      <circle cx="24" cy="31.5" r="1.7" fill="#fde68a"/>`],
+    kurung: ["#10b981", `<path d="M15.6 28.5h16.8L36 44H12z" fill="#047857"/>
+      <path d="M18.6 5h10.8l9.6 7.6-4 6.4-3.6-2.6V31h-14.8V16.4L13 19l-4-6.4z" fill="#10b981"/>
+      <path d="M19.6 5.3c1.2 2.9 2.7 4.3 4.4 4.3s3.2-1.4 4.4-4.3" fill="none" stroke="#fff" stroke-width="1.4" stroke-opacity=".85"/>
+      <path d="M16.6 29.6h14.8" stroke="#fbbf24" stroke-width="1.6"/><path d="M24 10v6" stroke="#fbbf24" stroke-width="1.2" stroke-dasharray="1.2 1.4"/>`],
+    lipstick: ["#e11d48", `<rect x="10.5" y="25" width="11" height="19" rx="2" fill="#1f2937"/><rect x="11.8" y="18.6" width="8.4" height="7.2" rx="1" fill="#d6a461"/>
+      <path d="M12.6 18.8v-8.8l6.8-3.8v12.6z" fill="#e11d48"/>
+      <rect x="26.5" y="27.5" width="11" height="16.5" rx="2" fill="#1f2937"/><rect x="27.8" y="21.2" width="8.4" height="7.2" rx="1" fill="#d6a461"/>
+      <path d="M28.6 21.4v-7.4l6.8-3.6v11z" fill="#9f1239"/><rect x="12.4" y="27" width="1.8" height="15" rx=".9" fill="#fff" opacity=".2"/>`],
+    sambal: ["#ea580c", `<rect x="12.5" y="5.5" width="23" height="7.5" rx="2" fill="#7f1d1d"/>
+      <path d="M11 15.4c0-1.4 1.1-2.5 2.5-2.5h21c1.4 0 2.5 1.1 2.5 2.5V39a5 5 0 01-5 5H16a5 5 0 01-5-5z" fill="#ea580c"/>
+      <rect x="14.5" y="20.5" width="19" height="14.5" rx="2" fill="#fff" opacity=".95"/>
+      <path d="M18.6 30.4c3.7.9 7.4-.6 9.6-4.8" stroke="#dc2626" stroke-width="2.7" stroke-linecap="round" fill="none"/><path d="M28.2 25.6l1.8-1.9" stroke="#16a34a" stroke-width="1.7" stroke-linecap="round"/>
+      <rect x="12.7" y="16" width="2.2" height="21" rx="1.1" fill="#fff" opacity=".3"/>`],
+    case: ["#0396d9", `<rect x="13" y="3.5" width="22" height="41" rx="5.5" fill="#0b2f55"/><rect x="15.4" y="5.9" width="10.4" height="11" rx="3.2" fill="#1d4a7a"/>
+      <circle cx="18.7" cy="9.3" r="1.9" fill="#0f172a" stroke="#7aa7d6" stroke-width=".8"/><circle cx="22.5" cy="13.4" r="1.9" fill="#0f172a" stroke="#7aa7d6" stroke-width=".8"/>
+      <circle cx="24" cy="27.5" r="6.6" fill="none" stroke="#7dd3fc" stroke-width="1.6"/><path d="M24 34.1v4.4" stroke="#7dd3fc" stroke-width="1.6"/>
+      <rect x="14.6" y="19" width="1.8" height="22" rx=".9" fill="#fff" opacity=".18"/>`],
+    durian: ["#f59e0b", `<rect x="8" y="12.5" width="10.4" height="13" rx="5" fill="#fef3c7" stroke="#eab308" stroke-width="1.2"/>
+      <rect x="18.8" y="11" width="10.4" height="14.5" rx="5" fill="#fef9c3" stroke="#eab308" stroke-width="1.2"/>
+      <rect x="29.6" y="12.5" width="10.4" height="13" rx="5" fill="#fef3c7" stroke="#eab308" stroke-width="1.2"/>
+      <path d="M5 21.5h38v18.5a4 4 0 01-4 4H9a4 4 0 01-4-4z" fill="#f59e0b"/><path d="M5 21.5h38v3.2H5z" fill="#d97706"/>
+      <polygon points="${star(24, 33.6, 6.2, 4.4, 12)}" fill="#65a30d"/><circle cx="24" cy="33.6" r="3.9" fill="#a3e635"/>`],
+  };
+  const pic = (k) => { const [c, svg] = ART[k]; return `<span class="pt" style="background:linear-gradient(155deg, ${c}30, ${c}0f)"><svg viewBox="0 0 48 48">${svg}</svg></span>`; };
+
+  // ---------- Orders per minute, 8:00 to 8:42 PM (sums to 2,418; peak 412 at 8:01) ----------
+  const OPM = [176, 412, 272, 179, 122, 81, 60, 49, 42, 38, 35, 32, 30, 29, 28, 44, 71, 63, 47, 34,
+    27, 25, 23, 22, 21, 20, 20, 19, 19, 21, 33, 45, 36, 27, 22, 20, 19, 21, 29, 36, 25, 23, 21];
+  // Smooth line that never overshoots the data (monotone cubic)
+  const smooth = (p) => {
+    const n = p.length, m = [], t = [];
+    for (let i = 0; i < n - 1; i++) m[i] = (p[i + 1][1] - p[i][1]) / (p[i + 1][0] - p[i][0]);
+    t[0] = m[0]; t[n - 1] = m[n - 2];
+    for (let i = 1; i < n - 1; i++) t[i] = m[i - 1] * m[i] <= 0 ? 0 : (m[i - 1] + m[i]) / 2;
+    for (let i = 0; i < n - 1; i++) {
+      if (!m[i]) { t[i] = t[i + 1] = 0; continue; }
+      const a = t[i] / m[i], b = t[i + 1] / m[i], s = a * a + b * b;
+      if (s > 9) { const k = 3 / Math.sqrt(s); t[i] = k * a * m[i]; t[i + 1] = k * b * m[i]; }
+    }
+    let d = `M${p[0][0].toFixed(1)} ${p[0][1].toFixed(1)}`;
+    for (let i = 0; i < n - 1; i++) {
+      const h = (p[i + 1][0] - p[i][0]) / 3;
+      d += `C${(p[i][0] + h).toFixed(1)} ${(p[i][1] + t[i] * h).toFixed(1)} ${(p[i + 1][0] - h).toFixed(1)} ${(p[i + 1][1] - t[i + 1] * h).toFixed(1)} ${p[i + 1][0].toFixed(1)} ${p[i + 1][1].toFixed(1)}`;
+    }
+    return d;
+  };
+  {
+    const el = $("plot"), W = el.clientWidth, H = el.clientHeight;
+    const L = 28, R = 10, T = 6, B = 19, pw = W - L - R, ph = H - T - B, max = 440;
+    const x = (i) => L + (i / 42) * pw, y = (v) => T + ph - (v / max) * ph;
+    let g = `<defs><linearGradient id="ar" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#0396d9" stop-opacity=".2"/><stop offset="1" stop-color="#0396d9" stop-opacity=".02"/></linearGradient></defs>`;
+    for (let v = 0; v <= 400; v += 100) g += `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}" stroke="${v ? "#eef2f7" : "#dfe6ee"}" stroke-width="1"/><text x="${L - 7}" y="${y(v) + 3.5}" text-anchor="end">${v}</text>`;
+    [[0, "8:00 PM", "start"], [10, "8:10", "middle"], [20, "8:20", "middle"], [30, "8:30", "middle"], [42, "8:42 PM", "end"]].forEach(([i, t, a]) => {
+      g += `<text x="${x(i)}" y="${H - 4}" text-anchor="${a}"${i === 42 ? ' class="now"' : ""}>${t}</text>`;
+    });
+    const pts = OPM.map((v, i) => [x(i), y(v)]);
+    const line = smooth(pts);
+    g += `<path d="${line}L${x(42)} ${y(0)}L${x(0)} ${y(0)}Z" fill="url(#ar)"/>`;
+    g += `<path d="${line}" fill="none" stroke="#0396d9" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>`;
+    // Moments from the live: the host showing a product makes orders jump
+    [[16, "Durian Crepe Box on live"], [31, "Lipstick flash deal"]].forEach(([i, t]) => {
+      g += `<circle cx="${x(i)}" cy="${y(OPM[i])}" r="3" fill="#fff" stroke="#0396d9" stroke-width="1.6"/>`;
+      g += `<text class="ev" x="${x(i)}" y="${y(OPM[i]) - 9}" text-anchor="middle">${t}</text>`;
+    });
+    // Now
+    g += `<circle cx="${x(42)}" cy="${y(OPM[42])}" r="8" fill="#0396d9" opacity=".18"/><circle cx="${x(42)}" cy="${y(OPM[42])}" r="4" fill="#0396d9" stroke="#fff" stroke-width="2"/>`;
+    g += `<text class="now" x="${x(42) - 2}" y="${y(OPM[42]) - 12}" text-anchor="end">${OPM[42]}/min now</text>`;
+    // Peak
+    g += `<line x1="${x(1)}" x2="${x(1)}" y1="${y(412)}" y2="${y(0)}" stroke="#94a3b8" stroke-width="1" stroke-opacity=".5"/>`;
+    g += `<circle cx="${x(1)}" cy="${y(412)}" r="4.5" fill="#0396d9" stroke="#fff" stroke-width="2"/>`;
+    el.insertAdjacentHTML("afterbegin", `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">${g}</svg>`);
+    const tip = document.createElement("div");
+    tip.className = "tip";
+    tip.innerHTML = `Peak · 8:01 PM<br><b>412 orders / min</b> · <span class="ok">0 failed</span>`;
+    el.appendChild(tip);
+    const top = Math.max(0, y(412) - tip.offsetHeight / 2);
+    tip.style.left = `${x(1) + 12}px`;
+    tip.style.top = `${top}px`;
+    tip.style.setProperty("--ay", `${y(412) - top}px`);
+  }
+
+  // ---------- Visitors right now, by page ----------
+  const PAGES = [["store", "Sale page", 512], ["tag", "Tudung Bawal Premium", 288], ["tag", "Lipstick Matte Set", 174],
+    ["tag", "MagSafe Phone Case", 121], ["cart", "Cart", 109], ["card", "Checkout", 82]];
+  const ON = PAGES.reduce((t, p) => t + p[2], 0); // 1,286
+  $("pages").innerHTML = PAGES.map(([ic, n, v]) => `<div class="pr"><span class="pi">${XI[ic] ? `<i data-x="${ic}"></i>` : `<i data-i="${ic}"></i>`}</span><div class="bd">
+      <div class="ln"><b>${n}</b><span>${v.toLocaleString("en-MY")}</span><small>${((v / ON) * 100).toFixed(0)}%</small></div>
+      <div class="br"><i style="width:${((v / PAGES[0][2]) * 100).toFixed(1)}%"></i></div></div></div>`).join("");
+
+  // ---------- Stock left ----------
+  // [name, price, stock, sold, picture, speed per min (last 5 min) or sold-out time, orders stopped]
+  const P = [["Tudung Bawal Premium", 29.9, 800, 742, "tudung", 9], ["Baju Kurung Moden", 89, 300, 300, "kurung", "8:04 PM", 118],
+    ["Lipstick Matte Set", 39.9, 500, 451, "lipstick", 8], ["Sambal Garing Bilis", 15.9, 1200, 966, "sambal", 12],
+    ["MagSafe Phone Case", 25, 400, 397, "case", 5], ["Durian Crepe Box", 36, 250, 250, "durian", "8:19 PM", 61]];
+  const n = (v) => v.toLocaleString("en-MY");
+  $("stock").innerHTML = `<tr><th>Product</th><th>Sold</th><th>Status</th><th>Selling speed</th></tr>` + P.map(([nm, pr, st, so, k, sp, stop]) => {
+    const left = st - so, out = !left, low = left > 0 && left <= 5;
+    const col = out ? "#ef4444" : low ? "#f59e0b" : "#10b981";
+    const chip = out ? `<span class="chip r">Sold out</span>` : low ? `<span class="chip a">Only ${left} left</span>` : `<span class="chip g">${n(left)} left</span>`;
+    const speed = out ? `<b>Closed ${sp}</b><small>Auto · ${stop} orders stopped</small>`
+      : `<b>${sp} / min</b><small>${left / sp < 1 ? "Sells out in under 1 min" : `Sells out in ~${Math.round(left / sp)} min`}</small>`;
+    return `<tr class="${out ? "out" : ""}"><td><div class="prod">${pic(k)}<div><b>${nm}</b><small>RM ${pr.toFixed(2)}</small></div></div></td>
+      <td><div class="sold"><u><i style="width:${((so / st) * 100).toFixed(1)}%;background:${col}"></i></u><span><b>${n(so)}</b> / ${n(st)}</span></div></td>
+      <td>${chip}</td><td class="spd">${speed}</td></tr>`;
+  }).join("");
+
+  document.querySelectorAll("i[data-x]").forEach((el) => {
+    el.outerHTML = `<svg class="i" viewBox="0 0 24 24" style="${el.getAttribute("style") || ""}">${XI[el.dataset.x]}</svg>`;
+  });
+})();
+</script>
+<script src="shell.js"></script>
+<script src="icons.js"></script>
+</body></html>

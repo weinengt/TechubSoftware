@@ -16,13 +16,17 @@ const keysOf = <T extends object>(o: T) => Object.keys(o) as (keyof T)[];
 
 const highlightIcons: Record<keyof Dict["home"]["highlights"]["items"], IconName> = {
   booking: "Calendar",
-  ai: "Sparkles",
-  uptime: "Shield",
-  database: "Database",
-  speed: "Bolt",
   realtime: "Sync",
+  deposit: "Card",
   whatsapp: "Whatsapp",
-  stock: "Box",
+  accounting: "Layers",
+  einvoice: "Invoice",
+  inventory: "Box",
+  reports: "Chart",
+  permissions: "Lock",
+  devices: "Devices",
+  easy: "Rocket",
+  uptime: "Shield",
 };
 
 export function HighlightsSection({ lang }: { lang: Locale }) {
@@ -250,9 +254,12 @@ export const useCaseShots: Record<SystemKey, { tablet: ShotKey; phone: ShotKey }
   salon: { tablet: "salonCalendar", phone: "staffSalon" },
   beauty: { tablet: "faceChart", phone: "beautyPackage" },
   spa: { tablet: "spaCalendar", phone: "spaPackage" },
+  live: { tablet: "liveDashboard", phone: "liveShop" },
 };
 
-/** Home page: one card per business type, each opening that system's page. */
+/** Home and About pages: one card per business type, each opening that system's page, then one for custom systems. */
+const cardSizes = "(min-width: 1024px) 350px, (min-width: 640px) 45vw, 44vw";
+
 export function UseCasesSection({ lang }: { lang: Locale }) {
   const d = getDict(lang);
   const t = d.useCases;
@@ -261,7 +268,7 @@ export function UseCasesSection({ lang }: { lang: Locale }) {
     <section id="use-cases" className="py-20 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading eyebrow={t.eyebrow} title={t.title} intro={t.intro} />
-        <ul className="mt-12 grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-4">
+        <ul className="mt-12 grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3">
           {systems.map((s) => {
             const I = Icon[s.icon];
             const sys = d.systems[s.key];
@@ -273,7 +280,7 @@ export function UseCasesSection({ lang }: { lang: Locale }) {
                 >
                   <div className="relative overflow-hidden bg-gradient-to-br from-brand-50 via-white to-cyan-50 px-3 pt-4 pb-3 sm:px-5 sm:pt-6 sm:pb-5">
                     <div className="bg-grid absolute inset-0 opacity-60" aria-hidden="true" />
-                    <Device shot={shots[useCaseShots[s.key].tablet]} sizes="(min-width: 1024px) 270px, (min-width: 640px) 45vw, 44vw" zoom={false} className="relative" />
+                    <Device shot={shots[useCaseShots[s.key].tablet]} sizes={cardSizes} zoom={false} className="relative" />
                   </div>
                   <div className="flex flex-1 flex-col p-3.5 sm:p-5">
                     <span className="flex items-center gap-2.5">
@@ -291,6 +298,29 @@ export function UseCasesSection({ lang }: { lang: Locale }) {
               </li>
             );
           })}
+          <li>
+            <Link
+              href={lp(lang, companyPages.customSystems)}
+              className="card group flex h-full flex-col overflow-hidden transition hover:-translate-y-1 hover:shadow-xl hover:ring-brand-300"
+            >
+              <div className="relative overflow-hidden bg-gradient-to-br from-brand-50 via-white to-cyan-50 px-3 pt-4 pb-3 sm:px-5 sm:pt-6 sm:pb-5">
+                <div className="bg-grid absolute inset-0 opacity-60" aria-hidden="true" />
+                <Device shot={shots.erpDesktop} sizes={cardSizes} zoom={false} className="relative" />
+              </div>
+              <div className="flex flex-1 flex-col p-3.5 sm:p-5">
+                <span className="flex items-center gap-2.5">
+                  <span className="hidden h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-md shadow-brand-500/25 sm:flex">
+                    <Icon.Code className="h-5 w-5" />
+                  </span>
+                  <h3 className="text-[15px] leading-snug font-extrabold text-slate-900 sm:text-base">{d.menu.otherTitle}</h3>
+                </span>
+                <p className="mt-2 flex-1 text-[13px] leading-relaxed text-slate-600 sm:text-sm">{d.menu.otherText}</p>
+                <span className="mt-3 inline-flex items-center gap-1.5 text-[13px] font-bold text-brand-700 sm:mt-4 sm:text-sm">
+                  {d.footer.custom} <Icon.Arrow className="h-4 w-4 shrink-0 transition group-hover:translate-x-0.5" />
+                </span>
+              </div>
+            </Link>
+          </li>
         </ul>
         <div className="mt-10 text-center">
           <Link href={lp(lang, companyPages.useCases)} className="btn-secondary">

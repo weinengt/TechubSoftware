@@ -7,6 +7,8 @@ import Header, { type HeaderText } from "./Header";
 import { LangProvider } from "./LangProvider";
 import WhatsAppButton from "./WhatsAppButton";
 
+const livePath = systems.find((s) => s.key === "live")!.path;
+
 /** Header, footer and WhatsApp button around every page, in the page's language. */
 export default function SiteShell({ lang, children }: { lang: Locale; children: ReactNode }) {
   const t = getDict(lang);
@@ -31,7 +33,13 @@ export default function SiteShell({ lang, children }: { lang: Locale; children: 
       <Header lang={lang} t={header} />
       <main id="main">{children}</main>
       <Footer lang={lang} />
-      <WhatsAppButton t={{ href: whatsapp, ...t.bubble }} />
+      <WhatsAppButton
+        t={{
+          href: whatsapp,
+          ...t.bubble,
+          live: { path: lp(lang, livePath), href: whatsappLink(t.products.live.demoMessage), text: t.bubble.liveText },
+        }}
+      />
     </LangProvider>
   );
 }

@@ -1,5 +1,5 @@
-// Builds the left sidebar: <aside class="side" data-shell="clinic|salon|beauty|spa" data-active="Patients"></aside>
-// A ?v=clinic|salon|beauty|spa query string overrides data-shell; data-active-salon="POS" etc. overrides the active item.
+// Builds the left sidebar: <aside class="side" data-shell="clinic|salon|beauty|spa|live" data-active="Patients"></aside>
+// A ?v=clinic|salon|beauty|spa|live query string overrides data-shell; data-active-salon="POS" etc. overrides the active item.
 (() => {
   const NAV = {
     clinic: {
@@ -25,6 +25,12 @@
       items: [["home", "Dashboard"], ["cal", "Calendar"], ["bed", "Rooms"], ["users", "Customers"], ["gift", "Packages"],
         ["card", "POS"], ["box", "Inventory"], ["wa", "WhatsApp", 3], ["chart", "Commission"], ["lock", "Staff & Roles"], ["gear", "Settings"]],
       me: ["JL", "Jenny Lau", "Manager · Bangsar"],
+    },
+    live: {
+      place: "Demo Live Shop",
+      items: [["home", "Dashboard"], ["video", "Live Sales"], ["tag", "Products"], ["box", "Orders", 14], ["users", "Visitors"],
+        ["card", "Payments"], ["file", "Invoices"], ["chart", "Reports"], ["lock", "Staff & Roles"], ["gear", "Settings"]],
+      me: ["AR", "Aina Rahman", "Owner · Shah Alam"],
     },
   };
   const v = new URLSearchParams(location.search).get("v");

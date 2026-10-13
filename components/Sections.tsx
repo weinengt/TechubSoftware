@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { getDict, type Dict } from "@/content";
 import { lp, type Locale } from "@/lib/i18n";
 import { shotSrc, type Shot } from "@/lib/shots";
-import { emailLink, site, whatsappLink } from "@/lib/site";
+import { emailLink, site, systems, whatsappLink } from "@/lib/site";
 import { Icon, type IconName } from "./Icons";
 import { hl } from "./Text";
 
@@ -138,8 +138,13 @@ export function HardwareSection({ lang }: { lang: Locale }) {
 
 /* ---------- Pricing ---------- */
 
-export function PricingSection({ lang, page }: { lang: Locale; page?: PageOf }) {
+const livePath = systems.find((s) => s.key === "live")!.path;
+
+/** Prices. `plan` picks what is shown: both plans ("all", the default), only the appointment plan (the appointment
+ *  system pages) or the Live Selling plan as the main card (the Live Selling System page). Customisation is always shown. */
+export function PricingSection({ lang, page, plan = "all" }: { lang: Locale; page?: PageOf; plan?: "all" | "standard" | "live" }) {
   const t = getDict(lang).pricing;
+  const live = plan === "live";
   return (
     <section id="pricing" className={`${page ? pageTop : "pt-20 sm:pt-24"} pb-20 sm:pb-24`}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -149,29 +154,53 @@ export function PricingSection({ lang, page }: { lang: Locale; page?: PageOf }) 
             <div className="bg-grid absolute inset-0 opacity-20" aria-hidden="true" />
             <div className="relative flex h-full flex-col">
               <p className="inline-flex items-center gap-2 rounded-full bg-white/20 px-3 py-1 text-xs font-bold tracking-wide uppercase">
-                <Icon.Gift className="h-4 w-4" /> {t.offer}
+                {live ? <Icon.Live className="h-4 w-4" /> : <Icon.Gift className="h-4 w-4" />} {live ? t.liveBadge : t.offer}
               </p>
-              <h3 className="mt-5 text-2xl font-bold">{t.plan}</h3>
+              <h3 className="mt-5 text-2xl font-bold">{live ? t.livePlan : t.plan}</h3>
               <p className="mt-5 flex flex-wrap items-end gap-x-2">
                 <span className="text-lg font-semibold text-white/80">{t.from}</span>
-                <span className="text-5xl font-extrabold tracking-tight sm:text-6xl">RM {site.priceFrom}</span>
+                <span className="text-5xl font-extrabold tracking-tight sm:text-6xl">RM {live ? site.livePriceFrom : site.priceFrom}</span>
                 <span className="pb-1.5 text-lg font-semibold text-white/80">{t.perMonth}</span>
               </p>
-              <p className="mt-5 rounded-2xl bg-white/15 p-4 text-base font-semibold">{t.free}</p>
+              <p className="mt-5 rounded-2xl bg-white/15 p-4 text-base font-semibold">{live ? t.liveNote : t.free}</p>
               <a
-                href={whatsappLink(t.claimMessage)}
+                href={whatsappLink(live ? t.liveMessage : t.claimMessage)}
                 target="_blank"
                 rel="noopener"
                 className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-bold text-brand-800 shadow-lg transition hover:bg-brand-50 lg:mt-auto"
               >
-                <Icon.Whatsapp className="h-5 w-5 text-whatsapp" /> {t.claim}
+                <Icon.Whatsapp className="h-5 w-5 text-whatsapp" /> {live ? t.liveCta : t.claim}
               </a>
             </div>
           </div>
           <div className="card p-7 sm:p-8 lg:col-span-2">
             <h3 className="text-lg font-bold text-slate-900">{t.includedTitle}</h3>
-            <CheckList items={t.included} className="mt-5" />
+            <CheckList items={live ? t.liveIncluded : t.included} className="mt-5" />
           </div>
+          {plan === "all" && (
+            <div className="card flex flex-col gap-5 p-6 sm:p-7 lg:col-span-5 lg:flex-row lg:items-center lg:gap-8">
+              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-brand-gradient text-white shadow-lg shadow-brand-500/25">
+                <Icon.Live className="h-7 w-7" />
+              </span>
+              <div className="min-w-0 flex-1">
+                <h3 className="flex flex-wrap items-baseline gap-x-2 text-lg font-bold text-slate-900">
+                  {t.liveTitle}
+                  <span className="text-sm font-semibold text-slate-500">{t.liveFrom}</span>
+                  <span className="text-gradient text-3xl font-extrabold tracking-tight">RM {site.livePriceFrom}</span>
+                  <span className="text-sm font-semibold text-slate-500">{t.perMonth}</span>
+                </h3>
+                <p className="mt-1 text-sm leading-relaxed text-slate-600 sm:text-base">{t.liveText}</p>
+              </div>
+              <div className="flex shrink-0 flex-col gap-3 sm:flex-row">
+                <a href={whatsappLink(t.liveMessage)} target="_blank" rel="noopener" className="btn-primary">
+                  <Icon.Whatsapp className="h-5 w-5" /> {t.liveCta}
+                </a>
+                <Link href={lp(lang, livePath)} className="btn-secondary">
+                  {t.liveSee} <Icon.Arrow className="h-4 w-4" />
+                </Link>
+              </div>
+            </div>
+          )}
           <div className="card flex flex-col gap-5 p-6 sm:p-7 lg:col-span-5 lg:flex-row lg:items-center lg:gap-8">
             <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-brand-gradient text-white shadow-lg shadow-brand-500/25">
               <Icon.Code className="h-7 w-7" />
@@ -247,7 +276,11 @@ export function softwareJsonLd(opts: {
   category: string;
   features: string[];
   screenshots?: Shot[];
+  /** Monthly price and offer text; the appointment plan unless given. */
+  price?: number;
+  offerText?: string;
 }) {
+  const price = opts.price ?? site.priceFrom;
   return {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -268,16 +301,16 @@ export function softwareJsonLd(opts: {
     provider: { "@id": `${site.url}/#organization` },
     offers: {
       "@type": "Offer",
-      price: site.priceFrom,
+      price,
       priceCurrency: site.currency,
       priceSpecification: {
         "@type": "UnitPriceSpecification",
-        price: site.priceFrom,
+        price,
         priceCurrency: site.currency,
         unitText: "MONTH",
         referenceQuantity: { "@type": "QuantitativeValue", value: 1, unitCode: "MON" },
       },
-      description: getDict(opts.lang).pricing.offerText,
+      description: opts.offerText ?? getDict(opts.lang).pricing.offerText,
       availability: "https://schema.org/InStock",
       areaServed: "MY",
     },

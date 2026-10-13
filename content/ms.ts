@@ -14,9 +14,11 @@ const ms: Dict = {
     getFreeDemo: "Dapatkan Demo Percuma",
     bookFreeDemo: "Tempah Demo Percuma",
     askDemo: "Minta demo",
+    requestDemo: "Minta Demo",
     whatsappMessage: "Hai Techub, saya berminat dengan sistem anda. Boleh saya dapat demo percuma?",
     emailSubject: "Pertanyaan tentang sistem Techub",
     priceLine: "Dari RM {price}/bulan · {months} bulan percuma",
+    livePriceLine: "Dari RM {livePrice}/bulan",
     enlarge: "Besarkan gambar",
   },
 
@@ -89,11 +91,24 @@ const ms: Dict = {
       ],
       cta: "Lihat sistem spa",
     },
+    live: {
+      label: "Jualan Live",
+      name: "Sistem Jualan Live",
+      blurb: "Flash sale untuk ramai pembeli, stok tak terlebih jual.",
+      points: [
+        "Tampung ramai pembeli dengan giliran order Kafka",
+        "Tak terlebih jual: stok disemak setiap order",
+        "Pilih tarikh & masa jualan setiap produk",
+        "Jumlah pelawat live & halaman yang mereka buka",
+        "Laporan canggih, dari RM {livePrice}/bulan",
+      ],
+      cta: "Lihat sistem jualan live",
+    },
   },
 
   footer: {
     blurb:
-      "{name} ialah syarikat perisian yang berpangkalan di Malaysia. Kami bina sistem pintar dengan kos rendah untuk klinik, salon rambut, pusat kecantikan dan spa di seluruh Malaysia, serta sistem custom seperti ERP, AI pengesanan objek dan scanner nombor plat. Jaminan uptime {uptime}, dari RM {price}/bulan.",
+      "{name} ialah syarikat perisian yang berpangkalan di Malaysia. Kami bina sistem pintar dengan kos rendah untuk klinik, salon rambut, pusat kecantikan, spa dan penjual live di seluruh Malaysia, serta sistem custom seperti ERP, AI pengesanan objek dan scanner nombor plat. Jaminan uptime {uptime}, dari RM {price}/bulan.",
     useCases: "Industri",
     custom: "Sistem custom",
     company: "Syarikat",
@@ -110,6 +125,7 @@ const ms: Dict = {
   bubble: {
     hello: "Hai! 👋",
     text: "Nak demo percuma? {months} bulan pertama percuma untuk anda.",
+    liveText: "Nak tengok Sistem Jualan Live? Minta demo di WhatsApp.",
     chat: "Chat dengan kami",
     close: "Tutup mesej",
     label: "Chat dengan Techub Software di WhatsApp {phone}",
@@ -139,6 +155,8 @@ const ms: Dict = {
         "reminder temujanji WhatsApp",
         "kawalan stok AI",
         "e-Invois LHDN",
+        "sistem jualan live",
+        "sistem live selling Malaysia",
         "sistem ERP Malaysia",
         "syarikat perisian Malaysia",
         "appointment system Malaysia",
@@ -161,16 +179,23 @@ const ms: Dict = {
     },
     highlights: {
       eyebrow: "Kenapa pilih Techub",
-      title: "Laju, pintar dan *sentiasa online*",
+      title: "Kenapa bisnes di Malaysia *pilih Techub*",
       items: {
-        booking: { title: "Booking canggih", text: "Staf, bilik, perkhidmatan dan walk-in dalam satu kalendar." },
-        ai: { title: "Integrasi AI", text: "AI baca nota penghantaran (DO) dan ramal keperluan stok." },
-        uptime: { title: "Uptime {uptime}", text: "Sistem anda sentiasa online, dijamin." },
-        database: { title: "Database bertaraf enterprise", text: "NoSQL berindeks pada server enterprise di Malaysia." },
-        speed: { title: "Kelajuan dijamin", text: "Laporan terperinci siap bawah 100 ms." },
-        realtime: { title: "Update real-time", text: "Semua peranti update serta-merta." },
-        whatsapp: { title: "Notifikasi WhatsApp", text: "Pengesahan dan reminder dihantar untuk anda." },
-        stock: { title: "Kawalan stok", text: "Setiap barang keluar masuk direkod." },
+        booking: { title: "Booking siap bawah 10 saat", text: "Pilih perkhidmatan, staf dan masa, terus siap booking. Walk-in pun boleh." },
+        realtime: { title: "Update real-time", text: "Booking atau jualan di satu peranti terus nampak di semua peranti." },
+        deposit: { title: "Bayar deposit online", text: "Pelanggan bayar deposit online masa buat booking. Kurang kes tak datang." },
+        whatsapp: { title: "Reminder WhatsApp", text: "Pengesahan booking dan reminder dihantar melalui WhatsApp untuk anda." },
+        accounting: {
+          title: "Dokumen akaun automatik",
+          text: "Invois, nota kredit, nota bayaran balik dan resit rasmi siap secara automatik. Tak perlu staf akaun.",
+        },
+        einvoice: { title: "e-Invois LHDN", text: "e-Invois dihantar ke LHDN MyInvois, terus dari sistem." },
+        inventory: { title: "Pantau inventori", text: "Stok update sendiri setiap kali jual atau guna, siap dengan amaran stok rendah." },
+        reports: { title: "Laporan canggih", text: "Laporan jualan, staf, stok dan pelanggan siap bawah 100 ms." },
+        permissions: { title: "Kawalan akses", text: "Tetapkan siapa boleh bagi diskaun, buat refund atau tengok laporan." },
+        devices: { title: "Semua peranti, semua platform", text: "Windows, Mac, iPad, Android dan iPhone. Guna saja peranti yang anda dah ada." },
+        easy: { title: "Senang guna", text: "Skrin ringkas, staf cepat belajar. Kami setup dan latih mereka." },
+        uptime: { title: "Uptime {uptime}", text: "Server enterprise di Malaysia dengan backup di beberapa lokasi." },
       },
     },
     softwareName: "Sistem Pengurusan Temujanji Techub",
@@ -203,7 +228,7 @@ const ms: Dict = {
     title: "Apa yang kami buat untuk anda",
     intro: "Sistem siap guna atau dibina khas, untuk bisnes di seluruh Malaysia. Kami setup semuanya dan latih staf anda.",
     items: {
-      systems: { title: "Sistem siap guna", text: "Sistem temujanji untuk klinik, salon, pusat kecantikan dan spa." },
+      systems: { title: "Sistem siap guna", text: "Sistem temujanji untuk klinik, salon, pusat kecantikan dan spa, serta sistem jualan live." },
       custom: {
         title: "Bina sistem custom",
         text: "ERP, AI pengesanan objek, scanner nombor plat dan banyak lagi. Custom dari RM {custom}.",
@@ -231,7 +256,7 @@ const ms: Dict = {
   useCases: {
     eyebrow: "Industri",
     title: "Sedia untuk bisnes anda",
-    intro: "Dibina untuk klinik, salon, pusat kecantikan dan spa di Malaysia. Tekan salah satu untuk lihat sistemnya di iPad dan telefon.",
+    intro: "Dibina untuk klinik, salon, pusat kecantikan, spa dan penjual live di Malaysia. Tekan salah satu untuk lihat sistemnya di iPad dan telefon.",
   },
 
   custom: {
@@ -532,6 +557,29 @@ const ms: Dict = {
     customEmail: "Email kami",
     customEmailSubject: "Minta sebut harga sistem custom",
     offerText: "Dari RM {price} sebulan. {months} bulan pertama percuma untuk pengguna baru, termasuk pemasangan dan latihan staf.",
+    // Live Selling System: a row on the pricing page, and the main card on its own page
+    liveTitle: "Sistem Jualan Live",
+    liveFrom: "dari",
+    liveText: "Untuk penjual live: tampung ramai pembeli dengan giliran order Kafka, stok tak terlebih jual, pantau pelawat secara live dan laporan canggih.",
+    liveCta: "Minta demo",
+    liveMessage: "Hai Techub, saya nak minta demo Sistem Jualan Live.",
+    liveSee: "Lihat sistem",
+    livePlan: "Pelan Jualan Live Techub",
+    liveBadge: "Jualan live",
+    liveNote: "Minta demo, nanti kami tunjuk sistem ini guna produk anda sendiri.",
+    liveIncluded: [
+      "Halaman jualan untuk sesi live anda",
+      "Giliran order Kafka untuk ramai pembeli",
+      "Tak terlebih jual: stok disemak setiap order",
+      "Produk dengan tarikh & masa jualan",
+      "Jumlah pelawat live ikut halaman",
+      "Bayaran online & urus order",
+      "Invois & resit rasmi automatik",
+      "Laporan canggih bawah 100 ms",
+      "Uptime {uptime} dengan server di Malaysia",
+      "Support tempatan di Malaysia melalui WhatsApp",
+    ],
+    liveOfferText: "Sistem Jualan Live dari RM {livePrice} sebulan.",
   },
 
   faq: {
@@ -541,11 +589,15 @@ const ms: Dict = {
     items: [
       {
         q: "Techub Software buat apa?",
-        a: "Techub Software ialah syarikat perisian yang berpangkalan di Malaysia. Kami bina sistem pintar dengan kos rendah untuk bisnes di seluruh Malaysia: sistem temujanji siap guna untuk klinik, salon rambut, pusat kecantikan dan spa, serta sistem custom seperti ERP, AI pengesanan objek dan scanner nombor plat.",
+        a: "Techub Software ialah syarikat perisian yang berpangkalan di Malaysia. Kami bina sistem pintar dengan kos rendah untuk bisnes di seluruh Malaysia: sistem temujanji siap guna untuk klinik, salon rambut, pusat kecantikan dan spa, sistem jualan live untuk penjual online, serta sistem custom seperti ERP, AI pengesanan objek dan scanner nombor plat.",
       },
       {
         q: "Berapa harganya?",
-        a: "Pelan bermula dari RM {price} sebulan, dan pelanggan baru dapat {months} bulan pertama percuma, termasuk pemasangan dan latihan staf. Harga custom bermula dari RM {custom}, ikut keperluan anda.",
+        a: "Pelan bermula dari RM {price} sebulan, dan pelanggan baru dapat {months} bulan pertama percuma, termasuk pemasangan dan latihan staf. Sistem Jualan Live bermula dari RM {livePrice} sebulan. Harga custom bermula dari RM {custom}, ikut keperluan anda.",
+      },
+      {
+        q: "Pelanggan saya boleh bayar deposit online?",
+        a: "Boleh. Pelanggan boleh bayar deposit secara online masa buat booking, jadi kurang kes pelanggan tak datang.",
       },
       {
         q: "Berapa laju sistem ini?",
@@ -568,8 +620,16 @@ const ms: Dict = {
         a: "Ada. Techub support e-Invois LHDN, jadi invois boleh dihantar dan disahkan melalui MyInvois.",
       },
       {
+        q: "Sistem boleh buat invois dan resit secara automatik?",
+        a: "Boleh. Techub buat invois, nota kredit, nota bayaran balik dan resit rasmi secara automatik, ikut cara bisnes anda berjalan. Anda tak perlu staf akaun untuk sediakannya.",
+      },
+      {
         q: "Boleh buat sistem lain, contohnya ERP?",
         a: "Boleh. Kami bina sistem custom seperti ERP, AI pengesanan objek dan scanner nombor plat, dan kami juga boleh ubah suai sistem kami untuk bisnes lain. WhatsApp kami di {phone} untuk bincang idea anda.",
+      },
+      {
+        q: "Ada sistem untuk jualan live?",
+        a: "Ada. Sistem Jualan Live Techub bantu anda jual online semasa sesi live. Ia boleh tampung ramai pembeli serentak dengan giliran order Kafka, pastikan stok tak terlebih jual, bagi anda tetapkan tarikh jualan setiap produk dan tunjuk pelawat anda secara live. Harga bermula dari RM {livePrice} sebulan.",
       },
       {
         q: "Peralatan apa yang boleh saya sambung?",
@@ -602,9 +662,9 @@ const ms: Dict = {
   pages: {
     useCases: {
       meta: {
-        title: "Industri | Sistem untuk Klinik, Salon, Pusat Kecantikan & Spa di Malaysia",
+        title: "Industri | Sistem Klinik, Salon, Kecantikan, Spa & Jualan Live di Malaysia",
         description:
-          "Sistem booking siap guna untuk klinik, salon rambut, pusat kecantikan dan spa di Malaysia: reminder WhatsApp, profil staf, kawalan stok dan laporan bawah 100 ms. Tengok di iPad dan telefon.",
+          "Sistem siap guna untuk klinik, salon rambut, pusat kecantikan, spa dan penjual live di Malaysia: reminder WhatsApp, profil staf, kawalan stok, jualan live tanpa terlebih jual dan laporan bawah 100 ms. Tengok di iPad dan telefon.",
       },
     },
     customSystems: {
@@ -618,14 +678,14 @@ const ms: Dict = {
       meta: {
         title: "Perkhidmatan | Sistem Siap Guna, Sistem Custom, Peralatan & Latihan",
         description:
-          "Apa yang {name} buat untuk bisnes di Malaysia: sistem booking siap guna, sistem custom, setup peralatan, pemasangan, latihan staf dan sokongan tempatan di WhatsApp.",
+          "Apa yang {name} buat untuk bisnes di Malaysia: sistem booking siap guna, sistem jualan live, sistem custom, setup peralatan, pemasangan, latihan staf dan sokongan tempatan di WhatsApp.",
       },
     },
     pricing: {
       meta: {
         title: "Harga | Dari RM {price}/bulan, {months} Bulan Pertama Percuma",
         description:
-          "Pelan Techub dari RM {price}/bulan. Pelanggan baru di Malaysia dapat {months} bulan pertama percuma, termasuk pemasangan dan latihan staf. Ubah suai dari RM {custom}.",
+          "Pelan Techub dari RM {price}/bulan. Pelanggan baru di Malaysia dapat {months} bulan pertama percuma, termasuk pemasangan dan latihan staf. Sistem Jualan Live dari RM {livePrice}/bulan; ubah suai dari RM {custom}.",
       },
     },
     about: {
@@ -1323,6 +1383,157 @@ const ms: Dict = {
       ],
       demoMessage: "Hai Techub, saya nak demo percuma sistem booking spa.",
     },
+
+    live: {
+      meta: {
+        title: "Sistem Jualan Live Malaysia | Tampung Ramai Pembeli, Tak Terlebih Jual",
+        socialTitle: "Sistem Jualan Live Malaysia | Techub Software",
+        description:
+          "Sistem jualan live untuk penjual online di Malaysia: tampung ramai pembeli serentak dengan giliran order Kafka, elak overselling, tetapkan tarikh jualan setiap produk dan pantau pelawat live ikut halaman, siap dengan laporan canggih. Dari RM {livePrice}/bulan.",
+        keywords: [
+          "sistem live selling Malaysia",
+          "sistem jualan live",
+          "sistem jualan live Malaysia",
+          "sistem jualan online Malaysia",
+          "sistem flash sale",
+          "sistem live commerce",
+          "jualan live Facebook",
+          "jualan live TikTok",
+          "elak overselling",
+          "elak terlebih jual",
+          "sistem pre-order",
+          "live selling system Malaysia",
+          "flash sale system",
+          "Kafka order queue",
+        ],
+      },
+      category: "Jualan live dan flash sale online",
+      eyebrow: "Sistem Jualan Live",
+      heading: "Jual live kepada ramai pembeli, *tak pernah terlebih jual*",
+      intro:
+        "Dibina khas untuk penjual live di Malaysia: tambah produk, tetapkan tarikh jualan, dan biar ramai pembeli beli serentak. Giliran order Kafka susun setiap order ikut turutan, dan anda boleh tengok pelawat anda secara live.",
+      heroBadge: "Pelawat live ikut halaman",
+      whoFor: ["Penjual Facebook Live", "Penjual TikTok Live", "Kedai Instagram", "Fesyen & tudung", "Kecantikan & skincare", "Makanan & snek", "Flash sale & pre-order"],
+      highlights: {
+        crowd: "Tampung ramai pembeli",
+        queue: "Giliran order Kafka",
+        oversell: "Tak terlebih jual",
+        schedule: "Tetapkan tarikh jualan",
+        visitors: "Pelawat live ikut halaman",
+        reports: "Laporan canggih",
+      },
+      spotlights: {
+        crowd: {
+          eyebrow: "Ramai pembeli, tiada lag",
+          title: "Ramai pembeli boleh beli pada saat yang sama",
+          points: [
+            "Dibina untuk saat pembeli berebut bila anda cakap \"beli sekarang\" masa live",
+            "Giliran order Kafka proses setiap order ikut turutan",
+            "Halaman jualan anda kekal laju walaupun trafik tinggi",
+            "Server enterprise di Malaysia, uptime {uptime}",
+          ],
+        },
+        oversell: {
+          eyebrow: "Tak terlebih jual",
+          title: "Takkan jual lebih dari stok yang ada",
+          points: [
+            "Stok disemak untuk setiap satu order",
+            "Produk tutup sendiri bila stok dah habis",
+            "Satu barang takkan dijual dua kali, walaupun masa puncak",
+            "Pembeli nampak berapa lagi yang tinggal",
+          ],
+          badges: ["Stok disemak live", "Habis? Terus tutup."],
+        },
+        schedule: {
+          eyebrow: "Produk & tarikh jualan",
+          title: "Tambah produk, kemudian pilih tarikh jualan",
+          points: [
+            "Masukkan gambar, harga dan stok dengan beberapa kali tekan",
+            "Pilih tarikh dan masa setiap produk mula dijual",
+            "Jualan buka dan tutup sendiri ikut masa",
+            "Rancang sesi live seterusnya awal-awal",
+          ],
+        },
+        visitors: {
+          eyebrow: "Pelawat live",
+          title: "Tengok siapa ada di kedai anda, sekarang juga",
+          points: [
+            "Jumlah pelawat di kedai anda secara live",
+            "Halaman yang setiap pelawat sedang buka",
+            "Order dan bayaran terus nampak bila masuk",
+            "Tahu masa paling sesuai untuk promote produk",
+          ],
+        },
+        reports: {
+          eyebrow: "Laporan canggih",
+          title: "Setiap jualan live, dalam angka",
+          points: [
+            "Jualan, order dan produk terlaris setiap live",
+            "Pelawat, kadar conversion dan minit puncak",
+            "Cara bayaran dan peratus stok terjual ikut produk",
+            "Laporan siap bawah 100 ms, tiada lag",
+          ],
+        },
+      },
+      modules: {
+        salePage: "Halaman jualan untuk live anda",
+        products: "Senarai produk dengan gambar",
+        schedule: "Tarikh & masa jualan",
+        queue: "Giliran order Kafka",
+        oversell: "Elak terlebih jual",
+        stock: "Kiraan stok real-time",
+        visitors: "Jumlah pelawat live",
+        pages: "Pelawat ikut halaman",
+        checkout: "Checkout laju di telefon",
+        payment: "Bayaran online",
+        orders: "Urus order",
+        receipts: "Invois & resit automatik",
+        einvoice: "e-Invois LHDN",
+        reports: "Laporan jualan canggih",
+        permissions: "Kawalan akses staf",
+        devices: "Guna di telefon, iPad & PC",
+      },
+      faqs: [
+        {
+          q: "Apa itu Sistem Jualan Live Techub?",
+          a: "Ini sistem untuk jual online semasa sesi live anda di Malaysia. Anda tambah produk dan pilih tarikh jualan, kongsi halaman jualan masa live, dan pembeli order terus dari telefon. Ia boleh tampung ramai pembeli, pastikan stok tak terlebih jual dan tunjuk pelawat anda secara live.",
+        },
+        {
+          q: "Boleh tampung ramai pembeli serentak?",
+          a: "Boleh. Setiap order melalui giliran Kafka, yang boleh terima lonjakan order pada masa yang sama dan proses satu per satu ikut turutan, jadi halaman jualan anda kekal laju.",
+        },
+        {
+          q: "Macam mana sistem elak terlebih jual?",
+          a: "Stok disemak dan ditolak untuk setiap order sebaik saja order dibuat. Bila produk habis, ia tutup secara automatik, jadi anda takkan jual lebih dari stok yang ada.",
+        },
+        {
+          q: "Boleh pilih bila setiap produk mula dijual?",
+          a: "Boleh. Tambah produk dengan gambar, harga dan stok, kemudian pilih tarikh dan masa jualan. Produk akan dibuka untuk jualan ikut masa yang anda tetapkan.",
+        },
+        {
+          q: "Boleh tengok berapa ramai orang di kedai saya?",
+          a: "Boleh. Dashboard live tunjuk berapa ramai pelawat di kedai anda sekarang dan halaman mana yang setiap seorang sedang buka, berserta order yang masuk secara live.",
+        },
+        {
+          q: "Laporan apa yang saya dapat?",
+          a: "Jualan, order, produk terlaris, pelawat, kadar conversion, minit puncak dan cara bayaran untuk setiap jualan live, siap dalam masa kurang 100 milisaat.",
+        },
+        {
+          q: "Berapa harga Sistem Jualan Live?",
+          a: "Bermula dari RM {livePrice} sebulan, ikut keperluan anda. WhatsApp kami di {phone} untuk minta demo.",
+        },
+        {
+          q: "Macam mana nak minta demo?",
+          a: "WhatsApp kami di {phone} atau email ke {email}. Kami akan tunjuk macam mana Sistem Jualan Live berfungsi, guna produk anda sendiri.",
+        },
+      ],
+      demoMessage: "Hai Techub, saya nak minta demo Sistem Jualan Live.",
+      contact: {
+        badge: "Minta demo",
+        title: "Tengok sendiri macam mana Sistem Jualan Live berfungsi",
+        text: "Dari RM {livePrice}/bulan, untuk penjual online di seluruh Malaysia.",
+      },
+    },
   },
 
   /* ---------- Example screens: picture titles and alt text ---------- */
@@ -1514,6 +1725,38 @@ const ms: Dict = {
     objectDetection: {
       title: "AI pengesanan objek",
       alt: "Contoh sistem AI pengesanan objek yang tandakan orang, topi keselamatan, kotak dan kenderaan pada paparan kamera",
+    },
+    liveDashboard: {
+      title: "Dashboard jualan live",
+      alt: "Dashboard jualan live di iPad semasa sesi live, dengan 1,286 pelawat online, order seminit, jumlah jualan setakat ini dan baki stok setiap produk",
+    },
+    liveVisitors: {
+      title: "Pelawat live ikut halaman",
+      alt: "Skrin pelawat live di iPad yang tunjuk berapa ramai orang di kedai sekarang, halaman yang setiap seorang sedang buka, serta order dan bayaran yang masuk secara live",
+    },
+    liveQueue: {
+      title: "Giliran order Kafka",
+      alt: "Skrin pantau giliran order di iPad: giliran Kafka sihat dengan 0 order menunggu, lonjakan 412 order seminit diproses dengan lancar, dan order yang melebihi stok disekat",
+    },
+    liveProducts: {
+      title: "Produk & tarikh jualan",
+      alt: "Senarai produk di iPad dengan produk baru sedang ditambah, berserta harga, stok serta tarikh dan masa ia mula dijual",
+    },
+    reportsLive: {
+      title: "Laporan jualan live",
+      alt: "Laporan jualan live di iPad yang siap dalam masa kurang 100 ms: jualan, order, pelawat, kadar conversion, cara bayaran dan produk terlaris",
+    },
+    liveShop: {
+      title: "Halaman jualan di telefon pembeli",
+      alt: "Halaman jualan live di telefon dengan tanda LIVE, 1,286 orang di kedai, produk dengan baki stok dan produk yang sudah habis ditutup",
+    },
+    liveProduct: {
+      title: "Tinggal 3 sahaja",
+      alt: "Halaman produk di telefon yang tunjuk tinggal 3 sahaja, bar stok live, 121 orang sedang tengok dan butang Buy now",
+    },
+    liveCheckout: {
+      title: "Order disahkan",
+      alt: "Order disahkan di telefon pembeli, dibayar melalui online banking, dengan resit rasmi dihantar ke WhatsApp",
     },
   },
 };

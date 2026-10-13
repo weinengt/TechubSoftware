@@ -84,12 +84,12 @@ export function FloatBadge({ icon, children, tone = "brand" }: { icon: IconName;
 export function OtherSystems({ lang, current }: { lang: Locale; current: SystemKey }) {
   const t = getDict(lang);
   return (
-    <section aria-labelledby="other-systems" className="pb-4">
+    <section aria-labelledby="other-systems" className="pt-12 pb-4 sm:pt-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <h2 id="other-systems" className="text-center text-sm font-bold tracking-wide text-slate-500 uppercase">
           {t.product.otherSystems}
         </h2>
-        <ul className="mx-auto mt-5 grid max-w-5xl gap-3 sm:grid-cols-3">
+        <ul className="mx-auto mt-5 grid max-w-5xl gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {systems
             .filter((s) => s.key !== current)
             .map((s) => {
@@ -161,7 +161,10 @@ export function FeatureTiles({ items }: { items: { icon: IconName; title: string
 
 /* ---------- Contact ---------- */
 
-export function ContactSection({ lang, title, phoneShot, page }: { lang: Locale; title?: string; phoneShot?: Shot; page?: PageOf }) {
+/** The closing call to action. `offer` swaps the badge, text and WhatsApp message (the Live Selling System has its own). */
+export function ContactSection({
+  lang, title, phoneShot, page, offer,
+}: { lang: Locale; title?: string; phoneShot?: Shot; page?: PageOf; offer?: { badge: string; text: string; message: string } }) {
   const t = getDict(lang);
   const c = t.contact;
   const H = page ? "h1" : "h2";
@@ -174,12 +177,12 @@ export function ContactSection({ lang, title, phoneShot, page }: { lang: Locale;
           <div className="relative grid items-center gap-10 lg:grid-cols-2">
             <div className="lg:py-16">
               <p className="inline-flex rounded-full bg-white/15 px-3 py-1 text-xs font-bold tracking-wide uppercase ring-1 ring-white/25">
-                {c.badge}
+                {offer?.badge ?? c.badge}
               </p>
               <H className={`mt-4 font-extrabold tracking-tight ${page ? "text-4xl sm:text-5xl" : "text-3xl sm:text-4xl"}`}>{title ?? c.title}</H>
-              <p className="mt-3 text-lg text-white/90">{c.text}</p>
+              <p className="mt-3 text-lg text-white/90">{offer?.text ?? c.text}</p>
               <div className="mt-8 grid max-w-md gap-3">
-                <a href={whatsappLink(t.ui.whatsappMessage)} target="_blank" rel="noopener"
+                <a href={whatsappLink(offer?.message ?? t.ui.whatsappMessage)} target="_blank" rel="noopener"
                   className="group flex items-center gap-3 rounded-2xl bg-white p-4 text-slate-900 shadow-xl transition hover:-translate-y-0.5">
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-whatsapp text-white">
                     <Icon.Whatsapp className="h-6 w-6" />

@@ -153,6 +153,9 @@ export const Icon = {
   Car: (p: IconProps) => (
     <svg {...base(p)}><path d="M5 12l1.8-4.6A2 2 0 018.7 6h6.6a2 2 0 011.9 1.4L19 12" /><rect x="3.5" y="12" width="17" height="5.5" rx="1" /><path d="M6 17.5v2M18 17.5v2" /><rect x="9.5" y="13.7" width="5" height="2" rx=".4" /></svg>
   ),
+  Live: (p: IconProps) => (
+    <svg {...base(p)}><circle cx="12" cy="12" r="2.2" /><path d="M8.2 8.2a5.4 5.4 0 000 7.6M15.8 8.2a5.4 5.4 0 010 7.6" /><path d="M5.2 5.2a9.6 9.6 0 000 13.6M18.8 5.2a9.6 9.6 0 010 13.6" /></svg>
+  ),
   Layers: (p: IconProps) => (
     <svg {...base(p)}><path d="M12 3l9 4.5-9 4.5-9-4.5z" /><path d="M3 12l9 4.5 9-4.5" /><path d="M3 16.5L12 21l9-4.5" /></svg>
   ),

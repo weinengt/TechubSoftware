@@ -1,0 +1,303 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css"><link rel="stylesheet" href="phone.css">
+<style>
+  /* Techub Live Selling: the buyer's view of a live seller's sale page. ?v=shop (default) | product */
+  :root { --w: 360px; --h: 760px; }
+  .ph { width: 100%; height: 100%; display: flex; flex-direction: column; background: #f4f7fb; position: relative; overflow: hidden; }
+  svg.i.f { fill: currentColor; stroke: none; }
+  .live { display: inline-flex; align-items: center; gap: 4px; background: #ef4444; color: #fff; font-size: 9.5px; font-weight: 800; letter-spacing: .07em; line-height: 16px; padding: 0 6px; border-radius: 5px; flex-shrink: 0; }
+  .live i { width: 5px; height: 5px; border-radius: 99px; background: #fff; box-shadow: 0 0 0 2px rgba(255,255,255,.3); }
+
+  /* ---------- Shop (sale page) ---------- */
+  .shop { display: flex; align-items: center; gap: 10px; padding: 1px 14px 9px; }
+  .logo { width: 44px; height: 44px; border-radius: 99px; padding: 2px; background: linear-gradient(135deg, #ef4444, #f97316); flex-shrink: 0; }
+  .logo span { width: 100%; height: 100%; border-radius: 99px; border: 2px solid #f4f7fb; background: linear-gradient(135deg, #f472b6, #db2777); display: grid; place-items: center; color: #fff; }
+  .logo svg { width: 19px; height: 19px; stroke-width: 2.1; }
+  .sn { min-width: 0; }
+  .sn b { font-size: 16px; font-weight: 800; letter-spacing: -.01em; display: flex; align-items: center; gap: 5px; white-space: nowrap; }
+  .sn b svg { width: 15px; height: 15px; }
+  .ln { display: flex; align-items: center; gap: 7px; margin-top: 4px; font-size: 11.5px; color: var(--ink2); font-weight: 650; white-space: nowrap; }
+  .ppl { display: inline-flex; align-items: center; gap: 4px; }
+  .ppl svg { width: 14px; height: 14px; color: var(--muted); }
+  .shop .r { margin-left: auto; display: flex; gap: 8px; }
+  .shop .r span { width: 36px; height: 36px; border-radius: 99px; background: #fff; border: 1px solid var(--line); display: grid; place-items: center; color: var(--ink2); }
+  .shop .r svg { width: 17px; height: 17px; }
+
+  .banner { margin: 0 12px; border-radius: 16px; padding: 9px 12px 9px 14px; color: #fff; display: flex; align-items: center; gap: 10px; position: relative; overflow: hidden; flex-shrink: 0;
+    background: radial-gradient(circle at 92% -18%, rgba(255,255,255,.15) 0 62px, transparent 63px), radial-gradient(circle at 8% 140%, rgba(255,255,255,.1) 0 46px, transparent 47px), linear-gradient(120deg, #0050a0, #0396d9 58%, #00cfcb);
+    box-shadow: 0 12px 24px -16px rgba(3,110,180,.9); }
+  .banner .k { font-size: 9.5px; font-weight: 750; letter-spacing: .06em; text-transform: uppercase; display: flex; align-items: center; gap: 4px; opacity: .95; white-space: nowrap; }
+  .banner .k svg { width: 12px; height: 12px; color: #fde68a; }
+  .banner b { display: block; font-size: 19px; font-weight: 850; letter-spacing: -.015em; margin: 2px 0 1px; white-space: nowrap; }
+  .banner .s { font-size: 11px; opacity: .92; white-space: nowrap; }
+  .cd { margin-left: auto; text-align: center; flex-shrink: 0; }
+  .cd .k { justify-content: center; }
+  .cd div { display: flex; align-items: center; gap: 3px; margin-top: 5px; font-weight: 800; font-size: 13px; }
+  .cd u { text-decoration: none; width: 28px; height: 30px; border-radius: 8px; background: #fff; color: #0b2f55; font-size: 14.5px; font-weight: 850; display: grid; place-items: center; font-variant-numeric: tabular-nums; box-shadow: 0 3px 8px -4px rgba(11,47,85,.5); }
+
+  .grid { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, 1fr); gap: 9px; padding: 10px 12px; }
+  .pc { background: #fff; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; display: flex; flex-direction: column; min-height: 0; box-shadow: 0 1px 2px rgba(15,23,42,.04); }
+  .img { position: relative; flex: 1; min-height: 0; display: grid; place-items: center; overflow: hidden; }
+  .img svg.art { height: 88%; width: auto; display: block; position: relative; }
+  .tg { position: absolute; top: 6px; display: inline-flex; align-items: center; gap: 3px; font-size: 9.5px; font-weight: 750; line-height: 18px; padding: 0 6px; border-radius: 99px; white-space: nowrap; }
+  .tg svg { width: 11px; height: 11px; stroke-width: 2.4; }
+  .tg.vw { left: 6px; background: rgba(15,23,42,.66); color: #fff; padding: 0 7px 0 6px; }
+  .tg.vw i { width: 6px; height: 6px; border-radius: 99px; background: #f87171; margin-right: 1px; }
+  .tg.hot { left: 6px; background: linear-gradient(135deg, #f97316, #ef4444); color: #fff; padding: 0 7px 0 5px; }
+  .tg.inc { right: 6px; background: #fff; color: #036295; box-shadow: 0 2px 6px -2px rgba(15,23,42,.25); }
+  .bd { padding: 7px 9px 9px; display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; }
+  .nm { font-size: 12.5px; font-weight: 700; white-space: nowrap; color: var(--ink); }
+  .stk { display: flex; align-items: center; gap: 7px; font-size: 10.5px; white-space: nowrap; }
+  .stk u { flex: 1; height: 15px; border-radius: 99px; background: #e4ecf4; overflow: hidden; display: block; position: relative; text-decoration: none; }
+  .stk u i { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, #0396d9, #00cfcb); }
+  .stk u span { position: absolute; left: 7px; top: 0; line-height: 15px; font-size: 9.5px; font-weight: 750; color: #fff; text-shadow: 0 1px 1px rgba(0,60,100,.25); }
+  .stk em { font-style: normal; font-weight: 700; color: var(--ink2); }
+  .stk.low u i { background: linear-gradient(90deg, #fbbf24, #f59e0b); }
+  .stk.low u span { text-shadow: 0 1px 1px rgba(146,64,14,.3); }
+  .stk.low em { color: #d97706; font-weight: 800; }
+  .pr { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+  .pr b { font-size: 14.5px; font-weight: 850; letter-spacing: -.01em; white-space: nowrap; }
+  .buy { height: 27px; padding: 0 14px; border-radius: 8px; background: linear-gradient(135deg, #0396d9, #0287c4); color: #fff; font-size: 12px; font-weight: 750; display: inline-flex; align-items: center; box-shadow: 0 5px 10px -6px rgba(3,150,217,.9); }
+  .closed { height: 27px; padding: 0 9px; border-radius: 8px; background: #f1f5f9; color: #94a3b8; font-size: 11px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; }
+  .closed svg { width: 12px; height: 12px; stroke-width: 2.2; }
+  .pc.so { background: #fbfcfe; }
+  .pc.so .img { background: #eef2f6 !important; }
+  .pc.so .img svg.art { filter: grayscale(1); opacity: .42; }
+  .sov { position: absolute; inset: 0; display: grid; place-items: center; }
+  .sov span { background: rgba(15,23,42,.74); color: #fff; font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; padding: 0 12px; line-height: 25px; border-radius: 99px; }
+  .pc.so .nm, .pc.so .pr b { color: #94a3b8; }
+  .pc.so .stk u i { background: #d9e1ea; }
+  .pc.so .stk u span { color: #64748b; text-shadow: none; }
+  .pc.so .stk em { color: #94a3b8; }
+
+  .cart { flex-shrink: 0; height: 70px; background: #fff; border-top: 1px solid var(--line); box-shadow: 0 -12px 24px -18px rgba(15,23,42,.35); display: flex; align-items: center; gap: 12px; padding: 0 14px 2px; }
+  .cic { position: relative; width: 44px; height: 44px; border-radius: 13px; background: var(--brand-50); color: var(--brand); display: grid; place-items: center; flex-shrink: 0; }
+  .cic svg { width: 22px; height: 22px; }
+  .cic .n { position: absolute; top: -5px; right: -6px; background: var(--red); color: #fff; font-size: 10.5px; font-weight: 800; min-width: 19px; height: 19px; border-radius: 99px; display: grid; place-items: center; box-shadow: 0 0 0 2px #fff; }
+  .ct small { display: block; font-size: 11.5px; color: var(--muted); font-weight: 650; }
+  .ct b { display: block; font-size: 17.5px; font-weight: 850; letter-spacing: -.015em; margin-top: 1px; white-space: nowrap; }
+  .co { margin-left: auto; height: 48px; padding: 0 22px 0 24px; border-radius: 13px; background: linear-gradient(135deg, #0396d9, #0287c4); color: #fff; font-size: 15px; font-weight: 750; display: flex; align-items: center; gap: 8px; box-shadow: 0 10px 20px -10px rgba(3,150,217,.95); white-space: nowrap; }
+  .co svg { width: 18px; height: 18px; stroke-width: 2.2; }
+
+  /* ---------- Product detail ---------- */
+  .hero { position: relative; height: 300px; flex-shrink: 0; overflow: hidden;
+    background: radial-gradient(circle at 50% 57%, rgba(255,255,255,.75) 0 88px, rgba(255,255,255,0) 145px), linear-gradient(160deg, #eef2ff, #c7d2fe); }
+  .hero .status { position: relative; z-index: 2; }
+  .tb { position: relative; z-index: 2; display: flex; align-items: center; padding: 2px 14px 0; }
+  .tb .r { margin-left: auto; display: flex; gap: 10px; }
+  .cb { width: 38px; height: 38px; border-radius: 99px; background: rgba(255,255,255,.85); display: grid; place-items: center; color: var(--ink); position: relative; box-shadow: 0 4px 12px -6px rgba(49,46,129,.45); }
+  .cb svg { width: 19px; height: 19px; stroke-width: 2.1; }
+  .cb .n { position: absolute; top: -3px; right: -4px; background: var(--red); color: #fff; font-size: 10px; font-weight: 800; min-width: 18px; height: 18px; border-radius: 99px; display: grid; place-items: center; box-shadow: 0 0 0 2px #fff; }
+  .hero svg.art { position: absolute; left: 50%; top: 55px; height: 197px; width: auto; transform: translateX(-50%); }
+  .hl { position: absolute; left: 14px; bottom: 32px; display: flex; gap: 7px; align-items: center; z-index: 2; }
+  .hl .live { font-size: 10.5px; line-height: 22px; padding: 0 8px; border-radius: 7px; }
+  .vw2 { display: inline-flex; align-items: center; gap: 5px; background: rgba(15,23,42,.66); color: #fff; font-size: 11.5px; font-weight: 700; line-height: 22px; padding: 0 9px 0 8px; border-radius: 7px; white-space: nowrap; }
+  .vw2 svg { width: 14px; height: 14px; }
+  .dots { position: absolute; right: 16px; bottom: 40px; display: flex; gap: 5px; z-index: 2; }
+  .dots i { width: 6px; height: 6px; border-radius: 99px; background: rgba(49,46,129,.25); } .dots i.on { width: 16px; background: #4338ca; }
+  .sheet { flex: 1; min-height: 0; margin-top: -20px; position: relative; z-index: 3; background: #fff; border-radius: 22px 22px 0 0; padding: 16px 16px 0; display: flex; flex-direction: column; box-shadow: 0 -10px 24px -18px rgba(49,46,129,.5); }
+  .t1 { display: flex; align-items: center; gap: 8px; }
+  .t1 b { font-size: 19px; font-weight: 850; letter-spacing: -.015em; white-space: nowrap; }
+  .t1 .fav { margin-left: auto; width: 34px; height: 34px; border-radius: 99px; border: 1px solid var(--line); display: grid; place-items: center; color: var(--muted); margin-top: -2px; }
+  .t1 .fav svg { width: 17px; height: 17px; }
+  .sub2 { font-size: 12px; color: var(--muted); margin-top: 1px; white-space: nowrap; }
+  .price { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+  .price b { font-size: 25px; font-weight: 850; letter-spacing: -.02em; }
+  .price .r { margin-left: auto; display: inline-flex; align-items: center; gap: 4px; font-size: 11.5px; color: var(--ink2); font-weight: 650; white-space: nowrap; }
+  .price .r svg { width: 14px; height: 14px; color: var(--muted); }
+  .price .r em { font-style: normal; font-weight: 800; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .sbox { margin-top: 10px; border-radius: 13px; padding: 10px 12px 11px; background: linear-gradient(135deg, #fff7ed, #fef3c7); border: 1px solid #fde3b0; }
+  .sbox .h { display: flex; align-items: center; gap: 6px; }
+  .sbox .h b { font-size: 14.5px; font-weight: 850; color: #dc2626; display: flex; align-items: center; gap: 5px; }
+  .sbox .h b svg { width: 16px; height: 16px; }
+  .sbox .h span { margin-left: auto; font-size: 11.5px; font-weight: 650; color: #92400e; }
+  .sbox u { display: block; height: 8px; border-radius: 9px; background: rgba(245,158,11,.2); overflow: hidden; margin-top: 8px; }
+  .sbox u i { display: block; height: 100%; border-radius: 9px; background: linear-gradient(90deg, #f59e0b, #ef4444); }
+  .qty { display: flex; align-items: center; gap: 10px; margin-top: 12px; }
+  .qty > span { font-size: 13px; font-weight: 700; }
+  .step { margin-left: auto; display: flex; align-items: center; border: 1px solid var(--line); border-radius: 11px; height: 38px; overflow: hidden; }
+  .step span { width: 38px; height: 100%; display: grid; place-items: center; color: var(--ink2); }
+  .step span.off { color: #cbd5e1; }
+  .step span svg { width: 16px; height: 16px; stroke-width: 2.3; }
+  .step b { width: 40px; text-align: center; font-size: 15px; font-weight: 800; border-left: 1px solid var(--line); border-right: 1px solid var(--line); line-height: 36px; }
+  .qty small { font-size: 11px; color: var(--muted); font-weight: 600; width: 40px; }
+  .note { display: flex; align-items: center; gap: 7px; margin-top: 10px; font-size: 11.5px; color: #047857; font-weight: 600; background: #ecfdf5; border-radius: 10px; padding: 7px 10px; white-space: nowrap; }
+  .note svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .btns { display: flex; gap: 10px; margin-top: 12px; }
+  .btns span { flex: 1; height: 48px; border-radius: 13px; display: flex; align-items: center; justify-content: center; gap: 7px; font-size: 14.5px; font-weight: 750; white-space: nowrap; }
+  .btns svg { width: 18px; height: 18px; stroke-width: 2.1; }
+  .btns .sec { border: 1.5px solid var(--brand); color: #0379b3; background: #fff; }
+  .btns .pri { background: linear-gradient(135deg, #0396d9, #0287c4); color: #fff; box-shadow: 0 10px 20px -10px rgba(3,150,217,.95); }
+  .rh { display: flex; align-items: center; gap: 6px; margin-top: 15px; font-size: 12px; font-weight: 750; color: var(--ink2); }
+  .rh svg { width: 14px; height: 14px; color: #94a3b8; }
+  .rh span { margin-left: auto; font-size: 11px; color: var(--muted); font-weight: 600; }
+  .rel { margin-top: 7px; border: 1px solid var(--line); border-radius: 13px; background: #fbfcfe; padding: 0 11px; }
+  .mi { display: flex; align-items: center; gap: 10px; padding: 7px 0; }
+  .mi + .mi { border-top: 1px solid #eef2f7; }
+  .mi .th { width: 36px; height: 36px; border-radius: 9px; background: #eef2f6; display: grid; place-items: center; flex-shrink: 0; overflow: hidden; }
+  .mi .th svg { height: 32px; width: auto; filter: grayscale(1); opacity: .45; }
+  .mi b { display: block; font-size: 12px; font-weight: 700; color: #94a3b8; white-space: nowrap; }
+  .mi small { display: block; margin-top: 2px; font-size: 10.5px; color: #a3afbf; font-weight: 600; white-space: nowrap; }
+  .mi em { margin-left: auto; font-style: normal; font-size: 9.5px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; color: #fff; background: #94a3b8; border-radius: 99px; padding: 0 9px; line-height: 20px; white-space: nowrap; }
+</style></head>
+<body>
+<div class="ph" id="ph"></div>
+<script>
+  const q = new URLSearchParams(location.search).get("v");
+  const V = q === "product" ? "product" : "shop";
+
+  // Extra icons used only here (same 24px stroke style as icons.js)
+  const IC = {
+    eye: '<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+    share: '<circle cx="18" cy="5.5" r="2.8"/><circle cx="6" cy="12" r="2.8"/><circle cx="18" cy="18.5" r="2.8"/><path d="M8.5 13.4l7 3.8M15.5 6.8l-7 3.8"/>',
+    cart: '<circle cx="9.5" cy="20" r="1.4"/><circle cx="17.5" cy="20" r="1.4"/><path d="M2.5 3.5h2.6l2.3 11a1.6 1.6 0 001.6 1.3h8.4a1.6 1.6 0 001.5-1.2L20.8 8H6.1"/>',
+    bag: '<path d="M5.5 8h13l-1 12.5h-11z"/><path d="M9 10.5V7a3 3 0 016 0v3.5"/>',
+    minus: '<path d="M5 12h14"/>',
+    shieldCheck: '<path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6l8-3z"/><path d="M8.5 12.2l2.4 2.4 4.6-4.8"/>',
+  };
+  const I = (n, cls = "") => `<svg class="i ${cls}" viewBox="0 0 24 24">${IC[n]}</svg>`;
+  const FLAME = '<svg class="i f" viewBox="0 0 24 24"><path d="M12.6 2.2c.4 3.2 2.3 4.6 3.9 6.6 1.4 1.7 2.5 3.6 2.5 6.1A7 7 0 015 14.9c0-2.9 1.4-4.9 3.3-6.4-.1 1.9.5 3.4 1.9 4.2-.5-4.4 1-8 2.4-10.5z"/></svg>';
+  const TICK = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#0396d9"/><path d="M7.5 12.4l3 3 6-6.4" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+  // Product illustrations (100 x 100). k makes gradient ids unique when one is drawn twice.
+  const ART = {
+    tudung: (k) => `<svg class="art" viewBox="0 0 100 100"><defs>
+        <linearGradient id="td${k}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eaa6b8"/><stop offset="1" stop-color="#cf7d96"/></linearGradient></defs>
+      <ellipse cx="50" cy="97" rx="36" ry="3" fill="#9d174d" opacity=".1"/>
+      <path d="M10 100C12 87 25 81 50 80s38 7 40 20z" fill="#f3e5d8"/>
+      <path d="M50 12C31 12 23.5 25 23.5 39.5c0 11-3 19.5-10 29.5C25 78.5 38 88 50 96c12-8 25-17.5 36.5-27-7-10-10-18.5-10-29.5C76.5 25 69 12 50 12z" fill="url(#td${k})"/>
+      <ellipse cx="50" cy="43" rx="13" ry="16.5" fill="#f5d6c3"/>
+      <path d="M37 38.5c.6-8.6 5.8-13 13-13s12.4 4.4 13 13c-3.4-5.4-7.6-7.4-13-7.4s-9.6 2-13 7.4z" fill="#b9607b"/>
+      <path d="M36 62c4 9 8.5 18.5 13.6 30M64 62c-4 9-8.5 18.5-13.6 30M27 66c6 7.5 13 16 21 25M73 66c-6 7.5-13 16-21 25" stroke="#b25a76" stroke-width="1.3" fill="none" opacity=".4" stroke-linecap="round"/>
+      <circle cx="50" cy="62" r="2.8" fill="#fbbf24" stroke="#fff" stroke-width="1.1"/>
+      <path d="M30.5 31c3-9.5 9.5-14.6 18-15.6" stroke="#fff" stroke-width="2.6" fill="none" opacity=".35" stroke-linecap="round"/></svg>`,
+    kurung: (k) => `<svg class="art" viewBox="0 0 100 100"><defs>
+        <linearGradient id="bk${k}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#14b8a6"/><stop offset="1" stop-color="#0f766e"/></linearGradient></defs>
+      <path d="M50 17v-3.5c0-2.3 2.6-3 4-4.6 1.6-1.8.9-4.9-1.9-4.9-1.8 0-3.1 1.2-3.1 2.8" stroke="#94a3b8" stroke-width="1.9" fill="none" stroke-linecap="round"/>
+      <path d="M50 17l-23 8.5M50 17l23 8.5" stroke="#94a3b8" stroke-width="2.1" stroke-linecap="round"/>
+      <path d="M31 75h38l4.5 22h-47z" fill="#115e59"/>
+      <path d="M45 75l-2 22M55 75l2 22" stroke="#0b4a45" stroke-width="1.1" opacity=".7"/>
+      <path d="M38 22l-13.5 3.8c-3.6 1.4-5.6 4.2-6.6 8L12 64l8 2.2 6.6-25.4L28 81c14 2.2 30 2.2 44 0l1.4-40.2L80 66.2l8-2.2-5.9-30.2c-1-3.8-3-6.6-6.6-8L62 22c-3 4.8-7 6.8-12 6.8S41 26.8 38 22z" fill="url(#bk${k})"/>
+      <path d="M38 22c3 4.8 7 6.8 12 6.8s9-2 12-6.8" stroke="#fcd34d" stroke-width="1.8" fill="none"/>
+      <path d="M50 28.8v10" stroke="#fcd34d" stroke-width="1.3"/>
+      <path d="M12.4 61.8l8 2.2M87.6 61.8l-8 2.2M28.1 79.6c14 2.2 29.8 2.2 43.8 0" stroke="#fcd34d" stroke-width="1.6" fill="none"/>
+      <g fill="#fde68a" opacity=".75"><circle cx="38" cy="46" r="1.3"/><circle cx="62" cy="46" r="1.3"/><circle cx="44" cy="58" r="1.3"/><circle cx="56" cy="58" r="1.3"/><circle cx="38" cy="70" r="1.3"/><circle cx="62" cy="70" r="1.3"/><circle cx="50" cy="66" r="1.3"/></g></svg>`,
+    lipstick: (k) => `<svg class="art" viewBox="0 0 100 100"><defs>
+        <linearGradient id="lg${k}" x1="0" x2="1"><stop offset="0" stop-color="#a77f30"/><stop offset=".45" stop-color="#f3d991"/><stop offset="1" stop-color="#9c752a"/></linearGradient>
+        <linearGradient id="lb${k}" x1="0" x2="1"><stop offset="0" stop-color="#111827"/><stop offset=".45" stop-color="#3b4252"/><stop offset="1" stop-color="#0b1220"/></linearGradient></defs>
+      <ellipse cx="50" cy="93" rx="38" ry="3.5" fill="#9f1239" opacity=".12"/>
+      ${[[27, 33, "#d77a6c"], [50, 20, "#c8102e"], [73, 36, "#9b2a5c"]].map(([x, t, c]) => `
+        <path d="M${x - 5.5} 52V${t + 8}L${x + 5.5} ${t}V52z" fill="${c}"/>
+        <path d="M${x - 5.5} 52V${t + 8}l3-2.2V52z" fill="#fff" opacity=".22"/>
+        <rect x="${x - 7}" y="50" width="14" height="11" rx="1" fill="url(#lg${k})"/>
+        <rect x="${x - 9}" y="60" width="18" height="32" rx="2.6" fill="url(#lb${k})"/>
+        <rect x="${x - 9}" y="60" width="18" height="4.2" fill="url(#lg${k})"/>`).join("")}</svg>`,
+    sambal: (k) => `<svg class="art" viewBox="0 0 100 100"><defs>
+        <linearGradient id="sj${k}" x1="0" x2="1"><stop offset="0" stop-color="#8a2410"/><stop offset=".5" stop-color="#c2410c"/><stop offset="1" stop-color="#7f1d0b"/></linearGradient>
+        <linearGradient id="sl${k}" x1="0" x2="1"><stop offset="0" stop-color="#991b1b"/><stop offset=".5" stop-color="#dc2626"/><stop offset="1" stop-color="#8f1515"/></linearGradient></defs>
+      <ellipse cx="50" cy="94" rx="30" ry="3.5" fill="#7c2d12" opacity=".14"/>
+      <rect x="26" y="27" width="48" height="66" rx="10" fill="url(#sj${k})"/>
+      <g fill="#f8dcae"><ellipse cx="36" cy="36" rx="3.4" ry="1.1" transform="rotate(-25 36 36)"/><ellipse cx="50" cy="39" rx="3.8" ry="1.1" transform="rotate(15 50 39)"/><ellipse cx="63" cy="35" rx="3.2" ry="1" transform="rotate(-10 63 35)"/>
+        <ellipse cx="42" cy="44" rx="3" ry="1" transform="rotate(30 42 44)"/><ellipse cx="60" cy="44" rx="3.4" ry="1.1" transform="rotate(-30 60 44)"/>
+        <ellipse cx="36" cy="82" rx="3.4" ry="1.1" transform="rotate(20 36 82)"/><ellipse cx="51" cy="85" rx="3.6" ry="1.1" transform="rotate(-15 51 85)"/><ellipse cx="64" cy="81" rx="3" ry="1" transform="rotate(35 64 81)"/></g>
+      <rect x="26" y="50" width="48" height="25" fill="#fff6e5"/>
+      <path d="M26 50h48M26 75h48" stroke="#fbbf24" stroke-width="1.2"/>
+      <text x="50" y="62.5" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.6" font-weight="900" fill="#b91c1c" letter-spacing=".3">SAMBAL</text>
+      <text x="50" y="70.5" text-anchor="middle" font-family="Inter, sans-serif" font-size="5.6" font-weight="800" fill="#9a3412" letter-spacing=".6">GARING BILIS</text>
+      <rect x="28" y="15" width="44" height="14" rx="3.5" fill="url(#sl${k})"/>
+      <path d="M33 17.5v9M38 17.5v9M43 17.5v9M48 17.5v9M53 17.5v9M58 17.5v9M63 17.5v9M68 17.5v9" stroke="#7f1d1d" stroke-width="1.1" opacity=".55"/>
+      <rect x="30" y="32" width="5" height="57" rx="2.5" fill="#fff" opacity=".2"/></svg>`,
+    case: (k) => `<svg class="art" viewBox="0 0 100 100"><defs>
+        <linearGradient id="cs${k}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7f8cf7"/><stop offset="1" stop-color="#4338ca"/></linearGradient></defs>
+      <ellipse cx="53" cy="95" rx="24" ry="3.2" fill="#312e81" opacity=".16"/>
+      <g transform="rotate(-9 50 51)">
+        <rect x="29" y="7" width="42" height="85" rx="10" fill="url(#cs${k})"/>
+        <rect x="29.6" y="7.6" width="40.8" height="83.8" rx="9.5" fill="none" stroke="#c7d2fe" stroke-width="1" opacity=".55"/>
+        <rect x="70.4" y="24" width="1.6" height="13" rx=".8" fill="#3730a3"/>
+        <rect x="33" y="11" width="21" height="21" rx="6.5" fill="#312e81"/>
+        <circle cx="38.7" cy="16.8" r="3.7" fill="#0f172a" stroke="#6d73f0" stroke-width="1.1"/>
+        <circle cx="38.7" cy="26.2" r="3.7" fill="#0f172a" stroke="#6d73f0" stroke-width="1.1"/>
+        <circle cx="48" cy="21.5" r="3.7" fill="#0f172a" stroke="#6d73f0" stroke-width="1.1"/>
+        <circle cx="48.6" cy="14.8" r="1.25" fill="#fde68a"/>
+        <circle cx="50" cy="55" r="12.8" fill="none" stroke="#fff" stroke-width="2.5" opacity=".92"/>
+        <circle cx="50" cy="55" r="9.6" fill="none" stroke="#fff" stroke-width=".7" opacity=".35"/>
+        <rect x="48.6" y="70.5" width="2.8" height="8" rx="1.4" fill="#fff" opacity=".92"/>
+        <path d="M60 7h11v19L42 92H29V80z" fill="#fff" opacity=".08"/>
+      </g></svg>`,
+    durian: (k) => `<svg class="art" viewBox="0 0 100 100"><defs>
+        <linearGradient id="dc${k}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fef3c7"/><stop offset="1" stop-color="#fcd34d"/></linearGradient></defs>
+      <ellipse cx="50" cy="90" rx="40" ry="4" fill="#854d0e" opacity=".12"/>
+      <rect x="9" y="25" width="82" height="63" rx="8" fill="#fff" stroke="#d9cdb4" stroke-width="1.6"/>
+      <rect x="13" y="29" width="74" height="55" rx="5" fill="#ebe2cf"/>
+      ${[[15, 31], [40, 31], [65, 31], [15, 57], [40, 57], [65, 57]].map(([x, y]) => `
+        <rect x="${x}" y="${y}" width="20" height="24" rx="7" fill="url(#dc${k})"/>
+        <path d="M${x + 3} ${y + 4}l7 8 7-8M${x + 3} ${y + 20}l7-8 7 8" stroke="#ca8a04" stroke-width="1.1" fill="none" opacity=".55" stroke-linecap="round"/>`).join("")}
+      <g transform="translate(78 22)"><circle r="8.5" fill="#65a30d"/><path d="M0-11.5l2 3.4h-4zM0 11.5l2-3.4h-4zM-11.5 0l3.4 2v-4zM11.5 0l-3.4 2v-4zM-8.2-8.2l3.7 1.2-2.5 2.5zM8.2-8.2l-1.2 3.7-2.5-2.5zM-8.2 8.2l1.2-3.7 2.5 2.5zM8.2 8.2l-3.7-1.2 2.5-2.5z" fill="#65a30d"/>
+        <path d="M-3.5-3.5l1.6 1.6M3.5-3.5l-1.6 1.6M-3.5 3.5l1.6-1.6M3.5 3.5l-1.6-1.6M0-4.5v2M0 4.5v-2M-4.5 0h2M4.5 0h-2" stroke="#d9f99d" stroke-width="1.2" stroke-linecap="round"/></g></svg>`,
+  };
+
+  // Shared sample data (the iPad screens use the same numbers)
+  const ITEMS = [
+    { id: "tudung", name: "Tudung Bawal Premium", price: 29.9, stock: 800, sold: 742, bg: "linear-gradient(140deg, #fdf2f8, #fbcfe8)", hot: 1, cart: 1 },
+    { id: "kurung", name: "Baju Kurung Moden", price: 89, stock: 300, sold: 300, bg: "linear-gradient(140deg, #ecfdf5, #a7f3d0)" },
+    { id: "lipstick", name: "Lipstick Matte Set", price: 39.9, stock: 500, sold: 451, bg: "linear-gradient(140deg, #fff1f2, #fecdd3)", cart: 1 },
+    { id: "sambal", name: "Sambal Garing Bilis", price: 15.9, stock: 1200, sold: 966, bg: "linear-gradient(140deg, #fff7ed, #fed7aa)" },
+    { id: "case", name: "MagSafe Phone Case", price: 25, stock: 400, sold: 397, bg: "linear-gradient(140deg, #eef2ff, #c7d2fe)", viewing: 121 },
+    { id: "durian", name: "Durian Crepe Box", price: 36, stock: 250, sold: 250, bg: "linear-gradient(140deg, #fefce8, #fde68a)" },
+  ];
+  const rm = (n) => `RM ${n.toFixed(2)}`;
+  const n0 = (n) => n.toLocaleString("en-US");
+  const STATUS = `<div class="status"><span>8:42</span><span class="r"><span class="sig"><i style="height:4px"></i><i style="height:6px"></i><i style="height:8px"></i><i style="height:10px"></i></span><span style="font-size:11px">5G</span><span class="bat"><i></i></span></span></div>`;
+  const ph = document.getElementById("ph");
+
+  if (V === "shop") {
+    const card = (p, i) => {
+      const left = p.stock - p.sold, out = left === 0, low = left > 0 && left <= 5;
+      const pct = (p.sold / p.stock) * 100;
+      const tags = out ? `<div class="sov"><span>Sold out</span></div>`
+        : (p.viewing ? `<span class="tg vw"><i></i>${I("eye")}${p.viewing}</span>` : p.hot ? `<span class="tg hot">${FLAME}Hot</span>` : "")
+          + (p.cart ? `<span class="tg inc">${I("cart")}${p.cart}</span>` : "");
+      return `<div class="pc${out ? " so" : ""}">
+        <div class="img" style="background:${p.bg}">${ART[p.id](i)}${tags}</div>
+        <div class="bd"><span class="nm">${p.name}</span>
+          <div class="stk${low ? " low" : ""}"><u><i style="width:${pct.toFixed(2)}%"></i><span>${n0(p.sold)} sold</span></u><em>${low ? `Only ${left} left` : `${left} left`}</em></div>
+          <div class="pr"><b>${rm(p.price)}</b>${out ? `<span class="closed"><i data-i="lock"></i>Closed</span>` : `<span class="buy">Buy</span>`}</div>
+        </div></div>`;
+    };
+    ph.innerHTML = `${STATUS}
+      <div class="shop"><span class="logo"><span>${I("bag")}</span></span>
+        <div class="sn"><b>Demo Live Shop ${TICK}</b><div class="ln"><span class="live"><i></i>LIVE</span><span class="ppl">${I("eye")}1,286 people here</span></div></div>
+        <span class="r"><span><i data-i="search"></i></span><span>${I("share")}</span></span></div>
+      <div class="banner">
+        <div><span class="k"><i data-i="flash"></i>Tonight · 8:00 – 10:00 PM</span><b>Mega Live Sale</b><span class="s">Live prices on 6 items</span></div>
+        <div class="cd"><span class="k">Ends in</span><div><u>01</u>:<u>17</u>:<u>45</u></div></div>
+      </div>
+      <div class="grid">${ITEMS.map(card).join("")}</div>
+      <div class="cart"><span class="cic">${I("cart")}<span class="n">2</span></span>
+        <div class="ct"><small>Cart (2)</small><b>RM 69.80</b></div>
+        <span class="co">Checkout<i data-i="arrowR"></i></span></div>`;
+  } else {
+    const p = ITEMS[4], left = p.stock - p.sold;
+    const mini = (x, i) => `<div class="mi"><span class="th">${ART[x.id]("m" + i)}</span><div><b>${x.name}</b><small>${rm(x.price)} · all ${n0(x.stock)} sold</small></div><em>Sold out</em></div>`;
+    ph.innerHTML = `
+      <div class="hero">${STATUS}
+        <div class="tb"><span class="cb"><i data-i="chevL"></i></span><span class="r"><span class="cb">${I("share")}</span><span class="cb">${I("cart")}<span class="n">2</span></span></span></div>
+        ${ART.case("h")}
+        <div class="hl"><span class="live"><i></i>LIVE</span><span class="vw2">${I("eye")}${p.viewing} people viewing</span></div>
+        <div class="dots"><i class="on"></i><i></i><i></i></div>
+      </div>
+      <div class="sheet">
+        <div class="t1"><b>${p.name}</b><span class="fav"><i data-i="heart"></i></span></div>
+        <div class="sub2">Magnetic, shockproof · Demo Live Shop</div>
+        <div class="price"><b>${rm(p.price)}</b><span class="chip r">Live price</span><span class="r"><i data-i="clock"></i>Ends in <em>01:17:45</em></span></div>
+        <div class="sbox"><div class="h"><b>${FLAME}Only ${left} left!</b><span>${p.sold} of ${p.stock} sold</span></div><u><i style="width:${((p.sold / p.stock) * 100).toFixed(2)}%"></i></u></div>
+        <div class="qty"><span>Quantity</span><div class="step"><span class="off">${I("minus")}</span><b>1</b><span><i data-i="plus"></i></span></div><small>Max ${left}</small></div>
+        <div class="note">${I("shieldCheck")}Stock updates live. Checked again when you pay.</div>
+        <div class="btns"><span class="sec">${I("cart")}Add to cart</span><span class="pri">Buy now</span></div>
+        <div class="rh"><i data-i="lock"></i>Sold out tonight<span>Closed automatically</span></div>
+        <div class="rel">${[ITEMS[1], ITEMS[5]].map(mini).join("")}</div>
+      </div>`;
+  }
+</script>
+<script src="icons.js"></script>
+</body></html>

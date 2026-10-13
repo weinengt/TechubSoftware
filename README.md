@@ -20,7 +20,8 @@ Every menu item, footer link and button opens a page; none of them scrolls down 
 | `/salon-appointment-system/` | Hair salon system |
 | `/beauty-appointment-system/` | Beauty centre system |
 | `/spa-appointment-system/` | Spa & massage system |
-| `/use-cases/` | All four systems with their iPad and phone screens, and custom systems |
+| `/live-selling-system/` | Live Selling System for online sellers (its own price, from RM 199/month) |
+| `/use-cases/` | All five systems with their iPad and phone screens, and custom systems |
 | `/custom-systems/` | Custom systems: ERP, AI object detection, number plate scanner |
 | `/services/`, `/pricing/`, `/about/`, `/faq/`, `/contact/` | One page for each part of the company, opened from the menu and footer |
 | `/terms/`, `/privacy/` | Terms of Use and Privacy Policy (PDPA 2010 notice), linked from the footer |
@@ -56,11 +57,11 @@ Cloudflare Pages also works: use the **Next.js (Static HTML Export)** preset, bu
 
 - **All words on the site**, in each language: `content/en.ts` (English), `content/ms.ts` (Bahasa Melayu),
   `content/zh.ts` (Chinese). The three files have the same structure, so change the same line in each.
-  `{price}`, `{months}`, `{custom}`, `{uptime}`, `{phone}` and `{email}` are filled in from `lib/site.ts`;
+  `{price}`, `{months}`, `{custom}`, `{livePrice}`, `{uptime}`, `{phone}` and `{email}` are filled in from `lib/site.ts`;
   words between `*stars*` are shown in the blue gradient.
 - **Terms of Use and Privacy Policy**: `content/legal/en.ts`, `ms.ts` and `zh.ts`, same structure. Change the date in `updated`
   when you change them. Under the PDPA the privacy notice must be available in Bahasa Melayu and English, so keep `ms.ts` in step.
-- Company details (WhatsApp number, email, monthly price, free months, customisation price, uptime, keywords): `lib/site.ts`
+- Company details (WhatsApp number, email, monthly price, free months, customisation price, live selling price, uptime, keywords): `lib/site.ts`
 - Business types in the Use Cases menu and their addresses: `lib/site.ts` → `systems`
 - Which picture goes with which part of a business page: `components/ProductPage.tsx` → `specs`
 - Logo: `public/images/logo.webp` / `logo.png`; icons: `public/icon-192.png`, `public/icon-512.png`, `public/favicon.ico`

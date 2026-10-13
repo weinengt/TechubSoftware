@@ -74,8 +74,10 @@ ${list(Object.values(t.hardware.items))}
 ## Pricing (${site.url}/pricing/)
 - ${t.pricing.plan}: from RM ${site.priceFrom} per month.
 - ${t.pricing.free}
-- ${t.pricing.customTitle}: from RM ${site.customFrom}. ${t.pricing.customText}
 - Included: ${t.pricing.included.join("; ")}.
+- ${t.pricing.liveTitle}: from RM ${site.livePriceFrom} per month. ${t.pricing.liveText}
+- Live Selling System includes: ${t.pricing.liveIncluded.join("; ")}.
+- ${t.pricing.customTitle}: from RM ${site.customFrom}. ${t.pricing.customText}
 
 ## Frequently asked questions (${site.url}/faq/)
 ${[...t.faq.items, ...t.techPage.faqs].map((f) => `Q: ${f.q}\nA: ${f.a}`).join("\n\n")}

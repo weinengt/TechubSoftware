@@ -76,6 +76,15 @@ export const screens = [
   { name: "custom-erp-desktop", file: "erp.html", w: 1200, h: 750, scale: 1.5 },
   { name: "number-plate-scanner-desktop", file: "plate-scanner.html", w: 1200, h: 750, scale: 1.5 },
   { name: "ai-object-detection-desktop", file: "object-detection.html", w: 1200, h: 750, scale: 1.5 },
+  // Live selling
+  { name: "live-selling-dashboard-ipad", file: "live-dashboard.html", ...ipad },
+  { name: "live-selling-visitors-ipad", file: "live-visitors.html", ...ipad },
+  { name: "live-selling-order-queue-ipad", file: "live-queue.html", ...ipad },
+  { name: "live-selling-products-schedule-ipad", file: "live-products.html", ...ipad },
+  { name: "live-selling-report-ipad", file: "live-report.html", ...ipad },
+  { name: "live-selling-shop-phone", file: "live-shop.html", ...phone },
+  { name: "live-selling-product-phone", file: "live-shop.html?v=product", ...phone },
+  { name: "live-selling-checkout-phone", file: "live-checkout.html", ...phone },
   // Social share picture (WhatsApp, Facebook, LinkedIn previews). Rendered last: it uses the screens above.
   { name: "og-image", file: "og.html", w: 1200, h: 630, scale: 1, out: "public/og-image.jpg" },
 ];

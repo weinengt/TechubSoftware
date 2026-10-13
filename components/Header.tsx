@@ -79,10 +79,10 @@ function UseCasesMenu({ label, href, t }: { label: string; href: string; t: Head
       <div id="use-cases-menu" hidden={!open} className="absolute top-full left-1/2 w-[36rem] -translate-x-1/2 pt-3">
         <div className="card p-3 shadow-2xl shadow-slate-900/10">
           <ul className="grid grid-cols-2 gap-1">
-            {t.systems.map((s) => {
+            {t.systems.map((s, i) => {
               const I = Icon[s.icon];
               return (
-                <li key={s.key}>
+                <li key={s.key} className={wide(i, t.systems.length)}>
                   <Link href={s.href} onClick={() => setOpen(false)} className="group flex gap-3 rounded-xl p-3 transition hover:bg-brand-50">
                     <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-md shadow-brand-500/25">
                       <I className="h-5 w-5" />
@@ -111,6 +111,9 @@ function UseCasesMenu({ label, href, t }: { label: string; href: string; t: Head
     </li>
   );
 }
+
+/** In the two-column lists of systems, an odd last item takes the full row. */
+const wide = (i: number, count: number) => (count % 2 === 1 && i === count - 1 ? "col-span-2" : undefined);
 
 /** Language switch: the same page in English, Bahasa Melayu or Chinese. */
 function LanguageMenu({ lang, label }: { lang: Locale; label: string }) {
@@ -237,10 +240,10 @@ export default function Header({ lang, t }: { lang: Locale; t: HeaderText }) {
             </span>
           </Link>
           <ul className="mt-2 grid grid-cols-2 gap-2">
-            {t.systems.map((s) => {
+            {t.systems.map((s, i) => {
               const I = Icon[s.icon];
               return (
-                <li key={s.key}>
+                <li key={s.key} className={wide(i, t.systems.length)}>
                   <Link
                     href={s.href}
                     onClick={() => setOpen(false)}

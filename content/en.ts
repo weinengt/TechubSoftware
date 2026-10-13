@@ -2,7 +2,7 @@
 //
 // Placeholders are filled in from lib/site.ts, so prices and contact details only change there:
 //   {name} company name · {price} monthly price · {months} free months · {custom} customisation price
-//   {uptime} uptime · {phone} WhatsApp number · {email} email address
+//   {livePrice} Live Selling System monthly price · {uptime} uptime · {phone} WhatsApp number · {email} email address
 // Words between *asterisks* are shown in the blue gradient colour (headings only).
 
 const en = {
@@ -18,9 +18,11 @@ const en = {
     getFreeDemo: "Get a Free Demo",
     bookFreeDemo: "Book a Free Demo",
     askDemo: "Ask for a demo",
+    requestDemo: "Request a Demo",
     whatsappMessage: "Hi Techub Software, I'm interested in your system. Can I get a free demo?",
     emailSubject: "Enquiry about Techub system",
     priceLine: "From RM {price}/month · {months} months free",
+    livePriceLine: "From RM {livePrice}/month",
     enlarge: "Enlarge picture",
   },
 
@@ -93,11 +95,24 @@ const en = {
       ],
       cta: "See the spa system",
     },
+    live: {
+      label: "Live Selling",
+      name: "Live Selling System",
+      blurb: "Flash sales for big crowds, with no overselling.",
+      points: [
+        "Big crowds handled by Kafka order queueing",
+        "No overselling: stock checked on every order",
+        "Choose each product's selling date and time",
+        "Live visitor count and the page they're on",
+        "Advanced reports, from RM {livePrice}/month",
+      ],
+      cta: "See the live selling system",
+    },
   },
 
   footer: {
     blurb:
-      "{name} is a software company based in Malaysia. We build smart, low-cost systems for clinics, hair salons, beauty centres and spas across Malaysia, and custom systems such as ERP, AI object detection and number plate scanners. {uptime} uptime guarantee, from RM {price}/month.",
+      "{name} is a software company based in Malaysia. We build smart, low-cost systems for clinics, hair salons, beauty centres, spas and live sellers across Malaysia, and custom systems such as ERP, AI object detection and number plate scanners. {uptime} uptime guarantee, from RM {price}/month.",
     useCases: "Use cases",
     custom: "Custom systems",
     company: "Company",
@@ -114,6 +129,7 @@ const en = {
   bubble: {
     hello: "Hi there! 👋",
     text: "Want a free demo? Your first {months} months are free.",
+    liveText: "Want to see the Live Selling System? Request a demo on WhatsApp.",
     chat: "Chat with us",
     close: "Close message",
     label: "Chat with Techub Software on WhatsApp {phone}",
@@ -142,6 +158,7 @@ const en = {
         "WhatsApp appointment reminder",
         "AI stock control",
         "LHDN e-Invoice system",
+        "live selling system Malaysia",
         "custom software Malaysia",
         "ERP system Malaysia",
         "software company Malaysia",
@@ -164,16 +181,23 @@ const en = {
     },
     highlights: {
       eyebrow: "Why Techub",
-      title: "Fast, smart and *always online*",
+      title: "Why businesses in Malaysia *choose Techub*",
       items: {
-        booking: { title: "Advanced booking", text: "Staff, rooms, services and walk-ins in one calendar." },
-        ai: { title: "AI integration", text: "AI reads delivery notes and predicts stock." },
-        uptime: { title: "{uptime} uptime", text: "Your system stays online, guaranteed." },
-        database: { title: "Enterprise-level database", text: "Indexed NoSQL on enterprise servers in Malaysia." },
-        speed: { title: "Guaranteed speed", text: "Detailed reports in under 100 ms." },
-        realtime: { title: "Real-time updates", text: "Every device updates instantly." },
-        whatsapp: { title: "WhatsApp notifications", text: "Confirmations and reminders, sent for you." },
-        stock: { title: "Stock control", text: "Every item in and out, tracked." },
+        booking: { title: "Bookings in under 10 seconds", text: "Pick the service, staff and time, and it's booked. Walk-ins too." },
+        realtime: { title: "Real-time updates", text: "A booking or sale on one device shows on every device at once." },
+        deposit: { title: "Online deposit payment", text: "Customers pay a deposit online when they book. Fewer no-shows." },
+        whatsapp: { title: "WhatsApp reminders", text: "Booking confirmations and reminders sent on WhatsApp for you." },
+        accounting: {
+          title: "Auto accounting documents",
+          text: "Invoices, credit notes, refund notes and official receipts made for you. No accounting staff needed.",
+        },
+        einvoice: { title: "LHDN e-Invoice", text: "e-Invoices submitted to LHDN MyInvois, straight from the system." },
+        inventory: { title: "Inventory tracking", text: "Stock updates with every sale or use, with low-stock alerts." },
+        reports: { title: "Advanced reports", text: "Sales, staff, stock and customer reports in under 100 ms." },
+        permissions: { title: "Permission control", text: "Decide who can give discounts, issue refunds or see reports." },
+        devices: { title: "Any device, any platform", text: "Windows, Mac, iPad, Android and iPhone. Use what you already have." },
+        easy: { title: "Easy to use", text: "Simple screens your staff learn fast. We set up and train them." },
+        uptime: { title: "{uptime} uptime", text: "Enterprise servers in Malaysia with multi-region backups." },
       },
     },
     softwareName: "Techub Appointment Management System",
@@ -206,7 +230,7 @@ const en = {
     title: "What we do for you",
     intro: "Ready-made or built for you, for businesses across Malaysia. We set it all up and train your team.",
     items: {
-      systems: { title: "Ready-made systems", text: "Appointment systems for clinics, salons, beauty centres and spas." },
+      systems: { title: "Ready-made systems", text: "Appointment systems for clinics, salons, beauty centres and spas, plus live selling." },
       custom: {
         title: "Custom system development",
         text: "ERP, AI object detection, number plate scanners and more. Customisation from RM {custom}.",
@@ -234,7 +258,7 @@ const en = {
   useCases: {
     eyebrow: "Use cases",
     title: "Ready for your industry",
-    intro: "Built for clinics, salons, beauty centres and spas in Malaysia. Tap one to see its system on iPad and phone.",
+    intro: "Built for clinics, salons, beauty centres, spas and live sellers in Malaysia. Tap one to see its system on iPad and phone.",
   },
 
   custom: {
@@ -528,6 +552,29 @@ const en = {
     customEmail: "Email us",
     customEmailSubject: "Customised system quote",
     offerText: "From RM {price} per month. First {months} months free for new users, including installation and staff training.",
+    // Live Selling System: a row on the pricing page, and the main card on its own page
+    liveTitle: "Live Selling System",
+    liveFrom: "from",
+    liveText: "For live sellers: big crowds with Kafka queueing, no overselling, live visitors and advanced reports.",
+    liveCta: "Request a demo",
+    liveMessage: "Hi Techub, I'd like to request a demo of the Live Selling System.",
+    liveSee: "See the system",
+    livePlan: "Techub Live Selling Plan",
+    liveBadge: "Live selling",
+    liveNote: "Request a demo and we'll show you the system with your own products.",
+    liveIncluded: [
+      "Sale page for your live sessions",
+      "Kafka order queueing for big crowds",
+      "No overselling: stock checked on every order",
+      "Products with selling date & time",
+      "Live visitor count by page",
+      "Online payment & order management",
+      "Automatic invoices & official receipts",
+      "Advanced reports in under 100 ms",
+      "{uptime} uptime on servers in Malaysia",
+      "Local support in Malaysia on WhatsApp",
+    ],
+    liveOfferText: "Live Selling System from RM {livePrice} per month.",
   },
 
   faq: {
@@ -537,11 +584,15 @@ const en = {
     items: [
       {
         q: "What does Techub Software do?",
-        a: "Techub Software is a software company based in Malaysia. We build smart, low-cost systems for businesses across Malaysia: ready appointment systems for clinics, hair salons, beauty centres and spas, and custom systems such as ERP, AI object detection and number plate scanners.",
+        a: "Techub Software is a software company based in Malaysia. We build smart, low-cost systems for businesses across Malaysia: ready appointment systems for clinics, hair salons, beauty centres and spas, a live selling system for online sellers, and custom systems such as ERP, AI object detection and number plate scanners.",
       },
       {
         q: "How much does it cost?",
-        a: "Plans start from RM {price} per month, and new customers get the first {months} months free, including installation and staff training. Customisation starts from RM {custom}, depending on your requirements.",
+        a: "Plans start from RM {price} per month, and new customers get the first {months} months free, including installation and staff training. The Live Selling System starts from RM {livePrice} per month. Customisation starts from RM {custom}, depending on your requirements.",
+      },
+      {
+        q: "Can my customers pay a deposit online?",
+        a: "Yes. Customers can pay a booking deposit online when they book, which helps cut no-shows.",
       },
       {
         q: "How fast is the system?",
@@ -564,8 +615,16 @@ const en = {
         a: "Yes. Techub supports LHDN e-Invoice, so invoices can be submitted and validated through MyInvois.",
       },
       {
+        q: "Can the system create invoices and receipts automatically?",
+        a: "Yes. Techub generates invoices, credit notes, refund notes and official receipts automatically, based on how your business works. You don't need accounting staff to prepare them.",
+      },
+      {
         q: "Can you build other systems, such as ERP?",
         a: "Yes. We build custom systems such as ERP, AI object detection and number plate scanners, and we customise our systems for other businesses. WhatsApp us at {phone} to discuss your idea.",
+      },
+      {
+        q: "Do you have a system for live selling?",
+        a: "Yes. The Techub Live Selling System lets you sell online during your live sessions. It handles big crowds of buyers with Kafka order queueing, stops overselling, lets you set each product's selling date and shows your visitors live. It starts from RM {livePrice} per month.",
       },
       {
         q: "Which hardware can I connect?",
@@ -598,9 +657,9 @@ const en = {
   pages: {
     useCases: {
       meta: {
-        title: "Use Cases | Systems for Clinics, Salons, Beauty Centres & Spas in Malaysia",
+        title: "Use Cases | Clinic, Salon, Beauty, Spa & Live Selling Systems in Malaysia",
         description:
-          "Ready appointment systems for clinics, hair salons, beauty centres and spas in Malaysia: WhatsApp reminders, staff profiles, stock control and reports in under 100 ms. See each one on iPad and phone.",
+          "Ready systems for clinics, hair salons, beauty centres, spas and live sellers in Malaysia: WhatsApp reminders, staff profiles, stock control, live sales without overselling and reports in under 100 ms. See each one on iPad and phone.",
       },
     },
     customSystems: {
@@ -614,14 +673,14 @@ const en = {
       meta: {
         title: "Services | Ready Systems, Custom Development, Hardware & Training",
         description:
-          "What {name} does for businesses in Malaysia: ready appointment systems, custom system development, hardware setup, installation, staff training and local support on WhatsApp.",
+          "What {name} does for businesses in Malaysia: ready appointment systems, a live selling system, custom system development, hardware setup, installation, staff training and local support on WhatsApp.",
       },
     },
     pricing: {
       meta: {
         title: "Pricing | From RM {price}/month, First {months} Months Free",
         description:
-          "Techub plans start from RM {price}/month. New customers in Malaysia get the first {months} months free, with installation and staff training included. Customisation from RM {custom}.",
+          "Techub plans start from RM {price}/month. New customers in Malaysia get the first {months} months free, with installation and staff training included. Live Selling System from RM {livePrice}/month; customisation from RM {custom}.",
       },
     },
     about: {
@@ -1192,6 +1251,154 @@ const en = {
       ],
       demoMessage: "Hi Techub, I'd like a free demo of the spa appointment system.",
     },
+
+    live: {
+      meta: {
+        title: "Live Selling System Malaysia | Big Crowds, No Overselling",
+        socialTitle: "Live Selling System Malaysia | Techub Software",
+        description:
+          "Live selling system for online sellers in Malaysia: handles big crowds of buyers with Kafka order queueing, stops overselling, lets you set each product's selling date and shows live visitors by page, with advanced reports. From RM {livePrice}/month.",
+        keywords: [
+          "live selling system Malaysia",
+          "live selling system",
+          "live commerce system",
+          "flash sale system",
+          "online selling system Malaysia",
+          "sistem jualan live",
+          "直播带货系统",
+          "Facebook live selling system",
+          "TikTok live selling system",
+          "prevent overselling",
+          "Kafka order queue",
+        ],
+      },
+      category: "Live selling and online flash sales",
+      eyebrow: "Live Selling System",
+      heading: "Sell to big crowds live, and *never oversell*",
+      intro:
+        "Built for live sellers in Malaysia: add products, set the selling date, and let a big crowd buy at the same time. Kafka order queueing keeps every order in line, and you see your visitors live.",
+      heroBadge: "Live visitors by page",
+      whoFor: ["Facebook Live sellers", "TikTok Live sellers", "Instagram shops", "Fashion & tudung", "Beauty & skincare", "Food & snacks", "Flash sales & pre-orders"],
+      highlights: {
+        crowd: "Handles big crowds",
+        queue: "Kafka order queueing",
+        oversell: "No overselling",
+        schedule: "Set your selling date",
+        visitors: "Live visitors by page",
+        reports: "Advanced reports",
+      },
+      spotlights: {
+        crowd: {
+          eyebrow: "Big crowds, no lag",
+          title: "A big crowd can buy at the same second",
+          points: [
+            "Built for the rush when you say \"buy now\" on your live",
+            "Kafka order queueing takes every order in turn",
+            "Your sale page stays fast under heavy traffic",
+            "Enterprise servers in Malaysia, {uptime} uptime",
+          ],
+        },
+        oversell: {
+          eyebrow: "No overselling",
+          title: "Never sell more than you have",
+          points: [
+            "Stock is checked on every single order",
+            "Items close by themselves when sold out",
+            "No double selling, even at the peak",
+            "Buyers see how many are left",
+          ],
+          badges: ["Stock checked live", "Sold out? Closed."],
+        },
+        schedule: {
+          eyebrow: "Products & selling dates",
+          title: "Add products, then pick the selling date",
+          points: [
+            "Photos, price and stock in a few taps",
+            "Choose the date and time each product goes on sale",
+            "Sales open and close on time by themselves",
+            "Plan your next lives ahead",
+          ],
+        },
+        visitors: {
+          eyebrow: "Live visitors",
+          title: "See who is on your shop, right now",
+          points: [
+            "Live count of visitors on your shop",
+            "Which page each visitor is on",
+            "Orders and payments as they happen",
+            "Know the right moment to push a product",
+          ],
+        },
+        reports: {
+          eyebrow: "Advanced reports",
+          title: "Every live sale, in numbers",
+          points: [
+            "Sales, orders and best sellers for each live",
+            "Visitors, conversion and peak minutes",
+            "Payment methods and sell-through by product",
+            "Reports in under 100 ms, no lag",
+          ],
+        },
+      },
+      modules: {
+        salePage: "Sale page for your live",
+        products: "Product listing with photos",
+        schedule: "Selling date & time",
+        queue: "Kafka order queueing",
+        oversell: "Overselling prevention",
+        stock: "Real-time stock count",
+        visitors: "Live visitor count",
+        pages: "Visitors by page",
+        checkout: "Fast mobile checkout",
+        payment: "Online payment",
+        orders: "Order management",
+        receipts: "Automatic invoices & receipts",
+        einvoice: "LHDN e-Invoice",
+        reports: "Advanced sales reports",
+        permissions: "Staff permission control",
+        devices: "Works on phone, iPad & PC",
+      },
+      faqs: [
+        {
+          q: "What is the Techub Live Selling System?",
+          a: "It is a system for selling online during your live sessions in Malaysia. You add products and choose their selling date, share your sale page on your live, and buyers order from their phones. It handles big crowds, stops overselling and shows your visitors live.",
+        },
+        {
+          q: "Can it handle many buyers at the same time?",
+          a: "Yes. Orders go through Kafka order queueing, which takes a big rush of orders at the same moment and processes each one in turn, so your sale page stays fast.",
+        },
+        {
+          q: "How does it stop overselling?",
+          a: "Stock is checked and deducted for every order the moment it is placed. When an item sells out, it closes automatically, so you never sell more than you have.",
+        },
+        {
+          q: "Can I choose when each product goes on sale?",
+          a: "Yes. Add a product with photos, price and stock, then choose its selling date and time. It opens for sale at the time you set.",
+        },
+        {
+          q: "Can I see how many people are on my shop?",
+          a: "Yes. The live dashboard shows how many visitors are on your shop right now and which page each of them is on, together with orders as they come in.",
+        },
+        {
+          q: "What reports do I get?",
+          a: "Sales, orders, best sellers, visitors, conversion, peak minutes and payment methods for every live sale, generated in under 100 milliseconds.",
+        },
+        {
+          q: "How much is the Live Selling System?",
+          a: "It starts from RM {livePrice} per month, depending on your needs. WhatsApp us at {phone} to request a demo.",
+        },
+        {
+          q: "How do I request a demo?",
+          a: "WhatsApp us at {phone} or email {email}. We will show you the Live Selling System working, with your own products.",
+        },
+      ],
+      demoMessage: "Hi Techub, I'd like to request a demo of the Live Selling System.",
+      contact: {
+        badge: "Request a demo",
+        title: "See the Live Selling System in action",
+        text: "From RM {livePrice}/month, for online sellers across Malaysia.",
+      },
+    },
   },
 
   /* ---------- Example screens: picture titles and alt text ---------- */
@@ -1383,6 +1590,38 @@ const en = {
     objectDetection: {
       title: "AI object detection",
       alt: "Example of an AI object detection system marking people, safety helmets, boxes and vehicles on camera feeds",
+    },
+    liveDashboard: {
+      title: "Live sale dashboard",
+      alt: "Live selling dashboard on an iPad during a live sale, with 1,286 visitors online, orders per minute, sales so far and stock left for each product",
+    },
+    liveVisitors: {
+      title: "Live visitors by page",
+      alt: "Live visitors screen on an iPad showing how many people are on the shop right now, which page each is on, and a live feed of orders and payments",
+    },
+    liveQueue: {
+      title: "Kafka order queue",
+      alt: "Order queue monitor on an iPad: Kafka queue healthy with 0 waiting, a spike of 412 orders a minute processed smoothly, and orders over stock stopped",
+    },
+    liveProducts: {
+      title: "Products & selling dates",
+      alt: "Product list on an iPad with a new product being added, its price, stock and the selling date and time it opens for sale",
+    },
+    reportsLive: {
+      title: "Live sale report",
+      alt: "Live sale report on an iPad generated in under 100 ms: sales, orders, visitors, conversion, payment methods and best sellers",
+    },
+    liveShop: {
+      title: "Sale page on the buyer's phone",
+      alt: "A live sale page on a phone with a LIVE badge, 1,286 people on the shop, products with stock left and sold-out items closed",
+    },
+    liveProduct: {
+      title: "Only 3 left",
+      alt: "Product page on a phone showing only 3 left, a live stock bar, 121 people viewing and a Buy now button",
+    },
+    liveCheckout: {
+      title: "Order confirmed",
+      alt: "Order confirmed on a buyer's phone, paid by online banking, with the official receipt sent to WhatsApp",
     },
   },
 };

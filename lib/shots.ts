@@ -57,6 +57,16 @@ export const shotFiles = {
   spaPackage: { ...phone, file: "spa-customer-package" },
   scanSpa: { ...phone, file: "ai-delivery-note-scan-spa" },
 
+  /* Live selling */
+  liveDashboard: { ...ipad, file: "live-selling-dashboard-ipad" },
+  liveVisitors: { ...ipad, file: "live-selling-visitors-ipad" },
+  liveQueue: { ...ipad, file: "live-selling-order-queue-ipad" },
+  liveProducts: { ...ipad, file: "live-selling-products-schedule-ipad" },
+  reportsLive: { ...ipad, file: "live-selling-report-ipad" },
+  liveShop: { ...phone, file: "live-selling-shop-phone" },
+  liveProduct: { ...phone, file: "live-selling-product-phone" },
+  liveCheckout: { ...phone, file: "live-selling-checkout-phone" },
+
   /* PC */
   permissionsDesktop: { ...desktop, file: "staff-permission-control-desktop" },
   clinicDashboardDesktop: { ...desktop, file: "clinic-dashboard-desktop" },
