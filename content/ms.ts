@@ -48,6 +48,7 @@ const ms: Dict = {
         "Sistem rekod ubat",
         "Panggil nombor giliran di TV",
         "Sambung mesin X-ray & printer",
+        "Bayaran online & deposit melalui payment gateway",
         "Laporan terperinci bawah 100 ms",
       ],
       cta: "Lihat sistem klinik",
@@ -61,6 +62,7 @@ const ms: Dict = {
         "Setiap stylist ada profil sendiri",
         "Pantau inventori & kira gaji",
         "Boleh guna di iPad, telefon & PC",
+        "Bayaran online & deposit melalui payment gateway",
         "Laporan terperinci bawah 100 ms",
       ],
       cta: "Lihat sistem salon",
@@ -74,6 +76,7 @@ const ms: Dict = {
         "Carta muka, gambar & persetujuan",
         "Profil staf & kira gaji",
         "Reminder WhatsApp automatik",
+        "Bayaran online & deposit melalui payment gateway",
         "Laporan terperinci bawah 100 ms",
       ],
       cta: "Lihat sistem pusat kecantikan",
@@ -87,6 +90,7 @@ const ms: Dict = {
         "Notifikasi WhatsApp automatik",
         "Profil staf, inventori & gaji",
         "Boleh guna di iPad, telefon & PC",
+        "Bayaran online & deposit melalui payment gateway",
         "Laporan terperinci bawah 100 ms",
       ],
       cta: "Lihat sistem spa",
@@ -100,6 +104,7 @@ const ms: Dict = {
         "Tak terlebih jual: stok disemak setiap order",
         "Pilih tarikh & masa jualan setiap produk",
         "Jumlah pelawat live & halaman yang mereka buka",
+        "Bayaran online melalui payment gateway",
         "Laporan canggih, dari RM {livePrice}/bulan",
       ],
       cta: "Lihat sistem jualan live",
@@ -183,7 +188,7 @@ const ms: Dict = {
       items: {
         booking: { title: "Booking siap bawah 10 saat", text: "Pilih perkhidmatan, staf dan masa, terus siap booking. Walk-in pun boleh." },
         realtime: { title: "Update real-time", text: "Booking atau jualan di satu peranti terus nampak di semua peranti." },
-        deposit: { title: "Bayar deposit online", text: "Pelanggan bayar deposit online masa buat booking. Kurang kes tak datang." },
+        deposit: { title: "Bayaran online & deposit", text: "Boleh guna pelbagai payment gateway. Pelanggan bayar online, duit terus masuk akaun anda." },
         whatsapp: { title: "Reminder WhatsApp", text: "Pengesahan booking dan reminder dihantar melalui WhatsApp untuk anda." },
         accounting: {
           title: "Dokumen akaun automatik",
@@ -597,7 +602,7 @@ const ms: Dict = {
       },
       {
         q: "Pelanggan saya boleh bayar deposit online?",
-        a: "Boleh. Pelanggan boleh bayar deposit secara online masa buat booking, jadi kurang kes pelanggan tak datang.",
+        a: "Boleh. Techub boleh guna pelbagai payment gateway, jadi pelanggan boleh bayar deposit atau bayaran penuh secara online masa buat booking. Duit terus masuk ke akaun merchant anda sendiri, dan deposit bantu kurangkan kes pelanggan tak datang.",
       },
       {
         q: "Berapa laju sistem ini?",
@@ -741,6 +746,8 @@ const ms: Dict = {
           "sistem klinik gigi",
           "clinic management system Malaysia",
           "clinic software",
+          "bayaran online klinik",
+          "integrasi payment gateway",
         ],
       },
       category: "Pengurusan klinik, EMR dan giliran pesakit",
@@ -806,6 +813,17 @@ const ms: Dict = {
             "Cetak MC, resit & A4",
           ],
         },
+        payment: {
+          eyebrow: "Bayaran online & deposit",
+          title: "Pesakit bayar online. Duit terus masuk akaun anda.",
+          points: [
+            "Boleh guna pelbagai payment gateway",
+            "Bayar deposit atau penuh masa buat booking",
+            "Masuk terus ke akaun merchant anda sendiri",
+            "Kurang kes tak datang bila ada deposit",
+          ],
+          badges: ["Deposit dibayar", "Terus ke akaun anda"],
+        },
         stock: {
           eyebrow: "Kawalan stok AI",
           title: "Imbas nota penghantaran. Stok update sendiri.",
@@ -849,11 +867,11 @@ const ms: Dict = {
         printing: "Cetak MC, label & resit",
         xray: "Sambung mesin X-ray",
         billing: "Bil & claim panel",
+        payment: "Integrasi payment gateway",
         einvoice: "e-Invois LHDN",
         reports: "Laporan bawah 100 ms",
         permissions: "Kawalan akses",
-        devices: "Guna di iPad, telefon & PC",
-        realtime: "Update real-time",
+        devices: "Real-time di iPad, telefon & PC",
       },
       faqs: [
         {
@@ -889,6 +907,10 @@ const ms: Dict = {
           a: "Kami jamin uptime {uptime}. Data anda disimpan pada server bertaraf enterprise di Malaysia, disulitkan, dengan backup berlapis di beberapa lokasi.",
         },
         {
+          q: "Pesakit boleh bayar online?",
+          a: "Boleh. Techub boleh guna pelbagai payment gateway, jadi pesakit boleh bayar deposit atau bayaran penuh secara online masa buat booking, guna perbankan online (FPX), kad atau e-wallet, ikut gateway anda. Duit terus masuk ke akaun merchant klinik anda sendiri.",
+        },
+        {
           q: "Macam mana nak dapatkan demo?",
           a: "WhatsApp kami di {phone} atau email ke {email}. Kami akan buat demo live sistem klinik untuk anda, percuma.",
         },
@@ -915,6 +937,8 @@ const ms: Dict = {
           "reminder temujanji WhatsApp",
           "salon appointment system",
           "hair salon booking system Malaysia",
+          "deposit booking online salon",
+          "integrasi payment gateway",
         ],
       },
       category: "Booking salon rambut, staf, gaji dan POS",
@@ -965,6 +989,17 @@ const ms: Dict = {
             "Pakej & diskaun member",
           ],
         },
+        payment: {
+          eyebrow: "Bayaran online & deposit",
+          title: "Pelanggan bayar online. Duit terus masuk akaun anda.",
+          points: [
+            "Boleh guna pelbagai payment gateway",
+            "Bayar deposit atau penuh masa buat booking",
+            "Masuk terus ke akaun merchant anda sendiri",
+            "Kurang kes tak datang bila ada deposit",
+          ],
+          badges: ["Deposit dibayar", "Terus ke akaun anda"],
+        },
         stock: {
           eyebrow: "Pantau inventori dengan AI",
           title: "Imbas nota penghantaran. Stok update sendiri.",
@@ -1003,14 +1038,14 @@ const ms: Dict = {
         profiles: "Profil staf & booking sendiri",
         customers: "Sejarah pelanggan & formula warna",
         packages: "Pakej & point member",
-        pos: "POS & jualan runcit",
+        pos: "POS, jualan runcit & cetak resit",
+        payment: "Integrasi payment gateway",
         commission: "Komisen stylist",
         payroll: "Kira gaji automatik",
         ai: "Kawalan stok AI",
         inventory: "Pantau inventori",
         einvoice: "e-Invois LHDN",
         reports: "Laporan bawah 100 ms",
-        printing: "Cetak resit",
         permissions: "Kawalan akses",
         devices: "Semua peranti: iPad, telefon & PC",
       },
@@ -1048,6 +1083,10 @@ const ms: Dict = {
           a: "Boleh. Techub boleh guna di semua peranti: tablet iPad dan Android, telefon iPhone dan Android, serta komputer Windows atau Mac.",
         },
         {
+          q: "Pelanggan boleh bayar deposit online?",
+          a: "Boleh. Techub boleh guna pelbagai payment gateway, jadi pelanggan boleh bayar deposit atau bayaran penuh secara online masa buat booking, guna perbankan online (FPX), kad atau e-wallet, ikut gateway anda. Duit terus masuk ke akaun merchant salon anda sendiri, dan deposit bantu kurangkan kes tak datang.",
+        },
+        {
           q: "Macam mana nak dapatkan demo?",
           a: "WhatsApp kami di {phone} atau email ke {email}. Kami akan buat demo live sistem salon untuk anda, percuma.",
         },
@@ -1074,6 +1113,8 @@ const ms: Dict = {
           "sistem gaji pusat kecantikan",
           "beauty centre system",
           "beauty salon booking system",
+          "bayaran online pusat kecantikan",
+          "integrasi payment gateway",
         ],
       },
       category: "Booking pusat kecantikan, pakej dan rekod rawatan",
@@ -1140,6 +1181,17 @@ const ms: Dict = {
             "Tunai, kad, DuitNow QR & e-wallet",
           ],
         },
+        payment: {
+          eyebrow: "Bayaran online & deposit",
+          title: "Pelanggan bayar online. Duit terus masuk akaun anda.",
+          points: [
+            "Boleh guna pelbagai payment gateway",
+            "Bayar deposit atau penuh masa buat booking",
+            "Masuk terus ke akaun merchant anda sendiri",
+            "Kurang kes tak datang bila ada deposit",
+          ],
+          badges: ["Deposit dibayar", "Terus ke akaun anda"],
+        },
         stock: {
           eyebrow: "Pantau inventori dengan AI",
           title: "Imbas nota penghantaran. Stok update sendiri.",
@@ -1168,14 +1220,14 @@ const ms: Dict = {
         customers: "Profil pelanggan & nota kulit",
         faceChart: "Carta muka & e-tandatangan",
         profiles: "Profil staf & booking sendiri",
-        pos: "POS & jualan runcit",
+        pos: "POS, jualan runcit & cetak resit",
+        payment: "Integrasi payment gateway",
         commission: "Komisen staf",
         payroll: "Kira gaji automatik",
         ai: "Kawalan stok AI",
         inventory: "Pantau inventori",
         einvoice: "e-Invois LHDN",
         reports: "Laporan bawah 100 ms",
-        printing: "Cetak resit",
         permissions: "Kawalan akses",
         devices: "Semua peranti: iPad, telefon & PC",
       },
@@ -1209,6 +1261,10 @@ const ms: Dict = {
           a: "Boleh. Techub boleh guna di semua peranti: tablet iPad dan Android, telefon dan komputer.",
         },
         {
+          q: "Pelanggan boleh bayar deposit online?",
+          a: "Boleh. Techub boleh guna pelbagai payment gateway, jadi pelanggan boleh bayar deposit atau bayaran penuh secara online masa buat booking, guna perbankan online (FPX), kad atau e-wallet, ikut gateway anda. Duit terus masuk ke akaun merchant pusat kecantikan anda sendiri, dan deposit bantu kurangkan kes tak datang.",
+        },
+        {
           q: "Macam mana nak dapatkan demo?",
           a: "WhatsApp kami di {phone} atau email ke {email}. Kami akan buat demo live sistem pusat kecantikan untuk anda, percuma.",
         },
@@ -1236,6 +1292,8 @@ const ms: Dict = {
           "sistem membership spa",
           "spa booking system Malaysia",
           "spa management software",
+          "deposit booking online spa",
+          "integrasi payment gateway",
         ],
       },
       category: "Booking spa dan urutan, bilik dan membership",
@@ -1294,6 +1352,17 @@ const ms: Dict = {
             "Laporan jualan harian",
           ],
         },
+        payment: {
+          eyebrow: "Bayaran online & deposit",
+          title: "Pelanggan bayar online. Duit terus masuk akaun anda.",
+          points: [
+            "Boleh guna pelbagai payment gateway",
+            "Bayar deposit atau penuh masa buat booking",
+            "Masuk terus ke akaun merchant anda sendiri",
+            "Kurang kes tak datang bila ada deposit",
+          ],
+          badges: ["Deposit dibayar", "Terus ke akaun anda"],
+        },
         stock: {
           eyebrow: "Pantau inventori dengan AI",
           title: "Imbas nota penghantaran. Stok update sendiri.",
@@ -1332,14 +1401,14 @@ const ms: Dict = {
         group: "Booking pasangan & kumpulan",
         treatmentMap: "Peta rawatan & e-tandatangan",
         profiles: "Profil staf & booking sendiri",
-        pos: "POS & jualan runcit",
+        pos: "POS, jualan runcit & cetak resit",
+        payment: "Integrasi payment gateway",
         commission: "Komisen terapis",
         payroll: "Kira gaji automatik",
         ai: "Kawalan stok AI",
         inventory: "Pantau inventori",
         einvoice: "e-Invois LHDN",
         reports: "Laporan bawah 100 ms",
-        printing: "Cetak resit",
         permissions: "Kawalan akses",
         devices: "Semua peranti: iPad, telefon & PC",
       },
@@ -1377,6 +1446,10 @@ const ms: Dict = {
           a: "Boleh. Techub boleh guna di semua peranti, jadi kaunter depan dan terapis boleh guna iPad, tablet Android, telefon atau komputer.",
         },
         {
+          q: "Pelanggan boleh bayar deposit online?",
+          a: "Boleh. Techub boleh guna pelbagai payment gateway, jadi pelanggan boleh bayar deposit atau bayaran penuh secara online masa buat booking, guna perbankan online (FPX), kad atau e-wallet, ikut gateway anda. Duit terus masuk ke akaun merchant spa anda sendiri, dan deposit bantu kurangkan kes tak datang.",
+        },
+        {
           q: "Macam mana nak dapatkan demo?",
           a: "WhatsApp kami di {phone} atau email ke {email}. Kami akan buat demo live sistem spa untuk anda, percuma.",
         },
@@ -1405,6 +1478,8 @@ const ms: Dict = {
           "live selling system Malaysia",
           "flash sale system",
           "Kafka order queue",
+          "payment gateway jualan live",
+          "integrasi payment gateway",
         ],
       },
       category: "Jualan live dan flash sale online",
@@ -1454,6 +1529,17 @@ const ms: Dict = {
             "Rancang sesi live seterusnya awal-awal",
           ],
         },
+        payment: {
+          eyebrow: "Bayaran online",
+          title: "Pembeli bayar online. Duit terus masuk akaun anda.",
+          points: [
+            "Boleh guna pelbagai payment gateway",
+            "Pembeli bayar masa checkout, terus lepas order",
+            "Masuk terus ke akaun merchant anda sendiri",
+            "Resit rasmi dihantar di WhatsApp",
+          ],
+          badges: ["Dibayar masa checkout", "Terus ke akaun anda"],
+        },
         visitors: {
           eyebrow: "Pelawat live",
           title: "Tengok siapa ada di kedai anda, sekarang juga",
@@ -1485,7 +1571,7 @@ const ms: Dict = {
         visitors: "Jumlah pelawat live",
         pages: "Pelawat ikut halaman",
         checkout: "Checkout laju di telefon",
-        payment: "Bayaran online",
+        payment: "Integrasi payment gateway",
         orders: "Urus order",
         receipts: "Invois & resit automatik",
         einvoice: "e-Invois LHDN",
@@ -1517,6 +1603,10 @@ const ms: Dict = {
         {
           q: "Laporan apa yang saya dapat?",
           a: "Jualan, order, produk terlaris, pelawat, kadar conversion, minit puncak dan cara bayaran untuk setiap jualan live, siap dalam masa kurang 100 milisaat.",
+        },
+        {
+          q: "Macam mana pembeli bayar?",
+          a: "Secara online, masa checkout. Techub boleh guna pelbagai payment gateway, jadi pembeli boleh bayar guna perbankan online (FPX), kad atau e-wallet, ikut gateway anda. Duit terus masuk ke akaun merchant anda sendiri.",
         },
         {
           q: "Berapa harga Sistem Jualan Live?",
@@ -1566,6 +1656,10 @@ const ms: Dict = {
       title: "AI imbas nota penghantaran",
       alt: "Telefon imbas nota penghantaran pembekal ubat, AI baca setiap item, batch dan tarikh luput, lalu update stok klinik",
     },
+    paymentClinic: {
+      title: "Bayaran online & deposit",
+      alt: "Pesakit bayar deposit RM 50 untuk saringan kesihatan di telefon, guna perbankan online (FPX), kad, e-wallet atau DuitNow QR, terus masuk akaun merchant klinik",
+    },
     queueTv: {
       title: "Paparan panggil nombor giliran",
       alt: "Paparan TV panggil nombor giliran klinik yang tunjuk nombor A023 sedang dipanggil ke Bilik 2 dalam bahasa Inggeris, Melayu dan Cina",
@@ -1602,6 +1696,10 @@ const ms: Dict = {
       title: "AI imbas nota penghantaran",
       alt: "Telefon imbas nota penghantaran produk rambut, AI baca setiap item dan update stok salon",
     },
+    paymentSalon: {
+      title: "Deposit booking online",
+      alt: "Pelanggan bayar deposit booking RM 50 untuk warna & rawatan rambut di telefon, guna perbankan online (FPX), kad, e-wallet atau DuitNow QR, terus masuk akaun merchant salon",
+    },
     beautyCalendar: {
       title: "Kalendar booking pusat kecantikan",
       alt: "Kalendar booking pusat kecantikan di iPad dengan booking facial, bulu mata dan kening, kuku dan slimming, serta sesi pakej",
@@ -1629,6 +1727,10 @@ const ms: Dict = {
     scanBeauty: {
       title: "AI imbas nota penghantaran",
       alt: "Telefon imbas nota penghantaran bekalan kecantikan, AI baca setiap item dan update stok",
+    },
+    paymentBeauty: {
+      title: "Deposit booking online",
+      alt: "Pelanggan bayar deposit booking RM 30 untuk Hydra Facial di telefon, guna perbankan online (FPX), kad, e-wallet atau DuitNow QR, terus masuk akaun merchant pusat kecantikan",
     },
     spaCalendar: {
       title: "Kalendar booking spa",
@@ -1661,6 +1763,10 @@ const ms: Dict = {
     scanSpa: {
       title: "AI imbas nota penghantaran",
       alt: "Telefon imbas nota penghantaran bekalan spa, AI baca setiap item dan update stok",
+    },
+    paymentSpa: {
+      title: "Deposit booking online",
+      alt: "Pelanggan bayar deposit booking RM 40 untuk urutan Bali di telefon, guna perbankan online (FPX), kad, e-wallet atau DuitNow QR, terus masuk akaun merchant spa",
     },
     permissionsDesktop: {
       title: "Kawalan akses staf di PC",
@@ -1757,6 +1863,10 @@ const ms: Dict = {
     liveCheckout: {
       title: "Order disahkan",
       alt: "Order disahkan di telefon pembeli, dibayar melalui online banking, dengan resit rasmi dihantar ke WhatsApp",
+    },
+    livePayment: {
+      title: "Bayaran online masa checkout",
+      alt: "Pembeli bayar RM 77.80 untuk order jualan live di telefon, guna perbankan online (FPX), kad, e-wallet atau DuitNow QR, terus masuk akaun merchant kedai",
     },
   },
 };

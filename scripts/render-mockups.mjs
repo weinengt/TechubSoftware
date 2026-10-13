@@ -30,6 +30,7 @@ export const screens = [
   { name: "clinic-staff-permissions-ipad", file: "permissions.html?v=clinic", ...ipad },
   { name: "whatsapp-appointment-reminder-clinic", file: "whatsapp.html?v=clinic", ...phone },
   { name: "ai-delivery-note-scan", file: "delivery-scan.html?v=clinic", ...phone },
+  { name: "online-payment-deposit-clinic", file: "online-payment.html?v=clinic", ...phone },
   { name: "queue-number-calling-display", file: "queue-display.html", w: 1280, h: 720, scale: 1.5 },
   { name: "printouts-receipt-label-mc", file: "printouts.html", w: 1000, h: 700, scale: 1.5, transparent: true },
   // Hair salon
@@ -40,6 +41,7 @@ export const screens = [
   { name: "whatsapp-appointment-reminder-salon", file: "whatsapp.html?v=salon", ...phone },
   { name: "salon-customer-profile", file: "customer-package.html?v=salon", ...phone },
   { name: "ai-delivery-note-scan-salon", file: "delivery-scan.html?v=salon", ...phone },
+  { name: "online-payment-deposit-salon", file: "online-payment.html?v=salon", ...phone },
   // Beauty centre
   { name: "beauty-appointment-calendar-ipad", file: "calendar.html?v=beauty", ...ipad },
   { name: "beauty-face-chart-ipad", file: "body-chart.html?v=beauty", ...ipad },
@@ -48,6 +50,7 @@ export const screens = [
   { name: "whatsapp-appointment-reminder-beauty", file: "whatsapp.html?v=beauty", ...phone },
   { name: "beauty-customer-package", file: "customer-package.html?v=beauty", ...phone },
   { name: "ai-delivery-note-scan-beauty", file: "delivery-scan.html?v=beauty", ...phone },
+  { name: "online-payment-deposit-beauty", file: "online-payment.html?v=beauty", ...phone },
   // Spa
   { name: "spa-appointment-calendar-ipad", file: "calendar.html?v=spa", ...ipad },
   { name: "body-chart-hand-drawing-spa", file: "body-chart.html?v=spa", ...ipad },
@@ -57,6 +60,7 @@ export const screens = [
   { name: "whatsapp-appointment-reminder-spa", file: "whatsapp.html?v=spa", ...phone },
   { name: "spa-customer-package", file: "customer-package.html?v=spa", ...phone },
   { name: "ai-delivery-note-scan-spa", file: "delivery-scan.html?v=spa", ...phone },
+  { name: "online-payment-deposit-spa", file: "online-payment.html?v=spa", ...phone },
   // Desktop (PC) screens for the "works on every device" pictures
   { name: "staff-permission-control-desktop", file: "permissions.html?v=salon", w: 1200, h: 750, scale: 1.5 },
   { name: "clinic-dashboard-desktop", file: "clinic-dashboard.html", w: 1200, h: 750, scale: 1.5 },
@@ -85,6 +89,7 @@ export const screens = [
   { name: "live-selling-shop-phone", file: "live-shop.html", ...phone },
   { name: "live-selling-product-phone", file: "live-shop.html?v=product", ...phone },
   { name: "live-selling-checkout-phone", file: "live-checkout.html", ...phone },
+  { name: "live-selling-online-payment-phone", file: "online-payment.html?v=live", ...phone },
   // Social share picture (WhatsApp, Facebook, LinkedIn previews). Rendered last: it uses the screens above.
   { name: "og-image", file: "og.html", w: 1200, h: 630, scale: 1, out: "public/og-image.jpg" },
 ];

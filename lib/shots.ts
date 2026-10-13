@@ -26,6 +26,7 @@ export const shotFiles = {
   clinicPermissions: { ...ipad, file: "clinic-staff-permissions-ipad" },
   whatsappClinic: { ...phone, file: "whatsapp-appointment-reminder-clinic" },
   scanClinic: { ...phone, file: "ai-delivery-note-scan" },
+  paymentClinic: { ...phone, file: "online-payment-deposit-clinic" },
   queueTv: { w: 1920, h: 1080, kind: "tv", file: "queue-number-calling-display" },
   printouts: { w: 1500, h: 1050, kind: "paper", file: "printouts-receipt-label-mc" },
 
@@ -37,6 +38,7 @@ export const shotFiles = {
   whatsappSalon: { ...phone, file: "whatsapp-appointment-reminder-salon" },
   salonCustomer: { ...phone, file: "salon-customer-profile" },
   scanSalon: { ...phone, file: "ai-delivery-note-scan-salon" },
+  paymentSalon: { ...phone, file: "online-payment-deposit-salon" },
 
   /* Beauty centre */
   beautyCalendar: { ...ipad, file: "beauty-appointment-calendar-ipad" },
@@ -46,6 +48,7 @@ export const shotFiles = {
   whatsappBeauty: { ...phone, file: "whatsapp-appointment-reminder-beauty" },
   beautyPackage: { ...phone, file: "beauty-customer-package" },
   scanBeauty: { ...phone, file: "ai-delivery-note-scan-beauty" },
+  paymentBeauty: { ...phone, file: "online-payment-deposit-beauty" },
 
   /* Spa */
   spaCalendar: { ...ipad, file: "spa-appointment-calendar-ipad" },
@@ -56,6 +59,7 @@ export const shotFiles = {
   whatsappSpa: { ...phone, file: "whatsapp-appointment-reminder-spa" },
   spaPackage: { ...phone, file: "spa-customer-package" },
   scanSpa: { ...phone, file: "ai-delivery-note-scan-spa" },
+  paymentSpa: { ...phone, file: "online-payment-deposit-spa" },
 
   /* Live selling */
   liveDashboard: { ...ipad, file: "live-selling-dashboard-ipad" },
@@ -66,6 +70,7 @@ export const shotFiles = {
   liveShop: { ...phone, file: "live-selling-shop-phone" },
   liveProduct: { ...phone, file: "live-selling-product-phone" },
   liveCheckout: { ...phone, file: "live-selling-checkout-phone" },
+  livePayment: { ...phone, file: "live-selling-online-payment-phone" },
 
   /* PC */
   permissionsDesktop: { ...desktop, file: "staff-permission-control-desktop" },

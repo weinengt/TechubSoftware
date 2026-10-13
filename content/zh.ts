@@ -49,6 +49,7 @@ const zh: Dict = {
         "用药记录追踪",
         "电视屏幕叫号",
         "连接X光机和打印机",
+        "支付网关：网上付款和收订金",
         "详细报表 100 毫秒内出来",
       ],
       cta: "看看诊所系统",
@@ -62,6 +63,7 @@ const zh: Dict = {
         "每位发型师都有自己的账号",
         "库存追踪，薪水自动算",
         "iPad、手机、电脑都能用",
+        "支付网关：网上付款和收订金",
         "详细报表 100 毫秒内出来",
       ],
       cta: "看看发廊系统",
@@ -75,6 +77,7 @@ const zh: Dict = {
         "面部图、照片和同意书",
         "员工账号，薪水自动算",
         "自动发 WhatsApp 提醒",
+        "支付网关：网上付款和收订金",
         "详细报表 100 毫秒内出来",
       ],
       cta: "看看美容中心系统",
@@ -88,6 +91,7 @@ const zh: Dict = {
         "自动发 WhatsApp 通知",
         "员工账号、库存和薪水",
         "iPad、手机、电脑都能用",
+        "支付网关：网上付款和收订金",
         "详细报表 100 毫秒内出来",
       ],
       cta: "看看 SPA 系统",
@@ -101,6 +105,7 @@ const zh: Dict = {
         "每张订单都查库存，不会超卖",
         "每件产品自己设定开卖日期和时间",
         "即时看到有多少访客、在看哪一页",
+        "支付网关：买家网上付款",
         "高级报表，月费 RM {livePrice} 起",
       ],
       cta: "看看直播带货系统",
@@ -186,7 +191,7 @@ const zh: Dict = {
       items: {
         booking: { title: "10 秒内搞定预约", text: "选好服务、员工和时间，一下就预约好。Walk-in 顾客也可以。" },
         realtime: { title: "即时更新", text: "一台设备有新预约或新销售，所有设备马上看到。" },
-        deposit: { title: "网上付订金", text: "顾客预约时就在网上付订金，放飞机少很多。" },
+        deposit: { title: "网上付款和订金", text: "支持多种支付网关。顾客网上付款，钱直接进你的户口。" },
         whatsapp: { title: "WhatsApp 提醒", text: "预约确认和提醒，系统自动帮你用 WhatsApp 发。" },
         accounting: {
           title: "会计单据自动生成",
@@ -596,7 +601,7 @@ const zh: Dict = {
       },
       {
         q: "顾客可以在网上付订金吗？",
-        a: "可以。顾客预约时就能在网上付订金，帮你减少放飞机。",
+        a: "可以。Techub 支持多种支付网关，顾客预约时就能在网上付订金或全额，钱直接进你自己的商家户口，也帮你减少放飞机。",
       },
       {
         q: "系统有多快？",
@@ -737,6 +742,8 @@ const zh: Dict = {
           "clinic management system Malaysia",
           "clinic system Malaysia",
           "EMR Malaysia",
+          "诊所网上付款",
+          "支付网关整合",
         ],
       },
       category: "诊所管理、EMR 和病人排队",
@@ -779,6 +786,17 @@ const zh: Dict = {
           title: "连接你诊所的硬件",
           points: ["药物标签打印机", "叫号系统", "X光机", "MC、收据和 A4 打印"],
         },
+        payment: {
+          eyebrow: "网上付款和订金",
+          title: "病人网上付款，钱直接进你的户口",
+          points: [
+            "支持多种支付网关（Payment Gateway）",
+            "预约时付订金或全额",
+            "钱直接进你自己的商家户口",
+            "收了订金，放飞机少很多",
+          ],
+          badges: ["订金已付", "直接进你的户口"],
+        },
         stock: {
           eyebrow: "AI 库存管理",
           title: "扫一扫送货单，库存自动更新。",
@@ -812,11 +830,11 @@ const zh: Dict = {
         printing: "MC、标签和收据打印",
         xray: "连接X光机",
         billing: "收费和 Panel 索偿",
+        payment: "支付网关整合",
         einvoice: "LHDN 电子发票",
         reports: "报表 100 毫秒内出来",
         permissions: "权限管理",
-        devices: "iPad、手机、电脑都能用",
-        realtime: "即时更新",
+        devices: "iPad、手机、电脑即时同步",
       },
       faqs: [
         {
@@ -852,6 +870,10 @@ const zh: Dict = {
           a: "我们保证 {uptime} 在线率。你的资料加密存放在马来西亚的企业级服务器上，还有跨区域的多层备份。",
         },
         {
+          q: "病人可以网上付款吗？",
+          a: "可以。Techub 支持多种支付网关，病人预约时可以在网上付订金或全额，用网上银行（FPX）、信用卡/扣账卡或电子钱包都行，看你用哪个网关。钱直接进你诊所自己的商家户口。",
+        },
+        {
           q: "怎样预约 Demo？",
           a: "WhatsApp {phone} 或发电邮到 {email}，我们会免费 Demo 诊所系统给你看。",
         },
@@ -878,6 +900,8 @@ const zh: Dict = {
           "salon appointment system",
           "salon booking system Malaysia",
           "salon POS Malaysia",
+          "发廊网上订金",
+          "支付网关整合",
         ],
       },
       category: "发廊预约、员工、薪水和 POS",
@@ -916,6 +940,17 @@ const zh: Dict = {
           title: "结账快，佣金自动算好。",
           points: ["服务和零售一张单", "按发型师计算佣金", "现金、刷卡、DuitNow QR 和电子钱包", "配套和会员折扣"],
         },
+        payment: {
+          eyebrow: "网上付款和订金",
+          title: "顾客网上付款，钱直接进你的户口",
+          points: [
+            "支持多种支付网关（Payment Gateway）",
+            "预约时付订金或全额",
+            "钱直接进你自己的商家户口",
+            "收了订金，放飞机少很多",
+          ],
+          badges: ["订金已付", "直接进你的户口"],
+        },
         stock: {
           eyebrow: "AI 库存追踪",
           title: "扫一扫送货单，库存自动更新。",
@@ -939,14 +974,14 @@ const zh: Dict = {
         profiles: "员工账号和自己的预约",
         customers: "顾客记录和染发配方",
         packages: "配套和会员积分",
-        pos: "POS 和零售",
+        pos: "POS、零售和收据打印",
+        payment: "支付网关整合",
         commission: "发型师佣金",
         payroll: "薪水计算",
         ai: "AI 库存管理",
         inventory: "库存追踪",
         einvoice: "LHDN 电子发票",
         reports: "报表 100 毫秒内出来",
-        printing: "收据打印",
         permissions: "权限管理",
         devices: "跨平台：iPad、手机、电脑",
       },
@@ -984,6 +1019,10 @@ const zh: Dict = {
           a: "可以。Techub 跨平台：iPad 和 Android 平板、iPhone 和 Android 手机，还有 Windows 或 Mac 电脑都能用。",
         },
         {
+          q: "顾客可以在网上付订金吗？",
+          a: "可以。Techub 支持多种支付网关，顾客预约时可以在网上付订金或全额，用网上银行（FPX）、信用卡/扣账卡或电子钱包都行，看你用哪个网关。钱直接进你发廊自己的商家户口，收订金也能减少放飞机。",
+        },
+        {
           q: "怎样预约 Demo？",
           a: "WhatsApp {phone} 或发电邮到 {email}，我们会免费 Demo 发廊系统给你看。",
         },
@@ -1010,6 +1049,8 @@ const zh: Dict = {
           "美容院薪水系统",
           "beauty centre system Malaysia",
           "beauty salon booking system",
+          "美容中心网上付款",
+          "支付网关整合",
         ],
       },
       category: "美容中心预约、配套和疗程记录",
@@ -1053,6 +1094,17 @@ const zh: Dict = {
           title: "用配套结账，按一下就好",
           points: ["扣除配套次数", "疗程和产品一张单", "按美容师计算佣金", "现金、刷卡、DuitNow QR 和电子钱包"],
         },
+        payment: {
+          eyebrow: "网上付款和订金",
+          title: "顾客网上付款，钱直接进你的户口",
+          points: [
+            "支持多种支付网关（Payment Gateway）",
+            "预约时付订金或全额",
+            "钱直接进你自己的商家户口",
+            "收了订金，放飞机少很多",
+          ],
+          badges: ["订金已付", "直接进你的户口"],
+        },
         stock: {
           eyebrow: "AI 库存追踪",
           title: "扫一扫送货单，库存自动更新。",
@@ -1071,14 +1123,14 @@ const zh: Dict = {
         customers: "顾客资料和肤况记录",
         faceChart: "面部图和电子签名",
         profiles: "员工账号和自己的预约",
-        pos: "POS 和零售",
+        pos: "POS、零售和收据打印",
+        payment: "支付网关整合",
         commission: "员工佣金",
         payroll: "薪水计算",
         ai: "AI 库存管理",
         inventory: "库存追踪",
         einvoice: "LHDN 电子发票",
         reports: "报表 100 毫秒内出来",
-        printing: "收据打印",
         permissions: "权限管理",
         devices: "跨平台：iPad、手机、电脑",
       },
@@ -1112,6 +1164,10 @@ const zh: Dict = {
           a: "可以。Techub 跨平台：iPad 和 Android 平板、手机和电脑都能用。",
         },
         {
+          q: "顾客可以在网上付订金吗？",
+          a: "可以。Techub 支持多种支付网关，顾客预约时可以在网上付订金或全额，用网上银行（FPX）、信用卡/扣账卡或电子钱包都行，看你用哪个网关。钱直接进你美容中心自己的商家户口，收订金也能减少放飞机。",
+        },
+        {
           q: "怎样预约 Demo？",
           a: "WhatsApp {phone} 或发电邮到 {email}，我们会免费 Demo 美容中心系统给你看。",
         },
@@ -1138,6 +1194,8 @@ const zh: Dict = {
           "SPA会员系统",
           "spa booking system Malaysia",
           "massage booking system",
+          "SPA 网上订金",
+          "支付网关整合",
         ],
       },
       category: "SPA 和按摩预约、房间和会员",
@@ -1181,6 +1239,17 @@ const zh: Dict = {
           title: "结账和佣金，一次搞定",
           points: ["疗程、配套和零售", "每位按摩师的佣金自动算", "现金、刷卡、DuitNow QR 和电子钱包", "每日销售报表"],
         },
+        payment: {
+          eyebrow: "网上付款和订金",
+          title: "顾客网上付款，钱直接进你的户口",
+          points: [
+            "支持多种支付网关（Payment Gateway）",
+            "预约时付订金或全额",
+            "钱直接进你自己的商家户口",
+            "收了订金，放飞机少很多",
+          ],
+          badges: ["订金已付", "直接进你的户口"],
+        },
         stock: {
           eyebrow: "AI 库存追踪",
           title: "扫一扫送货单，库存自动更新。",
@@ -1209,14 +1278,14 @@ const zh: Dict = {
         group: "情侣和团体预约",
         treatmentMap: "疗程部位图和电子签名",
         profiles: "员工账号和自己的预约",
-        pos: "POS 和零售",
+        pos: "POS、零售和收据打印",
+        payment: "支付网关整合",
         commission: "按摩师佣金",
         payroll: "薪水计算",
         ai: "AI 库存管理",
         inventory: "库存追踪",
         einvoice: "LHDN 电子发票",
         reports: "报表 100 毫秒内出来",
-        printing: "收据打印",
         permissions: "权限管理",
         devices: "跨平台：iPad、手机、电脑",
       },
@@ -1254,6 +1323,10 @@ const zh: Dict = {
           a: "可以。Techub 跨平台，前台和按摩师都可以用 iPad、Android 平板、手机或电脑。",
         },
         {
+          q: "顾客可以在网上付订金吗？",
+          a: "可以。Techub 支持多种支付网关，顾客预约时可以在网上付订金或全额，用网上银行（FPX）、信用卡/扣账卡或电子钱包都行，看你用哪个网关。钱直接进你 SPA 自己的商家户口，收订金也能减少放飞机。",
+        },
+        {
           q: "怎样预约 Demo？",
           a: "WhatsApp {phone} 或发电邮到 {email}，我们会免费 Demo SPA 系统给你看。",
         },
@@ -1283,6 +1356,8 @@ const zh: Dict = {
           "Kafka订单排队",
           "live selling system Malaysia",
           "flash sale system",
+          "直播带货 支付网关",
+          "支付网关整合",
         ],
       },
       category: "直播带货和网上限时抢购",
@@ -1332,6 +1407,17 @@ const zh: Dict = {
             "接下来几场直播，可以提早安排",
           ],
         },
+        payment: {
+          eyebrow: "网上付款",
+          title: "买家网上付款，钱直接进你的户口",
+          points: [
+            "支持多种支付网关（Payment Gateway）",
+            "买家下单后马上结账付款",
+            "钱直接进你自己的商家户口",
+            "正式收据（OR）自动发到 WhatsApp",
+          ],
+          badges: ["结账已付款", "直接进你的户口"],
+        },
         visitors: {
           eyebrow: "即时访客",
           title: "谁在逛你的网店，即时看得到",
@@ -1363,7 +1449,7 @@ const zh: Dict = {
         visitors: "即时访客人数",
         pages: "每页访客人数",
         checkout: "手机快速结账",
-        payment: "网上付款",
+        payment: "支付网关整合",
         orders: "订单管理",
         receipts: "自动开发票和收据",
         einvoice: "LHDN 电子发票",
@@ -1395,6 +1481,10 @@ const zh: Dict = {
         {
           q: "有哪些报表？",
           a: "每场直播的销售额、订单、热卖产品、访客、转化率、高峰时段和付款方式，全部 100 毫秒内出来。",
+        },
+        {
+          q: "买家怎么付款？",
+          a: "在网上结账时付款。Techub 支持多种支付网关，买家可以用网上银行（FPX）、信用卡/扣账卡或电子钱包付款，看你用哪个网关。钱直接进你自己的商家户口。",
         },
         {
           q: "直播带货系统收费多少？",
@@ -1444,6 +1534,10 @@ const zh: Dict = {
       title: "AI 扫描送货单",
       alt: "用手机扫描药物供应商的送货单，AI 读出每个品项、批号和有效期，并更新诊所库存",
     },
+    paymentClinic: {
+      title: "网上付款和订金",
+      alt: "病人在手机上为健康检查付 RM 50 订金，可用网上银行（FPX）、信用卡、电子钱包或 DuitNow QR，钱直接进诊所自己的商家户口",
+    },
     queueTv: {
       title: "叫号显示屏",
       alt: "诊所叫号电视屏幕，用英文、马来文和中文显示正在叫 A023 到 2 号诊室",
@@ -1480,6 +1574,10 @@ const zh: Dict = {
       title: "AI 扫描送货单",
       alt: "用手机扫描美发产品的送货单，AI 读出每个品项并更新发廊库存",
     },
+    paymentSalon: {
+      title: "网上付预约订金",
+      alt: "顾客在手机上为染发护发付 RM 50 预约订金，可用网上银行（FPX）、信用卡、电子钱包或 DuitNow QR，钱直接进发廊自己的商家户口",
+    },
     beautyCalendar: {
       title: "美容中心预约日历",
       alt: "iPad 上的美容中心预约日历，有面部护理、美睫绣眉、美甲和纤体预约，还有配套疗程",
@@ -1507,6 +1605,10 @@ const zh: Dict = {
     scanBeauty: {
       title: "AI 扫描送货单",
       alt: "用手机扫描美容用品的送货单，AI 读出每个品项并更新库存",
+    },
+    paymentBeauty: {
+      title: "网上付预约订金",
+      alt: "顾客在手机上为 Hydra Facial 付 RM 30 预约订金，可用网上银行（FPX）、信用卡、电子钱包或 DuitNow QR，钱直接进美容中心自己的商家户口",
     },
     spaCalendar: {
       title: "SPA 预约日历",
@@ -1539,6 +1641,10 @@ const zh: Dict = {
     scanSpa: {
       title: "AI 扫描送货单",
       alt: "用手机扫描 SPA 用品的送货单，AI 读出每个品项并更新库存",
+    },
+    paymentSpa: {
+      title: "网上付预约订金",
+      alt: "顾客在手机上为峇厘岛按摩付 RM 40 预约订金，可用网上银行（FPX）、信用卡、电子钱包或 DuitNow QR，钱直接进 SPA 自己的商家户口",
     },
     permissionsDesktop: {
       title: "电脑上的员工权限管理",
@@ -1635,6 +1741,10 @@ const zh: Dict = {
     liveCheckout: {
       title: "订单已确认",
       alt: "买家手机上的订单确认画面，用网上银行付款，正式收据已发到 WhatsApp",
+    },
+    livePayment: {
+      title: "结账时网上付款",
+      alt: "买家在手机上为直播订单付 RM 77.80，可用网上银行（FPX）、信用卡、电子钱包或 DuitNow QR，钱直接进网店自己的商家户口",
     },
   },
 };

@@ -52,6 +52,7 @@ const en = {
         "Medication tracking system",
         "Queue number calling on TV",
         "X-ray machine & printer connection",
+        "Online payment & deposits via payment gateway",
         "Detailed reports in under 100 ms",
       ],
       cta: "See the clinic system",
@@ -65,6 +66,7 @@ const en = {
         "Each stylist has their own profile",
         "Inventory tracking & payroll calculation",
         "Works on iPad, phone & PC",
+        "Online payment & deposits via payment gateway",
         "Detailed reports in under 100 ms",
       ],
       cta: "See the salon system",
@@ -78,6 +80,7 @@ const en = {
         "Face charts, photos & consent",
         "Staff profiles & payroll calculation",
         "Automatic WhatsApp reminders",
+        "Online payment & deposits via payment gateway",
         "Detailed reports in under 100 ms",
       ],
       cta: "See the beauty centre system",
@@ -91,6 +94,7 @@ const en = {
         "Automatic WhatsApp notifications",
         "Staff profiles, inventory & payroll",
         "Works on iPad, phone & PC",
+        "Online payment & deposits via payment gateway",
         "Detailed reports in under 100 ms",
       ],
       cta: "See the spa system",
@@ -104,6 +108,7 @@ const en = {
         "No overselling: stock checked on every order",
         "Choose each product's selling date and time",
         "Live visitor count and the page they're on",
+        "Online payment via payment gateway",
         "Advanced reports, from RM {livePrice}/month",
       ],
       cta: "See the live selling system",
@@ -185,7 +190,7 @@ const en = {
       items: {
         booking: { title: "Bookings in under 10 seconds", text: "Pick the service, staff and time, and it's booked. Walk-ins too." },
         realtime: { title: "Real-time updates", text: "A booking or sale on one device shows on every device at once." },
-        deposit: { title: "Online deposit payment", text: "Customers pay a deposit online when they book. Fewer no-shows." },
+        deposit: { title: "Online payment & deposits", text: "Works with various payment gateways. Customers pay online, straight into your account." },
         whatsapp: { title: "WhatsApp reminders", text: "Booking confirmations and reminders sent on WhatsApp for you." },
         accounting: {
           title: "Auto accounting documents",
@@ -592,7 +597,7 @@ const en = {
       },
       {
         q: "Can my customers pay a deposit online?",
-        a: "Yes. Customers can pay a booking deposit online when they book, which helps cut no-shows.",
+        a: "Yes. Techub works with various payment gateways, so customers can pay a deposit or the full amount online when they book. The money goes straight into your own merchant account, and deposits help cut no-shows.",
       },
       {
         q: "How fast is the system?",
@@ -734,6 +739,8 @@ const en = {
           "clinic e-Invoice LHDN",
           "GP clinic system",
           "dental clinic system",
+          "clinic online payment",
+          "payment gateway integration Malaysia",
         ],
       },
       category: "Clinic management, EMR and patient queue",
@@ -776,6 +783,17 @@ const en = {
           title: "Connects to your clinic hardware",
           points: ["Label printers for medicine labels", "Number calling system", "X-ray machines", "MC, receipt & A4 printing"],
         },
+        payment: {
+          eyebrow: "Online payment & deposits",
+          title: "Patients pay online. The money goes straight to you.",
+          points: [
+            "Works with various payment gateways",
+            "Deposit or full payment when they book",
+            "Paid into your own merchant account",
+            "Fewer no-shows with a booking deposit",
+          ],
+          badges: ["Deposit paid", "Straight to your account"],
+        },
         stock: {
           eyebrow: "AI stock control",
           title: "Scan the delivery note. Stock updates itself.",
@@ -809,11 +827,11 @@ const en = {
         printing: "MC, label & receipt printing",
         xray: "X-ray machine connection",
         billing: "Billing & panel claims",
+        payment: "Payment gateway integration",
         einvoice: "LHDN e-Invoice",
         reports: "Reports in under 100 ms",
         permissions: "Permission control",
-        devices: "Works on iPad, phone & PC",
-        realtime: "Real-time updates",
+        devices: "Real-time on iPad, phone & PC",
       },
       faqs: [
         {
@@ -849,6 +867,10 @@ const en = {
           a: "We guarantee {uptime} uptime. Your data is kept on enterprise servers in Malaysia, encrypted, with multi-layer backups across regions.",
         },
         {
+          q: "Can patients pay online?",
+          a: "Yes. Techub works with various payment gateways, so patients can pay a deposit or the full amount online when they book, by online banking (FPX), card or e-wallet, depending on your gateway. The money goes straight into your clinic's own merchant account.",
+        },
+        {
           q: "How do I get a demo?",
           a: "WhatsApp us at {phone} or email {email}. We will show you the clinic system live, for free.",
         },
@@ -873,6 +895,8 @@ const en = {
           "stylist commission",
           "sistem temujanji salon",
           "WhatsApp appointment reminder",
+          "salon online booking deposit",
+          "payment gateway integration Malaysia",
         ],
       },
       category: "Hair salon booking, staff, payroll and POS",
@@ -911,6 +935,17 @@ const en = {
           title: "Fast checkout. Commission done for you.",
           points: ["Services and retail in one bill", "Commission per stylist", "Cash, card, DuitNow QR & e-wallet", "Packages & member discounts"],
         },
+        payment: {
+          eyebrow: "Online payment & deposits",
+          title: "Customers pay online. The money goes straight to you.",
+          points: [
+            "Works with various payment gateways",
+            "Deposit or full payment when they book",
+            "Paid into your own merchant account",
+            "Fewer no-shows with a booking deposit",
+          ],
+          badges: ["Deposit paid", "Straight to your account"],
+        },
         stock: {
           eyebrow: "AI inventory tracking",
           title: "Scan the delivery note. Stock updates itself.",
@@ -934,14 +969,14 @@ const en = {
         profiles: "Staff profiles & own bookings",
         customers: "Customer history & colour formula",
         packages: "Packages & member points",
-        pos: "POS & retail sales",
+        pos: "POS, retail & receipt printing",
+        payment: "Payment gateway integration",
         commission: "Stylist commission",
         payroll: "Payroll calculation",
         ai: "AI stock control",
         inventory: "Inventory tracking",
         einvoice: "LHDN e-Invoice",
         reports: "Reports in under 100 ms",
-        printing: "Receipt printing",
         permissions: "Permission control",
         devices: "Cross-platform: iPad, phone & PC",
       },
@@ -979,6 +1014,10 @@ const en = {
           a: "Yes. Techub is cross-platform: iPad and Android tablets, iPhone and Android phones, and Windows or Mac computers.",
         },
         {
+          q: "Can customers pay a deposit online?",
+          a: "Yes. Techub works with various payment gateways, so customers can pay a deposit or the full amount online when they book, by online banking (FPX), card or e-wallet, depending on your gateway. The money goes straight into your salon's own merchant account, and deposits help cut no-shows.",
+        },
+        {
           q: "How do I get a demo?",
           a: "WhatsApp us at {phone} or email {email}. We will show you the salon system live, for free.",
         },
@@ -1003,6 +1042,8 @@ const en = {
           "beauty package management",
           "beauty centre payroll",
           "sistem pusat kecantikan",
+          "beauty centre online payment",
+          "payment gateway integration Malaysia",
         ],
       },
       category: "Beauty centre booking, packages and treatment records",
@@ -1046,6 +1087,17 @@ const en = {
           title: "Checkout with packages in one tap",
           points: ["Redeem package sessions", "Treatments and products in one bill", "Commission per beautician", "Cash, card, DuitNow QR & e-wallet"],
         },
+        payment: {
+          eyebrow: "Online payment & deposits",
+          title: "Customers pay online. The money goes straight to you.",
+          points: [
+            "Works with various payment gateways",
+            "Deposit or full payment when they book",
+            "Paid into your own merchant account",
+            "Fewer no-shows with a booking deposit",
+          ],
+          badges: ["Deposit paid", "Straight to your account"],
+        },
         stock: {
           eyebrow: "AI inventory tracking",
           title: "Scan the delivery note. Stock updates itself.",
@@ -1064,14 +1116,14 @@ const en = {
         customers: "Customer profiles & skin notes",
         faceChart: "Face chart & e-signature",
         profiles: "Staff profiles & own bookings",
-        pos: "POS & retail sales",
+        pos: "POS, retail & receipt printing",
+        payment: "Payment gateway integration",
         commission: "Staff commission",
         payroll: "Payroll calculation",
         ai: "AI stock control",
         inventory: "Inventory tracking",
         einvoice: "LHDN e-Invoice",
         reports: "Reports in under 100 ms",
-        printing: "Receipt printing",
         permissions: "Permission control",
         devices: "Cross-platform: iPad, phone & PC",
       },
@@ -1105,6 +1157,10 @@ const en = {
           a: "Yes. Techub is cross-platform: iPad and Android tablets, phones and computers.",
         },
         {
+          q: "Can customers pay a deposit online?",
+          a: "Yes. Techub works with various payment gateways, so customers can pay a deposit or the full amount online when they book, by online banking (FPX), card or e-wallet, depending on your gateway. The money goes straight into your beauty centre's own merchant account, and deposits help cut no-shows.",
+        },
+        {
           q: "How do I get a demo?",
           a: "WhatsApp us at {phone} or email {email}. We will show you the beauty centre system live, for free.",
         },
@@ -1129,6 +1185,8 @@ const en = {
           "spa payroll system",
           "spa membership system",
           "sistem tempahan spa",
+          "spa online booking deposit",
+          "payment gateway integration Malaysia",
         ],
       },
       category: "Spa and massage booking, rooms and memberships",
@@ -1172,6 +1230,17 @@ const en = {
           title: "Checkout and commission in one place",
           points: ["Treatments, packages & retail", "Commission per therapist", "Cash, card, DuitNow QR & e-wallet", "Daily sales report"],
         },
+        payment: {
+          eyebrow: "Online payment & deposits",
+          title: "Customers pay online. The money goes straight to you.",
+          points: [
+            "Works with various payment gateways",
+            "Deposit or full payment when they book",
+            "Paid into your own merchant account",
+            "Fewer no-shows with a booking deposit",
+          ],
+          badges: ["Deposit paid", "Straight to your account"],
+        },
         stock: {
           eyebrow: "AI inventory tracking",
           title: "Scan the delivery note. Stock updates itself.",
@@ -1200,14 +1269,14 @@ const en = {
         group: "Couple & group bookings",
         treatmentMap: "Treatment map & e-signature",
         profiles: "Staff profiles & own bookings",
-        pos: "POS & retail sales",
+        pos: "POS, retail & receipt printing",
+        payment: "Payment gateway integration",
         commission: "Therapist commission",
         payroll: "Payroll calculation",
         ai: "AI stock control",
         inventory: "Inventory tracking",
         einvoice: "LHDN e-Invoice",
         reports: "Reports in under 100 ms",
-        printing: "Receipt printing",
         permissions: "Permission control",
         devices: "Cross-platform: iPad, phone & PC",
       },
@@ -1245,6 +1314,10 @@ const en = {
           a: "Yes. Techub is cross-platform, so the front desk and therapists can use iPad, Android tablets, phones or computers.",
         },
         {
+          q: "Can customers pay a deposit online?",
+          a: "Yes. Techub works with various payment gateways, so customers can pay a deposit or the full amount online when they book, by online banking (FPX), card or e-wallet, depending on your gateway. The money goes straight into your spa's own merchant account, and deposits help cut no-shows.",
+        },
+        {
           q: "How do I get a demo?",
           a: "WhatsApp us at {phone} or email {email}. We will show you the spa system live, for free.",
         },
@@ -1270,6 +1343,8 @@ const en = {
           "TikTok live selling system",
           "prevent overselling",
           "Kafka order queue",
+          "live selling payment gateway",
+          "payment gateway integration Malaysia",
         ],
       },
       category: "Live selling and online flash sales",
@@ -1319,6 +1394,17 @@ const en = {
             "Plan your next lives ahead",
           ],
         },
+        payment: {
+          eyebrow: "Online payment",
+          title: "Buyers pay online. The money goes straight to you.",
+          points: [
+            "Works with various payment gateways",
+            "Buyers pay at checkout, right after they order",
+            "Paid into your own merchant account",
+            "Official receipt sent on WhatsApp",
+          ],
+          badges: ["Paid at checkout", "Straight to your account"],
+        },
         visitors: {
           eyebrow: "Live visitors",
           title: "See who is on your shop, right now",
@@ -1350,7 +1436,7 @@ const en = {
         visitors: "Live visitor count",
         pages: "Visitors by page",
         checkout: "Fast mobile checkout",
-        payment: "Online payment",
+        payment: "Payment gateway integration",
         orders: "Order management",
         receipts: "Automatic invoices & receipts",
         einvoice: "LHDN e-Invoice",
@@ -1382,6 +1468,10 @@ const en = {
         {
           q: "What reports do I get?",
           a: "Sales, orders, best sellers, visitors, conversion, peak minutes and payment methods for every live sale, generated in under 100 milliseconds.",
+        },
+        {
+          q: "How do buyers pay?",
+          a: "Online, at checkout. Techub works with various payment gateways, so buyers can pay by online banking (FPX), card or e-wallet, depending on your gateway. The money goes straight into your own merchant account.",
         },
         {
           q: "How much is the Live Selling System?",
@@ -1431,6 +1521,10 @@ const en = {
       title: "AI delivery note scan",
       alt: "Phone scanning a medicine supplier's delivery note while AI reads each item, batch and expiry and updates clinic stock",
     },
+    paymentClinic: {
+      title: "Online payment & deposit",
+      alt: "A patient paying a RM 50 deposit for a health screening on a phone, by online banking (FPX), card, e-wallet or DuitNow QR, paid straight to the clinic's own merchant account",
+    },
     queueTv: {
       title: "Queue number calling display",
       alt: "Clinic queue number calling TV display showing now calling A023 to Room 2 in English, Malay and Chinese",
@@ -1467,6 +1561,10 @@ const en = {
       title: "AI delivery note scan",
       alt: "Phone scanning a hair products delivery note while AI reads each item and updates salon stock",
     },
+    paymentSalon: {
+      title: "Online booking deposit",
+      alt: "A customer paying a RM 50 booking deposit for a hair colour and treatment on a phone, by online banking (FPX), card, e-wallet or DuitNow QR, paid straight to the salon's own merchant account",
+    },
     beautyCalendar: {
       title: "Beauty centre booking calendar",
       alt: "Beauty centre appointment calendar on an iPad with facials, lash and brow, nails and slimming bookings and package sessions",
@@ -1494,6 +1592,10 @@ const en = {
     scanBeauty: {
       title: "AI delivery note scan",
       alt: "Phone scanning a beauty supplies delivery note while AI reads each item and updates stock",
+    },
+    paymentBeauty: {
+      title: "Online booking deposit",
+      alt: "A customer paying a RM 30 booking deposit for a Hydra Facial on a phone, by online banking (FPX), card, e-wallet or DuitNow QR, paid straight to the beauty centre's own merchant account",
     },
     spaCalendar: {
       title: "Spa booking calendar",
@@ -1526,6 +1628,10 @@ const en = {
     scanSpa: {
       title: "AI delivery note scan",
       alt: "Phone scanning a spa supplies delivery note while AI reads each item and updates stock",
+    },
+    paymentSpa: {
+      title: "Online booking deposit",
+      alt: "A customer paying a RM 40 booking deposit for a Balinese massage on a phone, by online banking (FPX), card, e-wallet or DuitNow QR, paid straight to the spa's own merchant account",
     },
     permissionsDesktop: {
       title: "Staff permission control on PC",
@@ -1622,6 +1728,10 @@ const en = {
     liveCheckout: {
       title: "Order confirmed",
       alt: "Order confirmed on a buyer's phone, paid by online banking, with the official receipt sent to WhatsApp",
+    },
+    livePayment: {
+      title: "Online payment at checkout",
+      alt: "A buyer paying RM 77.80 for a live sale order on a phone, by online banking (FPX), card, e-wallet or DuitNow QR, paid straight to the shop's own merchant account",
     },
   },
 };

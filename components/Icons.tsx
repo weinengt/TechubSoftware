@@ -117,6 +117,12 @@ export const Icon = {
   Code: (p: IconProps) => (
     <svg {...base(p)}><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 4l-3 16" /></svg>
   ),
+  Wallet: (p: IconProps) => (
+    <svg {...base(p)}><path d="M19 7V5.5A1.5 1.5 0 0017.5 4h-12A2.5 2.5 0 003 6.5v11A2.5 2.5 0 005.5 20h13a1.5 1.5 0 001.5-1.5V15" /><path d="M3 6.5A2.5 2.5 0 005.5 9h13A1.5 1.5 0 0120 10.5V11" /><path d="M16 11h5v4h-5a2 2 0 010-4z" /></svg>
+  ),
+  Bank: (p: IconProps) => (
+    <svg {...base(p)}><path d="M3 9.5L12 4l9 5.5" /><path d="M5 10v7.5M9.7 10v7.5M14.3 10v7.5M19 10v7.5" /><path d="M3 20.5h18" /></svg>
+  ),
   Coins: (p: IconProps) => (
     <svg {...base(p)}><ellipse cx="9" cy="7" rx="6" ry="3" /><path d="M3 7v4c0 1.7 2.7 3 6 3s6-1.3 6-3V7" /><path d="M9 14v3c0 1.7 2.7 3 6 3s6-1.3 6-3v-4c0-1.6-2.4-2.9-5.5-3" /></svg>
   ),
