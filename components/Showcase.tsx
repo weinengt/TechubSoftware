@@ -18,7 +18,7 @@ const sizesFor: Record<Shot["kind"], string> = {
 /** A large screen with a phone overlapping its corner. */
 export function Combo({ main, phone, side = "right", priority, badge }: { main: Shot; phone?: Shot; side?: "left" | "right"; priority?: boolean; badge?: ReactNode }) {
   return (
-    <div className="relative pb-10 sm:pb-12">
+    <div className={`relative ${phone ? "pb-10 sm:pb-12" : ""}`}>
       <div className="absolute -inset-8 -z-10 rounded-[3rem] bg-brand-gradient opacity-[0.13] blur-3xl" aria-hidden="true" />
       <Device shot={main} sizes={sizesFor[main.kind]} priority={priority} className={phone ? (side === "right" ? "mr-[8%]" : "ml-[8%]") : ""} />
       {phone && (
@@ -153,13 +153,18 @@ export const homeGallery: GalleryItem[] = [
 export function Spotlight({
   eyebrow, title, points, visual, reverse, cta, id,
 }: { eyebrow: string; title: ReactNode; points: string[]; visual: ReactNode; reverse?: boolean; cta?: { label: string; message: string }; id?: string }) {
+  // Phones: heading, picture, then details, so each heading introduces its own picture.
+  // Desktop: picture on one side, heading and details stacked on the other.
+  const textCol = reverse ? "lg:col-start-1" : "lg:col-start-8";
   return (
-    <div id={id} className="grid items-center gap-10 lg:grid-cols-12 lg:gap-14">
-      <div className={`lg:col-span-7 ${reverse ? "lg:order-2" : ""}`}>{visual}</div>
-      <div className={`lg:col-span-5 ${reverse ? "lg:order-1" : ""}`}>
+    <div id={id} className="grid gap-y-8 lg:grid-cols-12 lg:gap-x-14 lg:gap-y-6">
+      <div className={`lg:col-span-5 lg:row-start-1 lg:self-end ${textCol}`}>
         <p className="eyebrow">{eyebrow}</p>
         <h2 className="mt-4 text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">{title}</h2>
-        <CheckList items={points} className="mt-6" />
+      </div>
+      <div className={`self-center lg:col-span-7 lg:row-span-2 lg:row-start-1 ${reverse ? "lg:col-start-6" : "lg:col-start-1"}`}>{visual}</div>
+      <div className={`lg:col-span-5 lg:row-start-2 lg:self-start ${textCol}`}>
+        <CheckList items={points} />
         {cta && (
           <a href={whatsappLink(cta.message)} target="_blank" rel="noopener" className="btn-secondary mt-8">
             <Icon.Whatsapp className="h-4 w-4 text-whatsapp" /> {cta.label}
