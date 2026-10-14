@@ -54,7 +54,10 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   manifest: "/manifest.webmanifest",
-  formatDetection: { telephone: true },
+  // iPhone Safari turns numbers it finds (like the SSM number in the footer) into links before React takes over the
+  // page. React then sees different HTML and draws the whole page again, so the logo and pictures blink on first load.
+  // Our WhatsApp number and email are real links wherever they are shown (withContactLinks in components/Text.tsx).
+  formatDetection: { telephone: false, date: false, email: false, address: false },
 };
 
 export const viewport: Viewport = {

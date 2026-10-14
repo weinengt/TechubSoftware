@@ -5,7 +5,7 @@ import { htmlLang, lp, type Locale } from "@/lib/i18n";
 import { shotSrc, type Shot } from "@/lib/shots";
 import { emailLink, site, systems, whatsappLink } from "@/lib/site";
 import { Icon, type IconName } from "./Icons";
-import { hl } from "./Text";
+import { hl, withContactLinks } from "./Text";
 
 /** When a section is the main part of its own page: the page's language and its name in the breadcrumb. */
 export type PageOf = { lang: Locale; crumb: string };
@@ -247,7 +247,7 @@ export function PricingSection({ lang, page, plan = "all" }: { lang: Locale; pag
 /* ---------- FAQ ---------- */
 
 export function FaqSection({ lang, items, page }: { lang: Locale; items?: { q: string; a: string }[]; page?: PageOf }) {
-  const t = getDict(lang).faq;
+  const { faq: t, ui } = getDict(lang);
   return (
     <section id="faq" className={page ? `${pageTop} pb-20 sm:pb-24` : "bg-slate-50 py-20 sm:py-24"}>
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
@@ -261,7 +261,7 @@ export function FaqSection({ lang, items, page }: { lang: Locale; items?: { q: s
                   <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true"><path d="M12 5v14M5 12h14" /></svg>
                 </span>
               </summary>
-              <p className="px-4 pb-5 text-sm leading-relaxed text-slate-600 sm:px-5">{f.a}</p>
+              <p className="px-4 pb-5 text-sm leading-relaxed text-slate-600 sm:px-5">{withContactLinks(f.a, ui)}</p>
             </details>
           ))}
         </div>

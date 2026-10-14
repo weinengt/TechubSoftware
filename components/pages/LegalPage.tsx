@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { getDict } from "@/content";
-import { getLegal, type Legal } from "@/content/legal";
+import { getLegal } from "@/content/legal";
 import { Icon } from "@/components/Icons";
 import JsonLd from "@/components/JsonLd";
 import { breadcrumbJsonLd } from "@/components/Sections";
+import { withContactLinks } from "@/components/Text";
 import { htmlLang, lp, type Locale } from "@/lib/i18n";
 import { pageMetadata } from "@/lib/seo";
 import { emailLink, site, whatsappLink } from "@/lib/site";
@@ -21,25 +22,6 @@ export function legalMetadata(lang: Locale, kind: LegalKind) {
     socialTitle: `${doc.title} | ${site.name}`,
     description: doc.meta.description,
   });
-}
-
-const contactPattern = new RegExp(`(${[site.whatsappDisplay, site.email].map((s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")})`);
-
-/** Shows our WhatsApp number and email address inside the text as links (the number never splits across lines). */
-function withContactLinks(text: string, l: Legal) {
-  return text.split(contactPattern).map((part, i) =>
-    part === site.whatsappDisplay ? (
-      <a key={i} href={whatsappLink(l.whatsappMessage)} target="_blank" rel="noopener" className="whitespace-nowrap font-medium text-brand-700 hover:underline">
-        {part}
-      </a>
-    ) : part === site.email ? (
-      <a key={i} href={emailLink(l.emailSubject)} className="font-medium text-brand-700 hover:underline">
-        {part}
-      </a>
-    ) : (
-      part
-    ),
-  );
 }
 
 /** Terms of Use or Privacy Policy: numbered sections of plain text, then a way to ask us questions. */
