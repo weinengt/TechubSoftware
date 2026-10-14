@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { demoShots } from "@/components/demoScenes";
 import { locales, lp } from "@/lib/i18n";
 import { languageAlternates } from "@/lib/seo";
 import { shotFiles, shotSrc, type ShotKey } from "@/lib/shots";
@@ -11,7 +12,10 @@ const pages: { path: string; priority: number; images: ShotKey[] }[] = [
   {
     path: "/",
     priority: 1,
-    images: ["clinicDashboardDesktop", "salonCalendar", "whatsappSpa", "clinicDashboard", "staffSalon", "faceChart", "spaCalendar", "erpDesktop", "objectDetection", "plateScanner"],
+    images: [
+      ...demoShots,
+      "salonCalendar", "permissionsDesktop", "queueTv", "clinicDashboard", "faceChart", "erpDesktop", "objectDetection", "plateScanner", "whatsappSalon",
+    ],
   },
   { path: "/technology/", priority: 0.9, images: ["reportsClinic", "permissionsDesktop", "clinicStock", "scanClinic", "whatsappClinic", "queueTv", "eInvoice", "clinicPermissions"] },
   {

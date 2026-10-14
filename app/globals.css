@@ -134,3 +134,106 @@ html:lang(zh) h1 {
 @media (prefers-reduced-motion: reduce) {
   .animate-float, .wa-pulse::before, .tech-flow { animation: none; }
 }
+
+/* ---------- Home page demo: devices showing Techub at work (components/HeroDemo.tsx) ----------
+   [data-motion] is set by the script only for visitors who don't ask for less motion. */
+.demo-stage {
+  position: relative;
+  isolation: isolate; /* keeps the screens' stacking inside their device, so the laptop never covers the iPad */
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.demo-screen {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: scale(1.04);
+}
+.demo-screen[data-on],
+.demo-screen[data-prev] {
+  opacity: 1;
+  transform: none;
+}
+.demo-screen[data-on] {
+  z-index: 2;
+}
+.demo-screen[data-prev] {
+  z-index: 1;
+}
+[data-motion] .demo-screen {
+  transition: opacity 0.9s ease, transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.demo-device,
+.demo-device .device-frame {
+  transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 1s ease;
+}
+.demo-device[data-focus] {
+  transform: translateY(-5px) scale(1.02);
+}
+.demo-device[data-focus] .device-frame {
+  box-shadow: 0 0 0 2px rgb(47 177 230 / 0.55), 0 30px 60px -20px rgb(3 150 217 / 0.6);
+}
+[data-motion] .demo-device[data-focus] .demo-stage {
+  transform: scale(1.045);
+  transition: transform 3.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+/* The part of the screen the moment is about */
+.demo-spot {
+  position: absolute;
+  z-index: 3;
+  border-radius: 8px;
+  pointer-events: none;
+  box-shadow: 0 0 0 2px rgb(47 177 230), 0 0 0 5px rgb(47 177 230 / 0.25), 0 0 22px 2px rgb(3 150 217 / 0.45);
+}
+[data-motion] .demo-spot {
+  animation: demo-spot 0.9s 0.35s cubic-bezier(0.16, 1, 0.3, 1) both, demo-glow 2.2s 1.3s ease-in-out infinite;
+}
+@keyframes demo-spot {
+  from { opacity: 0; transform: scale(1.12); }
+}
+@keyframes demo-glow {
+  50% { box-shadow: 0 0 0 2px rgb(47 177 230), 0 0 0 8px rgb(47 177 230 / 0.12), 0 0 30px 6px rgb(3 150 217 / 0.3); }
+}
+/* A finger tap on the phone */
+.demo-tap {
+  position: absolute;
+  z-index: 4;
+  width: 16%;
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  border-radius: 9999px;
+  background: rgb(255 255 255 / 0.55);
+  box-shadow: 0 0 0 2px rgb(3 150 217 / 0.75), 0 4px 12px rgb(11 47 85 / 0.35);
+  opacity: 0;
+  pointer-events: none;
+}
+[data-motion] .demo-tap {
+  animation: demo-tap 1.5s 1s ease-out both;
+}
+@keyframes demo-tap {
+  0% { opacity: 0; transform: scale(1.6); }
+  25% { opacity: 1; transform: scale(0.75); }
+  40% { opacity: 1; transform: scale(0.9); }
+  100% { opacity: 0; transform: scale(1.8); }
+}
+/* The note at the top, and the line that fills up until the next moment */
+.demo-note[data-enter] {
+  animation: demo-note 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes demo-note {
+  from { opacity: 0; transform: translateY(-8px) scale(0.97); }
+}
+.demo-progress {
+  transform-origin: left;
+  animation-name: demo-progress;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+}
+@keyframes demo-progress {
+  from { transform: scaleX(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .demo-stage, .demo-screen, .demo-device, .demo-device .device-frame { transition: none !important; }
+  .demo-spot, .demo-note, .demo-progress { animation: none !important; }
+}

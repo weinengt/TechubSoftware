@@ -183,7 +183,20 @@ const zh: Dict = {
       statReportsValue: "<100 ms",
       statFrom: "低至",
       perMonth: "/月",
-      deviceBadge: "云端 · iPad、手机、电脑",
+      demo: {
+        label: "示例画面：Techub 系统操作中",
+        pause: "暂停示例画面",
+        play: "播放示例画面",
+        scenes: {
+          realtime: { title: "所有设备即时同步", text: "云端 · iPad、手机、电脑" },
+          deposit: { title: "订金已付 · RM 40", text: "钱直接进你自己的户口" },
+          booking: { title: "10 秒内搞定预约", text: "巴厘岛按摩 · 90 分钟" },
+          whatsapp: { title: "WhatsApp 提醒已发出", text: "Priya 按了确认" },
+          report: { title: "报表 91 毫秒出来", text: "15,382 条记录" },
+          ai: { title: "AI 读取送货单", text: "6 项货品自动入库" },
+          live: { title: "1,286 人正在看直播", text: "2,418 张订单，零超卖" },
+        },
+      },
     },
     highlights: {
       eyebrow: "为什么选 Techub",

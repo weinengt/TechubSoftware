@@ -11,10 +11,12 @@ import {
   services,
   useCaseShots,
 } from "@/components/Company";
+import { demoShots } from "@/components/demoScenes";
+import HeroDemo from "@/components/HeroDemo";
 import { Icon } from "@/components/Icons";
 import JsonLd from "@/components/JsonLd";
 import { FaqSection, PricingSection, getFeatures, softwareJsonLd } from "@/components/Sections";
-import { ContactSection, DeviceFamily, FloatBadge } from "@/components/Showcase";
+import { ContactSection } from "@/components/Showcase";
 import { hl } from "@/components/Text";
 import { lp, type Locale } from "@/lib/i18n";
 import { pageMetadata } from "@/lib/seo";
@@ -113,13 +115,7 @@ export default function HomePage({ lang }: { lang: Locale }) {
             </dl>
           </div>
           <div className="lg:col-span-7">
-            <DeviceFamily
-              main={shots.clinicDashboardDesktop}
-              tablet={shots.salonCalendar}
-              phone={shots.whatsappSpa}
-              priority
-              badge={<FloatBadge icon="Cloud">{h.deviceBadge}</FloatBadge>}
-            />
+            <HeroDemo shots={Object.fromEntries(demoShots.map((k) => [k, shots[k]]))} text={h.demo} />
           </div>
         </div>
       </section>

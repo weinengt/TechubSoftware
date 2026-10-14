@@ -180,7 +180,20 @@ const ms: Dict = {
       statReportsValue: "<100 ms",
       statFrom: "Dari",
       perMonth: "/bln",
-      deviceBadge: "Cloud · iPad, telefon & PC",
+      demo: {
+        label: "Contoh skrin: Techub sedang berjalan",
+        pause: "Jeda contoh skrin",
+        play: "Main contoh skrin",
+        scenes: {
+          realtime: { title: "Real-time di semua peranti", text: "Cloud · iPad, telefon & PC" },
+          deposit: { title: "Deposit dibayar · RM 40", text: "Terus masuk akaun anda sendiri" },
+          booking: { title: "Booking siap bawah 10 saat", text: "Balinese Massage · 90 min" },
+          whatsapp: { title: "Reminder WhatsApp dihantar", text: "Priya tekan Confirm" },
+          report: { title: "Laporan siap dalam 91 ms", text: "15,382 rekod" },
+          ai: { title: "AI baca nota penghantaran", text: "6 item terus masuk stok" },
+          live: { title: "1,286 orang tengah tonton live", text: "2,418 order, tiada terlebih jual" },
+        },
+      },
     },
     highlights: {
       eyebrow: "Kenapa pilih Techub",

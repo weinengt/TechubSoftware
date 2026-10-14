@@ -182,7 +182,21 @@ const en = {
       statReportsValue: "<100 ms",
       statFrom: "From",
       perMonth: "/mo",
-      deviceBadge: "Cloud · iPad, phone & PC",
+      // The moving example screens next to the heading: one short note for each moment (components/HeroDemo.tsx).
+      demo: {
+        label: "Example screens: Techub at work",
+        pause: "Pause the example screens",
+        play: "Play the example screens",
+        scenes: {
+          realtime: { title: "Real-time on every device", text: "Cloud · iPad, phone & PC" },
+          deposit: { title: "Deposit paid · RM 40", text: "Straight into your own account" },
+          booking: { title: "Booked in under 10 seconds", text: "Balinese Massage · 90 min" },
+          whatsapp: { title: "WhatsApp reminder sent", text: "Priya tapped Confirm" },
+          report: { title: "Report ready in 91 ms", text: "15,382 records" },
+          ai: { title: "AI read the delivery note", text: "6 items added to stock" },
+          live: { title: "1,286 watching live", text: "2,418 orders, no overselling" },
+        },
+      },
     },
     highlights: {
       eyebrow: "Why Techub",
