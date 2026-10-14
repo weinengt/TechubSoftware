@@ -133,7 +133,7 @@ export function HardwareSection({ lang }: { lang: Locale }) {
             return (
               <li
                 key={k}
-                className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-3.5 backdrop-blur transition hover:border-teal-brand/60 hover:bg-white/10 sm:flex-col sm:p-6 sm:text-center"
+                className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-3.5 transition hover:border-teal-brand/60 hover:bg-white/10 sm:flex-col sm:p-6 sm:text-center"
                 data-reveal
               >
                 <I className="h-6 w-6 shrink-0 text-teal-brand sm:h-8 sm:w-8" />
@@ -196,9 +196,12 @@ export function PricingSection({ lang, page, plan = "all" }: { lang: Locale; pag
               <div className="min-w-0 flex-1">
                 <h3 className="flex flex-wrap items-baseline gap-x-2 text-lg font-bold text-slate-900">
                   {t.liveTitle}
-                  <span className="text-sm font-semibold text-slate-500">{t.liveFrom}</span>
-                  <span className="text-gradient text-3xl font-extrabold tracking-tight">RM {site.livePriceFrom}</span>
-                  <span className="text-sm font-semibold text-slate-500">{t.perMonth}</span>
+                  {/* The price keeps its "from" and "/month" on its line */}
+                  <span className="inline-flex items-baseline gap-x-2 whitespace-nowrap">
+                    <span className="text-sm font-semibold text-slate-500">{t.liveFrom}</span>
+                    <span className="text-gradient text-3xl font-extrabold tracking-tight">RM {site.livePriceFrom}</span>
+                    <span className="text-sm font-semibold text-slate-500">{t.perMonth}</span>
+                  </span>
                 </h3>
                 <p className="mt-1 text-sm leading-relaxed text-slate-600 sm:text-base">{t.liveText}</p>
               </div>
@@ -219,8 +222,10 @@ export function PricingSection({ lang, page, plan = "all" }: { lang: Locale; pag
             <div className="min-w-0 flex-1">
               <h3 className="flex flex-wrap items-baseline gap-x-2 text-lg font-bold text-slate-900">
                 {t.customTitle}
-                <span className="text-sm font-semibold text-slate-500">{t.customFrom}</span>
-                <span className="text-gradient text-3xl font-extrabold tracking-tight">RM {site.customFrom}</span>
+                <span className="inline-flex items-baseline gap-x-2 whitespace-nowrap">
+                  <span className="text-sm font-semibold text-slate-500">{t.customFrom}</span>
+                  <span className="text-gradient text-3xl font-extrabold tracking-tight">RM {site.customFrom}</span>
+                </span>
               </h3>
               <p className="mt-1 text-sm leading-relaxed text-slate-600 sm:text-base">{t.customText}</p>
             </div>

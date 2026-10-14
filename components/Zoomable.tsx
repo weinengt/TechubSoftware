@@ -3,8 +3,11 @@
 import { useRef, type ReactNode } from "react";
 import { useLang } from "./LangProvider";
 
-// Wraps an image frame so a tap/click opens the full-size picture.
-export default function Zoomable({ src, alt, children, className = "" }: { src: string; alt: string; children: ReactNode; className?: string }) {
+// Wraps an image frame so a tap/click opens the full-size picture. `hint: false` leaves out the magnifier badge
+// (on a small phone beside a bigger device it would cover a good part of the screen).
+export default function Zoomable({
+  src, alt, children, className = "", hint = true,
+}: { src: string; alt: string; children: ReactNode; className?: string; hint?: boolean }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const { enlarge } = useLang();
   const position = /\b(absolute|fixed)\b/.test(className) ? "" : "relative";
@@ -17,11 +20,13 @@ export default function Zoomable({ src, alt, children, className = "" }: { src: 
         className="absolute inset-0 cursor-zoom-in rounded-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-500"
         aria-label={`${enlarge}: ${alt}`}
       >
-        <span className="absolute right-2 bottom-2 flex h-9 w-9 items-center justify-center rounded-full bg-white/95 text-slate-700 shadow-lg ring-1 ring-slate-200 transition sm:opacity-0 sm:group-hover:opacity-100">
-          <svg viewBox="0 0 24 24" className="h-4.5 w-4.5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true">
-            <circle cx="11" cy="11" r="6.5" /><path d="M20 20l-4-4M11 8.5v5M8.5 11h5" />
-          </svg>
-        </span>
+        {hint && (
+          <span className="absolute right-2 bottom-2 flex h-9 w-9 items-center justify-center rounded-full bg-white/95 text-slate-700 shadow-lg ring-1 ring-slate-200 transition sm:opacity-0 sm:group-hover:opacity-100">
+            <svg viewBox="0 0 24 24" className="h-4.5 w-4.5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="6.5" /><path d="M20 20l-4-4M11 8.5v5M8.5 11h5" />
+            </svg>
+          </span>
+        )}
       </button>
       <dialog
         ref={dialog}

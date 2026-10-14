@@ -4,6 +4,7 @@ import { getDict, getShots } from "@/content";
 import { lp, type Locale } from "@/lib/i18n";
 import type { Shot } from "@/lib/shots";
 import { emailLink, site, systems, whatsappLink, type SystemKey } from "@/lib/site";
+import Demo from "./Demo";
 import Device from "./Device";
 import { Icon, type IconName } from "./Icons";
 import { CheckList, Crumbs, pageTop, type PageOf } from "./Sections";
@@ -24,8 +25,8 @@ export function Combo({
   main, phone, side = "right", priority, badge, zoom = true, glow = true,
 }: { main: Shot; phone?: Shot; side?: "left" | "right"; priority?: boolean; badge?: ReactNode; zoom?: boolean; glow?: boolean }) {
   return (
-    <div className={`relative ${phone ? "pb-10 sm:pb-12" : ""}`}>
-      {glow && <div className="absolute -inset-8 -z-10 rounded-[3rem] bg-brand-gradient opacity-[0.13] blur-3xl" aria-hidden="true" />}
+    <div className={`relative isolate ${phone ? "pb-10 sm:pb-12" : ""}`}>
+      {glow && <div className="glow absolute -inset-12 -z-10" aria-hidden="true" />}
       <Device shot={main} sizes={sizesFor[main.kind]} priority={priority} zoom={zoom} className={phone ? (side === "right" ? "mr-[8%]" : "ml-[8%]") : ""} />
       {phone && (
         <div className={`absolute bottom-0 w-[27%] max-w-[13rem] ${side === "right" ? "right-0" : "left-0"}`}>
@@ -40,8 +41,8 @@ export function Combo({
 /** Laptop screen with a tablet and a phone in front: "works on any device". */
 export function DeviceFamily({ main, tablet, phone, priority, badge }: { main: Shot; tablet: Shot; phone: Shot; priority?: boolean; badge?: ReactNode }) {
   return (
-    <div className="relative pb-16 sm:pb-20">
-      <div className="absolute -inset-8 -z-10 rounded-[3rem] bg-brand-gradient opacity-[0.13] blur-3xl" aria-hidden="true" />
+    <div className="relative isolate pb-16 sm:pb-20">
+      <div className="glow absolute -inset-12 -z-10" aria-hidden="true" />
       <Device shot={main} sizes={sizesFor.browser} priority={priority} className="mx-[7%]" />
       <div className="absolute bottom-0 left-0 w-[44%]">
         <Device shot={tablet} sizes="(min-width: 1024px) 300px, 44vw" />
@@ -57,8 +58,8 @@ export function DeviceFamily({ main, tablet, phone, priority, badge }: { main: S
 /** One phone, centred, with optional floating badges. */
 export function PhoneShowcase({ shot, badges = [] }: { shot: Shot; badges?: ReactNode[] }) {
   return (
-    <div className="relative mx-auto w-60 sm:w-72">
-      <div className="absolute -inset-10 -z-10 rounded-full bg-brand-gradient opacity-20 blur-3xl" aria-hidden="true" />
+    <div className="relative isolate mx-auto w-60 sm:w-72">
+      <div className="glow absolute -inset-14 -z-10" aria-hidden="true" />
       <Device shot={shot} sizes="(min-width: 640px) 288px, 240px" />
       {badges[0] && <div className="absolute top-16 -left-24 hidden sm:block">{badges[0]}</div>}
       {badges[1] && <div className="absolute -right-24 bottom-24 hidden sm:block">{badges[1]}</div>}
@@ -198,7 +199,7 @@ export function ContactSection({
                   </span>
                 </a>
                 <a href={emailLink(t.ui.emailSubject)}
-                  className="group flex items-center gap-3 rounded-2xl bg-white/10 p-4 ring-1 ring-white/30 backdrop-blur transition hover:-translate-y-0.5 hover:bg-white/15">
+                  className="group flex items-center gap-3 rounded-2xl bg-white/10 p-4 ring-1 ring-white/30 transition hover:-translate-y-0.5 hover:bg-white/15">
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white text-brand-700">
                     <Icon.Mail className="h-5 w-5" />
                   </span>
@@ -209,9 +210,16 @@ export function ContactSection({
                 </a>
               </div>
             </div>
-            <div className="rv-part relative mx-auto w-56 [--d:250ms] sm:w-64 lg:mt-12 lg:w-72">
-              <Device shot={phoneShot ?? getShots(lang).whatsappSalon} sizes="(min-width: 1024px) 288px, 256px" zoom={false} className="translate-y-6" />
-            </div>
+            {page ? (
+              // The Contact page's own picture shows the app at work.
+              <div className="relative mx-auto w-56 sm:w-64 lg:mt-12 lg:w-72">
+                <Demo lang={lang} demo="contact" layout="phone" zoom={false} className="translate-y-6" />
+              </div>
+            ) : (
+              <div className="rv-part relative mx-auto w-56 [--d:250ms] sm:w-64 lg:mt-12 lg:w-72">
+                <Device shot={phoneShot ?? getShots(lang).whatsappSalon} sizes="(min-width: 1024px) 288px, 256px" zoom={false} className="translate-y-6" />
+              </div>
+            )}
           </div>
         </div>
       </div>

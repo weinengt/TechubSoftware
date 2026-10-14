@@ -23,8 +23,8 @@ export function techMetadata(lang: Locale) {
 /** Queue TV with receipts and labels in front: the hardware Techub connects to. */
 function HardwareVisual({ tv, paper }: { tv: Shot; paper: Shot }) {
   return (
-    <div className="relative pb-14 sm:pb-16">
-      <div className="absolute -inset-8 -z-10 rounded-[3rem] bg-brand-gradient opacity-[0.13] blur-3xl" aria-hidden="true" />
+    <div className="relative isolate pb-14 sm:pb-16">
+      <div className="glow absolute -inset-12 -z-10" aria-hidden="true" />
       <Device shot={tv} sizes="(min-width: 1024px) 560px, 88vw" className="mr-[10%]" />
       <div className="absolute right-0 bottom-0 w-[46%]">
         <Device shot={paper} sizes="(min-width: 1024px) 300px, 46vw" />
@@ -123,7 +123,7 @@ export default function TechnologyPage({ lang }: { lang: Locale }) {
             </ul>
           </div>
           <div className="lg:col-span-6" data-reveal="zoom">
-            <TechHub lang={lang} />
+            <TechHub lang={lang} demo />
           </div>
         </div>
       </section>

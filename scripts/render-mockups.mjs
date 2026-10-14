@@ -24,7 +24,7 @@ const phone = { w: 360, h: 760, scale: 2 };
 export const screens = [
   // Clinic
   { name: "clinic-dashboard-ipad", file: "clinic-dashboard.html", ...ipad },
-  { name: "patient-medication-tracking-ipad", file: "patient-medication.html", ...ipad },
+  { name: "patient-medication-tracking-allergy-ipad", file: "patient-medication.html", ...ipad },
   { name: "body-chart-hand-drawing", file: "body-chart.html", ...ipad },
   { name: "clinic-inventory-ai-stock-ipad", file: "inventory.html?v=clinic", ...ipad },
   { name: "clinic-staff-permissions-ipad", file: "permissions.html?v=clinic", ...ipad },
