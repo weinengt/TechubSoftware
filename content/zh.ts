@@ -260,7 +260,7 @@ const zh: Dict = {
         packages: { title: "配套疗程已预约", text: "Chloe Tan · 第 4/10 次" },
         whatsapp: { title: "WhatsApp 提醒已发出", text: "Aqilah 按了确认" },
         left: { title: "10 次还剩 6 次", text: "Hydra Facial · Aqilah" },
-        faceChart: { title: "前后对比照已保存", text: "面部图 · 第 4/6 次" },
+        faceChart: { title: "面部图已保存", text: "T 区偏油 · 第 4/6 次" },
         deposit: { title: "订金已付 · RM 30", text: "钱直接进你的户口" },
         activity: { title: "员工操作全记录", text: "Nadia 导出名单被阻止" },
         stock: { title: "AI：睫毛胶快用完", text: "周四前订 10 瓶" },

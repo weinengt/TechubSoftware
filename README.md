@@ -80,7 +80,7 @@ aspect ratio, save it as `<name>.webp` and a half-width copy as `<name>-sm.webp`
 | File | Size | Shows |
 | --- | --- | --- |
 | `clinic-dashboard-ipad` | 1536×1080 (iPad) | Clinic dashboard with live queue |
-| `patient-medication-tracking-ipad` | 1536×1080 (iPad) | Patient medication history + allergy alert |
+| `patient-medication-tracking-allergy-ipad` | 1536×1080 (iPad) | Patient medication history + allergy alert |
 | `body-chart-hand-drawing`, `-spa` | 1536×1080 (iPad) | Hand-drawn body chart / treatment map + e-signature |
 | `beauty-face-chart-ipad` | 1536×1080 (iPad) | Face chart, photos and consent |
 | `salon-`, `beauty-`, `spa-appointment-calendar-ipad` | 1536×1080 (iPad) | Booking calendar for each business |

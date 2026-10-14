@@ -20,7 +20,7 @@ const desktop = { w: 1800, h: 1125, kind: "browser" } as const;
 export const shotFiles = {
   /* Clinic */
   clinicDashboard: { ...ipad, file: "clinic-dashboard-ipad" },
-  medication: { ...ipad, file: "patient-medication-tracking-ipad" },
+  medication: { ...ipad, file: "patient-medication-tracking-allergy-ipad" },
   bodyChart: { ...ipad, file: "body-chart-hand-drawing" },
   clinicStock: { ...ipad, file: "clinic-inventory-ai-stock-ipad" },
   clinicPermissions: { ...ipad, file: "clinic-staff-permissions-ipad" },

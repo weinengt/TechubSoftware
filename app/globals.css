@@ -229,7 +229,8 @@ html:lang(zh) h1 {
   z-index: 3;
   border-radius: 8px;
   pointer-events: none;
-  box-shadow: 0 0 0 2px rgb(47 177 230), 0 0 0 5px rgb(47 177 230 / 0.25), 0 0 22px 2px rgb(3 150 217 / 0.45);
+  /* A white ring inside the blue one, so it also shows on the blue parts of a screen */
+  box-shadow: 0 0 0 2px rgb(255 255 255 / 0.9), 0 0 0 4px rgb(47 177 230), 0 0 0 7px rgb(47 177 230 / 0.22), 0 0 24px 3px rgb(3 150 217 / 0.45);
 }
 /* Its glow breathes: a wider glow fades in and out (only opacity changes, which needs no redrawing). */
 .demo-spot::after {
@@ -237,7 +238,7 @@ html:lang(zh) h1 {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  box-shadow: 0 0 0 8px rgb(47 177 230 / 0.14), 0 0 30px 6px rgb(3 150 217 / 0.35);
+  box-shadow: 0 0 0 10px rgb(47 177 230 / 0.14), 0 0 32px 8px rgb(3 150 217 / 0.35);
   opacity: 0;
 }
 [data-motion] .demo-spot::after {

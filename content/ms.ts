@@ -257,7 +257,7 @@ const ms: Dict = {
         packages: { title: "Sesi pakej dah ditempah", text: "Chloe Tan · sesi 4/10" },
         whatsapp: { title: "Reminder WhatsApp dihantar", text: "Aqilah tekan Confirm" },
         left: { title: "Baki 6 daripada 10 sesi", text: "Hydra Facial · Aqilah Razak" },
-        faceChart: { title: "Before & after disimpan", text: "Carta muka · sesi 4/6" },
+        faceChart: { title: "Carta muka disimpan", text: "T-zone berminyak · sesi 4/6" },
         deposit: { title: "Deposit dibayar · RM 30", text: "Terus masuk akaun anda" },
         activity: { title: "Aktiviti staf direkod", text: "Export oleh Nadia disekat" },
         stock: { title: "AI: Gam bulu mata nak habis", text: "Order 10 botol, Khamis ni" },

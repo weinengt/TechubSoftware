@@ -9,6 +9,8 @@ import type { IconName } from "./Icons";
 // screen), highlights the part of the screen it is about (`spot`: left, top, width and height in % of the screen;
 // `tap` adds a finger tap) and shows a short note, whose words are under `demo.notes` in content/en.ts, ms.ts and zh.ts.
 // The spots were measured on the screens in design/mockups: measure again if a mockup changes.
+// Where an iPad has a phone in front of it, the phone covers about the outer fifth of the iPad screen from a quarter
+// of the way down, on the side `phoneSide` gives: an iPad spot stays out of that corner, or the phone hides it.
 
 export type DemoDevice = "laptop" | "tablet" | "phone" | "screen";
 const devices: DemoDevice[] = ["laptop", "tablet", "phone", "screen"];
@@ -36,11 +38,11 @@ const home: DemoScene[] = [
 const clinic: DemoScene[] = [
   { key: "queue", focus: "tablet", tablet: "clinicDashboard", phone: "whatsappClinic", spot: [9.5, 28.6, 20.5, 27.6], icon: "Megaphone" },
   { key: "whatsapp", focus: "phone", spot: [2.8, 51.9, 79.3, 4.2], tap: true, icon: "Whatsapp", green: true },
-  { key: "allergy", focus: "tablet", tablet: "medication", spot: [66.7, 46.4, 30.3, 18.3], icon: "Shield" },
+  { key: "allergy", focus: "tablet", tablet: "medication", spot: [9.5, 46.4, 30.3, 18.3], icon: "Shield" },
   { key: "chart", focus: "tablet", tablet: "bodyChart", spot: [2.9, 71.1, 15.5, 19], icon: "Pen" },
   { key: "activity", focus: "tablet", tablet: "clinicPermissions", spot: [9.5, 81.4, 58, 6.6], icon: "Lock" },
   { key: "deposit", focus: "phone", phone: "paymentClinic", spot: [3.9, 88.2, 92.2, 6.6], tap: true, icon: "Card" },
-  { key: "stock", focus: "tablet", tablet: "clinicStock", phone: "scanClinic", spot: [70.3, 22.1, 28.1, 20.2], icon: "Sparkles" },
+  { key: "stock", focus: "tablet", tablet: "clinicStock", phone: "scanClinic", spot: [53.8, 9.4, 21.7, 10.7], icon: "Sparkles" },
   { key: "report", focus: "tablet", tablet: "reportsClinic", spot: [20.9, 1.6, 25.8, 4.2], icon: "Bolt" },
 ];
 
@@ -50,7 +52,7 @@ const salon: DemoScene[] = [
   { key: "deposit", focus: "phone", phone: "paymentSalon", spot: [3.9, 88.2, 92.2, 6.6], tap: true, icon: "Card" },
   { key: "commission", focus: "tablet", tablet: "salonPos", spot: [65.1, 19, 31.8, 16.4], icon: "Coins" },
   { key: "staff", focus: "phone", tablet: "salonCalendar", phone: "staffSalon", spot: [7.8, 18.7, 84.4, 5.4], icon: "Users" },
-  { key: "activity", focus: "tablet", tablet: "salonPermissions", spot: [9.5, 74.8, 58, 6.6], icon: "Lock" },
+  { key: "activity", focus: "tablet", tablet: "salonPermissions", spot: [16.9, 74.8, 50.6, 6.6], icon: "Lock" },
   { key: "stock", focus: "tablet", tablet: "salonStock", phone: "scanSalon", spot: [70.3, 22.1, 28.1, 20.2], icon: "Sparkles" },
   { key: "payroll", focus: "tablet", tablet: "payrollSalon", spot: [59.4, 9.4, 39.1, 17.9], icon: "Coins" },
 ];
@@ -59,10 +61,10 @@ const beauty: DemoScene[] = [
   { key: "packages", focus: "tablet", tablet: "beautyCalendar", phone: "whatsappBeauty", spot: [13.8, 21.5, 20.2, 12.2], icon: "Gift" },
   { key: "whatsapp", focus: "phone", spot: [2.8, 56.5, 79.3, 4.2], tap: true, icon: "Whatsapp", green: true },
   { key: "left", focus: "phone", phone: "beautyPackage", spot: [3.9, 31.1, 92.2, 9.2], icon: "Gift" },
-  { key: "faceChart", focus: "tablet", tablet: "faceChart", spot: [66.4, 65.8, 32.2, 23.9], icon: "Pen" },
+  { key: "faceChart", focus: "tablet", tablet: "faceChart", spot: [24.8, 30.3, 16.8, 30.5], icon: "Pen" },
   { key: "deposit", focus: "phone", phone: "paymentBeauty", spot: [3.9, 88.2, 92.2, 6.6], tap: true, icon: "Card" },
   { key: "activity", focus: "tablet", tablet: "beautyPermissions", spot: [9.5, 74.8, 58, 6.6], icon: "Lock" },
-  { key: "stock", focus: "tablet", tablet: "beautyStock", phone: "scanBeauty", spot: [70.3, 22.1, 28.1, 20.2], icon: "Sparkles" },
+  { key: "stock", focus: "tablet", tablet: "beautyStock", phone: "scanBeauty", spot: [53.8, 9.4, 21.7, 10.7], icon: "Sparkles" },
   { key: "report", focus: "tablet", tablet: "reportsBeauty", spot: [25.8, 1.6, 25.7, 4.2], icon: "Bolt" },
 ];
 
@@ -72,7 +74,7 @@ const spa: DemoScene[] = [
   { key: "package", focus: "phone", phone: "spaPackage", spot: [3.9, 31.1, 92.2, 10.3], icon: "Gift" },
   { key: "map", focus: "tablet", tablet: "bodyChartSpa", spot: [40.1, 18.9, 20.8, 21.1], icon: "Pen" },
   { key: "staff", focus: "phone", phone: "staffSpa", spot: [7.8, 18.7, 84.4, 5.4], icon: "Users" },
-  { key: "activity", focus: "tablet", tablet: "spaPermissions", spot: [9.5, 81.4, 58, 6.6], icon: "Lock" },
+  { key: "activity", focus: "tablet", tablet: "spaPermissions", spot: [16.9, 81.4, 50.6, 6.6], icon: "Lock" },
   { key: "stock", focus: "tablet", tablet: "spaStock", phone: "scanSpa", spot: [70.3, 22.1, 28.1, 20.2], icon: "Sparkles" },
   { key: "payroll", focus: "tablet", tablet: "payrollSpa", spot: [59.4, 9.4, 39.1, 17.9], icon: "Coins" },
 ];
@@ -134,6 +136,10 @@ export const demos = {
   plate: resolve(plate),
 };
 export type DemoKey = keyof typeof demos;
+
+/** The side of the iPad the phone stands on (right when not listed), wherever the demo shows: the spots are placed
+ *  clear of it. On the Use Cases page this also makes the rows take turns. */
+export const phoneSide: Partial<Record<DemoKey, "left" | "right">> = { salon: "left", spa: "left" };
 
 /** Every screenshot a demo shows, so the page can pass their titles and alt text in its language. */
 export const demoShots = (k: DemoKey): ShotKey[] => [...new Set(demos[k].flatMap((s) => devices.flatMap((d) => s[d] ?? [])))];

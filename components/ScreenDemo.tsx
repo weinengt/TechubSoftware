@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { shotSrc, shotSrcSet, shotSrcSm, type Shot, type ShotKey } from "@/lib/shots";
 import { DeviceFrame } from "./Device";
-import { demos, type DemoDevice, type DemoKey, type DemoScene } from "./demoScenes";
+import { demos, phoneSide, type DemoDevice, type DemoKey, type DemoScene } from "./demoScenes";
 import { Icon, type IconName } from "./Icons";
 import Zoomable from "./Zoomable";
 
@@ -199,15 +199,19 @@ const layoutSizes: Record<Layout, Partial<Record<DemoDevice, string>>> = {
   screen: { screen: "(min-width: 1024px) 30vw, 92vw" },
 };
 
+/* Above an iPad the note has room of its own (the picture's top padding) and only rests on the frame, so it never
+   covers the part of the screen a moment is about. It sits at the top corner across from the phone. */
 const notePlace: Record<Layout, string> = {
   family: "absolute -top-4 left-2 [--d:700ms] sm:-left-2",
-  combo: "absolute -top-4 left-2 [--d:600ms] sm:-left-4",
+  combo: "absolute top-0 left-2 [--d:600ms] sm:-left-4",
   phone: "absolute -top-5 left-1/2 w-max -translate-x-1/2 [--d:500ms] lg:top-10 lg:-left-40 lg:translate-x-0",
   screen: "relative mt-3 justify-center [--d:450ms]",
 };
 /* Under a screen the note is part of the page, so it keeps one height: in the three narrow cards of a laptop
    screen some notes take two lines. */
 const noteCard: Partial<Record<Layout, string>> = { screen: "lg:max-xl:min-h-[4.875rem]" };
+/** The note of an iPad with the phone on its left: at the top right, with the pause button on its inner side. */
+const noteRight = "absolute top-0 right-2 flex-row-reverse [--d:600ms] sm:-right-4";
 
 /** Where a highlight sits on its screen (left, top, width and height in %). */
 const place = ([x, y, w, h]: DemoScene["spot"]) => ({ left: `${x}%`, top: `${y}%`, width: `${w}%`, height: `${h}%` });
@@ -223,8 +227,6 @@ export type ScreenDemoProps = {
   delay?: number;
   /** For the picture at the top of the page: its screens load first. */
   priority?: boolean;
-  /** Which side of the iPad the phone is on. */
-  side?: "left" | "right";
   /** Whether a tap opens the picture full size. */
   zoom?: boolean;
   sizes?: Partial<Record<DemoDevice, string>>;
@@ -234,9 +236,10 @@ export type ScreenDemoProps = {
 };
 
 export default function ScreenDemo({
-  demo, layout, shots, text, start, delay = 0, priority, side = "right", zoom = true, sizes, reveal = true, className = "",
+  demo, layout, shots, text, start, delay = 0, priority, zoom = true, sizes, reveal = true, className = "",
 }: ScreenDemoProps) {
   const scenes = demos[demo];
+  const side = phoneSide[demo] ?? "right";
   const devices = layoutDevices[layout];
   const solo = devices.length === 1;
   const size = { ...layoutSizes[layout], ...sizes };
@@ -312,7 +315,7 @@ export default function ScreenDemo({
     return (
       <div className="demo-device" data-focus={focus || undefined} data-lift={(focus && !solo) || undefined}>
         {zoom ? (
-          <Zoomable src={shotSrc(shot)} alt={shot.alt}>
+          <Zoomable src={shotSrc(shot)} alt={shot.alt} hint={solo || d !== "phone"}>
             {frame}
           </Zoomable>
         ) : (
@@ -327,7 +330,7 @@ export default function ScreenDemo({
       ref={box}
       role="group"
       aria-label={text.label}
-      className={`demo relative ${layout === "family" ? "pb-16 sm:pb-20" : layout === "combo" ? "pb-10 sm:pb-12" : ""} ${className}`}
+      className={`demo relative ${layout === "family" ? "pb-16 sm:pb-20" : layout === "combo" ? "pt-12 pb-10 sm:pt-14 sm:pb-12" : ""} ${className}`}
       data-reveal={reveal ? "group" : undefined}
       data-motion={motion || undefined}
       data-solo={solo || undefined}
@@ -353,7 +356,7 @@ export default function ScreenDemo({
         clock={clock}
         card={(n) => ({ icon: scenes[n].icon, green: scenes[n].green, note: text.notes[scenes[n].key] })}
         labels={text}
-        className={notePlace[layout]}
+        className={layout === "combo" && side === "left" ? noteRight : notePlace[layout]}
         cardClass={noteCard[layout]}
       />
     </div>

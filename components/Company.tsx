@@ -375,7 +375,7 @@ export function UseCasesList({ lang, page }: { lang: Locale; page: PageOf }) {
                   <p className="mt-4 text-slate-600">{sys.blurb}</p>
                 </div>
                 <div className={`self-center lg:col-span-7 lg:row-span-2 lg:row-start-1 ${flip ? "lg:col-start-6" : "lg:col-start-1"}`}>
-                  <Demo lang={lang} demo={s.key} layout="combo" product={sys.name} start={useCaseStart[s.key]} side={flip ? "left" : "right"} />
+                  <Demo lang={lang} demo={s.key} layout="combo" product={sys.name} start={useCaseStart[s.key]} />
                 </div>
                 <div className={`lg:col-span-5 lg:row-start-2 lg:self-start ${flip ? "lg:col-start-1" : "lg:col-start-8"}`}>
                   <CheckList items={sys.points} />

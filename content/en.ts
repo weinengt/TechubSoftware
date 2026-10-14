@@ -263,7 +263,7 @@ const en = {
         packages: { title: "Package session booked", text: "Chloe Tan · session 4 of 10" },
         whatsapp: { title: "WhatsApp reminder sent", text: "Aqilah tapped Confirm" },
         left: { title: "6 of 10 sessions left", text: "Hydra Facial · Aqilah Razak" },
-        faceChart: { title: "Before & after saved", text: "Face chart · session 4 of 6" },
+        faceChart: { title: "Face chart saved", text: "Oily T-zone · session 4 of 6" },
         deposit: { title: "Deposit paid · RM 30", text: "Straight into your account" },
         activity: { title: "Staff activity tracked", text: "Export blocked for Nadia" },
         stock: { title: "AI: low on lash glue", text: "Order 10 bottles by Thursday" },
