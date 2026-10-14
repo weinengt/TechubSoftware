@@ -68,6 +68,7 @@ const en = {
         "Inventory tracking & payroll calculation",
         "Works on iPad, phone & PC",
         "Online payment & deposits via payment gateway",
+        "Deposits to income in one click",
         "Detailed reports in under 100 ms",
         "Every staff action tracked, your data protected",
       ],
@@ -83,6 +84,7 @@ const en = {
         "Staff profiles & payroll calculation",
         "Automatic WhatsApp reminders",
         "Online payment & deposits via payment gateway",
+        "Deposits to income in one click",
         "Detailed reports in under 100 ms",
         "Every staff action tracked, your data protected",
       ],
@@ -98,6 +100,7 @@ const en = {
         "Staff profiles, inventory & payroll",
         "Works on iPad, phone & PC",
         "Online payment & deposits via payment gateway",
+        "Deposits to income in one click",
         "Detailed reports in under 100 ms",
         "Every staff action tracked, your data protected",
       ],
@@ -309,6 +312,27 @@ const en = {
         read: { title: "Plate read in 0.18 s", text: "VKM 2318 · 99.2% match" },
         gate: { title: "Gate opened for resident", text: "Tan Wei Ming · B-12-03" },
         denied: { title: "Unknown car kept out", text: "PKB 8890 · no invite" },
+      },
+      salonDeposits: {
+        paid: { title: "Deposit paid · RM 50", text: "Wen Qi booked online" },
+        held: { title: "Held as a deposit", text: "Not income until the visit" },
+        convert: { title: "One click to income", text: "Once the service is done" },
+        invoice: { title: "Invoice made for you", text: "Deposit RM 50 deducted" },
+        notes: { title: "Refund & credit notes too", text: "No accounting skills needed" },
+      },
+      beautyDeposits: {
+        paid: { title: "Deposit paid · RM 30", text: "Nadia booked online" },
+        held: { title: "Held as a deposit", text: "Not income until the visit" },
+        convert: { title: "One click to income", text: "Once the service is done" },
+        invoice: { title: "Invoice made for you", text: "Deposit RM 30 deducted" },
+        notes: { title: "Refund & credit notes too", text: "No accounting skills needed" },
+      },
+      spaDeposits: {
+        paid: { title: "Deposit paid · RM 40", text: "Priya booked online" },
+        held: { title: "Held as a deposit", text: "Not income until the visit" },
+        convert: { title: "One click to income", text: "Once the service is done" },
+        invoice: { title: "Invoice made for you", text: "Deposit RM 40 deducted" },
+        notes: { title: "Refund & credit notes too", text: "No accounting skills needed" },
       },
       hub: {
         devices: { title: "Every device in sync", text: "iPad, phone & PC, real time" },
@@ -1065,6 +1089,16 @@ const en = {
           ],
           badges: ["Deposit paid", "Straight to your account"],
         },
+        deposits: {
+          eyebrow: "Deposits & accounting",
+          title: "Collect deposits. Turn them into income in *one click*.",
+          points: [
+            "Collect a deposit with each booking",
+            "Held apart until the service is done",
+            "Invoice, refund note & credit note made for you",
+            "No accounting knowledge needed",
+          ],
+        },
         stock: {
           eyebrow: "AI inventory tracking",
           title: "Scan the delivery note. Stock updates itself.",
@@ -1095,10 +1129,10 @@ const en = {
         packages: "Packages & member points",
         pos: "POS, retail & receipt printing",
         payment: "Payment gateway integration",
+        deposits: "Deposit to income in one click",
         commission: "Stylist commission",
         payroll: "Payroll calculation",
-        ai: "AI stock control",
-        inventory: "Inventory tracking",
+        inventory: "AI inventory tracking",
         einvoice: "LHDN e-Invoice",
         reports: "Reports in under 100 ms",
         permissions: "Activity tracking & permissions",
@@ -1140,6 +1174,10 @@ const en = {
         {
           q: "Can customers pay a deposit online?",
           a: "Yes. Techub works with various payment gateways, so customers can pay a deposit or the full amount online when they book, by online banking (FPX), card or e-wallet, depending on your gateway. The money goes straight into your salon's own merchant account, and deposits help cut no-shows.",
+        },
+        {
+          q: "Do I need accounting knowledge to handle deposits?",
+          a: "No. Each deposit is held apart until the service is done, then one click turns it into income. Techub makes the proper accounting documents for you, such as the invoice, refund note or credit note, so you don't need any accounting knowledge.",
         },
         {
           q: "Can I see what each staff member does in the system?",
@@ -1225,6 +1263,16 @@ const en = {
           ],
           badges: ["Deposit paid", "Straight to your account"],
         },
+        deposits: {
+          eyebrow: "Deposits & accounting",
+          title: "Collect deposits. Turn them into income in *one click*.",
+          points: [
+            "Collect a deposit with each booking",
+            "Held apart until the service is done",
+            "Invoice, refund note & credit note made for you",
+            "No accounting knowledge needed",
+          ],
+        },
         stock: {
           eyebrow: "AI inventory tracking",
           title: "Scan the delivery note. Stock updates itself.",
@@ -1255,10 +1303,10 @@ const en = {
         profiles: "Staff profiles & own bookings",
         pos: "POS, retail & receipt printing",
         payment: "Payment gateway integration",
+        deposits: "Deposit to income in one click",
         commission: "Staff commission",
         payroll: "Payroll calculation",
-        ai: "AI stock control",
-        inventory: "Inventory tracking",
+        inventory: "AI inventory tracking",
         einvoice: "LHDN e-Invoice",
         reports: "Reports in under 100 ms",
         permissions: "Activity tracking & permissions",
@@ -1296,6 +1344,10 @@ const en = {
         {
           q: "Can customers pay a deposit online?",
           a: "Yes. Techub works with various payment gateways, so customers can pay a deposit or the full amount online when they book, by online banking (FPX), card or e-wallet, depending on your gateway. The money goes straight into your beauty centre's own merchant account, and deposits help cut no-shows.",
+        },
+        {
+          q: "Do I need accounting knowledge to handle deposits?",
+          a: "No. Each deposit is held apart until the service is done, then one click turns it into income. Techub makes the proper accounting documents for you, such as the invoice, refund note or credit note, so you don't need any accounting knowledge.",
         },
         {
           q: "Can I see what each staff member does in the system?",
@@ -1381,6 +1433,16 @@ const en = {
           ],
           badges: ["Deposit paid", "Straight to your account"],
         },
+        deposits: {
+          eyebrow: "Deposits & accounting",
+          title: "Collect deposits. Turn them into income in *one click*.",
+          points: [
+            "Collect a deposit with each booking",
+            "Held apart until the service is done",
+            "Invoice, refund note & credit note made for you",
+            "No accounting knowledge needed",
+          ],
+        },
         stock: {
           eyebrow: "AI inventory tracking",
           title: "Scan the delivery note. Stock updates itself.",
@@ -1416,10 +1478,10 @@ const en = {
         profiles: "Staff profiles & own bookings",
         pos: "POS, retail & receipt printing",
         payment: "Payment gateway integration",
+        deposits: "Deposit to income in one click",
         commission: "Therapist commission",
         payroll: "Payroll calculation",
-        ai: "AI stock control",
-        inventory: "Inventory tracking",
+        inventory: "AI inventory tracking",
         einvoice: "LHDN e-Invoice",
         reports: "Reports in under 100 ms",
         permissions: "Activity tracking & permissions",
@@ -1461,6 +1523,10 @@ const en = {
         {
           q: "Can customers pay a deposit online?",
           a: "Yes. Techub works with various payment gateways, so customers can pay a deposit or the full amount online when they book, by online banking (FPX), card or e-wallet, depending on your gateway. The money goes straight into your spa's own merchant account, and deposits help cut no-shows.",
+        },
+        {
+          q: "Do I need accounting knowledge to handle deposits?",
+          a: "No. Each deposit is held apart until the service is done, then one click turns it into income. Techub makes the proper accounting documents for you, such as the invoice, refund note or credit note, so you don't need any accounting knowledge.",
         },
         {
           q: "Can I see what each staff member does in the system?",
@@ -1727,6 +1793,18 @@ const en = {
       title: "Online booking deposit",
       alt: "A customer paying a RM 50 booking deposit for a hair colour and treatment on a phone, by online banking (FPX), card, e-wallet or DuitNow QR, paid straight to the salon's own merchant account",
     },
+    depositsSalon: {
+      title: "Booking deposits",
+      alt: "Salon booking deposits on an iPad, each held until the service is done, with its deposit receipt and a one-click Convert to income button",
+    },
+    depositInvoiceSalon: {
+      title: "Deposit to income in one click",
+      alt: "Invoice made automatically on an iPad after one click turned a RM 50 salon deposit into income, with the deposit already deducted",
+    },
+    depositNotesSalon: {
+      title: "Invoices, refund notes & credit notes",
+      alt: "Salon deposits on an iPad with the invoice, refund note or credit note the system made for each one, with no accounting knowledge needed",
+    },
     beautyCalendar: {
       title: "Beauty centre booking calendar",
       alt: "Beauty centre appointment calendar on an iPad with facials, lash and brow, nails and slimming bookings and package sessions",
@@ -1763,6 +1841,18 @@ const en = {
       title: "Online booking deposit",
       alt: "A customer paying a RM 30 booking deposit for a Hydra Facial on a phone, by online banking (FPX), card, e-wallet or DuitNow QR, paid straight to the beauty centre's own merchant account",
     },
+    depositsBeauty: {
+      title: "Booking deposits",
+      alt: "Beauty centre booking deposits on an iPad, each held until the service is done, with its deposit receipt and a one-click Convert to income button",
+    },
+    depositInvoiceBeauty: {
+      title: "Deposit to income in one click",
+      alt: "Invoice made automatically on an iPad after one click turned a RM 30 beauty centre deposit into income, with the deposit already deducted",
+    },
+    depositNotesBeauty: {
+      title: "Invoices, refund notes & credit notes",
+      alt: "Beauty centre deposits on an iPad with the invoice, refund note or credit note the system made for each one, with no accounting knowledge needed",
+    },
     spaCalendar: {
       title: "Spa booking calendar",
       alt: "Spa appointment calendar on an iPad by therapist and room, with massage, body scrub and couple spa bookings",
@@ -1798,6 +1888,18 @@ const en = {
     paymentSpa: {
       title: "Online booking deposit",
       alt: "A customer paying a RM 40 booking deposit for a Balinese massage on a phone, by online banking (FPX), card, e-wallet or DuitNow QR, paid straight to the spa's own merchant account",
+    },
+    depositsSpa: {
+      title: "Booking deposits",
+      alt: "Spa booking deposits on an iPad, each held until the service is done, with its deposit receipt and a one-click Convert to income button",
+    },
+    depositInvoiceSpa: {
+      title: "Deposit to income in one click",
+      alt: "Invoice made automatically on an iPad after one click turned a RM 40 spa deposit into income, with the deposit already deducted",
+    },
+    depositNotesSpa: {
+      title: "Invoices, refund notes & credit notes",
+      alt: "Spa deposits on an iPad with the invoice, refund note or credit note the system made for each one, with no accounting knowledge needed",
     },
     permissionsDesktop: {
       title: "Staff activity tracking on PC",

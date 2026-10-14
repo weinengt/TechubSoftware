@@ -92,6 +92,17 @@ export const shotFiles = {
   payrollBeauty: { ...ipad, file: "payroll-beauty-ipad" },
   payrollSpa: { ...ipad, file: "payroll-spa-ipad" },
 
+  /* Booking deposits: held, turned into income (with the invoice it made), then the list with refund and credit notes */
+  depositsSalon: { ...ipad, file: "salon-booking-deposits-ipad" },
+  depositInvoiceSalon: { ...ipad, file: "salon-deposit-to-income-invoice-ipad" },
+  depositNotesSalon: { ...ipad, file: "salon-deposit-refund-credit-note-ipad" },
+  depositsBeauty: { ...ipad, file: "beauty-booking-deposits-ipad" },
+  depositInvoiceBeauty: { ...ipad, file: "beauty-deposit-to-income-invoice-ipad" },
+  depositNotesBeauty: { ...ipad, file: "beauty-deposit-refund-credit-note-ipad" },
+  depositsSpa: { ...ipad, file: "spa-booking-deposits-ipad" },
+  depositInvoiceSpa: { ...ipad, file: "spa-deposit-to-income-invoice-ipad" },
+  depositNotesSpa: { ...ipad, file: "spa-deposit-refund-credit-note-ipad" },
+
   /* LHDN e-Invoice and custom systems */
   eInvoice: { w: 1500, h: 1050, kind: "paper", file: "lhdn-e-invoice" },
   erpDesktop: { ...desktop, file: "custom-erp-desktop" },

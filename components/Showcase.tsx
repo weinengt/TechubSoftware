@@ -116,8 +116,18 @@ export function OtherSystems({ lang, current }: { lang: Locale; current: SystemK
 /* ---------- Image + short text rows ---------- */
 
 export function Spotlight({
-  eyebrow, title, points, visual, reverse, cta, id,
-}: { eyebrow: string; title: string; points: string[]; visual: ReactNode; reverse?: boolean; cta?: { label: string; message: string }; id?: string }) {
+  eyebrow, title, points, visual, reverse, cta, id, revealVisual = true,
+}: {
+  eyebrow: string;
+  title: string;
+  points: string[];
+  visual: ReactNode;
+  reverse?: boolean;
+  cta?: { label: string; message: string };
+  id?: string;
+  /** False for a moving picture, which comes in as it scrolls into view by itself. */
+  revealVisual?: boolean;
+}) {
   // Phones: heading, picture, then details, so each heading introduces its own picture.
   // Desktop: picture on one side, heading and details stacked on the other.
   const textCol = reverse ? "lg:col-start-1" : "lg:col-start-8";
@@ -127,7 +137,7 @@ export function Spotlight({
         <p className="eyebrow">{eyebrow}</p>
         <h2 className="mt-4 text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">{hl(title)}</h2>
       </div>
-      <div className={`self-center lg:col-span-7 lg:row-span-2 lg:row-start-1 ${reverse ? "lg:col-start-6" : "lg:col-start-1"}`} data-reveal="zoom">
+      <div className={`self-center lg:col-span-7 lg:row-span-2 lg:row-start-1 ${reverse ? "lg:col-start-6" : "lg:col-start-1"}`} data-reveal={revealVisual ? "zoom" : undefined}>
         {visual}
       </div>
       <div className={`lg:col-span-5 lg:row-start-2 lg:self-start ${textCol}`}>

@@ -65,6 +65,7 @@ const zh: Dict = {
         "库存追踪，薪水自动算",
         "iPad、手机、电脑都能用",
         "支付网关：网上付款和收订金",
+        "订金一键转成收入",
         "详细报表 100 毫秒内出来",
         "每位员工的操作都有记录，保护你的生意资料",
       ],
@@ -80,6 +81,7 @@ const zh: Dict = {
         "员工账号，薪水自动算",
         "自动发 WhatsApp 提醒",
         "支付网关：网上付款和收订金",
+        "订金一键转成收入",
         "详细报表 100 毫秒内出来",
         "每位员工的操作都有记录，保护你的生意资料",
       ],
@@ -95,6 +97,7 @@ const zh: Dict = {
         "员工账号、库存和薪水",
         "iPad、手机、电脑都能用",
         "支付网关：网上付款和收订金",
+        "订金一键转成收入",
         "详细报表 100 毫秒内出来",
         "每位员工的操作都有记录，保护你的生意资料",
       ],
@@ -306,6 +309,27 @@ const zh: Dict = {
         read: { title: "0.18 秒读取车牌", text: "VKM 2318 · 99.2% 吻合" },
         gate: { title: "住户车辆自动开闸", text: "Tan Wei Ming · B-12-03" },
         denied: { title: "陌生车辆被拒绝", text: "PKB 8890 · 没有邀请" },
+      },
+      salonDeposits: {
+        paid: { title: "订金已付 · RM 50", text: "Wen Qi 网上预约" },
+        held: { title: "先记为订金", text: "服务完成前不算收入" },
+        convert: { title: "一键转成收入", text: "服务做完点一下就好" },
+        invoice: { title: "发票自动开好", text: "已扣除 RM 50 订金" },
+        notes: { title: "退款单和 Credit Note 也有", text: "不需要懂会计" },
+      },
+      beautyDeposits: {
+        paid: { title: "订金已付 · RM 30", text: "Nadia 网上预约" },
+        held: { title: "先记为订金", text: "服务完成前不算收入" },
+        convert: { title: "一键转成收入", text: "服务做完点一下就好" },
+        invoice: { title: "发票自动开好", text: "已扣除 RM 30 订金" },
+        notes: { title: "退款单和 Credit Note 也有", text: "不需要懂会计" },
+      },
+      spaDeposits: {
+        paid: { title: "订金已付 · RM 40", text: "Priya 网上预约" },
+        held: { title: "先记为订金", text: "服务完成前不算收入" },
+        convert: { title: "一键转成收入", text: "服务做完点一下就好" },
+        invoice: { title: "发票自动开好", text: "已扣除 RM 40 订金" },
+        notes: { title: "退款单和 Credit Note 也有", text: "不需要懂会计" },
       },
       hub: {
         devices: { title: "所有设备即时同步", text: "iPad、手机、电脑" },
@@ -1061,6 +1085,16 @@ const zh: Dict = {
           ],
           badges: ["订金已付", "直接进你的户口"],
         },
+        deposits: {
+          eyebrow: "订金和会计",
+          title: "收订金，*一键*转成收入",
+          points: [
+            "每个预约都可以收订金",
+            "服务完成前，订金分开记录",
+            "发票、退款单和 Credit Note 自动开好",
+            "不需要懂会计",
+          ],
+        },
         stock: {
           eyebrow: "AI 库存追踪",
           title: "扫一扫送货单，库存自动更新。",
@@ -1086,10 +1120,10 @@ const zh: Dict = {
         packages: "配套和会员积分",
         pos: "POS、零售和收据打印",
         payment: "支付网关整合",
+        deposits: "订金一键转成收入",
         commission: "发型师佣金",
         payroll: "薪水计算",
-        ai: "AI 库存管理",
-        inventory: "库存追踪",
+        inventory: "AI 库存追踪",
         einvoice: "LHDN 电子发票",
         reports: "报表 100 毫秒内出来",
         permissions: "员工操作记录与权限",
@@ -1131,6 +1165,10 @@ const zh: Dict = {
         {
           q: "顾客可以在网上付订金吗？",
           a: "可以。Techub 支持多种支付网关，顾客预约时可以在网上付订金或全额，用网上银行（FPX）、信用卡/扣账卡或电子钱包都行，看你用哪个网关。钱直接进你发廊自己的商家户口，收订金也能减少放飞机。",
+        },
+        {
+          q: "处理订金需要懂会计吗？",
+          a: "不需要。每笔订金在服务完成前都分开记录，服务做完后一键就转成收入。Techub 会自动开好正确的会计单据，比如发票、退款单或 Credit Note，你不需要懂会计。",
         },
         {
           q: "我可以看到每位员工在系统里做了什么吗？",
@@ -1218,6 +1256,16 @@ const zh: Dict = {
           ],
           badges: ["订金已付", "直接进你的户口"],
         },
+        deposits: {
+          eyebrow: "订金和会计",
+          title: "收订金，*一键*转成收入",
+          points: [
+            "每个预约都可以收订金",
+            "服务完成前，订金分开记录",
+            "发票、退款单和 Credit Note 自动开好",
+            "不需要懂会计",
+          ],
+        },
         stock: {
           eyebrow: "AI 库存追踪",
           title: "扫一扫送货单，库存自动更新。",
@@ -1243,10 +1291,10 @@ const zh: Dict = {
         profiles: "员工账号和自己的预约",
         pos: "POS、零售和收据打印",
         payment: "支付网关整合",
+        deposits: "订金一键转成收入",
         commission: "员工佣金",
         payroll: "薪水计算",
-        ai: "AI 库存管理",
-        inventory: "库存追踪",
+        inventory: "AI 库存追踪",
         einvoice: "LHDN 电子发票",
         reports: "报表 100 毫秒内出来",
         permissions: "员工操作记录与权限",
@@ -1284,6 +1332,10 @@ const zh: Dict = {
         {
           q: "顾客可以在网上付订金吗？",
           a: "可以。Techub 支持多种支付网关，顾客预约时可以在网上付订金或全额，用网上银行（FPX）、信用卡/扣账卡或电子钱包都行，看你用哪个网关。钱直接进你美容中心自己的商家户口，收订金也能减少放飞机。",
+        },
+        {
+          q: "处理订金需要懂会计吗？",
+          a: "不需要。每笔订金在服务完成前都分开记录，服务做完后一键就转成收入。Techub 会自动开好正确的会计单据，比如发票、退款单或 Credit Note，你不需要懂会计。",
         },
         {
           q: "我可以看到每位员工在系统里做了什么吗？",
@@ -1371,6 +1423,16 @@ const zh: Dict = {
           ],
           badges: ["订金已付", "直接进你的户口"],
         },
+        deposits: {
+          eyebrow: "订金和会计",
+          title: "收订金，*一键*转成收入",
+          points: [
+            "每个预约都可以收订金",
+            "服务完成前，订金分开记录",
+            "发票、退款单和 Credit Note 自动开好",
+            "不需要懂会计",
+          ],
+        },
         stock: {
           eyebrow: "AI 库存追踪",
           title: "扫一扫送货单，库存自动更新。",
@@ -1401,10 +1463,10 @@ const zh: Dict = {
         profiles: "员工账号和自己的预约",
         pos: "POS、零售和收据打印",
         payment: "支付网关整合",
+        deposits: "订金一键转成收入",
         commission: "按摩师佣金",
         payroll: "薪水计算",
-        ai: "AI 库存管理",
-        inventory: "库存追踪",
+        inventory: "AI 库存追踪",
         einvoice: "LHDN 电子发票",
         reports: "报表 100 毫秒内出来",
         permissions: "员工操作记录与权限",
@@ -1446,6 +1508,10 @@ const zh: Dict = {
         {
           q: "顾客可以在网上付订金吗？",
           a: "可以。Techub 支持多种支付网关，顾客预约时可以在网上付订金或全额，用网上银行（FPX）、信用卡/扣账卡或电子钱包都行，看你用哪个网关。钱直接进你 SPA 自己的商家户口，收订金也能减少放飞机。",
+        },
+        {
+          q: "处理订金需要懂会计吗？",
+          a: "不需要。每笔订金在服务完成前都分开记录，服务做完后一键就转成收入。Techub 会自动开好正确的会计单据，比如发票、退款单或 Credit Note，你不需要懂会计。",
         },
         {
           q: "我可以看到每位员工在系统里做了什么吗？",
@@ -1711,6 +1777,18 @@ const zh: Dict = {
       title: "网上付预约订金",
       alt: "顾客在手机上为染发护发付 RM 50 预约订金，可用网上银行（FPX）、信用卡、电子钱包或 DuitNow QR，钱直接进发廊自己的商家户口",
     },
+    depositsSalon: {
+      title: "预约订金",
+      alt: "iPad 上的发廊预约订金，每笔订金在服务完成前分开记录，附订金收据和一键「Convert to income」按钮",
+    },
+    depositInvoiceSalon: {
+      title: "订金一键转成收入",
+      alt: "在 iPad 上一键把 RM 50 发廊订金转成收入后，系统自动开好的发票，订金已经扣除",
+    },
+    depositNotesSalon: {
+      title: "发票、退款单和 Credit Note",
+      alt: "iPad 上的发廊订金列表，系统为每笔订金自动开好发票、退款单或 Credit Note，不需要懂会计",
+    },
     beautyCalendar: {
       title: "美容中心预约日历",
       alt: "iPad 上的美容中心预约日历，有面部护理、美睫绣眉、美甲和纤体预约，还有配套疗程",
@@ -1747,6 +1825,18 @@ const zh: Dict = {
       title: "网上付预约订金",
       alt: "顾客在手机上为 Hydra Facial 付 RM 30 预约订金，可用网上银行（FPX）、信用卡、电子钱包或 DuitNow QR，钱直接进美容中心自己的商家户口",
     },
+    depositsBeauty: {
+      title: "预约订金",
+      alt: "iPad 上的美容中心预约订金，每笔订金在服务完成前分开记录，附订金收据和一键「Convert to income」按钮",
+    },
+    depositInvoiceBeauty: {
+      title: "订金一键转成收入",
+      alt: "在 iPad 上一键把 RM 30 美容中心订金转成收入后，系统自动开好的发票，订金已经扣除",
+    },
+    depositNotesBeauty: {
+      title: "发票、退款单和 Credit Note",
+      alt: "iPad 上的美容中心订金列表，系统为每笔订金自动开好发票、退款单或 Credit Note，不需要懂会计",
+    },
     spaCalendar: {
       title: "SPA 预约日历",
       alt: "iPad 上的 SPA 预约日历，分按摩师和房间显示，有按摩、身体磨砂和情侣 SPA 预约",
@@ -1782,6 +1872,18 @@ const zh: Dict = {
     paymentSpa: {
       title: "网上付预约订金",
       alt: "顾客在手机上为峇厘岛按摩付 RM 40 预约订金，可用网上银行（FPX）、信用卡、电子钱包或 DuitNow QR，钱直接进 SPA 自己的商家户口",
+    },
+    depositsSpa: {
+      title: "预约订金",
+      alt: "iPad 上的 SPA 预约订金，每笔订金在服务完成前分开记录，附订金收据和一键「Convert to income」按钮",
+    },
+    depositInvoiceSpa: {
+      title: "订金一键转成收入",
+      alt: "在 iPad 上一键把 RM 40 SPA 订金转成收入后，系统自动开好的发票，订金已经扣除",
+    },
+    depositNotesSpa: {
+      title: "发票、退款单和 Credit Note",
+      alt: "iPad 上的 SPA 订金列表，系统为每笔订金自动开好发票、退款单或 Credit Note，不需要懂会计",
     },
     permissionsDesktop: {
       title: "电脑上的员工操作记录",

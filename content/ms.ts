@@ -64,6 +64,7 @@ const ms: Dict = {
         "Pantau inventori & kira gaji",
         "Boleh guna di iPad, telefon & PC",
         "Bayaran online & deposit melalui payment gateway",
+        "Deposit jadi pendapatan dengan satu klik",
         "Laporan terperinci bawah 100 ms",
         "Setiap tindakan staf direkod, data anda dilindungi",
       ],
@@ -79,6 +80,7 @@ const ms: Dict = {
         "Profil staf & kira gaji",
         "Reminder WhatsApp automatik",
         "Bayaran online & deposit melalui payment gateway",
+        "Deposit jadi pendapatan dengan satu klik",
         "Laporan terperinci bawah 100 ms",
         "Setiap tindakan staf direkod, data anda dilindungi",
       ],
@@ -94,6 +96,7 @@ const ms: Dict = {
         "Profil staf, inventori & gaji",
         "Boleh guna di iPad, telefon & PC",
         "Bayaran online & deposit melalui payment gateway",
+        "Deposit jadi pendapatan dengan satu klik",
         "Laporan terperinci bawah 100 ms",
         "Setiap tindakan staf direkod, data anda dilindungi",
       ],
@@ -303,6 +306,27 @@ const ms: Dict = {
         read: { title: "Plat dibaca dalam 0.18 s", text: "VKM 2318 · padanan 99.2%" },
         gate: { title: "Gate dibuka untuk penduduk", text: "Tan Wei Ming · B-12-03" },
         denied: { title: "Kereta asing tak dibenarkan", text: "PKB 8890 · tiada jemputan" },
+      },
+      salonDeposits: {
+        paid: { title: "Deposit dibayar · RM 50", text: "Wen Qi buat booking online" },
+        held: { title: "Disimpan sebagai deposit", text: "Belum dikira pendapatan" },
+        convert: { title: "Tukar jadi pendapatan", text: "Satu klik lepas servis siap" },
+        invoice: { title: "Invois siap untuk anda", text: "Deposit RM 50 sudah ditolak" },
+        notes: { title: "Nota bayaran balik & kredit", text: "Tak perlu tahu perakaunan" },
+      },
+      beautyDeposits: {
+        paid: { title: "Deposit dibayar · RM 30", text: "Nadia buat booking online" },
+        held: { title: "Disimpan sebagai deposit", text: "Belum dikira pendapatan" },
+        convert: { title: "Tukar jadi pendapatan", text: "Satu klik lepas servis siap" },
+        invoice: { title: "Invois siap untuk anda", text: "Deposit RM 30 sudah ditolak" },
+        notes: { title: "Nota bayaran balik & kredit", text: "Tak perlu tahu perakaunan" },
+      },
+      spaDeposits: {
+        paid: { title: "Deposit dibayar · RM 40", text: "Priya buat booking online" },
+        held: { title: "Disimpan sebagai deposit", text: "Belum dikira pendapatan" },
+        convert: { title: "Tukar jadi pendapatan", text: "Satu klik lepas servis siap" },
+        invoice: { title: "Invois siap untuk anda", text: "Deposit RM 40 sudah ditolak" },
+        notes: { title: "Nota bayaran balik & kredit", text: "Tak perlu tahu perakaunan" },
       },
       hub: {
         devices: { title: "Semua peranti sentiasa sync", text: "iPad, telefon & PC, real-time" },
@@ -1110,6 +1134,16 @@ const ms: Dict = {
           ],
           badges: ["Deposit dibayar", "Terus ke akaun anda"],
         },
+        deposits: {
+          eyebrow: "Deposit & perakaunan",
+          title: "Kutip deposit. Tukar jadi pendapatan dengan *satu klik*.",
+          points: [
+            "Kutip deposit setiap kali booking",
+            "Disimpan berasingan sampai servis siap",
+            "Invois, nota bayaran balik & nota kredit siap untuk anda",
+            "Tak perlu ilmu perakaunan",
+          ],
+        },
         stock: {
           eyebrow: "Pantau inventori dengan AI",
           title: "Imbas nota penghantaran. Stok update sendiri.",
@@ -1150,10 +1184,10 @@ const ms: Dict = {
         packages: "Pakej & point member",
         pos: "POS, jualan runcit & cetak resit",
         payment: "Integrasi payment gateway",
+        deposits: "Satu klik, deposit jadi pendapatan",
         commission: "Komisen stylist",
         payroll: "Kira gaji automatik",
-        ai: "Kawalan stok AI",
-        inventory: "Pantau inventori",
+        inventory: "Pantau inventori dengan AI",
         einvoice: "e-Invois LHDN",
         reports: "Laporan bawah 100 ms",
         permissions: "Jejak aktiviti & akses staf",
@@ -1195,6 +1229,10 @@ const ms: Dict = {
         {
           q: "Pelanggan boleh bayar deposit online?",
           a: "Boleh. Techub boleh guna pelbagai payment gateway, jadi pelanggan boleh bayar deposit atau bayaran penuh secara online masa buat booking, guna perbankan online (FPX), kad atau e-wallet, ikut gateway anda. Duit terus masuk ke akaun merchant salon anda sendiri, dan deposit bantu kurangkan kes tak datang.",
+        },
+        {
+          q: "Perlu ada ilmu perakaunan untuk urus deposit?",
+          a: "Tak perlu. Setiap deposit disimpan berasingan sampai servis siap, kemudian satu klik tukar jadi pendapatan. Techub sediakan dokumen perakaunan yang betul untuk anda, seperti invois, nota bayaran balik atau nota kredit, jadi anda tak perlu ada ilmu perakaunan.",
         },
         {
           q: "Boleh saya tengok apa yang setiap staf buat dalam sistem?",
@@ -1305,6 +1343,16 @@ const ms: Dict = {
           ],
           badges: ["Deposit dibayar", "Terus ke akaun anda"],
         },
+        deposits: {
+          eyebrow: "Deposit & perakaunan",
+          title: "Kutip deposit. Tukar jadi pendapatan dengan *satu klik*.",
+          points: [
+            "Kutip deposit setiap kali booking",
+            "Disimpan berasingan sampai servis siap",
+            "Invois, nota bayaran balik & nota kredit siap untuk anda",
+            "Tak perlu ilmu perakaunan",
+          ],
+        },
         stock: {
           eyebrow: "Pantau inventori dengan AI",
           title: "Imbas nota penghantaran. Stok update sendiri.",
@@ -1345,10 +1393,10 @@ const ms: Dict = {
         profiles: "Profil staf & booking sendiri",
         pos: "POS, jualan runcit & cetak resit",
         payment: "Integrasi payment gateway",
+        deposits: "Satu klik, deposit jadi pendapatan",
         commission: "Komisen staf",
         payroll: "Kira gaji automatik",
-        ai: "Kawalan stok AI",
-        inventory: "Pantau inventori",
+        inventory: "Pantau inventori dengan AI",
         einvoice: "e-Invois LHDN",
         reports: "Laporan bawah 100 ms",
         permissions: "Jejak aktiviti & akses staf",
@@ -1386,6 +1434,10 @@ const ms: Dict = {
         {
           q: "Pelanggan boleh bayar deposit online?",
           a: "Boleh. Techub boleh guna pelbagai payment gateway, jadi pelanggan boleh bayar deposit atau bayaran penuh secara online masa buat booking, guna perbankan online (FPX), kad atau e-wallet, ikut gateway anda. Duit terus masuk ke akaun merchant pusat kecantikan anda sendiri, dan deposit bantu kurangkan kes tak datang.",
+        },
+        {
+          q: "Perlu ada ilmu perakaunan untuk urus deposit?",
+          a: "Tak perlu. Setiap deposit disimpan berasingan sampai servis siap, kemudian satu klik tukar jadi pendapatan. Techub sediakan dokumen perakaunan yang betul untuk anda, seperti invois, nota bayaran balik atau nota kredit, jadi anda tak perlu ada ilmu perakaunan.",
         },
         {
           q: "Boleh saya tengok apa yang setiap staf buat dalam sistem?",
@@ -1489,6 +1541,16 @@ const ms: Dict = {
           ],
           badges: ["Deposit dibayar", "Terus ke akaun anda"],
         },
+        deposits: {
+          eyebrow: "Deposit & perakaunan",
+          title: "Kutip deposit. Tukar jadi pendapatan dengan *satu klik*.",
+          points: [
+            "Kutip deposit setiap kali booking",
+            "Disimpan berasingan sampai servis siap",
+            "Invois, nota bayaran balik & nota kredit siap untuk anda",
+            "Tak perlu ilmu perakaunan",
+          ],
+        },
         stock: {
           eyebrow: "Pantau inventori dengan AI",
           title: "Imbas nota penghantaran. Stok update sendiri.",
@@ -1529,10 +1591,10 @@ const ms: Dict = {
         profiles: "Profil staf & booking sendiri",
         pos: "POS, jualan runcit & cetak resit",
         payment: "Integrasi payment gateway",
+        deposits: "Satu klik, deposit jadi pendapatan",
         commission: "Komisen terapis",
         payroll: "Kira gaji automatik",
-        ai: "Kawalan stok AI",
-        inventory: "Pantau inventori",
+        inventory: "Pantau inventori dengan AI",
         einvoice: "e-Invois LHDN",
         reports: "Laporan bawah 100 ms",
         permissions: "Jejak aktiviti & akses staf",
@@ -1574,6 +1636,10 @@ const ms: Dict = {
         {
           q: "Pelanggan boleh bayar deposit online?",
           a: "Boleh. Techub boleh guna pelbagai payment gateway, jadi pelanggan boleh bayar deposit atau bayaran penuh secara online masa buat booking, guna perbankan online (FPX), kad atau e-wallet, ikut gateway anda. Duit terus masuk ke akaun merchant spa anda sendiri, dan deposit bantu kurangkan kes tak datang.",
+        },
+        {
+          q: "Perlu ada ilmu perakaunan untuk urus deposit?",
+          a: "Tak perlu. Setiap deposit disimpan berasingan sampai servis siap, kemudian satu klik tukar jadi pendapatan. Techub sediakan dokumen perakaunan yang betul untuk anda, seperti invois, nota bayaran balik atau nota kredit, jadi anda tak perlu ada ilmu perakaunan.",
         },
         {
           q: "Boleh saya tengok apa yang setiap staf buat dalam sistem?",
@@ -1843,6 +1909,18 @@ const ms: Dict = {
       title: "Deposit booking online",
       alt: "Pelanggan bayar deposit booking RM 50 untuk warna & rawatan rambut di telefon, guna perbankan online (FPX), kad, e-wallet atau DuitNow QR, terus masuk akaun merchant salon",
     },
+    depositsSalon: {
+      title: "Deposit booking",
+      alt: "Deposit booking salon di iPad, setiap satu disimpan sampai servis siap, dengan resit deposit dan butang Convert to income satu klik",
+    },
+    depositInvoiceSalon: {
+      title: "Deposit jadi pendapatan, satu klik",
+      alt: "Invois yang siap secara automatik di iPad selepas satu klik tukar deposit salon RM 50 jadi pendapatan, dengan deposit sudah ditolak",
+    },
+    depositNotesSalon: {
+      title: "Invois, nota bayaran balik & nota kredit",
+      alt: "Deposit salon di iPad dengan invois, nota bayaran balik atau nota kredit yang sistem sediakan untuk setiap satu, tanpa perlu ilmu perakaunan",
+    },
     beautyCalendar: {
       title: "Kalendar booking pusat kecantikan",
       alt: "Kalendar booking pusat kecantikan di iPad dengan booking facial, bulu mata dan kening, kuku dan slimming, serta sesi pakej",
@@ -1879,6 +1957,18 @@ const ms: Dict = {
       title: "Deposit booking online",
       alt: "Pelanggan bayar deposit booking RM 30 untuk Hydra Facial di telefon, guna perbankan online (FPX), kad, e-wallet atau DuitNow QR, terus masuk akaun merchant pusat kecantikan",
     },
+    depositsBeauty: {
+      title: "Deposit booking",
+      alt: "Deposit booking pusat kecantikan di iPad, setiap satu disimpan sampai servis siap, dengan resit deposit dan butang Convert to income satu klik",
+    },
+    depositInvoiceBeauty: {
+      title: "Deposit jadi pendapatan, satu klik",
+      alt: "Invois yang siap secara automatik di iPad selepas satu klik tukar deposit pusat kecantikan RM 30 jadi pendapatan, dengan deposit sudah ditolak",
+    },
+    depositNotesBeauty: {
+      title: "Invois, nota bayaran balik & nota kredit",
+      alt: "Deposit pusat kecantikan di iPad dengan invois, nota bayaran balik atau nota kredit yang sistem sediakan untuk setiap satu, tanpa perlu ilmu perakaunan",
+    },
     spaCalendar: {
       title: "Kalendar booking spa",
       alt: "Kalendar booking spa di iPad ikut terapis dan bilik, dengan booking urutan, skrub badan dan spa pasangan",
@@ -1914,6 +2004,18 @@ const ms: Dict = {
     paymentSpa: {
       title: "Deposit booking online",
       alt: "Pelanggan bayar deposit booking RM 40 untuk urutan Bali di telefon, guna perbankan online (FPX), kad, e-wallet atau DuitNow QR, terus masuk akaun merchant spa",
+    },
+    depositsSpa: {
+      title: "Deposit booking",
+      alt: "Deposit booking spa di iPad, setiap satu disimpan sampai servis siap, dengan resit deposit dan butang Convert to income satu klik",
+    },
+    depositInvoiceSpa: {
+      title: "Deposit jadi pendapatan, satu klik",
+      alt: "Invois yang siap secara automatik di iPad selepas satu klik tukar deposit spa RM 40 jadi pendapatan, dengan deposit sudah ditolak",
+    },
+    depositNotesSpa: {
+      title: "Invois, nota bayaran balik & nota kredit",
+      alt: "Deposit spa di iPad dengan invois, nota bayaran balik atau nota kredit yang sistem sediakan untuk setiap satu, tanpa perlu ilmu perakaunan",
     },
     permissionsDesktop: {
       title: "Jejak aktiviti staf di PC",

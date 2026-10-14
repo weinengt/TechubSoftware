@@ -1,0 +1,280 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<style>
+  /* Booking deposits. Each deposit is held apart until the service is done; then one click turns it into income.
+     Every step makes its own accounting document: a receipt when the deposit is paid, an invoice when it becomes
+     income, a refund note when it is refunded and a credit note when the customer keeps it as credit.
+     ?v=salon|beauty|spa, and &s=held (before the click) | invoice (just turned into income, with the invoice it made) | done.
+     The phone stands over the lower right corner in the moving picture, so nothing the moments point at is there. */
+  :root { --w: 1024px; --h: 720px; }
+  .top { gap: 10px; }
+  .top .when { display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 11px; border-radius: 99px; background: #f1f5f9; color: var(--ink2); font-size: 11.5px; font-weight: 600; white-space: nowrap; }
+  .top .when svg { width: 14px; height: 14px; color: var(--muted); }
+  .btn svg { width: 15px; height: 15px; }
+  .content { gap: 12px; }
+  .stat { padding: 10px 12px; gap: 11px; }
+  .stat .ic { width: 36px; height: 36px; }
+  .stat .v { font-size: 19px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .stat .d { white-space: nowrap; }
+  .stat .d.n { color: var(--muted); font-weight: 500; }
+  .stat .v.sm { font-size: 15.5px; letter-spacing: -.01em; margin-top: 3px; }
+  .rw { display: flex; gap: 12px; flex: 1; min-height: 0; }
+
+  /* Deposits list */
+  .list { width: 720px; flex-shrink: 0; padding: 0; display: flex; flex-direction: column; overflow: hidden; }
+  .lh { display: flex; align-items: center; gap: 10px; padding: 11px 14px; }
+  .lh h3 { font-size: 13.5px; }
+  .lh h3 small { font-size: 11px; color: var(--muted); font-weight: 500; }
+  .seg { margin-left: auto; display: flex; background: #e9eef5; border-radius: 9px; padding: 3px; }
+  .seg span { font-size: 11px; font-weight: 600; padding: 5px 10px; border-radius: 7px; color: var(--muted); white-space: nowrap; }
+  .seg span.on { background: #fff; color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+  table { table-layout: fixed; }
+  th { padding: 7px 10px; }
+  th:first-child, td:first-child { padding-left: 14px; }
+  td { padding: 0 10px; height: 58px; }
+  tr.star td { background: linear-gradient(90deg, #f2fbff, #f8fdff); }
+  .who { display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .who .av { width: 30px; height: 30px; font-size: 10.5px; }
+  .who b { display: block; font-size: 12.5px; font-weight: 700; }
+  .who small { display: block; font-size: 10.5px; color: var(--muted); margin-top: 2px; overflow: hidden; text-overflow: ellipsis; }
+  .amt b { display: block; font-size: 12.5px; font-weight: 750; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .amt small { display: block; font-size: 10.5px; color: var(--muted); margin-top: 2px; }
+  .st small { display: block; font-size: 10.5px; color: var(--muted); margin-top: 4px; }
+  .st small.ok { color: #059669; font-weight: 650; }
+  .chip svg { width: 11px; height: 11px; stroke-width: 2.6; }
+  .doc { display: inline-flex; align-items: center; gap: 7px; }
+  .doc .fi { width: 26px; height: 30px; border-radius: 6px; display: grid; place-items: center; flex-shrink: 0; position: relative; }
+  .doc .fi svg { width: 15px; height: 15px; stroke-width: 2; }
+  .doc b { display: block; font-size: 11.5px; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .doc small { display: block; font-size: 10px; color: var(--muted); margin-top: 1px; }
+  .fi.or { background: #f1f5f9; color: #475569; } .fi.inv { background: #dcfce7; color: #15803d; }
+  .fi.rn { background: #fee2e2; color: #b91c1c; } .fi.cn { background: #ede9fe; color: #6d28d9; }
+  .go { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 32px; width: 100%; border-radius: 9px; font-size: 11.5px; font-weight: 700; white-space: nowrap; border: 1px solid #cfe3f2; color: #036295; background: #fff; }
+  .go svg { width: 14px; height: 14px; stroke-width: 2.3; }
+  .go.pri { border: 0; color: #fff; background: linear-gradient(135deg, var(--brand), #0287c4); box-shadow: 0 6px 14px -6px rgba(3,150,217,.8); }
+  .sent { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; color: #15803d; white-space: nowrap; }
+  .sent i, .sent svg { width: 20px; height: 20px; }
+  .sent .w { width: 20px; height: 20px; border-radius: 99px; background: #22c55e; color: #fff; display: grid; place-items: center; }
+  .sent .w svg { width: 12px; height: 12px; stroke-width: 2.4; }
+  .foot { margin-top: auto; display: flex; align-items: center; gap: 9px; padding: 10px 14px; border-top: 1px solid var(--line); background: #f8fafc; font-size: 11.5px; color: var(--ink2); white-space: nowrap; }
+  .foot .sp { width: 26px; height: 26px; border-radius: 8px; background: linear-gradient(135deg, var(--brand), var(--teal)); color: #fff; display: grid; place-items: center; flex-shrink: 0; }
+  .foot .sp svg { width: 15px; height: 15px; }
+  .foot b { font-weight: 750; color: var(--ink); }
+
+  /* What the system does at each step (under the phone in the moving picture; seen when the picture is enlarged) */
+  .auto { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 9px; }
+  .auto h3 svg { width: 16px; height: 16px; color: var(--brand); }
+  .auto p { font-size: 11px; color: var(--muted); line-height: 1.45; }
+  .stp { display: flex; gap: 9px; align-items: flex-start; padding: 8px 0; border-top: 1px dashed #e3e9f0; }
+  .stp .fi { width: 26px; height: 30px; border-radius: 6px; display: grid; place-items: center; flex-shrink: 0; }
+  .stp .fi svg { width: 15px; height: 15px; }
+  .stp b { display: block; font-size: 11.5px; font-weight: 700; }
+  .stp small { display: block; font-size: 10.5px; color: var(--muted); margin-top: 2px; line-height: 1.35; }
+  .easy { margin-top: auto; border-radius: 10px; background: linear-gradient(135deg, #ecfdf5, #d1fae5); border: 1px solid #a7f3d0; color: #065f46; font-size: 11.5px; font-weight: 700; padding: 9px 10px; line-height: 1.4; }
+  .easy small { display: block; font-weight: 500; color: #047857; font-size: 10.5px; margin-top: 2px; }
+
+  /* The invoice the click made */
+  .veil { position: absolute; inset: 0; background: rgba(11, 31, 51, .42); }
+  .modal { position: absolute; left: 312px; top: 66px; width: 400px; background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 30px 60px -20px rgba(2, 18, 38, .65), 0 0 0 1px rgba(15,23,42,.06); }
+  .mh { display: flex; align-items: center; gap: 11px; padding: 13px 14px 12px; background: linear-gradient(135deg, #f0fdf4, #dcfce7); border-bottom: 1px solid #bbf7d0; }
+  .mh .ok { width: 34px; height: 34px; border-radius: 99px; background: #22c55e; color: #fff; display: grid; place-items: center; flex-shrink: 0; box-shadow: 0 6px 12px -6px rgba(22,163,74,.9); }
+  .mh .ok svg { width: 19px; height: 19px; stroke-width: 2.8; }
+  .mh b { display: block; font-size: 13.5px; font-weight: 800; color: #14532d; }
+  .mh small { display: block; font-size: 11px; color: #15803d; font-weight: 600; margin-top: 1px; }
+  .mh .x { margin-left: auto; width: 28px; height: 28px; border-radius: 99px; background: rgba(255,255,255,.75); display: grid; place-items: center; color: #4b5563; }
+  .mh .x svg { width: 14px; height: 14px; }
+  .paper { margin: 14px; border: 1px solid var(--line); border-radius: 10px; padding: 14px 15px 12px; position: relative; overflow: hidden; }
+  .ph1 { display: flex; align-items: flex-start; gap: 9px; padding-bottom: 10px; border-bottom: 2px solid #0050a0; }
+  .ph1 img { width: 30px; height: 30px; border-radius: 7px; }
+  .ph1 .co b { display: block; font-size: 12px; font-weight: 800; color: #0b2f55; letter-spacing: .02em; }
+  .ph1 .co small { display: block; font-size: 9px; color: #64748b; margin-top: 2px; }
+  .ph1 .tt { margin-left: auto; text-align: right; }
+  .ph1 .tt h4 { font-size: 15px; font-weight: 850; color: #0b2f55; letter-spacing: .06em; }
+  .ph1 .tt small { display: block; font-size: 9.5px; color: #475569; margin-top: 2px; font-variant-numeric: tabular-nums; }
+  .to { display: flex; justify-content: space-between; margin-top: 10px; font-size: 10.5px; color: #64748b; }
+  .to b { display: block; color: var(--ink); font-size: 12px; font-weight: 700; margin-top: 1px; }
+  .to .rt { text-align: right; }
+  .ln { display: flex; align-items: flex-start; margin-top: 10px; padding: 8px 0; border-top: 1px solid #edf1f6; border-bottom: 1px solid #edf1f6; }
+  .ln b { display: block; font-size: 12px; font-weight: 700; }
+  .ln small { display: block; font-size: 10px; color: var(--muted); margin-top: 2px; }
+  .ln span { margin-left: auto; font-size: 12px; font-weight: 650; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .tl { margin-top: 6px; display: flex; flex-direction: column; }
+  .tl div { display: flex; justify-content: space-between; font-size: 11.5px; color: var(--ink2); padding: 4px 0; font-variant-numeric: tabular-nums; }
+  .tl div span:last-child { font-weight: 650; color: var(--ink); white-space: nowrap; }
+  .tl .dep { margin: 3px -7px; padding: 6px 7px; border-radius: 7px; background: #f0fdf4; color: #166534; font-weight: 650; }
+  .tl .dep small { display: block; font-size: 9.5px; color: #15803d; font-weight: 500; margin-top: 1px; }
+  .tl .dep span:last-child { color: #15803d; font-weight: 750; }
+  .tl .due { margin-top: 4px; padding-top: 8px; border-top: 1px dashed #cbd5e1; align-items: baseline; }
+  .tl .due span:first-child { font-size: 12px; font-weight: 750; color: var(--ink); }
+  .tl .due span:last-child { font-size: 17px; font-weight: 850; letter-spacing: -.01em; }
+  .paid { position: absolute; left: 150px; bottom: 9px; transform: rotate(-12deg); border: 2.5px solid rgba(5,150,105,.75); border-radius: 7px; padding: 3px 10px 4px; color: rgba(4,120,87,.85); font-size: 15px; font-weight: 900; letter-spacing: .16em; }
+  .acc { display: flex; flex-direction: column; gap: 6px; margin: 0 14px; }
+  .acc div { display: flex; align-items: center; gap: 8px; font-size: 11.5px; color: var(--ink2); }
+  .acc div b { font-weight: 700; color: var(--ink); }
+  .acc .ck { width: 18px; height: 18px; border-radius: 99px; background: #dcfce7; color: #15803d; display: grid; place-items: center; flex-shrink: 0; }
+  .acc .ck svg { width: 11px; height: 11px; stroke-width: 3; }
+  .mf { display: flex; gap: 8px; padding: 12px 14px 14px; }
+  .mf span { flex: 1; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; gap: 7px; font-size: 12px; font-weight: 700; border: 1px solid var(--line); color: var(--ink2); }
+  .mf span svg { width: 15px; height: 15px; }
+  .mf span.wa { border: 0; background: #22c55e; color: #fff; }
+</style></head>
+<body>
+<div class="app" id="app">
+  <aside class="side" data-shell="salon" data-active="POS"></aside>
+  <section class="main">
+    <header class="top">
+      <div><div class="sub">POS · Deposits</div><h1>Deposits</h1></div>
+      <span class="when"><i data-i="cal"></i><span id="when"></span></span>
+      <span class="btn" style="margin-left:auto"><i data-i="file"></i>Documents</span>
+      <span class="btn pri"><i data-i="plus"></i>New deposit</span>
+    </header>
+    <div class="content">
+      <div class="stats" id="stats"></div>
+      <div class="rw">
+        <div class="card list">
+          <div class="lh"><h3 id="lt"></h3><div class="seg"><span class="on">All</span><span>Held</span><span>Income</span><span>Refunded</span><span>Credit</span></div></div>
+          <table>
+            <colgroup><col style="width:220px"><col style="width:90px"><col style="width:102px"><col style="width:148px"><col></colgroup>
+            <thead><tr><th>Customer</th><th>Deposit</th><th>Status</th><th>Document</th><th></th></tr></thead>
+            <tbody id="rows"></tbody>
+          </table>
+          <div class="foot"><span class="sp"><i data-i="spark"></i></span><span><b>Accounting done for you.</b> Every deposit gets the right document at each step.</span></div>
+        </div>
+        <div class="card auto">
+          <h3><i data-i="spark"></i>Done for you</h3>
+          <p>Techub makes the right document at each step.</p>
+          <div id="steps"></div>
+          <div class="easy">No accounting knowledge needed<small>Your accounts stay right on their own.</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<script>
+  const p = new URLSearchParams(location.search);
+  const V = ["salon", "beauty", "spa"].includes(p.get("v")) ? p.get("v") : "salon";
+  const S = ["held", "invoice", "done"].includes(p.get("s")) ? p.get("s") : "held";
+  const moved = S !== "held"; // the first deposit has been turned into income
+  document.querySelector("aside").dataset.shell = V;
+
+  const rm = (n) => "RM " + n.toLocaleString("en-MY", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const AV = ["#0396d9", "#8b5cf6", "#14b8a6", "#ec4899", "#f59e0b", "#10b981", "#6366f1"];
+
+  // The first row is the booking from the phone's payment screen (online-payment.html) and its WhatsApp reminder.
+  // rows: [initials, name, service and time, deposit, paid with, status, status note, document number]
+  // status: held | income | refunded | credit
+  const D = {
+    salon: {
+      biz: "DEMO HAIR SALON", addr: "Damansara Utama, 47400 Petaling Jaya", when: "Wed, 14 Oct · 1:10 PM",
+      stats: { held: [1240, 23], today: [380, 6], refunded: [90, 2] },
+      first: { service: "Colour & Treatment", staff: "Stylist Mei Fen", time: "11:00 AM", full: 238, inv: "INV-2026-0418", phone: "012-xxx 4410", pay: "DuitNow QR" },
+      rows: [
+        ["WQ", "Wen Qi", "Colour & Treatment · 11:00 AM", 50, "FPX", "held", "Service done", "OR-1043"],
+        ["JL", "Joanne Lim", "Keratin Treatment · 2:30 PM", 80, "Card", "held", "Until the visit", "OR-1044"],
+        ["FA", "Farah Aziz", "Women's Cut & Blow · 4:00 PM", 20, "e-Wallet", "held", "Until the visit", "OR-1045"],
+        ["AT", "Amanda Teh", "Bridal Hair Trial · Sat, 17 Oct", 100, "FPX", "held", "Until the visit", "OR-1039"],
+        ["DO", "Daniel Ong", "Men's Haircut · Yesterday", 20, "DuitNow QR", "income", "13 Oct", "INV-2026-0417"],
+        ["KR", "Kavitha R.", "Full Head Colour · Cancelled", 50, "FPX", "refunded", "Back to FPX", "RN-2026-0032"],
+        ["SL", "Lim Su Ling", "Hair Spa Treatment · Moved", 30, "Card", "credit", "For next visit", "CN-2026-0057"],
+      ],
+    },
+    beauty: {
+      biz: "DEMO BEAUTY CENTRE", addr: "SS15, 47500 Subang Jaya", when: "Wed, 14 Oct · 3:20 PM",
+      stats: { held: [960, 24], today: [260, 5], refunded: [60, 2] },
+      first: { service: "Hydra Facial (60 min)", staff: "Beautician Mei Ling", time: "2:00 PM", full: 188, inv: "INV-2026-0733", phone: "017-xxx 2290", pay: "Card" },
+      rows: [
+        ["NA", "Nadia", "Hydra Facial · 2:00 PM", 30, "FPX", "held", "Service done", "OR-2087"],
+        ["CT", "Chloe Tan", "Signature Facial · 4:30 PM", 50, "Card", "held", "Until the visit", "OR-2088"],
+        ["AR", "Aqilah Razak", "Lash Extension · 6:00 PM", 40, "e-Wallet", "held", "Until the visit", "OR-2089"],
+        ["MW", "Michelle Wong", "Full Leg Wax · Thu, 15 Oct", 30, "FPX", "held", "Until the visit", "OR-2084"],
+        ["HW", "Hui Wen", "Gel Manicure · Yesterday", 20, "DuitNow QR", "income", "13 Oct", "INV-2026-0732"],
+        ["PK", "Priyanka K.", "Lash Lift & Tint · Cancelled", 30, "FPX", "refunded", "Back to FPX", "RN-2026-0048"],
+        ["SH", "Siti Hajar", "Signature Facial · Moved", 50, "Card", "credit", "For next visit", "CN-2026-0091"],
+      ],
+    },
+    spa: {
+      biz: "DEMO DAY SPA", addr: "Jalan Telawi, 59100 Bangsar", when: "Wed, 14 Oct · 12:20 PM",
+      stats: { held: [1480, 21], today: [320, 5], refunded: [70, 2] },
+      first: { service: "Balinese Massage (90 min)", staff: "Therapist Aisyah", time: "10:30 AM", full: 168, inv: "INV-2026-0656", phone: "016-xxx 7714", pay: "e-Wallet" },
+      rows: [
+        ["PR", "Priya", "Balinese Massage · 10:30 AM", 40, "FPX", "held", "Service done", "OR-3051"],
+        ["MO", "Michelle Ong", "Hot Stone Massage · 1:00 PM", 50, "Card", "held", "Until the visit", "OR-3052"],
+        ["ML", "Mr & Mrs Lee", "Couple Retreat · 3:00 PM", 120, "FPX", "held", "Until the visit", "OR-3049"],
+        ["NA", "Nurul Ain", "Foot Reflexology · Thu, 15 Oct", 20, "e-Wallet", "held", "Until the visit", "OR-3053"],
+        ["GL", "Grace Lim", "Aromatherapy · Yesterday", 40, "DuitNow QR", "income", "13 Oct", "INV-2026-0655"],
+        ["RT", "Rachel Tan", "Body Scrub · Cancelled", 30, "FPX", "refunded", "Back to FPX", "RN-2026-0029"],
+        ["KS", "Kumar S.", "Balinese Massage · Moved", 40, "Card", "credit", "For next visit", "CN-2026-0044"],
+      ],
+    },
+  }[V];
+
+  const f = D.first;
+  const dep = D.rows[0][3];
+  const receipt = D.rows[0][7];
+  if (moved) D.rows[0] = [...D.rows[0].slice(0, 5), "income", "Just now", f.inv];
+
+  const [held, heldN] = D.stats.held, [today, todayN] = D.stats.today;
+  document.getElementById("when").textContent = D.when;
+  document.getElementById("stats").innerHTML = [
+    ["a", "wallet", "Deposits held", rm(moved ? held - dep : held), `${moved ? heldN - 1 : heldN} bookings`, true],
+    ["g", "check", "Turned into income today", rm(moved ? today + dep : today), `${moved ? todayN + 1 : todayN} services done`],
+    ["r", "undo", "Refunded this month", rm(D.stats.refunded[0]), `${D.stats.refunded[1]} refund notes`, true],
+  ].map(([c, i, k, v, d, n]) => `<div class="stat"><span class="ic ${c}"><i data-i="${i}"></i></span><div><div class="k">${k}</div><div class="v">${v}</div><div class="d${n ? " n" : ""}">${d}</div></div></div>`).join("")
+    + `<div class="stat"><span class="ic b"><i data-i="spark"></i></span><div><div class="k">Accounting</div><div class="v sm">Done for you</div><div class="d n">Receipts, invoices & notes</div></div></div>`;
+  document.getElementById("lt").innerHTML = `Deposits <small>· ${moved ? heldN - 1 : heldN} held</small>`;
+
+  const CHIP = {
+    held: ["a", "clock", "Held"], income: ["g", "check", "Income"], refunded: ["r", "undo", "Refunded"], credit: ["v", "gift", "Credit"],
+  };
+  const DOC = { held: ["or", "Deposit receipt"], income: ["inv", "Invoice"], refunded: ["rn", "Refund note"], credit: ["cn", "Credit note"] };
+  document.getElementById("rows").innerHTML = D.rows.map(([ini, name, what, amt, via, st, note, no], i) => {
+    const [cc, ci, cl] = CHIP[st];
+    const [dc, dl] = DOC[st];
+    const act = st === "held"
+      ? `<span class="go${i === 0 ? " pri" : ""}"><i data-i="arrowR"></i>Convert to income</span>`
+      : `<span class="sent"><span class="w"><i data-i="wa"></i></span>Sent on WhatsApp</span>`;
+    return `<tr class="${i === 0 ? "star" : ""}">
+      <td><div class="who"><span class="av" style="background:${AV[i]}">${ini}</span><div style="min-width:0"><b>${name}</b><small>${what}</small></div></div></td>
+      <td class="amt"><b>${rm(amt)}</b><small>${via}</small></td>
+      <td class="st"><span class="chip ${cc}"><i data-i="${ci}"></i>${cl}</span><small class="${note === "Service done" || note === "Just now" ? "ok" : ""}">${note}</small></td>
+      <td><span class="doc"><span class="fi ${dc}"><i data-i="file"></i></span><span><b>${no}</b><small>${dl}</small></span></span></td>
+      <td>${act}</td></tr>`;
+  }).join("");
+
+  document.getElementById("steps").innerHTML = [
+    ["or", "Deposit receipt", "When a deposit is paid"],
+    ["inv", "Invoice", "When a deposit becomes income"],
+    ["rn", "Refund note", "When a deposit is refunded"],
+    ["cn", "Credit note", "When it is kept as credit"],
+  ].map(([c, b, s]) => `<div class="stp"><span class="fi ${c}"><i data-i="file"></i></span><div><b>${b}</b><small>${s}</small></div></div>`).join("");
+
+  if (S === "invoice") {
+    const app = document.getElementById("app");
+    app.style.position = "relative";
+    app.insertAdjacentHTML("beforeend", `<div class="veil"></div>
+      <div class="modal">
+        <div class="mh"><span class="ok"><i data-i="check"></i></span><div><b>Invoice made automatically</b><small>${rm(dep)} deposit is now income</small></div><span class="x"><i data-i="x"></i></span></div>
+        <div class="paper">
+          <div class="ph1"><img src="icon.png" alt=""><div class="co"><b>${D.biz}</b><small>${D.addr}</small></div>
+            <div class="tt"><h4>INVOICE</h4><small>${f.inv}</small><small>14 Oct 2026</small></div></div>
+          <div class="to"><div>Bill to<b>${D.rows[0][1]}</b></div><div class="rt">Phone<b>${f.phone}</b></div></div>
+          <div class="ln"><div><b>${f.service}</b><small>${f.staff} · ${f.time}</small></div><span>${rm(f.full)}</span></div>
+          <div class="tl">
+            <div><span>Total</span><span>${rm(f.full)}</span></div>
+            <div class="dep"><span>Less deposit paid<small>Receipt ${receipt} · 13 Oct</small></span><span>− ${rm(dep)}</span></div>
+            <div><span>Balance paid · ${f.pay}</span><span>${rm(f.full - dep)}</span></div>
+            <div class="due"><span>Amount due</span><span>${rm(0)}</span></div>
+          </div>
+          <span class="paid">PAID</span>
+        </div>
+        <div class="acc">
+          <div><span class="ck"><i data-i="check"></i></span><span><b>${rm(dep)}</b> moved from deposits to income</span></div>
+          <div><span class="ck"><i data-i="check"></i></span><span>Recorded in your accounts, nothing to key in</span></div>
+        </div>
+        <div class="mf"><span><i data-i="print"></i>Print</span><span class="wa"><i data-i="wa"></i>Sent on WhatsApp</span></div>
+      </div>`);
+  }
+</script>
+<script src="shell.js"></script>
+<script src="icons.js"></script>
+</body></html>

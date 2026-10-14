@@ -76,6 +76,12 @@ export const screens = [
   { name: "payroll-salon-ipad", file: "payroll.html?v=salon", ...ipad },
   { name: "payroll-beauty-ipad", file: "payroll.html?v=beauty", ...ipad },
   { name: "payroll-spa-ipad", file: "payroll.html?v=spa", ...ipad },
+  // Booking deposits: held, turned into income with one click (and the invoice it made), then the list after it
+  ...["salon", "beauty", "spa"].flatMap((v) => [
+    { name: `${v}-booking-deposits-ipad`, file: `deposits.html?v=${v}&s=held`, ...ipad },
+    { name: `${v}-deposit-to-income-invoice-ipad`, file: `deposits.html?v=${v}&s=invoice`, ...ipad },
+    { name: `${v}-deposit-refund-credit-note-ipad`, file: `deposits.html?v=${v}&s=done`, ...ipad },
+  ]),
   // LHDN e-Invoice and examples of custom systems
   { name: "lhdn-e-invoice", file: "e-invoice.html", w: 1000, h: 700, scale: 1.5, transparent: true },
   { name: "custom-erp-desktop", file: "erp.html", w: 1200, h: 750, scale: 1.5 },

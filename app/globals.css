@@ -273,6 +273,10 @@ html:lang(zh) h1 {
   opacity: 0;
   pointer-events: none;
 }
+/* On an iPad the finger is as big as on the phone, so it takes a smaller part of the screen. */
+.demo-tap[data-wide] {
+  width: 5.5%;
+}
 [data-motion] .demo-tap {
   animation: demo-tap 1.5s 1s ease-out both;
 }

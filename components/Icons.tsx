@@ -141,6 +141,9 @@ export const Icon = {
   Server: (p: IconProps) => (
     <svg {...base(p)}><rect x="3.5" y="3.5" width="17" height="7" rx="1.5" /><rect x="3.5" y="13.5" width="17" height="7" rx="1.5" /><path d="M7 7h.01M7 17h.01M11 7h6M11 17h6" /></svg>
   ),
+  Receipt: (p: IconProps) => (
+    <svg {...base(p)}><path d="M5.5 3h13v18l-2.2-1.4-2.1 1.4-2.2-1.4-2.2 1.4-2.1-1.4-2.2 1.4z" /><path d="M9 7.5h6M9 11h6" /><path d="M9.5 14.8l1.7 1.7 3.3-3.3" /></svg>
+  ),
   Invoice: (p: IconProps) => (
     <svg {...base(p)}><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z" /><path d="M14 3v5h5" /><path d="M8.5 12.5h7M8.5 15.5h3.5" /><rect x="13.5" y="15" width="3" height="3" rx=".5" /></svg>
   ),

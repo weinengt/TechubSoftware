@@ -18,9 +18,9 @@ Languages: English (/), Bahasa Melayu (/ms/), Simplified Chinese (/zh/). Every p
 ## Use cases
 
 - [Clinic Management System](/clinic-management-system/): Patient records tracking, medication tracking system, queue number calling on TV with voice, consultation and EMR, hand-drawn body and dental charts with e-signature, AI medicine stock control, MC, label and receipt printing, X-ray machine connection, billing and panel claims, online payment and deposits through payment gateways, LHDN e-Invoice, detailed reports in under 100 ms, staff activity tracking and permission control. For GP, dental, specialist, aesthetic, physiotherapy and TCM clinics.
-- [Salon Appointment System](/salon-appointment-system/): Booking calendar by stylist, automatic WhatsApp customer notifications, cross-platform (iPad, phone and PC), a profile for each staff member to view and manage their own appointments, inventory tracking, payroll calculation with commission, POS, online payment and deposits through payment gateways, customer colour formulas, detailed reports in under 100 ms, staff activity tracking and permission control. For hair salons and barbershops.
-- [Beauty Centre Appointment System](/beauty-appointment-system/): Booking calendar, automatic WhatsApp reminders, treatment packages and sessions, face charts with photos and e-signature consent, staff profiles, payroll calculation, POS, online payment and deposits through payment gateways, inventory tracking, detailed reports in under 100 ms, staff activity tracking and permission control. For beauty centres, facial, lash and brow, nail and slimming centres.
-- [Spa Appointment System](/spa-appointment-system/): Therapist and room scheduling, automatic WhatsApp reminders, packages and memberships, treatment maps with e-signature, staff profiles, payroll calculation, POS, online payment and deposits through payment gateways, inventory tracking, detailed reports in under 100 ms, staff activity tracking and permission control. For day spas, massage, reflexology and wellness centres.
+- [Salon Appointment System](/salon-appointment-system/): Booking calendar by stylist, automatic WhatsApp customer notifications, cross-platform (iPad, phone and PC), a profile for each staff member to view and manage their own appointments, inventory tracking, payroll calculation with commission, POS, online payment and deposits through payment gateways, deposits turned into income in one click, with the invoice, refund note or credit note made automatically and no accounting knowledge needed, customer colour formulas, detailed reports in under 100 ms, staff activity tracking and permission control. For hair salons and barbershops.
+- [Beauty Centre Appointment System](/beauty-appointment-system/): Booking calendar, automatic WhatsApp reminders, treatment packages and sessions, face charts with photos and e-signature consent, staff profiles, payroll calculation, POS, online payment and deposits through payment gateways, deposits turned into income in one click, with the invoice, refund note or credit note made automatically and no accounting knowledge needed, inventory tracking, detailed reports in under 100 ms, staff activity tracking and permission control. For beauty centres, facial, lash and brow, nail and slimming centres.
+- [Spa Appointment System](/spa-appointment-system/): Therapist and room scheduling, automatic WhatsApp reminders, packages and memberships, treatment maps with e-signature, staff profiles, payroll calculation, POS, online payment and deposits through payment gateways, deposits turned into income in one click, with the invoice, refund note or credit note made automatically and no accounting knowledge needed, inventory tracking, detailed reports in under 100 ms, staff activity tracking and permission control. For day spas, massage, reflexology and wellness centres.
 - [Live Selling System](/live-selling-system/): A sale page for selling during Facebook, TikTok or Instagram live sessions that handles big crowds of buyers at the same moment with Kafka order queueing, prevents overselling by checking stock on every order and closing items when sold out, lets the seller add products and choose each one's selling date and time, shows how many visitors are on the shop right now and which page each is on, takes online payment through payment gateways straight into the seller's own merchant account, gives advanced reports on sales, best sellers, visitors and conversion, and tracks every staff action, with approval for price changes during a live. From RM 199 per month; request a demo on WhatsApp.
 - [Custom systems](/custom-systems/): ERP, AI object detection, number plate scanners, or a new system for any business, from RM 300.
 
@@ -28,9 +28,9 @@ Languages: English (/), Bahasa Melayu (/ms/), Simplified Chinese (/zh/). Every p
 
 Every page has a Bahasa Melayu version under /ms/, for people who search in Malay:
 - [Sistem Pengurusan Klinik](/ms/clinic-management-system/): sistem klinik, rekod pesakit (EMR), rekod ubat, nombor giliran, stok ubat AI, e-Invois LHDN
-- [Sistem Booking Salon](/ms/salon-appointment-system/): sistem booking dan temujanji salon rambut dan barbershop, profil staf, gaji dan komisen, POS
-- [Sistem Booking Pusat Kecantikan](/ms/beauty-appointment-system/): sistem pusat kecantikan dan salon kecantikan, pakej rawatan, carta muka, gaji
-- [Sistem Booking Spa](/ms/spa-appointment-system/): sistem booking spa, urut dan refleksologi, jadual terapis dan bilik, pakej dan membership
+- [Sistem Booking Salon](/ms/salon-appointment-system/): sistem booking dan temujanji salon rambut dan barbershop, profil staf, gaji dan komisen, POS, deposit jadi pendapatan dengan satu klik
+- [Sistem Booking Pusat Kecantikan](/ms/beauty-appointment-system/): sistem pusat kecantikan dan salon kecantikan, pakej rawatan, carta muka, gaji, deposit jadi pendapatan dengan satu klik
+- [Sistem Booking Spa](/ms/spa-appointment-system/): sistem booking spa, urut dan refleksologi, jadual terapis dan bilik, pakej dan membership, deposit jadi pendapatan dengan satu klik
 - [Sistem Jualan Live](/ms/live-selling-system/): sistem live selling untuk penjual Facebook dan TikTok live, elak terlebih jual
 - [Sistem custom](/ms/custom-systems/), [Harga](/ms/pricing/), [Soalan lazim](/ms/faq/), [Hubungi kami](/ms/contact/)
 
@@ -38,9 +38,9 @@ Every page has a Bahasa Melayu version under /ms/, for people who search in Mala
 
 每一页都有中文版本，在 /zh/ 下，方便用中文搜索的人：
 - [诊所管理系统](/zh/clinic-management-system/)：诊所系统、病人记录（电子病历 EMR）、用药记录、叫号系统、AI 药物库存、LHDN 电子发票
-- [发廊预约系统](/zh/salon-appointment-system/)：发廊、美发沙龙、理发店预约系统，员工账号、薪水和佣金、POS
-- [美容中心预约系统](/zh/beauty-appointment-system/)：美容院和美容中心系统，疗程配套、面部图、员工薪水
-- [SPA 预约系统](/zh/spa-appointment-system/)：SPA、按摩店、脚底按摩中心预约系统，按摩师和房间安排、配套和会员
+- [发廊预约系统](/zh/salon-appointment-system/)：发廊、美发沙龙、理发店预约系统，员工账号、薪水和佣金、POS、订金一键转成收入
+- [美容中心预约系统](/zh/beauty-appointment-system/)：美容院和美容中心系统，疗程配套、面部图、员工薪水、订金一键转成收入
+- [SPA 预约系统](/zh/spa-appointment-system/)：SPA、按摩店、脚底按摩中心预约系统，按摩师和房间安排、配套和会员、订金一键转成收入
 - [直播带货系统](/zh/live-selling-system/)：Facebook 和 TikTok 直播卖货，撑得住大批买家，不会超卖
 - [定制系统](/zh/custom-systems/)、[价格](/zh/pricing/)、[常见问题](/zh/faq/)、[联络我们](/zh/contact/)
 
@@ -54,6 +54,7 @@ Every page has a Bahasa Melayu version under /ms/, for people who search in Mala
 - Bookings in under 10 seconds, with an advanced booking calendar and AI integration
 - Payment gateway integration: works with various payment gateways, so customers pay a deposit or the full amount online, straight into the business's own merchant account
 - Automatic accounting documents: invoices, credit notes, refund notes and official receipts, with no accounting staff needed
+- Deposits to income in one click (salons, beauty centres and spas): each booking deposit is held until the service is done, then one click turns it into income, and the system makes the invoice, refund note or credit note, so no accounting knowledge is needed
 - Detailed reports generated in under 100 ms, without lag
 - Real-time updates on every device
 - Automatic WhatsApp confirmations and reminders

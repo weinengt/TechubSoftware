@@ -308,7 +308,9 @@ export default function ScreenDemo({
               aria-hidden="true"
             />
           ))}
-          {focus && scene.tap && <span key={`t${i}`} className="demo-tap" style={{ left: `${x + w / 2}%`, top: `${y + h / 2}%` }} aria-hidden="true" />}
+          {focus && scene.tap && (
+            <span key={`t${i}`} className="demo-tap" data-wide={d !== "phone" || undefined} style={{ left: `${x + w / 2}%`, top: `${y + h / 2}%` }} aria-hidden="true" />
+          )}
         </div>
       </DeviceFrame>
     );

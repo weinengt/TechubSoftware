@@ -3,8 +3,8 @@ import type { SystemKey } from "@/lib/site";
 import type { IconName } from "./Icons";
 
 // The moments of the moving example screens (components/ScreenDemo.tsx): the home page, each system page and its row
-// on the Use Cases page, the Contact page and each custom system. Kept apart from that client component so pages can
-// pick the screenshots they need on the server.
+// on the Use Cases page, the deposits section of the salon, beauty centre and spa pages, the Contact page and each
+// custom system. Kept apart from that client component so pages can pick the screenshots they need on the server.
 // Each moment points at one device (`focus`), may change what any device shows (a device it leaves out keeps its
 // screen), highlights the part of the screen it is about (`spot`: left, top, width and height in % of the screen;
 // `tap` adds a finger tap) and shows a short note, whose words are under `demo.notes` in content/en.ts, ms.ts and zh.ts.
@@ -97,6 +97,17 @@ const contact: DemoScene[] = [
   { key: "ai", focus: "phone", phone: "scanSalon", spot: [4.4, 59.7, 91.1, 5.1], icon: "Sparkles" },
 ];
 
+/** The deposits section of the salon, beauty centre and spa pages: the customer pays a booking deposit, it is held
+ *  until the service is done, one click turns it into income and makes the invoice, and refunds and credits get their
+ *  own notes. The three deposits screens (design/mockups/deposits.html) share one layout, so the spots are the same. */
+const deposits = (payment: ShotKey, held: ShotKey, invoice: ShotKey, notes: ShotKey): DemoScene[] => [
+  { key: "paid", focus: "phone", tablet: held, phone: payment, spot: [3.9, 88.2, 92.2, 6.6], tap: true, icon: "Card" },
+  { key: "held", focus: "tablet", spot: [8.7, 32.8, 39.1, 7.2], icon: "Wallet" },
+  { key: "convert", focus: "tablet", spot: [63.4, 33.7, 14.3, 5.6], tap: true, icon: "Coins" },
+  { key: "invoice", focus: "tablet", tablet: invoice, spot: [32.3, 46.5, 35.4, 6.4], icon: "Invoice" },
+  { key: "notes", focus: "tablet", tablet: notes, spot: [38.6, 73.1, 24, 15.3], icon: "Sparkles" },
+];
+
 const erp: DemoScene[] = [
   { key: "sales", focus: "screen", screen: "erpDesktop", spot: [18, 9.3, 19.3, 10.4], icon: "Chart" },
   { key: "approvals", focus: "screen", spot: [71.8, 21.6, 26.5, 33.3], icon: "Check" },
@@ -134,6 +145,9 @@ export const demos = {
   erp: resolve(erp),
   detection: resolve(detection),
   plate: resolve(plate),
+  salonDeposits: resolve(deposits("paymentSalon", "depositsSalon", "depositInvoiceSalon", "depositNotesSalon")),
+  beautyDeposits: resolve(deposits("paymentBeauty", "depositsBeauty", "depositInvoiceBeauty", "depositNotesBeauty")),
+  spaDeposits: resolve(deposits("paymentSpa", "depositsSpa", "depositInvoiceSpa", "depositNotesSpa")),
 };
 export type DemoKey = keyof typeof demos;
 

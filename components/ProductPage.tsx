@@ -5,7 +5,7 @@ import { pageMetadata } from "@/lib/seo";
 import type { ShotKey } from "@/lib/shots";
 import { companyPages, site, systems, whatsappLink, type SystemKey } from "@/lib/site";
 import Demo from "./Demo";
-import { demos } from "./demoScenes";
+import { demos, type DemoKey } from "./demoScenes";
 import JsonLd from "./JsonLd";
 import { Icon, type IconName } from "./Icons";
 import { FaqSection, HardwareSection, PricingSection, SectionHeading, breadcrumbJsonLd, faqJsonLd, softwareJsonLd } from "./Sections";
@@ -14,11 +14,12 @@ import { hl } from "./Text";
 
 /* Each business type's pictures and icons. The words for each are under `products` in content/en.ts,
    with the same keys; the order here is the order on the page. The picture at the top shows the system at work:
-   its moments are in ./demoScenes.ts, under the same key. */
+   its moments are in ./demoScenes.ts, under the same key. A section can have a moving picture of its own (`demo`). */
 
 type Visual =
   | { main: ShotKey; phone?: ShotKey; side?: "left" | "right"; speed?: boolean }
-  | { phoneOnly: ShotKey; badges: IconName[] };
+  | { phoneOnly: ShotKey; badges: IconName[] }
+  | { demo: DemoKey };
 
 type Text<K extends SystemKey> = Dict["products"][K];
 
@@ -56,13 +57,14 @@ const specs: { [K in SystemKey]: Spec<K> } = {
       customer: { phoneOnly: "salonCustomer", badges: ["Pen", "Gift"] },
       pos: { main: "salonPos" },
       payment: { phoneOnly: "paymentSalon", badges: ["Wallet", "Bank"] },
+      deposits: { demo: "salonDeposits" },
       stock: { main: "salonStock", phone: "scanSalon" },
       reports: { main: "reportsSalon", speed: true },
       permissions: { main: "salonPermissions" },
     },
     modules: {
       calendar: "Calendar", walkin: "Megaphone", whatsapp: "Whatsapp", profiles: "Users", customers: "Scissors", packages: "Gift",
-      pos: "Card", payment: "Wallet", commission: "Chart", payroll: "Coins", ai: "Sparkles", inventory: "Route",
+      pos: "Card", payment: "Wallet", deposits: "Receipt", commission: "Chart", payroll: "Coins", inventory: "Sparkles",
       einvoice: "Invoice", reports: "Bolt", permissions: "Lock", devices: "Devices",
     },
     contactPhone: "whatsappSalon",
@@ -75,13 +77,14 @@ const specs: { [K in SystemKey]: Spec<K> } = {
       faceChart: { main: "faceChart" },
       pos: { main: "beautyPos" },
       payment: { phoneOnly: "paymentBeauty", badges: ["Wallet", "Bank"] },
+      deposits: { demo: "beautyDeposits" },
       stock: { main: "beautyStock", phone: "scanBeauty", side: "left" },
       reports: { main: "reportsBeauty", speed: true },
       permissions: { main: "beautyPermissions" },
     },
     modules: {
       calendar: "Calendar", whatsapp: "Whatsapp", packages: "Gift", customers: "Mirror", faceChart: "Pen", profiles: "Users",
-      pos: "Card", payment: "Wallet", commission: "Chart", payroll: "Coins", ai: "Sparkles", inventory: "Route",
+      pos: "Card", payment: "Wallet", deposits: "Receipt", commission: "Chart", payroll: "Coins", inventory: "Sparkles",
       einvoice: "Invoice", reports: "Bolt", permissions: "Lock", devices: "Devices",
     },
     contactPhone: "whatsappBeauty",
@@ -94,13 +97,14 @@ const specs: { [K in SystemKey]: Spec<K> } = {
       treatmentMap: { main: "bodyChartSpa" },
       pos: { main: "spaPos" },
       payment: { phoneOnly: "paymentSpa", badges: ["Wallet", "Bank"] },
+      deposits: { demo: "spaDeposits" },
       stock: { main: "spaStock", phone: "scanSpa" },
       reports: { main: "reportsSpa", speed: true },
       permissions: { main: "spaPermissions" },
     },
     modules: {
       scheduling: "Calendar", whatsapp: "Whatsapp", packages: "Gift", group: "Lotus", treatmentMap: "Pen", profiles: "Users",
-      pos: "Card", payment: "Wallet", commission: "Chart", payroll: "Coins", ai: "Sparkles", inventory: "Route",
+      pos: "Card", payment: "Wallet", deposits: "Receipt", commission: "Chart", payroll: "Coins", inventory: "Sparkles",
       einvoice: "Invoice", reports: "Bolt", permissions: "Lock", devices: "Devices",
     },
     contactPhone: "whatsappSpa",
@@ -168,10 +172,12 @@ export default function ProductPage({ lang, k }: { lang: Locale; k: SystemKey })
   const shots = getShots(lang);
   const path = pathOf(k);
   const url = `${site.url}${lp(lang, path)}`;
-  const pics = [shots[demos[k][0].tablet!], ...spotlights.map((s) => shots["phoneOnly" in s.visual ? s.visual.phoneOnly : s.visual.main])];
+  const shotOf = (v: Visual) => ("demo" in v ? demos[v.demo][0].tablet! : "phoneOnly" in v ? v.phoneOnly : v.main);
+  const pics = [shots[demos[k][0].tablet!], ...spotlights.map((s) => shots[shotOf(s.visual)])];
 
   const visual = (s: (typeof spotlights)[number]) => {
     const v = s.visual;
+    if ("demo" in v) return <Demo lang={lang} demo={v.demo} layout="combo" product={name} />;
     if ("phoneOnly" in v) {
       return (
         <PhoneShowcase
@@ -279,6 +285,7 @@ export default function ProductPage({ lang, k }: { lang: Locale; k: SystemKey })
               points={s.points}
               reverse={i % 2 === 1}
               visual={visual(s)}
+              revealVisual={!("demo" in s.visual)}
               cta={i === 1 ? { label: d.ui.askDemo, message: t.demoMessage } : undefined}
             />
           </div>
