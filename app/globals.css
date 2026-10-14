@@ -147,11 +147,12 @@ html:lang(zh) h1 {
 /* ---------- Soft glows ----------
    Gradients rather than blurred shapes: a phone redraws a blur filter whenever anything near it moves, which showed
    as sections flickering or changing colour while the moving pictures ran. */
-.glow { /* behind a picture: blue towards the top left, teal towards the bottom right */
+.glow { /* behind a picture: blue towards the top left, teal towards the bottom right. Each fades out completely at
+   the edge of its box (closest-side), so the box never shows as a line. */
   pointer-events: none;
   background:
-    radial-gradient(58% 58% at 34% 40%, rgb(3 150 217 / 0.15), rgb(3 150 217 / 0.06) 55%, transparent),
-    radial-gradient(58% 58% at 66% 62%, rgb(0 207 203 / 0.13), rgb(0 207 203 / 0.05) 55%, transparent);
+    radial-gradient(closest-side at 46% 46%, rgb(3 150 217 / 0.15), rgb(3 150 217 / 0.12) 55%, rgb(3 150 217 / 0.06) 82%, rgb(3 150 217 / 0.02) 93%, transparent),
+    radial-gradient(closest-side at 54% 54%, rgb(0 207 203 / 0.13), rgb(0 207 203 / 0.1) 55%, rgb(0 207 203 / 0.05) 82%, rgb(0 207 203 / 0.016) 93%, transparent);
 }
 .glow-top { /* dark panels: light from the middle of the top edge */
   background: radial-gradient(28rem 18rem at 50% 0, rgb(3 150 217 / 0.24), rgb(3 150 217 / 0.1) 50%, transparent);
