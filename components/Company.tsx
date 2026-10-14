@@ -36,7 +36,7 @@ export function HighlightsSection({ lang }: { lang: Locale }) {
   return (
     <section id="highlights" className="relative overflow-hidden bg-brand-950 py-16 text-white sm:py-20">
       <div className="bg-grid absolute inset-0 opacity-30" aria-hidden="true" />
-      <div className="absolute -top-32 left-1/2 h-72 w-[40rem] -translate-x-1/2 rounded-full bg-brand-500/25 blur-3xl" aria-hidden="true" />
+      <div className="glow-top absolute inset-0" aria-hidden="true" />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center" data-reveal>
           <p className="eyebrow-dark">{t.eyebrow}</p>
@@ -46,7 +46,7 @@ export function HighlightsSection({ lang }: { lang: Locale }) {
           {keysOf(highlightIcons).map((k) => {
             const I = Icon[highlightIcons[k]];
             return (
-              <li key={k} className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur sm:p-5" data-reveal>
+              <li key={k} className="rounded-2xl border border-white/10 bg-white/5 p-4 sm:p-5" data-reveal>
                 <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-lg shadow-brand-500/30">
                   <I className="h-5 w-5" />
                 </span>
@@ -74,7 +74,7 @@ export function UptimeRing({ lang }: { lang: Locale }) {
   return (
     <div className="relative overflow-hidden rounded-[2rem] bg-brand-950 p-8 text-white sm:p-10" data-reveal="zoom">
       <div className="bg-grid absolute inset-0 opacity-30" aria-hidden="true" />
-      <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-teal-brand/25 blur-3xl" aria-hidden="true" />
+      <div className="glow-corner absolute inset-0" aria-hidden="true" />
       <div className="relative flex flex-col items-center text-center">
         <div className="relative h-52 w-52 sm:h-60 sm:w-60">
           <svg viewBox="0 0 120 120" className="h-full w-full -rotate-90" aria-hidden="true">
@@ -426,7 +426,8 @@ export function CustomSystemsSection({ lang, page }: { lang: Locale; page?: Page
     <section id="custom-systems" className={page ? `${pageTop} pb-20 sm:pb-24` : "border-y border-slate-200 bg-slate-50 py-20 sm:py-24"}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading eyebrow={t.eyebrow} title={t.title} intro={t.intro} page={page} />
-        <ul className="mt-12 grid gap-6 md:grid-cols-3">
+        {/* One card a row until there is room for three, so the moving screens and their notes stay big enough to read. */}
+        <ul className="mt-12 grid gap-6 lg:grid-cols-3">
           {customSystems.map((c, i) => {
             const I = Icon[c.icon];
             return (
@@ -522,7 +523,7 @@ export function InfraDiagram({ lang }: { lang: Locale }) {
   return (
     <div className="relative overflow-hidden rounded-[2rem] bg-brand-950 p-5 text-white ring-1 ring-white/10 sm:p-8">
       <div className="bg-grid absolute inset-0 opacity-30" aria-hidden="true" />
-      <div className="absolute top-1/3 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-brand-500/25 blur-3xl" aria-hidden="true" />
+      <div className="glow-mid absolute inset-0" aria-hidden="true" />
       <div className="relative mx-auto max-w-md">
         <div className="rv-part flex items-center gap-3 rounded-2xl bg-white/10 p-3.5 ring-1 ring-white/15 [--d:200ms] sm:p-4">
           <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-brand-600">

@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { shotSrc, shotSrcSet, shotSrcSm, type Shot, type ShotKey } from "@/lib/shots";
 import { DeviceFrame } from "./Device";
-import { demos, type DemoDevice, type DemoKey } from "./demoScenes";
+import { demos, type DemoDevice, type DemoKey, type DemoScene } from "./demoScenes";
 import { Icon, type IconName } from "./Icons";
 import Zoomable from "./Zoomable";
 
@@ -117,49 +117,66 @@ export function useDemoClock(count: number, { start = 0, delay = 0, off = false,
 
 type DemoClock = ReturnType<typeof useDemoClock>;
 
-/** What is happening right now, with a line that fills up until the next moment, and the pause button. */
+export type NoteCard = { icon: IconName; green?: boolean; note: Note };
+
+/** What is happening right now, with a line that fills up until the next moment, and the pause button. The card
+ *  stays put while its words change: the old ones move up and fade as the new ones come in, so no two notes show
+ *  on top of each other and nothing beside the card moves. `cardClass` can give the card a fixed height. */
 export function DemoNote({
-  clock, icon, green, note, labels, className,
-}: { clock: DemoClock; icon: IconName; green?: boolean; note: Note; labels: { pause: string; play: string }; className: string }) {
-  const I = Icon[icon];
-  const { i, moved, motion, running, paused, duration } = clock;
+  clock, card, labels, className, cardClass = "",
+}: { clock: DemoClock; card: (n: number) => NoteCard; labels: { pause: string; play: string }; className: string; cardClass?: string }) {
+  const { i, prev, moved, running, paused, duration } = clock;
+  // The moment before stays (as the same elements) while it fades out.
+  const shown = prev !== i ? [prev, i] : [i];
   return (
     <div className={`rv-part z-20 flex items-start gap-2 ${className}`}>
       <div
-        key={i}
-        data-enter={moved || undefined}
-        className="demo-note relative flex min-w-0 max-w-[15.5rem] items-center gap-2.5 overflow-hidden rounded-2xl bg-white/95 py-2 pr-3.5 pl-2 shadow-xl ring-1 ring-slate-200 backdrop-blur sm:max-w-[18rem] sm:py-2.5"
+        className={`relative grid w-[15.5rem] min-w-0 shrink overflow-hidden rounded-2xl bg-white shadow-xl ring-1 ring-slate-200 sm:w-[18rem] ${cardClass}`}
         aria-hidden="true"
       >
-        <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-white sm:h-9 sm:w-9 ${green ? "bg-whatsapp" : "bg-brand-gradient"}`}>
-          <I className="h-4 w-4 sm:h-[18px] sm:w-[18px]" />
-        </span>
-        <span className="min-w-0 leading-tight">
-          <span className="block text-[12.5px] font-extrabold text-slate-900 sm:text-sm">{note.title}</span>
-          <span className="mt-0.5 block truncate text-[11.5px] font-medium text-slate-500 sm:text-xs">{note.text}</span>
-        </span>
-        {motion && (
+        {shown.map((n) => {
+          const { icon, green, note } = card(n);
+          const I = Icon[icon];
+          return (
+            <div
+              key={n}
+              data-enter={(n === i && moved) || undefined}
+              data-leave={n !== i || undefined}
+              className="demo-note flex min-w-0 items-center gap-2.5 py-2 pr-3.5 pl-2 [grid-area:1/1] sm:py-2.5"
+            >
+              <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-white sm:h-9 sm:w-9 ${green ? "bg-whatsapp" : "bg-brand-gradient"}`}>
+                <I className="h-4 w-4 sm:h-[18px] sm:w-[18px]" />
+              </span>
+              <span className="min-w-0 leading-tight">
+                <span className="block text-[12.5px] font-extrabold text-slate-900 sm:text-sm">{note.title}</span>
+                <span className="mt-0.5 block truncate text-[11.5px] font-medium text-slate-500 sm:text-xs">{note.text}</span>
+              </span>
+            </div>
+          );
+        })}
+        {shown.map((n) => (
           <span
+            key={`p${n}`}
             className="demo-progress absolute inset-x-0 bottom-0 h-[3px] bg-brand-gradient"
-            style={{ animationDuration: `${duration}ms`, animationPlayState: running ? "running" : "paused" }}
+            data-leave={n !== i || undefined}
+            style={n === i ? { animationDuration: `${duration}ms`, animationPlayState: running ? "running" : "paused" } : undefined}
           />
-        )}
+        ))}
       </div>
-      {motion && (
-        <button
-          type="button"
-          onClick={clock.togglePause}
-          aria-label={paused ? labels.play : labels.pause}
-          title={paused ? labels.play : labels.pause}
-          className="mt-1.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/90 text-slate-600 shadow-lg ring-1 ring-slate-200 backdrop-blur transition hover:text-brand-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500"
-        >
-          {paused ? (
-            <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 translate-x-px" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" /></svg>
-          ) : (
-            <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="currentColor" aria-hidden="true"><rect x="6" y="4.5" width="4" height="15" rx="1.2" /><rect x="14" y="4.5" width="4" height="15" rx="1.2" /></svg>
-          )}
-        </button>
-      )}
+      {/* In the page from the start (so nothing moves when it shows), and shown once the picture can move. */}
+      <button
+        type="button"
+        onClick={clock.togglePause}
+        aria-label={paused ? labels.play : labels.pause}
+        title={paused ? labels.play : labels.pause}
+        className="demo-pause mt-1.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-slate-600 shadow-lg ring-1 ring-slate-200 hover:text-brand-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500"
+      >
+        {paused ? (
+          <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 translate-x-px" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12.5-7.5z" /></svg>
+        ) : (
+          <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="currentColor" aria-hidden="true"><rect x="6" y="4.5" width="4" height="15" rx="1.2" /><rect x="14" y="4.5" width="4" height="15" rx="1.2" /></svg>
+        )}
+      </button>
     </div>
   );
 }
@@ -179,7 +196,7 @@ const layoutSizes: Record<Layout, Partial<Record<DemoDevice, string>>> = {
   family: { laptop: "(min-width: 1024px) 640px, 92vw", tablet: "(min-width: 1024px) 300px, 44vw", phone: "(min-width: 1024px) 200px, 34vw" },
   combo: { tablet: "(min-width: 1024px) 600px, 92vw", phone: "(min-width: 1024px) 200px, 34vw" },
   phone: { phone: "(min-width: 1024px) 288px, 256px" },
-  screen: { screen: "(min-width: 768px) 30vw, 92vw" },
+  screen: { screen: "(min-width: 1024px) 30vw, 92vw" },
 };
 
 const notePlace: Record<Layout, string> = {
@@ -188,6 +205,12 @@ const notePlace: Record<Layout, string> = {
   phone: "absolute -top-5 left-1/2 w-max -translate-x-1/2 [--d:500ms] lg:top-10 lg:-left-40 lg:translate-x-0",
   screen: "relative mt-3 justify-center [--d:450ms]",
 };
+/* Under a screen the note is part of the page, so it keeps one height: in the three narrow cards of a laptop
+   screen some notes take two lines. */
+const noteCard: Partial<Record<Layout, string>> = { screen: "lg:max-xl:min-h-[4.875rem]" };
+
+/** Where a highlight sits on its screen (left, top, width and height in %). */
+const place = ([x, y, w, h]: DemoScene["spot"]) => ({ left: `${x}%`, top: `${y}%`, width: `${w}%`, height: `${h}%` });
 
 export type ScreenDemoProps = {
   demo: DemoKey;
@@ -223,7 +246,7 @@ export default function ScreenDemo({
     delay,
     canGo: (n) => devices.every((d) => loaded.current.has(scenes[n][d]!)),
   });
-  const { box, i, prev, ready, motion, setHold } = clock;
+  const { box, i, prev, ready, motion, moved, setHold } = clock;
   const scene = scenes[i];
   const before = scenes[prev];
 
@@ -271,12 +294,18 @@ export default function ScreenDemo({
               />
             );
           })}
-          {focus && (
-            <>
-              <span key={`s${i}`} className="demo-spot" style={{ left: `${x}%`, top: `${y}%`, width: `${w}%`, height: `${h}%` }} aria-hidden="true" />
-              {scene.tap && <span key={`t${i}`} className="demo-tap" style={{ left: `${x + w / 2}%`, top: `${y + h / 2}%` }} aria-hidden="true" />}
-            </>
-          )}
+          {/* The highlight of the moment before stays (as the same element) while it fades out. */}
+          {[...(prev !== i && before.focus === d ? [prev] : []), ...(focus ? [i] : [])].map((n) => (
+            <span
+              key={`s${n}`}
+              className="demo-spot"
+              data-enter={(n === i && moved) || undefined}
+              data-leave={n !== i || undefined}
+              style={place(scenes[n].spot)}
+              aria-hidden="true"
+            />
+          ))}
+          {focus && scene.tap && <span key={`t${i}`} className="demo-tap" style={{ left: `${x + w / 2}%`, top: `${y + h / 2}%` }} aria-hidden="true" />}
         </div>
       </DeviceFrame>
     );
@@ -298,14 +327,14 @@ export default function ScreenDemo({
       ref={box}
       role="group"
       aria-label={text.label}
-      className={`relative ${layout === "family" ? "pb-16 sm:pb-20" : layout === "combo" ? "pb-10 sm:pb-12" : ""} ${className}`}
+      className={`demo relative ${layout === "family" ? "pb-16 sm:pb-20" : layout === "combo" ? "pb-10 sm:pb-12" : ""} ${className}`}
       data-reveal={reveal ? "group" : undefined}
       data-motion={motion || undefined}
       data-solo={solo || undefined}
       onFocus={(e) => setHold(!!e.target.closest(".demo-device") && e.target.matches(":focus-visible"))}
       onBlur={(e) => !e.currentTarget.contains(e.relatedTarget) && setHold(false)}
     >
-      {!solo && <div className="absolute -inset-8 -z-10 rounded-[3rem] bg-brand-gradient opacity-[0.13] blur-3xl" aria-hidden="true" />}
+      {!solo && <div className="glow rv-fade absolute -inset-12 -z-10" aria-hidden="true" />}
       {layout === "family" && (
         <>
           <div className="rv-zoom mx-[7%]">{device("laptop")}</div>
@@ -320,7 +349,13 @@ export default function ScreenDemo({
         </>
       )}
       {solo && <div className="rv-zoom">{device(devices[0])}</div>}
-      <DemoNote clock={clock} icon={scene.icon} green={scene.green} note={text.notes[scene.key]} labels={text} className={notePlace[layout]} />
+      <DemoNote
+        clock={clock}
+        card={(n) => ({ icon: scenes[n].icon, green: scenes[n].green, note: text.notes[scenes[n].key] })}
+        labels={text}
+        className={notePlace[layout]}
+        cardClass={noteCard[layout]}
+      />
     </div>
   );
 }

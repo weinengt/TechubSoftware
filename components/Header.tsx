@@ -186,7 +186,7 @@ export default function Header({ lang, t }: { lang: Locale; t: HeaderText }) {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all ${
-        scrolled || open ? "border-b border-slate-200/70 bg-white/85 backdrop-blur-lg" : "bg-transparent"
+        scrolled || open ? "border-b border-slate-200/70 bg-white" : "bg-transparent"
       }`}
     >
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-2 px-3 min-[380px]:px-4 sm:px-6 lg:px-8" aria-label="Main">

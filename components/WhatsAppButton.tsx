@@ -38,7 +38,7 @@ export default function WhatsAppButton({ t }: { t: BubbleText }) {
   return (
     <div className="fixed right-4 bottom-4 z-50 flex flex-col items-end gap-3 sm:right-6 sm:bottom-6">
       {bubble && (
-        <div className="relative w-64 rounded-2xl bg-white p-4 pr-9 text-sm shadow-2xl ring-1 ring-slate-200" role="status">
+        <div className="wa-bubble relative w-64 rounded-2xl bg-white p-4 pr-9 text-sm shadow-2xl ring-1 ring-slate-200" role="status">
           <button type="button" onClick={close} aria-label={t.close} className="absolute top-2 right-2 flex h-7 w-7 items-center justify-center rounded-full text-slate-400 hover:bg-slate-100 hover:text-slate-600">
             <Icon.Close className="h-4 w-4" />
           </button>

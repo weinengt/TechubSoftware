@@ -12,13 +12,13 @@ type HubNode = { k: string; x: number; y: number; icon: IconName; label: string 
 
 export default function HubDemo({ nodes, r, center, uptime, text }: { nodes: HubNode[]; r: number; center: string; uptime: string; text?: DemoText }) {
   const clock = useDemoClock(nodes.length, { off: !text });
-  const { box, i, motion } = clock;
+  const { box, i, prev, motion } = clock;
   const on = text ? nodes[i] : undefined;
   return (
-    <div ref={box} className="relative" role={text && "group"} aria-label={text?.label} data-motion={motion || undefined}>
+    <div ref={box} className="demo relative" role={text && "group"} aria-label={text?.label} data-motion={motion || undefined}>
       <div className="relative overflow-hidden rounded-[2rem] bg-brand-950 px-3 pt-4 pb-8 ring-1 ring-white/10 sm:px-8 sm:pt-6 sm:pb-10">
         <div className="bg-grid absolute inset-0 opacity-30" aria-hidden="true" />
-        <div className="absolute top-1/2 left-1/2 h-2/3 w-2/3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-500/30 blur-3xl" aria-hidden="true" />
+        <div className="glow-hub absolute inset-0" aria-hidden="true" />
         <div className="relative mx-auto aspect-square w-full max-w-[30rem]">
           <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" aria-hidden="true">
             <circle cx="50" cy="50" r={r} fill="none" stroke="rgb(255 255 255 / 0.12)" strokeWidth="0.35" />
@@ -37,7 +37,12 @@ export default function HubDemo({ nodes, r, center, uptime, text }: { nodes: Hub
                 style={{ "--d": `${350 + j * 90}ms` } as CSSProperties}
               />
             ))}
-            {on && <line key={`p${i}`} x1="50" y1="50" x2={on.x} y2={on.y} className="hub-pulse" />}
+            {/* Data running out to the part at work; the line to the part before fades out rather than stopping. */}
+            {on && [...(prev !== i ? [prev] : []), i].map((n) => (
+              <g key={`p${n}`} className="hub-trail" data-leave={n !== i || undefined}>
+                <line x1="50" y1="50" x2={nodes[n].x} y2={nodes[n].y} className="hub-pulse" />
+              </g>
+            ))}
           </svg>
           <div className="rv-pop absolute top-1/2 left-1/2 flex aspect-square w-[34%] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-brand-gradient text-center text-white shadow-[0_0_60px_-5px_rgb(0_207_203/0.6)] ring-[6px] ring-white/10 [--d:150ms]">
             <Icon.Cloud className="h-7 w-7 sm:h-9 sm:w-9" />
@@ -68,9 +73,7 @@ export default function HubDemo({ nodes, r, center, uptime, text }: { nodes: Hub
       {text && on && (
         <DemoNote
           clock={clock}
-          icon={on.icon}
-          green={on.k === "whatsapp"}
-          note={text.notes[on.k]}
+          card={(n) => ({ icon: nodes[n].icon, green: nodes[n].k === "whatsapp", note: text.notes[nodes[n].k] })}
           labels={text}
           className="absolute -top-4 left-2 [--d:900ms] sm:-left-4"
         />

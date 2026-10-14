@@ -133,7 +133,7 @@ export function HardwareSection({ lang }: { lang: Locale }) {
             return (
               <li
                 key={k}
-                className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-3.5 backdrop-blur transition hover:border-teal-brand/60 hover:bg-white/10 sm:flex-col sm:p-6 sm:text-center"
+                className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-3.5 transition hover:border-teal-brand/60 hover:bg-white/10 sm:flex-col sm:p-6 sm:text-center"
                 data-reveal
               >
                 <I className="h-6 w-6 shrink-0 text-teal-brand sm:h-8 sm:w-8" />

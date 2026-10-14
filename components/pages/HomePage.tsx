@@ -72,8 +72,8 @@ export default function HomePage({ lang }: { lang: Locale }) {
 
       {/* Hero: who we are */}
       <section className="relative overflow-hidden pt-24 pb-16 sm:pt-32 lg:pb-24">
+        <div className="glow-hero absolute inset-0" aria-hidden="true" />
         <div className="bg-grid absolute inset-0 [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_70%)]" aria-hidden="true" />
-        <div className="absolute -top-40 right-0 -z-10 h-[32rem] w-[32rem] rounded-full bg-teal-brand/15 blur-3xl" aria-hidden="true" />
         <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-10 lg:px-8">
           <div className="lg:col-span-5">
             {/* The badge is the first line of the heading, so "appointment system" and "Malaysia" are in the page's h1. */}

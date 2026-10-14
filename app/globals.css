@@ -131,12 +131,50 @@ html:lang(zh) h1 {
 }
 .tech-flow { animation: tech-flow 1.4s linear infinite; }
 
+/* The WhatsApp greeting comes up out of its button. */
+.wa-bubble {
+  transform-origin: bottom right;
+  animation: wa-bubble 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+@keyframes wa-bubble {
+  from { opacity: 0; transform: translateY(10px) scale(0.9); }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .animate-float, .wa-pulse::before, .tech-flow { animation: none; }
+  .animate-float, .wa-pulse::before, .tech-flow, .wa-bubble { animation: none; }
+}
+
+/* ---------- Soft glows ----------
+   Gradients rather than blurred shapes: a phone redraws a blur filter whenever anything near it moves, which showed
+   as sections flickering or changing colour while the moving pictures ran. */
+.glow { /* behind a picture: blue towards the top left, teal towards the bottom right */
+  pointer-events: none;
+  background:
+    radial-gradient(58% 58% at 34% 40%, rgb(3 150 217 / 0.15), rgb(3 150 217 / 0.06) 55%, transparent),
+    radial-gradient(58% 58% at 66% 62%, rgb(0 207 203 / 0.13), rgb(0 207 203 / 0.05) 55%, transparent);
+}
+.glow-top { /* dark panels: light from the middle of the top edge */
+  background: radial-gradient(28rem 18rem at 50% 0, rgb(3 150 217 / 0.24), rgb(3 150 217 / 0.1) 50%, transparent);
+}
+.glow-corner { /* dark panels: light from the top right corner */
+  background: radial-gradient(20rem 18rem at 100% 0, rgb(0 207 203 / 0.22), rgb(0 207 203 / 0.08) 50%, transparent);
+}
+.glow-mid { /* dark panels: light behind the upper middle */
+  background: radial-gradient(16rem 16rem at 50% calc(33% + 8rem), rgb(3 150 217 / 0.22), rgb(3 150 217 / 0.08) 50%, transparent);
+}
+.glow-hub { /* the technology picture: light behind Techub Cloud */
+  background: radial-gradient(42% 42% at 50% 50%, rgb(3 150 217 / 0.3), rgb(3 150 217 / 0.12) 55%, transparent);
+}
+.glow-hero { /* page tops: teal light at the top right */
+  background: radial-gradient(26rem 24rem at calc(100% - 15rem) 5rem, rgb(0 207 203 / 0.13), rgb(0 207 203 / 0.05) 55%, transparent);
 }
 
 /* ---------- Moving example screens: devices showing Techub at work (components/ScreenDemo.tsx) ----------
-   [data-motion] is set by the script only for visitors who don't ask for less motion. */
+   [data-motion] is set by the script only for visitors who don't ask for less motion.
+   Each picture is its own layer (will-change), so its motion never makes the browser redraw the sections around it. */
+.demo {
+  will-change: transform;
+}
 .demo-stage {
   position: relative;
   isolation: isolate; /* keeps the screens' stacking inside their device, so the laptop never covers the iPad */
@@ -184,7 +222,8 @@ html:lang(zh) h1 {
 [data-solo] {
   --demo-zoom: 1.07;
 }
-/* The part of the screen the moment is about */
+/* The part of the screen the moment is about. The first one is there from the start; later ones come in as their
+   moment starts (data-enter) and fade out as the next one comes (data-leave). */
 .demo-spot {
   position: absolute;
   z-index: 3;
@@ -192,14 +231,32 @@ html:lang(zh) h1 {
   pointer-events: none;
   box-shadow: 0 0 0 2px rgb(47 177 230), 0 0 0 5px rgb(47 177 230 / 0.25), 0 0 22px 2px rgb(3 150 217 / 0.45);
 }
-[data-motion] .demo-spot {
-  animation: demo-spot 0.9s 0.35s cubic-bezier(0.16, 1, 0.3, 1) both, demo-glow 2.2s 1.3s ease-in-out infinite;
+/* Its glow breathes: a wider glow fades in and out (only opacity changes, which needs no redrawing). */
+.demo-spot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 0 0 8px rgb(47 177 230 / 0.14), 0 0 30px 6px rgb(3 150 217 / 0.35);
+  opacity: 0;
+}
+[data-motion] .demo-spot::after {
+  animation: demo-glow 2.2s 1.3s ease-in-out infinite;
+}
+[data-motion] .demo-spot[data-enter] {
+  animation: demo-spot 0.9s 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.demo-spot[data-leave] {
+  animation: demo-leave 0.5s ease both;
 }
 @keyframes demo-spot {
   from { opacity: 0; transform: scale(1.12); }
 }
 @keyframes demo-glow {
-  50% { box-shadow: 0 0 0 2px rgb(47 177 230), 0 0 0 8px rgb(47 177 230 / 0.12), 0 0 30px 6px rgb(3 150 217 / 0.3); }
+  50% { opacity: 1; }
+}
+@keyframes demo-leave {
+  to { opacity: 0; }
 }
 /* A finger tap on the phone */
 .demo-tap {
@@ -223,14 +280,26 @@ html:lang(zh) h1 {
   40% { opacity: 1; transform: scale(0.9); }
   100% { opacity: 0; transform: scale(1.8); }
 }
-/* The note at the top, and the line that fills up until the next moment */
+/* The words on the note: the old ones move up and fade, then the new ones come up into place. */
 .demo-note[data-enter] {
-  animation: demo-note 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: demo-note 0.6s 0.22s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.demo-note[data-leave] {
+  animation: demo-note-leave 0.25s ease-in both;
+}
+.demo-progress[data-leave] {
+  animation: demo-leave 0.35s ease-in both;
 }
 @keyframes demo-note {
-  from { opacity: 0; transform: translateY(-8px) scale(0.97); }
+  from { opacity: 0; transform: translateY(9px); }
 }
+@keyframes demo-note-leave {
+  to { opacity: 0; transform: translateY(-7px); }
+}
+/* The line that fills up until the next moment, and the pause button. Both are in the page from the start, so
+   nothing moves when they show, and they fade in once the picture can move. */
 .demo-progress {
+  opacity: 0;
   transform-origin: left;
   animation-name: demo-progress;
   animation-timing-function: linear;
@@ -238,6 +307,19 @@ html:lang(zh) h1 {
 }
 @keyframes demo-progress {
   from { transform: scaleX(0); }
+}
+.demo-pause {
+  visibility: hidden;
+  opacity: 0;
+}
+[data-motion] .demo-progress {
+  opacity: 1;
+  transition: opacity 0.6s ease;
+}
+[data-motion] .demo-pause {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.6s ease, color 0.15s ease;
 }
 /* The technology picture (components/HubDemo.tsx): the part at work lights up, and data runs out to it along its
    line (37 is the length of each line, the radius of the circle). */
@@ -271,6 +353,9 @@ html:lang(zh) h1 {
   stroke-dashoffset: 7;
   opacity: 0;
 }
+.hub-trail[data-leave] {
+  animation: demo-leave 0.5s ease both;
+}
 [data-motion] .hub-pulse {
   animation: hub-pulse 1.6s 0.3s cubic-bezier(0.45, 0, 0.55, 1) infinite;
 }
@@ -280,7 +365,11 @@ html:lang(zh) h1 {
 }
 @media (prefers-reduced-motion: reduce) {
   .demo-stage, .demo-screen, .demo-device, .demo-device .device-frame, .hub-node, .hub-fill, .hub-label { transition: none !important; }
-  .demo-spot, .demo-note, .demo-progress { animation: none !important; }
+  .demo-spot, .demo-spot::after, .demo-note, .demo-progress { animation: none !important; }
+  .demo-pause { display: none; }
+}
+@media print {
+  .demo-pause { display: none; }
 }
 
 /* ---------- Scroll-in animations (components/RevealScript.tsx) ----------
@@ -305,6 +394,10 @@ html:lang(zh) h1 {
 }
 .js-reveal [data-in] .rv-pop {
   animation: rv-pop 0.75s calc(var(--rd, 0ms) + var(--d, 0ms)) cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+/* A glow behind a picture fades in with it. */
+.js-reveal [data-in] .rv-fade {
+  animation: rv-fade 1.4s calc(var(--rd, 0ms) + var(--d, 0ms)) ease both;
 }
 .js-reveal [data-in] .rv-bubble {
   animation: rv-bubble 0.6s calc(var(--rd, 0ms) + var(--d, 0ms)) cubic-bezier(0.34, 1.56, 0.64, 1) both;
@@ -332,6 +425,9 @@ html:lang(zh) h1 {
 }
 @keyframes rv-pop {
   from { opacity: 0; transform: scale(0.4); }
+}
+@keyframes rv-fade {
+  from { opacity: 0; }
 }
 @keyframes rv-bubble {
   from { opacity: 0; transform: translateY(10px) scale(0.85); }
