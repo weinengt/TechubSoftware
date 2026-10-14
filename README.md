@@ -11,6 +11,8 @@ Built with **Next.js (App Router) + Tailwind CSS**, exported as a fully static s
 Every page exists in three languages: English at the address below, Bahasa Melayu under `/ms/`, Chinese under `/zh/`
 (for example `/ms/clinic-management-system/`). The language switch is in the menu and the footer.
 Every menu item, footer link and button opens a page; none of them scrolls down the same page.
+A refresh opens the page from the top, like opening its address (`components/RefreshScript.tsx`); Back and Forward
+still return to where the visitor was.
 
 | URL | Purpose |
 | --- | --- |
