@@ -17,6 +17,7 @@ const values: Record<string, string> = {
   uptime: site.uptime,
   phone: site.whatsappDisplay,
   email: site.email,
+  ssm: site.ssm,
 };
 
 /** Fills in {placeholders}; unknown ones (like {product}) are left for the page to fill. */

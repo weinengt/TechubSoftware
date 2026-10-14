@@ -146,9 +146,9 @@ const zh: Dict = {
   /* ---------- Home page ---------- */
   home: {
     meta: {
-      title: "马来西亚预约系统与诊所管理系统 | Techub Software",
+      title: "马来西亚预约系统 | 诊所、美容院、发廊、SPA 管理系统 | Techub Software",
       description:
-        "马来西亚 AI 预约系统，适合诊所、发廊、美容中心和 SPA：高级预约、WhatsApp 通知、库存管理，报表 100 毫秒内出来。{uptime} 在线率，月费 RM {price} 起，前 {months} 个月免费。",
+        "马来西亚 AI 预约系统，适合诊所、美容院、发廊和 SPA：WhatsApp 自动提醒、库存管理，报表 100 毫秒内出来。月费 RM {price} 起，前 {months} 个月免费。",
       keywords: [
         "马来西亚预约系统",
         "大马预约系统",
@@ -321,10 +321,10 @@ const zh: Dict = {
   /* ---------- Technology page ---------- */
   techPage: {
     meta: {
-      title: "马来西亚服务器、NoSQL、AI、WhatsApp 和电子发票 | 技术",
+      title: "系统技术 | 马来西亚服务器、AI、WhatsApp 和电子发票",
       socialTitle: "技术 | Techub Software",
       description:
-        "{name} 的技术：马来西亚企业级服务器（IPServerOne、Amazon Web Services）、索引优化的 NoSQL 数据库（报表 100 毫秒内出来）、加密多区域备份、AI、WhatsApp、LHDN 电子发票，还有标签打印机、X光机等硬件。{uptime} 在线率。",
+        "马来西亚企业级服务器（IPServerOne、AWS）、加密多区域备份、报表 100 毫秒内出来、AI 库存管理、WhatsApp 和 LHDN 电子发票。{uptime} 在线率。",
       keywords: [
         "马来西亚云端系统",
         "马来西亚数据中心",
@@ -666,45 +666,45 @@ const zh: Dict = {
   pages: {
     useCases: {
       meta: {
-        title: "适用行业 | 马来西亚诊所、发廊、美容、SPA 和直播带货系统",
+        title: "马来西亚诊所、美容院、发廊、SPA 和直播带货系统",
         description:
-          "专为马来西亚诊所、发廊、美容中心、SPA 和直播卖家而设的现成系统：WhatsApp 提醒、员工账号、库存管理、直播卖货不超卖，报表 100 毫秒内出来。点进去看看 iPad 和手机上的样子。",
+          "专为马来西亚诊所、发廊、美容院、SPA 和直播卖家而设的现成系统：WhatsApp 提醒、员工账号、库存管理，报表 100 毫秒内出来。",
       },
     },
     customSystems: {
       meta: {
-        title: "定制系统 | ERP、AI 物体识别和车牌识别",
-        description: "{name} 为马来西亚商家定制系统，例如 ERP、AI 物体识别和车牌识别。定制 RM {custom} 起，看你的需要而定。",
+        title: "马来西亚定制系统开发 | ERP、AI 物体识别、车牌识别",
+        description: "{name} 为马来西亚商家定制系统和软件开发：ERP、AI 物体识别、车牌识别等。定制 RM {custom} 起，看你的需要而定。",
       },
     },
     services: {
       meta: {
-        title: "服务 | 现成系统、定制开发、硬件安装和培训",
-        description: "{name} 为马来西亚商家提供现成预约系统、直播带货系统、定制系统开发、硬件安装、系统安装和员工培训，还有大马本地团队在 WhatsApp 支援你。",
+        title: "服务 | 预约系统、定制开发、硬件安装和员工培训",
+        description: "{name} 为马来西亚商家提供现成预约系统、直播带货系统、定制系统开发、硬件安装和员工培训，还有本地团队在 WhatsApp 支援你。",
       },
     },
     pricing: {
       meta: {
-        title: "价格 | RM {price}/月起，前 {months} 个月免费",
-        description: "Techub 配套 RM {price}/月起。马来西亚新客户前 {months} 个月免费，包安装和员工培训。直播带货系统 RM {livePrice}/月起；定制 RM {custom} 起。",
+        title: "价格 | 预约系统 RM {price}/月起，前 {months} 个月免费",
+        description: "马来西亚预约系统月费 RM {price} 起，新客户前 {months} 个月免费，包安装和员工培训。直播带货系统 RM {livePrice}/月起；定制 RM {custom} 起。",
       },
     },
     about: {
       meta: {
-        title: "关于我们 | 马来西亚本地软件公司",
-        description: "{name} 是马来西亚本地的软件公司，为诊所、发廊、美容中心和 SPA 开发智能又实惠的系统，保证 {uptime} 在线率，还有本地团队支援。",
+        title: "关于我们 | 马来西亚软件公司",
+        description: "{name} 是马来西亚的软件公司，大马中小企业首选，为诊所、发廊、美容院和 SPA 开发简单又实惠的系统，保证 {uptime} 在线率。",
       },
     },
     faq: {
       meta: {
-        title: "常见问题 | Techub 系统问答",
-        description: "关于 Techub 的常见问题：价格、速度、{uptime} 在线率保证、资料安全、LHDN 电子发票、硬件、设备、安装和培训。",
+        title: "常见问题 | 预约系统价格、安全和使用问答",
+        description: "关于 Techub 预约系统的常见问题：价格、速度、{uptime} 在线率、资料安全、LHDN 电子发票、硬件、安装和培训。",
       },
     },
     contact: {
       meta: {
         title: "联络我们 | WhatsApp 或电邮预约免费 Demo",
-        description: "在 WhatsApp {phone} 或电邮 {email} 联络 {name}，为你在马来西亚的生意预约免费 Demo，前 {months} 个月免费。",
+        description: "在 WhatsApp {phone} 或电邮 {email} 联络 {name}，预约免费 Demo。新客户前 {months} 个月免费。",
       },
     },
   },
@@ -721,10 +721,10 @@ const zh: Dict = {
   products: {
     clinic: {
       meta: {
-        title: "马来西亚诊所管理系统 | 病人记录、叫号和用药记录追踪",
+        title: "马来西亚诊所管理系统 | 诊所系统、电子病历、叫号",
         socialTitle: "马来西亚诊所管理系统 | Techub Software",
         description:
-          "专为马来西亚诊所而设的诊所管理系统：病人记录和用药追踪、叫号系统、EMR、AI 药物库存管理、连接X光机和打印机、LHDN 电子发票，报表 100 毫秒内出来。月费 RM {price} 起，前 {months} 个月免费。",
+          "马来西亚诊所管理系统：病人记录（电子病历 EMR）、用药记录、叫号系统、AI 药物库存、LHDN 电子发票。月费 RM {price} 起，前 {months} 个月免费。",
         keywords: [
           "马来西亚诊所管理系统",
           "诊所管理系统",
@@ -883,10 +883,10 @@ const zh: Dict = {
 
     salon: {
       meta: {
-        title: "马来西亚发廊预约系统 | 预约、员工账号、薪水和 POS",
+        title: "马来西亚发廊预约系统 | 美发沙龙、理发店管理系统",
         socialTitle: "马来西亚发廊预约系统 | Techub Software",
         description:
-          "马来西亚发廊预约系统：发型师预约日历、自动 WhatsApp 通知、员工账号、薪水和佣金、POS、库存追踪，报表 100 毫秒内出来。iPad、手机、电脑都能用。月费 RM {price} 起，前 {months} 个月免费。",
+          "马来西亚发廊预约系统：发型师预约日历、WhatsApp 自动提醒、员工账号、薪水和佣金、POS 和库存。月费 RM {price} 起，前 {months} 个月免费。",
         keywords: [
           "发廊预约系统",
           "马来西亚发廊系统",
@@ -909,7 +909,7 @@ const zh: Dict = {
       heading: "让每位*发型师*\u200b预约满满",
       intro: "专为马来西亚发廊而设：预约、自动 WhatsApp 通知、员工账号、薪水和 POS，iPad、手机、电脑都能用。",
       heroBadge: "已在 WhatsApp 确认",
-      whoFor: ["发廊", "理发店", "男女发廊", "染发护发工作室", "新娘发型化妆", "连锁发廊"],
+      whoFor: ["发廊", "美发沙龙", "理发店", "男女发廊", "染发护发工作室", "新娘发型化妆", "连锁发廊"],
       highlights: {
         notify: "自动通知顾客",
         platform: "跨平台",
@@ -1032,10 +1032,10 @@ const zh: Dict = {
 
     beauty: {
       meta: {
-        title: "马来西亚美容中心预约系统 | 预约、配套和薪水",
+        title: "马来西亚美容院系统 | 美容中心预约、配套和薪水",
         socialTitle: "马来西亚美容中心预约系统 | Techub Software",
         description:
-          "马来西亚美容中心预约系统：预约日历、自动 WhatsApp 提醒、疗程配套、附照片和电子签名的面部图、员工账号和薪水、POS、库存追踪，报表 100 毫秒内出来。月费 RM {price} 起，前 {months} 个月免费。",
+          "马来西亚美容院和美容中心预约系统：WhatsApp 自动提醒、疗程配套、面部图、员工薪水和 POS。月费 RM {price} 起，前 {months} 个月免费。",
         keywords: [
           "美容中心系统",
           "美容院系统",
@@ -1058,7 +1058,7 @@ const zh: Dict = {
       heading: "帮你留住\u200b回头客的\u200b*美容中心系统*",
       intro: "专为马来西亚美容中心而设：预约、配套、面部图、员工薪水和 WhatsApp 提醒，iPad、手机、电脑都能用。",
       heroBadge: "配套次数随时追踪",
-      whoFor: ["美容中心", "Facial 和护肤", "美睫绣眉", "美甲店", "纤体中心", "医美中心", "新娘化妆"],
+      whoFor: ["美容院", "美容中心", "Facial 和护肤", "美睫绣眉", "美甲店", "纤体中心", "医美中心", "新娘化妆"],
       highlights: {
         notify: "自动通知顾客",
         platform: "跨平台",
@@ -1177,10 +1177,10 @@ const zh: Dict = {
 
     spa: {
       meta: {
-        title: "马来西亚 SPA 预约系统 | 按摩师、房间、配套和薪水",
+        title: "马来西亚 SPA 预约系统 | 按摩店、脚底按摩中心系统",
         socialTitle: "马来西亚 SPA 预约系统 | Techub Software",
         description:
-          "马来西亚 SPA 和按摩预约系统：按摩师和房间安排、自动 WhatsApp 提醒、配套和会员、员工账号和薪水、POS、库存追踪，报表 100 毫秒内出来。iPad、手机、电脑都能用。月费 RM {price} 起，前 {months} 个月免费。",
+          "马来西亚 SPA 和按摩预约系统：按摩师和房间安排、WhatsApp 自动提醒、配套和会员、薪水和 POS。月费 RM {price} 起，前 {months} 个月免费。",
         keywords: [
           "SPA预约系统",
           "马来西亚SPA系统",
@@ -1339,7 +1339,7 @@ const zh: Dict = {
         title: "马来西亚直播带货系统 | 撑得住大批买家，不会超卖",
         socialTitle: "马来西亚直播带货系统 | Techub Software",
         description:
-          "专为马来西亚网上卖家而设的直播带货系统：Kafka 订单排队技术撑得住大批买家同时下单，不会超卖，每件产品可以设定开卖日期，每一页的访客也即时看得到，还有高级报表。月费 RM {livePrice} 起。",
+          "马来西亚直播带货系统，适合 Facebook 和 TikTok 直播卖家：撑得住大批买家同时下单，不会超卖，产品定时开卖，访客即时看得到。月费 RM {livePrice} 起。",
         keywords: [
           "直播带货系统",
           "马来西亚直播带货系统",

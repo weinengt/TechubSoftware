@@ -224,8 +224,11 @@ export default function ProductPage({ lang, k }: { lang: Locale; k: SystemKey })
               <Link href={lp(lang, companyPages.useCases)} className="hover:text-brand-700">{d.product.useCases}</Link> <span aria-hidden="true">/</span>{" "}
               <span className="text-slate-700">{name}</span>
             </nav>
-            <p className="eyebrow">{t.eyebrow}</p>
-            <h1 className="mt-5 text-[2.3rem] leading-[1.1] font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">{hl(t.heading)}</h1>
+            {/* The system's name is the first line of the heading, so the page's main search words are in its h1. */}
+            <h1 className="text-[2.3rem] leading-[1.1] font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+              <span className="eyebrow h1-label mx-auto !flex w-fit">{t.eyebrow}</span>
+              <span className="mt-5 block">{hl(t.heading)}</span>
+            </h1>
             <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-slate-600">{t.intro}</p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <a href={whatsappLink(t.demoMessage)} target="_blank" rel="noopener" className="btn-primary !py-3.5">

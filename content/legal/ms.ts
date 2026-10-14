@@ -4,7 +4,7 @@ import type { Legal } from "./en";
 const legal: Legal = {
   nav: { terms: "Terma Penggunaan", privacy: "Dasar Privasi" },
   updatedLabel: "Kemas kini terakhir",
-  updated: "13 Oktober 2026",
+  updated: "14 Oktober 2026",
   translationNote:
     "Halaman ini ialah terjemahan Bahasa Melayu bagi versi Bahasa Inggeris. Jika ada perbezaan antara kedua-dua versi, versi Bahasa Inggeris yang diguna pakai.",
   contactTitle: "Ada soalan tentang halaman ini?",
@@ -27,7 +27,7 @@ const legal: Legal = {
       {
         title: "Tentang kami",
         body: [
-          "{name} (\"Techub\", \"kami\") ialah syarikat perisian yang berpangkalan di Malaysia. Kami menyediakan sistem temujanji untuk klinik, salon rambut, pusat kecantikan dan spa, serta membina sistem custom untuk perniagaan di Malaysia.",
+          "{name} (\"Techub\", \"kami\") ialah syarikat perisian yang berpangkalan di Malaysia, berdaftar dengan Suruhanjaya Syarikat Malaysia (SSM) dengan nombor pendaftaran {ssm}. Kami menyediakan sistem temujanji untuk klinik, salon rambut, pusat kecantikan dan spa, serta membina sistem custom untuk perniagaan di Malaysia.",
           "Anda boleh menghubungi kami di WhatsApp {phone} atau melalui email {email}.",
         ],
       },
@@ -132,7 +132,7 @@ const legal: Legal = {
       {
         title: "Siapa kami",
         body: [
-          "{name} (\"Techub\", \"kami\") ialah syarikat perisian yang berpangkalan di Malaysia. Bagi data peribadi yang diterangkan dalam dasar ini, kami ialah pengawal data, kecuali data yang disimpan oleh klien kami dalam sistem Techub mereka sendiri (lihat \"Data dalam sistem Techub anda\" di bawah).",
+          "{name} (\"Techub\", \"kami\") ialah syarikat perisian yang berpangkalan di Malaysia, berdaftar dengan Suruhanjaya Syarikat Malaysia (SSM) dengan nombor pendaftaran {ssm}. Bagi data peribadi yang diterangkan dalam dasar ini, kami ialah pengawal data, kecuali data yang disimpan oleh klien kami dalam sistem Techub mereka sendiri (lihat \"Data dalam sistem Techub anda\" di bawah).",
           "Hubungi kami tentang data peribadi anda di WhatsApp {phone} atau melalui email {email}.",
         ],
       },

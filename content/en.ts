@@ -149,9 +149,9 @@ const en = {
   /* ---------- Home page ---------- */
   home: {
     meta: {
-      title: "Techub Software | Appointment & Clinic Systems Malaysia",
+      title: "Appointment & Booking System Malaysia | Techub Software",
       description:
-        "Malaysia's appointment system with AI: advanced booking, WhatsApp notifications, stock control and reports in under 100 ms for clinics, salons, beauty centres and spas. {uptime} uptime. From RM {price}/month, first {months} months free.",
+        "AI appointment and booking system for clinics, salons, beauty centres and spas in Malaysia. WhatsApp reminders, {uptime} uptime. From RM {price}/month, {months} months free.",
       keywords: [
         "appointment system Malaysia",
         "appointment management system Malaysia",
@@ -320,10 +320,10 @@ const en = {
   /* ---------- Technology page ---------- */
   techPage: {
     meta: {
-      title: "Technology | Servers in Malaysia, NoSQL, AI, WhatsApp & e-Invoice",
+      title: "Technology | Malaysia Servers, AI & LHDN e-Invoice",
       socialTitle: "Technology | Techub Software",
       description:
-        "The technology behind {name}: enterprise servers in Malaysia (IPServerOne, Amazon Web Services), an indexed NoSQL database with reports in under 100 ms, encrypted multi-region backups, AI, WhatsApp, LHDN e-Invoice and hardware such as label printers and X-ray machines. {uptime} uptime.",
+        "Enterprise servers in Malaysia (IPServerOne, AWS), encrypted backups, reports in under 100 ms, AI stock control, WhatsApp and LHDN e-Invoice. {uptime} uptime.",
       keywords: [
         "cloud business system Malaysia",
         "Malaysia data centre",
@@ -662,51 +662,51 @@ const en = {
   pages: {
     useCases: {
       meta: {
-        title: "Use Cases | Clinic, Salon, Beauty, Spa & Live Selling Systems in Malaysia",
+        title: "Clinic, Salon, Beauty, Spa & Live Selling Systems Malaysia",
         description:
-          "Ready systems for clinics, hair salons, beauty centres, spas and live sellers in Malaysia: WhatsApp reminders, staff profiles, stock control, live sales without overselling and reports in under 100 ms. See each one on iPad and phone.",
+          "Ready systems for clinics, hair salons, beauty centres, spas and live sellers in Malaysia: WhatsApp reminders, stock control and reports in under 100 ms.",
       },
     },
     customSystems: {
       meta: {
-        title: "Custom Systems | ERP, AI Object Detection & Number Plate Scanner",
+        title: "Custom Software Development Malaysia | ERP & AI",
         description:
-          "{name} builds custom systems for businesses in Malaysia, such as ERP, AI object detection and number plate scanners. Customisation from RM {custom}, based on your requirements.",
+          "Custom systems built for your business in Malaysia: ERP, AI object detection, number plate recognition and more. Customisation from RM {custom}.",
       },
     },
     services: {
       meta: {
-        title: "Services | Ready Systems, Custom Development, Hardware & Training",
+        title: "Services | Systems, Custom Software, Hardware & Training",
         description:
-          "What {name} does for businesses in Malaysia: ready appointment systems, a live selling system, custom system development, hardware setup, installation, staff training and local support on WhatsApp.",
+          "Ready appointment and live selling systems, custom software, hardware setup, installation, staff training and WhatsApp support for businesses in Malaysia.",
       },
     },
     pricing: {
       meta: {
         title: "Pricing | From RM {price}/month, First {months} Months Free",
         description:
-          "Techub plans start from RM {price}/month. New customers in Malaysia get the first {months} months free, with installation and staff training included. Live Selling System from RM {livePrice}/month; customisation from RM {custom}.",
+          "Appointment systems in Malaysia from RM {price}/month, first {months} months free with installation and training. Live selling from RM {livePrice}/month; custom from RM {custom}.",
       },
     },
     about: {
       meta: {
-        title: "About Us | A Software Company Based in Malaysia",
+        title: "About Us | A Software Company in Malaysia",
         description:
-          "{name} is a software company based in Malaysia. We build smart, low-cost systems for clinics, salons, beauty centres and spas, with a {uptime} uptime guarantee and local support.",
+          "{name} is a software company in Malaysia, the choice of Malaysia SMEs for simple, low-cost systems for clinics, salons, beauty centres and spas.",
       },
     },
     faq: {
       meta: {
-        title: "FAQ | Questions About Techub Systems",
+        title: "FAQ | Appointment System Questions Answered",
         description:
-          "Answers about Techub in Malaysia: pricing, speed, the {uptime} uptime guarantee, data security, LHDN e-Invoice, hardware, devices, installation and training.",
+          "Answers about Techub appointment systems in Malaysia: pricing, speed, {uptime} uptime, data security, LHDN e-Invoice, hardware, installation and training.",
       },
     },
     contact: {
       meta: {
         title: "Contact Us | Free Demo on WhatsApp or Email",
         description:
-          "Talk to {name} on WhatsApp at {phone} or email {email}. Book a free demo for your business in Malaysia, with the first {months} months free.",
+          "WhatsApp {name} at {phone} or email {email} for a free demo in Malaysia. New users get the first {months} months free.",
       },
     },
   },
@@ -723,10 +723,10 @@ const en = {
   products: {
     clinic: {
       meta: {
-        title: "Clinic Management System Malaysia | Patient Records, Queue & Medication",
+        title: "Clinic Management System Malaysia | EMR, Queue & Pharmacy",
         socialTitle: "Clinic Management System Malaysia | Techub Software",
         description:
-          "Clinic management system for clinics in Malaysia: patient records and medication tracking, queue number calling, EMR, AI medicine stock, X-ray and printer connection, LHDN e-Invoice and reports in under 100 ms. From RM {price}/month, {months} months free.",
+          "Clinic management system for Malaysia: patient records (EMR), medication tracking, queue calling, AI medicine stock and LHDN e-Invoice. From RM {price}/month.",
         keywords: [
           "clinic management system Malaysia",
           "clinic system",
@@ -880,10 +880,10 @@ const en = {
 
     salon: {
       meta: {
-        title: "Salon Appointment System Malaysia | Booking, Staff Profiles, Payroll & POS",
+        title: "Salon Booking & Appointment System Malaysia",
         socialTitle: "Salon Appointment System Malaysia | Techub Software",
         description:
-          "Hair salon appointment system for Malaysia: stylist booking calendar, automatic WhatsApp notifications, staff profiles, payroll and commission, POS, inventory tracking and reports in under 100 ms. Works on iPad, phone and PC. From RM {price}/month, {months} months free.",
+          "Hair salon booking system for Malaysia: stylist calendar, WhatsApp reminders, staff app, payroll and commission, POS and stock. From RM {price}/month, {months} months free.",
         keywords: [
           "salon appointment system",
           "hair salon booking system Malaysia",
@@ -1027,10 +1027,10 @@ const en = {
 
     beauty: {
       meta: {
-        title: "Beauty Centre Appointment System Malaysia | Booking, Packages & Payroll",
+        title: "Beauty Centre System Malaysia | Booking & Packages",
         socialTitle: "Beauty Centre Appointment System Malaysia | Techub Software",
         description:
-          "Appointment system for beauty centres in Malaysia: booking calendar, automatic WhatsApp reminders, treatment packages, face charts with photos and e-signature, staff profiles and payroll, POS, inventory tracking and reports in under 100 ms. From RM {price}/month, {months} months free.",
+          "Beauty centre and beauty salon system for Malaysia: booking, WhatsApp reminders, treatment packages, face charts, payroll and POS. From RM {price}/month.",
         keywords: [
           "beauty centre system",
           "beauty salon system Malaysia",
@@ -1170,10 +1170,10 @@ const en = {
 
     spa: {
       meta: {
-        title: "Spa Appointment System Malaysia | Therapists, Rooms, Packages & Payroll",
+        title: "Spa & Massage Booking System Malaysia | Therapists & Rooms",
         socialTitle: "Spa Appointment System Malaysia | Techub Software",
         description:
-          "Spa and massage appointment system for Malaysia: therapist and room scheduling, automatic WhatsApp reminders, packages and memberships, staff profiles and payroll, POS, inventory tracking and reports in under 100 ms. Works on iPad, phone and PC. From RM {price}/month, {months} months free.",
+          "Spa and massage booking system for Malaysia: therapist and room scheduling, WhatsApp reminders, packages, memberships, payroll and POS. From RM {price}/month.",
         keywords: [
           "spa appointment system",
           "spa booking system Malaysia",
@@ -1330,7 +1330,7 @@ const en = {
         title: "Live Selling System Malaysia | Big Crowds, No Overselling",
         socialTitle: "Live Selling System Malaysia | Techub Software",
         description:
-          "Live selling system for online sellers in Malaysia: handles big crowds of buyers with Kafka order queueing, stops overselling, lets you set each product's selling date and shows live visitors by page, with advanced reports. From RM {livePrice}/month.",
+          "Live selling system for Facebook and TikTok sellers in Malaysia: handles big crowds, stops overselling, schedules products, shows live visitors. From RM {livePrice}/month.",
         keywords: [
           "live selling system Malaysia",
           "live selling system",

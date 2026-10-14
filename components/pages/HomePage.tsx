@@ -75,11 +75,12 @@ export default function HomePage({ lang }: { lang: Locale }) {
         <div className="absolute -top-40 right-0 -z-10 h-[32rem] w-[32rem] rounded-full bg-teal-brand/15 blur-3xl" aria-hidden="true" />
         <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-10 lg:px-8">
           <div className="lg:col-span-5">
-            <p className="inline-flex items-center gap-2 rounded-full bg-white px-3.5 py-1.5 text-[13px] font-bold text-slate-800 shadow-sm ring-1 ring-slate-200 sm:text-sm">
-              <Icon.Star className="h-4 w-4 shrink-0 fill-amber-400 text-amber-500" /> {h.badge}
-            </p>
-            <h1 className="mt-5 text-[2.5rem] leading-[1.08] font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-[3.4rem]">
-              {hl(h.title)}
+            {/* The badge is the first line of the heading, so "appointment system" and "Malaysia" are in the page's h1. */}
+            <h1 className="text-[2.5rem] leading-[1.08] font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-[3.4rem]">
+              <span className="h1-label flex w-fit items-center gap-2 rounded-full bg-white px-3.5 py-1.5 text-[13px] leading-normal font-bold tracking-normal text-slate-800 shadow-sm ring-1 ring-slate-200 sm:text-sm sm:leading-5">
+                <Icon.Star className="h-4 w-4 shrink-0 fill-amber-400 text-amber-500" /> {h.badge}
+              </span>
+              <span className="mt-5 block">{hl(h.title)}</span>
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-slate-600">{h.intro}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">

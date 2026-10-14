@@ -145,9 +145,9 @@ const ms: Dict = {
   /* ---------- Home page ---------- */
   home: {
     meta: {
-      title: "Sistem Temujanji & Klinik Malaysia | Techub Software",
+      title: "Sistem Temujanji & Booking Malaysia | Techub Software",
       description:
-        "Sistem temujanji AI di Malaysia untuk klinik, salon, pusat kecantikan & spa: booking canggih, notifikasi WhatsApp, kawalan stok, laporan bawah 100 ms. Uptime {uptime}. Dari RM {price}/bulan, {months} bulan percuma.",
+        "Sistem temujanji dan booking AI untuk klinik, salon, pusat kecantikan dan spa di Malaysia. Reminder WhatsApp, uptime {uptime}. Dari RM {price}/bulan, {months} bulan percuma.",
       keywords: [
         "sistem temujanji Malaysia",
         "sistem booking Malaysia",
@@ -318,10 +318,10 @@ const ms: Dict = {
   /* ---------- Technology page ---------- */
   techPage: {
     meta: {
-      title: "Teknologi | Server di Malaysia, NoSQL, AI, WhatsApp & e-Invois",
+      title: "Teknologi | Server Malaysia, AI & e-Invois LHDN",
       socialTitle: "Teknologi | Techub Software",
       description:
-        "Teknologi {name}: server enterprise di Malaysia (IPServerOne, Amazon Web Services), NoSQL berindeks, laporan bawah 100 ms, backup disulitkan, AI, WhatsApp, e-Invois LHDN. Uptime {uptime}.",
+        "Server enterprise di Malaysia (IPServerOne, AWS), backup disulitkan, laporan bawah 100 ms, kawalan stok AI, WhatsApp dan e-Invois LHDN. Uptime {uptime}.",
       keywords: [
         "sistem cloud Malaysia",
         "pusat data Malaysia",
@@ -667,51 +667,51 @@ const ms: Dict = {
   pages: {
     useCases: {
       meta: {
-        title: "Industri | Sistem Klinik, Salon, Kecantikan, Spa & Jualan Live di Malaysia",
+        title: "Sistem Klinik, Salon, Kecantikan, Spa & Jualan Live Malaysia",
         description:
-          "Sistem siap guna untuk klinik, salon rambut, pusat kecantikan, spa dan penjual live di Malaysia: reminder WhatsApp, profil staf, kawalan stok, jualan live tanpa terlebih jual dan laporan bawah 100 ms. Tengok di iPad dan telefon.",
+          "Sistem siap guna untuk klinik, salon rambut, pusat kecantikan, spa dan penjual live di Malaysia: reminder WhatsApp, kawalan stok, laporan bawah 100 ms.",
       },
     },
     customSystems: {
       meta: {
-        title: "Sistem Custom | ERP, AI Pengesanan Objek & Scanner Nombor Plat",
+        title: "Buat Sistem Custom Malaysia | ERP, AI & Scanner Nombor Plat",
         description:
-          "{name} bina sistem custom untuk bisnes di Malaysia, seperti ERP, AI pengesanan objek dan scanner nombor plat. Ubah suai dari RM {custom}, ikut keperluan anda.",
+          "Kami bina sistem custom untuk bisnes anda di Malaysia: ERP, AI pengesanan objek, scanner nombor plat dan lagi. Ubah suai dari RM {custom}, ikut keperluan.",
       },
     },
     services: {
       meta: {
-        title: "Perkhidmatan | Sistem Siap Guna, Sistem Custom, Peralatan & Latihan",
+        title: "Perkhidmatan | Sistem, Custom, Peralatan & Latihan",
         description:
-          "Apa yang {name} buat untuk bisnes di Malaysia: sistem booking siap guna, sistem jualan live, sistem custom, setup peralatan, pemasangan, latihan staf dan sokongan tempatan di WhatsApp.",
+          "Sistem temujanji dan jualan live siap guna, sistem custom, setup peralatan, pemasangan, latihan staf dan sokongan WhatsApp untuk bisnes di Malaysia.",
       },
     },
     pricing: {
       meta: {
         title: "Harga | Dari RM {price}/bulan, {months} Bulan Pertama Percuma",
         description:
-          "Pelan Techub dari RM {price}/bulan. Pelanggan baru di Malaysia dapat {months} bulan pertama percuma, termasuk pemasangan dan latihan staf. Sistem Jualan Live dari RM {livePrice}/bulan; ubah suai dari RM {custom}.",
+          "Sistem temujanji di Malaysia dari RM {price}/bulan, {months} bulan pertama percuma termasuk pemasangan dan latihan. Jualan live dari RM {livePrice}/bulan; custom dari RM {custom}.",
       },
     },
     about: {
       meta: {
-        title: "Tentang Kami | Syarikat Perisian yang Berpangkalan di Malaysia",
+        title: "Tentang Kami | Syarikat Software di Malaysia",
         description:
-          "{name} ialah syarikat perisian yang berpangkalan di Malaysia. Kami bina sistem pintar dengan kos rendah untuk klinik, salon, pusat kecantikan dan spa, dengan jaminan uptime {uptime}.",
+          "{name} ialah syarikat software di Malaysia, pilihan SME Malaysia untuk sistem yang mudah dan murah bagi klinik, salon, pusat kecantikan dan spa.",
       },
     },
     faq: {
       meta: {
-        title: "Soalan Lazim | Semua Tentang Sistem Techub",
+        title: "Soalan Lazim | Sistem Temujanji Techub",
         description:
-          "Jawapan tentang Techub di Malaysia: harga, kelajuan, jaminan uptime {uptime}, keselamatan data, e-Invois LHDN, peralatan, peranti, pemasangan dan latihan.",
+          "Jawapan tentang sistem temujanji Techub di Malaysia: harga, kelajuan, uptime {uptime}, keselamatan data, e-Invois LHDN, peralatan, pemasangan dan latihan.",
       },
     },
     contact: {
       meta: {
         title: "Hubungi Kami | Demo Percuma di WhatsApp atau Email",
         description:
-          "Chat dengan {name} di WhatsApp {phone} atau email {email}. Tempah demo percuma untuk bisnes anda di Malaysia, dengan {months} bulan pertama percuma.",
+          "WhatsApp {name} di {phone} atau email {email} untuk demo percuma di Malaysia. Pengguna baru dapat {months} bulan pertama percuma.",
       },
     },
   },
@@ -728,10 +728,10 @@ const ms: Dict = {
   products: {
     clinic: {
       meta: {
-        title: "Sistem Pengurusan Klinik Malaysia | Rekod Pesakit, Giliran & Ubat",
+        title: "Sistem Pengurusan Klinik Malaysia | EMR, Giliran & Ubat",
         socialTitle: "Sistem Pengurusan Klinik Malaysia | Techub Software",
         description:
-          "Sistem pengurusan klinik untuk klinik di Malaysia: rekod pesakit & ubat, giliran, EMR, stok ubat AI, X-ray & printer, e-Invois LHDN, laporan bawah 100 ms. Dari RM {price}/bulan, {months} bulan percuma.",
+          "Sistem pengurusan klinik di Malaysia: rekod pesakit (EMR), rekod ubat, nombor giliran, stok ubat AI dan e-Invois LHDN. Dari RM {price}/bulan, {months} bulan percuma.",
         keywords: [
           "sistem pengurusan klinik",
           "sistem klinik",
@@ -920,10 +920,10 @@ const ms: Dict = {
 
     salon: {
       meta: {
-        title: "Sistem Booking Salon Malaysia | Temujanji, Profil Staf, Gaji & POS",
+        title: "Sistem Booking Salon Malaysia | Temujanji, Gaji & POS",
         socialTitle: "Sistem Booking Salon Malaysia | Techub Software",
         description:
-          "Sistem booking salon rambut di Malaysia: jadual stylist, notifikasi WhatsApp automatik, profil staf, gaji & komisen, POS, inventori, laporan bawah 100 ms. Dari RM {price}/bulan, {months} bulan percuma.",
+          "Sistem booking salon rambut di Malaysia: jadual stylist, reminder WhatsApp, app staf, gaji dan komisen, POS dan stok. Dari RM {price}/bulan, {months} bulan percuma.",
         keywords: [
           "sistem booking salon",
           "sistem temujanji salon",
@@ -1096,10 +1096,10 @@ const ms: Dict = {
 
     beauty: {
       meta: {
-        title: "Sistem Booking Pusat Kecantikan Malaysia | Temujanji, Pakej & Gaji",
+        title: "Sistem Pusat Kecantikan Malaysia | Booking, Pakej & Gaji",
         socialTitle: "Sistem Booking Pusat Kecantikan Malaysia | Techub Software",
         description:
-          "Sistem booking pusat kecantikan di Malaysia: kalendar, reminder WhatsApp automatik, pakej rawatan, carta muka & e-tandatangan, gaji, POS, laporan bawah 100 ms. Dari RM {price}/bulan, {months} bulan percuma.",
+          "Sistem booking pusat kecantikan dan salon kecantikan di Malaysia: reminder WhatsApp, pakej rawatan, carta muka, gaji dan POS. Dari RM {price}/bulan, {months} bulan percuma.",
         keywords: [
           "sistem pusat kecantikan",
           "sistem booking pusat kecantikan",
@@ -1274,10 +1274,10 @@ const ms: Dict = {
 
     spa: {
       meta: {
-        title: "Sistem Booking Spa Malaysia | Terapis, Bilik, Pakej & Gaji",
+        title: "Sistem Booking Spa & Urut Malaysia | Terapis, Bilik & Pakej",
         socialTitle: "Sistem Booking Spa Malaysia | Techub Software",
         description:
-          "Sistem booking spa & urutan di Malaysia: jadual terapis & bilik, reminder WhatsApp automatik, pakej & membership, gaji staf, POS, inventori, laporan bawah 100 ms. Dari RM {price}/bulan, {months} bulan percuma.",
+          "Sistem booking spa dan urutan di Malaysia: jadual terapis dan bilik, reminder WhatsApp, pakej, membership, gaji dan POS. Dari RM {price}/bulan, {months} bulan percuma.",
         keywords: [
           "sistem booking spa",
           "sistem spa",
@@ -1459,10 +1459,10 @@ const ms: Dict = {
 
     live: {
       meta: {
-        title: "Sistem Jualan Live Malaysia | Tampung Ramai Pembeli, Tak Terlebih Jual",
+        title: "Sistem Jualan Live Malaysia | Tak Terlebih Jual",
         socialTitle: "Sistem Jualan Live Malaysia | Techub Software",
         description:
-          "Sistem jualan live untuk penjual online di Malaysia: tampung ramai pembeli serentak dengan giliran order Kafka, elak overselling, tetapkan tarikh jualan setiap produk dan pantau pelawat live ikut halaman, siap dengan laporan canggih. Dari RM {livePrice}/bulan.",
+          "Sistem jualan live untuk penjual Facebook dan TikTok di Malaysia: tampung ramai pembeli, elak terlebih jual, jadual produk, pelawat live. Dari RM {livePrice}/bulan.",
         keywords: [
           "sistem live selling Malaysia",
           "sistem jualan live",

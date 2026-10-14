@@ -33,6 +33,7 @@ Website: ${site.url}
 WhatsApp: ${site.whatsappDisplay} (https://wa.me/${site.whatsappNumber})
 Email: ${site.email}
 Country: Malaysia
+Company registration: SSM ${site.ssm} (Companies Commission of Malaysia)
 Languages: ${locales.map((l) => `${localeName[l]} (${site.url}${lp(l, "/")})`).join(", ")}
 
 ## About (${site.url}/about/)
@@ -81,6 +82,17 @@ ${list(Object.values(t.hardware.items))}
 
 ## Frequently asked questions (${site.url}/faq/)
 ${[...t.faq.items, ...t.techPage.faqs].map((f) => `Q: ${f.q}\nA: ${f.a}`).join("\n\n")}
+
+## In Bahasa Melayu and Chinese
+Every page also exists in Bahasa Melayu (/ms/) and Simplified Chinese (/zh/), with titles and text in that language:
+${(["ms", "zh"] as const)
+  .map((l) => {
+    const d = getDict(l);
+    return `### ${localeName[l]} (${site.url}${lp(l, "/")})
+${d.home.meta.description}
+${systems.map((s) => `- ${d.systems[s.key].name} (${site.url}${lp(l, s.path)}): ${d.products[s.key].meta.description}`).join("\n")}`;
+  })
+  .join("\n\n")}
 
 ## Legal
 - ${legal.nav.terms}: ${site.url}/terms/

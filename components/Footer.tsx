@@ -54,7 +54,9 @@ export default function Footer({ lang }: { lang: Locale }) {
       <div className="border-t border-slate-200">
         {/* In one row from 1280px; until 1440px the right padding keeps the links clear of the floating WhatsApp button. */}
         <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-6 text-xs text-slate-500 sm:px-6 lg:px-8 xl:flex-row xl:items-center xl:justify-between xl:pr-24 min-[1440px]:pr-8">
-          <p>© {year} {site.name}. {f.rights} {f.tagline}</p>
+          <p className="[text-wrap:pretty]">
+            © {year} {site.name} <span className="whitespace-nowrap">(SSM {site.ssm})</span>. {f.rights} {f.tagline}
+          </p>
           <div className="-mx-2 flex flex-col gap-2 whitespace-nowrap sm:flex-row sm:items-center sm:gap-3 xl:shrink-0">
             <ul className="flex items-center gap-1">
               {(["terms", "privacy"] as const).map((k) => (

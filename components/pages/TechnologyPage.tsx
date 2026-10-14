@@ -98,9 +98,9 @@ export default function TechnologyPage({ lang }: { lang: Locale }) {
               <Link href={lp(lang, "/")} className="hover:text-brand-700">{d.ui.home}</Link> <span aria-hidden="true">/</span>{" "}
               <span className="text-slate-700">{t.crumb}</span>
             </nav>
-            <p className="eyebrow">{t.eyebrow}</p>
-            <h1 className="mt-5 text-[2.5rem] leading-[1.08] font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-[3.4rem]">
-              {hl(t.title)}
+            <h1 className="text-[2.5rem] leading-[1.08] font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-[3.4rem]">
+              <span className="eyebrow h1-label !flex w-fit">{t.eyebrow}</span>
+              <span className="mt-5 block">{hl(t.title)}</span>
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-slate-600">{t.intro}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">

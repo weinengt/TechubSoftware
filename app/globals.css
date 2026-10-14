@@ -35,6 +35,13 @@ body {
   }
 }
 
+/* A label shown as the first line of a page's h1 (the badge or the small text above the title): it wraps like normal text. */
+h1 > .h1-label {
+  text-wrap: wrap;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
 /* Chinese pages: the usual Chinese system fonts after the Latin font, and normal letter-spacing,
    because the tight spacing used for Latin headings crowds Chinese characters. */
 html:lang(zh) {

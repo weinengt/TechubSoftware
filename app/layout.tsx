@@ -73,6 +73,8 @@ const organization = {
       logo: `${site.url}/icon-512.png`,
       description: site.description,
       areaServed: { "@type": "Country", name: "Malaysia" },
+      address: { "@type": "PostalAddress", addressCountry: "MY" },
+      identifier: { "@type": "PropertyValue", propertyID: "SSM registration number", value: site.ssm },
       knowsAbout: [
         "Appointment management system",
         "Clinic management system",

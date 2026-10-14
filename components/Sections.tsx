@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { getDict, type Dict } from "@/content";
-import { lp, type Locale } from "@/lib/i18n";
+import { htmlLang, lp, type Locale } from "@/lib/i18n";
 import { shotSrc, type Shot } from "@/lib/shots";
 import { emailLink, site, systems, whatsappLink } from "@/lib/site";
 import { Icon, type IconName } from "./Icons";
@@ -41,10 +41,20 @@ export function SectionHeading({
   return (
     <div className={center ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
       {page && <Crumbs lang={page.lang} current={page.crumb} />}
-      {eyebrow && <p className="eyebrow">{eyebrow}</p>}
-      <H className={`mt-4 font-extrabold tracking-tight text-slate-900 ${page ? "text-4xl sm:text-5xl" : "text-3xl sm:text-4xl"}`}>
-        {typeof title === "string" ? hl(title) : title}
-      </H>
+      {page && eyebrow ? (
+        // On its own page the label above the title is the h1's first line, so the page's topic words are in its h1.
+        <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
+          <span className={`eyebrow h1-label !flex w-fit ${center ? "mx-auto" : ""}`}>{eyebrow}</span>
+          <span className="mt-4 block">{typeof title === "string" ? hl(title) : title}</span>
+        </h1>
+      ) : (
+        <>
+          {eyebrow && <p className="eyebrow">{eyebrow}</p>}
+          <H className={`mt-4 font-extrabold tracking-tight text-slate-900 ${page ? "text-4xl sm:text-5xl" : "text-3xl sm:text-4xl"}`}>
+            {typeof title === "string" ? hl(title) : title}
+          </H>
+        </>
+      )}
       {intro && <p className="mt-4 text-base leading-relaxed text-slate-600 sm:text-lg">{intro}</p>}
     </div>
   );
@@ -287,9 +297,11 @@ export function softwareJsonLd(opts: {
     name: opts.name,
     description: opts.description,
     url: opts.url,
+    inLanguage: htmlLang[opts.lang],
     applicationCategory: "BusinessApplication",
     applicationSubCategory: opts.category,
     operatingSystem: "Web, Windows, macOS, Android, iOS",
+    countriesSupported: "MY",
     featureList: opts.features,
     screenshot: (opts.screenshots ?? []).map((s) => ({
       "@type": "ImageObject",

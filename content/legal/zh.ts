@@ -4,7 +4,7 @@ import type { Legal } from "./en";
 const legal: Legal = {
   nav: { terms: "使用条款", privacy: "隐私政策" },
   updatedLabel: "最后更新",
-  updated: "2026年10月13日",
+  updated: "2026年10月14日",
   translationNote: "本页是英文版的中文翻译。如果中文版和英文版有出入，以英文版为准。",
   contactTitle: "对这一页有疑问？",
   contactText: "可以在 WhatsApp 跟我们聊，或发电邮给我们。我们通常在一个工作天内回复。",
@@ -26,7 +26,7 @@ const legal: Legal = {
       {
         title: "关于我们",
         body: [
-          "{name}（“Techub”、“我们”）是一家位于马来西亚的软件公司。我们为诊所、发廊、美容中心和 SPA 提供预约系统，也为马来西亚的商家开发定制系统。",
+          "{name}（“Techub”、“我们”）是一家位于马来西亚的软件公司，已在马来西亚公司委员会（SSM）注册，注册号码 {ssm}。我们为诊所、发廊、美容中心和 SPA 提供预约系统，也为马来西亚的商家开发定制系统。",
           "你可以 WhatsApp {phone}，或发电邮到 {email} 联络我们。",
         ],
       },
@@ -131,7 +131,7 @@ const legal: Legal = {
       {
         title: "我们是谁",
         body: [
-          "{name}（“Techub”、“我们”）是一家位于马来西亚的软件公司。对于本政策所说明的个人资料，我们是资料控制者（data controller），但我们的客户储存在他们自己的 Techub 系统里的资料除外（见下文“你的 Techub 系统里的资料”）。",
+          "{name}（“Techub”、“我们”）是一家位于马来西亚的软件公司，已在马来西亚公司委员会（SSM）注册，注册号码 {ssm}。对于本政策所说明的个人资料，我们是资料控制者（data controller），但我们的客户储存在他们自己的 Techub 系统里的资料除外（见下文“你的 Techub 系统里的资料”）。",
           "关于你的个人资料，请 WhatsApp {phone} 或发电邮到 {email} 联络我们。",
         ],
       },

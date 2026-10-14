@@ -1,6 +1,6 @@
 // Terms of Use and Privacy Policy in English. ms.ts and zh.ts in this folder have the same shape.
 //
-// Placeholders work as in content/en.ts: {name} {price} {months} {custom} {uptime} {phone} {email}.
+// Placeholders work as in content/en.ts: {name} {ssm} {price} {months} {custom} {uptime} {phone} {email}.
 // Each section's body is a list of blocks: a string is a paragraph, an array of strings is a bullet list.
 // The Privacy Policy is written as the notice required by Malaysia's Personal Data Protection Act 2010
 // (as amended in 2024), which must be offered in Bahasa Melayu and English.
@@ -31,7 +31,7 @@ export type Legal = {
 const legal: Legal = {
   nav: { terms: "Terms of Use", privacy: "Privacy Policy" },
   updatedLabel: "Last updated",
-  updated: "13 October 2026",
+  updated: "14 October 2026",
   translationNote: "",
   contactTitle: "Questions about this page?",
   contactText: "Talk to us on WhatsApp or send us an email. We usually reply within one working day.",
@@ -53,7 +53,7 @@ const legal: Legal = {
       {
         title: "About us",
         body: [
-          "{name} (\"Techub\", \"we\", \"us\") is a software company based in Malaysia. We provide appointment systems for clinics, hair salons, beauty centres and spas, and build custom systems for businesses in Malaysia.",
+          "{name} (\"Techub\", \"we\", \"us\") is a software company based in Malaysia, registered with the Companies Commission of Malaysia (SSM) under registration number {ssm}. We provide appointment systems for clinics, hair salons, beauty centres and spas, and build custom systems for businesses in Malaysia.",
           "You can reach us on WhatsApp at {phone} or by email at {email}.",
         ],
       },
@@ -158,7 +158,7 @@ const legal: Legal = {
       {
         title: "Who we are",
         body: [
-          "{name} (\"Techub\", \"we\", \"us\") is a software company based in Malaysia. For the personal data described in this policy we are the data controller, except for data that our clients store in their own Techub systems (see \"Data in your Techub system\" below).",
+          "{name} (\"Techub\", \"we\", \"us\") is a software company based in Malaysia, registered with the Companies Commission of Malaysia (SSM) under registration number {ssm}. For the personal data described in this policy we are the data controller, except for data that our clients store in their own Techub systems (see \"Data in your Techub system\" below).",
           "Contact us about your personal data on WhatsApp at {phone} or by email at {email}.",
         ],
       },
