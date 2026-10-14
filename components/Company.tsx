@@ -4,10 +4,12 @@ import { getDict, getShots, type Dict } from "@/content";
 import { lp, type Locale } from "@/lib/i18n";
 import type { ShotKey } from "@/lib/shots";
 import { companyPages, emailLink, site, systems, whatsappLink, type SystemKey } from "@/lib/site";
+import Demo from "./Demo";
+import { demos, useCaseStart } from "./demoScenes";
 import Device from "./Device";
+import HubDemo from "./HubDemo";
 import { Icon, type IconName } from "./Icons";
 import { CheckList, SectionHeading, pageTop, type PageOf } from "./Sections";
-import { Combo } from "./Showcase";
 import { hl } from "./Text";
 
 const keysOf = <T extends object>(o: T) => Object.keys(o) as (keyof T)[];
@@ -265,14 +267,13 @@ export function ServicesSection({ lang, page }: { lang: Locale; page?: PageOf })
 
 /* ---------- Use cases ---------- */
 
-// The pictures for each use case: an iPad screen and a phone screen.
-export const useCaseShots: Record<SystemKey, { tablet: ShotKey; phone: ShotKey }> = {
-  clinic: { tablet: "clinicDashboard", phone: "whatsappClinic" },
-  salon: { tablet: "salonCalendar", phone: "staffSalon" },
-  beauty: { tablet: "faceChart", phone: "beautyPackage" },
-  spa: { tablet: "spaCalendar", phone: "spaPackage" },
-  live: { tablet: "liveDashboard", phone: "liveShop" },
-};
+// The pictures for each use case: the iPad and phone screens its row on the Use Cases page starts with.
+export const useCaseShots = Object.fromEntries(
+  systems.map((s) => {
+    const first = demos[s.key].find((m) => m.key === useCaseStart[s.key])!;
+    return [s.key, { tablet: first.tablet!, phone: first.phone! }];
+  }),
+) as Record<SystemKey, { tablet: ShotKey; phone: ShotKey }>;
 
 /** Home and About pages: one card per business type, each opening that system's page, then one for custom systems. */
 const cardSizes = "(min-width: 1024px) 350px, (min-width: 640px) 45vw, 44vw";
@@ -353,7 +354,6 @@ export function UseCasesSection({ lang }: { lang: Locale }) {
 export function UseCasesList({ lang, page }: { lang: Locale; page: PageOf }) {
   const d = getDict(lang);
   const t = d.useCases;
-  const shots = getShots(lang);
   return (
     <section id="use-cases" className={`overflow-hidden ${pageTop} pb-20 sm:pb-24`}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -374,8 +374,8 @@ export function UseCasesList({ lang, page }: { lang: Locale; page: PageOf }) {
                   </div>
                   <p className="mt-4 text-slate-600">{sys.blurb}</p>
                 </div>
-                <div className={`self-center lg:col-span-7 lg:row-span-2 lg:row-start-1 ${flip ? "lg:col-start-6" : "lg:col-start-1"}`} data-reveal="zoom">
-                  <Combo main={shots[useCaseShots[s.key].tablet]} phone={shots[useCaseShots[s.key].phone]} side={flip ? "left" : "right"} />
+                <div className={`self-center lg:col-span-7 lg:row-span-2 lg:row-start-1 ${flip ? "lg:col-start-6" : "lg:col-start-1"}`}>
+                  <Demo lang={lang} demo={s.key} layout="combo" product={sys.name} start={useCaseStart[s.key]} side={flip ? "left" : "right"} />
                 </div>
                 <div className={`lg:col-span-5 lg:row-start-2 lg:self-start ${flip ? "lg:col-start-1" : "lg:col-start-8"}`}>
                   <CheckList items={sys.points} />
@@ -413,27 +413,28 @@ export function UseCasesList({ lang, page }: { lang: Locale; page: PageOf }) {
 
 /* ---------- Custom systems (ERP, AI object detection, number plate scanner) ---------- */
 
-export const customSystems: { key: keyof Dict["custom"]["items"]; icon: IconName; shot: ShotKey }[] = [
-  { key: "erp", icon: "Layers", shot: "erpDesktop" },
-  { key: "detection", icon: "Detect", shot: "objectDetection" },
-  { key: "plate", icon: "Car", shot: "plateScanner" },
+// Each card shows its system at work: the moments are in ./demoScenes.ts, under the same key.
+export const customSystems: { key: keyof Dict["custom"]["items"]; icon: IconName }[] = [
+  { key: "erp", icon: "Layers" },
+  { key: "detection", icon: "Detect" },
+  { key: "plate", icon: "Car" },
 ];
 
 export function CustomSystemsSection({ lang, page }: { lang: Locale; page?: PageOf }) {
   const t = getDict(lang).custom;
-  const shots = getShots(lang);
   return (
     <section id="custom-systems" className={page ? `${pageTop} pb-20 sm:pb-24` : "border-y border-slate-200 bg-slate-50 py-20 sm:py-24"}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading eyebrow={t.eyebrow} title={t.title} intro={t.intro} page={page} />
         <ul className="mt-12 grid gap-6 md:grid-cols-3">
-          {customSystems.map((c) => {
+          {customSystems.map((c, i) => {
             const I = Icon[c.icon];
             return (
               <li key={c.key} className="card flex flex-col overflow-hidden" data-reveal>
                 <div className="relative overflow-hidden bg-gradient-to-br from-brand-50 via-white to-cyan-50 px-5 pt-6 pb-5 sm:px-6">
                   <div className="bg-grid absolute inset-0 opacity-60" aria-hidden="true" />
-                  <Device shot={shots[c.shot]} sizes="(min-width: 768px) 30vw, 92vw" className="relative" />
+                  {/* The cards change one after another rather than all at once. */}
+                  <Demo lang={lang} demo={c.key} layout="screen" product={t.items[c.key].title} reveal={false} delay={i * 1300} />
                 </div>
                 <div className="flex flex-1 gap-3 p-5">
                   <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-md shadow-brand-500/25">
@@ -491,63 +492,18 @@ const hubIcons: Record<keyof Dict["tech"]["hub"]["nodes"], IconName> = {
   reports: "Chart",
 };
 
-/** Techub Cloud in the middle, connected to the devices and services around it. */
-export function TechHub({ lang }: { lang: Locale }) {
-  const t = getDict(lang).tech.hub;
+/** Techub Cloud in the middle, connected to the devices and services around it. With `demo` (the Technology page),
+ *  each of them is shown at work in turn. */
+export function TechHub({ lang, demo }: { lang: Locale; demo?: boolean }) {
+  const d = getDict(lang);
+  const t = d.tech.hub;
   const keys = keysOf(hubIcons);
   const R = 37;
   const nodes = keys.map((k, i) => {
     const a = ((-90 + (i * 360) / keys.length) * Math.PI) / 180;
-    return { k, x: +(50 + R * Math.cos(a)).toFixed(2), y: +(50 + R * Math.sin(a)).toFixed(2) };
+    return { k, x: +(50 + R * Math.cos(a)).toFixed(2), y: +(50 + R * Math.sin(a)).toFixed(2), icon: hubIcons[k], label: t.nodes[k] };
   });
-  return (
-    <div className="relative overflow-hidden rounded-[2rem] bg-brand-950 px-3 pt-4 pb-8 ring-1 ring-white/10 sm:px-8 sm:pt-6 sm:pb-10">
-      <div className="bg-grid absolute inset-0 opacity-30" aria-hidden="true" />
-      <div className="absolute top-1/2 left-1/2 h-2/3 w-2/3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-500/30 blur-3xl" aria-hidden="true" />
-      <div className="relative mx-auto aspect-square w-full max-w-[30rem]">
-        <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" aria-hidden="true">
-          <circle cx="50" cy="50" r={R} fill="none" stroke="rgb(255 255 255 / 0.12)" strokeWidth="0.35" />
-          <circle cx="50" cy="50" r="25" fill="none" stroke="rgb(255 255 255 / 0.1)" strokeWidth="0.35" strokeDasharray="0.8 1.6" />
-          {nodes.map((n, i) => (
-            <line
-              key={n.k}
-              x1="50"
-              y1="50"
-              x2={n.x}
-              y2={n.y}
-              stroke="rgb(0 207 203 / 0.6)"
-              strokeWidth="0.45"
-              strokeDasharray="1.2 1.6"
-              className="tech-flow rv-line"
-              style={{ "--d": `${350 + i * 90}ms` } as CSSProperties}
-            />
-          ))}
-        </svg>
-        <div className="rv-pop absolute top-1/2 left-1/2 flex aspect-square w-[34%] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-brand-gradient text-center text-white shadow-[0_0_60px_-5px_rgb(0_207_203/0.6)] ring-[6px] ring-white/10 [--d:150ms]">
-          <Icon.Cloud className="h-7 w-7 sm:h-9 sm:w-9" />
-          <span className="mt-1 text-[13px] leading-tight font-extrabold sm:text-base">{t.center}</span>
-          <span className="mt-0.5 text-[10px] font-semibold text-white/85 sm:text-xs">{t.uptime}</span>
-        </div>
-        {nodes.map((n, i) => {
-          const I = Icon[hubIcons[n.k]];
-          return (
-            <div
-              key={n.k}
-              className="rv-pop absolute -translate-x-1/2 -translate-y-1/2"
-              style={{ left: `${n.x}%`, top: `${n.y}%`, "--d": `${600 + i * 90}ms` } as CSSProperties}
-            >
-              <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-white text-brand-600 shadow-lg shadow-black/20 sm:h-12 sm:w-12">
-                <I className="h-5 w-5 sm:h-6 sm:w-6" />
-              </span>
-              <span className="absolute top-full left-1/2 mt-1.5 w-20 -translate-x-1/2 text-center text-[11px] leading-tight font-semibold text-slate-200 sm:w-24 sm:text-xs">
-                {t.nodes[n.k]}
-              </span>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
+  return <HubDemo nodes={nodes} r={R} center={t.center} uptime={t.uptime} text={demo ? { ...d.demo.hub, notes: d.demo.notes.hub } : undefined} />;
 }
 
 /** Where the data lives: the business's devices, an encrypted link, servers in Malaysia and multi-layer backups. */

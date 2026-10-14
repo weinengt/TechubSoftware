@@ -4,6 +4,8 @@ import { lp, type Locale } from "@/lib/i18n";
 import { pageMetadata } from "@/lib/seo";
 import type { ShotKey } from "@/lib/shots";
 import { companyPages, site, systems, whatsappLink, type SystemKey } from "@/lib/site";
+import Demo from "./Demo";
+import { demos } from "./demoScenes";
 import JsonLd from "./JsonLd";
 import { Icon, type IconName } from "./Icons";
 import { FaqSection, HardwareSection, PricingSection, SectionHeading, breadcrumbJsonLd, faqJsonLd, softwareJsonLd } from "./Sections";
@@ -11,7 +13,8 @@ import { Combo, ContactSection, FeatureTiles, FloatBadge, OtherSystems, PhoneSho
 import { hl } from "./Text";
 
 /* Each business type's pictures and icons. The words for each are under `products` in content/en.ts,
-   with the same keys; the order here is the order on the page. */
+   with the same keys; the order here is the order on the page. The picture at the top shows the system at work:
+   its moments are in ./demoScenes.ts, under the same key. */
 
 type Visual =
   | { main: ShotKey; phone?: ShotKey; side?: "left" | "right"; speed?: boolean }
@@ -20,7 +23,6 @@ type Visual =
 type Text<K extends SystemKey> = Dict["products"][K];
 
 type Spec<K extends SystemKey> = {
-  hero: { main: ShotKey; phone: ShotKey; badgeIcon: IconName; badgeTone?: "green" };
   highlights: Record<keyof Text<K>["highlights"], IconName>;
   spotlights: Record<keyof Text<K>["spotlights"], Visual>;
   modules: Record<keyof Text<K>["modules"], IconName>;
@@ -29,7 +31,6 @@ type Spec<K extends SystemKey> = {
 
 const specs: { [K in SystemKey]: Spec<K> } = {
   clinic: {
-    hero: { main: "clinicDashboard", phone: "whatsappClinic", badgeIcon: "Shield" },
     highlights: { records: "Users", medication: "Pill", queue: "Megaphone", hardware: "XRay", einvoice: "Invoice", reports: "Bolt" },
     spotlights: {
       queue: { main: "queueTv" },
@@ -49,7 +50,6 @@ const specs: { [K in SystemKey]: Spec<K> } = {
     contactPhone: "whatsappClinic",
   },
   salon: {
-    hero: { main: "salonCalendar", phone: "whatsappSalon", badgeIcon: "Whatsapp", badgeTone: "green" },
     highlights: { notify: "Whatsapp", platform: "Devices", profiles: "Users", inventory: "Box", payroll: "Coins", reports: "Bolt" },
     spotlights: {
       staff: { main: "payrollSalon", phone: "staffSalon" },
@@ -68,7 +68,6 @@ const specs: { [K in SystemKey]: Spec<K> } = {
     contactPhone: "whatsappSalon",
   },
   beauty: {
-    hero: { main: "beautyCalendar", phone: "whatsappBeauty", badgeIcon: "Gift" },
     highlights: { notify: "Whatsapp", platform: "Devices", profiles: "Users", inventory: "Box", payroll: "Coins", reports: "Bolt" },
     spotlights: {
       packages: { phoneOnly: "beautyPackage", badges: ["Gift", "Whatsapp"] },
@@ -88,7 +87,6 @@ const specs: { [K in SystemKey]: Spec<K> } = {
     contactPhone: "whatsappBeauty",
   },
   spa: {
-    hero: { main: "spaCalendar", phone: "whatsappSpa", badgeIcon: "Whatsapp", badgeTone: "green" },
     highlights: { notify: "Whatsapp", platform: "Devices", profiles: "Users", inventory: "Box", payroll: "Coins", reports: "Bolt" },
     spotlights: {
       staff: { main: "payrollSpa", phone: "staffSpa" },
@@ -108,7 +106,6 @@ const specs: { [K in SystemKey]: Spec<K> } = {
     contactPhone: "whatsappSpa",
   },
   live: {
-    hero: { main: "liveDashboard", phone: "liveShop", badgeIcon: "Live" },
     highlights: { crowd: "Users", queue: "Server", oversell: "Shield", schedule: "Calendar", visitors: "Live", reports: "Chart" },
     spotlights: {
       crowd: { main: "liveQueue", phone: "liveCheckout" },
@@ -128,6 +125,9 @@ const specs: { [K in SystemKey]: Spec<K> } = {
   },
 };
 
+// The picture at the top is wider than the ones further down.
+const heroSizes = { tablet: "(min-width: 1024px) 940px, 92vw", phone: "(min-width: 1024px) 208px, 27vw" };
+
 const pathOf = (k: SystemKey) => systems.find((s) => s.key === k)!.path;
 
 type SpotText = { eyebrow: string; title: string; points: string[]; badges?: string[] };
@@ -138,7 +138,6 @@ function content(lang: Locale, k: SystemKey) {
   const d = getDict(lang);
   const t = d.products[k] as Text<SystemKey>;
   const spec = specs[k] as unknown as {
-    hero: Spec<SystemKey>["hero"];
     highlights: Record<string, IconName>;
     spotlights: Record<string, Visual>;
     modules: Record<string, IconName>;
@@ -169,7 +168,7 @@ export default function ProductPage({ lang, k }: { lang: Locale; k: SystemKey })
   const shots = getShots(lang);
   const path = pathOf(k);
   const url = `${site.url}${lp(lang, path)}`;
-  const pics = [shots[spec.hero.main], ...spotlights.map((s) => shots["phoneOnly" in s.visual ? s.visual.phoneOnly : s.visual.main])];
+  const pics = [shots[demos[k][0].tablet!], ...spotlights.map((s) => shots["phoneOnly" in s.visual ? s.visual.phoneOnly : s.visual.main])];
 
   const visual = (s: (typeof spotlights)[number]) => {
     const v = s.visual;
@@ -241,13 +240,8 @@ export default function ProductPage({ lang, k }: { lang: Locale; k: SystemKey })
               </Link>
             </div>
           </div>
-          <div className="mx-auto mt-14 max-w-5xl" data-reveal="zoom">
-            <Combo
-              main={shots[spec.hero.main]}
-              phone={shots[spec.hero.phone]}
-              priority
-              badge={<FloatBadge icon={spec.hero.badgeIcon} tone={spec.hero.badgeTone ?? "brand"}>{t.heroBadge}</FloatBadge>}
-            />
+          <div className="mx-auto mt-14 max-w-5xl">
+            <Demo lang={lang} demo={k} layout="combo" product={name} priority sizes={heroSizes} />
           </div>
           <ul className="mx-auto mt-10 flex max-w-4xl flex-wrap justify-center gap-2" data-reveal>
             {t.whoFor.map((w) => (

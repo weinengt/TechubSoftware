@@ -11,8 +11,7 @@ import {
   services,
   useCaseShots,
 } from "@/components/Company";
-import { demoShots } from "@/components/demoScenes";
-import HeroDemo from "@/components/HeroDemo";
+import Demo from "@/components/Demo";
 import { Icon } from "@/components/Icons";
 import JsonLd from "@/components/JsonLd";
 import { FaqSection, PricingSection, getFeatures, softwareJsonLd } from "@/components/Sections";
@@ -115,7 +114,7 @@ export default function HomePage({ lang }: { lang: Locale }) {
             </dl>
           </div>
           <div className="lg:col-span-7">
-            <HeroDemo shots={Object.fromEntries(demoShots.map((k) => [k, shots[k]]))} text={h.demo} />
+            <Demo lang={lang} demo="home" layout="family" priority />
           </div>
         </div>
       </section>

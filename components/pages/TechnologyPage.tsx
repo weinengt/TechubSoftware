@@ -123,7 +123,7 @@ export default function TechnologyPage({ lang }: { lang: Locale }) {
             </ul>
           </div>
           <div className="lg:col-span-6" data-reveal="zoom">
-            <TechHub lang={lang} />
+            <TechHub lang={lang} demo />
           </div>
         </div>
       </section>

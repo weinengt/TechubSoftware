@@ -4,6 +4,7 @@ import { getDict, getShots } from "@/content";
 import { lp, type Locale } from "@/lib/i18n";
 import type { Shot } from "@/lib/shots";
 import { emailLink, site, systems, whatsappLink, type SystemKey } from "@/lib/site";
+import Demo from "./Demo";
 import Device from "./Device";
 import { Icon, type IconName } from "./Icons";
 import { CheckList, Crumbs, pageTop, type PageOf } from "./Sections";
@@ -209,9 +210,16 @@ export function ContactSection({
                 </a>
               </div>
             </div>
-            <div className="rv-part relative mx-auto w-56 [--d:250ms] sm:w-64 lg:mt-12 lg:w-72">
-              <Device shot={phoneShot ?? getShots(lang).whatsappSalon} sizes="(min-width: 1024px) 288px, 256px" zoom={false} className="translate-y-6" />
-            </div>
+            {page ? (
+              // The Contact page's own picture shows the app at work.
+              <div className="relative mx-auto w-56 sm:w-64 lg:mt-12 lg:w-72">
+                <Demo lang={lang} demo="contact" layout="phone" zoom={false} className="translate-y-6" />
+              </div>
+            ) : (
+              <div className="rv-part relative mx-auto w-56 [--d:250ms] sm:w-64 lg:mt-12 lg:w-72">
+                <Device shot={phoneShot ?? getShots(lang).whatsappSalon} sizes="(min-width: 1024px) 288px, 256px" zoom={false} className="translate-y-6" />
+              </div>
+            )}
           </div>
         </div>
       </div>

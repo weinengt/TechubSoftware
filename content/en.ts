@@ -187,21 +187,6 @@ const en = {
       statReportsValue: "<100 ms",
       statFrom: "From",
       perMonth: "/mo",
-      // The moving example screens next to the heading: one short note for each moment (components/HeroDemo.tsx).
-      demo: {
-        label: "Example screens: Techub at work",
-        pause: "Pause the example screens",
-        play: "Play the example screens",
-        scenes: {
-          realtime: { title: "Real-time on every device", text: "Cloud · iPad, phone & PC" },
-          deposit: { title: "Deposit paid · RM 40", text: "Straight into your own account" },
-          booking: { title: "Booked in under 10 seconds", text: "Balinese Massage · 90 min" },
-          whatsapp: { title: "WhatsApp reminder sent", text: "Priya tapped Confirm" },
-          report: { title: "Report ready in 91 ms", text: "15,382 records" },
-          ai: { title: "AI read the delivery note", text: "6 items added to stock" },
-          live: { title: "1,286 watching live", text: "2,418 orders, no overselling" },
-        },
-      },
     },
     highlights: {
       eyebrow: "Why Techub",
@@ -228,6 +213,114 @@ const en = {
     softwareCategory: "Appointment scheduling and business management",
     useCasesListName: "Techub Software use cases",
     servicesListName: "Techub Software services",
+  },
+
+  /* ---------- Moving example screens (components/ScreenDemo.tsx; the moments are in components/demoScenes.ts) ---------- */
+  // One short note for each moment: a title of up to about 24 characters and a line of up to about 28, so both fit on
+  // a phone. {product} is the system's name (or `techub`).
+  demo: {
+    label: "Example screens: {product} at work",
+    pause: "Pause the example screens",
+    play: "Play the example screens",
+    techub: "Techub",
+    // The Technology page's picture of Techub Cloud and what it connects to.
+    hub: {
+      label: "How Techub Cloud connects your devices and services",
+      pause: "Pause the moving picture",
+      play: "Play the moving picture",
+    },
+    notes: {
+      home: {
+        realtime: { title: "Real-time on every device", text: "Cloud · iPad, phone & PC" },
+        deposit: { title: "Deposit paid · RM 40", text: "Straight into your own account" },
+        booking: { title: "Booked in under 10 seconds", text: "Balinese Massage · 90 min" },
+        whatsapp: { title: "WhatsApp reminder sent", text: "Priya tapped Confirm" },
+        report: { title: "Report ready in 91 ms", text: "15,382 records" },
+        ai: { title: "AI read the delivery note", text: "6 items added to stock" },
+        live: { title: "1,286 watching live", text: "2,418 orders, no overselling" },
+      },
+      clinic: {
+        queue: { title: "Now calling A023", text: "Room 2 · Dr. Lim" },
+        whatsapp: { title: "WhatsApp reminder sent", text: "Ahmad tapped Confirm" },
+        allergy: { title: "Allergy caught in time", text: "Safer choice: Azithromycin" },
+        chart: { title: "Body chart saved", text: "Knee swelling ~3 cm" },
+        activity: { title: "Staff activity tracked", text: "Cashier blocked from records" },
+        deposit: { title: "Deposit paid · RM 50", text: "Straight into your account" },
+        stock: { title: "AI: low on Amoxicillin", text: "Order 500 caps by Thursday" },
+        report: { title: "Report ready in 86 ms", text: "24,618 records" },
+      },
+      salon: {
+        confirmed: { title: "15 of 17 confirmed", text: "All through WhatsApp" },
+        whatsapp: { title: "WhatsApp reminder sent", text: "Wen Qi tapped Confirm" },
+        deposit: { title: "Deposit paid · RM 50", text: "Straight into your account" },
+        commission: { title: "Commission worked out", text: "Mei Fen +RM 15.00" },
+        staff: { title: "Each stylist's own app", text: "5 bookings · RM 1,086 earned" },
+        activity: { title: "Staff activity tracked", text: "Export blocked for Amir" },
+        stock: { title: "AI: low on Developer 6%", text: "Order 12 bottles by Thursday" },
+        payroll: { title: "Payroll ready to approve", text: "8 staff · RM 28,963" },
+      },
+      beauty: {
+        packages: { title: "Package session booked", text: "Chloe Tan · session 4 of 10" },
+        whatsapp: { title: "WhatsApp reminder sent", text: "Aqilah tapped Confirm" },
+        left: { title: "6 of 10 sessions left", text: "Hydra Facial · Aqilah Razak" },
+        faceChart: { title: "Before & after saved", text: "Face chart · session 4 of 6" },
+        deposit: { title: "Deposit paid · RM 30", text: "Straight into your account" },
+        activity: { title: "Staff activity tracked", text: "Export blocked for Nadia" },
+        stock: { title: "AI: low on lash glue", text: "Order 10 bottles by Thursday" },
+        report: { title: "Report ready in 72 ms", text: "13,940 records" },
+      },
+      spa: {
+        couple: { title: "Couple suite booked", text: "Mr & Mrs Lee · rose petals" },
+        whatsapp: { title: "WhatsApp reminder sent", text: "Priya tapped Confirm" },
+        package: { title: "6 of 10 sessions left", text: "Balinese Massage package" },
+        map: { title: "Treatment map saved", text: "Deep tissue, medium pressure" },
+        staff: { title: "Each therapist's own app", text: "4 bookings · RM 812 earned" },
+        activity: { title: "Staff activity tracked", text: "Customer's phone kept hidden" },
+        stock: { title: "AI: low on body scrub", text: "Order 6 tubs by Thursday" },
+        payroll: { title: "Payroll ready to approve", text: "8 staff · RM 29,838" },
+      },
+      live: {
+        visitors: { title: "1,286 shopping right now", text: "7,812 visitors tonight" },
+        buy: { title: "Bought in one tap", text: "Tudung Bawal · 58 left" },
+        rush: { title: "412 orders in one minute", text: "All processed, none failed" },
+        last: { title: "Only 3 left", text: "Checked again at payment" },
+        stopped: { title: "186 oversells stopped", text: "Before payment, none charged" },
+        paid: { title: "Paid · RM 77.80", text: "Straight into your account" },
+        receipt: { title: "Receipt sent on WhatsApp", text: "Order #LS-24180 confirmed" },
+        activity: { title: "Staff activity tracked", text: "Buyer list export blocked" },
+      },
+      contact: {
+        whatsapp: { title: "WhatsApp reminder sent", text: "Wen Qi tapped Confirm" },
+        deposit: { title: "Deposit paid · RM 50", text: "Straight into your account" },
+        staff: { title: "Your team's own app", text: "Bookings & commission" },
+        ai: { title: "AI read the delivery note", text: "6 items added to stock" },
+      },
+      erp: {
+        sales: { title: "RM 486,920 this month", text: "Sales, stock & accounts" },
+        approvals: { title: "4 approvals waiting", text: "Approve in one tap" },
+        einvoice: { title: "e-Invoice validated", text: "By LHDN MyInvois" },
+      },
+      detection: {
+        helmet: { title: "No helmet spotted", text: "Alert sent · Zone B" },
+        bay: { title: "42 of 60 bays taken", text: "Car park P1 · live count" },
+        count: { title: "2,771 objects tracked", text: "People, cars & helmets" },
+      },
+      plate: {
+        read: { title: "Plate read in 0.18 s", text: "VKM 2318 · 99.2% match" },
+        gate: { title: "Gate opened for resident", text: "Tan Wei Ming · B-12-03" },
+        denied: { title: "Unknown car kept out", text: "PKB 8890 · no invite" },
+      },
+      hub: {
+        devices: { title: "Every device in sync", text: "iPad, phone & PC, real time" },
+        whatsapp: { title: "WhatsApp reminder sent", text: "Customer tapped Confirm" },
+        printers: { title: "Label printed", text: "Receipts, labels & MC slips" },
+        caller: { title: "Now calling A023", text: "On the queue TV" },
+        xray: { title: "X-ray linked to record", text: "Straight from the machine" },
+        ai: { title: "AI read the delivery note", text: "6 items added to stock" },
+        einvoice: { title: "e-Invoice sent to LHDN", text: "Straight from the bill" },
+        reports: { title: "Report ready in 86 ms", text: "24,618 records" },
+      },
+    },
   },
 
   about: {
@@ -766,7 +859,6 @@ const en = {
       eyebrow: "Clinic Management System",
       heading: "A smarter *clinic system* for faster, safer care",
       intro: "Built for clinics in Malaysia: patient records, medication tracking, queue, billing and stock. On iPad, phone and PC.",
-      heroBadge: "{uptime} uptime",
       whoFor: ["GP clinics", "Dental clinics", "Specialist clinics", "Aesthetic clinics", "Physiotherapy", "TCM", "Multi-branch groups"],
       highlights: {
         records: "Patient records tracking",
@@ -931,7 +1023,6 @@ const en = {
       eyebrow: "Hair Salon Appointment System",
       heading: "Keep every *stylist* fully booked",
       intro: "Built for salons in Malaysia: bookings, automatic WhatsApp notifications, staff profiles, payroll and POS. On iPad, phone and PC.",
-      heroBadge: "Confirmed on WhatsApp",
       whoFor: ["Hair salons", "Barbershops", "Unisex salons", "Colour & treatment studios", "Bridal hair & make-up", "Multi-branch salons"],
       highlights: {
         notify: "Automatic customer notifications",
@@ -1087,7 +1178,6 @@ const en = {
       eyebrow: "Beauty Centre Appointment System",
       heading: "The *beauty centre system* that brings customers back",
       intro: "Built for beauty centres in Malaysia: bookings, packages, face charts, staff payroll and WhatsApp reminders. On iPad, phone and PC.",
-      heroBadge: "Package sessions tracked",
       whoFor: ["Beauty centres", "Facial & skincare", "Lash & brow studios", "Nail salons", "Slimming centres", "Aesthetic centres", "Bridal make-up"],
       highlights: {
         notify: "Automatic customer notifications",
@@ -1244,7 +1334,6 @@ const en = {
       eyebrow: "Spa Appointment System",
       heading: "A calm front desk and *fully booked* therapists",
       intro: "Built for spas in Malaysia: therapists, rooms, packages, payroll and WhatsApp reminders. On iPad, phone and PC.",
-      heroBadge: "Confirmed on WhatsApp",
       whoFor: ["Day spas", "Massage centres", "Foot reflexology", "Wellness centres", "Hotel & resort spas", "Couple spas"],
       highlights: {
         notify: "Automatic customer notifications",
@@ -1412,7 +1501,6 @@ const en = {
       heading: "Sell to big crowds live, and *never oversell*",
       intro:
         "Built for live sellers in Malaysia: add products, set the selling date, and let a big crowd buy at the same time. Kafka order queueing keeps every order in line, and you see your visitors live.",
-      heroBadge: "Live visitors by page",
       whoFor: ["Facebook Live sellers", "TikTok Live sellers", "Instagram shops", "Fashion & tudung", "Beauty & skincare", "Food & snacks", "Flash sales & pre-orders"],
       highlights: {
         crowd: "Handles big crowds",

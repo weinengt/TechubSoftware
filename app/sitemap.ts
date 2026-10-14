@@ -13,7 +13,7 @@ const pages: { path: string; priority: number; images: ShotKey[] }[] = [
     path: "/",
     priority: 1,
     images: [
-      ...demoShots,
+      ...demoShots("home"),
       "salonCalendar", "permissionsDesktop", "queueTv", "clinicDashboard", "faceChart", "erpDesktop", "objectDetection", "plateScanner", "whatsappSalon",
     ],
   },
