@@ -172,17 +172,18 @@ export default function HeroDemo({ shots, text }: Props) {
       role="group"
       aria-label={text.label}
       className="relative pb-16 sm:pb-20"
+      data-reveal="group"
       data-motion={motion || undefined}
       onFocus={(e) => setHold(!!e.target.closest(".demo-device") && e.target.matches(":focus-visible"))}
       onBlur={(e) => !e.currentTarget.contains(e.relatedTarget) && setHold(false)}
     >
       <div className="absolute -inset-8 -z-10 rounded-[3rem] bg-brand-gradient opacity-[0.13] blur-3xl" aria-hidden="true" />
-      <div className="mx-[7%]">{device("laptop", [laptop], laptop, laptop)}</div>
-      <div className="absolute bottom-0 left-0 w-[44%]">{device("tablet", tablets, scene.tablet, before.tablet)}</div>
-      <div className="absolute right-0 bottom-3 w-[21%] max-w-[11rem]">{device("phone", phones, scene.phone, before.phone)}</div>
+      <div className="rv-zoom mx-[7%]">{device("laptop", [laptop], laptop, laptop)}</div>
+      <div className="rv-zoom absolute bottom-0 left-0 w-[44%] [--d:250ms]">{device("tablet", tablets, scene.tablet, before.tablet)}</div>
+      <div className="rv-zoom absolute right-0 bottom-3 w-[21%] max-w-[11rem] [--d:420ms]">{device("phone", phones, scene.phone, before.phone)}</div>
 
       {/* What is happening right now, with a line that fills up until the next moment. */}
-      <div className="absolute -top-4 left-2 z-20 flex items-start gap-2 sm:-left-2">
+      <div className="rv-part absolute -top-4 left-2 z-20 flex items-start gap-2 [--d:700ms] sm:-left-2">
         <div key={i} data-enter={moved || undefined} className="demo-note relative flex w-max max-w-[15.5rem] items-center gap-2.5 overflow-hidden rounded-2xl bg-white/95 py-2 pr-3.5 pl-2 shadow-xl ring-1 ring-slate-200 backdrop-blur sm:max-w-[18rem] sm:py-2.5" aria-hidden="true">
           <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-white sm:h-9 sm:w-9 ${scene.green ? "bg-whatsapp" : "bg-brand-gradient"}`}>
             <I className="h-4 w-4 sm:h-[18px] sm:w-[18px]" />

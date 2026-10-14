@@ -237,3 +237,74 @@ html:lang(zh) h1 {
   .demo-stage, .demo-screen, .demo-device, .demo-device .device-frame { transition: none !important; }
   .demo-spot, .demo-note, .demo-progress { animation: none !important; }
 }
+
+/* ---------- Scroll-in animations (components/RevealScript.tsx) ----------
+   With the script, html has .js-reveal: each [data-reveal] block stays unseen until it scrolls into view, then gets
+   [data-in] and comes in; --rd staggers blocks that come into view together. data-reveal="zoom" is for pictures.
+   Inside a block, .rv-* parts come in one after another (--d: how long after the block). Page tops use .rise,
+   which plays once as the page opens and needs no script. Every animation here is named rv-..., which the script
+   uses to tell when a block has finished. Only up/down moves and shrinking, so nothing pokes out sideways. */
+.js-reveal [data-reveal]:not([data-in]) {
+  opacity: 0;
+}
+.js-reveal [data-reveal][data-in] {
+  animation: rv-up 0.95s var(--rd, 0ms) cubic-bezier(0.16, 1, 0.3, 1) both;
+  transition: none; /* so a button's own fade doesn't cut the animation short */
+}
+.js-reveal [data-reveal="zoom"][data-in] {
+  animation-name: rv-zoom;
+  animation-duration: 1.25s;
+}
+.js-reveal [data-in] .rv-part {
+  animation: rv-up 0.9s calc(var(--rd, 0ms) + var(--d, 0ms)) cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.js-reveal [data-in] .rv-pop {
+  animation: rv-pop 0.75s calc(var(--rd, 0ms) + var(--d, 0ms)) cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+.js-reveal [data-in] .rv-bubble {
+  animation: rv-bubble 0.6s calc(var(--rd, 0ms) + var(--d, 0ms)) cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+/* The uptime ring fills up while its number counts up to 99.95 (the script counts, over the same 1.8 s). */
+.js-reveal [data-in] .rv-ring {
+  animation: rv-ring 1.8s calc(var(--rd, 0ms) + 300ms) cubic-bezier(0.33, 1, 0.68, 1) both;
+}
+/* The lines of the technology picture grow out from the middle, then keep flowing. */
+.js-reveal [data-in] .rv-line {
+  transform-box: view-box;
+  transform-origin: 50px 50px;
+  animation: rv-line 0.9s calc(var(--rd, 0ms) + var(--d, 0ms)) cubic-bezier(0.16, 1, 0.3, 1) both, tech-flow 1.4s linear infinite;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .rise {
+    animation: rv-up 1s var(--rise, 0ms) cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+}
+@keyframes rv-up {
+  from { opacity: 0; transform: translateY(28px); }
+}
+@keyframes rv-zoom {
+  from { opacity: 0; transform: translateY(20px) scale(0.95); }
+}
+@keyframes rv-pop {
+  from { opacity: 0; transform: scale(0.4); }
+}
+@keyframes rv-bubble {
+  from { opacity: 0; transform: translateY(10px) scale(0.85); }
+}
+@keyframes rv-ring {
+  from { stroke-dashoffset: var(--len); }
+}
+@keyframes rv-line {
+  from { opacity: 0; transform: scale(0); }
+}
+@media print {
+  .js-reveal [data-reveal] { opacity: 1 !important; transition: none !important; }
+  .js-reveal [data-reveal], .js-reveal [data-reveal] *, .rise { animation: none !important; }
+}
+/* A block that doesn't move itself: only its .rv-* parts come in. */
+.js-reveal [data-reveal="group"][data-in] {
+  animation: none;
+}
+.js-reveal [data-in] .rv-zoom {
+  animation: rv-zoom 1.2s calc(var(--rd, 0ms) + var(--d, 0ms)) cubic-bezier(0.16, 1, 0.3, 1) both;
+}

@@ -94,16 +94,16 @@ export default function TechnologyPage({ lang }: { lang: Locale }) {
         <div className="bg-grid absolute inset-0 [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_70%)]" aria-hidden="true" />
         <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:gap-14 lg:px-8">
           <div className="lg:col-span-6">
-            <nav aria-label="Breadcrumb" className="mb-5 text-sm text-slate-500">
+            <nav aria-label="Breadcrumb" className="rise mb-5 text-sm text-slate-500">
               <Link href={lp(lang, "/")} className="hover:text-brand-700">{d.ui.home}</Link> <span aria-hidden="true">/</span>{" "}
               <span className="text-slate-700">{t.crumb}</span>
             </nav>
-            <h1 className="text-[2.5rem] leading-[1.08] font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-[3.4rem]">
+            <h1 className="rise text-[2.5rem] leading-[1.08] font-extrabold tracking-tight text-slate-900 [--rise:70ms] sm:text-5xl lg:text-[3.4rem]">
               <span className="eyebrow h1-label !flex w-fit">{t.eyebrow}</span>
               <span className="mt-5 block">{hl(t.title)}</span>
             </h1>
-            <p className="mt-5 max-w-xl text-lg leading-relaxed text-slate-600">{t.intro}</p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <p className="rise mt-5 max-w-xl text-lg leading-relaxed text-slate-600 [--rise:150ms]">{t.intro}</p>
+            <div className="rise mt-8 flex flex-col gap-3 [--rise:230ms] sm:flex-row">
               <a href={whatsappLink(t.demoMessage)} target="_blank" rel="noopener" className="btn-primary !py-3.5">
                 <Icon.Whatsapp className="h-5 w-5" /> {d.ui.getFreeDemo}
               </a>
@@ -111,7 +111,7 @@ export default function TechnologyPage({ lang }: { lang: Locale }) {
                 {t.seeUseCases} <Icon.Arrow className="h-4 w-4" />
               </Link>
             </div>
-            <ul className="mt-10 flex flex-wrap gap-2">
+            <ul className="rise mt-10 flex flex-wrap gap-2 [--rise:310ms]">
               {(Object.keys(techIcons) as (keyof typeof techIcons)[]).map((k) => {
                 const I = Icon[techIcons[k]];
                 return (
@@ -122,7 +122,7 @@ export default function TechnologyPage({ lang }: { lang: Locale }) {
               })}
             </ul>
           </div>
-          <div className="lg:col-span-6">
+          <div className="lg:col-span-6" data-reveal="zoom">
             <TechHub lang={lang} />
           </div>
         </div>
@@ -157,12 +157,12 @@ export default function TechnologyPage({ lang }: { lang: Locale }) {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeading eyebrow={t.featuresEyebrow} title={t.featuresTitle} />
           <FeatureTiles items={getFeatures(lang)} />
-          <h2 className="mt-16 text-center text-sm font-bold tracking-wide text-slate-500 uppercase">{t.industries}</h2>
+          <h2 className="mt-16 text-center text-sm font-bold tracking-wide text-slate-500 uppercase" data-reveal>{t.industries}</h2>
           <ul className="mx-auto mt-5 grid max-w-5xl gap-3 sm:grid-cols-3 lg:grid-cols-5">
             {systems.map((sys) => {
               const I = Icon[sys.icon];
               return (
-                <li key={sys.key}>
+                <li key={sys.key} data-reveal>
                   <Link href={lp(lang, sys.path)} className="card group flex items-center gap-3 p-4 transition hover:-translate-y-0.5 hover:ring-brand-200">
                     <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600 ring-1 ring-brand-100">
                       <I className="h-5 w-5" />

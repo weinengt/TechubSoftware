@@ -39,7 +39,7 @@ export function SectionHeading({
 }) {
   const H = page ? "h1" : "h2";
   return (
-    <div className={center ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
+    <div className={`${center ? "mx-auto max-w-3xl text-center" : "max-w-3xl"} ${page ? "rise" : ""}`} data-reveal={page ? undefined : true}>
       {page && <Crumbs lang={page.lang} current={page.crumb} />}
       {page && eyebrow ? (
         // On its own page the label above the title is the h1's first line, so the page's topic words are in its h1.
@@ -64,7 +64,7 @@ export function CheckList({ items, className = "" }: { items: string[]; classNam
   return (
     <ul className={`space-y-3 ${className}`}>
       {items.map((t) => (
-        <li key={t} className="flex gap-3 text-slate-700">
+        <li key={t} className="flex gap-3 text-slate-700" data-reveal>
           <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-500 text-white">
             <Icon.Check className="h-3.5 w-3.5" strokeWidth={3} />
           </span>
@@ -120,7 +120,7 @@ export function HardwareSection({ lang }: { lang: Locale }) {
     <section id="hardware" className="relative overflow-hidden bg-brand-950 py-20 text-white sm:py-24">
       <div className="bg-grid absolute inset-0 opacity-40" aria-hidden="true" />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center">
+        <div className="mx-auto max-w-3xl text-center" data-reveal>
           <p className="inline-flex rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold tracking-wide text-brand-200 uppercase">
             {t.eyebrow}
           </p>
@@ -134,6 +134,7 @@ export function HardwareSection({ lang }: { lang: Locale }) {
               <li
                 key={k}
                 className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-3.5 backdrop-blur transition hover:border-teal-brand/60 hover:bg-white/10 sm:flex-col sm:p-6 sm:text-center"
+                data-reveal
               >
                 <I className="h-6 w-6 shrink-0 text-teal-brand sm:h-8 sm:w-8" />
                 <span className="text-[13px] leading-snug font-medium text-slate-200 sm:text-sm">{t.items[k]}</span>
@@ -160,7 +161,7 @@ export function PricingSection({ lang, page, plan = "all" }: { lang: Locale; pag
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading eyebrow={t.eyebrow} title={t.title} page={page} />
         <div className="mx-auto mt-12 grid max-w-5xl items-stretch gap-6 lg:grid-cols-5">
-          <div className="relative overflow-hidden rounded-3xl bg-brand-gradient p-7 text-white shadow-2xl shadow-brand-500/30 sm:p-8 lg:col-span-3">
+          <div className="relative overflow-hidden rounded-3xl bg-brand-gradient p-7 text-white shadow-2xl shadow-brand-500/30 sm:p-8 lg:col-span-3" data-reveal="zoom">
             <div className="bg-grid absolute inset-0 opacity-20" aria-hidden="true" />
             <div className="relative flex h-full flex-col">
               <p className="inline-flex items-center gap-2 rounded-full bg-white/20 px-3 py-1 text-xs font-bold tracking-wide uppercase">
@@ -183,12 +184,12 @@ export function PricingSection({ lang, page, plan = "all" }: { lang: Locale; pag
               </a>
             </div>
           </div>
-          <div className="card p-7 sm:p-8 lg:col-span-2">
+          <div className="card p-7 sm:p-8 lg:col-span-2" data-reveal>
             <h3 className="text-lg font-bold text-slate-900">{t.includedTitle}</h3>
             <CheckList items={live ? t.liveIncluded : t.included} className="mt-5" />
           </div>
           {plan === "all" && (
-            <div className="card flex flex-col gap-5 p-6 sm:p-7 lg:col-span-5 lg:flex-row lg:items-center lg:gap-8">
+            <div className="card flex flex-col gap-5 p-6 sm:p-7 lg:col-span-5 lg:flex-row lg:items-center lg:gap-8" data-reveal>
               <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-brand-gradient text-white shadow-lg shadow-brand-500/25">
                 <Icon.Live className="h-7 w-7" />
               </span>
@@ -211,7 +212,7 @@ export function PricingSection({ lang, page, plan = "all" }: { lang: Locale; pag
               </div>
             </div>
           )}
-          <div className="card flex flex-col gap-5 p-6 sm:p-7 lg:col-span-5 lg:flex-row lg:items-center lg:gap-8">
+          <div className="card flex flex-col gap-5 p-6 sm:p-7 lg:col-span-5 lg:flex-row lg:items-center lg:gap-8" data-reveal>
             <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-brand-gradient text-white shadow-lg shadow-brand-500/25">
               <Icon.Code className="h-7 w-7" />
             </span>
@@ -248,7 +249,7 @@ export function FaqSection({ lang, items, page }: { lang: Locale; items?: { q: s
         <SectionHeading eyebrow={t.eyebrow} title={t.title} page={page} />
         <div className="mt-10 space-y-3">
           {(items ?? t.items).map((f) => (
-            <details key={f.q} className="card group p-0 [&_summary::-webkit-details-marker]:hidden">
+            <details key={f.q} className="card group p-0 [&_summary::-webkit-details-marker]:hidden" data-reveal>
               <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 p-4 text-left font-semibold text-slate-900 sm:p-5">
                 <h3 className="text-[15px] sm:text-base">{f.q}</h3>
                 <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-600 transition group-open:rotate-45">

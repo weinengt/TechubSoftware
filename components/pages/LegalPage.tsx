@@ -71,20 +71,22 @@ export default function LegalPage({ lang, kind }: { lang: Locale; kind: LegalKin
       />
 
       <article className="mx-auto max-w-3xl px-4 pt-24 pb-20 sm:px-6 sm:pt-32 sm:pb-24 lg:px-8">
-        <nav aria-label="Breadcrumb" className="mb-5 text-sm text-slate-500">
+        <nav aria-label="Breadcrumb" className="rise mb-5 text-sm text-slate-500">
           <Link href={lp(lang, "/")} className="hover:text-brand-700">{d.ui.home}</Link> <span aria-hidden="true">/</span>{" "}
           <span className="text-slate-700">{doc.title}</span>
         </nav>
-        <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">{doc.title}</h1>
-        <p className="mt-3 text-sm text-slate-500">
+        <h1 className="rise text-4xl font-extrabold tracking-tight text-slate-900 [--rise:70ms] sm:text-5xl">{doc.title}</h1>
+        <p className="rise mt-3 text-sm text-slate-500 [--rise:120ms]">
           {l.updatedLabel}: {l.updated}
         </p>
-        {l.translationNote && <p className="mt-6 rounded-2xl bg-slate-50 p-4 text-sm leading-relaxed text-slate-600 ring-1 ring-slate-200">{l.translationNote}</p>}
-        <p className="mt-6 text-lg leading-relaxed text-slate-700">{doc.intro}</p>
+        {l.translationNote && (
+          <p className="rise mt-6 rounded-2xl bg-slate-50 p-4 text-sm leading-relaxed text-slate-600 ring-1 ring-slate-200 [--rise:170ms]">{l.translationNote}</p>
+        )}
+        <p className="rise mt-6 text-lg leading-relaxed text-slate-700 [--rise:220ms]">{doc.intro}</p>
 
         <div className="mt-10 space-y-9">
           {doc.sections.map((s, i) => (
-            <section key={s.title}>
+            <section key={s.title} data-reveal>
               <h2 className="text-xl font-bold text-slate-900">
                 <span className="text-brand-600">{i + 1}.</span> {s.title}
               </h2>
@@ -103,7 +105,7 @@ export default function LegalPage({ lang, kind }: { lang: Locale; kind: LegalKin
           ))}
         </div>
 
-        <div className="card mt-14 p-6 sm:p-8">
+        <div className="card mt-14 p-6 sm:p-8" data-reveal>
           <h2 className="text-lg font-bold text-slate-900">{l.contactTitle}</h2>
           <p className="mt-2 leading-relaxed text-slate-600">{l.contactText}</p>
           <div className="mt-5 flex flex-col gap-3 sm:flex-row">
@@ -116,7 +118,7 @@ export default function LegalPage({ lang, kind }: { lang: Locale; kind: LegalKin
           </div>
         </div>
 
-        <p className="mt-8">
+        <p className="mt-8" data-reveal>
           <Link href={lp(lang, legalPaths[other])} className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-700 hover:underline">
             {l.nav[other]} <Icon.Arrow className="h-4 w-4" />
           </Link>

@@ -7,7 +7,7 @@ export default function NotFound() {
   return (
     <SiteShell lang="en">
       <section className="flex min-h-[70vh] items-center justify-center px-4 pt-24 pb-16 text-center">
-        <div>
+        <div className="rise">
           <p className="text-gradient text-7xl font-extrabold">404</p>
           <ul className="mt-6 space-y-6">
             {locales.map((l) => {

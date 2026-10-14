@@ -86,7 +86,7 @@ export function OtherSystems({ lang, current }: { lang: Locale; current: SystemK
   return (
     <section aria-labelledby="other-systems" className="pt-12 pb-4 sm:pt-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 id="other-systems" className="text-center text-sm font-bold tracking-wide text-slate-500 uppercase">
+        <h2 id="other-systems" className="text-center text-sm font-bold tracking-wide text-slate-500 uppercase" data-reveal>
           {t.product.otherSystems}
         </h2>
         <ul className="mx-auto mt-5 grid max-w-5xl gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -95,7 +95,7 @@ export function OtherSystems({ lang, current }: { lang: Locale; current: SystemK
             .map((s) => {
               const I = Icon[s.icon];
               return (
-                <li key={s.key}>
+                <li key={s.key} data-reveal>
                   <Link href={lp(lang, s.path)} className="card group flex items-center gap-3 p-4 transition hover:-translate-y-0.5 hover:ring-brand-200">
                     <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600 ring-1 ring-brand-100">
                       <I className="h-5 w-5" />
@@ -122,15 +122,17 @@ export function Spotlight({
   const textCol = reverse ? "lg:col-start-1" : "lg:col-start-8";
   return (
     <div id={id} className="grid gap-y-8 lg:grid-cols-12 lg:gap-x-14 lg:gap-y-6">
-      <div className={`lg:col-span-5 lg:row-start-1 lg:self-end ${textCol}`}>
+      <div className={`lg:col-span-5 lg:row-start-1 lg:self-end ${textCol}`} data-reveal>
         <p className="eyebrow">{eyebrow}</p>
         <h2 className="mt-4 text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">{hl(title)}</h2>
       </div>
-      <div className={`self-center lg:col-span-7 lg:row-span-2 lg:row-start-1 ${reverse ? "lg:col-start-6" : "lg:col-start-1"}`}>{visual}</div>
+      <div className={`self-center lg:col-span-7 lg:row-span-2 lg:row-start-1 ${reverse ? "lg:col-start-6" : "lg:col-start-1"}`} data-reveal="zoom">
+        {visual}
+      </div>
       <div className={`lg:col-span-5 lg:row-start-2 lg:self-start ${textCol}`}>
         <CheckList items={points} />
         {cta && (
-          <a href={whatsappLink(cta.message)} target="_blank" rel="noopener" className="btn-secondary mt-8">
+          <a href={whatsappLink(cta.message)} target="_blank" rel="noopener" className="btn-secondary mt-8" data-reveal>
             <Icon.Whatsapp className="h-4 w-4 text-whatsapp" /> {cta.label}
           </a>
         )}
@@ -147,7 +149,7 @@ export function FeatureTiles({ items }: { items: { icon: IconName; title: string
       {items.map((f) => {
         const I = Icon[f.icon];
         return (
-          <li key={f.title} className="card flex items-center gap-3 p-3.5 sm:p-4">
+          <li key={f.title} className="card flex items-center gap-3 p-3.5 sm:p-4" data-reveal>
             <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600 ring-1 ring-brand-100">
               <I className="h-5 w-5" />
             </span>
@@ -171,8 +173,11 @@ export function ContactSection({
   return (
     <section id="contact" className={`${page ? pageTop : "pt-20 sm:pt-24"} pb-20 sm:pb-24`}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {page && <Crumbs lang={page.lang} current={page.crumb} />}
-        <div className="relative overflow-hidden rounded-[2rem] bg-brand-gradient px-6 pt-12 text-white sm:px-12 lg:px-16 lg:pt-0">
+        {page && <Crumbs lang={page.lang} current={page.crumb} className="rise" />}
+        <div
+          className={`relative overflow-hidden rounded-[2rem] bg-brand-gradient px-6 pt-12 text-white sm:px-12 lg:px-16 lg:pt-0 ${page ? "rise [--rise:80ms]" : ""}`}
+          data-reveal={page ? undefined : true}
+        >
           <div className="bg-grid absolute inset-0 opacity-25" aria-hidden="true" />
           <div className="relative grid items-center gap-10 lg:grid-cols-2">
             <div className="lg:py-16">
@@ -204,7 +209,7 @@ export function ContactSection({
                 </a>
               </div>
             </div>
-            <div className="relative mx-auto w-56 sm:w-64 lg:mt-12 lg:w-72">
+            <div className="rv-part relative mx-auto w-56 [--d:250ms] sm:w-64 lg:mt-12 lg:w-72">
               <Device shot={phoneShot ?? getShots(lang).whatsappSalon} sizes="(min-width: 1024px) 288px, 256px" zoom={false} className="translate-y-6" />
             </div>
           </div>

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import JsonLd from "@/components/JsonLd";
+import RevealScript from "@/components/RevealScript";
 import { htmlLang, locales } from "@/lib/i18n";
 import { site } from "@/lib/site";
 
@@ -131,6 +132,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en-MY" className={jakarta.variable} suppressHydrationWarning>
       <body>
+        {/* First in the body, so blocks that come in on scroll are hidden before the page is first drawn. */}
+        <RevealScript />
         <JsonLd data={organization} />
         {children}
       </body>

@@ -191,7 +191,7 @@ const ms: Dict = {
           whatsapp: { title: "Reminder WhatsApp dihantar", text: "Priya tekan Confirm" },
           report: { title: "Laporan siap dalam 91 ms", text: "15,382 rekod" },
           ai: { title: "AI baca nota penghantaran", text: "6 item terus masuk stok" },
-          live: { title: "1,286 orang tengah tonton live", text: "2,418 order, tiada terlebih jual" },
+          live: { title: "1,286 orang tonton live", text: "2,418 order, tiada terlebih jual" },
         },
       },
     },
