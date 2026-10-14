@@ -78,6 +78,7 @@ const specs: { [K in SystemKey]: Spec<K> } = {
       payment: { phoneOnly: "paymentBeauty", badges: ["Wallet", "Bank"] },
       stock: { main: "beautyStock", phone: "scanBeauty", side: "left" },
       reports: { main: "reportsBeauty", speed: true },
+      permissions: { main: "beautyPermissions" },
     },
     modules: {
       calendar: "Calendar", whatsapp: "Whatsapp", packages: "Gift", customers: "Mirror", faceChart: "Pen", profiles: "Users",
@@ -116,6 +117,7 @@ const specs: { [K in SystemKey]: Spec<K> } = {
       payment: { phoneOnly: "livePayment", badges: ["Wallet", "Bank"] },
       visitors: { main: "liveVisitors" },
       reports: { main: "reportsLive", speed: true },
+      permissions: { main: "livePermissions" },
     },
     modules: {
       salePage: "Live", products: "Box", schedule: "Calendar", queue: "Server", oversell: "Shield", stock: "Sync",

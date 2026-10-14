@@ -31,7 +31,7 @@ const pages: { path: string; priority: number; images: ShotKey[] }[] = [
   {
     path: "/beauty-appointment-system/",
     priority: 0.9,
-    images: ["beautyCalendar", "whatsappBeauty", "beautyPackage", "payrollBeauty", "staffBeauty", "faceChart", "beautyPos", "beautyStock", "reportsBeauty"],
+    images: ["beautyCalendar", "whatsappBeauty", "beautyPackage", "payrollBeauty", "staffBeauty", "faceChart", "beautyPos", "beautyStock", "reportsBeauty", "beautyPermissions"],
   },
   {
     path: "/spa-appointment-system/",
@@ -41,7 +41,7 @@ const pages: { path: string; priority: number; images: ShotKey[] }[] = [
   {
     path: "/live-selling-system/",
     priority: 0.9,
-    images: ["liveDashboard", "liveShop", "liveQueue", "liveCheckout", "liveProduct", "liveProducts", "liveVisitors", "reportsLive"],
+    images: ["liveDashboard", "liveShop", "liveQueue", "liveCheckout", "liveProduct", "liveProducts", "liveVisitors", "reportsLive", "livePermissions"],
   },
   {
     path: "/use-cases/",

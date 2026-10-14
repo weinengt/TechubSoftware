@@ -54,6 +54,7 @@ const en = {
         "X-ray machine & printer connection",
         "Online payment & deposits via payment gateway",
         "Detailed reports in under 100 ms",
+        "Every staff action tracked, patient data protected",
       ],
       cta: "See the clinic system",
     },
@@ -68,6 +69,7 @@ const en = {
         "Works on iPad, phone & PC",
         "Online payment & deposits via payment gateway",
         "Detailed reports in under 100 ms",
+        "Every staff action tracked, your data protected",
       ],
       cta: "See the salon system",
     },
@@ -82,6 +84,7 @@ const en = {
         "Automatic WhatsApp reminders",
         "Online payment & deposits via payment gateway",
         "Detailed reports in under 100 ms",
+        "Every staff action tracked, your data protected",
       ],
       cta: "See the beauty centre system",
     },
@@ -96,6 +99,7 @@ const en = {
         "Works on iPad, phone & PC",
         "Online payment & deposits via payment gateway",
         "Detailed reports in under 100 ms",
+        "Every staff action tracked, your data protected",
       ],
       cta: "See the spa system",
     },
@@ -110,6 +114,7 @@ const en = {
         "Live visitor count and the page they're on",
         "Online payment via payment gateway",
         "Advanced reports, from RM {livePrice}/month",
+        "Every staff action tracked, your data protected",
       ],
       cta: "See the live selling system",
     },
@@ -213,7 +218,7 @@ const en = {
         einvoice: { title: "LHDN e-Invoice", text: "e-Invoices submitted to LHDN MyInvois, straight from the system." },
         inventory: { title: "Inventory tracking", text: "Stock updates with every sale or use, with low-stock alerts." },
         reports: { title: "Advanced reports", text: "Sales, staff, stock and customer reports in under 100 ms." },
-        permissions: { title: "Permission control", text: "Decide who can give discounts, issue refunds or see reports." },
+        permissions: { title: "Activity tracking & permissions", text: "Every staff action is recorded. You decide who can discount, refund or see reports." },
         devices: { title: "Any device, any platform", text: "Windows, Mac, iPad, Android and iPhone. Use what you already have." },
         easy: { title: "Easy to use", text: "Simple screens your staff learn fast. We set up and train them." },
         uptime: { title: "{uptime} uptime", text: "Enterprise servers in Malaysia with multi-region backups." },
@@ -240,7 +245,7 @@ const en = {
 
   uptime: {
     label: "uptime guarantee",
-    text: "Less than 22 minutes of downtime a month, on average.",
+    text: "Practically always online, day and night, all year round.",
     chips: ["Servers in Malaysia", "Monitored", "Encrypted backups"],
   },
 
@@ -453,7 +458,7 @@ const en = {
     uptimeEyebrow: "Reliability",
     uptimeTitle: "{uptime} uptime, *guaranteed*",
     uptimeIntro:
-      "Your bookings, queue screens and payments stay online. That is less than 22 minutes of downtime a month on average.",
+      "Your bookings, queue screens and payments stay online practically all the time, day and night.",
     uptimePoints: [
       "Enterprise servers in Malaysia",
       "Multi-layer, multi-region backups",
@@ -483,7 +488,7 @@ const en = {
       },
       {
         q: "What does the {uptime} uptime guarantee mean?",
-        a: "The system is available at least {uptime} of the time. That is less than 22 minutes of downtime a month on average.",
+        a: "Your system is online at least {uptime} of the time, so it is practically always there when your staff and customers need it.",
       },
       {
         q: "How does the AI delivery note scanning work?",
@@ -517,7 +522,7 @@ const en = {
     profiles: { title: "Staff profiles", text: "Each staff member views and manages their own appointments." },
     payroll: { title: "Payroll calculation", text: "Basic salary, commission and allowances worked out for you." },
     pos: { title: "POS, packages & commission", text: "Checkout, prepaid packages and staff commission in one place." },
-    permissions: { title: "Staff permission control", text: "Decide who can view, edit, discount, refund or export." },
+    permissions: { title: "Staff activity tracking", text: "Every staff action is recorded, and you decide who can view, edit, discount, refund or export." },
     einvoice: { title: "LHDN e-Invoice", text: "e-Invoices submitted to LHDN through MyInvois." },
     hardware: { title: "Multi-hardware connect", text: "Label printers, number callers, X-ray machines and more." },
     drawing: { title: "Hand drawing & e-signature", text: "Draw on charts and capture consent on a tablet." },
@@ -619,7 +624,7 @@ const en = {
       },
       {
         q: "What uptime do you guarantee?",
-        a: "We guarantee {uptime} system uptime. That is less than 22 minutes of downtime a month on average, so your front desk, queue screens and bookings stay online.",
+        a: "We guarantee {uptime} system uptime, so your front desk, queue screens and bookings stay online practically all the time.",
       },
       {
         q: "Where is my data stored, and is it safe?",
@@ -824,9 +829,14 @@ const en = {
           ],
         },
         permissions: {
-          eyebrow: "Permission control",
-          title: "The right access for every staff",
-          points: ["Doctor, nurse, pharmacy & cashier roles", "Manager approval for discounts", "Branch access control", "Full audit trail"],
+          eyebrow: "Staff activity tracking",
+          title: "Track every staff action, *protect* your clinic",
+          points: [
+            "See who did what, and when",
+            "Doctor, nurse, pharmacy & cashier roles",
+            "Manager approval for discounts & refunds",
+            "Patient and clinic data stays protected",
+          ],
         },
       },
       modules: {
@@ -844,7 +854,7 @@ const en = {
         payment: "Payment gateway integration",
         einvoice: "LHDN e-Invoice",
         reports: "Reports in under 100 ms",
-        permissions: "Permission control",
+        permissions: "Activity tracking & permissions",
         devices: "Real-time on iPad, phone & PC",
       },
       faqs: [
@@ -883,6 +893,10 @@ const en = {
         {
           q: "Can patients pay online?",
           a: "Yes. Techub works with various payment gateways, so patients can pay a deposit or the full amount online when they book, by online banking (FPX), card or e-wallet, depending on your gateway. The money goes straight into your clinic's own merchant account.",
+        },
+        {
+          q: "Can I see what each staff member does in the system?",
+          a: "Yes. Techub records every staff action, such as opening a patient record, giving a discount or issuing a refund, with who did it and when. You choose what each role can see or change, and risky actions can need a doctor's or manager's approval, so patient and clinic data stays protected.",
         },
         {
           q: "How do I get a demo?",
@@ -971,9 +985,14 @@ const en = {
           points: ["Sales by stylist & service", "Services vs retail sales", "Commission at a glance", "No lag, even with years of data"],
         },
         permissions: {
-          eyebrow: "Staff & permission control",
-          title: "The right access for every staff",
-          points: ["Owner, manager, stylist & reception roles", "Manager approval for discounts", "Hide customer phone numbers", "Full audit trail"],
+          eyebrow: "Staff activity tracking",
+          title: "Track every staff action, *protect* your business",
+          points: [
+            "See who did what, and when",
+            "Owner, manager, stylist & reception roles",
+            "Manager approval for discounts",
+            "Customer data stays protected",
+          ],
         },
       },
       modules: {
@@ -991,7 +1010,7 @@ const en = {
         inventory: "Inventory tracking",
         einvoice: "LHDN e-Invoice",
         reports: "Reports in under 100 ms",
-        permissions: "Permission control",
+        permissions: "Activity tracking & permissions",
         devices: "Cross-platform: iPad, phone & PC",
       },
       faqs: [
@@ -1030,6 +1049,10 @@ const en = {
         {
           q: "Can customers pay a deposit online?",
           a: "Yes. Techub works with various payment gateways, so customers can pay a deposit or the full amount online when they book, by online banking (FPX), card or e-wallet, depending on your gateway. The money goes straight into your salon's own merchant account, and deposits help cut no-shows.",
+        },
+        {
+          q: "Can I see what each staff member does in the system?",
+          a: "Yes. Techub records every staff action, such as giving a discount, issuing a refund or exporting customer data, with who did it and when. You choose what each role can see or change, and risky actions can need a manager's approval, so your business information stays protected.",
         },
         {
           q: "How do I get a demo?",
@@ -1122,6 +1145,16 @@ const en = {
           title: "Beauty centre reports in under 100 ms",
           points: ["Package sales & sessions redeemed", "Sales by beautician", "Top treatments", "No lag, even with years of data"],
         },
+        permissions: {
+          eyebrow: "Staff activity tracking",
+          title: "Track every staff action, *protect* your business",
+          points: [
+            "See who did what, and when",
+            "Owner, manager, beautician & reception roles",
+            "Manager approval for discounts",
+            "Customer photos and data stay protected",
+          ],
+        },
       },
       modules: {
         calendar: "Booking calendar",
@@ -1138,7 +1171,7 @@ const en = {
         inventory: "Inventory tracking",
         einvoice: "LHDN e-Invoice",
         reports: "Reports in under 100 ms",
-        permissions: "Permission control",
+        permissions: "Activity tracking & permissions",
         devices: "Cross-platform: iPad, phone & PC",
       },
       faqs: [
@@ -1173,6 +1206,10 @@ const en = {
         {
           q: "Can customers pay a deposit online?",
           a: "Yes. Techub works with various payment gateways, so customers can pay a deposit or the full amount online when they book, by online banking (FPX), card or e-wallet, depending on your gateway. The money goes straight into your beauty centre's own merchant account, and deposits help cut no-shows.",
+        },
+        {
+          q: "Can I see what each staff member does in the system?",
+          a: "Yes. Techub records every staff action, such as giving a discount, issuing a refund or exporting customer data, with who did it and when. You choose what each role can see or change, and risky actions can need a manager's approval, so your business information stays protected.",
         },
         {
           q: "How do I get a demo?",
@@ -1271,9 +1308,14 @@ const en = {
           ],
         },
         permissions: {
-          eyebrow: "Staff & permission control",
-          title: "Your team, under control",
-          points: ["Owner, manager, therapist & reception roles", "Manager approval for discounts", "Branch access control", "Full audit trail"],
+          eyebrow: "Staff activity tracking",
+          title: "Track every staff action, *protect* your business",
+          points: [
+            "See who did what, and when",
+            "Owner, manager, therapist & reception roles",
+            "Manager approval for discounts",
+            "Customer data stays protected",
+          ],
         },
       },
       modules: {
@@ -1291,7 +1333,7 @@ const en = {
         inventory: "Inventory tracking",
         einvoice: "LHDN e-Invoice",
         reports: "Reports in under 100 ms",
-        permissions: "Permission control",
+        permissions: "Activity tracking & permissions",
         devices: "Cross-platform: iPad, phone & PC",
       },
       faqs: [
@@ -1330,6 +1372,10 @@ const en = {
         {
           q: "Can customers pay a deposit online?",
           a: "Yes. Techub works with various payment gateways, so customers can pay a deposit or the full amount online when they book, by online banking (FPX), card or e-wallet, depending on your gateway. The money goes straight into your spa's own merchant account, and deposits help cut no-shows.",
+        },
+        {
+          q: "Can I see what each staff member does in the system?",
+          a: "Yes. Techub records every staff action, such as giving a discount, issuing a refund or exporting customer data, with who did it and when. You choose what each role can see or change, and risky actions can need a manager's approval, so your business information stays protected.",
         },
         {
           q: "How do I get a demo?",
@@ -1439,6 +1485,16 @@ const en = {
             "Reports in under 100 ms, no lag",
           ],
         },
+        permissions: {
+          eyebrow: "Staff activity tracking",
+          title: "Track every staff action, *protect* your shop",
+          points: [
+            "See who did what, and when",
+            "Owner, manager, host, packer & service roles",
+            "Approval for price changes during a live",
+            "Buyer data stays protected",
+          ],
+        },
       },
       modules: {
         salePage: "Sale page for your live",
@@ -1455,7 +1511,7 @@ const en = {
         receipts: "Automatic invoices & receipts",
         einvoice: "LHDN e-Invoice",
         reports: "Advanced sales reports",
-        permissions: "Staff permission control",
+        permissions: "Activity tracking & permissions",
         devices: "Works on phone, iPad & PC",
       },
       faqs: [
@@ -1492,6 +1548,10 @@ const en = {
           a: "It starts from RM {livePrice} per month, depending on your needs. WhatsApp us at {phone} to request a demo.",
         },
         {
+          q: "Can I see what each staff member does in the system?",
+          a: "Yes. Techub records every staff action, such as changing a price during a live, adjusting stock or cancelling an order, with who did it and when. You choose what each role can do, and price changes during a live can need your approval, so your shop's information stays protected.",
+        },
+        {
           q: "How do I request a demo?",
           a: "WhatsApp us at {phone} or email {email}. We will show you the Live Selling System working, with your own products.",
         },
@@ -1524,8 +1584,8 @@ const en = {
       alt: "Clinic medicine stock movement log on an iPad with an AI reorder suggestion and expiring batches",
     },
     clinicPermissions: {
-      title: "Staff permission control",
-      alt: "Role-based permissions for doctors, nurses, pharmacy and cashiers on an iPad, with an audit trail",
+      title: "Staff activity tracking & permissions",
+      alt: "Staff activity log and role-based permissions for doctors, nurses, pharmacy and cashiers on an iPad, showing who did what and when",
     },
     whatsappClinic: {
       title: "WhatsApp appointment reminder",
@@ -1560,8 +1620,8 @@ const en = {
       alt: "Hair salon product stock movement log on an iPad with an AI reorder suggestion",
     },
     salonPermissions: {
-      title: "Staff permission control",
-      alt: "Role-based permissions for the salon owner, manager, stylists and receptionist on an iPad, with an audit trail",
+      title: "Staff activity tracking & permissions",
+      alt: "Staff activity log and role-based permissions for the salon owner, manager, stylists and receptionist on an iPad",
     },
     whatsappSalon: {
       title: "WhatsApp booking reminder",
@@ -1594,6 +1654,10 @@ const en = {
     beautyStock: {
       title: "Beauty product stock & AI insights",
       alt: "Beauty centre product stock movement log on an iPad with an AI reorder suggestion",
+    },
+    beautyPermissions: {
+      title: "Staff activity tracking & permissions",
+      alt: "Staff activity log and role-based permissions for the beauty centre owner, manager, beauticians and receptionist on an iPad",
     },
     whatsappBeauty: {
       title: "WhatsApp booking reminder",
@@ -1628,8 +1692,8 @@ const en = {
       alt: "Spa stock movement log for oils, scrubs and towels on an iPad with an AI reorder suggestion",
     },
     spaPermissions: {
-      title: "Staff permission control",
-      alt: "Role-based permissions for the spa owner, manager, therapists and receptionist on an iPad, with an audit trail",
+      title: "Staff activity tracking & permissions",
+      alt: "Staff activity log and role-based permissions for the spa owner, manager, therapists and receptionist on an iPad",
     },
     whatsappSpa: {
       title: "WhatsApp booking reminder",
@@ -1648,8 +1712,8 @@ const en = {
       alt: "A customer paying a RM 40 booking deposit for a Balinese massage on a phone, by online banking (FPX), card, e-wallet or DuitNow QR, paid straight to the spa's own merchant account",
     },
     permissionsDesktop: {
-      title: "Staff permission control on PC",
-      alt: "Staff roles and permission control in a web browser on a PC, with an audit trail of discounts and refunds",
+      title: "Staff activity tracking on PC",
+      alt: "Staff activity log and permission control in a web browser on a PC, with every discount and refund recorded",
     },
     clinicDashboardDesktop: {
       title: "Techub dashboard on PC",
@@ -1730,6 +1794,10 @@ const en = {
     reportsLive: {
       title: "Live sale report",
       alt: "Live sale report on an iPad generated in under 100 ms: sales, orders, visitors, conversion, payment methods and best sellers",
+    },
+    livePermissions: {
+      title: "Staff activity tracking & permissions",
+      alt: "Staff activity log and permissions for the live shop owner, manager, live hosts, packers and customer service on an iPad, with price changes during a live needing approval",
     },
     liveShop: {
       title: "Sale page on the buyer's phone",

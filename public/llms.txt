@@ -17,11 +17,11 @@ Languages: English (/), Bahasa Melayu (/ms/), Simplified Chinese (/zh/). Every p
 
 ## Use cases
 
-- [Clinic Management System](/clinic-management-system/): Patient records tracking, medication tracking system, queue number calling on TV with voice, consultation and EMR, hand-drawn body and dental charts with e-signature, AI medicine stock control, MC, label and receipt printing, X-ray machine connection, billing and panel claims, online payment and deposits through payment gateways, LHDN e-Invoice, detailed reports in under 100 ms, permission control. For GP, dental, specialist, aesthetic, physiotherapy and TCM clinics.
-- [Salon Appointment System](/salon-appointment-system/): Booking calendar by stylist, automatic WhatsApp customer notifications, cross-platform (iPad, phone and PC), a profile for each staff member to view and manage their own appointments, inventory tracking, payroll calculation with commission, POS, online payment and deposits through payment gateways, customer colour formulas, detailed reports in under 100 ms. For hair salons and barbershops.
-- [Beauty Centre Appointment System](/beauty-appointment-system/): Booking calendar, automatic WhatsApp reminders, treatment packages and sessions, face charts with photos and e-signature consent, staff profiles, payroll calculation, POS, online payment and deposits through payment gateways, inventory tracking, detailed reports in under 100 ms. For beauty centres, facial, lash and brow, nail and slimming centres.
-- [Spa Appointment System](/spa-appointment-system/): Therapist and room scheduling, automatic WhatsApp reminders, packages and memberships, treatment maps with e-signature, staff profiles, payroll calculation, POS, online payment and deposits through payment gateways, inventory tracking, detailed reports in under 100 ms. For day spas, massage, reflexology and wellness centres.
-- [Live Selling System](/live-selling-system/): A sale page for selling during Facebook, TikTok or Instagram live sessions that handles big crowds of buyers at the same moment with Kafka order queueing, prevents overselling by checking stock on every order and closing items when sold out, lets the seller add products and choose each one's selling date and time, shows how many visitors are on the shop right now and which page each is on, takes online payment through payment gateways straight into the seller's own merchant account, and gives advanced reports on sales, best sellers, visitors and conversion. From RM 199 per month; request a demo on WhatsApp.
+- [Clinic Management System](/clinic-management-system/): Patient records tracking, medication tracking system, queue number calling on TV with voice, consultation and EMR, hand-drawn body and dental charts with e-signature, AI medicine stock control, MC, label and receipt printing, X-ray machine connection, billing and panel claims, online payment and deposits through payment gateways, LHDN e-Invoice, detailed reports in under 100 ms, staff activity tracking and permission control. For GP, dental, specialist, aesthetic, physiotherapy and TCM clinics.
+- [Salon Appointment System](/salon-appointment-system/): Booking calendar by stylist, automatic WhatsApp customer notifications, cross-platform (iPad, phone and PC), a profile for each staff member to view and manage their own appointments, inventory tracking, payroll calculation with commission, POS, online payment and deposits through payment gateways, customer colour formulas, detailed reports in under 100 ms, staff activity tracking and permission control. For hair salons and barbershops.
+- [Beauty Centre Appointment System](/beauty-appointment-system/): Booking calendar, automatic WhatsApp reminders, treatment packages and sessions, face charts with photos and e-signature consent, staff profiles, payroll calculation, POS, online payment and deposits through payment gateways, inventory tracking, detailed reports in under 100 ms, staff activity tracking and permission control. For beauty centres, facial, lash and brow, nail and slimming centres.
+- [Spa Appointment System](/spa-appointment-system/): Therapist and room scheduling, automatic WhatsApp reminders, packages and memberships, treatment maps with e-signature, staff profiles, payroll calculation, POS, online payment and deposits through payment gateways, inventory tracking, detailed reports in under 100 ms, staff activity tracking and permission control. For day spas, massage, reflexology and wellness centres.
+- [Live Selling System](/live-selling-system/): A sale page for selling during Facebook, TikTok or Instagram live sessions that handles big crowds of buyers at the same moment with Kafka order queueing, prevents overselling by checking stock on every order and closing items when sold out, lets the seller add products and choose each one's selling date and time, shows how many visitors are on the shop right now and which page each is on, takes online payment through payment gateways straight into the seller's own merchant account, gives advanced reports on sales, best sellers, visitors and conversion, and tracks every staff action, with approval for price changes during a live. From RM 199 per month; request a demo on WhatsApp.
 - [Custom systems](/custom-systems/): ERP, AI object detection, number plate scanners, or a new system for any business, from RM 300.
 
 ## In Bahasa Melayu
@@ -50,7 +50,7 @@ Every page has a Bahasa Melayu version under /ms/, for people who search in Mala
 
 ## Key features
 
-- 99.95% uptime guarantee (less than 22 minutes of downtime a month on average)
+- 99.95% uptime guarantee: the system is online practically all the time, day and night
 - Bookings in under 10 seconds, with an advanced booking calendar and AI integration
 - Payment gateway integration: works with various payment gateways, so customers pay a deposit or the full amount online, straight into the business's own merchant account
 - Automatic accounting documents: invoices, credit notes, refund notes and official receipts, with no accounting staff needed
@@ -58,7 +58,8 @@ Every page has a Bahasa Melayu version under /ms/, for people who search in Mala
 - Real-time updates on every device
 - Automatic WhatsApp confirmations and reminders
 - AI stock control and tracking of every inventory movement
-- Staff profiles, payroll calculation and permission control with audit trail
+- Staff activity tracking: every staff action is recorded with who did it and when, with permission control and manager approvals, to protect business information
+- Staff profiles and payroll calculation
 - Cross-platform: Windows, Mac, iPad, Android and iPhone
 - LHDN e-Invoice support
 - Multi-hardware connect: label printers, number calling systems, X-ray machines, printers, scanners, card terminals, tablets

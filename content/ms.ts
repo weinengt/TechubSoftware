@@ -50,6 +50,7 @@ const ms: Dict = {
         "Sambung mesin X-ray & printer",
         "Bayaran online & deposit melalui payment gateway",
         "Laporan terperinci bawah 100 ms",
+        "Setiap tindakan staf direkod, data pesakit dilindungi",
       ],
       cta: "Lihat sistem klinik",
     },
@@ -64,6 +65,7 @@ const ms: Dict = {
         "Boleh guna di iPad, telefon & PC",
         "Bayaran online & deposit melalui payment gateway",
         "Laporan terperinci bawah 100 ms",
+        "Setiap tindakan staf direkod, data anda dilindungi",
       ],
       cta: "Lihat sistem salon",
     },
@@ -78,6 +80,7 @@ const ms: Dict = {
         "Reminder WhatsApp automatik",
         "Bayaran online & deposit melalui payment gateway",
         "Laporan terperinci bawah 100 ms",
+        "Setiap tindakan staf direkod, data anda dilindungi",
       ],
       cta: "Lihat sistem pusat kecantikan",
     },
@@ -92,6 +95,7 @@ const ms: Dict = {
         "Boleh guna di iPad, telefon & PC",
         "Bayaran online & deposit melalui payment gateway",
         "Laporan terperinci bawah 100 ms",
+        "Setiap tindakan staf direkod, data anda dilindungi",
       ],
       cta: "Lihat sistem spa",
     },
@@ -106,6 +110,7 @@ const ms: Dict = {
         "Jumlah pelawat live & halaman yang mereka buka",
         "Bayaran online melalui payment gateway",
         "Laporan canggih, dari RM {livePrice}/bulan",
+        "Setiap tindakan staf direkod, data anda dilindungi",
       ],
       cta: "Lihat sistem jualan live",
     },
@@ -210,7 +215,7 @@ const ms: Dict = {
         einvoice: { title: "e-Invois LHDN", text: "e-Invois dihantar ke LHDN MyInvois, terus dari sistem." },
         inventory: { title: "Pantau inventori", text: "Stok update sendiri setiap kali jual atau guna, siap dengan amaran stok rendah." },
         reports: { title: "Laporan canggih", text: "Laporan jualan, staf, stok dan pelanggan siap bawah 100 ms." },
-        permissions: { title: "Kawalan akses", text: "Tetapkan siapa boleh bagi diskaun, buat refund atau tengok laporan." },
+        permissions: { title: "Jejak aktiviti & akses", text: "Setiap tindakan staf direkod. Anda tetapkan siapa boleh bagi diskaun, buat refund atau tengok laporan." },
         devices: { title: "Semua peranti, semua platform", text: "Windows, Mac, iPad, Android dan iPhone. Guna saja peranti yang anda dah ada." },
         easy: { title: "Senang guna", text: "Skrin ringkas, staf cepat belajar. Kami setup dan latih mereka." },
         uptime: { title: "Uptime {uptime}", text: "Server enterprise di Malaysia dengan backup di beberapa lokasi." },
@@ -237,7 +242,7 @@ const ms: Dict = {
 
   uptime: {
     label: "jaminan uptime",
-    text: "Secara purata, sistem down kurang dari 22 minit sebulan.",
+    text: "Hampir sentiasa online, siang dan malam, sepanjang tahun.",
     chips: ["Server di Malaysia", "Sentiasa dipantau", "Backup disulitkan"],
   },
 
@@ -457,7 +462,7 @@ const ms: Dict = {
     uptimeEyebrow: "Boleh dipercayai",
     uptimeTitle: "Uptime {uptime}, *dijamin*",
     uptimeIntro:
-      "Booking, skrin giliran dan bayaran anda sentiasa online. Secara purata, sistem down kurang dari 22 minit sebulan.",
+      "Booking, skrin giliran dan bayaran anda hampir sentiasa online, siang dan malam.",
     uptimePoints: [
       "Server enterprise di Malaysia",
       "Backup berlapis di beberapa lokasi",
@@ -487,7 +492,7 @@ const ms: Dict = {
       },
       {
         q: "Apa maksud jaminan uptime {uptime}?",
-        a: "Sistem online sekurang-kurangnya {uptime} daripada keseluruhan masa. Maksudnya, secara purata sistem down kurang dari 22 minit sebulan.",
+        a: "Sistem anda online sekurang-kurangnya {uptime} daripada keseluruhan masa, jadi ia hampir sentiasa ada bila staf dan pelanggan anda perlukan.",
       },
       {
         q: "Macam mana AI baca nota penghantaran?",
@@ -521,7 +526,7 @@ const ms: Dict = {
     profiles: { title: "Profil staf", text: "Setiap staf boleh tengok dan urus temujanji sendiri." },
     payroll: { title: "Kira gaji automatik", text: "Gaji asas, komisen dan elaun dikira untuk anda." },
     pos: { title: "POS, pakej & komisen", text: "Bayaran, pakej prabayar dan komisen staf di satu tempat." },
-    permissions: { title: "Kawalan akses staf", text: "Tetapkan siapa boleh tengok, ubah, bagi diskaun, buat refund atau eksport." },
+    permissions: { title: "Jejak aktiviti staf", text: "Setiap tindakan staf direkod, dan anda tetapkan siapa boleh tengok, ubah, bagi diskaun, buat refund atau eksport." },
     einvoice: { title: "e-Invois LHDN", text: "e-Invois dihantar ke LHDN melalui MyInvois." },
     hardware: { title: "Sambung pelbagai peralatan", text: "Printer label, panggil nombor giliran, mesin X-ray dan banyak lagi." },
     drawing: { title: "Lukis tangan & e-tandatangan", text: "Lukis atas carta dan dapatkan persetujuan di tablet." },
@@ -623,7 +628,7 @@ const ms: Dict = {
       },
       {
         q: "Berapa uptime yang dijamin?",
-        a: "Kami jamin uptime sistem {uptime}. Maksudnya, secara purata sistem down kurang dari 22 minit sebulan, jadi kaunter depan, skrin giliran dan booking anda sentiasa online.",
+        a: "Kami jamin uptime sistem {uptime}, jadi kaunter depan, skrin giliran dan booking anda hampir sentiasa online.",
       },
       {
         q: "Di mana data saya disimpan? Adakah ia selamat?",
@@ -858,13 +863,13 @@ const ms: Dict = {
           ],
         },
         permissions: {
-          eyebrow: "Kawalan akses",
-          title: "Akses yang sesuai untuk setiap staf",
+          eyebrow: "Jejak aktiviti staf",
+          title: "Jejak setiap tindakan staf, *lindungi* klinik anda",
           points: [
+            "Tahu siapa buat apa, dan bila",
             "Akses berbeza untuk doktor, jururawat, farmasi & juruwang",
-            "Diskaun perlu kelulusan pengurus",
-            "Kawalan akses ikut cawangan",
-            "Rekod audit penuh",
+            "Diskaun & refund perlu kelulusan pengurus",
+            "Data pesakit dan klinik terus dilindungi",
           ],
         },
       },
@@ -883,7 +888,7 @@ const ms: Dict = {
         payment: "Integrasi payment gateway",
         einvoice: "e-Invois LHDN",
         reports: "Laporan bawah 100 ms",
-        permissions: "Kawalan akses",
+        permissions: "Jejak aktiviti & akses staf",
         devices: "Real-time di iPad, telefon & PC",
       },
       faqs: [
@@ -922,6 +927,10 @@ const ms: Dict = {
         {
           q: "Pesakit boleh bayar online?",
           a: "Boleh. Techub boleh guna pelbagai payment gateway, jadi pesakit boleh bayar deposit atau bayaran penuh secara online masa buat booking, guna perbankan online (FPX), kad atau e-wallet, ikut gateway anda. Duit terus masuk ke akaun merchant klinik anda sendiri.",
+        },
+        {
+          q: "Boleh saya tengok apa yang setiap staf buat dalam sistem?",
+          a: "Boleh. Techub rekod setiap tindakan staf, contohnya buka rekod pesakit, bagi diskaun atau buat refund, siap dengan siapa yang buat dan bila. Anda tetapkan apa yang setiap jawatan boleh tengok atau ubah, dan tindakan berisiko boleh perlukan kelulusan doktor atau pengurus, jadi data pesakit dan klinik anda terus dilindungi.",
         },
         {
           q: "Macam mana nak dapatkan demo?",
@@ -1034,13 +1043,13 @@ const ms: Dict = {
           ],
         },
         permissions: {
-          eyebrow: "Kawalan staf & akses",
-          title: "Akses yang sesuai untuk setiap staf",
+          eyebrow: "Jejak aktiviti staf",
+          title: "Jejak setiap tindakan staf, *lindungi* bisnes anda",
           points: [
+            "Tahu siapa buat apa, dan bila",
             "Akses berbeza untuk pemilik, pengurus, stylist & receptionist",
             "Diskaun perlu kelulusan pengurus",
-            "Sorok nombor telefon pelanggan",
-            "Rekod audit penuh",
+            "Data pelanggan terus dilindungi",
           ],
         },
       },
@@ -1059,7 +1068,7 @@ const ms: Dict = {
         inventory: "Pantau inventori",
         einvoice: "e-Invois LHDN",
         reports: "Laporan bawah 100 ms",
-        permissions: "Kawalan akses",
+        permissions: "Jejak aktiviti & akses staf",
         devices: "Semua peranti: iPad, telefon & PC",
       },
       faqs: [
@@ -1098,6 +1107,10 @@ const ms: Dict = {
         {
           q: "Pelanggan boleh bayar deposit online?",
           a: "Boleh. Techub boleh guna pelbagai payment gateway, jadi pelanggan boleh bayar deposit atau bayaran penuh secara online masa buat booking, guna perbankan online (FPX), kad atau e-wallet, ikut gateway anda. Duit terus masuk ke akaun merchant salon anda sendiri, dan deposit bantu kurangkan kes tak datang.",
+        },
+        {
+          q: "Boleh saya tengok apa yang setiap staf buat dalam sistem?",
+          a: "Boleh. Techub rekod setiap tindakan staf, contohnya bagi diskaun, buat refund atau eksport data pelanggan, siap dengan siapa yang buat dan bila. Anda tetapkan apa yang setiap jawatan boleh tengok atau ubah, dan tindakan berisiko boleh perlukan kelulusan pengurus, jadi maklumat bisnes anda terus dilindungi.",
         },
         {
           q: "Macam mana nak dapatkan demo?",
@@ -1225,6 +1238,16 @@ const ms: Dict = {
             "Tiada lag, walaupun ada data bertahun-tahun",
           ],
         },
+        permissions: {
+          eyebrow: "Jejak aktiviti staf",
+          title: "Jejak setiap tindakan staf, *lindungi* bisnes anda",
+          points: [
+            "Tahu siapa buat apa, dan bila",
+            "Akses berbeza untuk pemilik, pengurus, beautician & receptionist",
+            "Diskaun perlu kelulusan pengurus",
+            "Gambar dan data pelanggan terus dilindungi",
+          ],
+        },
       },
       modules: {
         calendar: "Kalendar booking",
@@ -1241,7 +1264,7 @@ const ms: Dict = {
         inventory: "Pantau inventori",
         einvoice: "e-Invois LHDN",
         reports: "Laporan bawah 100 ms",
-        permissions: "Kawalan akses",
+        permissions: "Jejak aktiviti & akses staf",
         devices: "Semua peranti: iPad, telefon & PC",
       },
       faqs: [
@@ -1276,6 +1299,10 @@ const ms: Dict = {
         {
           q: "Pelanggan boleh bayar deposit online?",
           a: "Boleh. Techub boleh guna pelbagai payment gateway, jadi pelanggan boleh bayar deposit atau bayaran penuh secara online masa buat booking, guna perbankan online (FPX), kad atau e-wallet, ikut gateway anda. Duit terus masuk ke akaun merchant pusat kecantikan anda sendiri, dan deposit bantu kurangkan kes tak datang.",
+        },
+        {
+          q: "Boleh saya tengok apa yang setiap staf buat dalam sistem?",
+          a: "Boleh. Techub rekod setiap tindakan staf, contohnya bagi diskaun, buat refund atau eksport data pelanggan, siap dengan siapa yang buat dan bila. Anda tetapkan apa yang setiap jawatan boleh tengok atau ubah, dan tindakan berisiko boleh perlukan kelulusan pengurus, jadi maklumat bisnes anda terus dilindungi.",
         },
         {
           q: "Macam mana nak dapatkan demo?",
@@ -1397,13 +1424,13 @@ const ms: Dict = {
           ],
         },
         permissions: {
-          eyebrow: "Kawalan staf & akses",
-          title: "Semua staf, dalam kawalan anda",
+          eyebrow: "Jejak aktiviti staf",
+          title: "Jejak setiap tindakan staf, *lindungi* bisnes anda",
           points: [
+            "Tahu siapa buat apa, dan bila",
             "Akses berbeza untuk pemilik, pengurus, terapis & receptionist",
             "Diskaun perlu kelulusan pengurus",
-            "Kawalan akses ikut cawangan",
-            "Rekod audit penuh",
+            "Data pelanggan terus dilindungi",
           ],
         },
       },
@@ -1422,7 +1449,7 @@ const ms: Dict = {
         inventory: "Pantau inventori",
         einvoice: "e-Invois LHDN",
         reports: "Laporan bawah 100 ms",
-        permissions: "Kawalan akses",
+        permissions: "Jejak aktiviti & akses staf",
         devices: "Semua peranti: iPad, telefon & PC",
       },
       faqs: [
@@ -1461,6 +1488,10 @@ const ms: Dict = {
         {
           q: "Pelanggan boleh bayar deposit online?",
           a: "Boleh. Techub boleh guna pelbagai payment gateway, jadi pelanggan boleh bayar deposit atau bayaran penuh secara online masa buat booking, guna perbankan online (FPX), kad atau e-wallet, ikut gateway anda. Duit terus masuk ke akaun merchant spa anda sendiri, dan deposit bantu kurangkan kes tak datang.",
+        },
+        {
+          q: "Boleh saya tengok apa yang setiap staf buat dalam sistem?",
+          a: "Boleh. Techub rekod setiap tindakan staf, contohnya bagi diskaun, buat refund atau eksport data pelanggan, siap dengan siapa yang buat dan bila. Anda tetapkan apa yang setiap jawatan boleh tengok atau ubah, dan tindakan berisiko boleh perlukan kelulusan pengurus, jadi maklumat bisnes anda terus dilindungi.",
         },
         {
           q: "Macam mana nak dapatkan demo?",
@@ -1573,6 +1604,16 @@ const ms: Dict = {
             "Laporan siap bawah 100 ms, tiada lag",
           ],
         },
+        permissions: {
+          eyebrow: "Jejak aktiviti staf",
+          title: "Jejak setiap tindakan staf, *lindungi* kedai anda",
+          points: [
+            "Tahu siapa buat apa, dan bila",
+            "Akses berbeza untuk pemilik, pengurus, host, packer & khidmat pelanggan",
+            "Tukar harga masa live perlu kelulusan",
+            "Data pembeli terus dilindungi",
+          ],
+        },
       },
       modules: {
         salePage: "Halaman jualan untuk live anda",
@@ -1589,7 +1630,7 @@ const ms: Dict = {
         receipts: "Invois & resit automatik",
         einvoice: "e-Invois LHDN",
         reports: "Laporan jualan canggih",
-        permissions: "Kawalan akses staf",
+        permissions: "Jejak aktiviti & akses staf",
         devices: "Guna di telefon, iPad & PC",
       },
       faqs: [
@@ -1626,6 +1667,10 @@ const ms: Dict = {
           a: "Bermula dari RM {livePrice} sebulan, ikut keperluan anda. WhatsApp kami di {phone} untuk minta demo.",
         },
         {
+          q: "Boleh saya tengok apa yang setiap staf buat dalam sistem?",
+          a: "Boleh. Techub rekod setiap tindakan staf, contohnya tukar harga masa live, ubah stok atau batalkan order, siap dengan siapa yang buat dan bila. Anda tetapkan apa yang setiap jawatan boleh buat, dan tukar harga masa live boleh perlukan kelulusan anda, jadi maklumat kedai anda terus dilindungi.",
+        },
+        {
           q: "Macam mana nak minta demo?",
           a: "WhatsApp kami di {phone} atau email ke {email}. Kami akan tunjuk macam mana Sistem Jualan Live berfungsi, guna produk anda sendiri.",
         },
@@ -1658,8 +1703,8 @@ const ms: Dict = {
       alt: "Log keluar masuk stok ubat klinik di iPad dengan cadangan order semula dari AI dan batch ubat yang hampir luput",
     },
     clinicPermissions: {
-      title: "Kawalan akses staf",
-      alt: "Akses ikut jawatan untuk doktor, jururawat, farmasi dan juruwang di iPad, dengan rekod audit",
+      title: "Jejak aktiviti & akses staf",
+      alt: "Log aktiviti staf dan akses ikut jawatan untuk doktor, jururawat, farmasi dan juruwang di iPad, tunjuk siapa buat apa dan bila",
     },
     whatsappClinic: {
       title: "Reminder temujanji WhatsApp",
@@ -1694,8 +1739,8 @@ const ms: Dict = {
       alt: "Log keluar masuk stok produk salon rambut di iPad dengan cadangan order semula dari AI",
     },
     salonPermissions: {
-      title: "Kawalan akses staf",
-      alt: "Akses ikut jawatan untuk pemilik salon, pengurus, stylist dan receptionist di iPad, dengan rekod audit",
+      title: "Jejak aktiviti & akses staf",
+      alt: "Log aktiviti staf dan akses ikut jawatan untuk pemilik salon, pengurus, stylist dan receptionist di iPad",
     },
     whatsappSalon: {
       title: "Reminder booking WhatsApp",
@@ -1728,6 +1773,10 @@ const ms: Dict = {
     beautyStock: {
       title: "Stok produk kecantikan & analisis AI",
       alt: "Log keluar masuk stok produk pusat kecantikan di iPad dengan cadangan order semula dari AI",
+    },
+    beautyPermissions: {
+      title: "Jejak aktiviti & akses staf",
+      alt: "Log aktiviti staf dan akses ikut jawatan untuk pemilik pusat kecantikan, pengurus, beautician dan receptionist di iPad",
     },
     whatsappBeauty: {
       title: "Reminder booking WhatsApp",
@@ -1762,8 +1811,8 @@ const ms: Dict = {
       alt: "Log keluar masuk stok spa untuk minyak, skrub dan tuala di iPad dengan cadangan order semula dari AI",
     },
     spaPermissions: {
-      title: "Kawalan akses staf",
-      alt: "Akses ikut jawatan untuk pemilik spa, pengurus, terapis dan receptionist di iPad, dengan rekod audit",
+      title: "Jejak aktiviti & akses staf",
+      alt: "Log aktiviti staf dan akses ikut jawatan untuk pemilik spa, pengurus, terapis dan receptionist di iPad",
     },
     whatsappSpa: {
       title: "Reminder booking WhatsApp",
@@ -1782,8 +1831,8 @@ const ms: Dict = {
       alt: "Pelanggan bayar deposit booking RM 40 untuk urutan Bali di telefon, guna perbankan online (FPX), kad, e-wallet atau DuitNow QR, terus masuk akaun merchant spa",
     },
     permissionsDesktop: {
-      title: "Kawalan akses staf di PC",
-      alt: "Jawatan staf dan kawalan akses dalam browser di PC, dengan rekod audit untuk diskaun dan refund",
+      title: "Jejak aktiviti staf di PC",
+      alt: "Log aktiviti staf dan kawalan akses dalam browser di PC, dengan setiap diskaun dan refund direkod",
     },
     clinicDashboardDesktop: {
       title: "Dashboard Techub di PC",
@@ -1864,6 +1913,10 @@ const ms: Dict = {
     reportsLive: {
       title: "Laporan jualan live",
       alt: "Laporan jualan live di iPad yang siap dalam masa kurang 100 ms: jualan, order, pelawat, kadar conversion, cara bayaran dan produk terlaris",
+    },
+    livePermissions: {
+      title: "Jejak aktiviti & akses staf",
+      alt: "Log aktiviti staf dan akses untuk pemilik kedai live, pengurus, host live, packer dan khidmat pelanggan di iPad, dengan tukar harga masa live perlu kelulusan",
     },
     liveShop: {
       title: "Halaman jualan di telefon pembeli",

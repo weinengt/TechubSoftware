@@ -34,7 +34,7 @@
   /* Audit trail */
   .log { display: flex; gap: 10px; align-items: center; padding: 7px 0; border-bottom: 1px solid #f1f5f9; }
   .log:last-child { border-bottom: 0; padding-bottom: 0; }
-  .log time { font-size: 11px; font-weight: 700; color: var(--muted); width: 34px; flex-shrink: 0; }
+  .log time { font-size: 11px; font-weight: 700; color: var(--muted); min-width: 34px; flex-shrink: 0; white-space: nowrap; }
   .log .av { width: 30px; height: 30px; font-size: 10.5px; }
   .log .lt { font-size: 12px; color: var(--ink2); line-height: 1.35; min-width: 0; }
   .log .lt b { color: var(--ink); font-weight: 700; } .log .lt em { font-style: normal; color: var(--muted); font-size: 11px; }
@@ -75,7 +75,7 @@
       </div>
       <div class="row" style="flex:1;min-height:0;gap:12px">
         <div class="card grow" style="display:flex;flex-direction:column">
-          <h3><i data-i="file" style="color:#0396d9"></i>Audit trail · today<span class="more">View all →</span></h3>
+          <h3><i data-i="file" style="color:#0396d9"></i>Staff activity · today<span class="more">View all →</span></h3>
           <div id="log" style="margin-top:4px"></div>
         </div>
         <div class="card appr" id="appr"></div>
@@ -85,7 +85,7 @@
 </div>
 <script>
   const v = new URLSearchParams(location.search).get("v");
-  const V = ["salon", "spa"].includes(v) ? v : "clinic";
+  const V = ["salon", "beauty", "spa", "live"].includes(v) ? v : "clinic";
   // cells: 1 allowed, 2 needs manager approval, 0 blocked, text = limited access
   const D = {
     clinic: {
@@ -110,6 +110,17 @@
         ["10:12", "a", "VC", "Vincent", "Owner", "Men's Cut price RM 35 → RM 38", "b", "Price updated"]],
       appr: ["p", "AM", "Amir", "Junior Stylist · 2 min ago", "15% discount", "<s>RM 280</s><i data-i=\"arrowR\"></i>RM 238", "Joanne Lim · Colour &amp; Treatment", "Junior Stylist discounts need approval"],
     },
+    beauty: {
+      biz: "Demo Beauty Centre", staff: 8,
+      roles: [["star", "a", "Owner", 1], ["shield", "b", "Manager", 1], ["face", "v", "Beautician", 5], ["cal", "t", "Receptionist", 1]],
+      perms: [["percent", "Give discount", 1, 1, 2, 2], ["undo", "Refund / void bill", 1, 1, 0, 0], ["gift", "Extend package expiry", 1, 1, 0, 2],
+        ["image", "View before & after photos", 1, 1, "Own clients", 0], ["chart", "View sales & commission", 1, 1, "Own only", 0], ["dl", "Export customer data", 1, 2, 0, 0]],
+      log: [["11:05", "t", "NH", "Nur Hidayah", "Receptionist", "Redeemed Hydra Facial 4/10 · Chloe Tan", "s", "Package used"],
+        ["10:47", "v", "NA", "Nadia", "Beautician", "Tried to export customer list", "r", "Blocked"],
+        ["10:22", "b", "SN", "Sarah", "Manager", "Refunded RM 60 · INV-7720", "s", "Reason noted"],
+        ["09:51", "v", "ML", "Mei Ling", "Beautician", "Added before &amp; after photos · Farah Hanim", "t", "Own client"]],
+      appr: ["v", "NA", "Nadia", "Beautician · 2 min ago", "20% discount", "<s>RM 238</s><i data-i=\"arrowR\"></i>RM 190.40", "Aqilah Razak · Hydra Facial", "Beautician discounts need approval"],
+    },
     spa: {
       biz: "Demo Day Spa", staff: 10,
       roles: [["star", "a", "Owner", 1], ["shield", "b", "Manager", 1], ["leaf", "t", "Therapist", 6], ["cal", "v", "Receptionist", 2]],
@@ -120,6 +131,17 @@
         ["10:20", "t", "WA", "Wani", "Therapist", "Tried to view a customer's phone no.", "r", "Blocked"],
         ["09:45", "b", "JL", "Jenny", "Manager", "Refunded RM 120 · unused session", "s", "Reason noted"]],
       appr: ["v", "HA", "Hana", "Receptionist · 2 min ago", "Extend package by 1 month", "31 Oct<i data-i=\"arrowR\"></i>30 Nov", "Siti Rahmah · Balinese Massage 10×", "Package extensions need approval"],
+    },
+    live: {
+      biz: "Demo Live Shop", staff: 8,
+      roles: [["star", "a", "Owner", 1], ["shield", "b", "Manager", 1], ["video", "p", "Live Host", 2], ["box", "g", "Packer", 3], ["phone", "t", "Customer Service", 1]],
+      perms: [["tag", "Change price during live", 1, 1, 2, 0, 0], ["box", "Adjust stock", 1, 2, 0, 0, 0], ["undo", "Cancel / refund order", 1, 1, 0, 0, 2],
+        ["chart", "View sales report", 1, 1, "Own lives", 0, 0], ["phone", "See buyer phone no.", 1, 1, 0, 0, 1], ["dl", "Export buyer list", 1, 2, 0, 0, 0]],
+      log: [["8:40 PM", "p", "MT", "Mia", "Live Host", "Flash price Lipstick Set → RM 29.90", "g", "✓ Approved by Daniel"],
+        ["8:36 PM", "g", "AZ", "Azlan", "Packer", "Packed 48 orders · Batch 12", "b", "48 orders"],
+        ["8:21 PM", "p", "SY", "Syafiq", "Live Host", "Tried to export buyer list", "r", "Blocked"],
+        ["8:05 PM", "t", "NU", "Nurul", "Customer Service", "Cancelled order #LS-23991", "s", "Buyer asked"]],
+      appr: ["p", "MT", "Mia", "Live Host · 2 min ago", "Flash price during live", "<s>RM 25.00</s><i data-i=\"arrowR\"></i>RM 19.90", "MagSafe Phone Case · 3 left", "Live price changes need approval"],
     },
   }[V];
   const AV = { b: "#0396d9", g: "#10b981", a: "#f59e0b", v: "#8b5cf6", p: "#ec4899", t: "#14b8a6", r: "#ef4444" };
