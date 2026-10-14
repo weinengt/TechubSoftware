@@ -211,7 +211,7 @@ const ms: Dict = {
 
   about: {
     eyebrow: "Tentang Techub",
-    title: "Buatan Malaysia, *mudah dan mampu milik*",
+    title: "Pilihan SME Malaysia, *mudah dan mampu milik*",
     intro:
       "Kami berpangkalan di Malaysia dan bina sistem yang bantu bisnes tempatan terima booking, layan pelanggan dan urus stok. Semua setup, kami yang uruskan untuk anda.",
     values: {

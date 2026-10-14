@@ -213,7 +213,7 @@ const en = {
 
   about: {
     eyebrow: "About Techub",
-    title: "Made in Malaysia, *simple and affordable*",
+    title: "Malaysia SMEs' choice, *simple and affordable*",
     intro:
       "We are based in Malaysia and build systems that help local businesses take bookings, serve customers and manage stock. Then we set everything up for you.",
     values: {

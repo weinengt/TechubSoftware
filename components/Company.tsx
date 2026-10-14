@@ -85,9 +85,9 @@ export function UptimeRing({ lang }: { lang: Locale }) {
             <circle cx="60" cy="60" r={r} fill="none" stroke="url(#uptime-ring)" strokeWidth="9" strokeLinecap="round" strokeDasharray={`${c * 0.9995} ${c}`} />
           </svg>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="text-5xl font-extrabold tracking-tight sm:text-6xl">
+            <span className="text-4xl font-extrabold tracking-tight sm:text-[2.5rem]">
               {site.uptime.replace("%", "")}
-              <span className="text-2xl sm:text-3xl">%</span>
+              <span className="text-lg sm:text-xl">%</span>
             </span>
             <span className="mt-1 text-sm font-semibold text-teal-brand">{t.label}</span>
           </div>
