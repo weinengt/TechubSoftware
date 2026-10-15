@@ -64,14 +64,14 @@ const en = {
     title: "Make an invoice in *1 minute*",
     intro: "Add your logo and details, list the items, then download or share the PDF.",
     example: {
-      bizName: "Sinar Beauty Studio",
+      bizName: "Kedai Kek Sinar",
       bizReg: "202501012345 (003712345-K)",
-      bizAddress: "12, Jalan Bunga Raya 3, Taman Bunga Raya,\n81100 Johor Bahru, Johor",
+      bizAddress: "8, Jalan Contoh 2, Taman Contoh,\n50000 Kuala Lumpur",
       bizPhone: "+60 12-345 6789",
       bizEmail: "",
       payment: "DuitNow QR",
-      custName: "Tan Mei Ling",
-      items: [{ desc: "Eyelash extension (upper & lower)", note: "Natural look, 2 hours", qty: "1", price: "158" }],
+      custName: "Ahmad Faizal",
+      items: [{ desc: "Birthday cake (1 kg)", note: "Chocolate, with name on top", qty: "1", price: "120" }, { desc: "Cupcakes (box of 6)", note: "", qty: "2", price: "36" }],
     },
     defaultNotes: "1. Thank you for your support.\n2. Please quote the number above for any enquiries.\n3. E. & O. E.",
     form: {

@@ -75,8 +75,8 @@ export async function sharePdf(blob: Blob, filename: string, title: string): Pro
   }
 }
 
-/** A name that is safe for a file on every phone and browser: "ZY Lash Studio / INV-001" becomes
- *  "ZY-Lash-Studio-INV-001". Letters outside A to Z are left out, as some browsers refuse them in file names. */
+/** A name that is safe for a file on every phone and browser: "Kedai Kek Sinar / INV-001" becomes
+ *  "Kedai-Kek-Sinar-INV-001". Letters outside A to Z are left out, as some browsers refuse them in file names. */
 export const fileName = (...parts: string[]) =>
   parts
     .join(" ")

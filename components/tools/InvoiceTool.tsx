@@ -66,7 +66,7 @@ const fmtDate = (iso: string, lang: DocLang) => {
 
 export default function InvoiceTool({ t, ex, lang }: { t: T; ex: ToolsDict["export"]; lang: DocLang }) {
   const start = useMemo(() => initial(t, lang), [t, lang]);
-  const [s, setS] = useSaved<State>("techub-invoice-v1", start);
+  const [s, setS] = useSaved<State>("techub-invoice-v2", start);
   const docRef = useRef<HTMLDivElement>(null);
   const set = <K extends keyof State>(k: K, v: State[K]) => setS((o) => ({ ...o, [k]: v }));
   const setItem = (i: number, k: keyof Item, v: string) => setS((o) => ({ ...o, items: o.items.map((it, j) => (j === i ? { ...it, [k]: v } : it)) }));

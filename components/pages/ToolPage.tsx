@@ -152,7 +152,7 @@ function ToolArt({ k }: { k: ToolKey }) {
             </div>
             <div className="mt-3 space-y-1.5">{bar("70%")}{bar("50%")}</div>
             <div className="mt-3 space-y-1.5">{bar("100%", "bg-brand-100")}{bar("90%")}{bar("80%")}</div>
-            <div className="mt-3 flex justify-end"><span className="rounded bg-brand-600 px-2 py-0.5 text-[9px] font-bold text-white">RM 158.00</span></div>
+            <div className="mt-3 flex justify-end"><span className="rounded bg-brand-600 px-2 py-0.5 text-[9px] font-bold text-white">RM 192.00</span></div>
           </>
         )}
         {k === "payroll" && (

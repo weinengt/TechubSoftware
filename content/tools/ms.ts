@@ -64,14 +64,14 @@ const ms: ToolsDict = {
     title: "Buat invois dalam *1 minit*",
     intro: "Letak logo dan maklumat anda, senaraikan item, kemudian muat turun atau kongsi PDF.",
     example: {
-      bizName: "Sinar Beauty Studio",
+      bizName: "Kedai Kek Sinar",
       bizReg: "202501012345 (003712345-K)",
-      bizAddress: "12, Jalan Bunga Raya 3, Taman Bunga Raya,\n81100 Johor Bahru, Johor",
+      bizAddress: "8, Jalan Contoh 2, Taman Contoh,\n50000 Kuala Lumpur",
       bizPhone: "+60 12-345 6789",
       bizEmail: "",
       payment: "DuitNow QR",
-      custName: "Tan Mei Ling",
-      items: [{ desc: "Sambungan bulu mata (atas & bawah)", note: "Gaya natural, 2 jam", qty: "1", price: "158" }],
+      custName: "Ahmad Faizal",
+      items: [{ desc: "Kek hari jadi (1 kg)", note: "Coklat, dengan nama di atas", qty: "1", price: "120" }, { desc: "Kek cawan (kotak 6 biji)", note: "", qty: "2", price: "36" }],
     },
     defaultNotes: "1. Terima kasih atas sokongan anda.\n2. Sila nyatakan nombor di atas untuk sebarang pertanyaan.\n3. E. & O. E.",
     form: {

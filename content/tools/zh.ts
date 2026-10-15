@@ -64,14 +64,14 @@ const zh: ToolsDict = {
     title: "1 分钟​*开好发票*",
     intro: "填上 Logo 和公司资料，列出项目，然后下载或分享 PDF。",
     example: {
-      bizName: "Sinar Beauty Studio",
+      bizName: "Kedai Kek Sinar",
       bizReg: "202501012345 (003712345-K)",
-      bizAddress: "12, Jalan Bunga Raya 3, Taman Bunga Raya,\n81100 Johor Bahru, Johor",
+      bizAddress: "8, Jalan Contoh 2, Taman Contoh,\n50000 Kuala Lumpur",
       bizPhone: "+60 12-345 6789",
       bizEmail: "",
       payment: "DuitNow QR",
-      custName: "Tan Mei Ling",
-      items: [{ desc: "嫁接睫毛（上下睫毛）", note: "Eyelash extension (upper & lower)", qty: "1", price: "158" }],
+      custName: "Ahmad Faizal",
+      items: [{ desc: "生日蛋糕（1 公斤）", note: "巧克力口味，蛋糕上写名字", qty: "1", price: "120" }, { desc: "杯子蛋糕（6 个装）", note: "", qty: "2", price: "36" }],
     },
     defaultNotes: "1. 谢谢你的支持。\n2. 如有疑问，请注明以上号码。\n3. E. & O. E.",
     form: {
