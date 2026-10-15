@@ -105,6 +105,7 @@ export const systems = [
   { key: "beauty", path: "/beauty-appointment-system/", icon: "Mirror" },
   { key: "spa", path: "/spa-appointment-system/", icon: "Lotus" },
   { key: "live", path: "/live-selling-system/", icon: "Live" },
+  { key: "inventory", path: "/inventory-management-system/", icon: "Barcode" },
 ] as const;
 
 export type SystemKey = (typeof systems)[number]["key"];

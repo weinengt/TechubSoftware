@@ -1,0 +1,195 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<style>
+  /* Printed labels from the inventory system, on a transparent background like printouts.html: a batch label with its
+     QR code, a strip of product barcode stickers (real EAN-13 bars), a rack label and a carton label for DO-2026-0862.
+     The QR codes and the carton barcode are patterns only. */
+  :root { --w: 1000px; --h: 700px; }
+  .stage { position: relative; width: 100%; height: 100%; }
+  .sheet { position: absolute; background: #fff; box-shadow: 0 30px 50px -20px rgba(15,23,42,.45), 0 2px 6px rgba(15,23,42,.12); color: #111827; font-family: Inter, sans-serif; }
+  svg.qr, svg.ean, svg.c128 { display: block; }
+
+  /* A: batch label */
+  .batch { left: 42px; top: 96px; width: 330px; border-radius: 10px; transform: rotate(-6deg); overflow: hidden; }
+  .batch .hd { display: flex; align-items: center; gap: 9px; background: #0b2f55; color: #fff; padding: 10px 14px; }
+  .batch .hd img { width: 26px; height: 26px; border-radius: 6px; }
+  .batch .hd b { font-size: 12.5px; font-weight: 800; letter-spacing: .06em; display: block; }
+  .batch .hd small { font-size: 9px; color: #9cc2e4; letter-spacing: .04em; display: block; margin-top: 1px; }
+  .batch .hd span { margin-left: auto; font-size: 9px; font-weight: 800; letter-spacing: .12em; border: 1.5px solid rgba(255,255,255,.55); border-radius: 4px; padding: 3px 6px; }
+  .batch .bd { padding: 12px 14px 14px; }
+  .batch .k { font-size: 9px; font-weight: 700; color: #6b7280; letter-spacing: .12em; }
+  .batch .no { font-size: 34px; font-weight: 850; letter-spacing: .01em; line-height: 1.05; font-variant-numeric: tabular-nums; }
+  .batch .pn { font-size: 14px; font-weight: 800; letter-spacing: .02em; margin-top: 4px; }
+  .batch .mid { display: flex; gap: 12px; margin-top: 10px; align-items: flex-start; }
+  .batch .grid { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 7px 10px; }
+  .batch .grid div span { display: block; font-size: 8.5px; font-weight: 700; color: #6b7280; letter-spacing: .1em; }
+  .batch .grid div b { display: block; font-size: 12px; font-weight: 750; margin-top: 1px; white-space: nowrap; }
+  .batch .grid div.w { grid-column: span 2; }
+  .batch .qrb { width: 116px; flex-shrink: 0; text-align: center; }
+  .batch .qrb svg { width: 116px; height: 116px; }
+  .batch .qrb small { display: block; font-size: 8.5px; font-weight: 800; letter-spacing: .1em; margin-top: 3px; }
+  .batch .ft { margin-top: 12px; padding-top: 10px; border-top: 1.5px dashed #9ca3af; }
+  .batch .ft svg { width: 100%; height: 40px; }
+  .batch .ft div { display: flex; justify-content: space-between; font-family: "DejaVu Sans Mono", monospace; font-size: 10px; margin-top: 3px; }
+
+  /* B: strip of product stickers on a liner */
+  .liner { left: 396px; top: 30px; width: 246px; padding: 10px 11px; border-radius: 6px; background: #f3efe6; transform: rotate(3deg); display: flex; flex-direction: column; gap: 9px; box-shadow: 0 26px 40px -18px rgba(15,23,42,.42), 0 2px 5px rgba(15,23,42,.12); }
+  .liner::before, .liner::after { content: ""; position: absolute; left: -1px; right: -1px; height: 8px; background: repeating-linear-gradient(90deg, #f3efe6 0 7px, transparent 7px 11px); }
+  .liner::before { top: -5px; } .liner::after { bottom: -5px; }
+  .stk { background: #fff; border-radius: 7px; padding: 8px 10px 7px; box-shadow: 0 0 0 1px rgba(0,0,0,.05); }
+  .stk .t1 { display: flex; justify-content: space-between; font-size: 8px; font-weight: 800; letter-spacing: .12em; color: #374151; }
+  .stk .t2 { font-size: 12.5px; font-weight: 850; letter-spacing: .01em; margin-top: 3px; white-space: nowrap; }
+  .stk .t3 { font-size: 9.5px; font-weight: 600; color: #374151; margin-top: 1px; }
+  .stk svg.ean { width: 150px; height: auto; margin: 4px auto 0; }
+
+  /* C: carton label on a box */
+  .box { position: absolute; left: 626px; top: 262px; width: 340px; height: 392px; border-radius: 6px; transform: rotate(4deg);
+    background: linear-gradient(135deg, #d4ac74, #c09257 55%, #b48549); box-shadow: 0 30px 50px -20px rgba(15,23,42,.5), 0 2px 6px rgba(15,23,42,.15); overflow: hidden; }
+  .box::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, rgba(255,255,255,.035) 0 3px, rgba(0,0,0,.03) 3px 6px); }
+  .box .tape { position: absolute; left: 136px; top: -10px; width: 70px; height: 92px; background: rgba(214,190,150,.75); box-shadow: inset 0 0 0 1px rgba(0,0,0,.04); transform: rotate(1deg); }
+  .ship { position: absolute; left: 14px; top: 44px; width: 312px; background: #fff; border-radius: 4px; padding: 12px 14px; font-family: Inter, sans-serif; color: #111; box-shadow: 0 6px 12px -6px rgba(0,0,0,.35); }
+  .ship .r1 { display: flex; justify-content: space-between; font-size: 8.5px; font-weight: 700; letter-spacing: .08em; color: #374151; border-bottom: 2px solid #111; padding-bottom: 6px; }
+  .ship .to { margin-top: 7px; font-size: 8.5px; font-weight: 800; letter-spacing: .14em; color: #374151; }
+  .ship .nm { font-size: 18px; font-weight: 900; letter-spacing: .01em; line-height: 1.1; margin-top: 2px; }
+  .ship .ad { font-size: 10.5px; line-height: 1.4; margin-top: 3px; color: #1f2937; }
+  .ship .bx { display: grid; grid-template-columns: 1fr 96px; border: 2px solid #111; margin-top: 9px; }
+  .ship .bx div { padding: 5px 8px; }
+  .ship .bx div + div { border-left: 2px solid #111; text-align: center; }
+  .ship .bx span { display: block; font-size: 8px; font-weight: 800; letter-spacing: .12em; color: #374151; }
+  .ship .bx b { display: block; font-size: 16px; font-weight: 900; margin-top: 1px; font-variant-numeric: tabular-nums; }
+  .ship .ct { font-size: 10.5px; margin-top: 7px; line-height: 1.4; }
+  .ship .ct b { font-weight: 800; }
+  .ship .bt { display: flex; gap: 10px; align-items: flex-end; margin-top: 8px; }
+  .ship .bt .c { flex: 1; min-width: 0; }
+  .ship .bt svg.c128 { width: 100%; height: 50px; }
+  .ship .bt .c div { font-family: "DejaVu Sans Mono", monospace; font-size: 10px; text-align: center; margin-top: 3px; letter-spacing: .06em; }
+  .ship .bt .q { text-align: center; } .ship .bt .q svg { width: 66px; height: 66px; }
+  .ship .bt .q small { display: block; font-size: 7.5px; font-weight: 800; letter-spacing: .08em; margin-top: 2px; }
+
+  /* D: rack label */
+  .rack { left: 262px; top: 512px; width: 306px; border-radius: 6px; transform: rotate(-3deg); display: flex; overflow: hidden; border: 1.5px solid #111; }
+  .rack .loc { background: #111; color: #fff; padding: 10px 11px; display: flex; flex-direction: column; justify-content: center; }
+  .rack .loc span { font-size: 8px; font-weight: 800; letter-spacing: .16em; color: #fbbf24; }
+  .rack .loc b { font-size: 28px; font-weight: 900; letter-spacing: .01em; line-height: 1.05; white-space: nowrap; }
+  .rack .inf { flex: 1; padding: 8px 10px; display: flex; gap: 8px; align-items: center; }
+  .rack .inf svg.qr { width: 58px; height: 58px; flex-shrink: 0; }
+  .rack .inf div { font-size: 8.5px; font-weight: 700; letter-spacing: .05em; line-height: 1.55; color: #374151; white-space: nowrap; }
+  .rack .inf div b { color: #111; font-size: 9.5px; letter-spacing: .02em; }
+</style></head>
+<body>
+<div class="stage">
+  <div class="sheet batch" id="batch">
+    <div class="hd"><img src="icon.png" alt=""><div><b>DEMO TRADING</b><small>PUCHONG WAREHOUSE</small></div><span>BATCH</span></div>
+    <div class="bd">
+      <div class="k">BATCH NO.</div>
+      <div class="no">B2410-031</div>
+      <div class="pn">DIGITAL RICE COOKER 1.8L</div>
+      <div class="mid">
+        <div class="grid">
+          <div><span>SKU</span><b>RC-1800</b></div>
+          <div><span>QTY</span><b>120 PCS</b></div>
+          <div class="w"><span>GRN</span><b>GRN-2026-0412</b></div>
+          <div><span>RECEIVED</span><b>14/10/2026</b></div>
+          <div><span>RACK</span><b>A-03-2</b></div>
+          <div class="w"><span>SUPPLIER</span><b>Sample Home Appliances</b></div>
+        </div>
+        <div class="qrb" id="qrA"></div>
+      </div>
+      <div class="ft"><div id="c128A"></div><div><span>B2410-031</span><span>RC-1800</span></div></div>
+    </div>
+  </div>
+
+  <div class="sheet liner" id="liner"></div>
+
+  <div class="sheet rack" id="rack">
+    <div class="loc"><span>RACK</span><b>A-03-2</b></div>
+    <div class="inf" id="rackInf"></div>
+  </div>
+
+  <div class="box" id="carton">
+    <span class="tape"></span>
+    <div class="ship">
+      <div class="r1"><span>FROM: DEMO TRADING · PUCHONG</span><span>14/10/2026</span></div>
+      <div class="to">SHIP TO</div>
+      <div class="nm">SERI MAJU ELECTRICAL</div>
+      <div class="ad">No. 8, Jalan Contoh 3, 41050 Klang, Selangor<br>Attn: Rahmat Ismail · 012-xxx 3381</div>
+      <div class="bx"><div><span>DELIVERY ORDER</span><b>DO-2026-0862</b></div><div><span>CARTON</span><b>2 / 9</b></div></div>
+      <div class="ct"><b>Digital Rice Cooker 1.8L × 8</b> · Batch B2410-031<br>Invoice INV-2026-1187</div>
+      <div class="bt"><div class="c"><div id="c128C"></div><div>DO-2026-0862-02</div></div><div class="q" id="qrC"></div></div>
+    </div>
+  </div>
+</div>
+<script>
+  // EAN-13 barcode (real encoding, check digit added) and a QR-style pattern (decorative)
+  const ean13 = (d12, { h = 46, fs = 9, color = "#111", digits = true } = {}) => {
+    const L = ["0001101", "0011001", "0010011", "0111101", "0100011", "0110001", "0101111", "0111011", "0110111", "0001011"];
+    const G = ["0100111", "0110011", "0011011", "0100001", "0011101", "0111001", "0000101", "0010001", "0001001", "0010111"];
+    const R = ["1110010", "1100110", "1101100", "1000010", "1011100", "1001110", "1010000", "1000100", "1001000", "1110100"];
+    const P = ["LLLLLL", "LLGLGG", "LLGGLG", "LLGGGL", "LGLLGG", "LGGLLG", "LGGGLL", "LGLGLG", "LGLGGL", "LGGLGL"];
+    let s = 0;
+    for (let i = 0; i < 12; i++) s += +d12[i] * (i % 2 ? 3 : 1);
+    const code = d12 + ((10 - (s % 10)) % 10);
+    let bits = "101";
+    for (let i = 1; i <= 6; i++) bits += (P[+code[0]][i - 1] === "L" ? L : G)[+code[i]];
+    bits += "01010";
+    for (let i = 7; i <= 12; i++) bits += R[+code[i]];
+    bits += "101";
+    const guard = (i) => i < 3 || (i >= 45 && i < 50) || i >= 92;
+    const ox = 9, gh = digits ? 5 : 0;
+    let r = "";
+    for (let i = 0; i < 95; ) {
+      if (bits[i] !== "1") { i++; continue; }
+      let j = i;
+      while (j < 95 && bits[j] === "1" && guard(j) === guard(i)) j++;
+      r += `<rect x="${ox + i}" y="0" width="${j - i}" height="${guard(i) ? h + gh : h}" fill="${color}"/>`;
+      i = j;
+    }
+    const t = (x, str, ls) => `<text x="${x}" y="${h + fs - 0.5}" font-size="${fs}" font-family="DejaVu Sans Mono, monospace" fill="${color}" text-anchor="middle" letter-spacing="${ls}">${str}</text>`;
+    const txt = digits ? t(4, code[0], 0) + t(ox + 24 + 0.5, code.slice(1, 7), 0.95) + t(ox + 71 + 0.5, code.slice(7), 0.95) : "";
+    return { code, svg: `<svg class="ean" viewBox="0 0 108 ${h + (digits ? fs + 1 : 0)}" shape-rendering="crispEdges">${r}<g shape-rendering="auto">${txt}</g></svg>` };
+  };
+  const qrPattern = (seed, color = "#111") => {
+    const rnd = () => ((seed = (seed * 9301 + 49297) % 233280) / 233280);
+    const finder = (x, y) => `<rect x="${x}" y="${y}" width="7" height="7" fill="${color}"/><rect x="${x + 1}" y="${y + 1}" width="5" height="5" fill="#fff"/><rect x="${x + 2}" y="${y + 2}" width="3" height="3" fill="${color}"/>`;
+    let h = `<rect x="-1" y="-1" width="27" height="27" fill="#fff"/>`;
+    for (let y = 0; y < 25; y++) for (let x = 0; x < 25; x++) {
+      const inF = (x < 8 && y < 8) || (x > 16 && y < 8) || (x < 8 && y > 16);
+      const inA = x >= 16 && x <= 20 && y >= 16 && y <= 20;
+      if (inF || inA) continue;
+      if (y === 6 || x === 6) { if ((x + y) % 2 === 0) h += `<rect x="${x}" y="${y}" width="1" height="1" fill="${color}"/>`; continue; }
+      if (rnd() > 0.5) h += `<rect x="${x}" y="${y}" width="1" height="1" fill="${color}"/>`;
+    }
+    h += `<rect x="16" y="16" width="5" height="5" fill="${color}"/><rect x="17" y="17" width="3" height="3" fill="#fff"/><rect x="18" y="18" width="1" height="1" fill="${color}"/>`;
+    return `<svg class="qr" viewBox="-1 -1 27 27" shape-rendering="crispEdges">${h + finder(0, 0) + finder(18, 0) + finder(0, 18)}</svg>`;
+  };
+  // Code 128 look-alike: start and stop patterns around random 11-module symbols (decorative)
+  const c128 = (seed, symbols, h = 40) => {
+    const rnd = () => ((seed = (seed * 9301 + 49297) % 233280) / 233280);
+    let w = [2, 1, 1, 2, 1, 4]; // start B
+    for (let s = 0; s < symbols; s++) {
+      let p;
+      do { p = Array.from({ length: 6 }, () => 1 + Math.floor(rnd() * 4)); } while (p.reduce((a, b) => a + b, 0) !== 11);
+      w = w.concat(p);
+    }
+    w = w.concat([2, 3, 3, 1, 1, 1, 2]); // stop
+    let x = 10, r = "";
+    w.forEach((m, i) => { if (i % 2 === 0) r += `<rect x="${x}" y="0" width="${m}" height="${h}" fill="#111"/>`; x += m; });
+    return `<svg class="c128" viewBox="0 0 ${x + 10} ${h}" preserveAspectRatio="none" shape-rendering="crispEdges">${r}</svg>`;
+  };
+
+  document.getElementById("qrA").innerHTML = qrPattern(17) + "<small>SCAN FOR FULL TRAIL</small>";
+  document.getElementById("c128A").innerHTML = c128(5, 9);
+  document.getElementById("qrC").innerHTML = qrPattern(43) + "<small>SCAN ON DELIVERY</small>";
+  document.getElementById("c128C").innerHTML = c128(23, 12, 50);
+  document.getElementById("rackInf").innerHTML = qrPattern(61) + "<div>AISLE A<br>BAY 03 · LEVEL 2<br><b>Scan to put away</b></div>";
+
+  // [product, sku, batch, 12 digits of the EAN-13]
+  const STK = [
+    ["DIGITAL RICE COOKER 1.8L", "RC-1800", "B2410-031", "200180000031"],
+    ["ELECTRIC KETTLE 1.7L", "EK-1700", "B2410-032", "200170000032"],
+    ["AIR FRYER 4.5L", "AF-450", "B2410-033", "200045000033"],
+  ];
+  document.getElementById("liner").innerHTML = STK.map(([n, sku, b, d]) =>
+    `<div class="stk"><div class="t1"><span>DEMO TRADING</span><span>${sku}</span></div><div class="t2">${n}</div><div class="t3">Batch ${b}</div>${ean13(d, { h: 34, fs: 9 }).svg}</div>`).join("");
+</script>
+</body></html>

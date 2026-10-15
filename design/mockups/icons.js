@@ -54,6 +54,12 @@ const P = {
   image: '<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/>',
   heart: '<path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 00-7.8 7.8L12 21.2l8.8-8.8a5.5 5.5 0 000-7.8z"/>',
   leaf: '<path d="M11 20A7 7 0 019.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10z"/><path d="M2 21c0-3 1.9-5.4 5.1-6 2.4-.5 4.9-2 5.9-3"/>',
+  cart: '<circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2.5 3.5h2.8l2.4 11.1a1.8 1.8 0 001.8 1.4h8.2a1.8 1.8 0 001.7-1.3L21 8H6.1"/>',
+  truck: '<path d="M2.5 6.5h11v9.5h-11z"/><path d="M13.5 9.5h4l3 3.2V16h-7"/><circle cx="6.5" cy="17.5" r="1.9"/><circle cx="17" cy="17.5" r="1.9"/>',
+  stockin: '<path d="M12 2.5v8M8.5 7l3.5 3.5L15.5 7"/><path d="M3 13.5l2.2-4.5H8M21 13.5L18.8 9H16"/><path d="M3 13.5V20a1 1 0 001 1h16a1 1 0 001-1v-6.5h-5.5l-1.5 2.5h-4L7.5 13.5z"/>',
+  barcode: '<path d="M3 5v14M21 5v14M6.5 5v14M17.5 5v14"/><path d="M9.5 5v14M14.5 5v14M12 5v14" stroke-width="1.1"/>',
+  pin: '<path d="M12 21s-7-6.2-7-11.5a7 7 0 0114 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>',
+  layers: '<path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/>',
 };
 document.querySelectorAll("i[data-i]").forEach((el) => {
   const svg = `<svg class="i ${el.className}" viewBox="0 0 24 24" style="${el.getAttribute("style") || ""}">${P[el.dataset.i] || ""}</svg>`;

@@ -90,14 +90,15 @@ export function OtherSystems({ lang, current }: { lang: Locale; current: SystemK
         <h2 id="other-systems" className="text-center text-sm font-bold tracking-wide text-slate-500 uppercase" data-reveal>
           {t.product.otherSystems}
         </h2>
-        <ul className="mx-auto mt-5 grid max-w-5xl gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {/* Five other systems: rows that don't fill up stay centred */}
+        <ul className="mx-auto mt-5 flex max-w-6xl flex-wrap justify-center gap-3">
           {systems
             .filter((s) => s.key !== current)
             .map((s) => {
               const I = Icon[s.icon];
               return (
-                <li key={s.key} data-reveal>
-                  <Link href={lp(lang, s.path)} className="card group flex items-center gap-3 p-4 transition hover:-translate-y-0.5 hover:ring-brand-200">
+                <li key={s.key} className="w-full sm:w-[calc(50%-0.375rem)] lg:w-[calc(20%-0.6rem)]" data-reveal>
+                  <Link href={lp(lang, s.path)} className="card group flex h-full items-center gap-3 p-4 transition hover:-translate-y-0.5 hover:ring-brand-200">
                     <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600 ring-1 ring-brand-100">
                       <I className="h-5 w-5" />
                     </span>

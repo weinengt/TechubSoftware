@@ -1,0 +1,228 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<style>
+  /* The full trail of one batch (Digital Rice Cooker 1.8L, batch B2410-031), found by scanning its barcode:
+     stock in on GRN-2026-0412, put away, sold on INV-2026-1187, packed, delivered on DO-2026-0862.
+     The phone stands over the lower right corner in the moving picture, so the right column holds only extra detail. */
+  :root { --w: 1024px; --h: 720px; }
+  .top { gap: 10px; }
+  .btn svg { width: 15px; height: 15px; }
+  .search.on { margin-left: auto; width: 268px; color: var(--ink); font-weight: 650; background: #fff; border-color: #9bd8f3; box-shadow: 0 0 0 3px rgba(3,150,217,.12); font-variant-numeric: tabular-nums; letter-spacing: .02em; }
+  .search.on svg { color: var(--brand); }
+  .search.on .chip { margin-left: auto; letter-spacing: 0; }
+  .chip svg { width: 11px; height: 11px; stroke-width: 2.6; }
+  .content { gap: 12px; }
+  .rw { flex: 1; min-height: 0; display: flex; gap: 12px; }
+
+  /* Item card */
+  .item { width: 292px; flex-shrink: 0; display: flex; flex-direction: column; gap: 10px; }
+  .ih { display: flex; gap: 11px; align-items: center; }
+  .ih .pic { width: 56px; height: 56px; border-radius: 14px; background: #ec48991a; display: grid; place-items: center; flex-shrink: 0; }
+  .ih .pic svg { width: 46px; height: 46px; }
+  .ih b { display: block; font-size: 15px; font-weight: 800; letter-spacing: -.01em; }
+  .ih small { display: block; font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .codes { display: flex; gap: 12px; align-items: center; border: 1px dashed #cbd5e1; border-radius: 11px; padding: 10px 12px; background: #fcfdff; }
+  .codes .bcw { flex: 1; min-width: 0; }
+  .codes .bcw span { display: block; font-size: 10px; color: var(--muted); font-weight: 600; margin-bottom: 4px; text-transform: uppercase; letter-spacing: .05em; }
+  .codes svg.ean { width: 100%; height: auto; display: block; }
+  .codes .qrw { text-align: center; flex-shrink: 0; }
+  .codes svg.qr { width: 98px; height: 98px; display: block; }
+  .codes .qrw span { display: block; font-size: 9.5px; color: var(--muted); font-weight: 600; margin-top: 3px; }
+  .kv { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .kv div { background: #f8fafc; border-radius: 9px; padding: 7px 10px; }
+  .kv span { display: block; font-size: 10.5px; color: var(--muted); }
+  .kv b { font-size: 16px; font-weight: 800; letter-spacing: -.01em; font-variant-numeric: tabular-nums; }
+  .kv b small { font-size: 11px; font-weight: 600; color: var(--muted); letter-spacing: 0; }
+  .kv .on { background: var(--brand-50); } .kv .on b { color: #036295; }
+  .dl { display: flex; flex-direction: column; }
+  .dl div { display: flex; justify-content: space-between; gap: 10px; font-size: 11.5px; padding: 7px 0; border-top: 1px solid #f1f5f9; }
+  .dl div:first-child { border-top: 0; padding-top: 0; }
+  .dl span { color: var(--muted); } .dl b { font-weight: 650; color: var(--ink); white-space: nowrap; }
+  .found { margin-top: auto; display: flex; align-items: center; gap: 9px; border-radius: 10px; background: linear-gradient(135deg, #0b2f55, #0050a0 60%, #0396d9); color: #e0f2fe; padding: 10px 11px; font-size: 11px; line-height: 1.4; }
+  .found .sc { width: 30px; height: 30px; border-radius: 9px; background: rgba(255,255,255,.15); display: grid; place-items: center; flex-shrink: 0; }
+  .found .sc svg { width: 17px; height: 17px; color: #5eead4; }
+  .found b { color: #fff; display: block; font-size: 12px; }
+
+  /* Timeline */
+  .trail { flex: 1; min-width: 0; display: flex; flex-direction: column; padding: 13px 14px 12px; }
+  .trail h3 small { font-size: 11px; color: var(--muted); font-weight: 500; }
+  .steps { flex: 1; display: flex; flex-direction: column; justify-content: space-between; margin-top: 10px; }
+  .st { display: flex; gap: 11px; position: relative; padding: 8px 9px; margin: 0 -9px; border-radius: 11px; }
+  .st::before { content: ""; position: absolute; left: 25px; top: 44px; bottom: -18px; width: 2px; background: linear-gradient(#0396d9, #00cfcb); opacity: .35; }
+  .st:last-child::before { display: none; }
+  .st .node { width: 34px; height: 34px; border-radius: 99px; display: grid; place-items: center; flex-shrink: 0; color: #fff; position: relative; z-index: 1; box-shadow: 0 0 0 4px #fff; }
+  .st .node svg { width: 17px; height: 17px; stroke-width: 2.1; }
+  .st .sb { flex: 1; min-width: 0; }
+  .st .sh { display: flex; align-items: baseline; gap: 8px; }
+  .st .sh b { font-size: 13px; font-weight: 750; }
+  .st .sh .tm { margin-left: auto; font-size: 11px; font-weight: 650; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .st .sd { font-size: 11.5px; color: var(--ink2); margin-top: 2px; white-space: nowrap; }
+  .st .sm { display: flex; align-items: center; gap: 6px; margin-top: 6px; font-size: 11px; color: var(--muted); white-space: nowrap; }
+  .st .sm .av { width: 20px; height: 20px; font-size: 8.5px; }
+  .st .sm b { color: var(--ink2); font-weight: 650; }
+  .dc { display: inline-flex; align-items: center; gap: 4px; height: 21px; padding: 0 7px; border-radius: 6px; font-size: 10.5px; font-weight: 700; white-space: nowrap; background: #f1f5f9; color: #475569; }
+  .dc svg { width: 12px; height: 12px; stroke-width: 2.2; }
+  .dc.g { background: #dcfce7; color: #15803d; } .dc.b { background: var(--brand-100); color: #036295; } .dc.v { background: #ede9fe; color: #6d28d9; } .dc.a { background: #fef3c7; color: #b45309; }
+  .sm .dc:first-of-type { margin-left: auto; }
+  .st.hl { background: linear-gradient(135deg, #f0fdf4, #ecfdf5); box-shadow: inset 0 0 0 1px #a7f3d0; }
+  .sig { display: flex; align-items: center; gap: 10px; margin-top: 7px; }
+  .sig .pad { height: 34px; width: 120px; border-radius: 7px; background: #fff; border: 1px solid #d1fae5; display: flex; align-items: center; padding: 0 9px; color: #1e3a8a; font-size: 22px; line-height: 1; position: relative; }
+  .sig .pad::after { content: ""; position: absolute; left: 8px; right: 8px; bottom: 7px; border-bottom: 1px solid #cbd5e1; }
+  .sig .ph { width: 46px; height: 34px; border-radius: 7px; background: linear-gradient(135deg, #a8a29e, #57534e); position: relative; overflow: hidden; flex-shrink: 0; }
+  .sig .ph::before { content: ""; position: absolute; left: 9px; top: 9px; width: 24px; height: 19px; background: #d6b98c; border-radius: 2px; box-shadow: 4px -3px 0 #c4a574; }
+  .sig small { font-size: 10.5px; color: #047857; font-weight: 600; line-height: 1.35; }
+  .n-b { background: linear-gradient(135deg, #0396d9, #0287c4); } .n-a { background: linear-gradient(135deg, #f59e0b, #d97706); } .n-v { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
+  .n-s { background: linear-gradient(135deg, #64748b, #475569); } .n-t { background: linear-gradient(135deg, #14b8a6, #0d9488); } .n-g { background: linear-gradient(135deg, #22c55e, #16a34a); }
+
+  /* Right column (under the phone in the moving picture) */
+  .rt { width: 212px; flex-shrink: 0; display: flex; flex-direction: column; gap: 12px; }
+  .where { display: flex; flex-direction: column; }
+  .wl { display: flex; align-items: center; gap: 8px; padding: 7px 0; border-top: 1px solid #f1f5f9; font-size: 11.5px; color: var(--ink2); }
+  .wl:first-of-type { margin-top: 6px; border-top: 0; }
+  .wl i.sw { width: 8px; height: 8px; border-radius: 3px; display: inline-block; flex-shrink: 0; }
+  .wl b { margin-left: auto; color: var(--ink); font-weight: 750; font-variant-numeric: tabular-nums; }
+  .split { height: 8px; border-radius: 9px; overflow: hidden; display: flex; margin-top: 8px; background: #f1f5f9; }
+  .split i { display: block; height: 100%; }
+  .share { flex: 1; display: flex; flex-direction: column; }
+  .share p { font-size: 11px; color: var(--muted); margin-top: 4px; line-height: 1.45; }
+  .cust { margin-top: 10px; border: 1px solid var(--line); border-radius: 10px; padding: 9px 10px; }
+  .cust b { display: block; font-size: 11.5px; font-weight: 700; }
+  .cust small { display: block; font-size: 10.5px; color: var(--muted); margin-top: 1px; }
+  .cust .chip { margin-top: 6px; }
+</style></head>
+<body>
+<div class="app">
+  <aside class="side" data-shell="trade" data-active="Inventory"></aside>
+  <section class="main">
+    <header class="top">
+      <div><div class="sub">Inventory · Stock trail</div><h1>Batch B2410-031</h1></div>
+      <div class="search on"><i data-i="scan"></i><span id="code"></span><span class="chip g"><i data-i="check"></i>Scanned</span></div>
+      <span class="btn"><i data-i="print"></i>Print label</span>
+      <span class="btn pri"><i data-i="scan"></i>Scan</span>
+    </header>
+    <div class="content">
+      <div class="rw">
+        <div class="card item">
+          <div class="ih"><span class="pic" id="pic"></span><div><b>Digital Rice Cooker 1.8L</b><small>SKU RC-1800 · Kitchen appliances</small></div></div>
+          <div class="tags"><span class="chip b"><i data-i="layers"></i>Batch B2410-031</span><span class="chip s"><i data-i="file"></i>GRN-2026-0412</span><span class="chip a"><i data-i="pin"></i>A-03-2</span></div>
+          <div class="codes">
+            <div class="bcw"><span>Product barcode</span><div id="ean"></div></div>
+            <div class="qrw" id="qrw"></div>
+          </div>
+          <div class="kv">
+            <div><span>Received</span><b>120</b></div>
+            <div><span>Sold</span><b>24</b></div>
+            <div class="on"><span>On hand</span><b>96 <small>units</small></b></div>
+            <div><span>Returned</span><b>0</b></div>
+          </div>
+          <div class="dl">
+            <div><span>Supplier</span><b>Sample Home Appliances</b></div>
+            <div><span>Received</span><b>14 Oct 2026 · 9:20 AM</b></div>
+            <div><span>Unit cost</span><b>RM 89.00</b></div>
+            <div><span>Selling price</span><b>RM 139.00</b></div>
+          </div>
+          <div class="found"><span class="sc"><i data-i="scan"></i></span><div><b>Found by scanning in 0.2 s</b>Scan any unit, label or carton with a phone or scanner.</div></div>
+        </div>
+        <div class="card trail">
+          <h3><i data-i="layers" style="color:#0396d9"></i>Full activity <small>· every step, who and when</small></h3>
+          <div class="steps" id="steps"></div>
+        </div>
+        <div class="rt">
+          <div class="card where">
+            <h3><i data-i="pin" style="color:#0396d9"></i>Where it is now</h3>
+            <div class="split"><i style="width:80%;background:#0396d9"></i><i style="width:20%;background:#22c55e"></i></div>
+            <div class="wl"><i class="sw" style="background:#0396d9"></i>Rack A-03-2<b>96</b></div>
+            <div class="wl"><i class="sw" style="background:#22c55e"></i>Seri Maju Electrical<b>24</b></div>
+            <div class="wl"><i class="sw" style="background:#cbd5e1"></i>Damaged or lost<b>0</b></div>
+          </div>
+          <div class="card share">
+            <h3><i data-i="file" style="color:#0396d9"></i>Linked documents</h3>
+            <p>Every document for these 24 units, one tap away.</p>
+            <div class="cust"><b>INV-2026-1187</b><small>Sales invoice · Seri Maju</small><span class="chip g"><i data-i="check"></i>Journal posted</span></div>
+            <div class="cust"><b>DO-2026-0862</b><small>Delivery order · 9 cartons</small><span class="chip g"><i data-i="check"></i>Delivered 3:52 PM</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<script>
+  // Small product pictures (48px box), tinted with the item colour
+  const ILL = {
+    rc: (c) => `<rect x="20" y="7" width="8" height="4" rx="2" fill="#334155"/><path d="M8 22c0-6.5 7.2-10.5 16-10.5S40 15.5 40 22v14a6 6 0 01-6 6H14a6 6 0 01-6-6z" fill="${c}"/><path d="M8.5 22h31" stroke="#fff" stroke-width="1.6" opacity=".75"/><rect x="16" y="27" width="16" height="9" rx="2.5" fill="#fff" opacity=".92"/><circle cx="20.5" cy="31.5" r="1.6" fill="${c}"/><rect x="24" y="30.3" width="5" height="2.4" rx="1.2" fill="#94a3b8"/>`,
+    ek: (c) => `<rect x="17" y="6" width="12" height="4" rx="2" fill="#334155"/><path d="M16 10h14l4.5 30h-23z" fill="${c}"/><path d="M14.5 17L7 12.5v4.5l6.5 5.5z" fill="${c}"/><path d="M32 14c6 0 7.5 4.5 7.5 9.5S37 32 33.5 33" stroke="#334155" stroke-width="3" fill="none" stroke-linecap="round"/><rect x="9.5" y="40" width="27" height="4" rx="2" fill="#334155"/><rect x="21" y="20" width="4" height="12" rx="2" fill="#fff" opacity=".85"/>`,
+    af: (c) => `<rect x="10" y="5" width="28" height="38" rx="9" fill="${c}"/><circle cx="24" cy="14" r="4" fill="#fff" opacity=".92"/><circle cx="24" cy="14" r="1.5" fill="${c}"/><rect x="14" y="22" width="20" height="16" rx="4" fill="#1e293b"/><rect x="18.5" y="28" width="11" height="3.2" rx="1.6" fill="#94a3b8"/>`,
+    sf: (c) => `<circle cx="24" cy="16" r="12.5" fill="#fff" stroke="${c}" stroke-width="2.6"/><ellipse cx="24" cy="10" rx="3.6" ry="6" fill="${c}"/><ellipse cx="24" cy="10" rx="3.6" ry="6" fill="${c}" transform="rotate(120 24 16)"/><ellipse cx="24" cy="10" rx="3.6" ry="6" fill="${c}" transform="rotate(240 24 16)"/><circle cx="24" cy="16" r="2.6" fill="#334155"/><rect x="22.5" y="28.5" width="3" height="11" fill="#334155"/><ellipse cx="24" cy="41.5" rx="10" ry="3" fill="#334155"/>`,
+    si: (c) => `<path d="M17 21c0-6 3.5-9.5 9-9.5h9a4 4 0 014 4V21" stroke="#334155" stroke-width="3.2" fill="none" stroke-linecap="round"/><path d="M5 35c2.2-10 10-15.5 21.5-15.5H39a4 4 0 014 4V35z" fill="${c}"/><rect x="4" y="35" width="40" height="4.5" rx="2.2" fill="#94a3b8"/><circle cx="34" cy="27.5" r="2.6" fill="#fff" opacity=".9"/>`,
+    bl: (c) => `<rect x="12.5" y="3.5" width="23" height="4.5" rx="2" fill="#334155"/><path d="M14 8h20l-3 19H17z" fill="${c}" opacity=".45"/><path d="M19 13h10" stroke="#fff" stroke-width="1.6" opacity=".8"/><path d="M14.5 27h19l2.5 15H12z" fill="${c}"/><circle cx="24" cy="34.5" r="2.8" fill="#fff" opacity=".92"/>`,
+    led: (c) => `<path d="M24 4.5a12.5 12.5 0 00-7.3 22.6c1.3 1 2.1 2.5 2.1 4.1V33h10.4v-1.8c0-1.6.8-3.1 2.1-4.1A12.5 12.5 0 0024 4.5z" fill="${c}"/><path d="M20.5 15.5a4.5 4.5 0 014-3.5" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" opacity=".85"/><rect x="18.8" y="34" width="10.4" height="3" rx="1.2" fill="#94a3b8"/><rect x="18.8" y="38" width="10.4" height="3" rx="1.2" fill="#94a3b8"/><path d="M21 42h6l-1.2 3h-3.6z" fill="#334155"/>`,
+    es: (c) => `<rect x="3" y="17" width="36" height="14" rx="4" fill="${c}"/>${[0, 1, 2, 3].map((i) => `<rect x="${6.5 + i * 8}" y="20.5" width="6" height="7" rx="1.6" fill="#fff" opacity=".92"/>`).join("")}<path d="M39 24c4 0 5.5 3 5.5 6.5s-1.5 7-5 8" stroke="#334155" stroke-width="2.2" fill="none" stroke-linecap="round"/>`,
+  };
+  const art = (k, c) => `<svg class="ill" viewBox="0 0 48 48">${ILL[k](c)}</svg>`;
+  // EAN-13 barcode (real encoding, check digit added) and a QR-style pattern (decorative)
+  const ean13 = (d12, { h = 46, fs = 9, color = "#111", digits = true } = {}) => {
+    const L = ["0001101", "0011001", "0010011", "0111101", "0100011", "0110001", "0101111", "0111011", "0110111", "0001011"];
+    const G = ["0100111", "0110011", "0011011", "0100001", "0011101", "0111001", "0000101", "0010001", "0001001", "0010111"];
+    const R = ["1110010", "1100110", "1101100", "1000010", "1011100", "1001110", "1010000", "1000100", "1001000", "1110100"];
+    const P = ["LLLLLL", "LLGLGG", "LLGGLG", "LLGGGL", "LGLLGG", "LGGLLG", "LGGGLL", "LGLGLG", "LGLGGL", "LGGLGL"];
+    let s = 0;
+    for (let i = 0; i < 12; i++) s += +d12[i] * (i % 2 ? 3 : 1);
+    const code = d12 + ((10 - (s % 10)) % 10);
+    let bits = "101";
+    for (let i = 1; i <= 6; i++) bits += (P[+code[0]][i - 1] === "L" ? L : G)[+code[i]];
+    bits += "01010";
+    for (let i = 7; i <= 12; i++) bits += R[+code[i]];
+    bits += "101";
+    const guard = (i) => i < 3 || (i >= 45 && i < 50) || i >= 92;
+    const ox = 9, gh = digits ? 5 : 0;
+    let r = "";
+    for (let i = 0; i < 95; ) {
+      if (bits[i] !== "1") { i++; continue; }
+      let j = i;
+      while (j < 95 && bits[j] === "1" && guard(j) === guard(i)) j++;
+      r += `<rect x="${ox + i}" y="0" width="${j - i}" height="${guard(i) ? h + gh : h}" fill="${color}"/>`;
+      i = j;
+    }
+    const t = (x, str, ls) => `<text x="${x}" y="${h + fs - 0.5}" font-size="${fs}" font-family="DejaVu Sans Mono, monospace" fill="${color}" text-anchor="middle" letter-spacing="${ls}">${str}</text>`;
+    const txt = digits ? t(4, code[0], 0) + t(ox + 24 + 0.5, code.slice(1, 7), 0.95) + t(ox + 71 + 0.5, code.slice(7), 0.95) : "";
+    return { code, svg: `<svg class="ean" viewBox="0 0 108 ${h + (digits ? fs + 1 : 0)}" shape-rendering="crispEdges">${r}<g shape-rendering="auto">${txt}</g></svg>` };
+  };
+  const qrPattern = (seed, color = "#111") => {
+    const rnd = () => ((seed = (seed * 9301 + 49297) % 233280) / 233280);
+    const finder = (x, y) => `<rect x="${x}" y="${y}" width="7" height="7" fill="${color}"/><rect x="${x + 1}" y="${y + 1}" width="5" height="5" fill="#fff"/><rect x="${x + 2}" y="${y + 2}" width="3" height="3" fill="${color}"/>`;
+    let h = `<rect x="-1" y="-1" width="27" height="27" fill="#fff"/>`;
+    for (let y = 0; y < 25; y++) for (let x = 0; x < 25; x++) {
+      const inF = (x < 8 && y < 8) || (x > 16 && y < 8) || (x < 8 && y > 16);
+      const inA = x >= 16 && x <= 20 && y >= 16 && y <= 20;
+      if (inF || inA) continue;
+      if (y === 6 || x === 6) { if ((x + y) % 2 === 0) h += `<rect x="${x}" y="${y}" width="1" height="1" fill="${color}"/>`; continue; }
+      if (rnd() > 0.5) h += `<rect x="${x}" y="${y}" width="1" height="1" fill="${color}"/>`;
+    }
+    h += `<rect x="16" y="16" width="5" height="5" fill="${color}"/><rect x="17" y="17" width="3" height="3" fill="#fff"/><rect x="18" y="18" width="1" height="1" fill="${color}"/>`;
+    return `<svg class="qr" viewBox="-1 -1 27 27" shape-rendering="crispEdges">${h + finder(0, 0) + finder(18, 0) + finder(0, 18)}</svg>`;
+  };
+  document.getElementById("pic").innerHTML = art("rc", "#ec4899");
+  const bc = ean13("200180000031", { h: 62, fs: 9.5 });
+  document.getElementById("ean").innerHTML = bc.svg;
+  document.getElementById("code").textContent = bc.code;
+  document.getElementById("qrw").innerHTML = qrPattern(31) + "<span>Batch QR</span>";
+
+  // [node colour, icon, title, time, detail, [initials, avatar colour, name, role], docs [[chip colour, icon, text]], highlight]
+  const S = [
+    ["b", "stockin", "Stock in", "14 Oct · 9:20 AM", "+120 units from Sample Home Appliances, Shah Alam", ["RK", "#10b981", "Ravi Kumar", "Storekeeper"], [["s", "file", "GRN-2026-0412"]]],
+    ["s", "print", "Labels printed", "9:22 AM", "120 barcode and QR labels, one on every box", ["RK", "#10b981", "Ravi Kumar", "Storekeeper"], [["s", "barcode", "120 labels"]]],
+    ["a", "pin", "Put away", "9:48 AM", "120 units scanned onto rack A-03-2", ["AY", "#f59e0b", "Azman Yusof", "Storekeeper"], [["a", "pin", "A-03-2"]]],
+    ["v", "cart", "Sold", "11:05 AM", "24 units to Seri Maju Electrical, Klang", ["JW", "#ec4899", "Jessica Wong", "Sales"], [["g", "file", "INV-2026-1187"]]],
+    ["t", "box", "Packed", "11:40 AM", "24 units scanned into cartons 1 to 3 of 9", ["AY", "#f59e0b", "Azman Yusof", "Storekeeper"], [["s", "file", "Packing list"]]],
+    ["g", "truck", "Delivered", "3:52 PM", "24 units delivered to Seri Maju Electrical, Klang", ["HR", "#0396d9", "Hafiz Rahman", "Driver"], [["b", "file", "DO-2026-0862"]], "hl"],
+  ];
+  document.getElementById("steps").innerHTML = S.map(([c, ic, t, tm, d, [ini, ac, who, role], docs, hl], i) =>
+    `<div class="st ${hl || ""}" id="st${i}"><span class="node n-${c}"><i data-i="${ic}"></i></span><div class="sb">
+      <div class="sh"><b>${t}</b><span class="tm">${tm}</span></div><div class="sd">${d}</div>
+      <div class="sm"><span class="av" style="background:${ac}">${ini}</span><b>${who}</b>· ${role}${docs.map(([dc, di, dt]) => `<span class="dc ${dc}"><i data-i="${di}"></i>${dt}</span>`).join("")}</div>
+      ${hl ? `<div class="sig"><span class="dc g"><i data-i="check"></i>Stock in to delivery: 6 steps</span></div>` : ""}</div></div>`).join("");
+</script>
+<script src="shell.js"></script>
+<script src="icons.js"></script>
+</body></html>

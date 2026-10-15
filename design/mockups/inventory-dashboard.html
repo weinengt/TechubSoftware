@@ -1,0 +1,180 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<style>
+  /* Inventory & ERP dashboard for a household and electrical goods wholesaler (Demo Trading · Puchong).
+     The day's story runs through the other inventory-* screens: GRN-2026-0412 in the morning, INV-2026-1187 to
+     Seri Maju Electrical, DO-2026-0862 delivered, then 2 air fryers returned on CN-2026-0093.
+     The phone stands over the lower right corner in the moving picture, so the right column holds nothing the moments point at. */
+  :root { --w: 1024px; --h: 720px; }
+  .search { white-space: nowrap; width: 236px; }
+  .btn svg { width: 15px; height: 15px; }
+  .content { gap: 12px; }
+  .stat { padding: 10px 12px; gap: 11px; }
+  .stat .ic { width: 36px; height: 36px; }
+  .stat .v { font-size: 19px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .stat .d { white-space: nowrap; }
+  .stat .d.n { color: var(--muted); font-weight: 500; }
+  .grid { flex: 1; min-height: 0; display: flex; gap: 12px; }
+  .col { display: flex; flex-direction: column; gap: 12px; min-height: 0; }
+  .card h3 small { font-size: 11px; color: var(--muted); font-weight: 500; }
+
+  /* Live activity feed */
+  .feed { flex: 1; min-width: 0; display: flex; flex-direction: column; padding: 13px 14px 6px; }
+  .live { display: inline-flex; align-items: center; gap: 5px; margin-left: 4px; font-size: 10.5px; font-weight: 650; color: #15803d; background: #dcfce7; padding: 3px 8px; border-radius: 99px; }
+  .live i { width: 6px; height: 6px; border-radius: 99px; background: #22c55e; box-shadow: 0 0 0 3px rgba(34,197,94,.2); }
+  .evs { flex: 1; display: flex; flex-direction: column; justify-content: space-between; margin-top: 8px; }
+  .ev { display: flex; gap: 10px; position: relative; padding: 7px 8px; margin: 0 -8px; border-radius: 10px; }
+  .ev::before { content: ""; position: absolute; left: 79px; top: 40px; bottom: -14px; width: 2px; background: #eef2f7; }
+  .ev:last-child::before { display: none; }
+  .ev time { width: 52px; flex-shrink: 0; text-align: right; font-size: 11px; font-weight: 700; color: var(--muted); padding-top: 8px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .ev .dot { width: 32px; height: 32px; border-radius: 10px; display: grid; place-items: center; flex-shrink: 0; position: relative; z-index: 1; }
+  .ev .dot svg { width: 16px; height: 16px; }
+  .ev .bd { flex: 1; min-width: 0; }
+  .ev .tt { display: flex; align-items: baseline; gap: 8px; }
+  .ev .tt b { font-size: 12.5px; font-weight: 700; white-space: nowrap; }
+  .ev .tt span { margin-left: auto; font-size: 10.5px; color: var(--muted); font-weight: 500; white-space: nowrap; }
+  .ev .dt { font-size: 11px; color: var(--ink2); margin-top: 2px; white-space: nowrap; }
+  .docs { display: flex; gap: 4px; margin-top: 6px; flex-wrap: nowrap; }
+  .dc { display: inline-flex; align-items: center; gap: 4px; height: 21px; padding: 0 6px; border-radius: 6px; font-size: 10.5px; font-weight: 650; white-space: nowrap; background: #f1f5f9; color: #475569; }
+  .dc svg { width: 12px; height: 12px; stroke-width: 2.2; }
+  .dc.g { background: #dcfce7; color: #15803d; } .dc.b { background: var(--brand-100); color: #036295; } .dc.v { background: #ede9fe; color: #6d28d9; }
+  .dc.a { background: #fef3c7; color: #b45309; } .dc.t { background: #ccfbf1; color: #0f766e; } .dc.r { background: #fee2e2; color: #b91c1c; }
+  .ev.hl { background: linear-gradient(90deg, #f2fbff, #f8fdff); box-shadow: inset 0 0 0 1px #d6f0fc; }
+  .d-b { background: var(--brand-50); color: var(--brand); } .d-a { background: #fffbeb; color: #d97706; } .d-v { background: #f5f3ff; color: var(--violet); }
+  .d-t { background: #f0fdfa; color: #0d9488; } .d-g { background: #ecfdf5; color: var(--green); } .d-r { background: #fef2f2; color: var(--red); }
+
+  /* Sales chart */
+  .mid { width: 250px; flex-shrink: 0; }
+  .sales { display: flex; flex-direction: column; }
+  .sales .tot { margin-top: 7px; font-size: 20px; font-weight: 800; letter-spacing: -.02em; white-space: nowrap; line-height: 1.15; }
+  .sales .tot small { display: block; font-size: 10.5px; color: #059669; font-weight: 650; letter-spacing: 0; margin-top: 1px; }
+  .bars { height: 96px; display: flex; align-items: flex-end; gap: 8px; margin-top: 27px; padding-bottom: 18px; position: relative; }
+  .bars div { flex: 1; border-radius: 5px 5px 2px 2px; background: #d6f0fc; position: relative; }
+  .bars div.on { background: linear-gradient(180deg, #2fb1e6, #0396d9); }
+  .bars div span { position: absolute; bottom: -17px; left: -4px; right: -4px; text-align: center; font-size: 9.5px; color: var(--muted); font-weight: 600; }
+  .bars div.on span { color: var(--ink); font-weight: 750; }
+  .bars .tip { position: absolute; bottom: calc(100% + 7px); right: -8px; background: #0f172a; color: #fff; border-radius: 7px; padding: 4px 8px; font-size: 10.5px; font-weight: 700; white-space: nowrap; }
+  .bars .tip::after { content: ""; position: absolute; right: 17px; bottom: -4px; width: 8px; height: 8px; background: #0f172a; transform: rotate(45deg); border-radius: 1px; }
+  .bars .tip small { color: #94a3b8; font-weight: 500; }
+
+  /* Documents made today */
+  .auto { flex: 1; display: flex; flex-direction: column; }
+  .auto p { font-size: 11px; color: var(--muted); margin-top: 3px; }
+  .dr { display: flex; align-items: center; gap: 9px; padding: 4px 0; border-top: 1px dashed #e3e9f0; font-size: 12px; color: var(--ink2); }
+  .dr:first-of-type { margin-top: 8px; }
+  .dr .fi { width: 24px; height: 26px; border-radius: 6px; display: grid; place-items: center; flex-shrink: 0; }
+  .dr .fi svg { width: 13px; height: 13px; stroke-width: 2.1; }
+  .dr b { margin-left: auto; font-weight: 750; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .fi.g { background: #dcfce7; color: #15803d; } .fi.b { background: var(--brand-100); color: #036295; } .fi.t { background: #ccfbf1; color: #0f766e; }
+  .fi.v { background: #ede9fe; color: #6d28d9; } .fi.s { background: #f1f5f9; color: #475569; } .fi.a { background: #fef3c7; color: #b45309; }
+  .easy { margin-top: auto; border-radius: 10px; background: linear-gradient(135deg, #ecfdf5, #d1fae5); border: 1px solid #a7f3d0; color: #065f46; font-size: 11.5px; font-weight: 700; padding: 8px 10px; line-height: 1.35; }
+  .easy small { display: block; font-weight: 500; color: #047857; font-size: 10.5px; margin-top: 1px; }
+
+  /* Right column (under the phone in the moving picture) */
+  .rt { width: 212px; flex-shrink: 0; }
+  .low { display: flex; align-items: center; gap: 8px; padding: 7px 0; border-top: 1px solid #f1f5f9; }
+  .low:first-of-type { margin-top: 6px; border-top: 0; }
+  .low b { display: block; font-size: 11.5px; font-weight: 650; white-space: nowrap; }
+  .low small { display: block; font-size: 10.5px; color: #dc2626; font-weight: 600; margin-top: 1px; }
+  .meter { width: 40px; height: 6px; border-radius: 9px; background: #f1f5f9; margin-left: auto; overflow: hidden; flex-shrink: 0; }
+  .meter i { display: block; height: 100%; border-radius: 9px; background: var(--red); }
+  .po { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 8px; height: 30px; border-radius: 8px; border: 1px solid #cfe3f2; color: #036295; font-size: 11px; font-weight: 700; }
+  .po svg { width: 13px; height: 13px; }
+  .trk { display: flex; gap: 8px; align-items: flex-start; padding: 8px 0; border-top: 1px solid #f1f5f9; }
+  .trk:first-of-type { margin-top: 6px; border-top: 0; }
+  .trk .ti { width: 28px; height: 28px; border-radius: 8px; background: var(--brand-50); color: var(--brand); display: grid; place-items: center; flex-shrink: 0; }
+  .trk .ti svg { width: 15px; height: 15px; }
+  .trk b { display: block; font-size: 11.5px; font-weight: 700; white-space: nowrap; }
+  .trk small { display: block; font-size: 10.5px; color: var(--muted); margin-top: 1px; white-space: nowrap; }
+  .trk .bar { height: 5px; border-radius: 9px; background: #e2e8f0; margin-top: 5px; overflow: hidden; }
+  .trk .bar i { display: block; height: 100%; background: linear-gradient(90deg, #0396d9, #00cfcb); border-radius: 9px; }
+</style></head>
+<body>
+<div class="app">
+  <aside class="side" data-shell="trade" data-active="Dashboard"></aside>
+  <section class="main">
+    <header class="top">
+      <div><h1>Good afternoon, Henry</h1><div class="sub">Wednesday, 14 October 2026 · Puchong warehouse</div></div>
+      <div class="search"><i data-i="scan"></i>Scan or search SKU, batch…</div>
+      <span class="btn"><i data-i="bell"></i></span>
+      <span class="btn pri"><i data-i="stockin"></i>New stock in</span>
+    </header>
+    <div class="content">
+      <div class="stats">
+        <div class="stat"><span class="ic b"><i data-i="box"></i></span><div><div class="k">Stock value</div><div class="v">RM 842,360</div><div class="d">+RM 56,650 in today</div></div></div>
+        <div class="stat"><span class="ic v"><i data-i="cart"></i></span><div><div class="k">Today's sales</div><div class="v">RM 38,460</div><div class="d">▲ 9% vs last Wed</div></div></div>
+        <div class="stat"><span class="ic g"><i data-i="truck"></i></span><div><div class="k">Deliveries out today</div><div class="v">9 of 11</div><div class="d" style="color:#0396d9">2 on the road</div></div></div>
+        <div class="stat"><span class="ic r"><i data-i="alert"></i></span><div><div class="k">Low stock</div><div class="v">6 items</div><div class="d" style="color:#dc2626">Reorder suggested</div></div></div>
+      </div>
+      <div class="grid">
+        <div class="card feed">
+          <h3><i data-i="layers" style="color:#0396d9"></i>Live activity<span class="live"><i></i>Live</span><span class="more">View all →</span></h3>
+          <div class="evs" id="feed"></div>
+        </div>
+        <div class="col mid">
+          <div class="card sales">
+            <h3><i data-i="chart" style="color:#0396d9"></i>Sales <small>· last 7 days</small></h3>
+            <div class="tot">RM 288,400<small>▲ 6% vs week before</small></div>
+            <div class="bars" id="bars"></div>
+          </div>
+          <div class="card auto">
+            <h3><i data-i="spark" style="color:#0396d9"></i>Made automatically today</h3>
+            <p>Each sale, delivery and return.</p>
+            <div id="docs"></div>
+            <div class="easy">No accounting knowledge needed<small>Your books stay right on their own.</small></div>
+          </div>
+        </div>
+        <div class="col rt">
+          <div class="card">
+            <h3><i data-i="alert" style="color:#dc2626"></i>Low stock<span class="chip r" style="margin-left:auto">6</span></h3>
+            <div id="low"></div>
+            <div class="po"><i data-i="file"></i>Create purchase order</div>
+          </div>
+          <div class="card" style="flex:1">
+            <h3><i data-i="truck" style="color:#0396d9"></i>On the road</h3>
+            <div id="road"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<script>
+  // [time, dot colour, icon, title, staff, detail, docs [[chip colour, icon, text]], highlight]
+  const EV = [
+    ["4:31 PM", "r", "undo", "Return · 2 × Air Fryer 4.5L", "Jessica Wong", "From INV-2026-1187 · back to rack A-05-3", [["v", "file", "CN-2026-0093 · RM 378.00"], ["g", "check", "Accounts reversed"]]],
+    ["3:52 PM", "g", "truck", "Delivered · DO-2026-0862", "Hafiz Rahman", "Seri Maju Electrical, Klang · 9 cartons", [["b", "barcode", "Cartons scanned out"], ["g", "check", "Trail updated"]]],
+    ["1:26 PM", "t", "money", "Payment in · RM 6,240.00", "Lee Mei Chen", "Lim Brothers Hardware, Shah Alam · DuitNow", [["t", "file", "Receipt OR-2026-0544"], ["g", "check", "Ledger updated"]]],
+    ["11:05 AM", "v", "cart", "Sale · INV-2026-1187 · RM 10,277.40", "Jessica Wong", "Seri Maju Electrical, Klang · stock −122 units", [["b", "truck", "DO-2026-0862"], ["t", "shield", "e-Invoice validated"]]],
+    ["9:48 AM", "a", "pin", "Put away · 8 batches", "Azman Yusof", "1,240 units scanned onto racks A, B and C", [["a", "barcode", "Scanned to shelf"]]],
+    ["9:20 AM", "b", "stockin", "Batch stock in · GRN-2026-0412", "Ravi Kumar", "1,240 units · 8 batches · Sample Home Appliances", [["s", "print", "1,240 labels printed"], ["g", "file", "Bill to Accounts"]], "hl"],
+  ];
+  document.getElementById("feed").innerHTML = EV.map(([t, c, ic, tt, who, dt, docs, hl], i) =>
+    `<div class="ev ${hl || ""}" id="ev${i}"><time>${t}</time><span class="dot d-${c}"><i data-i="${ic}"></i></span><div class="bd">
+      <div class="tt"><b>${tt}</b><span>${who}</span></div><div class="dt">${dt}</div>
+      <div class="docs">${docs.map(([dc, di, dtx]) => `<span class="dc ${dc}"><i data-i="${di}"></i>${dtx}</span>`).join("")}</div></div></div>`).join("");
+
+  // Sales, last 7 trading days (RM). Today so far: RM 38,460
+  const B = [["Wed", 44120], ["Thu", 39780], ["Fri", 52640], ["Sat", 24310], ["Mon", 47860], ["Tue", 41230], ["Today", 38460]];
+  const max = 56000;
+  document.getElementById("bars").innerHTML = B.map(([d, v], i) =>
+    `<div class="${i === B.length - 1 ? "on" : ""}" style="height:${(v / max * 100).toFixed(1)}%"><span>${d}</span>${i === B.length - 1 ? `<em class="tip">RM 38,460 <small>so far</small></em>` : ""}</div>`).join("");
+  document.querySelectorAll(".bars em").forEach((e) => (e.style.fontStyle = "normal"));
+
+  document.getElementById("docs").innerHTML = [
+    ["g", "file", "Invoices", 14], ["b", "truck", "Delivery orders", 11], ["t", "file", "Receipts", 9],
+    ["v", "file", "Credit notes", 1], ["s", "layers", "Journal entries", 41], ["a", "shield", "e-Invoices validated", 15],
+  ].map(([c, i, n, v]) => `<div class="dr"><span class="fi ${c}"><i data-i="${i}"></i></span>${n}<b>${v}</b></div>`).join("");
+
+  document.getElementById("low").innerHTML = [
+    ["Ceiling Fan 56 inch", "4 left · 2 days", 14], ["Rice Cooker 1.0L", "6 left · 3 days", 20],
+    ["Power Socket 6-way", "9 left · 4 days", 26], ["Electric Kettle 1.0L", "12 left · 5 days", 32],
+  ].map(([n, s, p]) => `<div class="low"><div><b>${n}</b><small>${s}</small></div><span class="meter"><i style="width:${p}%"></i></span></div>`).join("");
+
+  document.getElementById("road").innerHTML = [
+    ["DO-2026-0865", "Mutiara Home Centre", "Shah Alam · ETA 5:20 PM", 70], ["DO-2026-0866", "Kedai Elektrik Rahmat", "Klang · ETA 5:45 PM", 45],
+  ].map(([d, c, e, p]) => `<div class="trk"><span class="ti"><i data-i="truck"></i></span><div style="flex:1;min-width:0"><b>${d}</b><small>${c}</small><small>${e}</small><div class="bar"><i style="width:${p}%"></i></div></div></div>`).join("");
+</script>
+<script src="shell.js"></script>
+<script src="icons.js"></script>
+</body></html>

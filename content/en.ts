@@ -27,6 +27,7 @@ const en = {
     emailSubject: "Enquiry about Techub system",
     priceLine: "From RM {price}/month · {months} months free",
     livePriceLine: "From RM {livePrice}/month",
+    getQuote: "Get a Quote",
     enlarge: "Enlarge picture",
   },
 
@@ -126,11 +127,26 @@ const en = {
       ],
       cta: "See the live selling system",
     },
+    inventory: {
+      label: "Inventory & ERP",
+      name: "Inventory & ERP System",
+      blurb: "Stock, sales and accounting in one, no accounting knowledge needed.",
+      points: [
+        "Batch stock in, with labels printed",
+        "Every item tracked from stock in to delivery",
+        "Barcode printing and QR codes",
+        "Sales linked to stock and accounting",
+        "Accounting documents made automatically",
+        "One-click returns with credit or refund notes",
+        "Every staff action tracked, your data protected",
+      ],
+      cta: "See the inventory system",
+    },
   },
 
   footer: {
     blurb:
-      "{name} is a software company based in Malaysia. We build smart, low-cost systems for clinics, hair salons, beauty centres, spas and live sellers across Malaysia, and custom systems such as ERP, AI object detection and number plate scanners. {uptime} uptime guarantee, from RM {price}/month.",
+      "{name} is a software company based in Malaysia. We build smart, low-cost systems for clinics, hair salons, beauty centres, spas, live sellers and trading companies across Malaysia, and custom systems such as AI object detection and number plate scanners. {uptime} uptime guarantee, from RM {price}/month.",
     useCases: "Use cases",
     custom: "Custom systems",
     company: "Company",
@@ -300,6 +316,16 @@ const en = {
         receipt: { title: "Receipt sent on WhatsApp", text: "Order #LS-24180 confirmed" },
         activity: { title: "Staff activity tracked", text: "Buyer list export blocked" },
       },
+      inventory: {
+        stockIn: { title: "1,240 units in, 8 batches", text: "Labels printed, bill to Accounts" },
+        scan: { title: "Found by scan in 0.2 s", text: "96 on hand at rack A-03-2" },
+        trail: { title: "Delivered at 3:52 PM", text: "Every step: who, when, which doc" },
+        sale: { title: "Done for you automatically", text: "Invoice, DO, stock & journal" },
+        return: { title: "One click: Return", text: "2 Air Fryers back on the rack" },
+        creditNote: { title: "Credit note made by itself", text: "CN-2026-0093 · RM 378.00" },
+        report: { title: "Report ready in 74 ms", text: "48,326 records" },
+        activity: { title: "Staff activity tracked", text: "Export blocked for Farid" },
+      },
       contact: {
         whatsapp: { title: "WhatsApp reminder sent", text: "Wen Qi tapped Confirm" },
         deposit: { title: "Deposit paid · RM 50", text: "Straight into your account" },
@@ -433,7 +459,7 @@ const en = {
   useCases: {
     eyebrow: "Use cases",
     title: "Ready for your industry",
-    intro: "Built for clinics, salons, beauty centres, spas and live sellers in Malaysia. Tap one to see its system on iPad and phone.",
+    intro: "Built for clinics, salons, beauty centres, spas, live sellers and trading companies in Malaysia. Tap one to see its system on iPad and phone.",
   },
 
   custom: {
@@ -472,6 +498,8 @@ const en = {
       whatsapp: { title: "WhatsApp notifications", text: "Booking confirmations and reminders go out automatically." },
       hardware: { title: "Multi-hardware connect", text: "Label printers, number calling systems, X-ray machines and more." },
       einvoice: { title: "LHDN e-Invoice", text: "e-Invoices submitted to LHDN through MyInvois." },
+      tracking: { title: "Barcode & QR tracking", text: "Print barcodes and QR codes, and follow every item from stock in to delivery." },
+      accounting: { title: "Automatic accounting", text: "Sales and returns make their own invoices, credit notes and refund notes." },
     },
     hub: {
       center: "Techub Cloud",
@@ -585,6 +613,28 @@ const en = {
           "Submitted to LHDN through MyInvois",
           "Validated e-Invoice with QR code",
           "Records kept for every invoice",
+        ],
+      },
+      tracking: {
+        eyebrow: "Barcode & QR tracking",
+        title: "Follow every item, *stock in to delivery*",
+        points: [
+          "Print barcode labels and generate QR codes",
+          "Scan with a phone or a barcode scanner",
+          "A full activity list for every item and batch",
+          "Who did each step, and when",
+        ],
+        cta: "Ask about inventory tracking",
+        ctaMessage: "Hi Techub, I'd like to know more about the Inventory & ERP System.",
+      },
+      accounting: {
+        eyebrow: "Automatic accounting",
+        title: "Accounting documents, *made for you*",
+        points: [
+          "Sales linked to stock and accounting",
+          "Invoices, delivery orders and entries made automatically",
+          "One-click returns create the credit note or refund note",
+          "No accounting knowledge needed",
         ],
       },
       extraction: {
@@ -999,7 +1049,7 @@ const en = {
       meta: {
         title: "Clinic, Salon, Beauty, Spa & Live Selling Systems Malaysia",
         description:
-          "Ready systems for clinics, hair salons, beauty centres, spas and live sellers in Kuala Lumpur, Johor Bahru, Penang and all of Malaysia: WhatsApp reminders, stock control and fast reports.",
+          "Ready systems for clinics, hair salons, beauty centres, spas, live sellers and trading companies in Kuala Lumpur, Johor Bahru, Penang and all of Malaysia: WhatsApp reminders, inventory and ERP, fast reports.",
       },
     },
     customSystems: {
@@ -1931,6 +1981,187 @@ const en = {
         text: "From RM {livePrice}/month, for online sellers across Malaysia.",
       },
     },
+    inventory: {
+      meta: {
+        title: "Inventory Management & ERP System Malaysia | KL, JB & Penang",
+        socialTitle: "Inventory & ERP System Malaysia | Techub Software",
+        description:
+          "Inventory management and ERP system for businesses in Kuala Lumpur, Johor Bahru, Penang and all of Malaysia: batch stock in, barcode and QR, sales and accounting linked, one-click returns.",
+        keywords: [
+          "inventory management system Malaysia",
+          "inventory system Malaysia",
+          "stock control system Malaysia",
+          "ERP system Malaysia",
+          "ERP software Malaysia",
+          "barcode inventory system",
+          "QR code inventory system",
+          "stock tracking system",
+          "sales and accounting system Malaysia",
+          "credit note and refund note",
+          "sistem inventori",
+          "库存管理系统",
+        ],
+      },
+      category: "Inventory, sales and accounting (ERP)",
+      eyebrow: "Inventory & ERP System",
+      heading: "Stock, sales and accounting, *all in one*",
+      intro:
+        "For trading companies, wholesalers and retailers in Malaysia: stock in by batch, print barcodes and QR codes, and follow every item from stock in to delivery. Sales and returns make their own accounting documents, so your staff need no accounting knowledge.",
+      whoFor: ["Trading companies", "Wholesalers & distributors", "Retail shops", "Hardware & electrical", "Food & beverage supply", "Online sellers", "Warehouses"],
+      highlights: {
+        batch: "Batch stock in",
+        trail: "Full stock trail",
+        barcode: "Barcode & QR codes",
+        sales: "Sales linked to stock",
+        accounting: "Accounting done for you",
+        returns: "One-click returns",
+      },
+      spotlights: {
+        stockIn: {
+          eyebrow: "Batch stock in",
+          title: "Stock in a whole delivery *in one go*",
+          points: [
+            "Receive many products and batches at once",
+            "Batch number, quantity and location on every line",
+            "Barcode and QR labels printed for the batch",
+            "Linked to accounting automatically",
+          ],
+        },
+        trail: {
+          eyebrow: "Stock activity tracking",
+          title: "Follow every item from *stock in to delivery*",
+          points: [
+            "A full activity list for every item and batch",
+            "Stock in, put away, sold, packed and delivered",
+            "Who did each step, and when",
+            "Scan a barcode or QR code to see it all",
+          ],
+        },
+        labels: {
+          eyebrow: "Barcode & QR codes",
+          title: "Print barcodes, generate QR codes",
+          points: [
+            "Barcode labels for every product",
+            "QR codes for batches and cartons",
+            "Scan with a phone or a barcode scanner",
+            "Works with label printers",
+          ],
+        },
+        sales: {
+          eyebrow: "Sales & accounting",
+          title: "Every sale does the accounting *for you*",
+          points: [
+            "Sales linked to stock and accounting",
+            "Invoice, delivery order and entries made automatically",
+            "Stock deducted the moment you sell",
+            "No accounting knowledge needed",
+          ],
+        },
+        returns: {
+          eyebrow: "One-click returns",
+          title: "Returns in one click, *notes made for you*",
+          points: [
+            "Click Return on the invoice, that's all",
+            "Stock goes back in automatically",
+            "Credit note or refund note created by itself",
+            "Accounts updated, no manual entries",
+          ],
+        },
+        reports: {
+          eyebrow: "Reports in under 100 ms",
+          title: "Your sales and stock, *in numbers*",
+          points: [
+            "Sales, best sellers and slow movers",
+            "Stock value and stock on hand",
+            "Detailed reports in under 100 ms",
+            "On your phone, iPad or PC",
+          ],
+        },
+        permissions: {
+          eyebrow: "Staff activity tracking",
+          title: "Track every staff action, *protect* your stock",
+          points: [
+            "See who did what, and when",
+            "Owner, account, sales, storekeeper and driver roles",
+            "Approval for stock adjustments and price changes",
+            "Your business data stays protected",
+          ],
+        },
+      },
+      modules: {
+        batch: "Batch stock in",
+        barcode: "Barcode printing",
+        qr: "QR code generation",
+        scan: "Scan with phone or scanner",
+        trail: "Full stock activity trail",
+        levels: "Real-time stock levels",
+        delivery: "Delivery tracking",
+        sales: "Sales & invoicing",
+        orders: "Delivery orders",
+        returns: "One-click returns",
+        notes: "Automatic credit & refund notes",
+        accounting: "Automatic accounting entries",
+        einvoice: "LHDN e-Invoice",
+        reports: "Detailed reports in under 100 ms",
+        permissions: "Activity tracking & permissions",
+        devices: "Works on phone, iPad & PC",
+      },
+      faqs: [
+        {
+          q: "What is the Techub Inventory & ERP System?",
+          a: "It is an inventory, sales and accounting system in one, for businesses in Malaysia. You stock in by batch, print barcodes and QR codes, and track every item from stock in to delivery. Sales and returns create their own accounting documents automatically.",
+        },
+        {
+          q: "Can I stock in many items at once?",
+          a: "Yes. Batch stock in lets you receive a whole delivery in one go, with the batch number, quantity and location on every line, and print the barcode and QR labels for it.",
+        },
+        {
+          q: "Can I track each item from stock in to delivery?",
+          a: "Yes. Every item and batch has a full activity list: stock in, put away, sold, packed and delivered, with who did each step and when. Scan its barcode or QR code to see the whole trail.",
+        },
+        {
+          q: "Does it print barcodes and QR codes?",
+          a: "Yes. Print barcode labels for your products and generate QR codes for batches and cartons, then scan them with a phone or a barcode scanner.",
+        },
+        {
+          q: "Which inventory system in Malaysia links stock, sales and accounting?",
+          a: "Techub's Inventory & ERP System. Stock in, sales, deliveries and returns update your stock and your accounts automatically, with every accounting document made for you. It runs on enterprise servers in Malaysia.",
+        },
+        {
+          q: "Do my staff need accounting knowledge?",
+          a: "No. Sales and accounting are linked, so each sale makes its invoice, delivery order and accounting entries automatically. Your staff just sell and deliver.",
+        },
+        {
+          q: "How do returns work?",
+          a: "Click Return on the invoice. The stock goes back in, and the system creates a credit note or a refund note automatically and updates your accounts.",
+        },
+        {
+          q: "How much is the Inventory & ERP System?",
+          a: "It is priced for your business, based on what you need. WhatsApp us at {phone} for a clear quote.",
+        },
+        {
+          q: "Can I see what each staff member does in the system?",
+          a: "Yes. Techub records every staff action, such as a stock adjustment, a price change or a return, with who did it and when. You choose what each role can do.",
+        },
+        {
+          q: "How do I book a demo?",
+          a: "WhatsApp us at {phone} or email {email}. We will show you the Inventory & ERP System working, with your own products.",
+        },
+      ],
+      demoMessage: "Hi Techub, I'd like a free demo of the Inventory & ERP System.",
+      quoteMessage: "Hi Techub, I'd like a quote for the Inventory & ERP System.",
+      quote: {
+        eyebrow: "Pricing",
+        title: "Priced for *your business*",
+        text: "Every business stocks and sells differently, so we quote for what you need. Tell us about your products, branches and team on WhatsApp.",
+        points: ["A clear quote before we start", "Local support in Malaysia on WhatsApp", "Enterprise servers in Malaysia"],
+      },
+      contact: {
+        badge: "Get a quote",
+        title: "See the Inventory & ERP System in action",
+        text: "Priced for your business, for companies across Malaysia.",
+      },
+    },
   },
 
   /* ---------- Example screens: picture titles and alt text ---------- */
@@ -2292,12 +2523,13 @@ const en = {
       a: "Yes. Techub serves {who} in Kuala Lumpur and the Klang Valley, Johor Bahru, Penang and every other state in Malaysia, with support on WhatsApp. Everything runs on enterprise servers in Malaysia.",
     },
     pages: {
-      useCases: { phrase: "Business systems", who: "clinics, salons, spas, beauty centres and live sellers" },
+      useCases: { phrase: "Business systems", who: "clinics, salons, spas, beauty centres, live sellers and trading companies" },
       clinic: { phrase: "Clinic management system", who: "clinics" },
       salon: { phrase: "Salon booking system", who: "hair salons" },
       beauty: { phrase: "Beauty appointment system", who: "beauty centres" },
       spa: { phrase: "Spa and massage booking system", who: "spas and massage centres" },
       live: { phrase: "Live selling system", who: "live sellers" },
+      inventory: { phrase: "Inventory management system", who: "trading companies, wholesalers and retailers" },
       customSystems: { phrase: "Custom software development", who: "businesses" },
       customisation: { phrase: "Software customisation", who: "businesses" },
       migration: { phrase: "Data migration", who: "businesses" },
@@ -2538,6 +2770,42 @@ const en = {
     eInvoice: {
       title: "LHDN e-Invoice",
       alt: "An e-Invoice validated through LHDN MyInvois, with its unique identifier and QR code",
+    },
+    inventoryDashboard: {
+      title: "Inventory & ERP dashboard on iPad",
+      alt: "Techub inventory and ERP dashboard on an iPad showing stock value, today's sales, deliveries, a live activity feed from batch stock in to a return, and the accounting documents made automatically",
+    },
+    stockIn: {
+      title: "Batch stock in",
+      alt: "Batch stock in on an iPad: 1,240 units in 8 batches posted at once, each with its rack, barcode and QR labels printed and the supplier bill sent to Accounts",
+    },
+    stockTrail: {
+      title: "Full stock activity trail",
+      alt: "Stock activity trail of one batch on an iPad, from stock in, labels and put away to sale, packing and delivery, showing who did each step, when, and on which document",
+    },
+    barcodeLabels: {
+      title: "Barcode & QR labels",
+      alt: "Printed batch label with a QR code, product barcode stickers, a rack label and a carton label for a delivery order",
+    },
+    erpSales: {
+      title: "Sales linked to accounting",
+      alt: "Sales invoice on an iPad with the rest done automatically: delivery order, stock deducted, journal entries, customer ledger and LHDN e-Invoice",
+    },
+    erpReturn: {
+      title: "One-click return & credit note",
+      alt: "One-click return on an iPad: the credit note is created automatically, the stock goes back to its rack and the accounts are reversed",
+    },
+    reportsInventory: {
+      title: "Sales & stock reports",
+      alt: "Monthly report of sales, gross profit, best sellers and slow movers, generated in 74 ms on an iPad",
+    },
+    inventoryPermissions: {
+      title: "Staff activity tracking & permissions",
+      alt: "Staff permissions for owner, account, sales, storekeeper and driver roles on an iPad, with a staff activity log and a price change waiting for approval",
+    },
+    stockScan: {
+      title: "Scan a barcode with your phone",
+      alt: "Phone camera scanning a carton barcode to find the item, its stock on hand, rack location and last activity",
     },
     erpDesktop: {
       title: "Custom ERP system",

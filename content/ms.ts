@@ -19,6 +19,7 @@ const ms: Dict = {
     emailSubject: "Pertanyaan tentang sistem Techub",
     priceLine: "Dari RM {price}/bulan · {months} bulan percuma",
     livePriceLine: "Dari RM {livePrice}/bulan",
+    getQuote: "Minta Sebut Harga",
     enlarge: "Besarkan gambar",
   },
 
@@ -118,11 +119,26 @@ const ms: Dict = {
       ],
       cta: "Lihat sistem jualan live",
     },
+    inventory: {
+      label: "Inventori & ERP",
+      name: "Sistem Inventori & ERP",
+      blurb: "Stok, jualan dan akaun dalam satu, tak perlu tahu perakaunan.",
+      points: [
+        "Stok masuk ikut batch, label terus dicetak",
+        "Setiap barang dijejak dari stok masuk sampai penghantaran",
+        "Cetak barcode dan kod QR",
+        "Jualan berhubung terus dengan stok dan akaun",
+        "Dokumen perakaunan dibuat secara automatik",
+        "Pulangan satu klik, dengan nota kredit atau nota bayaran balik",
+        "Setiap tindakan staf direkod, data anda dilindungi",
+      ],
+      cta: "Lihat sistem inventori",
+    },
   },
 
   footer: {
     blurb:
-      "{name} ialah syarikat perisian yang berpangkalan di Malaysia. Kami bina sistem pintar dengan kos rendah untuk klinik, salon rambut, pusat kecantikan, spa dan penjual live di seluruh Malaysia, serta sistem custom seperti ERP, AI pengesanan objek dan scanner nombor plat. Jaminan uptime {uptime}, dari RM {price}/bulan.",
+      "{name} ialah syarikat perisian yang berpangkalan di Malaysia. Kami bina sistem pintar dengan kos rendah untuk klinik, salon rambut, pusat kecantikan, spa, penjual live dan syarikat perdagangan di seluruh Malaysia, serta sistem custom seperti AI pengesanan objek dan scanner nombor plat. Jaminan uptime {uptime}, dari RM {price}/bulan.",
     useCases: "Penyelesaian",
     custom: "Sistem custom",
     company: "Syarikat",
@@ -290,6 +306,16 @@ const ms: Dict = {
         receipt: { title: "Resit dihantar di WhatsApp", text: "Order #LS-24180 disahkan" },
         activity: { title: "Aktiviti staf direkod", text: "Export data pembeli disekat" },
       },
+      inventory: {
+        stockIn: { title: "1,240 unit masuk, 8 batch", text: "Label dicetak, bil terus ke Akaun" },
+        scan: { title: "Imbas, jumpa dalam 0.2 s", text: "96 dalam stok, rak A-03-2" },
+        trail: { title: "Sampai pukul 3:52 PM", text: "Setiap langkah: siapa, bila, dokumen" },
+        sale: { title: "Semua siap secara automatik", text: "Invois, DO, stok & jurnal" },
+        return: { title: "Satu klik: Return", text: "2 Air Fryer balik ke rak" },
+        creditNote: { title: "Nota kredit dibuat sendiri", text: "CN-2026-0093 · RM 378.00" },
+        report: { title: "Laporan siap dalam 74 ms", text: "48,326 rekod" },
+        activity: { title: "Aktiviti staf direkod", text: "Export disekat untuk Farid" },
+      },
       contact: {
         whatsapp: { title: "Reminder WhatsApp dihantar", text: "Wen Qi tekan Confirm" },
         deposit: { title: "Deposit dibayar · RM 50", text: "Terus masuk akaun anda" },
@@ -423,7 +449,7 @@ const ms: Dict = {
   useCases: {
     eyebrow: "Penyelesaian",
     title: "Sedia untuk bisnes anda",
-    intro: "Dibina untuk klinik, salon, pusat kecantikan, spa dan penjual live di Malaysia. Tekan salah satu untuk lihat sistemnya di iPad dan telefon.",
+    intro: "Dibina untuk klinik, salon, pusat kecantikan, spa, penjual live dan syarikat perdagangan di Malaysia. Tekan salah satu untuk lihat sistemnya di iPad dan telefon.",
   },
 
   custom: {
@@ -462,6 +488,8 @@ const ms: Dict = {
       whatsapp: { title: "Notifikasi WhatsApp", text: "Pengesahan booking dan reminder dihantar secara automatik." },
       hardware: { title: "Sambung pelbagai peralatan", text: "Printer label, sistem panggil nombor giliran, mesin X-ray dan banyak lagi." },
       einvoice: { title: "e-Invois LHDN", text: "e-Invois dihantar terus ke LHDN melalui MyInvois." },
+      tracking: { title: "Jejak barcode & QR", text: "Cetak barcode dan kod QR, dan jejak setiap barang dari stok masuk sampai penghantaran." },
+      accounting: { title: "Perakaunan automatik", text: "Jualan dan pulangan buat sendiri invois, nota kredit dan nota bayaran balik." },
     },
     hub: {
       center: "Techub Cloud",
@@ -582,6 +610,28 @@ const ms: Dict = {
           "Dihantar ke LHDN melalui MyInvois",
           "e-Invois yang disahkan, siap dengan kod QR",
           "Rekod disimpan untuk setiap invois",
+        ],
+      },
+      tracking: {
+        eyebrow: "Jejak barcode & QR",
+        title: "Jejak setiap barang, *dari stok masuk sampai penghantaran*",
+        points: [
+          "Cetak label barcode dan jana kod QR",
+          "Imbas dengan telefon atau pengimbas barcode",
+          "Senarai aktiviti penuh untuk setiap barang dan batch",
+          "Siapa buat setiap langkah, dan bila",
+        ],
+        cta: "Tanya pasal jejak inventori",
+        ctaMessage: "Hai Techub, saya nak tahu lebih lanjut pasal Sistem Inventori & ERP.",
+      },
+      accounting: {
+        eyebrow: "Perakaunan automatik",
+        title: "Dokumen perakaunan, *siap dibuat untuk anda*",
+        points: [
+          "Jualan berhubung terus dengan stok dan akaun",
+          "Invois, nota penghantaran dan catatan akaun dibuat automatik",
+          "Pulangan satu klik terus buat nota kredit atau nota bayaran balik",
+          "Tak perlu tahu perakaunan",
         ],
       },
       extraction: {
@@ -990,7 +1040,7 @@ const ms: Dict = {
       meta: {
         title: "Sistem Klinik, Salon, Kecantikan, Spa & Jualan Live Malaysia",
         description:
-          "Sistem siap guna untuk klinik, salon rambut, pusat kecantikan, spa dan penjual live di Kuala Lumpur, Johor Bahru, Pulau Pinang dan seluruh Malaysia: reminder WhatsApp, kawalan stok dan laporan pantas.",
+          "Sistem siap guna untuk klinik, salon rambut, pusat kecantikan, spa, penjual live dan syarikat perdagangan di Kuala Lumpur, Johor Bahru, Pulau Pinang dan seluruh Malaysia: reminder WhatsApp, inventori dan ERP, laporan pantas.",
       },
     },
     customSystems: {
@@ -2035,6 +2085,185 @@ const ms: Dict = {
         text: "Dari RM {livePrice}/bulan, untuk penjual online di seluruh Malaysia.",
       },
     },
+    inventory: {
+      meta: {
+        title: "Sistem Pengurusan Inventori & ERP Malaysia | KL, JB & Pulau Pinang",
+        socialTitle: "Sistem Inventori & ERP Malaysia | Techub Software",
+        description:
+          "Sistem pengurusan inventori dan ERP untuk bisnes di Kuala Lumpur, Johor Bahru, Pulau Pinang dan seluruh Malaysia: stok masuk ikut batch, barcode dan QR, jualan dan akaun berhubung, pulangan satu klik.",
+        keywords: [
+          "sistem inventori",
+          "sistem pengurusan inventori",
+          "sistem stok",
+          "sistem kawalan stok",
+          "sistem ERP Malaysia",
+          "sistem barcode stok",
+          "sistem jualan dan akaun",
+          "nota kredit",
+          "inventory management system Malaysia",
+          "ERP system Malaysia",
+        ],
+      },
+      category: "Inventori, jualan dan perakaunan (ERP)",
+      eyebrow: "Sistem Inventori & ERP",
+      heading: "Stok, jualan dan akaun, *semua dalam satu*",
+      intro:
+        "Untuk syarikat trading, pemborong dan kedai runcit di Malaysia: stok masuk ikut batch, cetak barcode dan kod QR, dan jejak setiap barang dari stok masuk sampai penghantaran. Jualan dan pulangan buat sendiri dokumen perakaunan, jadi staf tak perlu tahu perakaunan.",
+      whoFor: ["Syarikat trading", "Pemborong & pengedar", "Kedai runcit", "Hardware & elektrik", "Bekalan makanan & minuman", "Penjual online", "Gudang"],
+      highlights: {
+        batch: "Stok masuk ikut batch",
+        trail: "Jejak stok penuh",
+        barcode: "Barcode & kod QR",
+        sales: "Jualan berhubung dengan stok",
+        accounting: "Akaun siap dibuat",
+        returns: "Pulangan satu klik",
+      },
+      spotlights: {
+        stockIn: {
+          eyebrow: "Stok masuk ikut batch",
+          title: "Masukkan satu penghantaran penuh *sekali gus*",
+          points: [
+            "Terima banyak produk dan batch serentak",
+            "Nombor batch, kuantiti dan lokasi pada setiap baris",
+            "Label barcode dan QR dicetak untuk batch itu",
+            "Terus berhubung dengan akaun",
+          ],
+        },
+        trail: {
+          eyebrow: "Jejak aktiviti stok",
+          title: "Jejak setiap barang *dari stok masuk sampai penghantaran*",
+          points: [
+            "Senarai aktiviti penuh untuk setiap barang dan batch",
+            "Stok masuk, simpan di rak, dijual, dibungkus dan dihantar",
+            "Siapa buat setiap langkah, dan bila",
+            "Imbas barcode atau kod QR untuk tengok semuanya",
+          ],
+        },
+        labels: {
+          eyebrow: "Barcode & kod QR",
+          title: "Cetak barcode, jana kod QR",
+          points: [
+            "Label barcode untuk setiap produk",
+            "Kod QR untuk batch dan karton",
+            "Imbas dengan telefon atau pengimbas barcode",
+            "Boleh guna printer label",
+          ],
+        },
+        sales: {
+          eyebrow: "Jualan & akaun",
+          title: "Setiap jualan buat akaun *untuk anda*",
+          points: [
+            "Jualan berhubung terus dengan stok dan akaun",
+            "Invois, nota penghantaran dan catatan akaun dibuat automatik",
+            "Stok ditolak sebaik saja anda jual",
+            "Tak perlu tahu perakaunan",
+          ],
+        },
+        returns: {
+          eyebrow: "Pulangan satu klik",
+          title: "Pulangan satu klik, *nota siap dibuat*",
+          points: [
+            "Klik Return pada invois, itu saja",
+            "Stok masuk semula secara automatik",
+            "Nota kredit atau nota bayaran balik dibuat sendiri",
+            "Akaun dikemas kini, tak perlu catat sendiri",
+          ],
+        },
+        reports: {
+          eyebrow: "Laporan bawah 100 ms",
+          title: "Jualan dan stok anda, *dalam angka*",
+          points: [
+            "Jualan, barang laris dan barang lambat jual",
+            "Nilai stok dan stok sedia ada",
+            "Laporan terperinci dalam masa bawah 100 ms",
+            "Di telefon, iPad atau PC",
+          ],
+        },
+        permissions: {
+          eyebrow: "Jejak aktiviti staf",
+          title: "Jejak setiap tindakan staf, *lindungi* stok anda",
+          points: [
+            "Tengok siapa buat apa, dan bila",
+            "Peranan pemilik, akaun, jualan, stor dan pemandu",
+            "Kelulusan untuk pelarasan stok dan tukar harga",
+            "Data bisnes anda kekal dilindungi",
+          ],
+        },
+      },
+      modules: {
+        batch: "Stok masuk ikut batch",
+        barcode: "Cetak barcode",
+        qr: "Jana kod QR",
+        scan: "Imbas dengan telefon atau pengimbas",
+        trail: "Jejak aktiviti stok penuh",
+        levels: "Paras stok masa nyata",
+        delivery: "Jejak penghantaran",
+        sales: "Jualan & invois",
+        orders: "Nota penghantaran",
+        returns: "Pulangan satu klik",
+        notes: "Nota kredit & bayaran balik automatik",
+        accounting: "Catatan akaun automatik",
+        einvoice: "e-Invois LHDN",
+        reports: "Laporan terperinci bawah 100 ms",
+        permissions: "Jejak aktiviti & kebenaran",
+        devices: "Guna di telefon, iPad & PC",
+      },
+      faqs: [
+        {
+          q: "Apa itu Sistem Inventori & ERP Techub?",
+          a: "Ia sistem inventori, jualan dan perakaunan dalam satu, untuk bisnes di Malaysia. Anda masukkan stok ikut batch, cetak barcode dan kod QR, dan jejak setiap barang dari stok masuk sampai penghantaran. Jualan dan pulangan buat sendiri dokumen perakaunan secara automatik.",
+        },
+        {
+          q: "Boleh masukkan banyak barang sekali gus?",
+          a: "Boleh. Stok masuk ikut batch membolehkan anda terima satu penghantaran penuh sekali gus, dengan nombor batch, kuantiti dan lokasi pada setiap baris, dan cetak label barcode dan QR untuknya.",
+        },
+        {
+          q: "Boleh jejak setiap barang dari stok masuk sampai penghantaran?",
+          a: "Boleh. Setiap barang dan batch ada senarai aktiviti penuh: stok masuk, simpan di rak, dijual, dibungkus dan dihantar, dengan siapa buat setiap langkah dan bila. Imbas barcode atau kod QR untuk tengok semuanya.",
+        },
+        {
+          q: "Boleh cetak barcode dan kod QR?",
+          a: "Boleh. Cetak label barcode untuk produk anda dan jana kod QR untuk batch dan karton, kemudian imbas dengan telefon atau pengimbas barcode.",
+        },
+        {
+          q: "Sistem inventori mana di Malaysia yang hubungkan stok, jualan dan akaun?",
+          a: "Sistem Inventori & ERP Techub. Stok masuk, jualan, penghantaran dan pulangan kemas kini stok dan akaun anda secara automatik, dengan setiap dokumen perakaunan siap dibuat. Ia berjalan di server enterprise di Malaysia.",
+        },
+        {
+          q: "Staf perlu tahu perakaunan ke?",
+          a: "Tak perlu. Jualan dan akaun berhubung, jadi setiap jualan buat sendiri invois, nota penghantaran dan catatan akaun. Staf anda cuma jual dan hantar.",
+        },
+        {
+          q: "Macam mana pulangan berfungsi?",
+          a: "Klik Return pada invois. Stok masuk semula, dan sistem buat nota kredit atau nota bayaran balik secara automatik dan kemas kini akaun anda.",
+        },
+        {
+          q: "Berapa harga Sistem Inventori & ERP?",
+          a: "Harganya ikut keperluan bisnes anda. WhatsApp kami di {phone} untuk sebut harga yang jelas.",
+        },
+        {
+          q: "Boleh tengok apa yang setiap staf buat dalam sistem?",
+          a: "Boleh. Techub rekod setiap tindakan staf, contohnya pelarasan stok, tukar harga atau pulangan, dengan siapa yang buat dan bila. Anda pilih apa yang setiap peranan boleh buat.",
+        },
+        {
+          q: "Macam mana nak tempah demo?",
+          a: "WhatsApp kami di {phone} atau e-mel {email}. Kami tunjuk Sistem Inventori & ERP berfungsi, dengan produk anda sendiri.",
+        },
+      ],
+      demoMessage: "Hai Techub, saya nak demo percuma Sistem Inventori & ERP.",
+      quoteMessage: "Hai Techub, saya nak sebut harga untuk Sistem Inventori & ERP.",
+      quote: {
+        eyebrow: "Harga",
+        title: "Harga ikut *bisnes anda*",
+        text: "Setiap bisnes urus stok dan jualan dengan cara sendiri, jadi kami beri sebut harga ikut keperluan anda. Ceritakan pasal produk, cawangan dan pasukan anda di WhatsApp.",
+        points: ["Sebut harga yang jelas sebelum mula", "Support tempatan di Malaysia melalui WhatsApp", "Server enterprise di Malaysia"],
+      },
+      contact: {
+        badge: "Minta sebut harga",
+        title: "Tengok sendiri macam mana Sistem Inventori & ERP berfungsi",
+        text: "Harga ikut bisnes anda, untuk syarikat di seluruh Malaysia.",
+      },
+    },
   },
 
   /* ---------- Example screens: picture titles and alt text ---------- */
@@ -2392,12 +2621,13 @@ const ms: Dict = {
       a: "Ya. Techub melayan {who} di Kuala Lumpur dan Lembah Klang, Johor Bahru, Pulau Pinang dan semua negeri lain di Malaysia, dengan support di WhatsApp. Semuanya berjalan di server enterprise di Malaysia.",
     },
     pages: {
-      useCases: { phrase: "Sistem bisnes", who: "klinik, salon, spa, pusat kecantikan dan penjual live" },
+      useCases: { phrase: "Sistem bisnes", who: "klinik, salon, spa, pusat kecantikan, penjual live dan syarikat perdagangan" },
       clinic: { phrase: "Sistem pengurusan klinik", who: "klinik" },
       salon: { phrase: "Sistem booking salon", who: "salon rambut" },
       beauty: { phrase: "Sistem temujanji pusat kecantikan", who: "pusat kecantikan" },
       spa: { phrase: "Sistem booking spa & urut", who: "spa dan pusat urut" },
       live: { phrase: "Sistem jualan live", who: "penjual live" },
+      inventory: { phrase: "Sistem pengurusan inventori", who: "syarikat trading, pemborong dan kedai runcit" },
       customSystems: { phrase: "Buat sistem custom", who: "bisnes" },
       customisation: { phrase: "Ubah suai sistem", who: "bisnes" },
       migration: { phrase: "Pemindahan data", who: "bisnes" },
@@ -2638,6 +2868,42 @@ const ms: Dict = {
     eInvoice: {
       title: "e-Invois LHDN",
       alt: "e-Invois yang disahkan melalui LHDN MyInvois, dengan nombor pengenalan unik dan kod QR",
+    },
+    inventoryDashboard: {
+      title: "Dashboard Inventori & ERP di iPad",
+      alt: "Dashboard sistem inventori dan ERP Techub di iPad: nilai stok, jualan hari ini, penghantaran, aktiviti live dari stok masuk ikut batch sampai return, dan dokumen akaun yang dibuat secara automatik",
+    },
+    stockIn: {
+      title: "Stok masuk ikut batch",
+      alt: "Stok masuk ikut batch di iPad: 1,240 unit dalam 8 batch dipos sekali gus, setiap satu dengan raknya, label barcode dan QR dicetak, dan bil pembekal terus ke Akaun",
+    },
+    stockTrail: {
+      title: "Jejak aktiviti stok penuh",
+      alt: "Jejak aktiviti stok untuk satu batch di iPad, dari stok masuk, label dan simpan di rak sampai jualan, bungkus dan penghantaran, dengan siapa buat, bila dan dokumen mana",
+    },
+    barcodeLabels: {
+      title: "Label barcode & QR",
+      alt: "Label batch bercetak dengan kod QR, pelekat barcode produk, label rak dan label kotak untuk delivery order",
+    },
+    erpSales: {
+      title: "Jualan berhubung dengan akaun",
+      alt: "Invois jualan di iPad, yang lain siap secara automatik: delivery order, stok ditolak, entri jurnal, lejar pelanggan dan e-Invois LHDN",
+    },
+    erpReturn: {
+      title: "Return satu klik & nota kredit",
+      alt: "Return satu klik di iPad: nota kredit dibuat secara automatik, stok balik ke rak dan akaun diterbalikkan",
+    },
+    reportsInventory: {
+      title: "Laporan jualan & stok",
+      alt: "Laporan bulanan jualan, untung kasar, barang paling laris dan barang lambat jual, siap dalam 74 ms di iPad",
+    },
+    inventoryPermissions: {
+      title: "Jejak aktiviti & akses staf",
+      alt: "Akses staf untuk pemilik, akaun, jualan, stor dan pemandu di iPad, dengan log aktiviti staf dan perubahan harga yang menunggu kelulusan",
+    },
+    stockScan: {
+      title: "Imbas barcode dengan telefon",
+      alt: "Kamera telefon mengimbas barcode pada kotak untuk cari barang, stok yang ada, lokasi rak dan aktiviti terakhir",
     },
     erpDesktop: {
       title: "Sistem ERP custom",

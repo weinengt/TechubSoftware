@@ -198,6 +198,37 @@ export function PricingSection({ lang, page, plan = "all" }: { lang: Locale; pag
   );
 }
 
+/** In place of the plans, for a system priced by quote (the Inventory & ERP System): why it is quoted, what comes
+ *  with it, and a button that asks for a quote on WhatsApp. */
+export function QuoteSection({
+  lang,
+  quote,
+}: {
+  lang: Locale;
+  quote: { eyebrow: string; title: string; text: string; points: string[]; message: string };
+}) {
+  const d = getDict(lang);
+  return (
+    <section id="pricing" className="py-20 sm:py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <SectionHeading eyebrow={quote.eyebrow} title={quote.title} />
+        <div className="card mx-auto mt-10 flex max-w-4xl flex-col gap-6 p-6 sm:p-8 lg:flex-row lg:items-center lg:gap-10" data-reveal>
+          <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-brand-gradient text-white shadow-lg shadow-brand-500/25">
+            <Icon.Receipt className="h-7 w-7" />
+          </span>
+          <div className="min-w-0 flex-1">
+            <p className="text-sm leading-relaxed text-slate-600 sm:text-base">{quote.text}</p>
+            <CheckList items={quote.points} className="mt-5" />
+          </div>
+          <a href={whatsappLink(quote.message)} target="_blank" rel="noopener" className="btn-primary shrink-0 !py-3.5">
+            <Icon.Whatsapp className="h-5 w-5" /> {d.ui.getQuote}
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 const customPath = servicePages.find((s) => s.key === "customisation")!.path;
 
 /** Customisation, charged per work hour at the rate of the customer's plan (`hourly` in lib/site.ts): the lowest
@@ -792,9 +823,11 @@ export function softwareJsonLd(opts: {
   category: string;
   features: string[];
   screenshots?: Shot[];
-  /** Monthly price and offer text; the Standard Plan's plans unless given. */
+  /** Monthly price and offer text; the Standard Plan's plans unless given. `offers: false` leaves prices out
+   *  (a system priced by quote). */
   price?: number;
   offerText?: string;
+  offers?: false;
 }) {
   const offer = (price: number, more: Record<string, string>) => ({
     "@type": "Offer",
@@ -832,16 +865,19 @@ export function softwareJsonLd(opts: {
       height: s.h,
     })),
     provider: { "@id": `${site.url}/#organization` },
-    offers: opts.price
-      ? offer(opts.price, { description: opts.offerText ?? getDict(opts.lang).pricing.offerText })
-      : site.plans.map((p: Plan) => {
-          const x = planText(opts.lang, p);
-          return offer(p.price, {
-            name: [x.offer, x.name, x.free].filter(Boolean).join(comma),
-            description: x.lines.map((l) => l.text).join(stop),
-            ...(p.until ? { priceValidUntil: p.until } : {}),
-          });
-        }),
+    offers:
+      opts.offers === false
+        ? undefined
+        : opts.price
+          ? offer(opts.price, { description: opts.offerText ?? getDict(opts.lang).pricing.offerText })
+          : site.plans.map((p: Plan) => {
+              const x = planText(opts.lang, p);
+              return offer(p.price, {
+                name: [x.offer, x.name, x.free].filter(Boolean).join(comma),
+                description: x.lines.map((l) => l.text).join(stop),
+                ...(p.until ? { priceValidUntil: p.until } : {}),
+              });
+            }),
   };
 }
 

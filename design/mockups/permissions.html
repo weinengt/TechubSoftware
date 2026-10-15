@@ -39,6 +39,7 @@
   .log .lt { font-size: 12px; color: var(--ink2); line-height: 1.35; min-width: 0; }
   .log .lt b { color: var(--ink); font-weight: 700; } .log .lt em { font-style: normal; color: var(--muted); font-size: 11px; }
   .log .chip { margin-left: auto; font-size: 11px; padding: 4px 9px; }
+  .v-trade .log time { min-width: 50px; }
   /* Approval request */
   .appr { width: 290px; flex-shrink: 0; display: flex; flex-direction: column; gap: 10px; border-color: #fcd34d; box-shadow: 0 10px 24px -16px rgba(217,119,6,.55); }
   .who { display: flex; align-items: center; gap: 10px; font-size: 12.5px; }
@@ -85,7 +86,7 @@
 </div>
 <script>
   const v = new URLSearchParams(location.search).get("v");
-  const V = ["salon", "beauty", "spa", "live"].includes(v) ? v : "clinic";
+  const V = ["salon", "beauty", "spa", "live", "trade"].includes(v) ? v : "clinic";
   // cells: 1 allowed, 2 needs manager approval, 0 blocked, text = limited access
   const D = {
     clinic: {
@@ -143,10 +144,22 @@
         ["8:05 PM", "t", "NU", "Nurul", "Customer Service", "Cancelled order #LS-23991", "s", "Buyer asked"]],
       appr: ["p", "MT", "Mia", "Live Host · 2 min ago", "Flash price during live", "<s>RM 25.00</s><i data-i=\"arrowR\"></i>RM 19.90", "MagSafe Phone Case · 3 left", "Live price changes need approval"],
     },
+    trade: {
+      biz: "Demo Trading", staff: 13,
+      roles: [["star", "a", "Owner", 1], ["wallet", "v", "Account", 2], ["cart", "p", "Sales", 4], ["box", "g", "Storekeeper", 3], ["truck", "b", "Driver", 3]],
+      perms: [["stockin", "Stock in & put away", 1, 0, 0, 1, 0], ["sliders", "Adjust stock count", 1, 0, 0, 2, 0], ["tag", "Change selling price", 1, 0, 2, 0, 0],
+        ["undo", "Return & credit note", 1, 1, 1, 0, 0], ["truck", "Update delivery status", 1, 0, 0, 1, "Own trips"], ["dl", "Export customer list", 1, 2, 0, 0, 0]],
+      log: [["4:12 PM", "g", "AY", "Azman", "Storekeeper", "Stock count A-06-2 · Steam Iron −1 (damaged)", "g", "✓ Approved by Henry"],
+        ["3:40 PM", "p", "FH", "Farid", "Sales", "Tried to export customer list", "r", "Blocked"],
+        ["2:58 PM", "p", "JW", "Jessica", "Sales", "Air Fryer 4.5L price RM 189.00 → RM 179.00", "a", "Waiting approval"],
+        ["9:20 AM", "g", "RK", "Ravi", "Storekeeper", "Stock in GRN-2026-0412 · 1,240 units", "b", "8 batches"]],
+      appr: ["p", "JW", "Jessica", "Sales · 2:58 PM", "Selling price change", "<s>RM 189.00</s><i data-i=\"arrowR\"></i>RM 179.00", "Air Fryer 4.5L · AF-450 · all customers", "Sales price changes need approval"],
+    },
   }[V];
   const AV = { b: "#0396d9", g: "#10b981", a: "#f59e0b", v: "#8b5cf6", p: "#ec4899", t: "#14b8a6", r: "#ef4444" };
   const DL = '<svg class="i" viewBox="0 0 24 24"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></svg>';
   const ic = (n) => (n === "dl" ? DL : `<i data-i="${n}"></i>`);
+  if (V === "trade") document.body.classList.add("v-trade");
   document.getElementById("biz").textContent = `${D.biz} · Settings`;
   document.getElementById("staffN").textContent = D.staff;
   const cell = (x) => (typeof x === "string" ? `<span class="own">${x}</span>` : `<span class="tg ${x === 1 ? "on" : x === 2 ? "ap" : ""}"></span>`);
