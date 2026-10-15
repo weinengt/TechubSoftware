@@ -736,8 +736,16 @@ function WelcomeCard({ lang, p }: { lang: Locale; p: Plan }) {
             <span className="text-sm font-semibold text-white/70">{t.perMonth}</span>
           </p>
           <p className="text-sm font-semibold text-white/70">{t.perOutlet}</p>
-          {x.free && <p className="mt-2 text-sm font-semibold text-white">{fill(t.average, { n: rm(planAverage(p)) })}</p>}
-          <p className={`${x.free ? "" : "mt-1"} text-sm font-bold text-emerald-300`}>{x.daily}</p>
+          {/* The price a day stands out (its amount large), with what a month comes to on average under it */}
+          <p className="mt-2 text-base leading-tight font-bold text-emerald-300">
+            {t.daily.split("{n}").map((part, i) => (
+              <span key={i}>
+                {i > 0 && <span className="text-4xl font-extrabold tracking-tight">{rm(planDaily(p))}</span>}
+                {part}
+              </span>
+            ))}
+          </p>
+          {x.free && <p className="mt-1.5 text-sm font-semibold text-white">{fill(t.average, { n: rm(planAverage(p)) })}</p>}
           <p className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-sm">
             <span className="text-white/80">{fill(t.total, { n: rm(planTotal(p)) })}</span>
             <span className="rounded-full bg-emerald-400/15 px-2.5 py-0.5 text-xs font-bold text-emerald-300">{x.save}</span>
