@@ -19,6 +19,7 @@ const ms: Dict = {
     emailSubject: "Pertanyaan tentang sistem Techub",
     priceLine: "Dari RM {price}/bulan setiap outlet",
     livePriceLine: "Dari RM {livePrice}/bulan setiap outlet",
+    freeMonths: "{months} bulan percuma",
     getQuote: "Minta Sebut Harga",
     enlarge: "Besarkan gambar",
   },
@@ -123,7 +124,7 @@ const ms: Dict = {
         "Pilih tarikh & masa jualan setiap produk",
         "Jumlah pelawat live & halaman yang mereka buka",
         "Bayaran online melalui payment gateway",
-        "Laporan canggih, dari RM {livePrice}/bulan",
+        "Laporan canggih, dari RM {livePrice}/bulan setiap outlet",
         "Resit, invois, CN & RN dihantar automatik",
         "Banyak outlet: tukar dan lihat setiap satu",
         "Setiap tindakan staf direkod, data anda dilindungi",
@@ -1112,7 +1113,7 @@ const ms: Dict = {
     },
     pricing: {
       meta: {
-        title: "Harga | Dari RM {price}/bulan Setiap Outlet, {months} Bulan Percuma",
+        title: "Harga | Dari RM {price}/bulan, {months} Bulan Pertama Percuma",
         description:
           "Sistem temujanji di Malaysia dari RM {price}/bulan setiap outlet, {months} bulan pertama percuma termasuk pemasangan dan latihan. Jualan live dari RM {livePrice}/bulan setiap outlet; custom dari RM {custom}/jam.",
       },

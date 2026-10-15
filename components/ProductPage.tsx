@@ -276,6 +276,11 @@ export default function ProductPage({ lang, k }: { lang: Locale; k: SystemKey })
                 </Link>
               )}
             </div>
+            {!live && !quote && (
+              <p className="rise mt-4 flex items-start justify-center gap-2 text-sm font-medium text-slate-600 [--rise:240ms]">
+                <Icon.Gift className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" /> {d.home.hero.note}
+              </p>
+            )}
           </div>
           <div className="mx-auto mt-14 max-w-5xl">
             <Demo lang={lang} demo={k} layout="combo" product={name} priority sizes={heroSizes} />

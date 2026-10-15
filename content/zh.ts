@@ -21,6 +21,7 @@ const zh: Dict = {
     emailSubject: "Techub 系统咨询",
     priceLine: "每间分店 RM {price}/月起",
     livePriceLine: "每间分店 RM {livePrice}/月起",
+    freeMonths: "前 {months} 个月免费",
     getQuote: "我要报价",
     enlarge: "放大图片",
   },
@@ -124,7 +125,7 @@ const zh: Dict = {
         "每件产品自己设定开卖日期和时间",
         "即时看到有多少访客、在看哪一页",
         "支付网关：买家网上付款",
-        "高级报表，月费 RM {livePrice} 起",
+        "高级报表，每间分店月费 RM {livePrice} 起",
         "收据、发票、CN 和 RN 自动发送",
         "支持多间分店，一键切换查看",
         "每位员工的操作都有记录，保护你的店铺资料",
@@ -1109,7 +1110,7 @@ const zh: Dict = {
     },
     pricing: {
       meta: {
-        title: "价格 | 预约系统每间分店 RM {price}/月起，前 {months} 个月免费",
+        title: "价格 | 预约系统 RM {price}/月起，前 {months} 个月免费",
         description: "马来西亚预约系统每间分店月费 RM {price} 起，新客户前 {months} 个月免费，包安装和员工培训。直播带货系统每间分店 RM {livePrice}/月起；定制每小时 RM {custom} 起。",
       },
     },

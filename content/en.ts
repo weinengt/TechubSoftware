@@ -27,6 +27,7 @@ const en = {
     emailSubject: "Enquiry about Techub system",
     priceLine: "From RM {price}/month per outlet",
     livePriceLine: "From RM {livePrice}/month per outlet",
+    freeMonths: "{months} months free",
     getQuote: "Get a Quote",
     enlarge: "Enlarge picture",
   },
@@ -131,7 +132,7 @@ const en = {
         "Choose each product's selling date and time",
         "Live visitor count and the page they're on",
         "Online payment via payment gateway",
-        "Advanced reports, from RM {livePrice}/month",
+        "Advanced reports, from RM {livePrice}/month per outlet",
         "Receipts, invoices, CN & RN sent automatically",
         "Multiple outlets: switch and view each one",
         "Every staff action tracked, your data protected",
@@ -1123,7 +1124,7 @@ const en = {
     },
     pricing: {
       meta: {
-        title: "Pricing | From RM {price}/month per Outlet, First {months} Months Free",
+        title: "Pricing | From RM {price}/month, First {months} Months Free",
         description:
           "Appointment systems in Malaysia from RM {price}/month per outlet, first {months} months free with installation and training. Live selling from RM {livePrice}/month per outlet; custom work from RM {custom}/hour.",
       },
