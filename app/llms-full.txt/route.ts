@@ -121,7 +121,7 @@ ${list(Object.values(t.hardware.items))}
 ${site.plans
   .map((p: Plan) => {
     const x = planText("en", p);
-    const name = [x.offer, x.name, x.free].filter(Boolean).join(", ") + (p.recommended ? ` (${t.pricing.recommended.toLowerCase()})` : "");
+    const name = [x.offer, x.name, p.until ? "" : x.free].filter(Boolean).join(", ") + (p.recommended ? ` (${t.pricing.recommended.toLowerCase()})` : "");
     return `- ${name}: RM ${p.price} a month. ${[...x.lines.map((l) => l.text), x.daily].filter(Boolean).join(". ")}.`;
   })
   .join("\n")}

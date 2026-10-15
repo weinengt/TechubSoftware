@@ -877,7 +877,7 @@ const ms: Dict = {
     choose: "Pilih pelan",
     planMessage: "Hai Techub, saya berminat dengan pelan ini: {plan}.",
     welcome: "Tawaran Alu-aluan",
-    welcomeCta: "Dapatkan Tawaran Alu-aluan",
+    welcomeCta: "Rebut Tawaran Alu-\u2060aluan",
     welcomeMessage: "Hai Techub, saya nak Tawaran Alu-aluan RM {n} sebulan setiap outlet.",
     promoUntil: "Hingga {date}",
     limit: "Untuk {n} pengguna pertama sahaja, siapa cepat dia dapat",
@@ -1000,7 +1000,7 @@ const ms: Dict = {
       },
       {
         q: "Berapa harganya?",
-        a: "Pelan bermula dari RM {price} sebulan setiap outlet, dan pelanggan baru dapat {months} bulan pertama percuma, termasuk pemasangan dan latihan staf. Setiap outlet bayar RM {monthly} bulan ke bulan, atau RM {planPrice} sebulan untuk pelan 12, 24 atau 48 bulan, jimat RM {monthlySave} setiap bulan, dengan 1, 3 atau 10 bulan percuma. Sehingga 31 Dis 2026, Tawaran Alu-aluan kami hanya RM {price} sebulan setiap outlet untuk pelan 60 bulan, untuk {welcomeUsers} pengguna pertama sahaja, siapa cepat dia dapat. Sistem Jualan Live bermula dari RM {livePrice} sebulan setiap outlet. Custom dicaj ikut jam kerja: RM {customMonthly} sejam untuk pelan bulanan, serendah RM {custom} untuk pelan 48 bulan, dengan ujian dan integrasi percuma.",
+        a: "Pelan bermula dari RM {price} sebulan setiap outlet, dan pelanggan baru dapat {months} bulan pertama percuma, termasuk pemasangan dan latihan staf. Setiap outlet bayar RM {monthly} bulan ke bulan, atau RM {planPrice} sebulan untuk pelan 12, 24 atau 48 bulan, jimat RM {monthlySave} setiap bulan, dengan 1, 3 atau 10 bulan percuma. Sehingga 31 Dis 2026, Tawaran Alu-aluan kami hanya RM {price} sebulan setiap outlet untuk {welcomePaid} bulan, tambah {welcomeFree} bulan percuma, jadi purata cuma RM {welcomeAverage} sebulan atau RM {welcomeDaily} sehari, untuk {welcomeUsers} pengguna pertama sahaja, siapa cepat dia dapat. Sistem Jualan Live bermula dari RM {livePrice} sebulan setiap outlet. Custom dicaj ikut jam kerja: RM {customMonthly} sejam untuk pelan bulanan, serendah RM {custom} untuk pelan 48 bulan, dengan ujian dan integrasi percuma.",
       },
       {
         q: "Harga ini untuk setiap outlet ke?",

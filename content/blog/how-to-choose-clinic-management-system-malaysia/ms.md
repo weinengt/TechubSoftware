@@ -82,12 +82,12 @@ Ia juga ada carta badan dan gigi dengan e-tandatangan, bil dan claim panel, sert
 
 Data disimpan pada [server di Malaysia](/ms/technology/), disulitkan, dengan backup berlapis di beberapa lokasi dan jaminan uptime 99.95%. Setiap tindakan staf direkod, dan laporan terperinci siap bawah 100 ms. Boleh guna di iPad, telefon dan PC.
 
-Pelan bermula dari RM 99/bulan setiap outlet dengan Tawaran Alu-aluan 60 bulan untuk 80 pengguna pertama sehingga 31 Dis 2026, atau RM 178 bulan ke bulan, dan pengguna baru dapat 3 bulan pertama percuma, termasuk pemasangan dan latihan staf. Custom dicaj ikut jam kerja, dari RM 80 sejam. Lihat [harga](/ms/pricing/).
+Pelan bermula dari RM 99/bulan setiap outlet dengan Tawaran Alu-aluan (24 bulan tambah 2 bulan percuma, purata cuma RM 91.38 sebulan) untuk 50 pengguna pertama sehingga 31 Dis 2026, atau RM 178 bulan ke bulan, dan pengguna baru dapat 3 bulan pertama percuma, termasuk pemasangan dan latihan staf. Custom dicaj ikut jam kerja, dari RM 80 sejam. Lihat [harga](/ms/pricing/).
 
 ## Soalan lazim
 
 ### Berapa harga sistem pengurusan klinik di Malaysia?
-Harga berbeza ikut fungsi dan setup. Sistem klinik Techub bermula dari RM 99/bulan setiap outlet dengan Tawaran Alu-aluan 60 bulan untuk 80 pengguna pertama sehingga 31 Dis 2026, atau RM 178 bulan ke bulan. Pengguna baru dapat 3 bulan pertama percuma, termasuk pemasangan dan latihan staf.
+Harga berbeza ikut fungsi dan setup. Sistem klinik Techub bermula dari RM 99/bulan setiap outlet dengan Tawaran Alu-aluan (24 bulan tambah 2 bulan percuma, purata cuma RM 91.38 sebulan) untuk 50 pengguna pertama sehingga 31 Dis 2026, atau RM 178 bulan ke bulan. Pengguna baru dapat 3 bulan pertama percuma, termasuk pemasangan dan latihan staf.
 
 ### Sistem pengurusan klinik patut ada fungsi apa?
 Sekurang-kurangnya rekod pesakit (EMR), rekod ubat dengan amaran alahan, panggil nombor giliran, reminder temujanji WhatsApp, bil dengan claim panel, dan laporan. Semak juga sokongan peralatan, akses staf dan di mana data disimpan.

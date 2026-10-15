@@ -1,11 +1,13 @@
 import type { Locale } from "@/lib/i18n";
 import { shotFiles, type Shot, type ShotKey } from "@/lib/shots";
-import { monthlySave, rm, site, type Plan } from "@/lib/site";
+import { monthlySave, planAverage, planDaily, rm, site, type Plan } from "@/lib/site";
 import en, { type Dict } from "./en";
 import ms from "./ms";
 import zh from "./zh";
 
 export type { Dict };
+
+const welcome = (site.plans as readonly Plan[]).find((p) => p.until);
 
 // Values for the {placeholders} in the text files.
 const values: Record<string, string> = {
@@ -27,6 +29,10 @@ const values: Record<string, string> = {
   planPrice: String(site.planPrice),
   monthlySave: String(monthlySave),
   welcomeUsers: String((site.plans as readonly Plan[]).find((p) => p.limit)?.limit ?? ""),
+  welcomePaid: welcome ? String(welcome.months - (welcome.free ?? 0)) : "",
+  welcomeFree: String(welcome?.free ?? ""),
+  welcomeAverage: welcome ? rm(planAverage(welcome)) : "",
+  welcomeDaily: welcome ? rm(planDaily(welcome)) : "",
   uptime: site.uptime,
   phone: site.whatsappDisplay,
   email: site.email,

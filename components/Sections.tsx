@@ -554,10 +554,12 @@ export function planText(lang: Locale, p: Plan) {
     { text: until },
     { text: limit },
   ];
+  const freeText = free ? n(free === 1 ? t.freeOne : t.freeMany, free) : "";
   return {
     offer: p.until ? t.welcome : "",
-    name: long ? n(t.planMonths, p.months) : t.monthly,
-    free: free ? n(free === 1 ? t.freeOne : t.freeMany, free) : "",
+    // The Welcome offer is named as its paid months plus its free months ("24 months + 2 months free")
+    name: !long ? t.monthly : p.until && free ? `${n(t.planMonths, p.months - free)} + ${freeText}` : n(t.planMonths, p.months),
+    free: freeText,
     save,
     until,
     limit,
@@ -570,8 +572,7 @@ export function planText(lang: Locale, p: Plan) {
 const fromShortest = ["sm:order-1", "sm:order-2", "sm:order-3", "sm:order-4"];
 
 /** The ways to pay for the Standard Plan, a card each, like a VPN price list: what a month comes to, the free months
- *  and the saving, with the recommended plan standing out. Above them, Monthly against the longer plans, so the
- *  RM 30 a month difference is plain. On phones the longest plan comes first. The Welcome offer (the plan with a last
+ *  and the saving, with the recommended plan standing out. On phones the longest plan comes first. The Welcome offer (the plan with a last
  *  day) follows as a wide dark card, then what every plan includes. */
 function Plans({ lang }: { lang: Locale }) {
   const t = getDict(lang).pricing;
@@ -583,7 +584,6 @@ function Plans({ lang }: { lang: Locale }) {
         <h3 className="text-xl font-bold text-slate-900 sm:text-2xl">{t.plan}</h3>
         <p className="mt-1.5 text-sm text-balance text-slate-600 sm:text-base">{t.plansText}</p>
       </div>
-      <MonthlyVsYearly lang={lang} />
       <div
         className="mx-auto mt-6 flex max-w-3xl flex-col items-center gap-3 rounded-2xl border border-brand-100 bg-brand-50/70 p-4 text-center sm:flex-row sm:gap-4 sm:p-5 sm:text-left"
         data-reveal
@@ -606,47 +606,6 @@ function Plans({ lang }: { lang: Locale }) {
         <h3 className="text-lg font-bold text-slate-900">{t.plansIncluded}</h3>
         <CheckList items={t.included} columns className="mt-5" />
       </div>
-    </div>
-  );
-}
-
-/** Monthly next to the 12 to 48-month plans: what a month costs on each and how much the longer plans save every
- *  month (`monthlySave` in lib/site.ts). */
-function MonthlyVsYearly({ lang }: { lang: Locale }) {
-  const t = getDict(lang).pricing;
-  const price = (n: number, best: boolean) => (
-    <div className="mt-auto pt-1">
-      {/* "/ month" moves under the amount when the box is too narrow for both */}
-      <p className="flex flex-wrap items-baseline justify-center gap-x-1">
-        <span className="whitespace-nowrap">
-          <span className="text-sm font-bold text-slate-900">RM</span>{" "}
-          <span className={`text-3xl font-extrabold tracking-tight sm:text-4xl ${best ? "text-gradient" : "text-slate-900"}`}>{rm(n)}</span>
-        </span>
-        <span className="text-xs font-semibold whitespace-nowrap text-slate-500 sm:text-sm">{t.perMonth}</span>
-      </p>
-      <p className="text-xs font-semibold text-slate-500">{t.perOutlet}</p>
-    </div>
-  );
-  return (
-    <div className="mx-auto mt-6 max-w-xl" data-reveal>
-      <div className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-2 sm:gap-4">
-        <div className="flex h-full flex-col rounded-2xl border border-slate-200 bg-white px-2 py-4 text-center sm:px-5">
-          <p className="text-sm font-bold text-slate-700">{t.monthly}</p>
-          <p className="text-xs text-balance text-slate-500">{t.monthlyText}</p>
-          {price(site.plans[0].price, false)}
-        </div>
-        <Icon.Arrow className="h-5 w-5 text-brand-500" />
-        <div className="flex h-full flex-col rounded-2xl bg-white px-2 py-4 text-center shadow-lg ring-2 shadow-brand-500/15 ring-brand-500 sm:px-5">
-          <p className="text-sm font-bold text-brand-700">{t.yearly}</p>
-          <p className="text-xs text-balance text-slate-500">{t.yearlyNote}</p>
-          {price(site.planPrice, true)}
-        </div>
-      </div>
-      <p className="mt-4 text-center">
-        <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-4 py-1.5 text-sm font-bold text-emerald-700 sm:text-base">
-          <Icon.Check className="h-4 w-4" strokeWidth={3} /> {t.yearlySave}
-        </span>
-      </p>
     </div>
   );
 }
@@ -753,7 +712,15 @@ function WelcomeCard({ lang, p }: { lang: Locale; p: Plan }) {
           <p className="inline-flex items-center gap-1.5 rounded-full bg-brand-gradient px-3 py-1 text-xs font-bold tracking-wide text-white uppercase">
             <Icon.Star className="h-3.5 w-3.5 fill-amber-300 text-amber-300" /> {x.offer}
           </p>
-          <h4 className="mt-3 text-2xl font-bold">{x.name}</h4>
+          {/* "24 months" and "+ 2 months free" each stay on one line */}
+          <h4 className="mt-3 text-2xl font-bold">
+            {x.name.split(" + ").map((part, i) => (
+              <span key={part}>
+                {i > 0 && " "}
+                <span className="whitespace-nowrap">{i > 0 ? `+ ${part}` : part}</span>
+              </span>
+            ))}
+          </h4>
           <p className="mt-1 text-sm text-white/70">{x.until}</p>
           {x.limit && (
             <p className="mt-3 flex w-fit items-start gap-1.5 rounded-2xl bg-amber-400/15 px-3 py-1.5 text-sm font-bold text-amber-200">
@@ -762,14 +729,20 @@ function WelcomeCard({ lang, p }: { lang: Locale; p: Plan }) {
           )}
         </div>
         <div>
-          <p className="flex items-baseline gap-1 whitespace-nowrap">
+          {x.free && <p className="text-xs font-semibold tracking-wide text-white/60 uppercase">{t.averageLabel}</p>}
+          <p className="mt-0.5 flex items-baseline gap-1 whitespace-nowrap">
             <span className="text-lg font-bold">RM</span>
-            <span className="text-gradient-light text-5xl font-extrabold tracking-tight">{rm(p.price)}</span>
+            <span className="text-gradient-light text-5xl font-extrabold tracking-tight">{rm(x.free ? planAverage(p) : p.price)}</span>
             <span className="text-sm font-semibold text-white/70">{t.perMonth}</span>
           </p>
           <p className="text-sm font-semibold text-white/70">{t.perOutlet}</p>
           <p className="mt-1 text-sm font-bold text-emerald-300">{x.daily}</p>
           <p className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-sm">
+            {x.free && (
+              <span className="whitespace-nowrap text-white/80">
+                {t.youPay} RM {rm(p.price)} {t.perMonth}
+              </span>
+            )}
             <span className="text-white/80">{fill(t.total, { n: rm(planTotal(p)) })}</span>
             <span className="rounded-full bg-emerald-400/15 px-2.5 py-0.5 text-xs font-bold text-emerald-300">{x.save}</span>
           </p>
@@ -778,7 +751,7 @@ function WelcomeCard({ lang, p }: { lang: Locale; p: Plan }) {
           href={whatsappLink(fill(t.welcomeMessage, { n: rm(p.price) }))}
           target="_blank"
           rel="noopener"
-          className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-bold text-brand-800 shadow-lg transition hover:bg-brand-50"
+          className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-white px-4 py-3.5 text-sm font-bold text-brand-800 shadow-lg transition hover:bg-brand-50 sm:px-6"
         >
           <Icon.Whatsapp className="h-5 w-5 text-whatsapp" /> {t.welcomeCta}
         </a>

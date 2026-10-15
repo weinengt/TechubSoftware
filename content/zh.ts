@@ -999,7 +999,7 @@ const zh: Dict = {
       },
       {
         q: "收费多少？",
-        a: "每间分店月费 RM {price} 起，新客户前 {months} 个月免费，包安装和员工培训。每间分店按月付每月 RM {monthly}；选 12、24 或 48 个月配套，每月 RM {planPrice}，每个月省 RM {monthlySave}，分别有 1、3 或 10 个月免费。2026 年 12 月 31 日前，迎新优惠每间分店每月只需 RM {price}（60 个月配套），只限前 {welcomeUsers} 位用户，先到先得。直播带货系统每间分店月费 RM {livePrice} 起。定制按工时收费：月付配套每小时 RM {customMonthly}，48 个月配套低至每小时 RM {custom}，测试和系统对接免费。",
+        a: "每间分店月费 RM {price} 起，新客户前 {months} 个月免费，包安装和员工培训。每间分店按月付每月 RM {monthly}；选 12、24 或 48 个月配套，每月 RM {planPrice}，每个月省 RM {monthlySave}，分别有 1、3 或 10 个月免费。2026 年 12 月 31 日前，迎新优惠每间分店每月只需 RM {price}，配套 {welcomePaid} 个月再送 {welcomeFree} 个月，平均每月只要 RM {welcomeAverage}，每天 RM {welcomeDaily}，只限前 {welcomeUsers} 位用户，先到先得。直播带货系统每间分店月费 RM {livePrice} 起。定制按工时收费：月付配套每小时 RM {customMonthly}，48 个月配套低至每小时 RM {custom}，测试和系统对接免费。",
       },
       {
         q: "价格是按每间分店计算的吗？",

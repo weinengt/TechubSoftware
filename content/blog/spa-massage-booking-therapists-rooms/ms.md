@@ -76,7 +76,7 @@ Tetapkan polisi deposit dan pembatalan yang jelas, dan beritahu pelanggan sebelu
 - Lepas servis siap, satu klik tukar deposit jadi pendapatan, dan invois, nota bayaran balik atau nota kredit siap untuk anda.
 - Setiap terapis ada profil sendiri untuk tengok dan urus booking mereka. Komisen dan gaji, termasuk gaji asas dan elaun, dikira secara automatik.
 
-Pelan bermula dari RM 99 sebulan setiap outlet dengan Tawaran Alu-aluan 60 bulan untuk 80 pengguna pertama sehingga 31 Dis 2026, atau RM 178 bulan ke bulan, dan pengguna baru dapat 3 bulan pertama percuma, termasuk pemasangan dan latihan staf. Lihat [harga](/ms/pricing/) untuk butiran.
+Pelan bermula dari RM 99 sebulan setiap outlet dengan Tawaran Alu-aluan (24 bulan tambah 2 bulan percuma, purata cuma RM 91.38 sebulan) untuk 50 pengguna pertama sehingga 31 Dis 2026, atau RM 178 bulan ke bulan, dan pengguna baru dapat 3 bulan pertama percuma, termasuk pemasangan dan latihan staf. Lihat [harga](/ms/pricing/) untuk butiran.
 
 ## Soalan lazim
 
@@ -87,4 +87,4 @@ Buat booking terapis dan bilik sekali gus, dalam satu kalendar yang semua staf g
 Boleh, asalkan sistem itu boleh booking dua terapis dan satu bilik pasangan untuk masa yang sama. Sistem Booking Spa Techub boleh urus booking pasangan dan kumpulan, dan setiap booking ada seorang terapis dan satu bilik.
 
 ### Berapa harga sistem booking spa di Malaysia?
-Sistem Booking Spa Techub bermula dari RM 99 sebulan setiap outlet dengan Tawaran Alu-aluan 60 bulan untuk 80 pengguna pertama sehingga 31 Dis 2026, atau RM 178 bulan ke bulan. Pengguna baru dapat 3 bulan pertama percuma, termasuk pemasangan dan latihan staf.
+Sistem Booking Spa Techub bermula dari RM 99 sebulan setiap outlet dengan Tawaran Alu-aluan (24 bulan tambah 2 bulan percuma, purata cuma RM 91.38 sebulan) untuk 50 pengguna pertama sehingga 31 Dis 2026, atau RM 178 bulan ke bulan. Pengguna baru dapat 3 bulan pertama percuma, termasuk pemasangan dan latihan staf.

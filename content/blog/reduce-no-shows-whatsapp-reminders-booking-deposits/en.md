@@ -77,12 +77,12 @@ Each deposit is held apart until the service is done. Then one click turns it in
 
 Every staff action is recorded, and you decide who can give discounts or refunds. It works on iPad, phone and PC, with a 99.95% uptime guarantee.
 
-Plans start from RM 99/month per outlet with our 60-month Welcome offer for the first 80 users until 31 Dec 2026, or RM 178 month by month, and new users get the first 3 months free, including installation and staff training. See [pricing](/pricing/) for details.
+Plans start from RM 99/month per outlet with our Welcome offer (24 months plus 2 months free, only RM 91.38 a month on average) for the first 50 users until 31 Dec 2026, or RM 178 month by month, and new users get the first 3 months free, including installation and staff training. See [pricing](/pricing/) for details.
 
 ## FAQ
 
 ### How do I send WhatsApp appointment reminders automatically?
-Use an appointment system that sends them for you. Techub sends booking confirmations and reminders on WhatsApp automatically, and customers confirm or reschedule with one tap. Plans start from RM 99/month per outlet with our 60-month Welcome offer for the first 80 users until 31 Dec 2026, or RM 178 month by month, with the first 3 months free.
+Use an appointment system that sends them for you. Techub sends booking confirmations and reminders on WhatsApp automatically, and customers confirm or reschedule with one tap. Plans start from RM 99/month per outlet with our Welcome offer (24 months plus 2 months free, only RM 91.38 a month on average) for the first 50 users until 31 Dec 2026, or RM 178 month by month, with the first 3 months free.
 
 ### How much should a salon charge for a booking deposit?
 Choose an amount big enough to be taken seriously, but small enough not to put off new customers. Use a fixed amount for short services and more for long or costly ones, like colour or a spa package. Always deduct it from the final bill.

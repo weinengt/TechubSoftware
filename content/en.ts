@@ -7,6 +7,7 @@
 //   {livePrice} Live Selling System monthly price · {uptime} uptime · {phone} WhatsApp number · {email} email address
 //   {monthly} Standard Plan paid month to month · {planPrice} Standard Plan per month on 12 to 48 months
 //   {monthlySave} how much less a month costs on 12 to 48 months · {welcomeUsers} users who can get the Welcome offer
+//   {welcomePaid} {welcomeFree} the Welcome offer's paid and free months · {welcomeAverage} {welcomeDaily} what it comes to a month and a day
 // Words between *asterisks* are shown in the blue gradient colour (headings only).
 
 const en = {
@@ -1011,7 +1012,7 @@ const en = {
       },
       {
         q: "How much does it cost?",
-        a: "Plans start from RM {price} a month per outlet, and new customers get the first {months} months free, including installation and staff training. Each outlet pays RM {monthly} month by month, or RM {planPrice} a month on 12, 24 or 48 months, which saves RM {monthlySave} every month, with 1, 3 or 10 months free. Until 31 Dec 2026, our Welcome offer is RM {price} a month per outlet on a 60-month plan, only for the first {welcomeUsers} users, first come, first served. The Live Selling System starts from RM {livePrice} a month per outlet. Customisation is charged by the work hour, from RM {customMonthly} an hour on the monthly plan down to RM {custom} on 48 months, with free testing and integration.",
+        a: "Plans start from RM {price} a month per outlet, and new customers get the first {months} months free, including installation and staff training. Each outlet pays RM {monthly} month by month, or RM {planPrice} a month on 12, 24 or 48 months, which saves RM {monthlySave} every month, with 1, 3 or 10 months free. Until 31 Dec 2026, our Welcome offer is RM {price} a month per outlet for {welcomePaid} months plus {welcomeFree} months free, which comes to only RM {welcomeAverage} a month or RM {welcomeDaily} a day, for the first {welcomeUsers} users only, first come, first served. The Live Selling System starts from RM {livePrice} a month per outlet. Customisation is charged by the work hour, from RM {customMonthly} an hour on the monthly plan down to RM {custom} on 48 months, with free testing and integration.",
       },
       {
         q: "Is the price per outlet?",

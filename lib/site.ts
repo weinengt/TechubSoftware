@@ -40,7 +40,7 @@ export const site = {
     { months: 12, price: 148, free: 1, hourly: 90 },
     { months: 24, price: 148, free: 3, hourly: 85 },
     { months: 48, price: 148, free: 10, recommended: true, hourly: 80 },
-    { months: 60, price: 99, until: "2026-12-31", limit: 80 },
+    { months: 26, price: 99, free: 2, until: "2026-12-31", limit: 50 },
   ],
   /** Worked examples of customisation: the work hours each takes. The Pricing page shows the first three (their
    *  words are under pricing.examples in content/*.ts); the Software Customisation page shows all four as
