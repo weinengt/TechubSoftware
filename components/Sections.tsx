@@ -220,7 +220,7 @@ export function PricingSection({ lang, page, plan = "all" }: { lang: Locale; pag
   return (
     <section id="pricing" className={`${page ? pageTop : "pt-20 sm:pt-24"} pb-20 sm:pb-24`}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <SectionHeading eyebrow={t.eyebrow} title={t.title} page={page} />
+        <SectionHeading eyebrow={t.eyebrow} title={t.title} intro={t.perOutletNote} page={page} />
         {live ? <LivePlan lang={lang} /> : <Plans lang={lang} />}
         <div className={`mx-auto mt-6 grid grid-cols-1 gap-6 ${live ? "max-w-5xl" : "max-w-6xl"}`}>
           {plan === "all" && (
@@ -237,6 +237,7 @@ export function PricingSection({ lang, page, plan = "all" }: { lang: Locale; pag
                     <span className="text-gradient text-3xl font-extrabold tracking-tight">RM {site.livePriceFrom}</span>
                     <span className="text-sm font-semibold text-slate-500">{t.perMonth}</span>
                   </span>
+                  <span className="text-sm font-semibold text-slate-500">{t.perOutlet}</span>
                 </h3>
                 <p className="mt-1 text-sm leading-relaxed text-slate-600 sm:text-base">{t.liveText}</p>
               </div>
@@ -508,6 +509,7 @@ function LivePlan({ lang }: { lang: Locale }) {
             <span className="text-5xl font-extrabold tracking-tight sm:text-6xl">RM {site.livePriceFrom}</span>
             <span className="pb-1.5 text-lg font-semibold text-white/80">{t.perMonth}</span>
           </p>
+          <p className="mt-1 text-base font-semibold text-white/80">{t.perOutlet}</p>
           <p className="mt-5 rounded-2xl bg-white/15 p-4 text-base font-semibold">{t.liveNote}</p>
           <a
             href={whatsappLink(t.liveMessage)}
@@ -528,7 +530,8 @@ function LivePlan({ lang }: { lang: Locale }) {
 }
 
 /** A plan's name, free months, saving, last day, user limit and price a day, and the lines under its price, in the
- *  page's language. `offer` is the Welcome offer's name, for the plan that is a promotion. */
+ *  page's language. `offer` is the Welcome offer's name, for the plan that is a promotion. The first line says the
+ *  plan is priced per outlet (structured data and llms-full.txt use the lines). */
 export function planText(lang: Locale, p: Plan) {
   const t = getDict(lang).pricing;
   const n = (s: string, v: number) => fill(s, { n: rm(v) });
@@ -544,6 +547,7 @@ export function planText(lang: Locale, p: Plan) {
   const save = long ? n(t.save, planSave(p)) : "";
   const limit = p.limit ? fill(t.limit, { n: String(p.limit) }) : "";
   const lines: { text: string; save?: boolean }[] = [
+    { text: t.perOutletLine },
     { text: long ? n(t.total, planTotal(p)) : t.monthlyText },
     { text: free ? n(t.average, planAverage(p)) : "" },
     { text: save, save: true },
@@ -611,14 +615,17 @@ function Plans({ lang }: { lang: Locale }) {
 function MonthlyVsYearly({ lang }: { lang: Locale }) {
   const t = getDict(lang).pricing;
   const price = (n: number, best: boolean) => (
-    // "/ month" moves under the amount when the box is too narrow for both
-    <p className="mt-auto flex flex-wrap items-baseline justify-center gap-x-1 pt-1">
-      <span className="whitespace-nowrap">
-        <span className="text-sm font-bold text-slate-900">RM</span>{" "}
-        <span className={`text-3xl font-extrabold tracking-tight sm:text-4xl ${best ? "text-gradient" : "text-slate-900"}`}>{rm(n)}</span>
-      </span>
-      <span className="text-xs font-semibold whitespace-nowrap text-slate-500 sm:text-sm">{t.perMonth}</span>
-    </p>
+    <div className="mt-auto pt-1">
+      {/* "/ month" moves under the amount when the box is too narrow for both */}
+      <p className="flex flex-wrap items-baseline justify-center gap-x-1">
+        <span className="whitespace-nowrap">
+          <span className="text-sm font-bold text-slate-900">RM</span>{" "}
+          <span className={`text-3xl font-extrabold tracking-tight sm:text-4xl ${best ? "text-gradient" : "text-slate-900"}`}>{rm(n)}</span>
+        </span>
+        <span className="text-xs font-semibold whitespace-nowrap text-slate-500 sm:text-sm">{t.perMonth}</span>
+      </p>
+      <p className="text-xs font-semibold text-slate-500">{t.perOutlet}</p>
+    </div>
   );
   return (
     <div className="mx-auto mt-6 max-w-xl" data-reveal>
@@ -691,6 +698,7 @@ function PlanCard({ lang, p, className }: { lang: Locale; p: Plan; className: st
           </span>
           <span className="text-sm font-semibold text-slate-500">{t.perMonth}</span>
         </p>
+        <p className="text-xs font-semibold text-slate-500">{t.perOutlet}</p>
         <p className="mt-1 min-h-5 text-sm font-bold text-emerald-600">{x.daily}</p>
         {long && (
           <dl className="mt-5 space-y-2 border-t border-slate-100 pt-4 text-sm">
@@ -759,6 +767,7 @@ function WelcomeCard({ lang, p }: { lang: Locale; p: Plan }) {
             <span className="text-gradient-light text-5xl font-extrabold tracking-tight">{rm(p.price)}</span>
             <span className="text-sm font-semibold text-white/70">{t.perMonth}</span>
           </p>
+          <p className="text-sm font-semibold text-white/70">{t.perOutlet}</p>
           <p className="mt-1 text-sm font-bold text-emerald-300">{x.daily}</p>
           <p className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-sm">
             <span className="text-white/80">{fill(t.total, { n: rm(planTotal(p)) })}</span>

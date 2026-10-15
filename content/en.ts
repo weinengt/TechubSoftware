@@ -25,8 +25,8 @@ const en = {
     requestDemo: "Request a Demo",
     whatsappMessage: "Hi Techub Software, I'm interested in your system. Can I get a free demo?",
     emailSubject: "Enquiry about Techub system",
-    priceLine: "From RM {price}/month · {months} months free",
-    livePriceLine: "From RM {livePrice}/month",
+    priceLine: "From RM {price}/month per outlet",
+    livePriceLine: "From RM {livePrice}/month per outlet",
     getQuote: "Get a Quote",
     enlarge: "Enlarge picture",
   },
@@ -152,7 +152,7 @@ const en = {
 
   footer: {
     blurb:
-      "{name} is a software company based in Malaysia. We build smart, low-cost systems for clinics, hair salons, beauty centres, spas, live sellers and trading companies across Malaysia, and custom systems such as AI object detection and number plate scanners. {uptime} uptime guarantee, from RM {price}/month.",
+      "{name} is a software company based in Malaysia. We build smart, low-cost systems for clinics, hair salons, beauty centres, spas, live sellers and trading companies across Malaysia, and custom systems such as AI object detection and number plate scanners. {uptime} uptime guarantee, from RM {price}/month per outlet.",
     useCases: "Use cases",
     custom: "Custom systems",
     company: "Company",
@@ -187,7 +187,7 @@ const en = {
     meta: {
       title: "Appointment & Online Booking System Malaysia | Techub Software",
       description:
-        "AI appointment and booking system for clinics, salons, beauty centres and spas in Kuala Lumpur, Johor Bahru, Penang and all of Malaysia. WhatsApp reminders. From RM {price}/month, {months} months free.",
+        "AI appointment and booking system for clinics, salons, beauty centres and spas in Kuala Lumpur, Johor Bahru, Penang and all of Malaysia. WhatsApp reminders. From RM {price}/month per outlet, {months} months free.",
       keywords: [
         "online booking system Malaysia",
         "appointment booking app",
@@ -419,7 +419,7 @@ const en = {
     intro:
       "We are based in Malaysia and build systems that help local businesses take bookings, serve customers and manage stock. Then we set everything up for you.",
     values: {
-      cost: { title: "Low cost", text: "From RM {price}/month (Welcome offer, first {welcomeUsers} users). Customisation from RM {custom} per work hour." },
+      cost: { title: "Low cost", text: "From RM {price}/month per outlet (Welcome offer, first {welcomeUsers} users). Customisation from RM {custom} per work hour." },
       online: { title: "Always online", text: "{uptime} uptime guarantee, with multi-region backups." },
       done: { title: "Done for you", text: "We install, connect your hardware and train your staff." },
       custom: { title: "Built your way", text: "We customise forms, workflows, reports and printouts." },
@@ -839,6 +839,11 @@ const en = {
     from: "from",
     perMonth: "/ month",
     perHour: "/ hour",
+    // Every plan, the Welcome offer and the Live Selling System are priced per outlet: `perOutlet` sits under each
+    // price, `perOutletNote` under the section title, and `perOutletLine` starts each plan's lines (structured data).
+    perOutlet: "per outlet",
+    perOutletNote: "All prices are per outlet.",
+    perOutletLine: "Priced per outlet",
     // The ways to pay (plans in lib/site.ts), a card each. {n} is a number, {date} the Welcome offer's last day and
     // {plan} a plan's name.
     plansText: "For clinics, hair salons, spas, massage and beauty centres.",
@@ -859,14 +864,14 @@ const en = {
     planMessage: "Hi Techub, I'm interested in this plan: {plan}.",
     welcome: "Welcome offer",
     welcomeCta: "Get the Welcome offer",
-    welcomeMessage: "Hi Techub, I'd like the Welcome offer at RM {n} a month.",
+    welcomeMessage: "Hi Techub, I'd like the Welcome offer at RM {n} a month per outlet.",
     promoUntil: "Until {date}",
     limit: "Only for the first {n} users, first come, first served",
     daily: "Only RM {n} a day",
     // Monthly against the 12 to 48-month plans, above the cards
     yearly: "Yearly",
     yearlyNote: "12, 24 or 48 months",
-    yearlySave: "Save RM {monthlySave} every month",
+    yearlySave: "Save RM {monthlySave} a month per outlet",
     lessThanMonthly: "RM {monthlySave} less than Monthly",
     plansIncluded: "Every plan includes",
     free: "FREE for the first {months} months for new users, including staff training and installation.",
@@ -906,7 +911,7 @@ const en = {
     customEmail: "Email us",
     customEmailSubject: "Customised system quote",
     customSee: "See customer examples",
-    offerText: "From RM {price} per month (Welcome offer, first {welcomeUsers} users). First {months} months free for new users, including installation and staff training.",
+    offerText: "From RM {price} a month per outlet (Welcome offer, first {welcomeUsers} users). First {months} months free for new users, including installation and staff training.",
     // Other services (prices in lib/site.ts), a card each on the Pricing and Services pages
     extrasTitle: "More services",
     extrasText: "Also from Techub, for any business in Malaysia.",
@@ -967,7 +972,7 @@ const en = {
       "{uptime} uptime on servers in Malaysia",
       "Local support in Malaysia on WhatsApp",
     ],
-    liveOfferText: "Live Selling System from RM {livePrice} per month.",
+    liveOfferText: "Live Selling System from RM {livePrice} a month per outlet.",
   },
 
   faq: {
@@ -981,11 +986,15 @@ const en = {
       },
       {
         q: "Which appointment system in Malaysia sends WhatsApp reminders?",
-        a: "Techub Software. Its online booking system and appointment booking app send booking confirmations and reminders on WhatsApp automatically for clinics, salons, beauty centres and spas in Malaysia, and customers confirm or reschedule with one tap. Plans start from RM {price}/month (Welcome offer, first {welcomeUsers} users), with the first {months} months free.",
+        a: "Techub Software. Its online booking system and appointment booking app send booking confirmations and reminders on WhatsApp automatically for clinics, salons, beauty centres and spas in Malaysia, and customers confirm or reschedule with one tap. Plans start from RM {price}/month per outlet (Welcome offer, first {welcomeUsers} users), with the first {months} months free.",
       },
       {
         q: "How much does it cost?",
-        a: "Plans start from RM {price} per month, and new customers get the first {months} months free, including installation and staff training. Pay RM {monthly} month by month, or RM {planPrice} a month on 12, 24 or 48 months, which saves RM {monthlySave} every month, with 1, 3 or 10 months free. Until 31 Dec 2026, our Welcome offer is RM {price} a month on a 60-month plan, only for the first {welcomeUsers} users, first come, first served. The Live Selling System starts from RM {livePrice} per month. Customisation is charged by the work hour, from RM {customMonthly} an hour on the monthly plan down to RM {custom} on 48 months, with free testing and integration.",
+        a: "Plans start from RM {price} a month per outlet, and new customers get the first {months} months free, including installation and staff training. Each outlet pays RM {monthly} month by month, or RM {planPrice} a month on 12, 24 or 48 months, which saves RM {monthlySave} every month, with 1, 3 or 10 months free. Until 31 Dec 2026, our Welcome offer is RM {price} a month per outlet on a 60-month plan, only for the first {welcomeUsers} users, first come, first served. The Live Selling System starts from RM {livePrice} a month per outlet. Customisation is charged by the work hour, from RM {customMonthly} an hour on the monthly plan down to RM {custom} on 48 months, with free testing and integration.",
+      },
+      {
+        q: "Is the price per outlet?",
+        a: "Yes. Every plan, the Welcome offer and the Live Selling System are priced per outlet, so each outlet has its own subscription.",
       },
       {
         q: "Can my customers pay a deposit online?",
@@ -1021,7 +1030,7 @@ const en = {
       },
       {
         q: "Do you have a system for live selling?",
-        a: "Yes. The Techub Live Selling System lets you sell online during your live sessions. It handles big crowds of buyers with Kafka order queueing, stops overselling, lets you set each product's selling date and shows your visitors live. It starts from RM {livePrice} per month.",
+        a: "Yes. The Techub Live Selling System lets you sell online during your live sessions. It handles big crowds of buyers with Kafka order queueing, stops overselling, lets you set each product's selling date and shows your visitors live. It starts from RM {livePrice} a month per outlet.",
       },
       {
         q: "Which hardware can I connect?",
@@ -1045,7 +1054,7 @@ const en = {
   contact: {
     badge: "Free demo · {months} months free",
     title: "See Techub running in your business",
-    text: "From RM {price}/month (Welcome offer, first {welcomeUsers} users), for businesses across Malaysia. Installation and staff training included.",
+    text: "From RM {price}/month per outlet (Welcome offer, first {welcomeUsers} users), for businesses across Malaysia. Installation and staff training included.",
     whatsappLabel: "WhatsApp · fastest reply",
     emailLabel: "Email us",
   },
@@ -1094,9 +1103,9 @@ const en = {
     },
     pricing: {
       meta: {
-        title: "Pricing | From RM {price}/month, First {months} Months Free",
+        title: "Pricing | From RM {price}/month per Outlet, First {months} Months Free",
         description:
-          "Appointment systems in Malaysia from RM {price}/month, first {months} months free with installation and training. Live selling from RM {livePrice}/month; custom work from RM {custom}/hour.",
+          "Appointment systems in Malaysia from RM {price}/month per outlet, first {months} months free with installation and training. Live selling from RM {livePrice}/month per outlet; custom work from RM {custom}/hour.",
       },
     },
     about: {
@@ -1137,7 +1146,7 @@ const en = {
         title: "Clinic Management System Malaysia | KL, JB & Penang",
         socialTitle: "Clinic Management System Malaysia | Techub Software",
         description:
-          "Clinic management system for clinics in Kuala Lumpur, Johor Bahru, Penang and all of Malaysia: EMR, queue calling, AI medicine stock, LHDN e-Invoice. From RM {price}/month.",
+          "Clinic management system for clinics in Kuala Lumpur, Johor Bahru, Penang and all of Malaysia: EMR, queue calling, AI medicine stock, LHDN e-Invoice. From RM {price}/month per outlet.",
         keywords: [
           "clinic system Malaysia",
           "clinic queue system",
@@ -1253,11 +1262,11 @@ const en = {
       faqs: [
         {
           q: "How much does a clinic management system cost in Malaysia?",
-          a: "Techub's clinic system in Malaysia starts from RM {price}/month (Welcome offer, first {welcomeUsers} users), and new clinics get the first {months} months free, including installation and staff training. Customisation is charged by the work hour, from RM {custom} an hour.",
+          a: "Techub's clinic system in Malaysia starts from RM {price}/month per outlet (Welcome offer, first {welcomeUsers} users), and new clinics get the first {months} months free, including installation and staff training. Customisation is charged by the work hour, from RM {custom} an hour.",
         },
         {
           q: "Is the Techub clinic system suitable for small clinics?",
-          a: "Yes. It is designed for single-doctor clinics up to multi-branch groups. Plans start from RM {price}/month (Welcome offer, first {welcomeUsers} users) and new clinics get the first {months} months free, including installation and staff training.",
+          a: "Yes. It is designed for single-doctor clinics up to multi-branch groups. Plans start from RM {price}/month per outlet (Welcome offer, first {welcomeUsers} users) and new clinics get the first {months} months free, including installation and staff training.",
         },
         {
           q: "Can I track patient records and medication?",
@@ -1308,7 +1317,7 @@ const en = {
         title: "Salon Booking System Malaysia | KL, JB & Penang",
         socialTitle: "Salon Appointment System Malaysia | Techub Software",
         description:
-          "Hair salon booking system for Kuala Lumpur, Johor Bahru, Penang and all of Malaysia: stylist calendar, WhatsApp reminders, commission, POS. From RM {price}/month, {months} months free.",
+          "Hair salon booking system for Kuala Lumpur, Johor Bahru, Penang and all of Malaysia: stylist calendar, WhatsApp reminders, commission, POS. From RM {price}/month per outlet, {months} months free.",
         keywords: [
           "salon POS system Malaysia",
           "salon commission system",
@@ -1425,7 +1434,7 @@ const en = {
       faqs: [
         {
           q: "How much is the salon appointment system?",
-          a: "It starts from RM {price}/month (Welcome offer, first {welcomeUsers} users). New salons get the first {months} months free, including installation and staff training.",
+          a: "It starts from RM {price}/month per outlet (Welcome offer, first {welcomeUsers} users). New salons get the first {months} months free, including installation and staff training.",
         },
         {
           q: "Does it notify customers automatically?",
@@ -1480,7 +1489,7 @@ const en = {
         title: "Beauty Appointment System Malaysia | KL, JB & Penang",
         socialTitle: "Beauty Appointment System Malaysia | Techub Software",
         description:
-          "Beauty appointment system for beauty centres in Kuala Lumpur, Johor Bahru, Penang and all of Malaysia: packages, face charts, WhatsApp reminders, payroll. From RM {price}/month.",
+          "Beauty appointment system for beauty centres in Kuala Lumpur, Johor Bahru, Penang and all of Malaysia: packages, face charts, WhatsApp reminders, payroll. From RM {price}/month per outlet.",
         keywords: [
           "beauty appointment system Malaysia",
           "beauty appointment system",
@@ -1603,7 +1612,7 @@ const en = {
       faqs: [
         {
           q: "How much is the beauty centre appointment system?",
-          a: "It starts from RM {price}/month (Welcome offer, first {welcomeUsers} users). New beauty centres get the first {months} months free, including installation and staff training.",
+          a: "It starts from RM {price}/month per outlet (Welcome offer, first {welcomeUsers} users). New beauty centres get the first {months} months free, including installation and staff training.",
         },
         {
           q: "Can it track treatment packages and sessions?",
@@ -1654,7 +1663,7 @@ const en = {
         title: "Spa & Massage Booking System Malaysia | KL, JB & Penang",
         socialTitle: "Spa Appointment System Malaysia | Techub Software",
         description:
-          "Spa and massage booking system for Kuala Lumpur, Johor Bahru, Penang and all of Malaysia: therapists, rooms, packages, WhatsApp reminders, payroll. From RM {price}/month.",
+          "Spa and massage booking system for Kuala Lumpur, Johor Bahru, Penang and all of Malaysia: therapists, rooms, packages, WhatsApp reminders, payroll. From RM {price}/month per outlet.",
         keywords: [
           "reflexology booking system",
           "booking deposit system",
@@ -1780,7 +1789,7 @@ const en = {
       faqs: [
         {
           q: "How much is the spa appointment system?",
-          a: "It starts from RM {price}/month (Welcome offer, first {welcomeUsers} users). New spas get the first {months} months free, including installation and staff training.",
+          a: "It starts from RM {price}/month per outlet (Welcome offer, first {welcomeUsers} users). New spas get the first {months} months free, including installation and staff training.",
         },
         {
           q: "Can I schedule both therapists and rooms?",
@@ -1835,7 +1844,7 @@ const en = {
         title: "Live Selling System Malaysia | KL, JB & Penang",
         socialTitle: "Live Selling System Malaysia | Techub Software",
         description:
-          "Live selling system for Facebook and TikTok sellers in Kuala Lumpur, Johor Bahru, Penang and all of Malaysia: big crowds, no overselling, scheduled products. From RM {livePrice}/month.",
+          "Live selling system for Facebook and TikTok sellers in Kuala Lumpur, Johor Bahru, Penang and all of Malaysia: big crowds, no overselling, scheduled products. From RM {livePrice}/month per outlet.",
         keywords: [
           "live selling system Malaysia",
           "live selling system",
@@ -1989,7 +1998,7 @@ const en = {
         },
         {
           q: "How much is the Live Selling System?",
-          a: "It starts from RM {livePrice} per month, depending on your needs. WhatsApp us at {phone} to request a demo.",
+          a: "It starts from RM {livePrice} a month per outlet, depending on your needs. WhatsApp us at {phone} to request a demo.",
         },
         {
           q: "Can I see what each staff member does in the system?",
@@ -2004,7 +2013,7 @@ const en = {
       contact: {
         badge: "Request a demo",
         title: "See the Live Selling System in action",
-        text: "From RM {livePrice}/month, for online sellers across Malaysia.",
+        text: "From RM {livePrice}/month per outlet, for online sellers across Malaysia.",
       },
     },
     inventory: {

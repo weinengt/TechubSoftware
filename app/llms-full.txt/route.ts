@@ -114,18 +114,19 @@ ${getFeatures("en")
 ${list(Object.values(t.hardware.items))}
 
 ## Pricing (${site.url}/pricing/)
-- ${t.pricing.plan}: from RM ${site.priceFrom} per month (${t.pricing.welcome}, ${fill(t.pricing.limit, { n: String(welcomeUsers) }).toLowerCase()}).
-- ${t.pricing.monthly}: RM ${site.plans[0].price} per month. ${t.pricing.yearly} (${t.pricing.yearlyNote}): RM ${site.planPrice} per month. ${t.pricing.yearlySave}.
+- ${t.pricing.perOutletNote}
+- ${t.pricing.plan}: from RM ${site.priceFrom} a month per outlet (${t.pricing.welcome}, ${fill(t.pricing.limit, { n: String(welcomeUsers) }).toLowerCase()}).
+- ${t.pricing.monthly}: RM ${site.plans[0].price} a month per outlet. ${t.pricing.yearly} (${t.pricing.yearlyNote}): RM ${site.planPrice} a month per outlet. ${t.pricing.yearlySave}.
 ${site.plans
   .map((p: Plan) => {
     const x = planText("en", p);
     const name = [x.offer, x.name, x.free].filter(Boolean).join(", ") + (p.recommended ? ` (${t.pricing.recommended.toLowerCase()})` : "");
-    return `- ${name}: RM ${p.price} per month. ${[...x.lines.map((l) => l.text), x.daily].filter(Boolean).join(". ")}.`;
+    return `- ${name}: RM ${p.price} a month. ${[...x.lines.map((l) => l.text), x.daily].filter(Boolean).join(". ")}.`;
   })
   .join("\n")}
 - ${t.pricing.free}
 - Included: ${t.pricing.included.join("; ")}.
-- ${t.pricing.liveTitle}: from RM ${site.livePriceFrom} per month. ${t.pricing.liveText}
+- ${t.pricing.liveTitle}: from RM ${site.livePriceFrom} a month per outlet. ${t.pricing.liveText}
 - Live Selling System includes: ${t.pricing.liveIncluded.join("; ")}.
 - ${t.pricing.customTitle}: from RM ${site.customFrom} per work hour. ${t.pricing.customText} ${t.pricing.customPoints.join(". ")}.
 - ${t.pricing.customRates}: ${site.plans

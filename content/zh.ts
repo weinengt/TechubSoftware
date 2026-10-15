@@ -19,8 +19,8 @@ const zh: Dict = {
     requestDemo: "申请 Demo",
     whatsappMessage: "Hi Techub Software，我对你们的系统有兴趣，可以安排免费 Demo 吗？",
     emailSubject: "Techub 系统咨询",
-    priceLine: "RM {price}/月起 · 前 {months} 个月免费",
-    livePriceLine: "RM {livePrice}/月起",
+    priceLine: "每间分店 RM {price}/月起",
+    livePriceLine: "每间分店 RM {livePrice}/月起",
     getQuote: "我要报价",
     enlarge: "放大图片",
   },
@@ -145,7 +145,7 @@ const zh: Dict = {
 
   footer: {
     blurb:
-      "{name} 是马来西亚本地的软件公司，为全马的诊所、发廊、美容中心、SPA、直播卖家和贸易公司开发智能又实惠的系统，也定制 AI 物体识别和车牌识别等系统。保证 {uptime} 在线率，月费 RM {price} 起。",
+      "{name} 是马来西亚本地的软件公司，为全马的诊所、发廊、美容中心、SPA、直播卖家和贸易公司开发智能又实惠的系统，也定制 AI 物体识别和车牌识别等系统。保证 {uptime} 在线率，每间分店月费 RM {price} 起。",
     useCases: "解决方案",
     custom: "定制系统",
     company: "公司",
@@ -180,7 +180,7 @@ const zh: Dict = {
     meta: {
       title: "马来西亚预约系统 | 诊所、美容院、发廊、SPA 管理系统 | Techub Software",
       description:
-        "马来西亚 AI 预约系统，适合吉隆坡、新山、槟城和全马的诊所、美容院、发廊和 SPA：WhatsApp 自动提醒、库存管理。月费 RM {price} 起，前 {months} 个月免费。",
+        "马来西亚 AI 预约系统，适合吉隆坡、新山、槟城和全马的诊所、美容院、发廊和 SPA：WhatsApp 自动提醒、库存管理。每间分店月费 RM {price} 起，前 {months} 个月免费。",
       keywords: [
         "网上预约系统",
         "预约软件",
@@ -412,7 +412,7 @@ const zh: Dict = {
     intro:
       "我们在马来西亚，专门为本地生意开发系统，帮你接预约、招呼顾客、管库存。系统设定，全部交给我们。",
     values: {
-      cost: { title: "价钱实惠", text: "月费 RM {price} 起（迎新优惠，限前 {welcomeUsers} 位用户）。定制按工时收费，每小时 RM {custom} 起。" },
+      cost: { title: "价钱实惠", text: "每间分店月费 RM {price} 起（迎新优惠，限前 {welcomeUsers} 位用户）。定制按工时收费，每小时 RM {custom} 起。" },
       online: { title: "24 小时在线", text: "保证 {uptime} 在线率，还有多区域备份。" },
       done: { title: "我们帮你搞定", text: "安装、连接硬件、培训员工，我们全包。" },
       custom: { title: "照你的要求做", text: "表格、工作流程、报表和打印格式，都可以定制。" },
@@ -836,6 +836,9 @@ const zh: Dict = {
     from: "低至",
     perMonth: "/ 月",
     perHour: "/ 小时",
+    perOutlet: "每间分店",
+    perOutletNote: "所有价格均按每间分店计算。",
+    perOutletLine: "按每间分店收费",
     plansText: "适用于诊所、发廊、SPA 按摩和美容中心。",
     monthly: "月付",
     monthlyText: "按月付费",
@@ -854,13 +857,13 @@ const zh: Dict = {
     planMessage: "Hi Techub，我想了解这个配套：{plan}。",
     welcome: "迎新优惠",
     welcomeCta: "领取迎新优惠",
-    welcomeMessage: "Hi Techub，我想要每月 RM {n} 的迎新优惠。",
+    welcomeMessage: "Hi Techub，我想要每间分店每月 RM {n} 的迎新优惠。",
     promoUntil: "优惠至 {date}",
     limit: "只限前 {n} 位用户，先到先得",
     daily: "每天只要 RM {n}",
     yearly: "年付",
     yearlyNote: "12、24 或 48 个月",
-    yearlySave: "每个月省 RM {monthlySave}",
+    yearlySave: "每间分店每月省 RM {monthlySave}",
     lessThanMonthly: "比月付每月便宜 RM {monthlySave}",
     plansIncluded: "每个配套都包括",
     free: "新用户前 {months} 个月完全免费，包安装和员工培训。",
@@ -898,7 +901,7 @@ const zh: Dict = {
     customEmail: "电邮联络",
     customEmailSubject: "定制系统报价",
     customSee: "看看顾客例子",
-    offerText: "每月 RM {price} 起（迎新优惠，限前 {welcomeUsers} 位用户）。新用户前 {months} 个月免费，包安装和员工培训。",
+    offerText: "每间分店每月 RM {price} 起（迎新优惠，限前 {welcomeUsers} 位用户）。新用户前 {months} 个月免费，包安装和员工培训。",
     extrasTitle: "其他服务",
     extrasText: "Techub 也提供以下服务，适合马来西亚各行各业。",
     extrasCta: "WhatsApp 询问",
@@ -958,7 +961,7 @@ const zh: Dict = {
       "马来西亚服务器，{uptime} 在线率",
       "马来西亚本地团队 WhatsApp 支援",
     ],
-    liveOfferText: "直播带货系统每月 RM {livePrice} 起。",
+    liveOfferText: "直播带货系统每间分店每月 RM {livePrice} 起。",
   },
 
   faq: {
@@ -971,11 +974,15 @@ const zh: Dict = {
       },
       {
         q: "马来西亚哪个预约系统会自动发 WhatsApp 提醒？",
-        a: "Techub Software。我们的网上预约系统和预约软件会自动在 WhatsApp 发送预约确认和提醒，适合马来西亚的诊所、美容院、发廊和 SPA，顾客点一下就能确认或改时间。月费 RM {price} 起（迎新优惠，限前 {welcomeUsers} 位用户），前 {months} 个月免费。",
+        a: "Techub Software。我们的网上预约系统和预约软件会自动在 WhatsApp 发送预约确认和提醒，适合马来西亚的诊所、美容院、发廊和 SPA，顾客点一下就能确认或改时间。每间分店月费 RM {price} 起（迎新优惠，限前 {welcomeUsers} 位用户），前 {months} 个月免费。",
       },
       {
         q: "收费多少？",
-        a: "月费 RM {price} 起，新客户前 {months} 个月免费，包安装和员工培训。按月付每月 RM {monthly}；选 12、24 或 48 个月配套，每月 RM {planPrice}，每个月省 RM {monthlySave}，分别有 1、3 或 10 个月免费。2026 年 12 月 31 日前，迎新优惠每月只需 RM {price}（60 个月配套），只限前 {welcomeUsers} 位用户，先到先得。直播带货系统月费 RM {livePrice} 起。定制按工时收费：月付配套每小时 RM {customMonthly}，48 个月配套低至每小时 RM {custom}，测试和系统对接免费。",
+        a: "每间分店月费 RM {price} 起，新客户前 {months} 个月免费，包安装和员工培训。每间分店按月付每月 RM {monthly}；选 12、24 或 48 个月配套，每月 RM {planPrice}，每个月省 RM {monthlySave}，分别有 1、3 或 10 个月免费。2026 年 12 月 31 日前，迎新优惠每间分店每月只需 RM {price}（60 个月配套），只限前 {welcomeUsers} 位用户，先到先得。直播带货系统每间分店月费 RM {livePrice} 起。定制按工时收费：月付配套每小时 RM {customMonthly}，48 个月配套低至每小时 RM {custom}，测试和系统对接免费。",
+      },
+      {
+        q: "价格是按每间分店计算的吗？",
+        a: "是的。所有配套、迎新优惠和直播带货系统都按每间分店收费，每间分店各有自己的订阅。",
       },
       {
         q: "顾客可以在网上付订金吗？",
@@ -1011,7 +1018,7 @@ const zh: Dict = {
       },
       {
         q: "有直播带货系统吗？",
-        a: "有。Techub 直播带货系统让你在直播时网上卖货：Kafka 订单排队技术撑得住大批买家同时下单，不会超卖，每件产品可以自己设定开卖日期，访客也即时看得到。月费 RM {livePrice} 起。",
+        a: "有。Techub 直播带货系统让你在直播时网上卖货：Kafka 订单排队技术撑得住大批买家同时下单，不会超卖，每件产品可以自己设定开卖日期，访客也即时看得到。每间分店月费 RM {livePrice} 起。",
       },
       {
         q: "可以连接哪些硬件？",
@@ -1035,7 +1042,7 @@ const zh: Dict = {
   contact: {
     badge: "免费 Demo · 前 {months} 个月免费",
     title: "看看 Techub 怎样帮到你的生意",
-    text: "月费 RM {price} 起（迎新优惠，限前 {welcomeUsers} 位用户），全马商家都适用，包安装和员工培训。",
+    text: "每间分店月费 RM {price} 起（迎新优惠，限前 {welcomeUsers} 位用户），全马商家都适用，包安装和员工培训。",
     whatsappLabel: "WhatsApp · 回复最快",
     emailLabel: "电邮联络",
   },
@@ -1082,8 +1089,8 @@ const zh: Dict = {
     },
     pricing: {
       meta: {
-        title: "价格 | 预约系统 RM {price}/月起，前 {months} 个月免费",
-        description: "马来西亚预约系统月费 RM {price} 起，新客户前 {months} 个月免费，包安装和员工培训。直播带货系统 RM {livePrice}/月起；定制每小时 RM {custom} 起。",
+        title: "价格 | 预约系统每间分店 RM {price}/月起，前 {months} 个月免费",
+        description: "马来西亚预约系统每间分店月费 RM {price} 起，新客户前 {months} 个月免费，包安装和员工培训。直播带货系统每间分店 RM {livePrice}/月起；定制每小时 RM {custom} 起。",
       },
     },
     about: {
@@ -1121,7 +1128,7 @@ const zh: Dict = {
         title: "马来西亚诊所管理系统 | 吉隆坡、新山、槟城",
         socialTitle: "马来西亚诊所管理系统 | Techub Software",
         description:
-          "适合吉隆坡、新山、槟城和全马诊所的诊所管理系统：电子病历 EMR、排队叫号、AI 药物库存、LHDN 电子发票。月费 RM {price} 起，前 {months} 个月免费。",
+          "适合吉隆坡、新山、槟城和全马诊所的诊所管理系统：电子病历 EMR、排队叫号、AI 药物库存、LHDN 电子发票。每间分店月费 RM {price} 起，前 {months} 个月免费。",
         keywords: [
           "诊所预约系统",
           "排队叫号系统",
@@ -1237,11 +1244,11 @@ const zh: Dict = {
       faqs: [
         {
           q: "马来西亚诊所管理系统多少钱？",
-          a: "Techub 诊所管理系统月费 RM {price} 起（迎新优惠，限前 {welcomeUsers} 位用户），新诊所前 {months} 个月免费，包安装和员工培训。定制按工时收费，每小时 RM {custom} 起。",
+          a: "Techub 诊所管理系统每间分店月费 RM {price} 起（迎新优惠，限前 {welcomeUsers} 位用户），新诊所前 {months} 个月免费，包安装和员工培训。定制按工时收费，每小时 RM {custom} 起。",
         },
         {
           q: "Techub 诊所系统适合小诊所吗？",
-          a: "适合。从只有一位医生的小诊所，到有多间分行的连锁诊所都适用。月费 RM {price} 起（迎新优惠，限前 {welcomeUsers} 位用户），新诊所前 {months} 个月免费，包安装和员工培训。",
+          a: "适合。从只有一位医生的小诊所，到有多间分行的连锁诊所都适用。每间分店月费 RM {price} 起（迎新优惠，限前 {welcomeUsers} 位用户），新诊所前 {months} 个月免费，包安装和员工培训。",
         },
         {
           q: "可以追踪病人记录和用药吗？",
@@ -1292,7 +1299,7 @@ const zh: Dict = {
         title: "马来西亚发廊预约系统 | 吉隆坡、新山、槟城",
         socialTitle: "马来西亚发廊预约系统 | Techub Software",
         description:
-          "适合吉隆坡、新山、槟城和全马发廊、发型屋的预约系统：发型师日历、WhatsApp 自动提醒、佣金、收银系统。月费 RM {price} 起，前 {months} 个月免费。",
+          "适合吉隆坡、新山、槟城和全马发廊、发型屋的预约系统：发型师日历、WhatsApp 自动提醒、佣金、收银系统。每间分店月费 RM {price} 起，前 {months} 个月免费。",
         keywords: [
           "发型屋预约系统",
           "美发预约系统",
@@ -1407,7 +1414,7 @@ const zh: Dict = {
       faqs: [
         {
           q: "发廊预约系统收费多少？",
-          a: "月费 RM {price} 起（迎新优惠，限前 {welcomeUsers} 位用户）。新发廊前 {months} 个月免费，包安装和员工培训。",
+          a: "每间分店月费 RM {price} 起（迎新优惠，限前 {welcomeUsers} 位用户）。新发廊前 {months} 个月免费，包安装和员工培训。",
         },
         {
           q: "会自动通知顾客吗？",
@@ -1462,7 +1469,7 @@ const zh: Dict = {
         title: "马来西亚美容预约系统 | 吉隆坡、新山、槟城",
         socialTitle: "马来西亚美容预约系统 | Techub Software",
         description:
-          "适合吉隆坡、新山、槟城和全马美容院的预约系统：疗程配套、面部图、WhatsApp 自动提醒、员工薪水。月费 RM {price} 起，前 {months} 个月免费。",
+          "适合吉隆坡、新山、槟城和全马美容院的预约系统：疗程配套、面部图、WhatsApp 自动提醒、员工薪水。每间分店月费 RM {price} 起，前 {months} 个月免费。",
         keywords: [
           "美容预约系统",
           "美容院预约系统",
@@ -1584,7 +1591,7 @@ const zh: Dict = {
       faqs: [
         {
           q: "美容中心预约系统收费多少？",
-          a: "月费 RM {price} 起（迎新优惠，限前 {welcomeUsers} 位用户）。新美容中心前 {months} 个月免费，包安装和员工培训。",
+          a: "每间分店月费 RM {price} 起（迎新优惠，限前 {welcomeUsers} 位用户）。新美容中心前 {months} 个月免费，包安装和员工培训。",
         },
         {
           q: "可以追踪疗程配套和次数吗？",
@@ -1635,7 +1642,7 @@ const zh: Dict = {
         title: "马来西亚 SPA 预约系统 | 吉隆坡、新山、槟城",
         socialTitle: "马来西亚 SPA 预约系统 | Techub Software",
         description:
-          "适合吉隆坡、新山、槟城和全马 SPA、按摩店的预约系统：按摩师和房间安排、配套、WhatsApp 自动提醒、薪水。月费 RM {price} 起，前 {months} 个月免费。",
+          "适合吉隆坡、新山、槟城和全马 SPA、按摩店的预约系统：按摩师和房间安排、配套、WhatsApp 自动提醒、薪水。每间分店月费 RM {price} 起，前 {months} 个月免费。",
         keywords: [
           "SPA会员管理系统",
           "SPA收银系统",
@@ -1759,7 +1766,7 @@ const zh: Dict = {
       faqs: [
         {
           q: "SPA 预约系统收费多少？",
-          a: "月费 RM {price} 起（迎新优惠，限前 {welcomeUsers} 位用户）。新 SPA 前 {months} 个月免费，包安装和员工培训。",
+          a: "每间分店月费 RM {price} 起（迎新优惠，限前 {welcomeUsers} 位用户）。新 SPA 前 {months} 个月免费，包安装和员工培训。",
         },
         {
           q: "可以同时安排按摩师和房间吗？",
@@ -1814,7 +1821,7 @@ const zh: Dict = {
         title: "马来西亚直播带货系统 | 吉隆坡、新山、槟城",
         socialTitle: "马来西亚直播带货系统 | Techub Software",
         description:
-          "适合吉隆坡、新山、槟城和全马 Facebook、TikTok 直播卖家的直播带货系统：撑得住大批买家，不会超卖，产品定时开卖。月费 RM {livePrice} 起。",
+          "适合吉隆坡、新山、槟城和全马 Facebook、TikTok 直播卖家的直播带货系统：撑得住大批买家，不会超卖，产品定时开卖。每间分店月费 RM {livePrice} 起。",
         keywords: [
           "TikTok直播带货系统",
           "直播带货系统",
@@ -1968,7 +1975,7 @@ const zh: Dict = {
         },
         {
           q: "直播带货系统收费多少？",
-          a: "月费 RM {livePrice} 起，看你的需要而定。WhatsApp {phone} 跟我们申请 Demo。",
+          a: "每间分店月费 RM {livePrice} 起，看你的需要而定。WhatsApp {phone} 跟我们申请 Demo。",
         },
         {
           q: "我可以看到每位员工在系统里做了什么吗？",
@@ -1983,7 +1990,7 @@ const zh: Dict = {
       contact: {
         badge: "申请 Demo",
         title: "看看直播带货系统怎样运作",
-        text: "月费 RM {livePrice} 起，全马网上卖家都适用。",
+        text: "每间分店月费 RM {livePrice} 起，全马网上卖家都适用。",
       },
     },
     inventory: {

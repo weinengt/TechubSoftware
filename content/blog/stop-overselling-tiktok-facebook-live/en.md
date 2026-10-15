@@ -65,7 +65,7 @@ Techub works with various payment gateways. Buyers pay at checkout by online ban
 
 The live dashboard shows your visitors and the page each is on. Price changes during a live can need your approval. Reports on best sellers and conversion are generated in under 100 ms.
 
-It runs on servers in Malaysia with a 99.95% uptime guarantee. It starts from RM 199 per month, depending on your needs. See [pricing](/pricing/) for what is included.
+It runs on servers in Malaysia with a 99.95% uptime guarantee. It starts from RM 199 a month per outlet, depending on your needs. See [pricing](/pricing/) for what is included.
 
 ## FAQ
 
@@ -76,4 +76,4 @@ Take orders on a sale page that checks and deducts stock the moment each order i
 Yes, if it puts orders in a queue and processes each one in turn. Techub's Live Selling System uses Kafka order queueing, so the sale page stays fast and no item is sold twice.
 
 ### How much is a live selling system in Malaysia?
-Techub's Live Selling System starts from RM 199 per month, depending on your needs. You can request a demo on WhatsApp to see it working with your own products.
+Techub's Live Selling System starts from RM 199 a month per outlet, depending on your needs. You can request a demo on WhatsApp to see it working with your own products.
