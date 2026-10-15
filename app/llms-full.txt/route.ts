@@ -1,7 +1,7 @@
 import { getDict } from "@/content";
 import { getLegal } from "@/content/legal";
 import { customSystems, services, techIcons } from "@/components/Company";
-import { getFeatures } from "@/components/Sections";
+import { getFeatures, planText } from "@/components/Sections";
 import { plain } from "@/components/Text";
 import { localeName, locales, lp } from "@/lib/i18n";
 import { site, systems } from "@/lib/site";
@@ -76,6 +76,12 @@ ${list(Object.values(t.hardware.items))}
 
 ## Pricing (${site.url}/pricing/)
 - ${t.pricing.plan}: from RM ${site.priceFrom} per month.
+${site.plans
+  .map((p) => {
+    const x = planText("en", p);
+    return `- ${[x.name, x.free].filter(Boolean).join(", ")}: RM ${p.price} per month. ${x.lines.map((l) => l.text).join(". ")}.`;
+  })
+  .join("\n")}
 - ${t.pricing.free}
 - Included: ${t.pricing.included.join("; ")}.
 - ${t.pricing.liveTitle}: from RM ${site.livePriceFrom} per month. ${t.pricing.liveText}

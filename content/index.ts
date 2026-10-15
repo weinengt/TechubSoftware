@@ -14,6 +14,8 @@ const values: Record<string, string> = {
   months: String(site.freeMonths),
   custom: String(site.customFrom),
   livePrice: String(site.livePriceFrom),
+  monthly: String(site.plans[0].price),
+  planPrice: String(site.planPrice),
   uptime: site.uptime,
   phone: site.whatsappDisplay,
   email: site.email,

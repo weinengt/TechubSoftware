@@ -20,6 +20,17 @@ export const site = {
   customFrom: 300,
   /** Live Selling System, per month. */
   livePriceFrom: 199,
+  /** The ways to pay for the Standard Plan, per month. A plan's free months are inside its length, so 12 months
+   *  with 1 free is 11 paid months. `until` is the last day of a promotion. */
+  plans: [
+    { months: 1, price: 178 },
+    { months: 12, price: 148, free: 1 },
+    { months: 24, price: 148, free: 3 },
+    { months: 48, price: 148, free: 10 },
+    { months: 60, price: 99, until: "2026-12-31" },
+  ],
+  /** What each month costs on the 12 to 48-month plans; savings are counted against it. */
+  planPrice: 148,
   uptime: "99.95%",
   keywords: [
     "appointment system Malaysia",
@@ -38,6 +49,18 @@ export const site = {
     "Techub Software",
   ],
 } as const;
+
+export type Plan = { months: number; price: number; free?: number; until?: string };
+
+/** What a plan costs in all, what that comes to a month, and how much it saves against paying the plan price
+ *  every month. */
+export const planTotal = (p: Plan) => (p.months - (p.free ?? 0)) * p.price;
+export const planAverage = (p: Plan) => planTotal(p) / p.months;
+export const planSave = (p: Plan) => p.months * site.planPrice - planTotal(p);
+
+/** RM amounts as 1,628 or 135.67 (two decimals only when there are cents). */
+export const rm = (n: number) =>
+  new Intl.NumberFormat("en-MY", { minimumFractionDigits: Number.isInteger(n) ? 0 : 2, maximumFractionDigits: 2 }).format(n);
 
 export const whatsappLink = (message: string) => `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(message)}`;
 

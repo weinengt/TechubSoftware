@@ -3,6 +3,7 @@
 // Placeholders are filled in from lib/site.ts, so prices and contact details only change there:
 //   {name} company name · {price} monthly price · {months} free months · {custom} customisation price
 //   {livePrice} Live Selling System monthly price · {uptime} uptime · {phone} WhatsApp number · {email} email address
+//   {monthly} Standard Plan paid month to month · {planPrice} Standard Plan per month on 12 to 48 months
 // Words between *asterisks* are shown in the blue gradient colour (headings only).
 
 const en = {
@@ -671,6 +672,19 @@ const en = {
     plan: "Techub Standard Plan",
     from: "from",
     perMonth: "/ month",
+    // The ways to pay (plans in lib/site.ts), a card each. {n} is a number, {date} the promotion's last day.
+    plansTitle: "Pick your plan",
+    plansText: "Pay monthly, or save with a longer plan.",
+    monthly: "Monthly",
+    monthlyText: "Pay month by month",
+    planMonths: "{n} months",
+    freeOne: "{n} month free",
+    freeMany: "{n} months free",
+    total: "Total RM {n}",
+    average: "Average RM {n}/month",
+    save: "Save RM {n}",
+    promo: "Promotion",
+    promoUntil: "Until {date}",
     free: "FREE for the first {months} months for new users, including staff training and installation.",
     claim: "Claim {months} Months Free",
     claimMessage: "Hi Techub, I want to claim the {months} months free offer.",
@@ -735,7 +749,7 @@ const en = {
       },
       {
         q: "How much does it cost?",
-        a: "Plans start from RM {price} per month, and new customers get the first {months} months free, including installation and staff training. The Live Selling System starts from RM {livePrice} per month. Customisation starts from RM {custom}, depending on your requirements.",
+        a: "Plans start from RM {price} per month, and new customers get the first {months} months free, including installation and staff training. Pay RM {monthly} month by month, or RM {planPrice} a month on 12, 24 or 48 months with 1, 3 or 10 months free. Until 31 Dec 2026, the 60-month plan is RM {price} a month. The Live Selling System starts from RM {livePrice} per month. Customisation starts from RM {custom}, depending on your requirements.",
       },
       {
         q: "Can my customers pay a deposit online?",

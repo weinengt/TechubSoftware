@@ -1,9 +1,9 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { getDict, type Dict } from "@/content";
+import { fill, getDict, type Dict } from "@/content";
 import { htmlLang, lp, type Locale } from "@/lib/i18n";
 import { shotSrc, type Shot } from "@/lib/shots";
-import { emailLink, site, systems, whatsappLink } from "@/lib/site";
+import { emailLink, planAverage, planSave, planTotal, rm, site, systems, whatsappLink, type Plan } from "@/lib/site";
 import { Icon, type IconName } from "./Icons";
 import { hl, withContactLinks } from "./Text";
 
@@ -188,6 +188,7 @@ export function PricingSection({ lang, page, plan = "all" }: { lang: Locale; pag
             <h3 className="text-lg font-bold text-slate-900">{t.includedTitle}</h3>
             <CheckList items={live ? t.liveIncluded : t.included} className="mt-5" />
           </div>
+          {!live && <Plans lang={lang} />}
           {plan === "all" && (
             <div className="card flex flex-col gap-5 p-6 sm:p-7 lg:col-span-5 lg:flex-row lg:items-center lg:gap-8" data-reveal>
               <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-brand-gradient text-white shadow-lg shadow-brand-500/25">
@@ -244,6 +245,81 @@ export function PricingSection({ lang, page, plan = "all" }: { lang: Locale; pag
   );
 }
 
+/** A plan's name, free months and the lines under its price, in the page's language. */
+export function planText(lang: Locale, p: Plan) {
+  const t = getDict(lang).pricing;
+  const n = (s: string, v: number) => fill(s, { n: rm(v) });
+  const free = p.free ?? 0;
+  const long = p.months > 1;
+  const until = p.until
+    ? new Intl.DateTimeFormat(htmlLang[lang], { day: "numeric", month: "short", year: "numeric", timeZone: "Asia/Kuala_Lumpur" }).format(
+        new Date(`${p.until}T12:00:00+08:00`),
+      )
+    : "";
+  const lines: { text: string; save?: boolean }[] = [
+    { text: long ? n(t.total, planTotal(p)) : t.monthlyText },
+    { text: free ? n(t.average, planAverage(p)) : "" },
+    { text: long ? n(t.save, planSave(p)) : "", save: true },
+    { text: until ? fill(t.promoUntil, { date: until }) : "" },
+  ];
+  return {
+    name: long ? n(t.planMonths, p.months) : t.monthly,
+    free: free ? n(free === 1 ? t.freeOne : t.freeMany, free) : "",
+    lines: lines.filter((l) => l.text),
+  };
+}
+
+/** The ways to pay for the Standard Plan, a card each: what a month costs, and for longer plans their free months,
+ *  total, average and saving. A promotion is the dark card, with its last day. */
+function Plans({ lang }: { lang: Locale }) {
+  const t = getDict(lang).pricing;
+  return (
+    <div className="lg:col-span-5">
+      <div className="pt-4 text-center" data-reveal>
+        <h3 className="text-xl font-bold text-slate-900 sm:text-2xl">{t.plansTitle}</h3>
+        <p className="mt-1.5 text-sm text-slate-600 sm:text-base">{t.plansText}</p>
+      </div>
+      <ul className="mt-6 grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
+        {site.plans.map((p: Plan) => {
+          const x = planText(lang, p);
+          const promo = Boolean(p.until);
+          return (
+            <li
+              key={p.months}
+              className={`rounded-2xl p-4 sm:p-5 ${promo ? "bg-slate-900 text-white shadow-xl shadow-brand-500/20 ring-2 ring-brand-500 sm:col-span-2" : "card"}`}
+              data-reveal
+            >
+              {promo && (
+                <p className="mb-3 inline-flex items-center gap-1.5 rounded-full bg-brand-gradient px-3 py-1 text-xs font-bold tracking-wide text-white uppercase">
+                  <Icon.Star className="h-3.5 w-3.5 shrink-0 fill-amber-300 text-amber-300" /> {t.promo}
+                </p>
+              )}
+              <div className="flex items-start justify-between gap-3">
+                <div className="min-w-0">
+                  <p className={`text-base font-bold sm:text-lg ${promo ? "text-white" : "text-slate-900"}`}>{x.name}</p>
+                  {x.free && <p className="mt-1 inline-flex rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-bold text-emerald-700">{x.free}</p>}
+                </div>
+                {/* The price keeps its "/month" on its line */}
+                <p className="flex shrink-0 items-baseline gap-1 whitespace-nowrap">
+                  <span className={`text-2xl font-extrabold tracking-tight sm:text-3xl ${promo ? "text-white" : "text-gradient"}`}>RM {p.price}</span>
+                  <span className={`text-sm font-semibold ${promo ? "text-white/70" : "text-slate-500"}`}>{t.perMonth}</span>
+                </p>
+              </div>
+              <p className={`mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm ${promo ? "text-white/80" : "text-slate-600"}`}>
+                {x.lines.map((l) => (
+                  <span key={l.text} className={l.save ? `font-semibold ${promo ? "text-emerald-300" : "text-emerald-700"}` : undefined}>
+                    {l.text}
+                  </span>
+                ))}
+              </p>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
+}
+
 /* ---------- FAQ ---------- */
 
 export function FaqSection({ lang, items, page }: { lang: Locale; items?: { q: string; a: string }[]; page?: PageOf }) {
@@ -292,11 +368,26 @@ export function softwareJsonLd(opts: {
   category: string;
   features: string[];
   screenshots?: Shot[];
-  /** Monthly price and offer text; the appointment plan unless given. */
+  /** Monthly price and offer text; the Standard Plan's plans unless given. */
   price?: number;
   offerText?: string;
 }) {
-  const price = opts.price ?? site.priceFrom;
+  const offer = (price: number, more: Record<string, string>) => ({
+    "@type": "Offer",
+    price,
+    priceCurrency: site.currency,
+    priceSpecification: {
+      "@type": "UnitPriceSpecification",
+      price,
+      priceCurrency: site.currency,
+      unitText: "MONTH",
+      referenceQuantity: { "@type": "QuantitativeValue", value: 1, unitCode: "MON" },
+    },
+    availability: "https://schema.org/InStock",
+    areaServed: "MY",
+    ...more,
+  });
+  const [comma, stop] = opts.lang === "zh" ? ["，", "，"] : [", ", ". "];
   return {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -317,21 +408,16 @@ export function softwareJsonLd(opts: {
       height: s.h,
     })),
     provider: { "@id": `${site.url}/#organization` },
-    offers: {
-      "@type": "Offer",
-      price,
-      priceCurrency: site.currency,
-      priceSpecification: {
-        "@type": "UnitPriceSpecification",
-        price,
-        priceCurrency: site.currency,
-        unitText: "MONTH",
-        referenceQuantity: { "@type": "QuantitativeValue", value: 1, unitCode: "MON" },
-      },
-      description: opts.offerText ?? getDict(opts.lang).pricing.offerText,
-      availability: "https://schema.org/InStock",
-      areaServed: "MY",
-    },
+    offers: opts.price
+      ? offer(opts.price, { description: opts.offerText ?? getDict(opts.lang).pricing.offerText })
+      : site.plans.map((p: Plan) => {
+          const x = planText(opts.lang, p);
+          return offer(p.price, {
+            name: [x.name, x.free].filter(Boolean).join(comma),
+            description: x.lines.map((l) => l.text).join(stop),
+            ...(p.until ? { priceValidUntil: p.until } : {}),
+          });
+        }),
   };
 }
 
