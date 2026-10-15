@@ -3,7 +3,8 @@ import { getDict } from "@/content";
 import { getLegal } from "@/content/legal";
 import { htmlLang, localeName, locales, lp, type Locale } from "@/lib/i18n";
 import { blogPath } from "@/content/blog";
-import { companyPages, emailLink, servicePages, site, systems, whatsappLink } from "@/lib/site";
+import { companyPages, emailLink, servicePages, site, systems, toolPages, toolsPath, whatsappLink } from "@/lib/site";
+import { getTools } from "@/content/tools";
 import { Icon } from "./Icons";
 
 export default function Footer({ lang }: { lang: Locale }) {
@@ -14,7 +15,7 @@ export default function Footer({ lang }: { lang: Locale }) {
   const link = "hover:text-brand-700";
   return (
     <footer className="border-t border-slate-200 bg-slate-50">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-4 lg:px-8">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-5 lg:px-8">
         <div className="md:col-span-2">
           <img src="/images/logo.webp" alt={t.ui.logoAlt} width={150} height={48} className="h-10 w-auto" loading="lazy" />
           <p className="mt-4 max-w-md text-sm leading-relaxed text-slate-600">{f.blurb}</p>
@@ -55,6 +56,19 @@ export default function Footer({ lang }: { lang: Locale }) {
             <li><Link className={link} href={lp(lang, companyPages.faq)}>{f.faq}</Link></li>
             <li><Link className={link} href={lp(lang, blogPath)}>{f.blog}</Link></li>
             <li><Link className={link} href={lp(lang, companyPages.contact)}>{f.contact}</Link></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 className="text-sm font-semibold text-slate-900">
+            <Link className={link} href={lp(lang, toolsPath)}>{f.tools}</Link>
+          </h2>
+          <ul className="mt-4 space-y-3 text-sm text-slate-600">
+            {toolPages.map((p) => (
+              <li key={p.key}>
+                <Link className={link} href={lp(lang, p.path)}>{getTools(lang)[p.key].name}</Link>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

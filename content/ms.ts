@@ -31,6 +31,7 @@ const ms: Dict = {
     pricing: "Harga",
     contact: "Hubungi",
     blog: "Blog",
+    tools: "Alat Percuma",
   },
 
   menu: {
@@ -162,6 +163,7 @@ const ms: Dict = {
     pricing: "Harga",
     faq: "Soalan lazim",
     blog: "Blog",
+    tools: "Alat Percuma",
     contact: "Hubungi kami",
     rights: "Hak cipta terpelihara.",
     tagline: "Sistem bisnes pintar dan kos rendah di Malaysia.",

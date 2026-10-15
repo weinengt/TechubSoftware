@@ -121,6 +121,17 @@ export const servicePages = [
 
 export type ServicePageKey = (typeof servicePages)[number]["key"];
 
+/** Free tools anyone can use, with no sign-up. Each runs in the visitor's browser, so nothing they type leaves their
+ *  device. The Tools page lists them; their words are in content/tools/*.ts under the same keys. */
+export const toolsPath = "/tools/";
+export const toolPages = [
+  { key: "invoice", path: "/tools/invoice-generator/", icon: "Invoice" },
+  { key: "payroll", path: "/tools/payroll-calculator/", icon: "Coins" },
+  { key: "tax", path: "/tools/tax-relief-calculator/", icon: "Receipt" },
+] as const;
+
+export type ToolKey = (typeof toolPages)[number]["key"];
+
 /** A page for each part of the company. Every menu item, footer link and button opens a page (none scrolls
  *  down the same page). Their titles are under `pages` in content/en.ts. */
 export const companyPages = {
@@ -143,6 +154,7 @@ export const nav = [
   { key: "services", path: companyPages.services },
   { key: "pricing", path: companyPages.pricing },
   { key: "blog", path: blogPath },
+  { key: "tools", path: toolsPath },
   { key: "contact", path: companyPages.contact },
 ] as const;
 
@@ -153,6 +165,8 @@ export const pagePaths = [
   ...systems.map((s) => s.path),
   ...servicePages.map((s) => s.path),
   ...Object.values(companyPages),
+  toolsPath,
+  ...toolPages.map((t) => t.path),
   blogPath,
   ...posts.map((p) => postPath(p.slug)),
   "/terms/",

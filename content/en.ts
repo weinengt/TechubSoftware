@@ -40,6 +40,7 @@ const en = {
     pricing: "Pricing",
     contact: "Contact",
     blog: "Blog",
+    tools: "Free Tools",
   },
 
   menu: {
@@ -171,6 +172,7 @@ const en = {
     pricing: "Pricing",
     faq: "FAQ",
     blog: "Blog",
+    tools: "Free Tools",
     contact: "Contact",
     rights: "All rights reserved.",
     tagline: "Smart, low-cost business systems in Malaysia.",

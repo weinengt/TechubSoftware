@@ -112,6 +112,13 @@ Every page has a Bahasa Melayu version under /ms/, for people who search in Mala
 - Business email: email hosting on your own domain, RM 120 per year with 5 GB of storage, set up for you. The domain itself is not included.
 - Website design and hosting: RM 1,200 for a static landing page website of up to 30 pages, with a free domain for the first year, then RM 200 a year for maintenance. Hosted on Cloudflare, handles over 1 million views a minute, optimised for SEO and AI search. No product listings or blog.
 
+## Free tools
+
+Free with no sign-up; they run in the browser, so nothing typed is sent anywhere. Also in Bahasa Melayu (/ms/tools/) and Chinese (/zh/tools/).
+- [Invoice Generator](/tools/invoice-generator/): invoices, receipts and quotations for businesses in Malaysia with the business's own logo, SSM number, SST and amount in words, downloaded or shared as a PDF
+- [Payroll Calculator](/tools/payroll-calculator/): Malaysia payroll for 2026 with EPF, SOCSO (including LINDUNG 24 Jam), EIS, PCB (MTD) and HRD Corp levy by the official rules, and a payslip PDF
+- [Tax Relief Calculator](/tools/tax-relief-calculator/): every personal income tax relief for YA 2024, 2025, 2026 and 2027 (Budget 2027 proposals), with chargeable income, tax, rebate, zakat and refund worked out
+
 ## Blog
 
 Guides for business owners in Malaysia, in English, Bahasa Melayu (/ms/blog/) and Chinese (/zh/blog/):

@@ -6,7 +6,8 @@ import { docKeys, getFeatures, planText } from "@/components/Sections";
 import { plain } from "@/components/Text";
 import { getPosts } from "@/lib/blog";
 import { localeName, locales, lp } from "@/lib/i18n";
-import { rm, servicePages, site, systems, type Plan, type ServicePageKey } from "@/lib/site";
+import { getTools } from "@/content/tools";
+import { rm, servicePages, site, systems, toolPages, toolsPath, type Plan, type ServicePageKey } from "@/lib/site";
 
 export const dynamic = "force-static";
 
@@ -158,6 +159,18 @@ ${b.description}
 ${b.faqs.map((f) => `Q: ${f.q}\nA: ${f.a}`).join("\n")}`)
   .join("\n\n")}
 
+## Free tools (${site.url}${toolsPath})
+${getTools("en").hub.meta.description}
+${toolPages
+  .map((p) => {
+    const x = getTools("en")[p.key];
+    return `### ${x.name} (${site.url}${p.path})
+${x.meta.description}
+${list(x.points)}
+${x.faq.map((f) => `Q: ${f.q}\nA: ${f.a}`).join("\n")}`;
+  })
+  .join("\n\n")}
+
 ## Frequently asked questions (${site.url}/faq/)
 ${[...t.faq.items, ...t.techPage.faqs].map((f) => `Q: ${f.q}\nA: ${f.a}`).join("\n\n")}
 
@@ -169,7 +182,8 @@ ${(["ms", "zh"] as const)
     return `### ${localeName[l]} (${site.url}${lp(l, "/")})
 ${d.home.meta.description}
 ${systems.map((s) => `- ${d.systems[s.key].name} (${site.url}${lp(l, s.path)}): ${d.products[s.key].meta.description}`).join("\n")}
-${servicePages.map((s) => `- ${d.servicePages[s.key].name} (${site.url}${lp(l, s.path)}): ${d.servicePages[s.key].meta.description}`).join("\n")}`;
+${servicePages.map((s) => `- ${d.servicePages[s.key].name} (${site.url}${lp(l, s.path)}): ${d.servicePages[s.key].meta.description}`).join("\n")}
+${toolPages.map((p) => `- ${getTools(l)[p.key].name} (${site.url}${lp(l, p.path)}): ${getTools(l)[p.key].meta.description}`).join("\n")}`;
   })
   .join("\n\n")}
 

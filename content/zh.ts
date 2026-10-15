@@ -33,6 +33,7 @@ const zh: Dict = {
     pricing: "价格",
     contact: "联络我们",
     blog: "博客",
+    tools: "免费工具",
   },
 
   menu: {
@@ -163,6 +164,7 @@ const zh: Dict = {
     pricing: "价格",
     faq: "常见问题",
     blog: "博客",
+    tools: "免费工具",
     contact: "联络我们",
     rights: "版权所有。",
     tagline: "马来西亚本地的智能商业系统，好用又实惠。",
