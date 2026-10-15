@@ -54,6 +54,7 @@ const ms: Dict = {
         "Laporan terperinci bawah 100 ms",
         "MC digital, resit & invois dihantar automatik",
         "Surat rujukan online, format diubah suai percuma",
+        "Banyak outlet: tukar dan lihat setiap satu",
         "Setiap tindakan staf direkod, data pesakit dilindungi",
       ],
       cta: "Lihat sistem klinik",
@@ -71,6 +72,7 @@ const ms: Dict = {
         "Deposit jadi pendapatan dengan satu klik",
         "Laporan terperinci bawah 100 ms",
         "Resit, invois, CN & RN dihantar automatik",
+        "Banyak outlet: tukar dan lihat setiap satu",
         "Setiap tindakan staf direkod, data anda dilindungi",
       ],
       cta: "Lihat sistem salon",
@@ -88,6 +90,7 @@ const ms: Dict = {
         "Deposit jadi pendapatan dengan satu klik",
         "Laporan terperinci bawah 100 ms",
         "Resit, invois, CN & RN dihantar automatik",
+        "Banyak outlet: tukar dan lihat setiap satu",
         "Setiap tindakan staf direkod, data anda dilindungi",
       ],
       cta: "Lihat sistem pusat kecantikan",
@@ -105,6 +108,7 @@ const ms: Dict = {
         "Deposit jadi pendapatan dengan satu klik",
         "Laporan terperinci bawah 100 ms",
         "Resit, invois, CN & RN dihantar automatik",
+        "Banyak outlet: tukar dan lihat setiap satu",
         "Setiap tindakan staf direkod, data anda dilindungi",
       ],
       cta: "Lihat sistem spa",
@@ -121,6 +125,7 @@ const ms: Dict = {
         "Bayaran online melalui payment gateway",
         "Laporan canggih, dari RM {livePrice}/bulan",
         "Resit, invois, CN & RN dihantar automatik",
+        "Banyak outlet: tukar dan lihat setiap satu",
         "Setiap tindakan staf direkod, data anda dilindungi",
       ],
       cta: "Lihat sistem jualan live",
@@ -136,6 +141,7 @@ const ms: Dict = {
         "Jualan berhubung terus dengan stok dan akaun",
         "Invois, CN & RN dibuat dan dihantar automatik",
         "Pulangan satu klik, dengan nota kredit atau nota bayaran balik",
+        "Banyak outlet: tukar dan lihat setiap satu",
         "Setiap tindakan staf direkod, data anda dilindungi",
       ],
       cta: "Lihat sistem inventori",
@@ -811,6 +817,20 @@ const ms: Dict = {
     },
     points: ["Dihantar automatik, staf tak perlu buat apa-apa", "Format dokumen diubah suai percuma untuk bisnes anda"],
     referral: "Surat rujukan ditulis online, formatnya kami sediakan percuma",
+  },
+
+  /* ---------- Banyak outlet (setiap halaman sistem) ---------- */
+  outlets: {
+    eyebrow: "Banyak outlet",
+    title: "Semua outlet, *satu app*",
+    points: ["Pemilik tukar outlet dengan satu tekan", "Lihat maklumat setiap outlet secara berasingan", "Harga dikira setiap outlet"],
+    switch: "Tukar outlet",
+    tap: "Tekan outlet untuk lihat maklumatnya",
+    places: [
+      { city: "Kuala Lumpur", area: "Bangsar" },
+      { city: "Johor Bahru", area: "Mount Austin" },
+      { city: "Pulau Pinang", area: "George Town" },
+    ],
   },
 
   hardware: {

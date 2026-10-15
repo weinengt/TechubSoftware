@@ -24,6 +24,7 @@ ${p.meta.description}
 For: ${p.whoFor.join(", ")}.
 Modules: ${Object.values(p.modules).join(", ")}.
 ${t.docs.eyebrow}: ${docKeys(k).map((x) => t.docs.items[x]).join(", ")}. ${[...t.docs.points, ...(k === "clinic" ? [t.docs.referral] : [])].join(". ")}.
+${t.outlets.eyebrow}: ${t.outlets.points.join(". ")}.
 ${Object.values(p.spotlights)
   .map((s) => `- ${s.eyebrow}: ${s.points.join("; ")}`)
   .join("\n")}

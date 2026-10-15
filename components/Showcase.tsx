@@ -153,6 +153,68 @@ export function Spotlight({
   );
 }
 
+/* ---------- Multiple outlets ---------- */
+
+/** The made-up business each system's example screens use. */
+const sampleBusiness: Record<SystemKey, string> = {
+  clinic: "Demo Clinic", salon: "Demo Hair Salon", beauty: "Demo Beauty Centre", spa: "Demo Day Spa", live: "Demo Live Shop", inventory: "Demo Trading",
+};
+
+const outletBars = [[45, 70, 55, 85, 75], [60, 45, 75, 55, 90], [35, 60, 50, 65, 55]];
+
+/** Every system page: one app for all of a business's outlets, drawn as its outlet switcher. */
+export function OutletsSection({ lang, k }: { lang: Locale; k: SystemKey }) {
+  const t = getDict(lang).outlets;
+  const visual = (
+    <div className="relative isolate mx-auto max-w-lg" aria-hidden="true">
+      <div className="glow absolute -inset-10 -z-10" />
+      <div className="overflow-hidden rounded-2xl bg-white shadow-xl ring-1 ring-slate-200">
+        <div className="flex items-center justify-between gap-3 bg-brand-950 px-4 py-3.5 sm:px-5">
+          <span className="flex min-w-0 items-center gap-2.5">
+            <span className="h-7 w-7 shrink-0 rounded-lg bg-gradient-to-br from-brand-500 to-teal-brand" />
+            <span className="text-sm leading-tight font-bold text-white">{sampleBusiness[k]}</span>
+          </span>
+          <span className="flex shrink-0 items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-xs font-semibold text-slate-100 ring-1 ring-white/15">
+            <Icon.Sync className="h-3.5 w-3.5 text-teal-brand" /> {t.switch}
+          </span>
+        </div>
+        <ul className="space-y-2.5 p-3 sm:p-4">
+          {t.places.map((p, i) => {
+            const on = i === 0;
+            return (
+              <li key={p.city} className={`flex items-center gap-3 rounded-xl p-3 ring-1 ${on ? "bg-brand-50 ring-brand-200" : "ring-slate-200"}`}>
+                <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${on ? "bg-brand-600 text-white" : "bg-slate-100 text-slate-500"}`}>
+                  <Icon.MapPin className="h-5 w-5" />
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="block text-sm leading-snug font-bold text-slate-900">{p.city}</span>
+                  <span className="block text-xs leading-snug text-slate-500">{p.area}</span>
+                </span>
+                <span className="flex h-8 items-end gap-1">
+                  {outletBars[i].map((h, j) => (
+                    <span key={j} className={`w-1.5 rounded-full ${on ? "bg-brand-400" : "bg-slate-200"}`} style={{ height: `${h}%` }} />
+                  ))}
+                </span>
+                <span className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full ${on ? "bg-emerald-500 text-white" : "ring-1 ring-slate-300"}`}>
+                  {on && <Icon.Check className="h-3.5 w-3.5" strokeWidth={3} />}
+                </span>
+              </li>
+            );
+          })}
+        </ul>
+        <p className="border-t border-slate-100 px-4 py-3 text-center text-xs font-medium text-slate-500">{t.tap}</p>
+      </div>
+    </div>
+  );
+  return (
+    <section id="outlets" className="overflow-hidden py-20 sm:py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <Spotlight eyebrow={t.eyebrow} title={t.title} points={t.points} visual={visual} />
+      </div>
+    </section>
+  );
+}
+
 /* ---------- Compact feature tiles ---------- */
 
 export function FeatureTiles({ items }: { items: { icon: IconName; title: string }[] }) {

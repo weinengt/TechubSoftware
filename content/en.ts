@@ -62,6 +62,7 @@ const en = {
         "Detailed reports in under 100 ms",
         "Digital MC, receipts & invoices sent automatically",
         "Online referral letters, format tuned free",
+        "Multiple outlets: switch and view each one",
         "Every staff action tracked, patient data protected",
       ],
       cta: "See the clinic system",
@@ -79,6 +80,7 @@ const en = {
         "Deposits to income in one click",
         "Detailed reports in under 100 ms",
         "Receipts, invoices, CN & RN sent automatically",
+        "Multiple outlets: switch and view each one",
         "Every staff action tracked, your data protected",
       ],
       cta: "See the salon system",
@@ -96,6 +98,7 @@ const en = {
         "Deposits to income in one click",
         "Detailed reports in under 100 ms",
         "Receipts, invoices, CN & RN sent automatically",
+        "Multiple outlets: switch and view each one",
         "Every staff action tracked, your data protected",
       ],
       cta: "See the beauty centre system",
@@ -113,6 +116,7 @@ const en = {
         "Deposits to income in one click",
         "Detailed reports in under 100 ms",
         "Receipts, invoices, CN & RN sent automatically",
+        "Multiple outlets: switch and view each one",
         "Every staff action tracked, your data protected",
       ],
       cta: "See the spa system",
@@ -129,6 +133,7 @@ const en = {
         "Online payment via payment gateway",
         "Advanced reports, from RM {livePrice}/month",
         "Receipts, invoices, CN & RN sent automatically",
+        "Multiple outlets: switch and view each one",
         "Every staff action tracked, your data protected",
       ],
       cta: "See the live selling system",
@@ -144,6 +149,7 @@ const en = {
         "Sales linked to stock and accounting",
         "Invoices, CN & RN made and sent automatically",
         "One-click returns with credit or refund notes",
+        "Multiple outlets: switch and view each one",
         "Every staff action tracked, your data protected",
       ],
       cta: "See the inventory system",
@@ -814,6 +820,20 @@ const en = {
     },
     points: ["Sent automatically, no staff needed", "Document formats tuned for your business, free"],
     referral: "Referral letters written online, in a format we tune free for your clinic",
+  },
+
+  /* ---------- Multiple outlets (every system page) ---------- */
+  outlets: {
+    eyebrow: "Multiple outlets",
+    title: "Every outlet, *one app*",
+    points: ["Owners switch between outlets in one tap", "View each outlet's information on its own", "Priced per outlet"],
+    switch: "Switch outlet",
+    tap: "Tap an outlet to view it",
+    places: [
+      { city: "Kuala Lumpur", area: "Bangsar" },
+      { city: "Johor Bahru", area: "Mount Austin" },
+      { city: "Penang", area: "George Town" },
+    ],
   },
 
   hardware: {

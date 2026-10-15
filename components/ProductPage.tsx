@@ -12,7 +12,7 @@ import {
   DocumentsSection, FaqSection, HardwareSection, LocalSection, PricingSection, QuoteSection, SectionHeading, breadcrumbJsonLd, docKeys,
   faqJsonLd, localFaq, softwareJsonLd,
 } from "./Sections";
-import { Combo, ContactSection, FeatureTiles, FloatBadge, OtherSystems, PhoneShowcase, Spotlight } from "./Showcase";
+import { Combo, ContactSection, FeatureTiles, FloatBadge, OtherSystems, OutletsSection, PhoneShowcase, Spotlight } from "./Showcase";
 import { hl } from "./Text";
 
 /* Each business type's pictures and icons. The words for each are under `products` in content/en.ts,
@@ -234,7 +234,7 @@ export default function ProductPage({ lang, k }: { lang: Locale; k: SystemKey })
             description: t.meta.description,
             url,
             category: t.category,
-            features: [...modules.map((m) => m.title), ...docKeys(k).map((x) => `${d.docs.eyebrow}: ${d.docs.items[x]}`)],
+            features: [...modules.map((m) => m.title), ...docKeys(k).map((x) => `${d.docs.eyebrow}: ${d.docs.items[x]}`), d.outlets.eyebrow],
             screenshots: pics,
             ...(live && { price: site.livePriceFrom, offerText: d.pricing.liveOfferText }),
             ...(quote && { offers: false }),
@@ -330,6 +330,7 @@ export default function ProductPage({ lang, k }: { lang: Locale; k: SystemKey })
         </div>
       </section>
       <DocumentsSection lang={lang} k={k} />
+      <OutletsSection lang={lang} k={k} />
 
       {/* The clinic page already has its own hardware spotlight, live selling needs no counter hardware, and the
           inventory page shows its label printing and scanning in its own spotlights. */}
