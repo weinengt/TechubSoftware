@@ -143,7 +143,7 @@
   // [time, dot colour, icon, title, staff, detail, docs [[chip colour, icon, text]], highlight]
   const EV = [
     ["4:31 PM", "r", "undo", "Return · 2 × Air Fryer 4.5L", "Jessica Wong", "From INV-2026-1187 · back to rack A-05-3", [["v", "file", "CN-2026-0093 · RM 378.00"], ["g", "check", "Accounts reversed"]]],
-    ["3:52 PM", "g", "truck", "Delivered · DO-2026-0862", "Hafiz Rahman", "Seri Maju Electrical, Klang · signed by Rahmat", [["b", "pen", "Signed on phone"], ["s", "image", "Photo proof"]]],
+    ["3:52 PM", "g", "truck", "Delivered · DO-2026-0862", "Hafiz Rahman", "Seri Maju Electrical, Klang · 9 cartons", [["b", "barcode", "Cartons scanned out"], ["g", "check", "Trail updated"]]],
     ["1:26 PM", "t", "money", "Payment in · RM 6,240.00", "Lee Mei Chen", "Lim Brothers Hardware, Shah Alam · DuitNow", [["t", "file", "Receipt OR-2026-0544"], ["g", "check", "Ledger updated"]]],
     ["11:05 AM", "v", "cart", "Sale · INV-2026-1187 · RM 10,277.40", "Jessica Wong", "Seri Maju Electrical, Klang · stock −122 units", [["b", "truck", "DO-2026-0862"], ["t", "shield", "e-Invoice validated"]]],
     ["9:48 AM", "a", "pin", "Put away · 8 batches", "Azman Yusof", "1,240 units scanned onto racks A, B and C", [["a", "barcode", "Scanned to shelf"]]],
@@ -168,7 +168,7 @@
 
   document.getElementById("low").innerHTML = [
     ["Ceiling Fan 56 inch", "4 left · 2 days", 14], ["Rice Cooker 1.0L", "6 left · 3 days", 20],
-    ["Extension Socket 6-way", "9 left · 4 days", 26], ["Electric Kettle 1.0L", "12 left · 5 days", 32],
+    ["Power Socket 6-way", "9 left · 4 days", 26], ["Electric Kettle 1.0L", "12 left · 5 days", 32],
   ].map(([n, s, p]) => `<div class="low"><div><b>${n}</b><small>${s}</small></div><span class="meter"><i style="width:${p}%"></i></span></div>`).join("");
 
   document.getElementById("road").innerHTML = [

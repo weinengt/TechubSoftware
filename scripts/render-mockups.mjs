@@ -84,6 +84,17 @@ export const screens = [
     { name: `${v}-deposit-to-income-invoice-ipad`, file: `deposits.html?v=${v}&s=invoice`, ...ipad },
     { name: `${v}-deposit-refund-credit-note-ipad`, file: `deposits.html?v=${v}&s=done`, ...ipad },
   ]),
+  // Inventory & ERP: a household and electrical goods wholesaler. One day's story: batch stock in (GRN-2026-0412),
+  // the batch trail and its labels, a sale to a retailer (INV-2026-1187), then a one-click return with credit note CN-2026-0093
+  { name: "inventory-erp-dashboard-ipad", file: "inventory-dashboard.html", ...ipad },
+  { name: "inventory-batch-stock-in-ipad", file: "stock-in.html", ...ipad },
+  { name: "inventory-stock-activity-trail-ipad", file: "stock-trail.html", ...ipad },
+  { name: "inventory-barcode-qr-labels", file: "barcode-labels.html", w: 1000, h: 700, scale: 1.5, transparent: true },
+  { name: "inventory-sales-accounting-ipad", file: "erp-sales.html", ...ipad },
+  { name: "inventory-one-click-return-credit-note-ipad", file: "erp-return.html", ...ipad },
+  { name: "inventory-scan-barcode-phone", file: "stock-scan.html", ...phone },
+  { name: "inventory-reports-ipad", file: "reports.html?v=trade", ...ipad },
+  { name: "inventory-staff-permissions-ipad", file: "permissions.html?v=trade", ...ipad },
   // LHDN e-Invoice and examples of custom systems
   { name: "lhdn-e-invoice", file: "e-invoice.html", w: 1000, h: 700, scale: 1.5, transparent: true },
   { name: "custom-erp-desktop", file: "erp.html", ...desktop },

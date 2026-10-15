@@ -1,0 +1,242 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<style>
+  /* Sales invoice INV-2026-1187 to a retailer, just posted at 11:05 AM, with everything the system did by itself:
+     delivery order, stock out by batch, journal entries and the LHDN e-Invoice. Same numbers as the other inventory-* screens.
+     The phone stands over the lower right corner in the moving picture, so the right column holds only the customer card. */
+  :root { --w: 1024px; --h: 720px; }
+  .top { gap: 10px; }
+  .top h1 { display: flex; align-items: center; gap: 9px; }
+  .top h1 .chip { font-size: 11px; }
+  .btn svg { width: 15px; height: 15px; }
+  .chip svg { width: 11px; height: 11px; stroke-width: 2.6; }
+  .content { flex-direction: row; gap: 12px; }
+
+  /* Invoice */
+  .inv { width: 464px; flex-shrink: 0; padding: 16px 18px 14px; display: flex; flex-direction: column; }
+  .ph1 { display: flex; align-items: flex-start; gap: 10px; padding-bottom: 11px; border-bottom: 2px solid #0050a0; }
+  .ph1 img { width: 32px; height: 32px; border-radius: 8px; }
+  .ph1 .co b { display: block; font-size: 12.5px; font-weight: 800; color: #0b2f55; letter-spacing: .02em; }
+  .ph1 .co small { display: block; font-size: 9.5px; color: #64748b; margin-top: 2px; line-height: 1.4; }
+  .ph1 .tt { margin-left: auto; text-align: right; }
+  .ph1 .tt h4 { font-size: 17px; font-weight: 850; color: #0b2f55; letter-spacing: .08em; }
+  .ph1 .tt small { display: block; font-size: 10.5px; color: #475569; margin-top: 2px; font-variant-numeric: tabular-nums; }
+  .ph1 .tt small b { color: var(--ink); }
+  .to { display: flex; justify-content: space-between; gap: 14px; margin-top: 11px; font-size: 10.5px; color: #64748b; }
+  .to b { display: block; color: var(--ink); font-size: 12.5px; font-weight: 750; margin-top: 2px; }
+  .to small { display: block; font-size: 10.5px; color: var(--ink2); margin-top: 1px; }
+  .to .rt { text-align: right; }
+  .lt { margin-top: 12px; table-layout: fixed; }
+  .lt th { padding: 6px 6px; background: #f1f5f9; white-space: nowrap; }
+  .lt th:first-child { padding-left: 9px; border-radius: 7px 0 0 7px; } .lt th:last-child { padding-right: 9px; border-radius: 0 7px 7px 0; }
+  .lt td { padding: 0 6px; height: 46px; font-variant-numeric: tabular-nums; }
+  .lt td:first-child { padding-left: 9px; } .lt td:last-child { padding-right: 9px; }
+  .it { display: flex; align-items: center; gap: 8px; min-width: 0; }
+  .it .pic { width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center; flex-shrink: 0; }
+  .it .pic svg { width: 22px; height: 22px; }
+  .it b { display: block; font-size: 12px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; }
+  .it small { display: block; font-size: 10px; color: var(--muted); margin-top: 1px; }
+  .tots { margin-top: 10px; margin-left: auto; width: 230px; display: flex; flex-direction: column; font-variant-numeric: tabular-nums; }
+  .tots div { display: flex; justify-content: space-between; font-size: 11.5px; color: var(--ink2); padding: 3px 0; }
+  .tots div span:last-child { font-weight: 650; color: var(--ink); }
+  .tots .due { margin-top: 4px; padding-top: 8px; border-top: 1px dashed #cbd5e1; align-items: baseline; }
+  .tots .due span:first-child { font-size: 12px; font-weight: 750; color: var(--ink); }
+  .tots .due span:last-child { font-size: 19px; font-weight: 850; letter-spacing: -.01em; }
+  .words { margin-top: 8px; font-size: 10px; color: var(--muted); font-style: italic; text-align: right; }
+  .ein { margin-top: auto; display: flex; gap: 11px; align-items: center; border: 1px solid #99f6e4; background: linear-gradient(135deg, #f0fdfa, #ecfeff); border-radius: 10px; padding: 9px 11px; }
+  .ein svg.qr { width: 52px; height: 52px; flex-shrink: 0; border-radius: 3px; }
+  .ein b { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 750; color: #115e59; }
+  .ein b svg { width: 14px; height: 14px; color: #0d9488; }
+  .ein small { display: block; font-size: 10px; color: #0f766e; margin-top: 2px; font-family: "DejaVu Sans Mono", monospace; letter-spacing: .01em; }
+  .ein .sent { margin-left: auto; text-align: right; font-size: 10.5px; color: #0f766e; font-weight: 600; line-height: 1.5; white-space: nowrap; }
+
+  /* Done for you automatically */
+  .auto { width: 230px; flex-shrink: 0; display: flex; flex-direction: column; }
+  .auto h3 svg { color: var(--brand); }
+  .auto p { font-size: 11px; color: var(--muted); margin-top: 3px; }
+  .stp { display: flex; gap: 9px; align-items: flex-start; padding: 8px 0; border-top: 1px dashed #e3e9f0; }
+  .stp:first-of-type { margin-top: 8px; }
+  .stp .fi { width: 26px; height: 28px; border-radius: 7px; display: grid; place-items: center; flex-shrink: 0; }
+  .stp .fi svg { width: 14px; height: 14px; stroke-width: 2.1; }
+  .stp > div { flex: 1; min-width: 0; }
+  .stp b { display: flex; align-items: center; gap: 5px; font-size: 11.5px; font-weight: 700; white-space: nowrap; }
+  .stp b .ck { margin-left: auto; width: 16px; height: 16px; border-radius: 99px; background: #22c55e; color: #fff; display: grid; place-items: center; flex-shrink: 0; }
+  .stp b .ck svg { width: 10px; height: 10px; stroke-width: 3.2; }
+  .stp b .ck.w { background: #e2e8f0; color: #64748b; } .stp b .ck.w svg { width: 11px; height: 11px; stroke-width: 2.6; }
+  .stp small { display: block; font-size: 10.5px; color: var(--muted); margin-top: 2px; line-height: 1.35; }
+  .fi.g { background: #dcfce7; color: #15803d; } .fi.b { background: var(--brand-100); color: #036295; } .fi.s { background: #f1f5f9; color: #475569; }
+  .fi.v { background: #ede9fe; color: #6d28d9; } .fi.t { background: #ccfbf1; color: #0f766e; }
+  .jr { margin: 6px 0 0 -35px; border-radius: 8px; background: #f8fafc; border: 1px solid #eef2f7; padding: 5px 7px; font-size: 10px; color: var(--ink2); font-variant-numeric: tabular-nums; }
+  .jr div { display: flex; justify-content: space-between; gap: 6px; line-height: 1.6; white-space: nowrap; }
+  .jr div span:last-child { font-weight: 700; color: var(--ink); }
+  .jr div.cr span:first-child { padding-left: 9px; }
+  .easy { margin-top: auto; border-radius: 10px; background: linear-gradient(135deg, #ecfdf5, #d1fae5); border: 1px solid #a7f3d0; color: #065f46; font-size: 11.5px; font-weight: 700; padding: 9px 10px; line-height: 1.35; }
+  .easy small { display: block; font-weight: 500; color: #047857; font-size: 10.5px; margin-top: 2px; }
+
+  /* Right column (under the phone in the moving picture) */
+  .rt { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+  .cu { display: flex; align-items: center; gap: 9px; }
+  .cu .av { width: 34px; height: 34px; font-size: 11px; background: linear-gradient(135deg, #f59e0b, #ef4444); }
+  .cu b { display: block; font-size: 12.5px; font-weight: 750; }
+  .cu small { display: block; font-size: 10.5px; color: var(--muted); }
+  .kv { display: flex; flex-direction: column; margin-top: 10px; }
+  .kv div { display: flex; justify-content: space-between; font-size: 11px; padding: 6px 0; border-top: 1px solid #f1f5f9; color: var(--muted); }
+  .kv div b { color: var(--ink); font-weight: 700; font-variant-numeric: tabular-nums; }
+  .used { height: 6px; border-radius: 9px; background: #f1f5f9; overflow: hidden; margin-top: 4px; }
+  .used i { display: block; height: 100%; width: 37%; border-radius: 9px; background: linear-gradient(90deg, #0396d9, #00cfcb); }
+  .hist { flex: 1; }
+  .hr { display: flex; justify-content: space-between; align-items: center; font-size: 11px; padding: 6px 0; border-top: 1px solid #f1f5f9; color: var(--ink2); }
+  .hr:first-of-type { margin-top: 6px; border-top: 0; }
+  .hr b { font-weight: 700; color: var(--ink); display: block; } .hr small { color: var(--muted); font-size: 10px; display: block; }
+</style></head>
+<body>
+<div class="app">
+  <aside class="side" data-shell="trade" data-active="Sales"></aside>
+  <section class="main">
+    <header class="top">
+      <div><div class="sub">Sales · Invoices</div><h1>INV-2026-1187<span class="chip g"><i data-i="check"></i>Posted 11:05 AM</span></h1></div>
+      <span class="btn" style="margin-left:auto"><i data-i="print"></i>Print</span>
+      <span class="btn"><i data-i="undo"></i>Return</span>
+      <span class="btn pri"><i data-i="plus"></i>New invoice</span>
+    </header>
+    <div class="content">
+      <div class="card inv">
+        <div class="ph1"><img src="icon.png" alt=""><div class="co"><b>DEMO TRADING SDN BHD</b><small>No. 12, Jalan Contoh 3/2, 47100 Puchong, Selangor<br>Tel 03-0000 0000 · TIN C00000000000</small></div>
+          <div class="tt"><h4>INVOICE</h4><small><b>INV-2026-1187</b></small><small>14 Oct 2026</small></div></div>
+        <div class="to">
+          <div>Bill to<b>Seri Maju Electrical</b><small>No. 8, Jalan Contoh 3, 41050 Klang, Selangor</small></div>
+          <div class="rt">Terms<b>30 days</b><small>Sales: Jessica Wong</small></div>
+        </div>
+        <table class="lt">
+          <colgroup><col><col style="width:44px"><col style="width:70px"><col style="width:84px"></colgroup>
+          <thead><tr><th>Item</th><th class="num">Qty</th><th class="num">Price</th><th class="num">Amount</th></tr></thead>
+          <tbody id="lines"></tbody>
+        </table>
+        <div class="tots" id="tots"></div>
+        <div class="words" id="words"></div>
+        <div class="ein"><span id="eqr"></span><div><b><i data-i="shield"></i>LHDN e-Invoice validated</b><small>UUID 7KQ2 M9XA 4TRN 1187</small></div><div class="sent">Sent by email<br>and WhatsApp</div></div>
+      </div>
+      <div class="card auto" id="auto">
+        <h3><i data-i="spark"></i>Done for you automatically</h3>
+        <p>One click on Save. No double entry.</p>
+        <div id="steps"></div>
+        <div class="easy">No accounting knowledge needed<small>Sales staff just sell. The books follow.</small></div>
+      </div>
+      <div class="rt">
+        <div class="card">
+          <div class="cu"><span class="av">SM</span><div><b>Seri Maju Electrical</b><small>Retailer · Klang</small></div></div>
+          <div class="kv">
+            <div><span>Credit limit</span><b>RM 50,000.00</b></div>
+            <div><span>Owing now</span><b>RM 18,420.60</b></div>
+          </div>
+          <div class="used"><i></i></div>
+          <div class="kv" style="margin-top:6px">
+            <div><span>Price list</span><b>Retailer B</b></div>
+            <div><span>Pays in</span><b>26 days avg.</b></div>
+          </div>
+        </div>
+        <div class="card hist">
+          <h3><i data-i="file" style="color:#0396d9"></i>Recent invoices</h3>
+          <div id="hist"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<script>
+  // Small product pictures (48px box), tinted with the item colour
+  const ILL = {
+    rc: (c) => `<rect x="20" y="7" width="8" height="4" rx="2" fill="#334155"/><path d="M8 22c0-6.5 7.2-10.5 16-10.5S40 15.5 40 22v14a6 6 0 01-6 6H14a6 6 0 01-6-6z" fill="${c}"/><path d="M8.5 22h31" stroke="#fff" stroke-width="1.6" opacity=".75"/><rect x="16" y="27" width="16" height="9" rx="2.5" fill="#fff" opacity=".92"/><circle cx="20.5" cy="31.5" r="1.6" fill="${c}"/><rect x="24" y="30.3" width="5" height="2.4" rx="1.2" fill="#94a3b8"/>`,
+    ek: (c) => `<rect x="17" y="6" width="12" height="4" rx="2" fill="#334155"/><path d="M16 10h14l4.5 30h-23z" fill="${c}"/><path d="M14.5 17L7 12.5v4.5l6.5 5.5z" fill="${c}"/><path d="M32 14c6 0 7.5 4.5 7.5 9.5S37 32 33.5 33" stroke="#334155" stroke-width="3" fill="none" stroke-linecap="round"/><rect x="9.5" y="40" width="27" height="4" rx="2" fill="#334155"/><rect x="21" y="20" width="4" height="12" rx="2" fill="#fff" opacity=".85"/>`,
+    af: (c) => `<rect x="10" y="5" width="28" height="38" rx="9" fill="${c}"/><circle cx="24" cy="14" r="4" fill="#fff" opacity=".92"/><circle cx="24" cy="14" r="1.5" fill="${c}"/><rect x="14" y="22" width="20" height="16" rx="4" fill="#1e293b"/><rect x="18.5" y="28" width="11" height="3.2" rx="1.6" fill="#94a3b8"/>`,
+    sf: (c) => `<circle cx="24" cy="16" r="12.5" fill="#fff" stroke="${c}" stroke-width="2.6"/><ellipse cx="24" cy="10" rx="3.6" ry="6" fill="${c}"/><ellipse cx="24" cy="10" rx="3.6" ry="6" fill="${c}" transform="rotate(120 24 16)"/><ellipse cx="24" cy="10" rx="3.6" ry="6" fill="${c}" transform="rotate(240 24 16)"/><circle cx="24" cy="16" r="2.6" fill="#334155"/><rect x="22.5" y="28.5" width="3" height="11" fill="#334155"/><ellipse cx="24" cy="41.5" rx="10" ry="3" fill="#334155"/>`,
+    si: (c) => `<path d="M17 21c0-6 3.5-9.5 9-9.5h9a4 4 0 014 4V21" stroke="#334155" stroke-width="3.2" fill="none" stroke-linecap="round"/><path d="M5 35c2.2-10 10-15.5 21.5-15.5H39a4 4 0 014 4V35z" fill="${c}"/><rect x="4" y="35" width="40" height="4.5" rx="2.2" fill="#94a3b8"/><circle cx="34" cy="27.5" r="2.6" fill="#fff" opacity=".9"/>`,
+    bl: (c) => `<rect x="12.5" y="3.5" width="23" height="4.5" rx="2" fill="#334155"/><path d="M14 8h20l-3 19H17z" fill="${c}" opacity=".45"/><path d="M19 13h10" stroke="#fff" stroke-width="1.6" opacity=".8"/><path d="M14.5 27h19l2.5 15H12z" fill="${c}"/><circle cx="24" cy="34.5" r="2.8" fill="#fff" opacity=".92"/>`,
+    led: (c) => `<path d="M24 4.5a12.5 12.5 0 00-7.3 22.6c1.3 1 2.1 2.5 2.1 4.1V33h10.4v-1.8c0-1.6.8-3.1 2.1-4.1A12.5 12.5 0 0024 4.5z" fill="${c}"/><path d="M20.5 15.5a4.5 4.5 0 014-3.5" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" opacity=".85"/><rect x="18.8" y="34" width="10.4" height="3" rx="1.2" fill="#94a3b8"/><rect x="18.8" y="38" width="10.4" height="3" rx="1.2" fill="#94a3b8"/><path d="M21 42h6l-1.2 3h-3.6z" fill="#334155"/>`,
+    es: (c) => `<rect x="3" y="17" width="36" height="14" rx="4" fill="${c}"/>${[0, 1, 2, 3].map((i) => `<rect x="${6.5 + i * 8}" y="20.5" width="6" height="7" rx="1.6" fill="#fff" opacity=".92"/>`).join("")}<path d="M39 24c4 0 5.5 3 5.5 6.5s-1.5 7-5 8" stroke="#334155" stroke-width="2.2" fill="none" stroke-linecap="round"/>`,
+  };
+  const art = (k, c) => `<svg class="ill" viewBox="0 0 48 48">${ILL[k](c)}</svg>`;
+  // EAN-13 barcode (real encoding, check digit added) and a QR-style pattern (decorative)
+  const ean13 = (d12, { h = 46, fs = 9, color = "#111", digits = true } = {}) => {
+    const L = ["0001101", "0011001", "0010011", "0111101", "0100011", "0110001", "0101111", "0111011", "0110111", "0001011"];
+    const G = ["0100111", "0110011", "0011011", "0100001", "0011101", "0111001", "0000101", "0010001", "0001001", "0010111"];
+    const R = ["1110010", "1100110", "1101100", "1000010", "1011100", "1001110", "1010000", "1000100", "1001000", "1110100"];
+    const P = ["LLLLLL", "LLGLGG", "LLGGLG", "LLGGGL", "LGLLGG", "LGGLLG", "LGGGLL", "LGLGLG", "LGLGGL", "LGGLGL"];
+    let s = 0;
+    for (let i = 0; i < 12; i++) s += +d12[i] * (i % 2 ? 3 : 1);
+    const code = d12 + ((10 - (s % 10)) % 10);
+    let bits = "101";
+    for (let i = 1; i <= 6; i++) bits += (P[+code[0]][i - 1] === "L" ? L : G)[+code[i]];
+    bits += "01010";
+    for (let i = 7; i <= 12; i++) bits += R[+code[i]];
+    bits += "101";
+    const guard = (i) => i < 3 || (i >= 45 && i < 50) || i >= 92;
+    const ox = 9, gh = digits ? 5 : 0;
+    let r = "";
+    for (let i = 0; i < 95; ) {
+      if (bits[i] !== "1") { i++; continue; }
+      let j = i;
+      while (j < 95 && bits[j] === "1" && guard(j) === guard(i)) j++;
+      r += `<rect x="${ox + i}" y="0" width="${j - i}" height="${guard(i) ? h + gh : h}" fill="${color}"/>`;
+      i = j;
+    }
+    const t = (x, str, ls) => `<text x="${x}" y="${h + fs - 0.5}" font-size="${fs}" font-family="DejaVu Sans Mono, monospace" fill="${color}" text-anchor="middle" letter-spacing="${ls}">${str}</text>`;
+    const txt = digits ? t(4, code[0], 0) + t(ox + 24 + 0.5, code.slice(1, 7), 0.95) + t(ox + 71 + 0.5, code.slice(7), 0.95) : "";
+    return { code, svg: `<svg class="ean" viewBox="0 0 108 ${h + (digits ? fs + 1 : 0)}" shape-rendering="crispEdges">${r}<g shape-rendering="auto">${txt}</g></svg>` };
+  };
+  const qrPattern = (seed, color = "#111") => {
+    const rnd = () => ((seed = (seed * 9301 + 49297) % 233280) / 233280);
+    const finder = (x, y) => `<rect x="${x}" y="${y}" width="7" height="7" fill="${color}"/><rect x="${x + 1}" y="${y + 1}" width="5" height="5" fill="#fff"/><rect x="${x + 2}" y="${y + 2}" width="3" height="3" fill="${color}"/>`;
+    let h = `<rect x="-1" y="-1" width="27" height="27" fill="#fff"/>`;
+    for (let y = 0; y < 25; y++) for (let x = 0; x < 25; x++) {
+      const inF = (x < 8 && y < 8) || (x > 16 && y < 8) || (x < 8 && y > 16);
+      const inA = x >= 16 && x <= 20 && y >= 16 && y <= 20;
+      if (inF || inA) continue;
+      if (y === 6 || x === 6) { if ((x + y) % 2 === 0) h += `<rect x="${x}" y="${y}" width="1" height="1" fill="${color}"/>`; continue; }
+      if (rnd() > 0.5) h += `<rect x="${x}" y="${y}" width="1" height="1" fill="${color}"/>`;
+    }
+    h += `<rect x="16" y="16" width="5" height="5" fill="${color}"/><rect x="17" y="17" width="3" height="3" fill="#fff"/><rect x="18" y="18" width="1" height="1" fill="${color}"/>`;
+    return `<svg class="qr" viewBox="-1 -1 27 27" shape-rendering="crispEdges">${h + finder(0, 0) + finder(18, 0) + finder(0, 18)}</svg>`;
+  };
+  const money = (n) => n.toLocaleString("en-MY", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  // [product, sku, batch, colour, picture, qty, price, unit cost]
+  const L = [
+    ["Digital Rice Cooker 1.8L", "RC-1800", "B2410-031", "#ec4899", "rc", 24, 139.0, 89.0],
+    ["Electric Kettle 1.7L", "EK-1700", "B2410-032", "#14b8a6", "ek", 36, 49.9, 32.5],
+    ["Air Fryer 4.5L", "AF-450", "B2410-033", "#8b5cf6", "af", 12, 189.0, 129.0],
+    ["Stand Fan 16 inch", "SF-16", "B2410-034", "#0396d9", "sf", 20, 99.0, 68.0],
+    ["LED Bulb 12W (10 pack)", "LED-12", "B2410-037", "#eab308", "led", 30, 29.9, 18.9],
+  ];
+  let total = 0, cost = 0, units = 0;
+  document.getElementById("lines").innerHTML = L.map(([n, sku, b, c, a, q, p, uc]) => {
+    total += q * p; cost += q * uc; units += q;
+    return `<tr><td><div class="it"><span class="pic" style="background:${c}1f">${art(a, c)}</span><div style="min-width:0"><b>${n}</b><small>${sku} · Batch ${b}</small></div></div></td>
+      <td class="num">${q}</td><td class="num">${money(p)}</td><td class="num"><b>${money(q * p)}</b></td></tr>`;
+  }).join("");
+  total = Math.round(total * 100) / 100; cost = Math.round(cost * 100) / 100;
+  document.getElementById("tots").innerHTML = `<div><span>Subtotal · ${units} units</span><span>${money(total)}</span></div>
+    <div><span>Due date</span><span>13 Nov 2026</span></div>
+    <div class="due"><span>Total</span><span>RM ${money(total)}</span></div>`;
+  document.getElementById("words").textContent = "Ringgit Malaysia Ten Thousand Two Hundred Seventy Seven and Sen Forty Only";
+  document.getElementById("eqr").innerHTML = qrPattern(77, "#134e4a");
+
+  document.getElementById("steps").innerHTML = [
+    ["g", "file", "Invoice INV-2026-1187", "Sent to the customer"],
+    ["b", "truck", "DO-2026-0862", "Delivery order, ready to pack"],
+    ["s", "box", `Stock deducted · −${units}`, "From 5 batches, by barcode"],
+    ["v", "layers", "Journal entries posted", "", `<div class="jr">
+      <div><span>Dr Trade receivables</span><span>${money(total)}</span></div><div class="cr"><span>Cr Sales</span><span>${money(total)}</span></div>
+      <div><span>Dr Cost of sales</span><span>${money(cost)}</span></div><div class="cr"><span>Cr Inventory</span><span>${money(cost)}</span></div></div>`],
+    ["s", "users", "Ledger updated", "Owing now RM 18,420.60"],
+    ["t", "shield", "LHDN e-Invoice validated", "QR code on the invoice"],
+    ["b", "pin", "Stock trail updated", "Each unit shows this sale"],
+    ["g", "money", "Receipt when paid", "Made by itself on payment", "", 1],
+  ].map(([c, i, b, s, extra, wait]) => `<div class="stp"><span class="fi ${c}"><i data-i="${i}"></i></span><div><b>${b}<span class="ck${wait ? " w" : ""}"><i data-i="${wait ? "clock" : "check"}"></i></span></b>${s ? `<small>${s}</small>` : ""}${extra || ""}</div></div>`).join("");
+
+  document.getElementById("hist").innerHTML = [
+    ["INV-2026-1187", "Today", "10,277.40"], ["INV-2026-1102", "29 Sep · paid", "8,143.20"], ["INV-2026-0995", "12 Sep · paid", "12,960.00"],
+  ].map(([n, d, a]) => `<div class="hr"><div><b>${n}</b><small>${d}</small></div><b>${a}</b></div>`).join("");
+</script>
+<script src="shell.js"></script>
+<script src="icons.js"></script>
+</body></html>

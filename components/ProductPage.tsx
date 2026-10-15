@@ -329,8 +329,9 @@ export default function ProductPage({ lang, k }: { lang: Locale; k: SystemKey })
         </div>
       </section>
 
-      {/* The clinic page already has its own hardware spotlight, and live selling needs no counter hardware. */}
-      {!live && !spotlights.some((s) => s.id === "hardware") && <HardwareSection lang={lang} />}
+      {/* The clinic page already has its own hardware spotlight, live selling needs no counter hardware, and the
+          inventory page shows its label printing and scanning in its own spotlights. */}
+      {!live && k !== "inventory" && !spotlights.some((s) => s.id === "hardware") && <HardwareSection lang={lang} />}
       {quote ? <QuoteSection lang={lang} quote={quote} /> : <PricingSection lang={lang} plan={live ? "live" : "standard"} />}
       <LocalSection lang={lang} k={k} />
       <FaqSection lang={lang} items={faqs} />

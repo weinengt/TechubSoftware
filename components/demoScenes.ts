@@ -91,6 +91,17 @@ const live: DemoScene[] = [
   { key: "activity", focus: "tablet", tablet: "livePermissions", spot: [9.5, 83.3, 58, 6.6], icon: "Lock" },
 ];
 
+const inventory: DemoScene[] = [
+  { key: "stockIn", focus: "tablet", tablet: "inventoryDashboard", phone: "stockScan", spot: [8.7, 87.1, 41.6, 10], icon: "Layers" },
+  { key: "scan", focus: "phone", spot: [3.9, 53.7, 92.2, 15.3], icon: "Scan" },
+  { key: "trail", focus: "tablet", tablet: "stockTrail", spot: [38.3, 81.9, 37.7, 14.3], icon: "Route" },
+  { key: "sale", focus: "tablet", tablet: "erpSales", spot: [56, 16.1, 19.5, 64.9], icon: "Invoice" },
+  { key: "return", focus: "tablet", tablet: "erpReturn", spot: [9.7, 86.1, 37.7, 6.9], tap: true, icon: "Sync" },
+  { key: "creditNote", focus: "tablet", spot: [50.2, 9.4, 26.8, 27.5], icon: "Receipt", green: true },
+  { key: "report", focus: "tablet", tablet: "reportsInventory", spot: [25.4, 1.6, 25.9, 4.2], icon: "Bolt" },
+  { key: "activity", focus: "tablet", tablet: "inventoryPermissions", spot: [9.5, 74.8, 58, 6.6], icon: "Lock" },
+];
+
 const contact: DemoScene[] = [
   { key: "whatsapp", focus: "phone", phone: "whatsappSalon", spot: [2.8, 56.5, 79.3, 4.2], tap: true, icon: "Whatsapp", green: true },
   { key: "deposit", focus: "phone", phone: "paymentSalon", spot: [3.9, 88.2, 92.2, 6.6], tap: true, icon: "Card" },
@@ -174,6 +185,7 @@ export const demos = {
   beauty: resolve(beauty),
   spa: resolve(spa),
   live: resolve(live),
+  inventory: resolve(inventory),
   contact: resolve(contact),
   erp: resolve(erp),
   detection: resolve(detection),

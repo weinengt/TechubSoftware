@@ -66,6 +66,8 @@
   .jr { margin-top: 2px; border-radius: 8px; background: #f8fafc; border: 1px solid #eef2f7; padding: 5px 7px; font-size: 10.5px; color: var(--ink2); font-variant-numeric: tabular-nums; }
   .jr div { display: flex; justify-content: space-between; line-height: 1.55; gap: 6px; }
   .jr div span:last-child { font-weight: 700; color: var(--ink); }
+  .easy { margin-top: 10px; border-radius: 10px; background: linear-gradient(135deg, #ecfdf5, #d1fae5); border: 1px solid #a7f3d0; color: #065f46; font-size: 11.5px; font-weight: 700; padding: 8px 10px; line-height: 1.35; }
+  .easy small { display: block; font-weight: 500; color: #047857; font-size: 10.5px; margin-top: 1px; }
   .mini { margin-top: auto; border: 1px solid var(--line); border-radius: 9px; padding: 8px 9px; display: flex; gap: 8px; align-items: center; background: #fff; box-shadow: 0 6px 14px -10px rgba(15,23,42,.35); }
   .mini .t b { display: block; font-size: 10.5px; font-weight: 800; }
   .mini .t small { display: block; font-size: 9.5px; color: var(--muted); }
@@ -111,9 +113,10 @@
           <h3><i data-i="spark"></i>Done automatically</h3>
           <div class="stp"><span class="fi g"><i data-i="box"></i></span><div><b>Stock updated</b><small>+1,240 units in 8 batches, each on its rack</small></div></div>
           <div class="stp"><span class="fi s"><i data-i="print"></i></span><div><b>1,240 labels printed</b><small>Barcode and QR on every unit</small></div></div>
-          <div class="stp"><span class="fi v"><i data-i="file"></i></span><div><b>Bill PB-2026-0388</b><small>Sent to Accounting, due 13 Nov</small></div></div>
-          <div class="stp"><span class="fi b"><i data-i="layers"></i></span><div><b>Journal entry posted</b><small>No accounting knowledge needed</small></div></div>
+          <div class="stp"><span class="fi v"><i data-i="file"></i></span><div><b>Bill PB-2026-0388</b><small>In Accounting · due 13 Nov</small></div></div>
+          <div class="stp"><span class="fi b"><i data-i="layers"></i></span><div><b>Journal entry posted</b><small>Debit and credit done for you</small></div></div>
           <div class="jr"><div><span>Dr Inventory</span><span>56,650.00</span></div><div><span>Cr Trade payables</span><span>56,650.00</span></div></div>
+          <div class="easy">No accounting knowledge needed<small>Staff just scan and post.</small></div>
           <div class="mini"><svg class="qr" id="qr" viewBox="0 0 25 25" shape-rendering="crispEdges"></svg><div class="t"><b>B2410-031</b><small>RC-1800 · A-03-2</small><svg class="bc" id="bc" viewBox="0 0 95 22" preserveAspectRatio="none" shape-rendering="crispEdges"></svg></div></div>
         </div>
       </div>
@@ -142,13 +145,13 @@
     ["SI-2200", "Steam Iron 2200W", "#6366f1", "si", "B2410-035", 140, "pcs", "A-06-2", 41.0],
     ["BL-1500", "Blender 1.5L", "#f59e0b", "bl", "B2410-036", 90, "pcs", "A-05-1", 58.0],
     ["LED-12", "LED Bulb 12W (10 pack)", "#eab308", "led", "B2410-037", 300, "packs", "C-02-4", 18.9],
-    ["ES-403", "Extension Socket 4-way 3m", "#64748b", "es", "B2410-038", 160, "pcs", "C-03-1", 14.5],
+    ["ES-403", "Extension Socket 4-way", "#64748b", "es", "B2410-038", 160, "pcs", "C-03-1", 14.5],
   ];
   const money = (n) => n.toLocaleString("en-MY", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   let units = 0, total = 0;
   document.getElementById("rows").innerHTML = L.map(([sku, n, c, a, b, q, u, loc, cost]) => {
     units += q; total += q * cost;
-    return `<tr><td><div class="pr"><span class="pic" style="background:${c}1f">${art(a, c)}</span><div style="min-width:0"><b>${n}</b><small>${sku}</small></div></div></td>
+    return `<tr><td><div class="pr"><span class="pic" style="background:${c}1f">${art(a, c)}</span><div style="min-width:0"><b>${n}</b><small>${sku}${sku === "ES-403" ? " · 3m cable" : ""}</small></div></div></td>
       <td class="bt">${b}</td><td class="num"><span class="qty">+${q.toLocaleString("en-MY")}</span></td>
       <td><span class="loc"><i data-i="pin"></i>${loc}</span></td><td class="num">${money(q * cost)}</td>
       <td><span class="lbl"><i data-i="check"></i>${q.toLocaleString("en-MY")} printed</span></td></tr>`;

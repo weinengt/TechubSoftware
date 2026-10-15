@@ -316,6 +316,16 @@ const en = {
         receipt: { title: "Receipt sent on WhatsApp", text: "Order #LS-24180 confirmed" },
         activity: { title: "Staff activity tracked", text: "Buyer list export blocked" },
       },
+      inventory: {
+        stockIn: { title: "1,240 units in, 8 batches", text: "Labels printed, bill to Accounts" },
+        scan: { title: "Found by scan in 0.2 s", text: "96 on hand at rack A-03-2" },
+        trail: { title: "Delivered at 3:52 PM", text: "Every step: who, when, which doc" },
+        sale: { title: "Done for you automatically", text: "Invoice, DO, stock & journal" },
+        return: { title: "One click: Return", text: "2 Air Fryers back on the rack" },
+        creditNote: { title: "Credit note made by itself", text: "CN-2026-0093 · RM 378.00" },
+        report: { title: "Report ready in 74 ms", text: "48,326 records" },
+        activity: { title: "Staff activity tracked", text: "Export blocked for Farid" },
+      },
       contact: {
         whatsapp: { title: "WhatsApp reminder sent", text: "Wen Qi tapped Confirm" },
         deposit: { title: "Deposit paid · RM 50", text: "Straight into your account" },
@@ -2760,6 +2770,42 @@ const en = {
     eInvoice: {
       title: "LHDN e-Invoice",
       alt: "An e-Invoice validated through LHDN MyInvois, with its unique identifier and QR code",
+    },
+    inventoryDashboard: {
+      title: "Inventory & ERP dashboard on iPad",
+      alt: "Techub inventory and ERP dashboard on an iPad showing stock value, today's sales, deliveries, a live activity feed from batch stock in to a return, and the accounting documents made automatically",
+    },
+    stockIn: {
+      title: "Batch stock in",
+      alt: "Batch stock in on an iPad: 1,240 units in 8 batches posted at once, each with its rack, barcode and QR labels printed and the supplier bill sent to Accounts",
+    },
+    stockTrail: {
+      title: "Full stock activity trail",
+      alt: "Stock activity trail of one batch on an iPad, from stock in, labels and put away to sale, packing and delivery, showing who did each step, when, and on which document",
+    },
+    barcodeLabels: {
+      title: "Barcode & QR labels",
+      alt: "Printed batch label with a QR code, product barcode stickers, a rack label and a carton label for a delivery order",
+    },
+    erpSales: {
+      title: "Sales linked to accounting",
+      alt: "Sales invoice on an iPad with the rest done automatically: delivery order, stock deducted, journal entries, customer ledger and LHDN e-Invoice",
+    },
+    erpReturn: {
+      title: "One-click return & credit note",
+      alt: "One-click return on an iPad: the credit note is created automatically, the stock goes back to its rack and the accounts are reversed",
+    },
+    reportsInventory: {
+      title: "Sales & stock reports",
+      alt: "Monthly report of sales, gross profit, best sellers and slow movers, generated in 74 ms on an iPad",
+    },
+    inventoryPermissions: {
+      title: "Staff activity tracking & permissions",
+      alt: "Staff permissions for owner, account, sales, storekeeper and driver roles on an iPad, with a staff activity log and a price change waiting for approval",
+    },
+    stockScan: {
+      title: "Scan a barcode with your phone",
+      alt: "Phone camera scanning a carton barcode to find the item, its stock on hand, rack location and last activity",
     },
     erpDesktop: {
       title: "Custom ERP system",

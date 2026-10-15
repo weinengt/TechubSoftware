@@ -309,6 +309,16 @@ const zh: Dict = {
         receipt: { title: "收据已发到 WhatsApp", text: "订单 #LS-24180 已确认" },
         activity: { title: "员工操作全记录", text: "导出买家名单被阻止" },
       },
+      inventory: {
+        stockIn: { title: "批量入库 1,240 件，8 批", text: "标签已打印，账单转会计" },
+        scan: { title: "一扫 0.2 秒找到", text: "A-03-2 货架还有 96 件" },
+        trail: { title: "下午 3:52 已送达", text: "每一步：谁、几时、哪张单" },
+        sale: { title: "系统自动帮你做好", text: "发票、DO、库存和分录" },
+        return: { title: "一键 Return", text: "2 个空气炸锅回到货架" },
+        creditNote: { title: "Credit Note 自动开好", text: "CN-2026-0093 · RM 378.00" },
+        report: { title: "报表 74 毫秒出来", text: "48,326 条记录" },
+        activity: { title: "员工操作全记录", text: "已阻止 Farid 导出客户名单" },
+      },
       contact: {
         whatsapp: { title: "WhatsApp 提醒已发出", text: "Wen Qi 按了确认" },
         deposit: { title: "订金已付 · RM 50", text: "钱直接进你的户口" },
@@ -2735,6 +2745,42 @@ const zh: Dict = {
     eInvoice: {
       title: "LHDN 电子发票",
       alt: "通过 LHDN MyInvois 验证的电子发票，附唯一识别码和 QR 码",
+    },
+    inventoryDashboard: {
+      title: "iPad 上的库存 ERP 总览",
+      alt: "Techub 库存管理 ERP 系统在 iPad 上的总览：库存价值、今日销售、送货进度，从批量入库到退货的实时动态，还有自动生成的会计单据",
+    },
+    stockIn: {
+      title: "批量入库",
+      alt: "iPad 上的批量入库：8 批共 1,240 件一次入库，每批都有货架位置，条码和 QR 标签已打印，供应商账单自动转到会计",
+    },
+    stockTrail: {
+      title: "完整库存动态",
+      alt: "iPad 上一个批次的库存动态：从入库、打标签、上架，到销售、包装、送货，每一步谁做、几时做、对应哪张单据都看得到",
+    },
+    barcodeLabels: {
+      title: "条码和 QR 标签",
+      alt: "打印好的批次标签（带 QR 码）、产品条码贴纸、货架标签和送货单箱标签",
+    },
+    erpSales: {
+      title: "销售连接会计",
+      alt: "iPad 上的销售发票，其余自动完成：送货单、扣库存、会计分录、客户账和 LHDN 电子发票",
+    },
+    erpReturn: {
+      title: "一键退货，自动开 Credit Note",
+      alt: "iPad 上一键退货：Credit Note 自动开好，货回到货架，账目自动冲回",
+    },
+    reportsInventory: {
+      title: "销售和库存报表",
+      alt: "iPad 上的月度报表：销售额、毛利、畅销品和滞销品，74 毫秒生成",
+    },
+    inventoryPermissions: {
+      title: "员工操作记录与权限",
+      alt: "iPad 上的员工权限：老板、会计、销售、仓管和司机各有权限，还有员工操作记录和一项等待批准的改价",
+    },
+    stockScan: {
+      title: "用手机扫条码",
+      alt: "手机相机扫描纸箱上的条码，马上找到货品、现有库存、货架位置和最近动态",
     },
     erpDesktop: {
       title: "定制 ERP 系统",

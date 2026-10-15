@@ -306,6 +306,16 @@ const ms: Dict = {
         receipt: { title: "Resit dihantar di WhatsApp", text: "Order #LS-24180 disahkan" },
         activity: { title: "Aktiviti staf direkod", text: "Export data pembeli disekat" },
       },
+      inventory: {
+        stockIn: { title: "1,240 unit masuk, 8 batch", text: "Label dicetak, bil terus ke Akaun" },
+        scan: { title: "Imbas, jumpa dalam 0.2 s", text: "96 dalam stok, rak A-03-2" },
+        trail: { title: "Sampai pukul 3:52 PM", text: "Setiap langkah: siapa, bila, dokumen" },
+        sale: { title: "Semua siap secara automatik", text: "Invois, DO, stok & jurnal" },
+        return: { title: "Satu klik: Return", text: "2 Air Fryer balik ke rak" },
+        creditNote: { title: "Nota kredit dibuat sendiri", text: "CN-2026-0093 · RM 378.00" },
+        report: { title: "Laporan siap dalam 74 ms", text: "48,326 rekod" },
+        activity: { title: "Aktiviti staf direkod", text: "Export disekat untuk Farid" },
+      },
       contact: {
         whatsapp: { title: "Reminder WhatsApp dihantar", text: "Wen Qi tekan Confirm" },
         deposit: { title: "Deposit dibayar · RM 50", text: "Terus masuk akaun anda" },
@@ -2858,6 +2868,42 @@ const ms: Dict = {
     eInvoice: {
       title: "e-Invois LHDN",
       alt: "e-Invois yang disahkan melalui LHDN MyInvois, dengan nombor pengenalan unik dan kod QR",
+    },
+    inventoryDashboard: {
+      title: "Dashboard Inventori & ERP di iPad",
+      alt: "Dashboard sistem inventori dan ERP Techub di iPad: nilai stok, jualan hari ini, penghantaran, aktiviti live dari stok masuk ikut batch sampai return, dan dokumen akaun yang dibuat secara automatik",
+    },
+    stockIn: {
+      title: "Stok masuk ikut batch",
+      alt: "Stok masuk ikut batch di iPad: 1,240 unit dalam 8 batch dipos sekali gus, setiap satu dengan raknya, label barcode dan QR dicetak, dan bil pembekal terus ke Akaun",
+    },
+    stockTrail: {
+      title: "Jejak aktiviti stok penuh",
+      alt: "Jejak aktiviti stok untuk satu batch di iPad, dari stok masuk, label dan simpan di rak sampai jualan, bungkus dan penghantaran, dengan siapa buat, bila dan dokumen mana",
+    },
+    barcodeLabels: {
+      title: "Label barcode & QR",
+      alt: "Label batch bercetak dengan kod QR, pelekat barcode produk, label rak dan label kotak untuk delivery order",
+    },
+    erpSales: {
+      title: "Jualan berhubung dengan akaun",
+      alt: "Invois jualan di iPad, yang lain siap secara automatik: delivery order, stok ditolak, entri jurnal, lejar pelanggan dan e-Invois LHDN",
+    },
+    erpReturn: {
+      title: "Return satu klik & nota kredit",
+      alt: "Return satu klik di iPad: nota kredit dibuat secara automatik, stok balik ke rak dan akaun diterbalikkan",
+    },
+    reportsInventory: {
+      title: "Laporan jualan & stok",
+      alt: "Laporan bulanan jualan, untung kasar, barang paling laris dan barang lambat jual, siap dalam 74 ms di iPad",
+    },
+    inventoryPermissions: {
+      title: "Jejak aktiviti & akses staf",
+      alt: "Akses staf untuk pemilik, akaun, jualan, stor dan pemandu di iPad, dengan log aktiviti staf dan perubahan harga yang menunggu kelulusan",
+    },
+    stockScan: {
+      title: "Imbas barcode dengan telefon",
+      alt: "Kamera telefon mengimbas barcode pada kotak untuk cari barang, stok yang ada, lokasi rak dan aktiviti terakhir",
     },
     erpDesktop: {
       title: "Sistem ERP custom",

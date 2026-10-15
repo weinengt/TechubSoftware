@@ -1,7 +1,7 @@
 <!doctype html>
 <html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
 <style>
-  /* Monthly report overview. ?v=clinic (default) | salon | beauty | spa */
+  /* Monthly report overview. ?v=clinic (default) | salon | beauty | spa | trade */
   :root { --w: 1024px; --h: 720px; }
   .top { gap: 10px; }
   .speed { display: inline-flex; align-items: center; gap: 7px; height: 30px; padding: 0 12px 0 4px; border-radius: 99px; white-space: nowrap;
@@ -124,7 +124,7 @@
 </div>
 <script>
   const q = new URLSearchParams(location.search).get("v");
-  const V = ["clinic", "salon", "beauty", "spa"].includes(q) ? q : "clinic";
+  const V = ["clinic", "salon", "beauty", "spa", "trade"].includes(q) ? q : "clinic";
   const COL = { blue: "#0396d9", violet: "#8b5cf6", teal: "#14b8a6", amber: "#f59e0b", pink: "#ec4899", slate: "#475569" };
   const rm = (n, d = 0) => "RM " + n.toLocaleString("en-MY", { minimumFractionDigits: d, maximumFractionDigits: d });
   const int = (n) => n.toLocaleString("en-MY");
@@ -198,6 +198,24 @@
           ["WT", "#14b8a6", "Wati", "Therapist", 124, 83, 19980], ["WN", "#f59e0b", "Wani", "Therapist", 116, 78, 17420], ["NR", "#ec4899", "Noraini", "Therapist", 104, 72, 15760]] },
       rank: { title: "Top treatments", by: "Bookings", rows: [["Balinese Massage 90 min", "", 196], ["Foot Reflexology 60 min", "", 172],
         ["Hot Stone Massage 90 min", "", 128], ["Aromatherapy Massage", "", 112], ["Couple Spa Package", "", 46]] },
+    },
+    trade: {
+      biz: "Demo Trading", title: "Sales & Stock Report", ms: 74, recs: "48,326",
+      tabs: ["Overview", "Sales", "Stock", "Customers", "Accounting"],
+      branch: "Puchong warehouse",
+      kpi: [["money", "b", "Total sales", "RM 1,186,420", "▲ 8% vs Aug"], ["chart", "g", "Gross profit", "RM 318,540", "26.8% margin"],
+        ["box", "v", "Stock value", "RM 815,940", "1,286 SKUs · 30 Sep"], ["clock", "a", "Slow movers", "14 items", "No sale in 90 days"]],
+      chart: { title: "Daily sales", series: [["Credit sales", 948960, "blue"], ["Cash sales", 237460, "teal"]],
+        week: [0, 1.12, 1.04, 1.0, 1.02, 1.1, 0.58], hol: 0, pay: 1.04, seed: 9 },
+      small: { type: "donut", title: "Sales by category", center: ["RM 1.19M", "sales"],
+        seg: [["Kitchen", 498300, "blue"], ["Fans & cooling", 260990, "teal"], ["Lighting", 189830, "amber"], ["Accessories", 237300, "violet"]],
+        note: ["undo", "Returns", "9 credit notes", "RM 3,412"] },
+      table: { title: "Best sellers", cols: ["Product", "Units", "Sales", "Gross profit", "Stock left"], note: "· top 5 of 1,286",
+        rows: [["RC", "#ec4899", "Digital Rice Cooker 1.8L", "RC-1800 · Kitchen", 1284, 178476, 64200, 38], ["SF", "#0396d9", "Stand Fan 16 inch", "SF-16 · Fans", 1642, 162558, 50902, 64],
+          ["AF", "#8b5cf6", "Air Fryer 4.5L", "AF-450 · Kitchen", 684, 129276, 41040, 22], ["LB", "#eab308", "LED Bulb 12W (10 pack)", "LED-12 · Lighting", 4120, 123188, 45320, 186],
+          ["EK", "#14b8a6", "Electric Kettle 1.7L", "EK-1700 · Kitchen", 2316, 115568, 40298, 52]] },
+      rank: { title: "Slow movers", by: "Days unsold", unit: " days", color: "#f59e0b", rows: [["Oil Heater 2000W", "18 left", 142], ["Ceiling Fan 42 inch", "26 left", 121],
+        ["Water Dispenser", "9 left", 108], ["Hair Dryer 1200W", "34 left", 97], ["Table Lamp LED", "41 left", 92]] },
     },
   }[V];
 
@@ -300,6 +318,8 @@
     rows = t.rows.map(([ini, c, n, s, sv, rt]) => `<tr><td>${who(ini, c, n, s)}</td><td class="num">${rm(sv)}</td><td class="num">${rm(rt)}</td><td class="num"><b>${rm(sv + rt)}</b></td><td class="num pos">${rm(sv * 0.1 + rt * 0.05, 2)}</td></tr>`).join("");
   } else if (V === "beauty") {
     rows = t.rows.map(([ini, c, n, s, se, pk, sa]) => `<tr><td>${who(ini, c, n, s)}</td><td class="num">${se}</td><td class="num">${pk}</td><td class="num"><b>${rm(sa)}</b></td><td class="num pos">${rm(sa * 0.075, 2)}</td></tr>`).join("");
+  } else if (V === "trade") {
+    rows = t.rows.map(([ini, c, n, s, u, sa, gp, st]) => `<tr><td>${who(ini, c, n, s)}</td><td class="num">${int(u)}</td><td class="num"><b>${rm(sa)}</b></td><td class="num pos">${rm(gp)}</td><td class="num">${int(st)}</td></tr>`).join("");
   } else {
     rows = t.rows.map(([ini, c, n, s, tr, ut, sa]) => `<tr><td>${who(ini, c, n, s)}</td><td class="num">${tr}</td><td class="num"><span class="meter"><u><i style="width:${ut}%"></i></u>${ut}%</span></td><td class="num"><b>${rm(sa)}</b></td><td class="num pos">${rm(sa * 0.08, 2)}</td></tr>`).join("");
   }
@@ -310,8 +330,8 @@
   const rk = D.rank, best = rk.rows[0][2];
   $("rank").innerHTML = `<h3><i data-i="star" style="color:#0396d9"></i>${rk.title}<small style="margin-left:auto">by ${rk.by.toLowerCase()}</small></h3>
     <div class="rk">${rk.rows.map(([n, s, v], i) => `<div class="ri"><span class="no${i ? "" : " t"}">${i + 1}</span><div class="bd">
-      <div class="ln"><b>${n}</b>${s ? `<small>${s}</small>` : ""}<span>${rk.by === "Revenue" ? rm(v) : int(v)}</span></div>
-      <div class="br"><i style="width:${((v / best) * 100).toFixed(1)}%"></i></div></div></div>`).join("")}</div>`;
+      <div class="ln"><b>${n}</b>${s ? `<small>${s}</small>` : ""}<span>${rk.by === "Revenue" ? rm(v) : int(v)}${rk.unit || ""}</span></div>
+      <div class="br"><i style="width:${((v / best) * 100).toFixed(1)}%${rk.color ? `;background:${rk.color}` : ""}"></i></div></div></div>`).join("")}</div>`;
 
   drawBars();
 </script>

@@ -1,0 +1,272 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<style>
+  /* One-click return: 2 × Air Fryer 4.5L back from INV-2026-1187 at 4:31 PM. The Return button has just been clicked;
+     the system put the stock back on its rack, made credit note CN-2026-0093 (RM 378.00) and reversed the accounting.
+     The phone stands over the lower right corner in the moving picture, so the right column holds only the note preview. */
+  :root { --w: 1024px; --h: 720px; }
+  .top { gap: 10px; }
+  .top h1 { display: flex; align-items: center; gap: 9px; }
+  .top h1 .chip { font-size: 11px; }
+  .btn svg { width: 15px; height: 15px; }
+  .chip svg { width: 11px; height: 11px; stroke-width: 2.6; }
+  .content { flex-direction: row; gap: 12px; }
+
+  /* Pick what comes back */
+  .pick { width: 420px; flex-shrink: 0; display: flex; flex-direction: column; padding: 14px 16px; }
+  .cu { display: flex; align-items: center; gap: 10px; padding-bottom: 11px; border-bottom: 1px solid #eef2f7; }
+  .cu .av { width: 34px; height: 34px; font-size: 11px; background: linear-gradient(135deg, #f59e0b, #ef4444); }
+  .cu b { display: block; font-size: 13px; font-weight: 750; }
+  .cu small { display: block; font-size: 10.5px; color: var(--muted); margin-top: 1px; }
+  .cu .rt { margin-left: auto; text-align: right; }
+  .cu .rt b { font-size: 12.5px; font-variant-numeric: tabular-nums; }
+  .lt { margin-top: 8px; table-layout: fixed; }
+  .lt th { padding: 6px 6px; background: none; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  .lt th:first-child, .lt td:first-child { padding-left: 2px; } .lt th:last-child, .lt td:last-child { padding-right: 2px; }
+  .lt td { padding: 0 6px; height: 48px; font-variant-numeric: tabular-nums; }
+  .lt tr.on td { background: #f5f3ff; }
+  .lt tr.on td:first-child { box-shadow: inset 3px 0 0 var(--violet); padding-left: 8px; }
+  .lt tr.on td:last-child { padding-right: 6px; }
+  .it { display: flex; align-items: center; gap: 8px; min-width: 0; }
+  .it .pic { width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center; flex-shrink: 0; }
+  .it .pic svg { width: 22px; height: 22px; }
+  .it b { display: block; font-size: 12px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; }
+  .it small { display: block; font-size: 10px; color: var(--muted); margin-top: 1px; }
+  .stepper { display: inline-flex; align-items: center; border: 1px solid var(--line); border-radius: 8px; height: 26px; background: #fff; }
+  .stepper span { width: 22px; text-align: center; color: #94a3b8; font-weight: 700; font-size: 13px; }
+  .stepper b { min-width: 22px; text-align: center; font-size: 12.5px; font-weight: 800; color: #cbd5e1; }
+  tr.on .stepper { border-color: #c4b5fd; box-shadow: 0 0 0 3px rgba(139,92,246,.12); }
+  tr.on .stepper b { color: #6d28d9; } tr.on .stepper span { color: #7c3aed; }
+  .opts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+  .fld span { display: block; font-size: 10.5px; color: var(--muted); font-weight: 500; margin-bottom: 4px; }
+  .fld div { display: flex; align-items: center; gap: 6px; height: 32px; border: 1px solid var(--line); border-radius: 9px; padding: 0 9px; font-size: 11.5px; font-weight: 650; color: var(--ink); white-space: nowrap; }
+  .fld div svg { width: 14px; height: 14px; color: var(--muted); }
+  .fld div svg:last-child { margin-left: auto; }
+  .set { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+  .so { border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; display: flex; gap: 8px; align-items: flex-start; }
+  .so .rd { width: 15px; height: 15px; border-radius: 99px; border: 2px solid #cbd5e1; flex-shrink: 0; margin-top: 1px; }
+  .so b { display: block; font-size: 11.5px; font-weight: 700; }
+  .so small { display: block; font-size: 10px; color: var(--muted); margin-top: 1px; }
+  .so.on { border-color: #c4b5fd; background: #faf5ff; }
+  .so.on .rd { border: 4.5px solid var(--violet); }
+  .sum { margin-top: auto; display: grid; grid-template-columns: .8fr 1fr 1.1fr; border: 1px dashed #cbd5e1; border-radius: 10px; margin-bottom: 10px; }
+  .sum div { padding: 7px 10px; } .sum div + div { border-left: 1px dashed #cbd5e1; }
+  .sum span { display: block; font-size: 10px; color: var(--muted); white-space: nowrap; }
+  .sum b { display: block; font-size: 13px; font-weight: 800; margin-top: 1px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .go { position: relative; display: flex; align-items: center; justify-content: center; gap: 9px; height: 50px; border-radius: 12px; color: #fff; font-size: 14.5px; font-weight: 750;
+    background: linear-gradient(135deg, #0287c4, #0b6fb0); box-shadow: inset 0 3px 8px rgba(2,32,64,.35), 0 0 0 4px rgba(3,150,217,.18); overflow: hidden; }
+  .go svg { width: 19px; height: 19px; stroke-width: 2.3; }
+  .go .rip { position: absolute; left: 87%; top: 50%; width: 120px; height: 120px; margin: -60px 0 0 -60px; border-radius: 99px; background: radial-gradient(circle, rgba(255,255,255,.34), rgba(255,255,255,0) 68%); }
+  .go .tap { position: absolute; left: calc(87% - 15px); top: 13px; width: 30px; height: 30px; border-radius: 99px; border: 2.5px solid rgba(255,255,255,.85); box-shadow: 0 0 0 6px rgba(255,255,255,.2); }
+  .clk { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 7px; font-size: 11px; color: #15803d; font-weight: 650; }
+  .clk svg { width: 13px; height: 13px; stroke-width: 2.6; }
+
+  /* Results */
+  .res { width: 274px; flex-shrink: 0; display: flex; flex-direction: column; gap: 10px; }
+  .res h3 svg { color: var(--brand); }
+  .cn { border-radius: 12px; padding: 13px 14px; background: linear-gradient(135deg, #f5f3ff, #ede9fe); border: 1px solid #ddd6fe; box-shadow: 0 10px 22px -16px rgba(109,40,217,.6); }
+  .cn .h { display: flex; align-items: center; gap: 10px; }
+  .cn .h .fi { width: 34px; height: 38px; border-radius: 8px; background: #fff; color: #6d28d9; display: grid; place-items: center; flex-shrink: 0; box-shadow: 0 2px 6px -2px rgba(109,40,217,.4); }
+  .cn .h .fi svg { width: 19px; height: 19px; stroke-width: 2; }
+  .cn .h b { display: block; font-size: 13px; font-weight: 800; color: #4c1d95; }
+  .cn .h small { display: block; font-size: 10.5px; color: #6d28d9; font-weight: 600; margin-top: 1px; }
+  .cn .li { display: flex; justify-content: space-between; margin-top: 10px; padding: 6px 0; border-top: 1px solid #ddd6fe; border-bottom: 1px solid #ddd6fe; font-size: 11px; color: #5b21b6; font-weight: 600; }
+  .cn .amt { display: flex; align-items: baseline; justify-content: space-between; margin-top: 6px; }
+  .cn .amt span { font-size: 11px; color: #5b21b6; font-weight: 600; }
+  .cn .amt b { font-size: 24px; font-weight: 850; letter-spacing: -.02em; color: #2e1065; font-variant-numeric: tabular-nums; }
+  .cn .ln { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+  .cn .ln span { display: inline-flex; align-items: center; gap: 4px; font-size: 10.5px; font-weight: 650; color: #5b21b6; background: rgba(255,255,255,.75); border-radius: 6px; padding: 3px 7px; white-space: nowrap; }
+  .cn .ln span svg { width: 11px; height: 11px; stroke-width: 2.6; }
+  .rc { padding: 13px 13px; }
+  .rc .h { display: flex; align-items: center; gap: 9px; }
+  .rc .h .ic { width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center; flex-shrink: 0; }
+  .rc .h .ic svg { width: 16px; height: 16px; }
+  .rc .h b { display: block; font-size: 12.5px; font-weight: 750; }
+  .rc .h small { display: block; font-size: 10.5px; color: var(--muted); margin-top: 1px; }
+  .rc .h .chip { margin-left: auto; }
+  .flow { display: flex; align-items: center; gap: 8px; margin-top: 9px; font-size: 11px; color: var(--ink2); }
+  .flow .bx { flex: 1; background: #f8fafc; border-radius: 8px; padding: 5px 8px; }
+  .flow .bx span { display: block; font-size: 9.5px; color: var(--muted); }
+  .flow .bx b { font-size: 14px; font-weight: 800; font-variant-numeric: tabular-nums; }
+  .flow .bx.on { background: #ecfdf5; } .flow .bx.on b { color: #047857; }
+  .flow > svg { width: 15px; height: 15px; color: #94a3b8; flex-shrink: 0; }
+  .note { display: flex; align-items: center; gap: 6px; margin-top: 8px; font-size: 10.5px; font-weight: 600; color: #15803d; }
+  .note svg { width: 12px; height: 12px; stroke-width: 2.8; }
+  .jr { margin-top: 8px; border-radius: 8px; background: #f8fafc; border: 1px solid #eef2f7; padding: 5px 8px; font-size: 10.5px; color: var(--ink2); font-variant-numeric: tabular-nums; }
+  .jr div { display: flex; justify-content: space-between; gap: 6px; line-height: 1.75; white-space: nowrap; }
+  .jr div span:last-child { font-weight: 700; color: var(--ink); }
+  .jr div.cr span:first-child { padding-left: 10px; }
+  .easy { margin-top: auto; border-radius: 10px; background: linear-gradient(135deg, #ecfdf5, #d1fae5); border: 1px solid #a7f3d0; color: #065f46; font-size: 11.5px; font-weight: 700; padding: 9px 11px; line-height: 1.35; }
+  .easy small { display: block; font-weight: 500; color: #047857; font-size: 10.5px; margin-top: 2px; }
+
+  /* Right column: the credit note (under the phone in the moving picture) */
+  .rt2 { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+  .paper { padding: 13px 13px 12px; position: relative; overflow: hidden; }
+  .paper .ph { display: flex; align-items: flex-start; gap: 7px; padding-bottom: 8px; border-bottom: 2px solid #6d28d9; }
+  .paper .ph img { width: 22px; height: 22px; border-radius: 5px; }
+  .paper .ph b { display: block; font-size: 9.5px; font-weight: 800; color: #0b2f55; }
+  .paper .ph small { display: block; font-size: 8px; color: var(--muted); }
+  .paper h4 { font-size: 12.5px; font-weight: 850; color: #4c1d95; letter-spacing: .06em; margin-top: 9px; }
+  .paper .no { font-size: 10px; color: var(--ink2); margin-top: 1px; font-variant-numeric: tabular-nums; }
+  .paper .kv { margin-top: 8px; font-size: 10px; color: var(--muted); line-height: 1.5; }
+  .paper .kv b { color: var(--ink); font-weight: 650; }
+  .paper .l { display: flex; justify-content: space-between; gap: 6px; margin-top: 8px; padding: 6px 0; border-top: 1px solid #edf1f6; border-bottom: 1px solid #edf1f6; font-size: 10.5px; }
+  .paper .l b { font-weight: 700; } .paper .l small { display: block; color: var(--muted); font-size: 9.5px; }
+  .paper .t { display: flex; justify-content: space-between; margin-top: 7px; font-size: 11px; font-weight: 800; }
+  .paper .t span:last-child { font-size: 15px; }
+  .paper .eq { display: flex; align-items: center; gap: 7px; margin-top: 9px; font-size: 9.5px; color: #0f766e; font-weight: 650; line-height: 1.35; }
+  .paper .eq svg.qr { width: 36px; height: 36px; flex-shrink: 0; }
+  .cash { padding: 11px 12px; }
+  .cash b { display: flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 750; }
+  .cash b svg { width: 15px; height: 15px; color: #dc2626; }
+  .mk { display: grid; grid-template-columns: .7fr 1.3fr; gap: 6px; margin-top: 8px; }
+  .mk div { background: #f8fafc; border-radius: 8px; padding: 5px 8px; } .mk span { display: block; font-size: 9.5px; color: var(--muted); }
+  .mk b { font-size: 13px !important; font-weight: 800 !important; font-variant-numeric: tabular-nums; }
+  .cash p { font-size: 10.5px; color: var(--muted); margin-top: 4px; line-height: 1.45; }
+</style></head>
+<body>
+<div class="app">
+  <aside class="side" data-shell="trade" data-active="Returns"></aside>
+  <section class="main">
+    <header class="top">
+      <div><div class="sub">Returns · from INV-2026-1187</div><h1>Return RT-2026-0041<span class="chip g"><i data-i="check"></i>Done in 1 click</span></h1></div>
+      <span class="btn" style="margin-left:auto"><i data-i="print"></i>Print credit note</span>
+      <span class="btn pri"><i data-i="undo"></i>New return</span>
+    </header>
+    <div class="content">
+      <div class="card pick">
+        <div class="cu"><span class="av">SM</span><div><b>Seri Maju Electrical</b><small>INV-2026-1187 · 14 Oct · Delivered</small></div><div class="rt"><small>Invoice total</small><b>RM 10,277.40</b></div></div>
+        <table class="lt">
+          <colgroup><col><col style="width:42px"><col style="width:62px"><col style="width:84px"></colgroup>
+          <thead><tr><th>Item</th><th class="num">Sold</th><th class="num">Price</th><th style="text-align:center">Return</th></tr></thead>
+          <tbody id="lines"></tbody>
+        </table>
+        <div class="opts">
+          <div class="fld"><span>Reason</span><div><i data-i="file"></i>Over-ordered, unopened<i data-i="chevD"></i></div></div>
+          <div class="fld"><span>Put back to</span><div><i data-i="pin"></i>Rack A-05-3 · sellable<i data-i="chevD"></i></div></div>
+        </div>
+        <div class="set">
+          <div class="so on"><span class="rd"></span><div><b>Credit note</b><small>Account customer · off what they owe</small></div></div>
+          <div class="so"><span class="rd"></span><div><b>Refund note</b><small>Cash customer · money back</small></div></div>
+        </div>
+        <div class="sum"><div><span>Returning</span><b>2 units</b></div><div><span>Credit to customer</span><b>RM 378.00</b></div><div><span>Invoice after return</span><b>RM 9,899.40</b></div></div>
+        <div class="go" id="go"><span class="rip"></span><i data-i="undo"></i>Return 2 units · RM 378.00<span class="tap"></span></div>
+        <div class="clk"><i data-i="check"></i>Clicked once by Jessica Wong at 4:31 PM</div>
+      </div>
+      <div class="res">
+        <div class="cn" id="cn">
+          <div class="h"><span class="fi"><i data-i="file"></i></span><div><b>Credit note CN-2026-0093 created</b><small>Automatically, for INV-2026-1187</small></div></div>
+          <div class="li"><span>Air Fryer 4.5L × 2</span><span>189.00 each</span></div>
+          <div class="amt"><span>Seri Maju Electrical</span><b>RM 378.00</b></div>
+          <div class="ln"><span><i data-i="check"></i>Sent to customer</span><span><i data-i="shield"></i>e-Invoice validated</span></div>
+        </div>
+        <div class="card rc">
+          <div class="h"><span class="ic" style="background:#ecfdf5;color:#059669"><i data-i="box"></i></span><div><b>Stock back in · +2</b><small>Air Fryer 4.5L · batch B2410-033</small></div></div>
+          <div class="flow"><div class="bx"><span>On hand</span><b>68</b></div><i data-i="arrowR"></i><div class="bx on"><span>Rack A-05-3</span><b>70</b></div></div>
+          <div class="note"><i data-i="check"></i>Batch trail updated, ready to sell again</div>
+        </div>
+        <div class="card rc">
+          <div class="h"><span class="ic" style="background:var(--brand-50);color:var(--brand)"><i data-i="layers"></i></span><div><b>Accounts reversed</b><small>Journal posted by itself</small></div></div>
+          <div class="jr">
+            <div><span>Dr Sales returns</span><span>378.00</span></div><div class="cr"><span>Cr Trade receivables</span><span>378.00</span></div>
+            <div><span>Dr Inventory</span><span>258.00</span></div><div class="cr"><span>Cr Cost of sales</span><span>258.00</span></div>
+          </div>
+          <div class="flow"><div class="bx"><span>Seri Maju owed</span><b>18,420.60</b></div><i data-i="arrowR"></i><div class="bx on"><span>Owes now</span><b>18,042.60</b></div></div>
+        </div>
+        <div class="easy">No accounting knowledge needed<small>Staff click Return. The rest is done.</small></div>
+      </div>
+      <div class="rt2">
+        <div class="card paper">
+          <div class="ph"><img src="icon.png" alt=""><div><b>DEMO TRADING SDN BHD</b><small>47100 Puchong, Selangor</small></div></div>
+          <h4>CREDIT NOTE</h4>
+          <div class="no">CN-2026-0093 · 14 Oct 2026</div>
+          <div class="kv">To <b>Seri Maju Electrical</b><br>For invoice <b>INV-2026-1187</b></div>
+          <div class="l"><div><b>Air Fryer 4.5L</b><small>2 × 189.00 · returned</small></div><b>378.00</b></div>
+          <div class="t"><span>Total</span><span>RM 378.00</span></div>
+          <div class="eq"><span id="eqr"></span><span>LHDN e-Invoice<br>credit note validated</span></div>
+        </div>
+        <div class="card cash mon">
+          <b><i data-i="chart" style="color:#0396d9"></i>Returns this month</b>
+          <div class="mk"><div><span>Returns</span><b>6</b></div><div><span>Value</span><b>RM 2,148.00</b></div></div>
+          <p>0.4% of October sales. Each one has its note.</p>
+        </div>
+        <div class="card cash">
+          <b><i data-i="money"></i>Cash customer?</b>
+          <p>The same click makes a refund note, such as RN-2026-0017, and the money-back entry instead.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<script>
+  // Small product pictures (48px box), tinted with the item colour
+  const ILL = {
+    rc: (c) => `<rect x="20" y="7" width="8" height="4" rx="2" fill="#334155"/><path d="M8 22c0-6.5 7.2-10.5 16-10.5S40 15.5 40 22v14a6 6 0 01-6 6H14a6 6 0 01-6-6z" fill="${c}"/><path d="M8.5 22h31" stroke="#fff" stroke-width="1.6" opacity=".75"/><rect x="16" y="27" width="16" height="9" rx="2.5" fill="#fff" opacity=".92"/><circle cx="20.5" cy="31.5" r="1.6" fill="${c}"/><rect x="24" y="30.3" width="5" height="2.4" rx="1.2" fill="#94a3b8"/>`,
+    ek: (c) => `<rect x="17" y="6" width="12" height="4" rx="2" fill="#334155"/><path d="M16 10h14l4.5 30h-23z" fill="${c}"/><path d="M14.5 17L7 12.5v4.5l6.5 5.5z" fill="${c}"/><path d="M32 14c6 0 7.5 4.5 7.5 9.5S37 32 33.5 33" stroke="#334155" stroke-width="3" fill="none" stroke-linecap="round"/><rect x="9.5" y="40" width="27" height="4" rx="2" fill="#334155"/><rect x="21" y="20" width="4" height="12" rx="2" fill="#fff" opacity=".85"/>`,
+    af: (c) => `<rect x="10" y="5" width="28" height="38" rx="9" fill="${c}"/><circle cx="24" cy="14" r="4" fill="#fff" opacity=".92"/><circle cx="24" cy="14" r="1.5" fill="${c}"/><rect x="14" y="22" width="20" height="16" rx="4" fill="#1e293b"/><rect x="18.5" y="28" width="11" height="3.2" rx="1.6" fill="#94a3b8"/>`,
+    sf: (c) => `<circle cx="24" cy="16" r="12.5" fill="#fff" stroke="${c}" stroke-width="2.6"/><ellipse cx="24" cy="10" rx="3.6" ry="6" fill="${c}"/><ellipse cx="24" cy="10" rx="3.6" ry="6" fill="${c}" transform="rotate(120 24 16)"/><ellipse cx="24" cy="10" rx="3.6" ry="6" fill="${c}" transform="rotate(240 24 16)"/><circle cx="24" cy="16" r="2.6" fill="#334155"/><rect x="22.5" y="28.5" width="3" height="11" fill="#334155"/><ellipse cx="24" cy="41.5" rx="10" ry="3" fill="#334155"/>`,
+    si: (c) => `<path d="M17 21c0-6 3.5-9.5 9-9.5h9a4 4 0 014 4V21" stroke="#334155" stroke-width="3.2" fill="none" stroke-linecap="round"/><path d="M5 35c2.2-10 10-15.5 21.5-15.5H39a4 4 0 014 4V35z" fill="${c}"/><rect x="4" y="35" width="40" height="4.5" rx="2.2" fill="#94a3b8"/><circle cx="34" cy="27.5" r="2.6" fill="#fff" opacity=".9"/>`,
+    bl: (c) => `<rect x="12.5" y="3.5" width="23" height="4.5" rx="2" fill="#334155"/><path d="M14 8h20l-3 19H17z" fill="${c}" opacity=".45"/><path d="M19 13h10" stroke="#fff" stroke-width="1.6" opacity=".8"/><path d="M14.5 27h19l2.5 15H12z" fill="${c}"/><circle cx="24" cy="34.5" r="2.8" fill="#fff" opacity=".92"/>`,
+    led: (c) => `<path d="M24 4.5a12.5 12.5 0 00-7.3 22.6c1.3 1 2.1 2.5 2.1 4.1V33h10.4v-1.8c0-1.6.8-3.1 2.1-4.1A12.5 12.5 0 0024 4.5z" fill="${c}"/><path d="M20.5 15.5a4.5 4.5 0 014-3.5" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" opacity=".85"/><rect x="18.8" y="34" width="10.4" height="3" rx="1.2" fill="#94a3b8"/><rect x="18.8" y="38" width="10.4" height="3" rx="1.2" fill="#94a3b8"/><path d="M21 42h6l-1.2 3h-3.6z" fill="#334155"/>`,
+    es: (c) => `<rect x="3" y="17" width="36" height="14" rx="4" fill="${c}"/>${[0, 1, 2, 3].map((i) => `<rect x="${6.5 + i * 8}" y="20.5" width="6" height="7" rx="1.6" fill="#fff" opacity=".92"/>`).join("")}<path d="M39 24c4 0 5.5 3 5.5 6.5s-1.5 7-5 8" stroke="#334155" stroke-width="2.2" fill="none" stroke-linecap="round"/>`,
+  };
+  const art = (k, c) => `<svg class="ill" viewBox="0 0 48 48">${ILL[k](c)}</svg>`;
+  // EAN-13 barcode (real encoding, check digit added) and a QR-style pattern (decorative)
+  const ean13 = (d12, { h = 46, fs = 9, color = "#111", digits = true } = {}) => {
+    const L = ["0001101", "0011001", "0010011", "0111101", "0100011", "0110001", "0101111", "0111011", "0110111", "0001011"];
+    const G = ["0100111", "0110011", "0011011", "0100001", "0011101", "0111001", "0000101", "0010001", "0001001", "0010111"];
+    const R = ["1110010", "1100110", "1101100", "1000010", "1011100", "1001110", "1010000", "1000100", "1001000", "1110100"];
+    const P = ["LLLLLL", "LLGLGG", "LLGGLG", "LLGGGL", "LGLLGG", "LGGLLG", "LGGGLL", "LGLGLG", "LGLGGL", "LGGLGL"];
+    let s = 0;
+    for (let i = 0; i < 12; i++) s += +d12[i] * (i % 2 ? 3 : 1);
+    const code = d12 + ((10 - (s % 10)) % 10);
+    let bits = "101";
+    for (let i = 1; i <= 6; i++) bits += (P[+code[0]][i - 1] === "L" ? L : G)[+code[i]];
+    bits += "01010";
+    for (let i = 7; i <= 12; i++) bits += R[+code[i]];
+    bits += "101";
+    const guard = (i) => i < 3 || (i >= 45 && i < 50) || i >= 92;
+    const ox = 9, gh = digits ? 5 : 0;
+    let r = "";
+    for (let i = 0; i < 95; ) {
+      if (bits[i] !== "1") { i++; continue; }
+      let j = i;
+      while (j < 95 && bits[j] === "1" && guard(j) === guard(i)) j++;
+      r += `<rect x="${ox + i}" y="0" width="${j - i}" height="${guard(i) ? h + gh : h}" fill="${color}"/>`;
+      i = j;
+    }
+    const t = (x, str, ls) => `<text x="${x}" y="${h + fs - 0.5}" font-size="${fs}" font-family="DejaVu Sans Mono, monospace" fill="${color}" text-anchor="middle" letter-spacing="${ls}">${str}</text>`;
+    const txt = digits ? t(4, code[0], 0) + t(ox + 24 + 0.5, code.slice(1, 7), 0.95) + t(ox + 71 + 0.5, code.slice(7), 0.95) : "";
+    return { code, svg: `<svg class="ean" viewBox="0 0 108 ${h + (digits ? fs + 1 : 0)}" shape-rendering="crispEdges">${r}<g shape-rendering="auto">${txt}</g></svg>` };
+  };
+  const qrPattern = (seed, color = "#111") => {
+    const rnd = () => ((seed = (seed * 9301 + 49297) % 233280) / 233280);
+    const finder = (x, y) => `<rect x="${x}" y="${y}" width="7" height="7" fill="${color}"/><rect x="${x + 1}" y="${y + 1}" width="5" height="5" fill="#fff"/><rect x="${x + 2}" y="${y + 2}" width="3" height="3" fill="${color}"/>`;
+    let h = `<rect x="-1" y="-1" width="27" height="27" fill="#fff"/>`;
+    for (let y = 0; y < 25; y++) for (let x = 0; x < 25; x++) {
+      const inF = (x < 8 && y < 8) || (x > 16 && y < 8) || (x < 8 && y > 16);
+      const inA = x >= 16 && x <= 20 && y >= 16 && y <= 20;
+      if (inF || inA) continue;
+      if (y === 6 || x === 6) { if ((x + y) % 2 === 0) h += `<rect x="${x}" y="${y}" width="1" height="1" fill="${color}"/>`; continue; }
+      if (rnd() > 0.5) h += `<rect x="${x}" y="${y}" width="1" height="1" fill="${color}"/>`;
+    }
+    h += `<rect x="16" y="16" width="5" height="5" fill="${color}"/><rect x="17" y="17" width="3" height="3" fill="#fff"/><rect x="18" y="18" width="1" height="1" fill="${color}"/>`;
+    return `<svg class="qr" viewBox="-1 -1 27 27" shape-rendering="crispEdges">${h + finder(0, 0) + finder(18, 0) + finder(0, 18)}</svg>`;
+  };
+  const money = (n) => n.toLocaleString("en-MY", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  // [product, sku, batch, colour, picture, sold, price, return qty]
+  const L = [
+    ["Digital Rice Cooker 1.8L", "RC-1800", "B2410-031", "#ec4899", "rc", 24, 139.0, 0],
+    ["Electric Kettle 1.7L", "EK-1700", "B2410-032", "#14b8a6", "ek", 36, 49.9, 0],
+    ["Air Fryer 4.5L", "AF-450", "B2410-033", "#8b5cf6", "af", 12, 189.0, 2],
+    ["Stand Fan 16 inch", "SF-16", "B2410-034", "#0396d9", "sf", 20, 99.0, 0],
+    ["LED Bulb 12W (10 pack)", "LED-12", "B2410-037", "#eab308", "led", 30, 29.9, 0],
+  ];
+  document.getElementById("lines").innerHTML = L.map(([n, sku, b, c, a, q, p, r]) =>
+    `<tr class="${r ? "on" : ""}"><td><div class="it"><span class="pic" style="background:${c}1f">${art(a, c)}</span><div style="min-width:0"><b>${n}</b><small>${sku} · Batch ${b}</small></div></div></td>
+      <td class="num">${q}</td><td class="num">${money(p)}</td><td style="text-align:center"><span class="stepper"><span>−</span><b>${r}</b><span>+</span></span></td></tr>`).join("");
+  document.getElementById("eqr").innerHTML = qrPattern(91, "#134e4a");
+</script>
+<script src="shell.js"></script>
+<script src="icons.js"></script>
+</body></html>

@@ -50,8 +50,10 @@ html:lang(zh) {
 html:lang(zh) .tracking-tight {
   letter-spacing: 0;
 }
-/* Big Chinese headings break only at spaces, punctuation and \u200b marks in the text, never inside a word. */
-html:lang(zh) h1 {
+/* Big Chinese headings break only at spaces, punctuation and \u200b marks in the text, never inside a word.
+   A run too long for one line still breaks where it has to. */
+html:lang(zh) h1,
+html:lang(zh) h2 {
   word-break: keep-all;
   overflow-wrap: anywhere;
 }
