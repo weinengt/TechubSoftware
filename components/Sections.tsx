@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { fill, getDict, type Dict } from "@/content";
 import { htmlLang, lp, type Locale } from "@/lib/i18n";
 import { shotSrc, type Shot } from "@/lib/shots";
-import { emailLink, planAverage, planDaily, planSave, planTotal, rm, servicePages, site, systems, whatsappLink, type Plan, type ServicePageKey } from "@/lib/site";
+import { emailLink, planAverage, planDaily, planSave, planTotal, rm, servicePages, site, systems, whatsappLink, type Plan, type ServicePageKey, type SystemKey } from "@/lib/site";
 import { Icon, type IconName } from "./Icons";
 import { hl, withContactLinks } from "./Text";
 
@@ -142,6 +142,66 @@ export function HardwareSection({ lang }: { lang: Locale }) {
             );
           })}
         </ul>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Documents sent automatically ---------- */
+
+type DocKey = keyof Dict["docs"]["items"];
+
+/** The documents a system sends by itself. The clinic adds digital MCs, and referral letters written online. */
+export const docKeys = (k: SystemKey): DocKey[] =>
+  k === "clinic" ? ["mc", "receipt", "invoice", "creditNote", "refundNote", "referral"] : ["receipt", "invoice", "creditNote", "refundNote"];
+
+const docIcons: Record<DocKey, IconName> = { mc: "Stethoscope", receipt: "Receipt", invoice: "Invoice", creditNote: "Sync", refundNote: "Wallet", referral: "Pen" };
+
+/** Every system page: the documents that go to customers automatically, each drawn as a small paper, and the free
+ *  format tuning. */
+export function DocumentsSection({ lang, k }: { lang: Locale; k: SystemKey }) {
+  const t = getDict(lang).docs;
+  const clinic = k === "clinic";
+  return (
+    <section id="documents" className="overflow-hidden bg-slate-50 py-20 sm:py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <SectionHeading eyebrow={t.eyebrow} title={t.title} intro={t.intro.replace("{who}", clinic ? t.who.patients : t.who.customers)} />
+        <ul className={`mx-auto mt-12 grid grid-cols-2 gap-3 sm:gap-4 ${clinic ? "max-w-6xl sm:grid-cols-3 xl:grid-cols-6" : "max-w-5xl lg:grid-cols-4"}`}>
+          {docKeys(k).map((d) => {
+            const I = Icon[docIcons[d]];
+            const written = d === "referral";
+            return (
+              <li key={d} className="card flex flex-col items-center p-4 text-center sm:p-5" data-reveal>
+                <div className="relative w-full max-w-28 rounded-lg bg-white p-3 shadow-md ring-1 ring-slate-200" aria-hidden="true">
+                  <div className="flex items-center justify-between">
+                    <span className="h-3 w-3 rounded-sm bg-gradient-to-br from-brand-500 to-teal-brand" />
+                    <span className="h-1.5 w-8 rounded-full bg-slate-200" />
+                  </div>
+                  <I className="mx-auto mt-3 h-6 w-6 text-brand-600" />
+                  <div className="mt-3 space-y-1.5">
+                    <span className="block h-1.5 w-full rounded-full bg-slate-200" />
+                    <span className="block h-1.5 w-4/5 rounded-full bg-slate-200" />
+                    <span className="block h-1.5 w-3/5 rounded-full bg-slate-200" />
+                  </div>
+                  <div className="mt-3 flex items-center justify-between border-t border-dashed border-slate-200 pt-2">
+                    <span className="h-1.5 w-6 rounded-full bg-slate-300" />
+                    <span className="h-1.5 w-8 rounded-full bg-brand-300" />
+                  </div>
+                  <span
+                    className={`absolute -right-2.5 -bottom-2.5 flex h-7 w-7 items-center justify-center rounded-full text-white shadow ring-2 ring-white ${written ? "bg-teal-500" : "bg-emerald-500"}`}
+                  >
+                    {written ? <Icon.Pen className="h-3.5 w-3.5" /> : <Icon.Check className="h-3.5 w-3.5" strokeWidth={3} />}
+                  </span>
+                </div>
+                <h3 className="mt-5 text-sm leading-snug font-bold text-balance text-slate-900 sm:text-base">{t.items[d]}</h3>
+                <p className={`mt-1 text-xs font-semibold ${written ? "text-teal-700" : "text-emerald-600"}`}>{written ? t.written : t.sent}</p>
+              </li>
+            );
+          })}
+        </ul>
+        <div className="mt-10 flex justify-center">
+          <CheckList items={clinic ? [...t.points, t.referral] : t.points} />
+        </div>
       </div>
     </section>
   );

@@ -9,7 +9,8 @@ import { demos, type DemoKey } from "./demoScenes";
 import JsonLd from "./JsonLd";
 import { Icon, type IconName } from "./Icons";
 import {
-  FaqSection, HardwareSection, LocalSection, PricingSection, QuoteSection, SectionHeading, breadcrumbJsonLd, faqJsonLd, localFaq, softwareJsonLd,
+  DocumentsSection, FaqSection, HardwareSection, LocalSection, PricingSection, QuoteSection, SectionHeading, breadcrumbJsonLd, docKeys,
+  faqJsonLd, localFaq, softwareJsonLd,
 } from "./Sections";
 import { Combo, ContactSection, FeatureTiles, FloatBadge, OtherSystems, PhoneShowcase, Spotlight } from "./Showcase";
 import { hl } from "./Text";
@@ -233,7 +234,7 @@ export default function ProductPage({ lang, k }: { lang: Locale; k: SystemKey })
             description: t.meta.description,
             url,
             category: t.category,
-            features: modules.map((m) => m.title),
+            features: [...modules.map((m) => m.title), ...docKeys(k).map((x) => `${d.docs.eyebrow}: ${d.docs.items[x]}`)],
             screenshots: pics,
             ...(live && { price: site.livePriceFrom, offerText: d.pricing.liveOfferText }),
             ...(quote && { offers: false }),
@@ -328,6 +329,7 @@ export default function ProductPage({ lang, k }: { lang: Locale; k: SystemKey })
           <FeatureTiles items={modules} />
         </div>
       </section>
+      <DocumentsSection lang={lang} k={k} />
 
       {/* The clinic page already has its own hardware spotlight, live selling needs no counter hardware, and the
           inventory page shows its label printing and scanning in its own spotlights. */}

@@ -2,7 +2,7 @@ import { fill, getDict } from "@/content";
 import { blogPath, postPath } from "@/content/blog";
 import { getLegal } from "@/content/legal";
 import { customSystems, services, techIcons } from "@/components/Company";
-import { getFeatures, planText } from "@/components/Sections";
+import { docKeys, getFeatures, planText } from "@/components/Sections";
 import { plain } from "@/components/Text";
 import { getPosts } from "@/lib/blog";
 import { localeName, locales, lp } from "@/lib/i18n";
@@ -23,6 +23,7 @@ export function GET() {
 ${p.meta.description}
 For: ${p.whoFor.join(", ")}.
 Modules: ${Object.values(p.modules).join(", ")}.
+${t.docs.eyebrow}: ${docKeys(k).map((x) => t.docs.items[x]).join(", ")}. ${[...t.docs.points, ...(k === "clinic" ? [t.docs.referral] : [])].join(". ")}.
 ${Object.values(p.spotlights)
   .map((s) => `- ${s.eyebrow}: ${s.points.join("; ")}`)
   .join("\n")}

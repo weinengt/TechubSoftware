@@ -76,6 +76,8 @@ Every page has a Bahasa Melayu version under /ms/, for people who search in Mala
 - Bookings in under 10 seconds, with an advanced booking calendar and AI integration
 - Payment gateway integration: works with various payment gateways, so customers pay a deposit or the full amount online, straight into the business's own merchant account
 - Automatic accounting documents: invoices, credit notes, refund notes and official receipts, with no accounting staff needed
+- Enterprise-level automatic document sending (every system): receipts, invoices, credit notes (CN) and refund notes (RN) go to customers automatically, and clinics' digital MCs go to patients; each customer's document formats (receipt, invoice, MC and more) are tuned free
+- Online referral letters (Clinic Management System): written online, in a format Techub tunes for each clinic free
 - Barcode & QR tracking (Inventory & ERP System): print barcodes, generate QR codes and follow every item from stock in to delivery
 - Deposits to income in one click (salons, beauty centres and spas): each booking deposit is held until the service is done, then one click turns it into income, and the system makes the invoice, refund note or credit note, so no accounting knowledge is needed
 - Detailed reports generated in under 100 ms, without lag
