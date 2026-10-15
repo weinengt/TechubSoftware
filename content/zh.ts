@@ -1110,7 +1110,7 @@ const zh: Dict = {
     },
     pricing: {
       meta: {
-        title: "价格 | 预约系统 RM {price}/月起，前 {months} 个月免费",
+        title: "价格 | 预约系统每间分店 RM {price}/月起，前 {months} 个月免费",
         description: "马来西亚预约系统每间分店月费 RM {price} 起，新客户前 {months} 个月免费，包安装和员工培训。直播带货系统每间分店 RM {livePrice}/月起；定制每小时 RM {custom} 起。",
       },
     },

@@ -1124,7 +1124,7 @@ const en = {
     },
     pricing: {
       meta: {
-        title: "Pricing | From RM {price}/month, First {months} Months Free",
+        title: "Pricing | From RM {price}/month per Outlet, First {months} Months Free",
         description:
           "Appointment systems in Malaysia from RM {price}/month per outlet, first {months} months free with installation and training. Live selling from RM {livePrice}/month per outlet; custom work from RM {custom}/hour.",
       },

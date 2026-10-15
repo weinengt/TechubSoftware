@@ -1113,7 +1113,7 @@ const ms: Dict = {
     },
     pricing: {
       meta: {
-        title: "Harga | Dari RM {price}/bulan, {months} Bulan Pertama Percuma",
+        title: "Harga | Dari RM {price}/bulan Setiap Outlet, {months} Bulan Percuma",
         description:
           "Sistem temujanji di Malaysia dari RM {price}/bulan setiap outlet, {months} bulan pertama percuma termasuk pemasangan dan latihan. Jualan live dari RM {livePrice}/bulan setiap outlet; custom dari RM {custom}/jam.",
       },
