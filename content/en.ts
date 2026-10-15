@@ -35,6 +35,7 @@ const en = {
     services: "Services",
     pricing: "Pricing",
     contact: "Contact",
+    blog: "Blog",
   },
 
   menu: {
@@ -137,6 +138,7 @@ const en = {
     technology: "Technology",
     pricing: "Pricing",
     faq: "FAQ",
+    blog: "Blog",
     contact: "Contact",
     rights: "All rights reserved.",
     tagline: "Smart, low-cost business systems in Malaysia.",
@@ -874,6 +876,25 @@ const en = {
     text: "From RM {price}/month, for businesses across Malaysia. Installation and staff training included.",
     whatsappLabel: "WhatsApp · fastest reply",
     emailLabel: "Email us",
+  },
+
+  /* ---------- Blog (/blog/): each post's words are in content/blog/<slug>/en.md ---------- */
+  blog: {
+    meta: {
+      title: "Blog | Clinic, Salon, Beauty & Spa Guides Malaysia",
+      description: "Practical guides for clinics, salons, beauty centres, spas and live sellers in Malaysia: bookings, WhatsApp reminders, deposits, payroll and LHDN e-Invoice.",
+    },
+    eyebrow: "Blog",
+    title: "Guides for *clinics, salons, beauty centres and spas* in Malaysia",
+    intro: "Plain answers to what business owners ask us: bookings, WhatsApp reminders, deposits, payroll, queues, live selling and LHDN e-Invoice.",
+    read: "Read the guide",
+    allSystems: "All systems",
+    faqTitle: "Questions people ask",
+    ctaTitle: "See it running in your business",
+    ctaText: "Book a free demo on WhatsApp and we'll show you how Techub handles this, step by step.",
+    system: "See the {product} system",
+    more: "More guides",
+    listName: "Techub Software blog",
   },
 
   /* ---------- Pages opened from the menu and footer (each part of the company has its own page) ---------- */

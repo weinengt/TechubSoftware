@@ -30,6 +30,7 @@ const zh: Dict = {
     services: "服务",
     pricing: "价格",
     contact: "联络我们",
+    blog: "博客",
   },
 
   menu: {
@@ -131,6 +132,7 @@ const zh: Dict = {
     technology: "技术",
     pricing: "价格",
     faq: "常见问题",
+    blog: "博客",
     contact: "联络我们",
     rights: "版权所有。",
     tagline: "马来西亚本地的智能商业系统，好用又实惠。",
@@ -866,6 +868,25 @@ const zh: Dict = {
     text: "月费 RM {price} 起，全马商家都适用，包安装和员工培训。",
     whatsappLabel: "WhatsApp · 回复最快",
     emailLabel: "电邮联络",
+  },
+
+  /* ---------- Blog (/zh/blog/): each post's words are in content/blog/<slug>/zh.md ---------- */
+  blog: {
+    meta: {
+      title: "博客 | 马来西亚诊所、发廊、美容院和 SPA 实用指南",
+      description: "给马来西亚诊所、发廊、美容院、SPA 和直播卖家的实用指南：预约、WhatsApp 提醒、订金、薪水、排队叫号和 LHDN 电子发票。",
+    },
+    eyebrow: "博客",
+    title: "马来西亚*诊所、发廊、美容院和 SPA* 实用指南",
+    intro: "老板们常问我们的问题，这里用简单的话回答：预约、WhatsApp 提醒、订金、薪水、排队叫号、直播带货和 LHDN 电子发票。",
+    read: "阅读指南",
+    allSystems: "所有系统",
+    faqTitle: "大家常问的问题",
+    ctaTitle: "看看用在你的生意上是怎样的",
+    ctaText: "在 WhatsApp 预约免费 Demo，我们一步一步示范 Techub 怎样处理这些事。",
+    system: "{product}系统介绍",
+    more: "更多指南",
+    listName: "Techub Software 博客",
   },
 
   /* ---------- Pages opened from the menu and footer (each part of the company has its own page) ---------- */

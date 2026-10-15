@@ -1,8 +1,10 @@
 import { fill, getDict } from "@/content";
+import { blogPath, postPath } from "@/content/blog";
 import { getLegal } from "@/content/legal";
 import { customSystems, services, techIcons } from "@/components/Company";
 import { getFeatures, planText } from "@/components/Sections";
 import { plain } from "@/components/Text";
+import { getPosts } from "@/lib/blog";
 import { localeName, locales, lp } from "@/lib/i18n";
 import { rm, site, systems, type Plan } from "@/lib/site";
 
@@ -107,6 +109,14 @@ ${(["migration", "email", "website"] as const)
     return `  - ${x.title}: ${cost}. ${x.text} ${x.points.join(". ")}.${x.note ? ` ${x.note}` : ""}`;
   })
   .join("\n")}
+
+## Blog (${site.url}${blogPath})
+Guides for business owners in Malaysia, also in Bahasa Melayu (${site.url}${lp("ms", blogPath)}) and Chinese (${site.url}${lp("zh", blogPath)}).
+${getPosts("en")
+  .map((b) => `### ${b.title} (${site.url}${postPath(b.slug)})
+${b.description}
+${b.faqs.map((f) => `Q: ${f.q}\nA: ${f.a}`).join("\n")}`)
+  .join("\n\n")}
 
 ## Frequently asked questions (${site.url}/faq/)
 ${[...t.faq.items, ...t.techPage.faqs].map((f) => `Q: ${f.q}\nA: ${f.a}`).join("\n\n")}

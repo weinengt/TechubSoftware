@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { demoShots } from "@/components/demoScenes";
+import { blogPath, postPath, posts } from "@/content/blog";
 import { locales, lp } from "@/lib/i18n";
 import { languageAlternates } from "@/lib/seo";
 import { shotFiles, shotSrc, type ShotKey } from "@/lib/shots";
@@ -53,6 +54,8 @@ const pages: { path: string; priority: number; images: ShotKey[] }[] = [
   { path: "/pricing/", priority: 0.8, images: [] },
   { path: "/about/", priority: 0.7, images: [] },
   { path: "/faq/", priority: 0.7, images: [] },
+  { path: blogPath, priority: 0.7, images: posts.map((p) => p.image) },
+  ...posts.map((p) => ({ path: postPath(p.slug), priority: 0.7, images: [p.image] })),
   { path: "/contact/", priority: 0.7, images: ["whatsappSalon"] },
   { path: "/terms/", priority: 0.3, images: [] },
   { path: "/privacy/", priority: 0.3, images: [] },

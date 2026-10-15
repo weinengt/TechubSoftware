@@ -1,6 +1,8 @@
 // Company details. Change values here and every page, language, metadata tag, JSON-LD block and
 // sitemap entry picks them up. The words on the pages are in content/en.ts, ms.ts and zh.ts.
 
+import { blogPath, postPath, posts } from "@/content/blog";
+
 export const site = {
   name: "Techub Software",
   shortName: "Techub",
@@ -115,6 +117,7 @@ export const nav = [
   { key: "technology", path: "/technology/" },
   { key: "services", path: companyPages.services },
   { key: "pricing", path: companyPages.pricing },
+  { key: "blog", path: blogPath },
   { key: "contact", path: companyPages.contact },
 ] as const;
 
@@ -124,6 +127,8 @@ export const pagePaths = [
   "/technology/",
   ...systems.map((s) => s.path),
   ...Object.values(companyPages),
+  blogPath,
+  ...posts.map((p) => postPath(p.slug)),
   "/terms/",
   "/privacy/",
 ] as const;

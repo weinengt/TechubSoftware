@@ -28,6 +28,7 @@ const ms: Dict = {
     services: "Perkhidmatan",
     pricing: "Harga",
     contact: "Hubungi",
+    blog: "Blog",
   },
 
   menu: {
@@ -130,6 +131,7 @@ const ms: Dict = {
     technology: "Teknologi",
     pricing: "Harga",
     faq: "Soalan lazim",
+    blog: "Blog",
     contact: "Hubungi kami",
     rights: "Hak cipta terpelihara.",
     tagline: "Sistem bisnes pintar dan kos rendah di Malaysia.",
@@ -867,6 +869,25 @@ const ms: Dict = {
     text: "Dari RM {price}/bulan, untuk bisnes di seluruh Malaysia. Termasuk pemasangan dan latihan staf.",
     whatsappLabel: "WhatsApp · balas paling cepat",
     emailLabel: "Email kami",
+  },
+
+  /* ---------- Blog (/ms/blog/): each post's words are in content/blog/<slug>/ms.md ---------- */
+  blog: {
+    meta: {
+      title: "Blog | Panduan Klinik, Salon, Kecantikan & Spa Malaysia",
+      description: "Panduan praktikal untuk klinik, salon, pusat kecantikan, spa dan penjual live di Malaysia: booking, reminder WhatsApp, deposit, gaji dan e-Invois LHDN.",
+    },
+    eyebrow: "Blog",
+    title: "Panduan untuk *klinik, salon, pusat kecantikan dan spa* di Malaysia",
+    intro: "Jawapan mudah untuk soalan yang pemilik bisnes selalu tanya kami: booking, reminder WhatsApp, deposit, gaji, giliran, jualan live dan e-Invois LHDN.",
+    read: "Baca panduan",
+    allSystems: "Semua sistem",
+    faqTitle: "Soalan yang orang selalu tanya",
+    ctaTitle: "Tengok sendiri dalam bisnes anda",
+    ctaText: "Tempah demo percuma di WhatsApp dan kami tunjuk cara Techub uruskan semua ini, langkah demi langkah.",
+    system: "Lihat sistem {product}",
+    more: "Panduan lain",
+    listName: "Blog Techub Software",
   },
 
   /* ---------- Pages opened from the menu and footer (each part of the company has its own page) ---------- */

@@ -606,26 +606,34 @@ function WelcomeCard({ lang, p }: { lang: Locale; p: Plan }) {
 /* ---------- FAQ ---------- */
 
 export function FaqSection({ lang, items, page }: { lang: Locale; items?: { q: string; a: string }[]; page?: PageOf }) {
-  const { faq: t, ui } = getDict(lang);
+  const { faq: t } = getDict(lang);
   return (
     <section id="faq" className={page ? `${pageTop} pb-20 sm:pb-24` : "bg-slate-50 py-20 sm:py-24"}>
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         <SectionHeading eyebrow={t.eyebrow} title={t.title} page={page} />
-        <div className="mt-10 space-y-3">
-          {(items ?? t.items).map((f) => (
-            <details key={f.q} className="card group p-0 [&_summary::-webkit-details-marker]:hidden" data-reveal>
-              <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 p-4 text-left font-semibold text-slate-900 sm:p-5">
-                <h3 className="text-[15px] sm:text-base">{f.q}</h3>
-                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-600 transition group-open:rotate-45">
-                  <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true"><path d="M12 5v14M5 12h14" /></svg>
-                </span>
-              </summary>
-              <p className="px-4 pb-5 text-sm leading-relaxed text-slate-600 sm:px-5">{withContactLinks(f.a, ui)}</p>
-            </details>
-          ))}
-        </div>
+        <FaqList lang={lang} items={items ?? t.items} className="mt-10" />
       </div>
     </section>
+  );
+}
+
+/** Questions that open to show their answers (FAQ sections and blog posts). */
+export function FaqList({ lang, items, className = "" }: { lang: Locale; items: { q: string; a: string }[]; className?: string }) {
+  const { ui } = getDict(lang);
+  return (
+    <div className={`space-y-3 ${className}`}>
+      {items.map((f) => (
+        <details key={f.q} className="card group p-0 [&_summary::-webkit-details-marker]:hidden" data-reveal>
+          <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 p-4 text-left font-semibold text-slate-900 sm:p-5">
+            <h3 className="text-[15px] sm:text-base">{f.q}</h3>
+            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-600 transition group-open:rotate-45">
+              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true"><path d="M12 5v14M5 12h14" /></svg>
+            </span>
+          </summary>
+          <p className="px-4 pb-5 text-sm leading-relaxed text-slate-600 sm:px-5">{withContactLinks(f.a, ui)}</p>
+        </details>
+      ))}
+    </div>
   );
 }
 

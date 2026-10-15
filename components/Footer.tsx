@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getDict } from "@/content";
 import { getLegal } from "@/content/legal";
 import { htmlLang, localeName, locales, lp, type Locale } from "@/lib/i18n";
+import { blogPath } from "@/content/blog";
 import { companyPages, emailLink, site, systems, whatsappLink } from "@/lib/site";
 import { Icon } from "./Icons";
 
@@ -47,6 +48,7 @@ export default function Footer({ lang }: { lang: Locale }) {
             <li><Link className={link} href={lp(lang, "/technology/")}>{f.technology}</Link></li>
             <li><Link className={link} href={lp(lang, companyPages.pricing)}>{f.pricing}</Link></li>
             <li><Link className={link} href={lp(lang, companyPages.faq)}>{f.faq}</Link></li>
+            <li><Link className={link} href={lp(lang, blogPath)}>{f.blog}</Link></li>
             <li><Link className={link} href={lp(lang, companyPages.contact)}>{f.contact}</Link></li>
           </ul>
         </div>
