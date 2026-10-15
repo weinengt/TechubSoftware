@@ -1,11 +1,12 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { getDict } from "@/content";
+import { getDict, getShots } from "@/content";
 import { getTools, type ToolsDict } from "@/content/tools";
 import { Icon } from "@/components/Icons";
 import JsonLd from "@/components/JsonLd";
-import { FaqList, SectionHeading, breadcrumbJsonLd, faqJsonLd, pageTop } from "@/components/Sections";
-import { ContactSection } from "@/components/Showcase";
+import Device from "@/components/Device";
+import { FaqList, SectionHeading, WelcomeCard, breadcrumbJsonLd, faqJsonLd, pageTop } from "@/components/Sections";
+import { ContactSection, Spotlight } from "@/components/Showcase";
 import { hl } from "@/components/Text";
 import InvoiceTool from "@/components/tools/InvoiceTool";
 import PayrollTool from "@/components/tools/PayrollTool";
@@ -200,8 +201,35 @@ export function ToolsHubPage({ lang }: { lang: Locale }) {
           </div>
         </div>
       </section>
+      <Promo lang={lang} k="invoice" />
       <Cta lang={lang} />
     </>
+  );
+}
+
+const promoShots = { invoice: "depositInvoiceSalon", payroll: "payrollSalon", tax: "reportsSalon" } as const;
+
+/** Under each tool: what Techub's systems do for the same job, the Welcome offer and a way to ask for a demo. */
+function Promo({ lang, k }: { lang: Locale; k: ToolKey }) {
+  const p = getTools(lang).promo;
+  const x = p[k];
+  const welcome = site.plans.find((plan) => "until" in plan && plan.until);
+  return (
+    <section className="overflow-hidden py-16 sm:py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <Spotlight
+          eyebrow={p.eyebrow}
+          title={x.title}
+          points={x.points}
+          visual={<Device shot={getShots(lang)[promoShots[k]]} sizes="(min-width: 1024px) 640px, 92vw" />}
+          cta={{ label: p.button, message: x.message }}
+        />
+        {welcome && <WelcomeCard lang={lang} p={welcome} />}
+        <p className="mt-6 text-center text-sm" data-reveal>
+          <Link href={lp(lang, companyPages.useCases)} className="font-semibold text-brand-700 hover:underline">{p.more} →</Link>
+        </p>
+      </div>
+    </section>
   );
 }
 
@@ -238,6 +266,7 @@ export default function ToolPage({ lang, k }: { lang: Locale; k: ToolKey }) {
         </div>
       </section>
       {k === "tax" && <TaxTables t={t.tax} />}
+      <Promo lang={lang} k={k} />
       <section className="bg-slate-50 py-16 sm:py-20">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <SectionHeading title={t.faqTitle} />

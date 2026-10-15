@@ -700,7 +700,7 @@ function PlanCard({ lang, p, className }: { lang: Locale; p: Plan; className: st
 }
 
 /** The Welcome offer, a promotion with a last day, as a wide dark card under the plans. */
-function WelcomeCard({ lang, p }: { lang: Locale; p: Plan }) {
+export function WelcomeCard({ lang, p }: { lang: Locale; p: Plan }) {
   const t = getDict(lang).pricing;
   const x = planText(lang, p);
   return (

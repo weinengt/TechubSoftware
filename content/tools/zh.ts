@@ -13,6 +13,41 @@ const zh: ToolsDict = {
     button: "看看我们的系统",
     message: "Hi Techub，我用了你们的免费工具，想了解你们的系统。",
   },
+  promo: {
+    eyebrow: "Techub，马来西亚中小企业的选择",
+    button: "WhatsApp 我们预约免费演示",
+    more: "看看我们所有的系统",
+    invoice: {
+      title: "不用再手打发票，*Techub 帮你自动开*",
+      points: [
+        "每笔销售自动开发票、收据、Credit Note 和 Refund Note",
+        "支持 LHDN 电子发票",
+        "用你的 Logo 和格式，免费帮你调整",
+        "网上付款直接进你的银行户口",
+      ],
+      message: "Hi Techub，我用了免费发票工具，想预约自动开发票的免费演示。",
+    },
+    payroll: {
+      title: "全公司的工资，*每个月自动算好*",
+      points: [
+        "每位员工的工资和佣金自动计算",
+        "工资单随时可以发",
+        "员工操作记录和权限管理",
+        "所有分店一个系统管理",
+      ],
+      message: "Hi Techub，我用了免费工资计算器，想预约工资系统的免费演示。",
+    },
+    tax: {
+      title: "生意记录清清楚楚，*报税时轻松搞定*",
+      points: [
+        "每笔销售都有发票或收据记录",
+        "详细报表 100 毫秒内出来",
+        "支持 LHDN 电子发票",
+        "数据存在马来西亚服务器，加密备份",
+      ],
+      message: "Hi Techub，我用了免费税务减免计算器，想预约系统的免费演示。",
+    },
+  },
   export: {
     download: "下载 PDF",
     share: "分享 PDF",

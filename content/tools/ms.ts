@@ -13,6 +13,41 @@ const ms: ToolsDict = {
     button: "Lihat sistem kami",
     message: "Hi Techub, saya guna alat percuma anda dan nak tahu lebih lanjut tentang sistem anda.",
   },
+  promo: {
+    eyebrow: "Techub untuk PKS Malaysia",
+    button: "WhatsApp kami untuk demo percuma",
+    more: "Lihat semua sistem kami",
+    invoice: {
+      title: "Tak perlu taip invois lagi. *Techub buatkan untuk anda*",
+      points: [
+        "Invois, resit, nota kredit dan nota bayaran balik dibuat automatik untuk setiap jualan",
+        "Sedia untuk e-Invois LHDN",
+        "Logo dan format anda, dilaraskan percuma",
+        "Bayaran online terus masuk ke akaun bank anda",
+      ],
+      message: "Hi Techub, saya guna penjana invois percuma. Saya nak demo percuma untuk invois automatik.",
+    },
+    payroll: {
+      title: "Gaji seluruh pasukan anda, *dikira setiap bulan*",
+      points: [
+        "Gaji dan komisen dikira untuk setiap staf",
+        "Slip gaji sedia untuk dihantar",
+        "Jejak aktiviti staf dan kawalan akses",
+        "Semua cawangan dalam satu sistem",
+      ],
+      message: "Hi Techub, saya guna kalkulator gaji percuma. Saya nak demo percuma untuk sistem gaji anda.",
+    },
+    tax: {
+      title: "Rekod bisnes anda *sentiasa sedia untuk musim cukai*",
+      points: [
+        "Setiap jualan direkod dengan invois atau resitnya",
+        "Laporan terperinci dalam kurang 100 ms",
+        "Sedia untuk e-Invois LHDN",
+        "Data disimpan di server Malaysia dengan backup berenkripsi",
+      ],
+      message: "Hi Techub, saya guna kalkulator pelepasan cukai percuma. Saya nak demo percuma untuk sistem anda.",
+    },
+  },
   export: {
     download: "Muat turun PDF",
     share: "Kongsi PDF",

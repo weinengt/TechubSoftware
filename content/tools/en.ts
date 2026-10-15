@@ -13,6 +13,41 @@ const en = {
     button: "See our systems",
     message: "Hi Techub, I used your free tools and want to know more about your system.",
   },
+  promo: {
+    eyebrow: "Techub for Malaysia SMEs",
+    button: "WhatsApp us for a free demo",
+    more: "See all our systems",
+    invoice: {
+      title: "Stop typing invoices. *Techub makes them for you*",
+      points: [
+        "Invoices, receipts, credit notes and refund notes made automatically with every sale",
+        "LHDN e-Invoice ready",
+        "Your logo and format, tuned for free",
+        "Online payments go straight to your bank account",
+      ],
+      message: "Hi Techub, I used the free invoice generator. I'd like a free demo of automatic invoices.",
+    },
+    payroll: {
+      title: "Payroll for your whole team, *worked out every month*",
+      points: [
+        "Pay and commission worked out for every staff member",
+        "Payslips ready to send",
+        "Staff activity tracking and permission control",
+        "All your outlets in one system",
+      ],
+      message: "Hi Techub, I used the free payroll calculator. I'd like a free demo of your payroll system.",
+    },
+    tax: {
+      title: "Keep your business records *ready for tax time*",
+      points: [
+        "Every sale recorded with its invoice or receipt",
+        "Detailed reports in under 100 ms",
+        "LHDN e-Invoice ready",
+        "Data kept on Malaysia servers with encrypted backups",
+      ],
+      message: "Hi Techub, I used the free tax relief calculator. I'd like a free demo of your system.",
+    },
+  },
   export: {
     download: "Download PDF",
     share: "Share PDF",
