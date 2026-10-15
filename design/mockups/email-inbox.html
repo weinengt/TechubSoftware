@@ -1,0 +1,233 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css"><link rel="stylesheet" href="fonts.css">
+<style>
+  /* Business email on the salon's own domain, in a plain mail app (no mail product look-alike). iPad, landscape. */
+  :root { --w: 1024px; --h: 720px; --plum: linear-gradient(140deg, #6d28d9, #a855f7); --sel: #eef6fd; }
+  body { font-family: Inter, "Noto Color Emoji", sans-serif; }
+  .mail { width: 100%; height: 100%; display: grid; grid-template-columns: 206px 312px minmax(0, 1fr); grid-template-rows: 58px minmax(0, 1fr); background: #fff; }
+
+  /* Top bar */
+  .hd { grid-column: 1 / -1; display: flex; align-items: center; gap: 12px; padding: 0 16px 0 0; border-bottom: 1px solid var(--line); background: #fff; }
+  .org { width: 206px; flex-shrink: 0; display: flex; align-items: center; gap: 10px; padding: 0 16px; height: 100%; background: #f7f8fc; border-right: 1px solid var(--line); }
+  .logo { width: 34px; height: 34px; border-radius: 10px; background: var(--plum); color: #fff; display: grid; place-items: center; flex-shrink: 0;
+    font: 600 italic 16px/1 "Playfair Display", serif; letter-spacing: .02em; box-shadow: 0 6px 14px -8px rgba(109,40,217,.9); }
+  .org b { display: block; font-size: 13px; font-weight: 750; letter-spacing: -.01em; white-space: nowrap; }
+  .org small { display: block; font-size: 11px; color: var(--muted); margin-top: 1px; }
+  .addr { display: inline-flex; align-items: center; gap: 9px; height: 40px; padding: 0 12px 0 5px; border-radius: 99px; background: #fff; border: 1px solid #d9e4ef; box-shadow: 0 2px 8px -4px rgba(15,23,42,.18); white-space: nowrap; margin-left: 4px; }
+  .addr .mb { width: 30px; height: 30px; border-radius: 99px; display: grid; place-items: center; color: #fff; background: linear-gradient(135deg, #0396d9, #00cfcb); }
+  .addr .mb svg { width: 15px; height: 15px; stroke-width: 2.1; }
+  .addr b { font-size: 14px; font-weight: 700; letter-spacing: -.01em; color: var(--ink); }
+  .addr b span { color: var(--brand); }
+  .addr .own { display: inline-flex; align-items: center; gap: 4px; height: 22px; padding: 0 8px; border-radius: 99px; background: #e9f9f1; color: #047857; font-size: 10.5px; font-weight: 700; }
+  .addr .own svg { width: 11px; height: 11px; stroke-width: 2.8; }
+  .addr > svg { width: 14px; height: 14px; color: var(--muted); }
+  .find { margin-left: auto; width: 250px; height: 36px; display: flex; align-items: center; gap: 8px; padding: 0 12px; border-radius: 10px; background: #f3f6fa; color: #94a3b8; font-size: 12.5px; }
+  .find svg { width: 16px; height: 16px; }
+  .ib { width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; color: var(--ink2); }
+  .ib svg { width: 18px; height: 18px; }
+  .me { width: 34px; height: 34px; font-size: 11.5px; background: linear-gradient(135deg, #f59e0b, #ea580c); }
+
+  /* Folders */
+  .fold { background: #f7f8fc; border-right: 1px solid var(--line); padding: 14px 12px; display: flex; flex-direction: column; }
+  .new { height: 40px; border-radius: 11px; display: flex; align-items: center; justify-content: center; gap: 8px; color: #fff; font-size: 13px; font-weight: 700;
+    background: linear-gradient(135deg, #0396d9, #0287c4); box-shadow: 0 8px 16px -10px rgba(3,150,217,.95); }
+  .new svg { width: 16px; height: 16px; stroke-width: 2.2; }
+  .fl { margin-top: 12px; display: flex; flex-direction: column; gap: 2px; }
+  .fl a { display: flex; align-items: center; gap: 11px; height: 36px; padding: 0 10px; border-radius: 9px; font-size: 13px; font-weight: 550; color: var(--ink2); }
+  .fl a svg { width: 17px; height: 17px; color: #64748b; }
+  .fl a .c { margin-left: auto; font-size: 11.5px; font-weight: 650; color: var(--muted); }
+  .fl a.on { background: #e3f1fb; color: #0b4f7d; font-weight: 700; }
+  .fl a.on svg { color: var(--brand); }
+  .fl a.on .c { min-width: 22px; height: 20px; border-radius: 99px; background: var(--brand); color: #fff; display: grid; place-items: center; font-size: 11px; font-weight: 750; }
+  .sec { margin: 18px 10px 6px; font-size: 10.5px; font-weight: 700; color: #94a3b8; letter-spacing: .07em; text-transform: uppercase; display: flex; align-items: baseline; gap: 6px; }
+  .sec span { text-transform: none; letter-spacing: 0; font-weight: 550; color: #a3b1c2; font-size: 10.5px; }
+  .boxes a { display: flex; align-items: center; gap: 10px; height: 36px; padding: 0 10px; border-radius: 9px; font-size: 13px; font-weight: 600; color: var(--ink2); }
+  .boxes a i { width: 24px; height: 24px; border-radius: 7px; display: grid; place-items: center; font-style: normal; font-size: 11px; font-weight: 750; color: #fff; flex-shrink: 0; }
+  .boxes a .c { margin-left: auto; font-size: 11.5px; font-weight: 650; color: var(--muted); }
+  .boxes a.on { background: #fff; box-shadow: 0 1px 2px rgba(15,23,42,.06), 0 0 0 1px #e6ecf3; color: var(--ink); font-weight: 700; }
+  .boxes a.on .c { color: var(--brand); }
+  .lbl a { display: flex; align-items: center; gap: 11px; height: 32px; padding: 0 12px; font-size: 12.5px; font-weight: 550; color: var(--ink2); }
+  .lbl a i { width: 9px; height: 9px; border-radius: 3px; margin: 0 4px 0 3px; }
+  .who { margin-top: auto; display: flex; align-items: center; gap: 10px; padding: 10px; border-radius: 11px; background: #fff; border: 1px solid #e8edf3; }
+  .who .av { width: 32px; height: 32px; font-size: 11px; background: linear-gradient(135deg, #f59e0b, #ea580c); }
+  .who b { display: block; font-size: 12px; font-weight: 700; }
+  .who small { display: block; font-size: 10.5px; color: var(--muted); margin-top: 1px; }
+
+  /* Message list */
+  .list { border-right: 1px solid var(--line); display: flex; flex-direction: column; min-height: 0; }
+  .lh { display: flex; align-items: baseline; gap: 8px; padding: 14px 16px 10px; }
+  .lh h2 { font-size: 20px; font-weight: 800; letter-spacing: -.02em; }
+  .lh span { font-size: 12px; color: var(--muted); font-weight: 500; }
+  .lh .so { margin-left: auto; align-self: center; display: inline-flex; align-items: center; gap: 4px; font-size: 11.5px; font-weight: 600; color: var(--ink2); }
+  .lh .so svg { width: 14px; height: 14px; }
+  .tabs { display: flex; gap: 6px; padding: 0 16px 10px; border-bottom: 1px solid #eef2f7; }
+  .tabs span { height: 26px; padding: 0 11px; border-radius: 99px; display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; font-weight: 650; color: var(--ink2); background: #f3f6fa; }
+  .tabs span.on { background: var(--ink); color: #fff; }
+  .tabs span b { font-weight: 750; color: var(--brand); }
+  .msg { position: relative; display: flex; gap: 11px; padding: 11px 16px 11px 18px; border-bottom: 1px solid #f0f3f7; }
+  .msg .av { width: 34px; height: 34px; font-size: 11.5px; margin-top: 1px; }
+  .msg .av svg { width: 16px; height: 16px; }
+  .msg .bd { flex: 1; min-width: 0; }
+  .msg .l1 { display: flex; align-items: baseline; gap: 8px; }
+  .msg .l1 b { font-size: 13px; font-weight: 600; color: var(--ink2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .msg .l1 time { margin-left: auto; font-size: 11px; color: #94a3b8; font-weight: 500; white-space: nowrap; }
+  .msg .sj { display: block; font-size: 12.5px; color: var(--ink2); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .msg .pv { display: block; font-size: 11.5px; color: #8492a6; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .msg .tg { display: flex; gap: 5px; margin-top: 6px; }
+  .msg .tg span { display: inline-flex; align-items: center; gap: 4px; height: 19px; padding: 0 7px; border-radius: 6px; font-size: 10px; font-weight: 650; background: #f3f6fa; color: #475569; }
+  .msg .tg span svg { width: 11px; height: 11px; }
+  .msg.unread .l1 b { color: var(--ink); font-weight: 750; }
+  .msg.unread .sj { color: var(--ink); font-weight: 650; }
+  .msg.unread .l1 time { color: var(--brand); font-weight: 650; }
+  .msg.unread::before { content: ""; position: absolute; left: 6px; top: 24px; width: 7px; height: 7px; border-radius: 99px; background: var(--brand); }
+  .msg.sel { background: var(--sel); box-shadow: inset 3px 0 0 var(--brand); border-bottom-color: #e1edf8; }
+
+  /* Reading pane */
+  .read { display: flex; flex-direction: column; min-height: 0; background: #fbfcfe; }
+  .rt { display: flex; align-items: center; gap: 4px; padding: 10px 16px; border-bottom: 1px solid #eef2f7; background: #fff; }
+  .rt .ib { width: 32px; height: 32px; color: #64748b; }
+  .rt .ib svg { width: 17px; height: 17px; }
+  .rt .sp { width: 1px; height: 18px; background: #e2e8f0; margin: 0 4px; }
+  .rt .nav2 { margin-left: auto; font-size: 11.5px; color: var(--muted); display: flex; align-items: center; gap: 4px; }
+  .rd { padding: 16px 22px 0; flex: 1; min-height: 0; display: flex; flex-direction: column; }
+  .rd h1 { font-size: 19px; font-weight: 800; letter-spacing: -.02em; line-height: 1.25; }
+  .rd .tags { display: flex; gap: 6px; margin-top: 8px; }
+  .fromr { display: flex; align-items: center; gap: 11px; margin-top: 14px; }
+  .fromr .av { width: 38px; height: 38px; font-size: 13px; background: linear-gradient(135deg, #f472b6, #db2777); }
+  .fromr b { font-size: 13.5px; font-weight: 700; }
+  .fromr small { display: block; font-size: 11.5px; color: var(--muted); margin-top: 1px; }
+  .fromr small em { font-style: normal; color: var(--ink2); font-weight: 600; }
+  .fromr time { margin-left: auto; align-self: flex-start; font-size: 11.5px; color: var(--muted); margin-top: 3px; white-space: nowrap; }
+  .txt { margin-top: 12px; font-size: 13px; line-height: 1.6; color: #1e293b; }
+  .txt p + p { margin-top: 7px; }
+  .txt p, .rep .rb p { text-wrap: pretty; }
+  .att { display: inline-flex; align-items: center; gap: 10px; margin-top: 12px; padding: 7px 12px 7px 7px; border: 1px solid var(--line); border-radius: 11px; background: #fff; align-self: flex-start; }
+  .att .th { width: 36px; height: 36px; border-radius: 8px; overflow: hidden; flex-shrink: 0; }
+  .att .th svg { width: 100%; height: 100%; display: block; }
+  .att b { display: block; font-size: 12px; font-weight: 650; }
+  .att small { display: block; font-size: 10.5px; color: var(--muted); }
+
+  /* Reply draft */
+  .rep { margin-top: 14px; border: 1px solid #cfe3f3; border-radius: 14px; background: #fff; box-shadow: 0 10px 24px -18px rgba(3,80,160,.5); overflow: hidden; }
+  .rep .rh { display: flex; align-items: center; gap: 8px; padding: 9px 14px; background: linear-gradient(90deg, #f1f8fe, #f7fbff); border-bottom: 1px solid #e3eef8; font-size: 11.5px; color: var(--muted); white-space: nowrap; }
+  .rep .rh svg { width: 14px; height: 14px; color: var(--brand); }
+  .rep .rh b { color: var(--ink); font-weight: 650; }
+  .rep .rh .dr { margin-left: auto; font-size: 10.5px; font-weight: 650; color: #94a3b8; }
+  .rep .rb { padding: 11px 14px 0; font-size: 12.5px; line-height: 1.55; color: #1e293b; }
+  .rep .rb p + p { margin-top: 6px; }
+  .sig { margin-top: 10px; padding-top: 9px; border-top: 1px dashed #dbe4ee; display: flex; align-items: center; gap: 10px; }
+  .sig .logo { width: 30px; height: 30px; border-radius: 9px; font-size: 13.5px; box-shadow: none; }
+  .sig b { display: block; font-size: 12px; font-weight: 700; color: var(--ink); line-height: 16px; }
+  .sig small { display: block; font-size: 11px; color: var(--muted); line-height: 15px; white-space: nowrap; }
+  .sig small span { color: var(--brand); font-weight: 600; }
+  .rep .rf { display: flex; align-items: center; gap: 8px; padding: 11px 14px 12px; }
+  .send { display: inline-flex; align-items: center; gap: 7px; height: 34px; padding: 0 16px; border-radius: 10px; background: linear-gradient(135deg, #0396d9, #0287c4); color: #fff; font-size: 12.5px; font-weight: 700; box-shadow: 0 8px 16px -10px rgba(3,150,217,.95); }
+  .send svg { width: 15px; height: 15px; stroke-width: 2.2; }
+  .rep .rf .ib { width: 32px; height: 32px; color: #64748b; }
+  .rep .rf .ib svg { width: 17px; height: 17px; }
+  .rep .rf .saved { margin-left: auto; font-size: 11px; color: #94a3b8; font-weight: 500; }
+</style></head>
+<body>
+<div class="mail">
+  <header class="hd">
+    <div class="org"><span class="logo">DH</span><div><b>Demo Hair Salon</b><small>Damansara</small></div></div>
+    <span class="addr" data-spot="address"><span class="mb"><i data-x="mail"></i></span><b>hello@<span>demosalon.com.my</span></b><span class="own"><i data-i="check"></i>Your domain</span><i data-i="chevD"></i></span>
+    <span class="find"><i data-i="search"></i>Search mail</span>
+    <span class="ib"><i data-i="gear"></i></span>
+    <span class="av me">NS</span>
+  </header>
+
+  <aside class="fold">
+    <span class="new"><i data-i="pen"></i>New email</span>
+    <nav class="fl">
+      <a class="on"><i data-x="inbox"></i>Inbox<span class="c">3</span></a>
+      <a><i data-i="star"></i>Starred</a>
+      <a><i data-x="send"></i>Sent</a>
+      <a><i data-i="file"></i>Drafts<span class="c">1</span></a>
+      <a><i data-x="spam"></i>Spam</a>
+    </nav>
+    <div class="sec">Mailboxes</div>
+    <nav class="boxes">
+      <a class="on"><i style="background:linear-gradient(135deg,#0396d9,#00cfcb)">H</i>hello@<span class="c">3</span></a>
+      <a><i style="background:linear-gradient(135deg,#a78bfa,#7c3aed)">B</i>bookings@<span class="c">2</span></a>
+      <a><i style="background:linear-gradient(135deg,#34d399,#059669)">F</i>finance@<span class="c">1</span></a>
+    </nav>
+    <div class="sec">Labels</div>
+    <nav class="lbl"><a><i style="background:#ec4899"></i>Bridal</a><a><i style="background:#8b5cf6"></i>Bookings</a><a><i style="background:#10b981"></i>Suppliers</a></nav>
+    <div class="who"><span class="av">NS</span><div><b>Nisha</b><small>Front desk · this iPad</small></div></div>
+  </aside>
+
+  <section class="list">
+    <div class="lh"><h2>Inbox</h2><span>3 unread</span><span class="so">Newest<i data-i="chevD"></i></span></div>
+    <div class="tabs"><span class="on">All</span><span>Unread <b>3</b></span><span>Bookings</span><span>Invoices</span></div>
+    <div id="msgs"></div>
+  </section>
+
+  <section class="read">
+    <div class="rt">
+      <span class="ib"><i data-x="archive"></i></span><span class="ib"><i data-i="trash"></i></span><span class="ib"><i data-x="mailopen"></i></span><span class="sp"></span>
+      <span class="ib"><i data-x="reply"></i></span><span class="ib"><i data-x="forward"></i></span><span class="ib"><i data-i="more"></i></span>
+      <span class="nav2">1 of 7<span class="ib" style="width:26px"><i data-i="chevL"></i></span><span class="ib" style="width:26px"><i data-i="chevR"></i></span></span>
+    </div>
+    <div class="rd">
+      <h1>Bridal hair trial for 4 on Saturday?</h1>
+      <div class="tags"><span class="chip p">Bridal</span><span class="chip v">Bookings</span></div>
+      <div class="fromr"><span class="av">NA</span><div><b>Nurul Aina</b><small>to <em>hello@demosalon.com.my</em></small></div><time>Today, 10:24 AM</time></div>
+      <div class="txt">
+        <p>Hi Demo Hair Salon,</p>
+        <p>I'm getting married on 21 November. Could we book a bridal hair trial for 4 of us (me and my 3 bridesmaids) this Saturday, 17 Oct, at around 10 AM? Two of us wear tudung.</p>
+        <p>Thank you!<br>Nurul Aina</p>
+      </div>
+      <div class="att"><span class="th"><svg viewBox="0 0 36 36"><defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4e6dc"/><stop offset="1" stop-color="#dcb8a2"/></linearGradient>
+        <radialGradient id="hr" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#6b4636"/><stop offset="1" stop-color="#2e1a13"/></radialGradient></defs>
+        <rect width="36" height="36" fill="url(#bg)"/><path d="M4 36c1-7 6-10 14-10s13 3 14 10z" fill="#fbf4ee"/><path d="M14.5 27.5c.4-3 .4-4.5 0-6h7c-.4 1.5-.4 3 0 6z" fill="#e9c2a8"/>
+        <ellipse cx="18" cy="17" rx="8" ry="8.6" fill="url(#hr)"/><circle cx="18" cy="9.2" r="4.6" fill="url(#hr)"/><path d="M12 15c2.5-2.5 9.5-2.5 12 0" stroke="#8a5a45" stroke-width=".8" fill="none" opacity=".6"/>
+        <circle cx="21.5" cy="7.8" r="1.5" fill="#fff"/><circle cx="23.2" cy="10" r="1.2" fill="#fff"/><circle cx="20.6" cy="10.2" r=".9" fill="#fde7ef"/></svg></span><div><b>hair-inspiration.jpg</b><small>Image · 1.2 MB</small></div></div>
+      <div class="rep">
+        <div class="rh"><i data-x="reply"></i>Reply from <b>hello@demosalon.com.my</b><span class="dr">Draft</span></div>
+        <div class="rb">
+          <p>Hi Nurul Aina, congratulations! 💐</p>
+          <p>Saturday, 17 Oct at 10:00 AM is free for all 4 of you, with Jason and Mei&nbsp;Fen. The trial takes about 3 hours, and tudung styling is no problem.</p>
+          <div class="sig"><span class="logo">DH</span><div><b>Nisha · Front desk</b><small>Demo Hair Salon · <span>hello@demosalon.com.my</span> · Damansara</small></div></div>
+        </div>
+        <div class="rf"><span class="send"><i data-x="send"></i>Send</span><span class="ib"><i data-i="clip"></i></span><span class="ib"><i data-i="image"></i></span><span class="saved">Saved just now</span></div>
+      </div>
+    </div>
+  </section>
+</div>
+<script>
+  const XI = {
+    mail: '<rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7l8.5 6 8.5-6"/>',
+    inbox: '<path d="M3 13.5l2.6-7.2A2 2 0 017.5 5h9a2 2 0 011.9 1.3l2.6 7.2V18a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M3 13.5h5l1.5 2.5h5l1.5-2.5h5"/>',
+    send: '<path d="M21 3L10.5 13.5"/><path d="M21 3l-6.5 18-4-7.5L3 9.5z"/>',
+    spam: '<circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/>',
+    archive: '<rect x="3" y="4" width="18" height="5" rx="1.5"/><path d="M5 9v9.5A1.5 1.5 0 006.5 20h11a1.5 1.5 0 001.5-1.5V9M10 13h4"/>',
+    mailopen: '<path d="M3 10l9-6 9 6v9a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M3.5 10.5l8.5 5.5 8.5-5.5"/>',
+    reply: '<path d="M10 8L4 13l6 5"/><path d="M4 13h10a6 6 0 016 6v1"/>',
+    forward: '<path d="M14 8l6 5-6 5"/><path d="M20 13H10a6 6 0 00-6 6v1"/>',
+    box2: '<path d="M21 8l-9-5-9 5v8l9 5 9-5V8z"/><path d="M3 8l9 5 9-5"/><path d="M12 13v8"/>',
+    camera: '<path d="M3 8a2 2 0 012-2h2l2-2h6l2 2h2a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><circle cx="12" cy="13" r="3.5"/>',
+  };
+  document.querySelectorAll("i[data-x]").forEach((el) => {
+    el.outerHTML = `<svg class="i" viewBox="0 0 24 24" style="${el.getAttribute("style") || ""}">${XI[el.dataset.x]}</svg>`;
+  });
+
+  // Inbox for hello@demosalon.com.my on Thursday, 15 Oct 2026: [avatar, colour, sender, time, subject, preview, unread, tags]
+  const M = [
+    ["NA", "linear-gradient(135deg,#f472b6,#db2777)", "Nurul Aina", "10:24 AM", "Bridal hair trial for 4 on Saturday?", "Hi! I'm getting married on 21 Nov…", 1, [["Bridal", "#fdf2f8", "#be185d"], ["Bookings", "#f3efff", "#6d28d9"]], 1],
+    ["@box2", "linear-gradient(135deg,#34d399,#059669)", "Sample Salon Supplies", "9:12 AM", "Invoice for delivery DN-31207", "Attached is our invoice for 13 Oct.", 1, [["@clip", "invoice-DN-31207.pdf"], ["Suppliers", "#ecfdf5", "#047857"]]],
+    ["JL", "linear-gradient(135deg,#fbbf24,#d97706)", "Joanne Lim", "8:47 AM", "Can I move my keratin to Friday?", "Something came up on Saturday…", 1, []],
+    ["@file", "linear-gradient(135deg,#0050a0,#0396d9)", "Techub e-Invoice", "Yesterday", "12 e-Invoices validated for 14 Oct", "All validated by LHDN, nothing to do.", 0, []],
+    ["@camera", "linear-gradient(135deg,#a78bfa,#7c3aed)", "Sample Photo Studio", "Yesterday", "Collaboration: bridal shoot in Bangsar", "Planning a styled shoot next month…", 0, []],
+    ["WQ", "linear-gradient(135deg,#2dd4bf,#0d9488)", "Wen Qi", "Yesterday", "Thank you, love my new colour!", "Mei Fen did such a beautiful job!", 0, []],
+    ["KL", "linear-gradient(135deg,#0b2f55,#0396d9)", "Kelly Lim", "Tue", "Staff roster for 19 to 25 Oct", "Jason is on leave on Wednesday…", 0, []],
+  ];
+  const icon = (n) => (n.startsWith("@") ? (XI[n.slice(1)] ? `<svg class="i" viewBox="0 0 24 24">${XI[n.slice(1)]}</svg>` : `<i data-i="${n.slice(1)}"></i>`) : n);
+  document.getElementById("msgs").innerHTML = M.map(([a, c, n, t, s, p, u, tg, sel]) => `
+    <div class="msg${u ? " unread" : ""}${sel ? " sel" : ""}"><span class="av" style="background:${c}">${icon(a)}</span><div class="bd">
+      <div class="l1"><b>${n}</b><time>${t}</time></div><span class="sj">${s}</span><span class="pv">${p}</span>
+      ${tg.length ? `<div class="tg">${tg.map((x) => (x[0][0] === "@" ? `<span><i data-i="${x[0].slice(1)}"></i>${x[1]}</span>` : `<span style="background:${x[1]};color:${x[2]}">${x[0]}</span>`)).join("")}</div>` : ""}
+    </div></div>`).join("");
+</script>
+<script src="icons.js"></script>
+</body></html>

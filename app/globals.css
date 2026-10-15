@@ -55,6 +55,11 @@ html:lang(zh) h1 {
   word-break: keep-all;
   overflow-wrap: anywhere;
 }
+/* Chinese text and list items avoid a last line with one lonely character. */
+html:lang(zh) p,
+html:lang(zh) li {
+  text-wrap: pretty;
+}
 
 .text-gradient {
   background: linear-gradient(100deg, var(--color-brand-800), var(--color-brand-500) 50%, var(--color-teal-brand));

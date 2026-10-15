@@ -3,9 +3,9 @@ import type { CSSProperties, ReactNode } from "react";
 import { getDict, getShots, type Dict } from "@/content";
 import { lp, type Locale } from "@/lib/i18n";
 import type { ShotKey } from "@/lib/shots";
-import { companyPages, emailLink, site, systems, whatsappLink, type SystemKey } from "@/lib/site";
+import { companyPages, emailLink, servicePages, site, systems, whatsappLink, type SystemKey } from "@/lib/site";
 import Demo from "./Demo";
-import { demos, useCaseStart } from "./demoScenes";
+import { demos, serviceLayout, useCaseStart } from "./demoScenes";
 import Device from "./Device";
 import HubDemo from "./HubDemo";
 import { Icon, type IconName } from "./Icons";
@@ -342,6 +342,27 @@ export function UseCasesSection({ lang }: { lang: Locale }) {
             </Link>
           </li>
         </ul>
+        <h3 className="mt-14 text-center text-sm font-bold tracking-wide text-slate-500 uppercase" data-reveal>{d.servicePages.useCasesTitle}</h3>
+        <ul className="mx-auto mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {servicePages.map((s) => {
+            const I = Icon[s.icon];
+            const x = d.servicePages[s.key];
+            return (
+              <li key={s.key} data-reveal>
+                <Link href={lp(lang, s.path)} className="card group flex h-full items-start gap-3 p-4 transition hover:-translate-y-0.5 hover:ring-brand-200">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600 ring-1 ring-brand-100">
+                    <I className="h-5 w-5" />
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block font-bold text-slate-900">{x.name}</span>
+                    <span className="mt-0.5 block text-[13px] leading-snug text-slate-500">{x.blurb}</span>
+                  </span>
+                  <Icon.Arrow className="mt-0.5 h-4 w-4 shrink-0 text-brand-600 transition group-hover:translate-x-0.5" />
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
         <div className="mt-10 text-center" data-reveal>
           <Link href={lp(lang, companyPages.useCases)} className="btn-secondary">
             {d.menu.all} <Icon.Arrow className="h-4 w-4" />
@@ -352,7 +373,8 @@ export function UseCasesSection({ lang }: { lang: Locale }) {
   );
 }
 
-/** Use Cases page: every business type with its iPad and phone screens, then custom systems. */
+/** Use Cases page: every business type with its iPad and phone screens, then the services for any business, each
+ *  with its own moving picture, then custom systems. */
 export function UseCasesList({ lang, page }: { lang: Locale; page: PageOf }) {
   const d = getDict(lang);
   const t = d.useCases;
@@ -383,6 +405,40 @@ export function UseCasesList({ lang, page }: { lang: Locale; page: PageOf }) {
                   <CheckList items={sys.points} />
                   <Link href={lp(lang, s.path)} className="btn-primary mt-8" data-reveal>
                     {sys.cta} <Icon.Arrow className="h-4 w-4" />
+                  </Link>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="mt-24 sm:mt-32">
+          <SectionHeading title={d.servicePages.useCasesTitle} intro={d.servicePages.useCasesIntro} />
+        </div>
+        <div className="mt-14 space-y-20 sm:mt-20 sm:space-y-28">
+          {servicePages.map((s, i) => {
+            const I = Icon[s.icon];
+            const x = d.servicePages[s.key];
+            // The rows keep taking turns after the systems above.
+            const flip = (systems.length + i) % 2 === 1;
+            return (
+              <div key={s.key} className="grid gap-y-8 lg:grid-cols-12 lg:gap-x-14 lg:gap-y-6">
+                <div className={`lg:col-span-5 lg:row-start-1 lg:self-end ${flip ? "lg:col-start-1" : "lg:col-start-8"}`} data-reveal>
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand-gradient text-white shadow-lg shadow-brand-500/30">
+                      <I className="h-6 w-6" />
+                    </span>
+                    <h3 className="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl">{x.name}</h3>
+                  </div>
+                  <p className="mt-4 text-slate-600">{x.blurb}</p>
+                </div>
+                <div className={`self-center lg:col-span-7 lg:row-span-2 lg:row-start-1 ${flip ? "lg:col-start-6" : "lg:col-start-1"}`}>
+                  <Demo lang={lang} demo={s.key} layout={serviceLayout[s.key]} product={x.name} start={useCaseStart[s.key]} />
+                </div>
+                <div className={`lg:col-span-5 lg:row-start-2 lg:self-start ${flip ? "lg:col-start-1" : "lg:col-start-8"}`}>
+                  <CheckList items={x.points} />
+                  <Link href={lp(lang, s.path)} className="btn-primary mt-8" data-reveal>
+                    {x.cta} <Icon.Arrow className="h-4 w-4" />
                   </Link>
                 </div>
               </div>
@@ -478,7 +534,9 @@ export const techIcons: Record<keyof Dict["tech"]["items"], IconName> = {
   database: "Database",
   security: "Lock",
   ai: "Sparkles",
+  extraction: "Scan",
   realtime: "Sync",
+  framework: "Code",
   whatsapp: "Whatsapp",
   hardware: "Printer",
   einvoice: "Invoice",

@@ -1,10 +1,11 @@
 import type { ShotKey } from "@/lib/shots";
-import type { SystemKey } from "@/lib/site";
+import type { ServicePageKey, SystemKey } from "@/lib/site";
 import type { IconName } from "./Icons";
 
-// The moments of the moving example screens (components/ScreenDemo.tsx): the home page, each system page and its row
-// on the Use Cases page, the deposits section of the salon, beauty centre and spa pages, the Contact page and each
-// custom system. Kept apart from that client component so pages can pick the screenshots they need on the server.
+// The moments of the moving example screens (components/ScreenDemo.tsx): the home page, each system page and service
+// page and their rows on the Use Cases page, the deposits section of the salon, beauty centre and spa pages, the
+// Contact page and each custom system. Kept apart from that client component so pages can pick the screenshots they
+// need on the server. On the Website Design page the "tablet" is a laptop browser showing an example website.
 // Each moment points at one device (`focus`), may change what any device shows (a device it leaves out keeps its
 // screen), highlights the part of the screen it is about (`spot`: left, top, width and height in % of the screen;
 // `tap` adds a finger tap) and shows a short note, whose words are under `demo.notes` in content/en.ts, ms.ts and zh.ts.
@@ -126,6 +127,38 @@ const plate: DemoScene[] = [
   { key: "denied", focus: "screen", spot: [18.1, 81.5, 80.2, 4.7], icon: "Shield" },
 ];
 
+/* The service pages (lib/site.ts servicePages). Website pictures are browsers in the iPad's place. */
+
+const customisation: DemoScene[] = [
+  { key: "request", focus: "phone", tablet: "customEstimate", phone: "customRequest", spot: [17.4, 16.6, 80.3, 11.9], icon: "Whatsapp", green: true },
+  { key: "estimate", focus: "tablet", spot: [9, 76, 33.4, 20.4], icon: "Sparkles" },
+  { key: "quote", focus: "phone", spot: [2.3, 35.2, 80.3, 21.7], icon: "Receipt" },
+  { key: "testing", focus: "tablet", tablet: "customTesting", spot: [7.5, 32.8, 67.2, 65.7], icon: "Check" },
+  { key: "live", focus: "tablet", tablet: "customClaims", spot: [7.5, 8.9, 71, 39.9], tap: true, icon: "Rocket" },
+];
+
+const migration: DemoScene[] = [
+  { key: "formats", focus: "screen", screen: "migrationImport", spot: [17.5, 27.8, 33.7, 58.6], icon: "Layers" },
+  { key: "scan", focus: "screen", screen: "migrationScan", spot: [19.2, 34.1, 47, 60.3], icon: "Scan" },
+  { key: "check", focus: "screen", screen: "migrationCheck", spot: [18.9, 25.2, 78.5, 10.7], icon: "Check" },
+  { key: "done", focus: "screen", screen: "migrationDone", spot: [20.4, 71.2, 53.5, 14.1], icon: "Coins" },
+];
+
+const email: DemoScene[] = [
+  { key: "domain", focus: "tablet", tablet: "emailInbox", phone: "emailPhone", spot: [21.2, 0.8, 36.7, 6.4], icon: "Globe" },
+  { key: "phone", focus: "phone", spot: [0.5, 30, 99, 15.1], tap: true, icon: "Mail" },
+  { key: "setup", focus: "tablet", tablet: "emailSetup", spot: [8, 9.4, 58.2, 43.3], icon: "Wrench" },
+  { key: "storage", focus: "tablet", spot: [67.4, 9.4, 31.1, 9.4], icon: "Database" },
+];
+
+const website: DemoScene[] = [
+  { key: "design", focus: "tablet", tablet: "siteHome", phone: "sitePhone", spot: [5.1, 18.2, 37.8, 60.4], icon: "Sparkles" },
+  { key: "instant", focus: "tablet", tablet: "siteTreatments", spot: [39.4, 2.2, 8, 5.7], tap: true, icon: "Bolt" },
+  { key: "phone", focus: "phone", spot: [3.9, 46, 92.1, 36], icon: "Devices" },
+  { key: "contact", focus: "tablet", tablet: "siteContact", spot: [5.1, 48, 14.9, 7.9], tap: true, icon: "Whatsapp", green: true },
+  { key: "seo", focus: "tablet", tablet: "siteHome", spot: [5, 22.5, 38, 34.5], icon: "Chart" },
+];
+
 /** Fills in the screens each moment leaves out: what the device showed the moment before (also across the loop). */
 function resolve(moments: DemoScene[]): DemoScene[] {
   const screensOf = (m: DemoScene) => Object.fromEntries(devices.filter((d) => m[d]).map((d) => [d, m[d]])) as Screens;
@@ -148,6 +181,10 @@ export const demos = {
   salonDeposits: resolve(deposits("paymentSalon", "depositsSalon", "depositInvoiceSalon", "depositNotesSalon")),
   beautyDeposits: resolve(deposits("paymentBeauty", "depositsBeauty", "depositInvoiceBeauty", "depositNotesBeauty")),
   spaDeposits: resolve(deposits("paymentSpa", "depositsSpa", "depositInvoiceSpa", "depositNotesSpa")),
+  customisation: resolve(customisation),
+  migration: resolve(migration),
+  email: resolve(email),
+  website: resolve(website),
 };
 export type DemoKey = keyof typeof demos;
 
@@ -159,4 +196,10 @@ export const phoneSide: Partial<Record<DemoKey, "left" | "right">> = { salon: "l
 export const demoShots = (k: DemoKey): ShotKey[] => [...new Set(demos[k].flatMap((s) => devices.flatMap((d) => s[d] ?? [])))];
 
 /** The moment each system's row on the Use Cases page starts at, so the rows don't all open on the same kind of screen. */
-export const useCaseStart: Record<SystemKey, string> = { clinic: "queue", salon: "staff", beauty: "faceChart", spa: "package", live: "visitors" };
+export const useCaseStart: Record<SystemKey | ServicePageKey, string> = {
+  clinic: "queue", salon: "staff", beauty: "faceChart", spa: "package", live: "visitors",
+  customisation: "estimate", migration: "scan", email: "domain", website: "design",
+};
+
+/** How each service page's moving picture is laid out: an iPad (or a website) with a phone, or one PC screen. */
+export const serviceLayout: Record<ServicePageKey, "combo" | "screen"> = { customisation: "combo", migration: "screen", email: "combo", website: "combo" };

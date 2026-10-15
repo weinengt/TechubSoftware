@@ -1,0 +1,286 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="fonts.css">
+<style>
+  /* Example website design: Seri Dental Studio, a family dental clinic in Damansara Utama, Petaling Jaya (1440 x 900) */
+  :root {
+    --w: 1440px; --h: 900px;
+    --ink: #0a2a2f; --ink2: #36575d; --muted: #6b878c; --line: #e1ecea;
+    --t9: #073b42; --t8: #0a4b54; --t7: #0e6570; --t6: #128089; --t5: #1ea2a2;
+    --a3: #8fdad2; --a2: #c4ece6; --a1: #e3f5f2; --a0: #f2faf8;
+    --apr: #f29a62; --apr-d: #de7a3f; --apr1: #fde8da;
+    --bg: #f8fbfa;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { font-family: "Manrope", Inter, sans-serif; color: var(--ink); background: var(--bg); -webkit-font-smoothing: antialiased; }
+  body { width: 100vw; height: 100vh; overflow: hidden; }
+  a { color: inherit; text-decoration: none; }
+  .page { position: relative; width: 100%; height: 100%; overflow: hidden;
+    background:
+      radial-gradient(900px 620px at 78% 30%, rgba(143, 218, 210, .22), rgba(143, 218, 210, 0) 70%),
+      radial-gradient(760px 520px at 0% 8%, rgba(253, 232, 218, .6), rgba(253, 232, 218, 0) 70%),
+      var(--bg); }
+  .page::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .5; mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.04 0 0 0 0 0.16 0 0 0 0 0.18 0 0 0 .045 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+  svg.ic { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+
+  /* Top bar */
+  .topbar { position: relative; z-index: 2; height: 36px; display: flex; align-items: center; gap: 22px; padding: 0 80px; background: var(--t9); color: rgba(226, 245, 242, .8); font-size: 12.5px; font-weight: 600; }
+  .topbar span { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; }
+  .topbar svg.ic { width: 14px; height: 14px; color: var(--a3); }
+  .topbar .open i { width: 7px; height: 7px; border-radius: 9px; background: #5ee0a6; box-shadow: 0 0 0 3px rgba(94, 224, 166, .2); }
+  .topbar .r { margin-left: auto; gap: 18px; }
+  .topbar .lang { color: #fff; }
+  .topbar .lang em { font-style: normal; color: rgba(226, 245, 242, .45); }
+  .topbar .sep { width: 1px; height: 14px; background: rgba(255, 255, 255, .18); }
+
+  /* Navigation */
+  .navbar { position: relative; z-index: 2; height: 84px; display: flex; align-items: center; padding: 0 80px; }
+  .logo { display: flex; align-items: center; gap: 12px; }
+  .logo .mark { width: 44px; height: 44px; border-radius: 15px; display: grid; place-items: center; background: linear-gradient(150deg, var(--t5), var(--t8)); box-shadow: 0 10px 20px -10px rgba(10, 75, 84, .8), inset 0 1px 0 rgba(255, 255, 255, .25); }
+  .logo .mark svg { width: 25px; height: 25px; }
+  .logo .wm b { display: block; font-family: "Outfit"; font-weight: 600; font-size: 25px; letter-spacing: -.02em; line-height: 1; color: var(--t9); }
+  .logo .wm small { display: block; font-size: 9.5px; font-weight: 800; letter-spacing: .27em; text-transform: uppercase; color: var(--t6); margin-top: 5px; }
+  .links { display: flex; gap: 40px; margin: 0 auto; padding-left: 40px; font-size: 15px; font-weight: 600; color: var(--ink2); }
+  .links a { position: relative; white-space: nowrap; }
+  .links a.on { color: var(--t9); font-weight: 700; }
+  .links a.on::after { content: ""; position: absolute; left: 50%; bottom: -12px; width: 6px; height: 6px; margin-left: -3px; border-radius: 9px; background: var(--apr); }
+  .navbar .act { display: flex; align-items: center; gap: 22px; }
+  .call { display: flex; align-items: center; gap: 10px; }
+  .call .ci { width: 40px; height: 40px; border-radius: 99px; display: grid; place-items: center; background: #fff; border: 1px solid var(--line); color: var(--t7); }
+  .call .ci svg { width: 17px; height: 17px; }
+  .call small { display: block; font-size: 11px; font-weight: 600; color: var(--muted); }
+  .call b { display: block; font-size: 14.5px; font-weight: 800; color: var(--t9); white-space: nowrap; margin-top: 1px; }
+
+  .btn { display: inline-flex; align-items: center; gap: 10px; height: 56px; padding: 0 26px; border-radius: 99px; font-size: 16px; font-weight: 700; white-space: nowrap; }
+  .btn.pri { background: linear-gradient(180deg, var(--t6), var(--t7)); color: #fff; box-shadow: 0 16px 28px -14px rgba(10, 75, 84, .9), inset 0 1px 0 rgba(255, 255, 255, .22); padding-right: 8px; padding-left: 28px; }
+  .btn.pri .go { width: 40px; height: 40px; border-radius: 99px; background: #fff; color: var(--t7); display: grid; place-items: center; margin-left: 8px; }
+  .btn.pri .go svg { width: 18px; height: 18px; stroke-width: 2.2; }
+  .btn.sm { height: 46px; padding: 0 24px; font-size: 14.5px; }
+  .btn.ghost { background: #fff; color: var(--t9); border: 1.5px solid #d4e6e3; box-shadow: 0 8px 18px -14px rgba(10, 75, 84, .5); padding-left: 16px; }
+  .wa { width: 28px; height: 28px; flex-shrink: 0; }
+
+  /* Hero */
+  .hero { position: relative; z-index: 1; display: grid; grid-template-columns: 640px 1fr; padding: 0 80px; height: 472px; }
+  .copy { padding-top: 22px; }
+  .rating { display: inline-flex; align-items: center; gap: 12px; padding: 4px 16px 4px 4px; border-radius: 99px; background: #fff; border: 1px solid var(--line); box-shadow: 0 8px 20px -16px rgba(10, 75, 84, .6); font-size: 13.5px; font-weight: 600; color: var(--ink2); }
+  .avs { display: flex; }
+  .avs > span { width: 34px; height: 34px; border-radius: 99px; padding: 2px; background: #fff; margin-left: -10px; display: block; }
+  .avs > span:first-child { margin-left: 0; }
+  .avs svg { display: block; width: 30px; height: 30px; }
+  .stars { display: inline-flex; gap: 2px; color: #f5a524; }
+  .stars svg { width: 15px; height: 15px; fill: currentColor; }
+  .rating b { font-weight: 800; color: var(--ink); }
+  h1 { font-family: "Outfit"; font-weight: 600; font-size: 78px; line-height: 1; letter-spacing: -.045em; color: var(--t9); margin-top: 24px; }
+  h1 em { font-family: "Fraunces"; font-style: italic; font-weight: 400; letter-spacing: -.035em; color: var(--t6); position: relative; }
+  h1 em svg { position: absolute; left: 2%; bottom: -10px; width: 96%; height: 18px; }
+  .lede { margin-top: 24px; max-width: 520px; font-size: 18px; line-height: 1.6; color: var(--ink2); font-weight: 500; }
+  .ctas { display: flex; width: fit-content; gap: 14px; margin-top: 32px; }
+
+  /* Hero art */
+  .art { position: relative; }
+  .arch { position: absolute; left: 112px; top: 6px; width: 528px; height: 466px; border-radius: 264px 264px 40px 40px; overflow: hidden;
+    background: radial-gradient(330px 280px at 50% 46%, rgba(122, 222, 210, .55), rgba(122, 222, 210, 0) 70%), radial-gradient(260px 200px at 22% 10%, rgba(255, 214, 186, .32), rgba(255, 214, 186, 0) 70%), linear-gradient(165deg, #1d9d9c 0%, #0f6f78 50%, #08434b 100%);
+    box-shadow: 0 40px 70px -40px rgba(7, 59, 66, .75), inset 0 0 0 1px rgba(255, 255, 255, .06); }
+  .arch::after { content: ""; position: absolute; inset: 0; opacity: .5; mix-blend-mode: soft-light;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='.55'/></svg>"); }
+  .arch > svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+  .float { position: absolute; z-index: 3; background: #fff; border-radius: 22px; border: 1px solid rgba(10, 75, 84, .06); box-shadow: 0 30px 50px -26px rgba(7, 59, 66, .55), 0 2px 6px rgba(7, 59, 66, .06); }
+  .slot { left: 22px; top: 262px; width: 286px; padding: 15px 15px 14px; }
+  .slot .hd { display: flex; align-items: center; gap: 12px; }
+  .slot .ti { width: 42px; height: 42px; border-radius: 13px; background: var(--apr1); color: var(--apr-d); display: grid; place-items: center; }
+  .slot .ti svg { width: 20px; height: 20px; }
+  .slot small { display: block; font-size: 12px; font-weight: 600; color: var(--muted); }
+  .slot .hd b { display: block; font-size: 15.5px; font-weight: 800; color: var(--ink); margin-top: 1px; }
+  .times { display: flex; gap: 7px; margin-top: 14px; }
+  .times span { flex: 1; height: 36px; border-radius: 11px; border: 1.5px solid var(--line); display: grid; place-items: center; font-size: 12.5px; font-weight: 700; color: var(--ink2); white-space: nowrap; }
+  .times span.on { background: var(--t7); border-color: var(--t7); color: #fff; box-shadow: 0 8px 14px -8px rgba(14, 101, 112, .9); }
+  .times span.off { color: #b4c6c4; text-decoration: line-through; border-style: dashed; }
+  .slot .who { display: flex; align-items: center; gap: 9px; margin-top: 13px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 12.5px; font-weight: 600; color: var(--muted); white-space: nowrap; }
+  .slot .who .av { width: 28px; height: 28px; border-radius: 99px; flex-shrink: 0; }
+  .slot .who b { color: var(--ink); font-weight: 700; }
+
+  .hours { right: -26px; top: 330px; width: 262px; padding: 15px 18px 10px; }
+  .hours .hd { display: flex; align-items: center; justify-content: space-between; font-size: 14.5px; font-weight: 800; color: var(--ink); }
+  .hours .now { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 700; color: #0f8a5f; background: #e3f7ee; padding: 4px 9px; border-radius: 99px; }
+  .hours .now i { width: 6px; height: 6px; border-radius: 9px; background: #19b37a; }
+  .hours ul { list-style: none; margin-top: 8px; }
+  .hours li { display: flex; justify-content: space-between; font-size: 12.5px; font-weight: 600; color: var(--muted); padding: 6px 0; border-top: 1px dashed #e1ecea; white-space: nowrap; }
+  .hours li:first-child { border-top: 0; }
+  .hours li b { color: var(--ink); font-weight: 700; }
+  .hours li.today, .hours li.today b { color: var(--t7); }
+
+  /* Treatments */
+  .svc { position: relative; z-index: 1; padding: 0 80px; margin-top: 20px; }
+  .svc .hd { display: flex; align-items: flex-end; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: var(--t6); }
+  .eyebrow::before { content: ""; width: 22px; height: 2px; border-radius: 2px; background: var(--apr); }
+  h2 { font-family: "Outfit"; font-weight: 600; font-size: 34px; letter-spacing: -.035em; color: var(--t9); margin-top: 8px; line-height: 1.05; }
+  .svc .hd p { margin-left: auto; max-width: 400px; font-size: 14px; line-height: 1.55; color: var(--muted); font-weight: 500; padding-bottom: 2px; }
+  .svc .hd .more { margin-left: 40px; display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 20px; border-radius: 99px; border: 1.5px solid #cfe3e0; font-size: 14px; font-weight: 700; color: var(--t8); white-space: nowrap; background: #fff; }
+  .cards { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-top: 20px; }
+  .card { position: relative; background: #fff; border: 1px solid var(--line); border-radius: 24px; padding: 14px 16px 12px; box-shadow: 0 18px 30px -26px rgba(7, 59, 66, .55); }
+  .card .tp { display: flex; align-items: center; gap: 12px; }
+  .card .ti { width: 46px; height: 46px; border-radius: 15px; display: grid; place-items: center; color: var(--t7); background: var(--a1); flex-shrink: 0; }
+  .card .ti svg { width: 25px; height: 25px; stroke-width: 1.6; }
+  .card h3 { font-family: "Outfit"; font-weight: 600; font-size: 19px; letter-spacing: -.02em; line-height: 1.12; color: var(--t9); }
+  .card p { font-size: 13px; line-height: 1.45; color: var(--muted); font-weight: 500; margin-top: 10px; }
+  .card .pr { display: flex; align-items: center; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); }
+  .card .pr small { font-size: 12px; font-weight: 700; color: var(--muted); margin-right: 6px; }
+  .card .pr b { font-family: "Outfit"; font-weight: 600; font-size: 22px; letter-spacing: -.02em; color: var(--t9); }
+  .card .pr b span { font-size: 13px; font-weight: 600; margin-right: 3px; color: var(--t6); letter-spacing: 0; }
+  .card .pr .arw { margin-left: auto; width: 32px; height: 32px; border-radius: 99px; display: grid; place-items: center; border: 1.5px solid var(--line); color: var(--t7); }
+  .card .pr .arw svg { width: 14px; height: 14px; stroke-width: 2.2; }
+  .card.feat { background: linear-gradient(160deg, var(--t7), var(--t9)); border-color: transparent; box-shadow: 0 26px 40px -24px rgba(7, 59, 66, .9); }
+  .card.feat h3, .card.feat .pr b { color: #fff; }
+  .card.feat p, .card.feat .pr small { color: rgba(214, 240, 236, .75); }
+  .card.feat .pr b span { color: var(--a3); }
+  .card.feat .ti { background: rgba(255, 255, 255, .12); color: #fff; }
+  .card.feat .pr { border-top-color: rgba(255, 255, 255, .14); }
+  .card.feat .pr .arw { background: var(--apr); border-color: var(--apr); color: #fff; }
+  .card .tag { position: absolute; top: -11px; right: 16px; font-size: 11px; font-weight: 800; letter-spacing: .03em; color: #fff; background: var(--apr); padding: 4px 10px; border-radius: 99px; box-shadow: 0 8px 14px -8px rgba(222, 122, 63, .9); }
+  .ti.apr { background: var(--apr1) !important; color: var(--apr-d) !important; }
+  .ti.sky { background: #e4eff9 !important; color: #2e6ea6 !important; }
+  .ti.sun { background: #fdf3d8 !important; color: #b9840f !important; }
+</style></head>
+<body>
+<div class="page">
+  <svg width="0" height="0" style="position:absolute">
+    <defs>
+      <path id="tooth" d="M100 28C88 14 72 8 56 8 30 8 14 28 14 58c0 24 10 42 16 62 6 20 6 40 10 62 4 20 12 32 22 32 12 0 16-14 20-30 4-18 8-32 18-32s14 14 18 32c4 16 8 30 20 30 10 0 18-12 22-32 4-22 4-42 10-62 6-20 16-38 16-62 0-30-16-50-42-50-16 0-32 6-44 20z"/>
+      <symbol id="star" viewBox="0 0 24 24"><path d="M12 2.8l2.75 5.9 6.45.75-4.8 4.4 1.3 6.35L12 17l-5.7 3.2 1.3-6.35-4.8-4.4 6.45-.75z"/></symbol>
+      <symbol id="spark" viewBox="-12 -12 24 24"><path d="M0-12C.8-3.2 3.2-.8 12 0 3.2.8.8 3.2 0 12-.8 3.2-3.2.8-12 0-3.2-.8-.8-3.2 0-12z"/></symbol>
+      <symbol id="arw" viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9"/></symbol>
+      <clipPath id="avc"><circle cx="16" cy="16" r="16"/></clipPath>
+      <symbol id="av1" viewBox="0 0 32 32"><g clip-path="url(#avc)"><rect width="32" height="32" fill="#fde3d3"/><path d="M16 5.6c-5 0-8.3 3.7-8.3 8.6 0 3 1 5.4 2.4 7.4L6.5 33h19l-3.6-11.4c1.4-2 2.4-4.4 2.4-7.4 0-4.9-3.3-8.6-8.3-8.6z" fill="#c9714a"/><ellipse cx="16" cy="14.9" rx="4.5" ry="5.3" fill="#e9b48f"/><path d="M11.4 13.2c.6-3 2.4-4.4 4.6-4.4s4 1.4 4.6 4.4c-1.4-1.3-2.9-1.9-4.6-1.9s-3.2.6-4.6 1.9z" fill="#b25f3b"/></g></symbol>
+      <symbol id="av2" viewBox="0 0 32 32"><g clip-path="url(#avc)"><rect width="32" height="32" fill="#cdeee9"/><path d="M4.5 33c1.2-6.4 5.7-9.6 11.5-9.6s10.3 3.2 11.5 9.6z" fill="#127f88"/><rect x="13.6" y="18" width="4.8" height="6" rx="2" fill="#efc9a4"/><circle cx="16" cy="13.6" r="5.6" fill="#f3d0ad"/><path d="M10.2 13.2c-.3-4.4 2.4-7.4 6-7.4 3.4 0 6 2.4 5.8 6.6-1-1.6-2.4-2.5-4.2-2.8-1.4 1.3-4.2 2.4-7.6 3.6z" fill="#1d1d24"/></g></symbol>
+      <symbol id="av3" viewBox="0 0 32 32"><g clip-path="url(#avc)"><rect width="32" height="32" fill="#dde8f8"/><path d="M9.2 15c0-5.2 3-8.6 6.8-8.6s6.8 3.4 6.8 8.6V25H9.2z" fill="#231a16"/><path d="M4.5 33c1.2-6.4 5.7-9.6 11.5-9.6s10.3 3.2 11.5 9.6z" fill="#e78a5a"/><rect x="13.6" y="18" width="4.8" height="6" rx="2" fill="#a86f4c"/><ellipse cx="16" cy="14" rx="5.1" ry="5.6" fill="#b97b55"/><path d="M10.9 13c.5-3.4 2.5-5.1 5.1-5.1s4.6 1.7 5.1 5.1c-1.6-1.8-3.2-2.6-5.1-2.6s-3.5.8-5.1 2.6z" fill="#231a16"/></g></symbol>
+      <symbol id="av4" viewBox="0 0 32 32"><g clip-path="url(#avc)"><rect width="32" height="32" fill="#fde3d3"/><path d="M9.6 14.6c0-5 2.8-8.2 6.4-8.2s6.4 3.2 6.4 8.2v5.8H9.6z" fill="#191513"/><path d="M4.5 33c1.2-6.4 5.7-9.6 11.5-9.6s10.3 3.2 11.5 9.6z" fill="#ffffff"/><path d="M12.6 23.8l3.4 4 3.4-4" fill="none" stroke="#128089" stroke-width="1.6"/><rect x="13.6" y="18" width="4.8" height="6" rx="2" fill="#efc9a4"/><ellipse cx="16" cy="14.2" rx="4.9" ry="5.4" fill="#f4d3b2"/><path d="M11 13.4c.4-3.4 2.4-5.4 5-5.4 2.8 0 4.6 2 5 5.4-2-1-3.4-2.6-4-3.6-1 1.6-3.2 3-6 3.6z" fill="#191513"/></g></symbol>
+    </defs>
+  </svg>
+
+  <div class="topbar">
+    <span><svg class="ic" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0114 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>23, Jalan SS 21/39, Damansara Utama, 47400 Petaling Jaya</span>
+    <span class="open"><i></i>Open today, 9:00 am to 9:00 pm</span>
+    <span class="r"><span><svg class="ic" viewBox="0 0 24 24"><path d="M3.5 7.5l8.5 6 8.5-6"/><rect x="3" y="5" width="18" height="14" rx="2.5"/></svg>hello@seridental.com.my</span><span class="sep"></span><span class="lang">EN <em>/</em> BM</span></span>
+  </div>
+
+  <header class="navbar">
+    <a class="logo">
+      <span class="mark"><svg viewBox="-8 -6 216 232"><use href="#tooth" fill="#fff"/><path d="M62 96c10 13 23 19 38 19s28-6 38-19" fill="none" stroke="#138089" stroke-width="13" stroke-linecap="round"/></svg></span>
+      <span class="wm"><b>Seri</b><small>Dental Studio</small></span>
+    </a>
+    <nav class="links"><a class="on">Treatments</a><a>Our dentists</a><a>Prices</a><a>For kids</a><a>Contact</a></nav>
+    <div class="act">
+      <div class="call"><span class="ci"><svg class="ic" viewBox="0 0 24 24"><path d="M21 16.4v2.8a1.9 1.9 0 01-2 1.9 18.6 18.6 0 01-8.1-2.9 18.3 18.3 0 01-5.6-5.6A18.6 18.6 0 012.4 4.5a1.9 1.9 0 011.9-2h2.8a1.9 1.9 0 011.9 1.6c.1.9.4 1.7.7 2.5a1.9 1.9 0 01-.4 2L8 9.8a15 15 0 005.6 5.6l1.2-1.2a1.9 1.9 0 012-.4c.8.3 1.6.6 2.5.7a1.9 1.9 0 011.7 1.9z"/></svg></span><div><small>Call the clinic</small><b>+60 3-7728 1234</b></div></div>
+      <a class="btn pri sm">Book now</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="copy" data-spot="hero">
+      <div class="rating">
+        <span class="avs"><span><svg><use href="#av1"/></svg></span><span><svg><use href="#av2"/></svg></span><span><svg><use href="#av3"/></svg></span></span>
+        <span class="stars"><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg></span>
+        <span><b>4.9</b> from 1,280 patient reviews</span>
+      </div>
+      <h1>Brighter smiles,<br><em>gentler<svg viewBox="0 0 300 18" preserveAspectRatio="none"><path d="M4 12C70 5 170 3 296 8" fill="none" stroke="#f29a62" stroke-width="5" stroke-linecap="round"/></svg></em> visits.</h1>
+      <p class="lede">A modern family dental clinic in Damansara Utama, PJ. From first baby teeth to clear aligners and implants, with honest prices and a team that keeps nervous patients calm.</p>
+      <div class="ctas" data-spot="cta">
+        <a class="btn pri">Book an appointment<span class="go"><svg class="ic" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        <a class="btn ghost"><svg class="wa" viewBox="0 0 32 32"><circle cx="16" cy="16" r="16" fill="#25d366"/><path d="M16 7.2a8.8 8.8 0 00-7.6 13.2L7.2 24.8l4.5-1.2A8.8 8.8 0 1016 7.2z" fill="none" stroke="#fff" stroke-width="1.9" stroke-linejoin="round"/><path d="M12.9 11.6c.2-.4.4-.4.7-.4h.5c.2 0 .4 0 .5.4l.7 1.6c.1.2 0 .4-.1.6l-.5.6c-.1.1-.1.3 0 .5a7 7 0 002.9 2.7c.2.1.4.1.5-.1l.6-.7c.2-.2.4-.2.6-.1l1.6.7c.2.1.3.3.3.5v.4c0 .4-.2.8-.5 1-.6.5-1.5.7-2.5.4-2.1-.7-4.2-2.6-5.2-4.7-.6-1.1-.6-2.2-.1-2.9z" fill="#fff"/></svg>WhatsApp us</a>
+      </div>
+    </div>
+
+    <div class="art">
+      <div class="arch">
+        <svg viewBox="0 0 528 466">
+          <defs>
+            <linearGradient id="enamel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".55" stop-color="#f4fbfa"/><stop offset="1" stop-color="#d3ece8"/></linearGradient>
+            <clipPath id="tc"><use href="#tooth"/></clipPath>
+            <filter id="b9" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="9"/></filter>
+            <filter id="b4" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="4"/></filter>
+            <filter id="b14" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="14"/></filter>
+            <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".38"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/></linearGradient>
+            <mask id="rm" maskContentUnits="userSpaceOnUse"><rect x="0" y="283" width="528" height="120" fill="url(#fade)"/></mask>
+          </defs>
+          <g fill="none" stroke="#fff">
+            <circle cx="264" cy="196" r="128" stroke-opacity=".16" stroke-width="1.5"/>
+            <circle cx="264" cy="196" r="186" stroke-opacity=".1" stroke-width="1.5"/>
+            <circle cx="264" cy="196" r="246" stroke-opacity=".06" stroke-width="1.5"/>
+          </g>
+          <ellipse cx="264" cy="290" rx="150" ry="22" fill="#7fd6cb" opacity=".22" filter="url(#b14)"/>
+          <ellipse cx="264" cy="283" rx="64" ry="5" fill="#03272c" opacity=".35" filter="url(#b9)"/>
+          <g mask="url(#rm)"><g transform="translate(173 478) scale(.91 -.91)"><use href="#tooth" fill="#e8f7f4"/></g></g>
+          <g transform="translate(173 84) scale(.91)">
+            <use href="#tooth" fill="url(#enamel)"/>
+            <g clip-path="url(#tc)">
+              <use href="#tooth" fill="#b3dcd6"/>
+              <use href="#tooth" fill="#fbfefd" transform="translate(-12 -9)" filter="url(#b9)"/>
+              <ellipse cx="56" cy="44" rx="26" ry="17" fill="#fff" filter="url(#b4)"/>
+            </g>
+            <path d="M34 32c6-10 16-14 27-13" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+          </g>
+          <use href="#spark" x="352" y="70" width="34" height="34" fill="#fff"/>
+          <use href="#spark" x="390" y="116" width="15" height="15" fill="#ffd2b3"/>
+          <use href="#spark" x="140" y="150" width="20" height="20" fill="#fff" opacity=".85"/>
+          <circle cx="178" cy="96" r="4" fill="#fff" opacity=".55"/>
+          <circle cx="420" cy="232" r="6" fill="none" stroke="#fff" stroke-opacity=".45" stroke-width="1.5"/>
+          <circle cx="112" cy="232" r="3.5" fill="#fff" opacity=".35"/>
+        </svg>
+      </div>
+
+      <div class="float hours" data-spot="hours">
+        <div class="hd">Opening hours<span class="now"><i></i>Open now</span></div>
+        <ul>
+          <li class="today"><span>Mon to Fri</span><b>9:00 am to 9:00 pm</b></li>
+          <li><span>Sat &amp; Sun</span><b>9:00 am to 6:00 pm</b></li>
+          <li><span>Public holidays</span><b>10:00 am to 4:00 pm</b></li>
+        </ul>
+      </div>
+
+      <div class="float slot" data-spot="booking">
+        <div class="hd"><span class="ti"><svg class="ic" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8.5 3v4M15.5 3v4"/><path d="M9 14.5l2 2 4-4"/></svg></span><div><small>Next available</small><b>Today, Thu 15 Oct</b></div></div>
+        <div class="times"><span class="off">11:30 am</span><span class="on">2:45 pm</span><span>4:30 pm</span><span>6:15 pm</span></div>
+        <div class="who"><svg class="av"><use href="#av4"/></svg><span><b>Dr. Tan Mei Ling</b> · Family dentist</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="svc">
+    <div class="hd">
+      <div><span class="eyebrow">Treatments &amp; prices</span><h2>Clear prices, no surprises.</h2></div>
+      <p>Every visit starts with a check-up and a written quote. 0%&nbsp;instalments up to 24&nbsp;months for braces and implants.</p>
+      <a class="more">Full price list<svg class="ic" viewBox="0 0 24 24" style="width:15px;height:15px;stroke-width:2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <div class="cards" data-spot="treatments">
+      <div class="card">
+        <div class="tp"><span class="ti"><svg class="ic" viewBox="0 0 24 24"><path d="M11.5 6.1C10.4 5 9.1 4.5 7.8 4.5 5.4 4.5 4 6.4 4 9c0 1.9.8 3.3 1.3 4.9.5 1.8.5 3.2.9 4.9.3 1.1.9 1.7 1.6 1.7.9 0 1.2-.9 1.5-2.1.3-1.5.8-2.7 2.3-2.7s2 1.2 2.3 2.7c.3 1.2.6 2.1 1.5 2.1.7 0 1.3-.6 1.6-1.7"/><path d="M18.5 3v4M16.5 5h4M19.5 11.5v3M18 13h3"/></svg></span><h3>Scaling &amp;<br>polishing</h3></div>
+        <p>A gentle clean, polish and full check-up in 45 minutes.</p>
+        <div class="pr"><small>from</small><b><span>RM</span>120</b><span class="arw"><svg class="ic"><use href="#arw"/></svg></span></div>
+      </div>
+      <div class="card feat">
+        <span class="tag">0% instalments</span>
+        <div class="tp"><span class="ti"><svg class="ic" viewBox="0 0 24 24"><path d="M12 6.3C10.8 5.1 9.4 4.5 8 4.5 5.4 4.5 4 6.5 4 9.2c0 2 .8 3.5 1.3 5.1.5 1.8.5 3.3.9 5 .3 1.1.9 1.7 1.6 1.7.9 0 1.3-.9 1.6-2.2.3-1.5.9-2.8 2.6-2.8s2.3 1.3 2.6 2.8c.3 1.3.7 2.2 1.6 2.2.7 0 1.3-.6 1.6-1.7.4-1.7.4-3.2.9-5 .5-1.6 1.3-3.1 1.3-5.1 0-2.7-1.4-4.7-4-4.7-1.4 0-2.8.6-4 1.8z"/><path d="M2.5 11h19"/><rect x="9.5" y="9.3" width="5" height="3.4" rx="1"/></svg></span><h3>Braces &amp;<br>aligners</h3></div>
+        <p>Metal, ceramic or clear aligners, planned with a 3D scan.</p>
+        <div class="pr"><small>from</small><b><span>RM</span>4,800</b><span class="arw"><svg class="ic"><use href="#arw"/></svg></span></div>
+      </div>
+      <div class="card">
+        <div class="tp"><span class="ti sun"><svg class="ic" viewBox="0 0 24 24"><path d="M12 9.3c-1-1-2.2-1.5-3.4-1.5C6.4 7.8 5 9.5 5 11.9c0 1.7.7 3 1.1 4.4.5 1.6.4 2.9.8 4.4.2 1 .8 1.5 1.4 1.5.8 0 1.1-.8 1.4-1.9.3-1.3.8-2.4 2.3-2.4s2 1.1 2.3 2.4c.3 1.1.6 1.9 1.4 1.9.6 0 1.2-.5 1.4-1.5.4-1.5.3-2.8.8-4.4.4-1.4 1.1-2.7 1.1-4.4 0-2.4-1.4-4.1-3.6-4.1-1.2 0-2.4.5-3.4 1.5z"/><path d="M12 2.5v2M6.5 4l1 1.6M17.5 4l-1 1.6"/></svg></span><h3>Teeth<br>whitening</h3></div>
+        <p>Up to 8 shades brighter in a single 60-minute visit.</p>
+        <div class="pr"><small>from</small><b><span>RM</span>750</b><span class="arw"><svg class="ic"><use href="#arw"/></svg></span></div>
+      </div>
+      <div class="card">
+        <div class="tp"><span class="ti sky"><svg class="ic" viewBox="0 0 24 24"><path d="M7 4.5h10c1.4 0 2.3 1 2.1 2.4l-.3 2.2c-.2 1.1-1 1.9-2.1 1.9H7.3c-1.1 0-1.9-.8-2.1-1.9l-.3-2.2C4.7 5.5 5.6 4.5 7 4.5z"/><path d="M9.5 11v2.2h5V11M10 13.2l-.6 1.7h5.2l-.6-1.7M9.6 16.6h4.8M10 18.3h4M11 20h2"/></svg></span><h3>Dental<br>implants</h3></div>
+        <p>Natural-looking replacement teeth, placed by our specialist.</p>
+        <div class="pr"><small>from</small><b><span>RM</span>5,800</b><span class="arw"><svg class="ic"><use href="#arw"/></svg></span></div>
+      </div>
+      <div class="card">
+        <div class="tp"><span class="ti apr"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 13.5c.9 1.5 2.1 2.2 3.5 2.2s2.6-.7 3.5-2.2"/><path d="M9 9.6h.01M15 9.6h.01" stroke-width="2.6"/></svg></span><h3>Kids<br>dentistry</h3></div>
+        <p>Fun first visits, fluoride and sealants in our kids' room.</p>
+        <div class="pr"><small>from</small><b><span>RM</span>60</b><span class="arw"><svg class="ic"><use href="#arw"/></svg></span></div>
+      </div>
+    </div>
+  </section>
+</div>
+</body></html>

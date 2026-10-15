@@ -1,0 +1,393 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="fonts.css">
+<style>
+  /* Example website design: Kopi & Crumb, an artisan bakery café on Armenian Street, George Town, Penang.
+     Desktop home page (1440 x 900), or the same site's mobile home page with ?p=phone (360 x 760). */
+  @font-face { font-family: "Caveat"; src: url("fonts/caveat-latin-500-normal.woff2") format("woff2"); font-weight: 500; }
+  @font-face { font-family: "Caveat"; src: url("fonts/caveat-latin-700-normal.woff2") format("woff2"); font-weight: 700; }
+  :root {
+    --cream: #f3e8d6; --cream2: #f8f0e3; --paper: #fbf7ef;
+    --esp: #2a1810; --esp2: #3b2419; --brown: #5e4030; --muted: #8a6d5a;
+    --terra: #c0592f; --terra-d: #a4471f; --mustard: #e3a63b; --mustard-l: #f3d189;
+    --jade: #3f8a68; --pandan: #6e9a3a; --line: rgba(42, 24, 16, .14);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { font-family: "Plus Jakarta Sans", Inter, sans-serif; color: var(--esp); background: var(--cream); -webkit-font-smoothing: antialiased; }
+  body { width: 100vw; height: 100vh; overflow: hidden; }
+  a { color: inherit; text-decoration: none; }
+  svg.ic { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+  .grain::after { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 20; opacity: .55; mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.35 0 0 0 0 0.22 0 0 0 0 0.12 0 0 0 .09 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+  .site { display: none; position: relative; width: 100%; height: 100%; overflow: hidden;
+    background: radial-gradient(800px 600px at 72% 40%, rgba(255, 250, 240, .75), rgba(255, 250, 240, 0) 70%), var(--cream); }
+  body.d #desk, body.m #mob { display: block; }
+
+  /* ---------- Desktop ---------- */
+  .ticker { height: 34px; background: var(--esp); color: rgba(248, 240, 227, .86); display: flex; align-items: center; justify-content: center; gap: 22px; font-size: 12.5px; font-weight: 600; letter-spacing: .02em; white-space: nowrap; }
+  .ticker i { font-style: normal; color: var(--mustard); font-size: 11px; }
+  .nav { position: relative; z-index: 3; height: 88px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 0 80px; }
+  .nav .l, .nav .r { display: flex; align-items: center; gap: 36px; font-size: 15px; font-weight: 600; color: var(--esp2); }
+  .nav .r { justify-content: flex-end; }
+  .nav a.on { position: relative; }
+  .nav a.on::after { content: ""; position: absolute; left: 0; right: 0; bottom: -7px; height: 2px; background: var(--terra); border-radius: 2px; }
+  .logo { text-align: center; line-height: 1; }
+  .logo b { display: block; font-family: "DM Serif Display"; font-weight: 400; font-size: 34px; letter-spacing: -.01em; color: var(--esp); }
+  .logo b em { font-style: italic; color: var(--terra); margin: 0 1px; }
+  .logo small { display: block; font-size: 9.5px; font-weight: 700; letter-spacing: .32em; text-transform: uppercase; color: var(--muted); margin-top: 7px; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; height: 54px; padding: 0 26px; border-radius: 99px; font-size: 15.5px; font-weight: 700; white-space: nowrap; }
+  .btn.pri { background: var(--terra); color: #fff8ee; box-shadow: 0 14px 24px -14px rgba(164, 71, 31, .9), inset 0 1px 0 rgba(255, 255, 255, .2); }
+  .btn.dark { background: var(--esp); color: #fbf3e6; box-shadow: 0 16px 26px -16px rgba(42, 24, 16, .9); }
+  .btn.sm { height: 46px; padding: 0 20px; font-size: 14.5px; }
+  .btn svg.ic { width: 18px; height: 18px; }
+  .link { display: inline-flex; align-items: center; gap: 10px; height: 54px; font-size: 15.5px; font-weight: 700; color: var(--esp); }
+  .link span { border-bottom: 1.5px solid rgba(42, 24, 16, .35); padding-bottom: 2px; }
+  .link .pin { width: 38px; height: 38px; border-radius: 99px; border: 1.5px solid rgba(42, 24, 16, .2); display: grid; place-items: center; color: var(--terra); }
+
+  .hero { position: relative; z-index: 2; height: 540px; }
+  .copy { position: absolute; left: 80px; top: 36px; width: 620px; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 12px; font-size: 12.5px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: var(--terra); }
+  .eyebrow::before { content: ""; width: 28px; height: 1.5px; background: var(--terra); }
+  h1 { font-family: "DM Serif Display"; font-weight: 400; font-size: 92px; line-height: .98; letter-spacing: -.025em; color: var(--esp); margin-top: 22px; }
+  h1 em { font-style: italic; color: var(--terra); }
+  .lede { font-size: 17.5px; line-height: 1.62; color: var(--brown); font-weight: 500; margin-top: 24px; max-width: 540px; }
+  .ctas { display: flex; align-items: center; gap: 26px; margin-top: 30px; }
+  .meta { display: flex; gap: 28px; margin-top: 28px; font-size: 13.5px; font-weight: 600; color: var(--muted); }
+  .meta span { display: inline-flex; align-items: center; gap: 8px; }
+  .meta b { color: var(--esp); font-weight: 800; }
+  .meta .st { color: var(--mustard); }
+
+  .art { position: absolute; left: 700px; top: -14px; width: 680px; height: 560px; }
+  .art > svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .note { position: absolute; font-family: "Caveat"; font-weight: 700; color: var(--terra-d); line-height: 1; white-space: nowrap; }
+  .note small { display: block; font-weight: 500; font-size: .78em; color: var(--brown); margin-top: 2px; }
+  .note svg { position: absolute; overflow: visible; }
+
+  .band { position: absolute; left: 0; right: 0; bottom: 0; height: 244px; background: var(--esp); color: var(--cream2); padding: 22px 80px 0; z-index: 4; }
+  .band::before { content: ""; position: absolute; left: 0; right: 0; top: -11px; height: 12px;
+    background: radial-gradient(circle at 12px 12px, var(--esp) 11.5px, transparent 12px) 0 0 / 24px 12px repeat-x; }
+  .band .hd { display: flex; align-items: baseline; }
+  .band h2 { font-family: "DM Serif Display"; font-weight: 400; font-size: 32px; letter-spacing: -.01em; }
+  .band h2 em { color: var(--mustard-l); }
+  .band .hd p { margin-left: 18px; font-size: 13.5px; color: rgba(248, 240, 227, .6); font-weight: 600; }
+  .band .hd a { margin-left: auto; display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; color: var(--mustard-l); }
+  .items { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); margin-top: 14px; }
+  .item { padding: 0 24px; border-left: 1px solid rgba(248, 240, 227, .12); }
+  .item:first-child { padding-left: 0; border-left: 0; }
+  .item:last-child { padding-right: 0; }
+  .item .pic { height: 62px; display: flex; align-items: flex-end; justify-content: space-between; }
+  .item .pic svg { height: 62px; width: auto; overflow: visible; }
+  .item .pr { font-size: 14px; font-weight: 800; color: var(--mustard-l); white-space: nowrap; border: 1.5px solid rgba(243, 209, 137, .4); border-radius: 99px; padding: 5px 11px; margin-bottom: 2px; letter-spacing: .01em; }
+  .item .nm { display: block; margin-top: 12px; font-family: "DM Serif Display"; font-weight: 400; font-size: 21px; white-space: nowrap; letter-spacing: -.005em; line-height: 1.2; }
+  .item p { font-size: 12.5px; line-height: 1.5; color: rgba(248, 240, 227, .62); margin-top: 4px; font-weight: 500; }
+  .item .new { display: inline-block; font-family: "Plus Jakarta Sans"; font-size: 9.5px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; background: var(--pandan); color: #fff; padding: 3px 7px; border-radius: 99px; margin-left: 8px; transform: translateY(-3px); }
+
+  /* ---------- Phone ---------- */
+  #mob { background: radial-gradient(420px 380px at 60% 62%, rgba(255, 250, 240, .8), rgba(255, 250, 240, 0) 70%), var(--cream); }
+  .status { height: 30px; display: flex; align-items: center; padding: 0 20px 0 24px; font-family: Inter, sans-serif; font-size: 13px; font-weight: 650; color: var(--esp); position: relative; z-index: 5; }
+  .status .r { margin-left: auto; display: flex; gap: 5px; align-items: center; }
+  .sig { display: flex; gap: 1.5px; align-items: flex-end; height: 10px; } .sig i { width: 3px; background: currentColor; border-radius: 1px; display: block; }
+  .bat { width: 22px; height: 11px; border: 1.5px solid currentColor; border-radius: 3px; padding: 1px; opacity: .9; } .bat i { display: block; height: 100%; width: 75%; background: currentColor; border-radius: 1px; }
+  .mhd { position: relative; z-index: 5; height: 54px; display: flex; align-items: center; padding: 0 16px; border-bottom: 1px solid var(--line); }
+  .mhd .logo { text-align: left; }
+  .mhd .logo b { font-size: 24px; }
+  .mhd .logo small { font-size: 7.5px; letter-spacing: .3em; margin-top: 5px; }
+  .mhd .ib { margin-left: auto; display: flex; gap: 8px; }
+  .mhd .ib span { position: relative; width: 40px; height: 40px; border-radius: 99px; display: grid; place-items: center; border: 1.5px solid rgba(42, 24, 16, .16); color: var(--esp); }
+  .mhd .ib span.menu { background: var(--esp); border-color: var(--esp); color: #fbf3e6; }
+  .mhd .ib svg.ic { width: 18px; height: 18px; }
+  .mhd .ib em { position: absolute; top: -3px; right: -3px; min-width: 17px; height: 17px; border-radius: 99px; background: var(--terra); color: #fff; font-style: normal; font-size: 10px; font-weight: 800; display: grid; place-items: center; border: 2px solid var(--cream); }
+  .mcopy { position: relative; z-index: 3; padding: 18px 16px 0; }
+  .mcopy .eyebrow { font-size: 10.5px; letter-spacing: .18em; gap: 9px; }
+  .mcopy .eyebrow::before { width: 20px; }
+  .mcopy h1 { font-size: 52px; line-height: .98; margin-top: 12px; letter-spacing: -.025em; }
+  .mcopy .lede { font-size: 14px; line-height: 1.55; margin-top: 12px; }
+  .mcopy .ctas { gap: 10px; margin-top: 18px; }
+  .mcopy .btn { height: 48px; padding: 0 20px; font-size: 14.5px; gap: 8px; }
+  .mcopy .btn svg.ic { width: 17px; height: 17px; }
+  .btn.line { border: 1.5px solid rgba(42, 24, 16, .2); background: var(--paper); color: var(--esp); padding: 0 18px 0 14px; }
+  .btn.line svg.ic { color: var(--terra); }
+  .mart { position: absolute; left: 0; top: 390px; width: 360px; height: 232px; z-index: 1; }
+  .mart svg { display: block; width: 360px; height: 270px; overflow: visible; }
+  .mband { position: absolute; left: 0; right: 0; bottom: 0; height: 138px; background: var(--esp); color: var(--cream2); padding: 15px 16px 0; z-index: 4; }
+  .mband::before { content: ""; position: absolute; left: 0; right: 0; top: -8px; height: 9px;
+    background: radial-gradient(circle at 9px 9px, var(--esp) 8.5px, transparent 9px) 0 0 / 18px 9px repeat-x; }
+  .mband .hd { display: flex; align-items: baseline; }
+  .mband h2 { font-family: "DM Serif Display"; font-weight: 400; font-size: 22px; }
+  .mband h2 em { color: var(--mustard-l); }
+  .mband .hd a { margin-left: auto; font-size: 12.5px; font-weight: 700; color: var(--mustard-l); display: inline-flex; align-items: center; gap: 5px; }
+  .mline { display: flex; align-items: center; gap: 10px; height: 37px; margin-top: 5px; }
+  .mline + .mline { margin-top: 0; border-top: 1px solid rgba(248, 240, 227, .1); }
+  .mline .mi { width: 30px; height: 30px; flex-shrink: 0; display: grid; place-items: center; }
+  .mline .mi svg { height: 28px; width: auto; max-width: 32px; overflow: visible; }
+  .mline b { font-family: "DM Serif Display"; font-weight: 400; font-size: 17px; white-space: nowrap; }
+  .mline i { flex: 1; min-width: 12px; border-bottom: 1.5px dotted rgba(248, 240, 227, .32); transform: translateY(4px); }
+  .mline span { font-size: 13.5px; font-weight: 800; color: var(--mustard-l); white-space: nowrap; }
+</style></head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <radialGradient id="marble" cx=".42" cy=".38" r=".7"><stop offset="0" stop-color="#fdfcf9"/><stop offset=".7" stop-color="#f3efe8"/><stop offset="1" stop-color="#e4ddd2"/></radialGradient>
+    <radialGradient id="porc" cx=".4" cy=".35" r=".75"><stop offset="0" stop-color="#ffffff"/><stop offset=".75" stop-color="#f6f1e9"/><stop offset="1" stop-color="#e5dccf"/></radialGradient>
+    <radialGradient id="kopi" cx=".42" cy=".4" r=".7"><stop offset="0" stop-color="#7a4728"/><stop offset=".6" stop-color="#4f2a17"/><stop offset="1" stop-color="#2f170c"/></radialGradient>
+    <radialGradient id="seg" cx=".4" cy=".3" r=".8"><stop offset="0" stop-color="#f8d18a"/><stop offset=".55" stop-color="#d89443"/><stop offset="1" stop-color="#a95f22"/></radialGradient>
+    <radialGradient id="segG" cx=".4" cy=".3" r=".8"><stop offset="0" stop-color="#d9dc8c"/><stop offset=".55" stop-color="#93a845"/><stop offset="1" stop-color="#5f7a26"/></radialGradient>
+    <linearGradient id="toast" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f3cf8e"/><stop offset="1" stop-color="#d9a05a"/></linearGradient>
+    <radialGradient id="yolk" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#ffd36b"/><stop offset="1" stop-color="#e8912a"/></radialGradient>
+    <linearGradient id="steel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eeece8"/><stop offset="1" stop-color="#a9a49b"/></linearGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="10"/></filter>
+    <filter id="soft4" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="4"/></filter>
+    <filter id="soft2" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2"/></filter>
+    <path id="circ" d="M0 -46a46 46 0 1 1 0 92a46 46 0 1 1 0-92"/>
+    <linearGradient id="crust" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f7cf83"/><stop offset=".5" stop-color="#d98f3f"/><stop offset="1" stop-color="#a65b20"/></linearGradient>
+    <linearGradient id="crustS" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4c879"/><stop offset=".6" stop-color="#d08636"/><stop offset="1" stop-color="#9a531c"/></linearGradient>
+    <clipPath id="croiClip"><path id="croiBody" d="M-94 32C-92-10-54-50 0-50S92-10 94 32C94 42 86 48 77 44 60 28 32 21 0 21S-60 28-77 44C-86 48-94 42-94 32z"/></clipPath>
+    <!-- Bicolour pandan croissant seen from above (centre 0,0, about 180 x 85) -->
+    <symbol id="croiTop" viewBox="-100 -60 200 120" overflow="visible">
+      <path d="M-94 32C-92-10-54-50 0-50S92-10 94 32C94 42 86 48 77 44 60 28 32 21 0 21S-60 28-77 44C-86 48-94 42-94 32z" fill="#5a3418" opacity=".25" filter="url(#soft4)" transform="translate(5 9)"/>
+      <path d="M-94 32C-92-10-54-50 0-50S92-10 94 32C94 42 86 48 77 44 60 28 32 21 0 21S-60 28-77 44C-86 48-94 42-94 32z" fill="url(#crust)"/>
+      <g clip-path="url(#croiClip)" fill="none" stroke-linecap="round">
+        <g stroke="#86a743" stroke-width="7.5" opacity=".88">
+          <path d="M0 22V-52"/><path d="M-24 22Q-34-12-46-44"/><path d="M24 22Q34-12 46-44"/><path d="M-47 27Q-62 2-78-24"/><path d="M47 27Q62 2 78-24"/><path d="M-67 36Q-80 22-92 6"/><path d="M67 36Q80 22 92 6"/>
+        </g>
+        <g stroke="#d3e08e" stroke-width="2.2" opacity=".5"><path d="M-2 14V-44"/><path d="M-26 14Q-35-12-45-38"/><path d="M22 14Q31-12 42-38"/><path d="M-49 20Q-62 0-74-20"/><path d="M45 20Q58 0 71-20"/></g>
+        <g stroke="#6b3410" stroke-width="3.6" opacity=".62" filter="url(#soft2)">
+          <path d="M-12 22Q-15-14-24-52"/><path d="M12 22Q15-14 24-52"/><path d="M-36 24Q-48-6-64-40"/><path d="M36 24Q48-6 64-40"/><path d="M-58 31Q-72 10-86-10"/><path d="M58 31Q72 10 86-10"/>
+        </g>
+        <g stroke="#fff3d6" stroke-width="6" opacity=".4" filter="url(#soft2)">
+          <path d="M-4 0V-40"/><path d="M-27 -2Q-33-20-40-34"/><path d="M21 -2Q27-20 34-34"/><path d="M-50 6Q-58-6-66-16"/><path d="M44 6Q52-6 60-16"/>
+        </g>
+        <path d="M-77 44C-60 28-32 21 0 21S60 28 77 44" stroke="#6b3410" stroke-width="7" opacity=".38" filter="url(#soft2)"/>
+      </g>
+        <g stroke="#c8db7e" stroke-width="2" opacity=".55"><path d="M-53 24Q-61 8-66 -10"/><path d="M-29 16Q-32 -8-36 -31"/><path d="M-2 14V-39"/><path d="M25 16Q29 -8 33 -31"/><path d="M49 24Q58 8 63 -10"/></g>
+        <g stroke="#7a3f12" stroke-width="3.2" opacity=".55" filter="url(#soft2)">
+          <path d="M-64 33Q-72 18-80 2"/><path d="M-40 21Q-46 -2-52 -26"/><path d="M-14 15Q-16 -12-18 -40"/><path d="M14 15Q16 -12 18 -40"/><path d="M40 21Q46 -2 52 -26"/><path d="M64 33Q72 18 80 2"/>
+        </g>
+        <g stroke="#fff1cf" stroke-width="5" opacity=".38" filter="url(#soft2)">
+          <path d="M-56 18Q-62 4-66 -8"/><path d="M-31 6Q-33 -12-36 -26"/><path d="M-4 2V-32"/><path d="M25 4Q28 -12 31 -26"/><path d="M50 16Q56 4 60 -8"/>
+        </g>
+        <path d="M-74 41C-56 23-30 14 0 14S56 23 74 41" stroke="#7a3f12" stroke-width="5" opacity=".35" filter="url(#soft2)"/>
+      </g>
+      <path d="M-94 32C-92-10-54-50 0-50S92-10 94 32C94 42 86 48 77 44 60 28 32 21 0 21S-60 28-77 44C-86 48-94 42-94 32z" fill="none" stroke="#9a5a22" stroke-opacity=".35" stroke-width="1.2"/>
+    </symbol>
+
+    <!-- Round "freshly baked" stamp, radius 62 -->
+    <symbol id="stamp" viewBox="-64 -64 128 128" overflow="visible">
+      <g transform="rotate(-14)">
+        <circle r="62" fill="#e3a63b"/>
+        <circle r="57" fill="none" stroke="#2a1810" stroke-opacity=".3" stroke-width="1"/>
+        <text font-family="Plus Jakarta Sans" font-weight="800" font-size="10" fill="#2a1810"><textPath href="#circ" textLength="286" lengthAdjust="spacing">FRESHLY BAKED · EVERY MORNING · </textPath></text>
+        <circle r="34" fill="#2a1810"/>
+        <text y="-3" text-anchor="middle" font-family="DM Serif Display" font-style="italic" font-size="19" fill="#f3d189">est.</text>
+        <text y="16" text-anchor="middle" font-family="DM Serif Display" font-size="17" fill="#fbf3e6">2019</text>
+      </g>
+    </symbol>
+    <!-- Marble kopitiam table, seen from above, with the morning set on it. Centre 0,0; table radius 262. -->
+    <symbol id="flatlay" viewBox="-300 -300 600 600" overflow="visible">
+      <ellipse cx="18" cy="30" rx="262" ry="262" fill="#6b3f22" opacity=".28" filter="url(#soft)"/>
+      <circle r="262" fill="url(#marble)"/>
+      <circle r="262" fill="none" stroke="#d8cfc1" stroke-width="3"/>
+      <circle r="255" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="2"/>
+      <g fill="none" stroke-linecap="round">
+        <path d="M-250 -60C-170 -90 -120 -40 -40 -70S90 -150 170 -120 230 -40 258 -50" stroke="#c9c0b3" stroke-width="1.6" opacity=".55"/>
+        <path d="M-230 120C-150 70 -60 130 30 90S170 40 240 80" stroke="#cdc4b8" stroke-width="1.2" opacity=".5"/>
+        <path d="M-120 -230C-90 -170 -130 -120 -80 -60S-40 40 -90 120" stroke="#d3cbbf" stroke-width="1" opacity=".55"/>
+        <path d="M60 180C90 140 150 160 200 120" stroke="#c4bbae" stroke-width="2.4" opacity=".25" filter="url(#soft2)"/>
+        <path d="M-200 -150C-140 -160 -110 -200 -60 -210" stroke="#c4bbae" stroke-width="2.4" opacity=".3" filter="url(#soft2)"/>
+      </g>
+
+      <!-- pandan leaves -->
+      <g transform="translate(150 158) rotate(-28)">
+        <path d="M-120 6C-60 -14 20 -16 112 -4C30 2 -50 8 -120 6z" fill="#5d8a2e"/>
+        <path d="M-118 5C-50 -6 30 -8 108 -4" stroke="#a9c96b" stroke-width="1.2" fill="none" opacity=".7"/>
+        <path d="M-96 26C-30 6 40 0 118 14C40 14 -30 22 -96 26z" fill="#6f9e38"/>
+        <path d="M-94 25C-20 12 50 8 114 14" stroke="#b7d47a" stroke-width="1.1" fill="none" opacity=".7"/>
+      </g>
+
+      <!-- kopi: cup on a saucer, jade band -->
+      <g transform="translate(-112 -98)">
+        <circle r="76" fill="#5a3418" opacity=".22" filter="url(#soft4)" transform="translate(6 9)"/>
+        <circle r="76" fill="url(#porc)"/>
+        <circle r="76" fill="none" stroke="#e2d8ca" stroke-width="1.5"/>
+        <circle r="66" fill="none" stroke="var(--jade)" stroke-width="2.6" opacity=".85"/>
+        <circle r="62" fill="none" stroke="var(--jade)" stroke-width="1" opacity=".55"/>
+        <g transform="rotate(38)">
+          <path d="M44 -14h26a14 14 0 0 1 0 28H44z" fill="#5a3418" opacity=".18" filter="url(#soft2)" transform="translate(4 6)"/>
+          <path d="M44 -13h25a13 13 0 0 1 0 26H44z" fill="url(#porc)" stroke="#e0d6c8" stroke-width="1.2"/>
+          <path d="M50 -5.5h17a5.5 5.5 0 0 1 0 11H50z" fill="#efe7da"/>
+        </g>
+        <circle r="52" fill="#5a3418" opacity=".25" filter="url(#soft4)" transform="translate(5 7)"/>
+        <circle r="52" fill="url(#porc)"/>
+        <circle r="52" fill="none" stroke="#e3d9cb" stroke-width="1.3"/>
+        <circle r="46.5" fill="none" stroke="var(--jade)" stroke-width="2.2" opacity=".85"/>
+        <circle r="41" fill="url(#kopi)"/>
+        <circle r="41" fill="none" stroke="#b07a48" stroke-width="3.5" opacity=".55"/>
+        <ellipse cx="-14" cy="-16" rx="13" ry="5" transform="rotate(-38 -14 -16)" fill="#fff" opacity=".28" filter="url(#soft2)"/>
+        <g transform="translate(-48 50) rotate(-40)">
+          <ellipse rx="8" ry="11.5" fill="url(#steel)"/>
+          <rect x="-2" y="10" width="4" height="44" rx="2" fill="url(#steel)"/>
+        </g>
+      </g>
+
+      <!-- pandan croissant -->
+      <g transform="translate(108 -116) rotate(12) scale(1.02)">
+        <use href="#croiTop" x="-100" y="-60" width="200" height="120"/>
+      </g>
+
+      <!-- kaya butter toast on a plate -->
+      <g transform="translate(92 76)">
+        <circle r="90" fill="#5a3418" opacity=".22" filter="url(#soft4)" transform="translate(7 10)"/>
+        <circle r="90" fill="url(#porc)"/>
+        <circle r="90" fill="none" stroke="#e2d8ca" stroke-width="1.5"/>
+        <circle r="80" fill="none" stroke="var(--jade)" stroke-width="2.6" opacity=".85"/>
+        <circle r="76" fill="none" stroke="var(--jade)" stroke-width="1" opacity=".55"/>
+        <g transform="rotate(-12)">
+          <rect x="-9" y="-60" width="18" height="120" rx="5" fill="#94721f" transform="rotate(45)"/>
+          <rect x="-9" y="-60" width="18" height="120" rx="5" fill="none" stroke="#6f5212" stroke-width="1.2" opacity=".5" transform="rotate(45)"/>
+          <rect x="-4" y="-30" width="8" height="34" rx="2" fill="#f7e4a3" transform="rotate(45)"/>
+          <g transform="translate(-10 -10)">
+            <path d="M-50 -50h96a4 4 0 0 1 4 4v8L-38 50h-8a4 4 0 0 1-4-4z" fill="#b8742f"/>
+            <path d="M-43 -43h86L-43 43z" fill="url(#toast)"/>
+            <path d="M-34 -43L-43 -34M-14 -43L-43 -14M6 -43L-43 6M26 -43L-43 26" stroke="#8a4a1c" stroke-width="4" opacity=".2" stroke-linecap="round"/>
+          </g>
+          <g transform="translate(10 10)">
+            <path d="M50 50h-96a4 4 0 0 1-4-4v-8L38 -50h8a4 4 0 0 1 4 4z" fill="#b8742f"/>
+            <path d="M43 43h-86L43 -43z" fill="url(#toast)"/>
+            <path d="M34 43L43 34M14 43L43 14M-6 43L43 -6M-26 43L43 -26" stroke="#8a4a1c" stroke-width="4" opacity=".2" stroke-linecap="round"/>
+          </g>
+        </g>
+      </g>
+
+      <!-- half-boiled eggs -->
+      <g transform="translate(-118 112)">
+        <circle r="64" fill="#5a3418" opacity=".22" filter="url(#soft4)" transform="translate(6 8)"/>
+        <circle r="64" fill="url(#porc)"/>
+        <circle r="64" fill="none" stroke="#e2d8ca" stroke-width="1.5"/>
+        <circle r="56" fill="none" stroke="var(--jade)" stroke-width="2.4" opacity=".85"/>
+        <circle r="48" fill="#efe6d6" opacity=".55"/>
+        <path d="M-38 -10C-40 -30 -16 -42 4 -36 28 -30 42 -12 36 10 30 32 6 40 -14 34 -32 28 -36 8 -38 -10z" fill="#e9dcc4" opacity=".7" filter="url(#soft2)" transform="translate(2 3)"/>
+        <path d="M-38 -10C-40 -30 -16 -42 4 -36 28 -30 42 -12 36 10 30 32 6 40 -14 34 -32 28 -36 8 -38 -10z" fill="#fffcf4" stroke="#e6d8bf" stroke-width="1.2"/>
+        <path d="M4-30C16-36 32-28 33-15 34-3 25 3 16 0 8-3 7-12 0-15-6-18-5-26 4-30z" fill="#6e310b" opacity=".72"/>
+        <path d="M10-24C17-28 26-23 27-15" stroke="#fff" stroke-width="1.6" fill="none" opacity=".5" stroke-linecap="round"/>
+        <circle cx="-13" cy="-4" r="14" fill="url(#yolk)"/>
+        <circle cx="14" cy="13" r="12.5" fill="url(#yolk)"/>
+        <path d="M6 4c4-4 10-5 15-3" stroke="#7a4317" stroke-width="3" fill="none" opacity=".35" stroke-linecap="round"/>
+        <ellipse cx="-17" cy="-9" rx="4" ry="2.5" fill="#fff6d8" opacity=".8"/>
+        <ellipse cx="10" cy="8" rx="3.6" ry="2.2" fill="#fff6d8" opacity=".8"/>
+        <g fill="#5d4a3a" opacity=".7"><circle cx="-4" cy="-24" r="1"/><circle cx="6" cy="-18" r=".9"/><circle cx="-20" cy="6" r=".9"/><circle cx="22" cy="-10" r="1"/><circle cx="2" cy="18" r=".8"/><circle cx="-28" cy="-6" r=".8"/></g>
+      </g>
+
+      <!-- crumbs -->
+      <g fill="#c98a45">
+        <path d="M30 -30l5 -2 2 4 -4 3z"/><path d="M-10 -10l4-1 1 3-3 2z"/><path d="M196 -40l6-1 1 5-5 1z"/><path d="M170 -20l3-2 3 3-3 2z"/>
+        <path d="M14 196l5-2 2 4-4 2z"/><path d="M-30 30l3-1 1 3-3 1z"/><path d="M-200 30l4-2 2 4-4 1z"/>
+      </g>
+      <g fill="#e2b171"><circle cx="40" cy="-10" r="2"/><circle cx="182" cy="-6" r="1.6"/><circle cx="-4" cy="208" r="1.8"/><circle cx="-60" cy="6" r="1.5"/></g>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ======================= DESKTOP ======================= -->
+<div class="site grain" id="desk">
+  <div class="ticker"><span>Pandan croissants fresh from the oven at 8:00 am</span><i>✦</i><span>Pickup orders ready in 15 minutes</span><i>✦</i><span>Open daily 8:00 am to 6:00 pm, closed on Tuesdays</span></div>
+  <header class="nav">
+    <nav class="l"><a class="on">Menu</a><a>Bakery</a><a>Our story</a></nav>
+    <a class="logo"><b>Kopi <em>&amp;</em> Crumb</b><small>Bakery · Kopitiam · Penang</small></a>
+    <nav class="r"><a>Visit us</a><a>Catering</a><a class="btn pri sm" data-spot="order"><svg class="ic" viewBox="0 0 24 24"><path d="M5.5 8h13l-1 12.5h-11z"/><path d="M9 10.5V7a3 3 0 016 0v3.5"/></svg>Order for pickup</a></nav>
+  </header>
+
+  <section class="hero">
+    <div class="copy" data-spot="hero">
+      <span class="eyebrow">Bakery café · George Town</span>
+      <h1>Slow kopi,<br>warm <em>crumbs.</em></h1>
+      <p class="lede">A little bakery café in a restored 1920s shophouse on Armenian Street. Butter-roasted kopi, kaya stirred by hand every morning and croissants laminated with pandan.</p>
+      <div class="ctas">
+        <a class="btn dark"><svg class="ic" viewBox="0 0 24 24"><path d="M5.5 8h13l-1 12.5h-11z"/><path d="M9 10.5V7a3 3 0 016 0v3.5"/></svg>Order for pickup</a>
+        <a class="link"><span class="pin"><svg class="ic" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0114 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><span>Find us on Armenian Street</span></a>
+      </div>
+      <div class="meta">
+        <span><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Open today <b>8:00 am to 6:00 pm</b></span>
+        <span><span class="st">★★★★★</span><b>4.8</b> from 2,340 reviews</span>
+      </div>
+    </div>
+
+    <div class="art" data-spot="art">
+      <svg viewBox="0 0 680 560">
+        <circle cx="424" cy="244" r="222" fill="var(--terra)"/>
+        <use href="#flatlay" x="84" y="8" width="550" height="550"/>
+        <use href="#stamp" x="66" y="50" width="124" height="124"/>
+      </svg>
+      <div class="note" style="left: 4px; top: 452px; font-size: 27px;">Morning set · RM 12.90<small>kopi, kaya toast &amp; 2 eggs</small>
+        <svg style="left: 236px; top: -46px; width: 90px; height: 70px;" viewBox="0 0 90 70"><path d="M4 60C30 62 58 46 72 14" fill="none" stroke="var(--terra-d)" stroke-width="2.2" stroke-linecap="round"/><path d="M62 18l11-7 2 13" fill="none" stroke="var(--terra-d)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" data-spot="menu">
+    <div class="hd"><h2>On the counter <em>today</em></h2><p>Thursday, 15 October</p><a>See the full menu<svg class="ic" viewBox="0 0 24 24" style="width:15px;height:15px;stroke-width:2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+    <div class="items">
+      <div class="item">
+        <div class="pic"><svg viewBox="0 0 70 80"><path d="M14 8h42l-5 66a5 5 0 0 1-5 4.5H24a5 5 0 0 1-5-4.5z" fill="#fff" fill-opacity=".14" stroke="#f8f0e3" stroke-opacity=".5" stroke-width="1.5"/><path d="M16.6 30h36.8l-3.3 44.3a3.5 3.5 0 0 1-3.5 3.2H23.4a3.5 3.5 0 0 1-3.5-3.2z" fill="#9b5a2c"/><path d="M16.6 30h36.8l-.9 12H17.5z" fill="#e8c497"/><rect x="22" y="19" width="12" height="12" rx="2.5" fill="#fff" fill-opacity=".45" transform="rotate(-12 28 25)"/><rect x="36" y="22" width="11" height="11" rx="2.5" fill="#fff" fill-opacity=".4" transform="rotate(16 41 27)"/><path d="M44 0l-6 60" stroke="var(--terra)" stroke-width="4" stroke-linecap="round"/></svg><span class="pr">RM 4.50</span></div>
+        <div class="nm">Kopi C peng</div>
+        <p>Butter-roasted kopi and evaporated milk over ice</p>
+      </div>
+      <div class="item">
+        <div class="pic"><svg viewBox="0 0 116 70"><ellipse cx="60" cy="66" rx="50" ry="4" fill="#000" opacity=".28"/><path d="M14 58L64 9l50 49z" fill="#8f561f"/><path d="M11 60.5L61 11.5l50 49z" fill="#9b7a26"/><path d="M28 60.5h22l-2-4H31z" fill="#f7e4a3"/><path d="M7 64L57 14l50 50z" fill="#b8742f" stroke="#b8742f" stroke-width="4" stroke-linejoin="round"/><path d="M15.5 61L57 20l41.5 41z" fill="#f2d39a"/><g stroke="#c98c45" stroke-width="2.4" opacity=".55" stroke-linecap="round"><path d="M34 52l10-10"/><path d="M48 54l14-14"/><path d="M66 52l8-8"/></g></svg><span class="pr">RM 5.90</span></div>
+        <div class="nm">Kaya butter toast</div>
+        <p>Charcoal-grilled bread, house kaya and cold butter</p>
+      </div>
+      <div class="item">
+        <div class="pic"><svg viewBox="0 0 112 70"><ellipse cx="56" cy="64" rx="50" ry="4.5" fill="#000" opacity=".28"/><g stroke="#7a4518" stroke-opacity=".55" stroke-width="1"><path d="M6 62C1 54 5 44 15 43c7-1 11 6 10 19z" fill="url(#crustS)"/><path d="M106 62c5-8 1-18-9-19-7-1-11 6-10 19z" fill="url(#crustS)"/><path d="M17 62c-3-15 5-28 17-29 9 0 13 10 12 29z" fill="url(#crustS)"/><path d="M95 62c3-15-5-28-17-29-9 0-13 10-12 29z" fill="url(#crustS)"/><path d="M35 62c-3-22 6-38 21-38s24 16 21 38z" fill="url(#crustS)"/></g><g fill="#86a743" opacity=".9"><path d="M12 61c-1-7 1-12 3-14 2 2 3 7 2 14z"/><path d="M100 61c1-7-1-12-3-14-2 2-3 7-2 14z"/><path d="M29 61c-1-10 1-19 4-23 3 4 5 13 4 23z"/><path d="M83 61c1-10-1-19-4-23-3 4-5 13-4 23z"/><path d="M52 61c-1-14 1-26 4-31 3 5 5 17 4 31z"/></g><path d="M44 34c4-5 9-6 12-6" stroke="#fff3d6" stroke-width="2.4" fill="none" opacity=".6" stroke-linecap="round"/></svg><span class="pr">RM 7.50</span></div>
+        <div class="nm">Pandan croissant</div>
+        <p>Laminated over three days, with pandan cream inside</p>
+      </div>
+      <div class="item">
+        <div class="pic"><svg viewBox="0 0 56 80"><rect x="21" y="2" width="14" height="8" rx="2" fill="var(--terra)"/><path d="M22 10h12v8c8 4 12 10 12 18v36a6 6 0 0 1-6 6H16a6 6 0 0 1-6-6V36c0-8 4-14 12-18z" fill="#3b1e0e" stroke="#f8f0e3" stroke-opacity=".45" stroke-width="1.5"/><rect x="13" y="44" width="30" height="24" rx="3" fill="#f3e8d6"/><text x="28" y="54" text-anchor="middle" font-family="DM Serif Display" font-size="7.5" fill="#2a1810">Nutmeg</text><text x="28" y="63" text-anchor="middle" font-family="Plus Jakarta Sans" font-weight="800" font-size="4.6" letter-spacing=".8" fill="#c0592f">COLD BREW</text><path d="M16 26c2-3 4-5 7-6" stroke="#fff" stroke-opacity=".35" stroke-width="2" fill="none" stroke-linecap="round"/></svg><span class="pr">RM 11.00</span></div>
+        <div class="nm">Nutmeg cold brew</div>
+        <p>18-hour cold brew with Balik Pulau nutmeg syrup</p>
+      </div>
+      <div class="item">
+        <div class="pic"><svg viewBox="0 0 90 80"><path d="M8 40h74c0 20-16 34-37 34S8 60 8 40z" fill="#f8f0e3"/><path d="M8 40h74" stroke="var(--jade)" stroke-width="3"/><path d="M14 52h62" stroke="var(--jade)" stroke-width="1.6" opacity=".7"/><ellipse cx="45" cy="40" rx="37" ry="6" fill="#fffaf0"/><path d="M22 40c2-12 14-16 22-12" fill="#fffaf0"/><circle cx="36" cy="33" r="9" fill="url(#yolk)"/><circle cx="54" cy="35" r="8" fill="url(#yolk)"/><ellipse cx="34" cy="30" rx="2.5" ry="1.6" fill="#fff6d8"/></svg><span class="pr">RM 3.80</span></div>
+        <div class="nm">Half-boiled eggs</div>
+        <p>Two kampung eggs with soy sauce and white pepper</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ======================= PHONE ======================= -->
+<div class="site grain" id="mob">
+  <div class="status"><span>9:41</span><span class="r"><span class="sig"><i style="height:4px"></i><i style="height:6px"></i><i style="height:8px"></i><i style="height:10px"></i></span><span style="font-size:11px">5G</span><span class="bat"><i></i></span></span></div>
+  <header class="mhd">
+    <a class="logo"><b>Kopi <em>&amp;</em> Crumb</b><small>Bakery · Kopitiam · Penang</small></a>
+    <div class="ib">
+      <span><svg class="ic" viewBox="0 0 24 24"><path d="M5.5 8h13l-1 12.5h-11z"/><path d="M9 10.5V7a3 3 0 016 0v3.5"/></svg><em>2</em></span>
+      <span class="menu"><svg class="ic" viewBox="0 0 24 24" style="stroke-width:2"><path d="M4.5 9h15M4.5 15h10"/></svg></span>
+    </div>
+  </header>
+  <section class="mcopy" data-spot="hero">
+    <span class="eyebrow">Bakery café · George Town</span>
+    <h1>Slow kopi,<br>warm <em>crumbs.</em></h1>
+    <p class="lede">A little bakery café in a 1920s shophouse on Armenian Street. Butter-roasted kopi, kaya stirred by hand and pandan croissants.</p>
+    <div class="ctas">
+      <a class="btn dark"><svg class="ic" viewBox="0 0 24 24"><path d="M5.5 8h13l-1 12.5h-11z"/><path d="M9 10.5V7a3 3 0 016 0v3.5"/></svg>Order for pickup</a>
+      <a class="btn line"><svg class="ic" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0114 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Find us</a>
+    </div>
+  </section>
+  <div class="mart" data-spot="art">
+    <svg viewBox="0 0 360 270">
+      <circle cx="274" cy="128" r="118" fill="var(--terra)"/>
+      <use href="#flatlay" x="56" y="-10" width="288" height="288"/>
+      <use href="#stamp" x="14" y="4" width="78" height="78"/>
+    </svg>
+  </div>
+  <section class="mband" data-spot="menu">
+    <div class="hd"><h2>On the counter <em>today</em></h2><a>Full menu<svg class="ic" viewBox="0 0 24 24" style="width:13px;height:13px;stroke-width:2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+    <div class="mline"><span class="mi"><svg viewBox="0 0 70 80"><path d="M14 8h42l-5 66a5 5 0 0 1-5 4.5H24a5 5 0 0 1-5-4.5z" fill="#fff" fill-opacity=".14" stroke="#f8f0e3" stroke-opacity=".5" stroke-width="2.5"/><path d="M16.6 30h36.8l-3.3 44.3a3.5 3.5 0 0 1-3.5 3.2H23.4a3.5 3.5 0 0 1-3.5-3.2z" fill="#9b5a2c"/><path d="M16.6 30h36.8l-.9 12H17.5z" fill="#e8c497"/><path d="M44 0l-6 60" stroke="#c0592f" stroke-width="5" stroke-linecap="round"/></svg></span><b>Kopi C peng</b><i></i><span>RM 4.50</span></div>
+    <div class="mline"><span class="mi"><svg viewBox="0 0 112 70"><g stroke="#7a4518" stroke-opacity=".55" stroke-width="1"><path d="M6 62C1 54 5 44 15 43c7-1 11 6 10 19z" fill="url(#crustS)"/><path d="M106 62c5-8 1-18-9-19-7-1-11 6-10 19z" fill="url(#crustS)"/><path d="M17 62c-3-15 5-28 17-29 9 0 13 10 12 29z" fill="url(#crustS)"/><path d="M95 62c3-15-5-28-17-29-9 0-13 10-12 29z" fill="url(#crustS)"/><path d="M35 62c-3-22 6-38 21-38s24 16 21 38z" fill="url(#crustS)"/></g><g fill="#86a743" opacity=".9"><path d="M29 61c-1-10 1-19 4-23 3 4 5 13 4 23z"/><path d="M83 61c1-10-1-19-4-23-3 4-5 13-4 23z"/><path d="M52 61c-1-14 1-26 4-31 3 5 5 17 4 31z"/></g></svg></span><b>Pandan croissant</b><i></i><span>RM 7.50</span></div>
+  </section>
+</div>
+
+<script>
+  document.body.className = new URLSearchParams(location.search).get("p") === "phone" ? "m" : "d";
+</script>
+</body></html>

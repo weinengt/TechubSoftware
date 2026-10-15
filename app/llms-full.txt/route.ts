@@ -6,7 +6,7 @@ import { getFeatures, planText } from "@/components/Sections";
 import { plain } from "@/components/Text";
 import { getPosts } from "@/lib/blog";
 import { localeName, locales, lp } from "@/lib/i18n";
-import { rm, site, systems, type Plan } from "@/lib/site";
+import { rm, servicePages, site, systems, type Plan, type ServicePageKey } from "@/lib/site";
 
 export const dynamic = "force-static";
 
@@ -22,6 +22,37 @@ export function GET() {
 ${p.meta.description}
 For: ${p.whoFor.join(", ")}.
 Modules: ${Object.values(p.modules).join(", ")}.
+${Object.values(p.spotlights)
+  .map((s) => `- ${s.eyebrow}: ${s.points.join("; ")}`)
+  .join("\n")}
+Questions:
+${p.faqs.map((f) => `Q: ${f.q}\nA: ${f.a}`).join("\n")}`;
+  };
+
+  const service = (k: ServicePageKey) => {
+    const p = t.servicePages[k];
+    const page = servicePages.find((s) => s.key === k)!;
+    const own: Record<ServicePageKey, string> = {
+      customisation: `${t.servicePages.customisation.storiesTitle.replace(/\*/g, "")}:
+${t.servicePages.customisation.stories
+  .map((x, i) => {
+    const h = site.customExamples[i] ?? 0;
+    return `- ${x.who}: ${x.task}. ${fill(t.servicePages.customisation.hours, { n: String(h) })}, RM ${rm(h * site.plans[0].hourly)} on the monthly plan or RM ${rm(h * site.customFrom)} on 48 months. ${x.result}`;
+  })
+  .join("\n")}
+${t.servicePages.customisation.buildTitle}: ${Object.values(t.servicePages.customisation.build).join(", ")}.`,
+      migration: `Formats: ${Object.entries(t.servicePages.migration.formats)
+        .map(([f, v]) => `${f.toUpperCase()} (${v.toLowerCase()})`)
+        .join(", ")}. ${t.servicePages.migration.formatsMore}
+${t.servicePages.migration.timeText}
+${t.servicePages.migration.stepsTitle}: ${t.servicePages.migration.steps.join(", then ")}.`,
+      email: t.servicePages.email.uses.map((u) => `- ${u.who} (${u.address}): ${u.text}`).join("\n"),
+      website: `${t.servicePages.website.galleryIntro} Examples: ${Object.values(t.servicePages.website.gallery).join(", ")}.`,
+    };
+    return `### ${p.name} (${site.url}${page.path})
+${p.meta.description}
+${list(p.points)}
+${own[k]}
 ${Object.values(p.spotlights)
   .map((s) => `- ${s.eyebrow}: ${s.points.join("; ")}`)
   .join("\n")}
@@ -61,6 +92,9 @@ ${systems.map((s) => product(s.key)).join("\n\n")}
 ## Custom systems (${site.url}/custom-systems/)
 ${plain(t.custom.intro)}
 ${customSystems.map((c) => `- ${t.custom.items[c.key].title}: ${t.custom.items[c.key].text}`).join("\n")}
+
+## Use cases: for any business (${site.url}/use-cases/)
+${servicePages.map((s) => service(s.key)).join("\n\n")}
 
 ## Technology (${site.url}/technology/)
 ${(Object.keys(techIcons) as (keyof typeof techIcons)[]).map((k) => `- ${t.tech.items[k].title}: ${t.tech.items[k].text}`).join("\n")}
@@ -128,7 +162,8 @@ ${(["ms", "zh"] as const)
     const d = getDict(l);
     return `### ${localeName[l]} (${site.url}${lp(l, "/")})
 ${d.home.meta.description}
-${systems.map((s) => `- ${d.systems[s.key].name} (${site.url}${lp(l, s.path)}): ${d.products[s.key].meta.description}`).join("\n")}`;
+${systems.map((s) => `- ${d.systems[s.key].name} (${site.url}${lp(l, s.path)}): ${d.products[s.key].meta.description}`).join("\n")}
+${servicePages.map((s) => `- ${d.servicePages[s.key].name} (${site.url}${lp(l, s.path)}): ${d.servicePages[s.key].meta.description}`).join("\n")}`;
   })
   .join("\n\n")}
 
@@ -136,5 +171,6 @@ ${systems.map((s) => `- ${d.systems[s.key].name} (${site.url}${lp(l, s.path)}): 
 - ${legal.nav.terms}: ${site.url}/terms/
 - ${legal.nav.privacy}: ${site.url}/privacy/ (${legal.privacy.meta.description})
 `;
-  return new Response(body, { headers: { "Content-Type": "text/plain; charset=utf-8" } });
+  // Word joiners only steer line breaks on the pages, so the text file leaves them out.
+  return new Response(body.replace(/\u2060/g, ""), { headers: { "Content-Type": "text/plain; charset=utf-8" } });
 }

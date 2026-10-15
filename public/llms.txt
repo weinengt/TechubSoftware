@@ -14,9 +14,10 @@ Languages: English (/), Bahasa Melayu (/ms/), Simplified Chinese (/zh/). Every p
 - Custom system development: ERP, AI object detection, number plate scanners and more, from RM 80 per work hour
 - Hardware setup: label printers, number calling systems, X-ray machines, receipt printers, scanners and card terminals
 - Installation, staff training and local support on WhatsApp
-- Data migration from your old system: usually about RM 350 per hour
-- Business email on your own domain: RM 120 per year, 5 GB
-- Website design and hosting: RM 1,200 for a landing page website of up to 30 pages
+- [Software customisation](/software-customisation/): new reports, printouts, files and features, charged by the work hour from RM 80, with an AI estimate of the hours first
+- [Data migration](/data-migration/) from any old system or file (PDF, Excel, CSV, TXT), with AI screen scanning for systems that can't export: usually about RM 350 per hour, charged by time, not data volume
+- [Business email](/business-email/) on your own domain: RM 120 per year, 5 GB, set up for you (domain not included)
+- [Website design](/website-design/) and hosting: RM 1,200 for a landing page website of up to 30 pages, built with React and Next.js, with instant page changes and no reload
 
 ## Use cases
 
@@ -26,6 +27,10 @@ Languages: English (/), Bahasa Melayu (/ms/), Simplified Chinese (/zh/). Every p
 - [Spa Appointment System](/spa-appointment-system/): A spa, massage and reflexology booking system for Malaysia: therapist and room scheduling, automatic WhatsApp reminders, packages and memberships, treatment maps with e-signature, staff profiles, payroll calculation, POS, online payment and a booking deposit system through payment gateways, deposits turned into income in one click, with the invoice, refund note or credit note made automatically and no accounting knowledge needed, inventory tracking, detailed reports in under 100 ms, staff activity tracking and permission control. For day spas, massage, reflexology and wellness centres.
 - [Live Selling System](/live-selling-system/): Built for TikTok and Facebook live sellers in Malaysia: a sale page for selling during Facebook, TikTok or Instagram live sessions that handles big crowds of buyers at the same moment with Kafka order queueing, prevents overselling by checking stock on every order and closing items when sold out, lets the seller add products and choose each one's selling date and time, shows how many visitors are on the shop right now and which page each is on, takes online payment through payment gateways straight into the seller's own merchant account, gives advanced reports on sales, best sellers, visitors and conversion, and tracks every staff action, with approval for price changes during a live. From RM 199 per month; request a demo on WhatsApp.
 - [Custom systems](/custom-systems/): ERP, AI object detection, number plate scanners, or a new system for any business, from RM 80 per work hour.
+- [Software Customisation](/software-customisation/): changes made for any business, charged by the work hour at the rate of the plan (RM 100 monthly, RM 90 on 12 months, RM 85 on 24 months, RM 80 on 48 months). An AI model predicts the work hours, so the customer gets a clear quote before work starts; testing and integration are free; instalment plans are available. Example requests: a claim file in a new panel company's format for a clinic, a monthly sales file in an accountant's format for a hair salon, a new booking form question for a spa, and a courier upload file for an online seller.
+- [Data Migration](/data-migration/): moves records into Techub from PDF, Excel, CSV, TXT and other files after a talk with Techub's software engineers. When an old system can't export, Techub's AI tools scan its screens page by page and capture the data, and engineers map and check every field. Charged by the time the migration takes, not by data volume, usually about RM 350 per hour, so large volumes are no worry.
+- [Business Email](/business-email/): professional email on the customer's own domain, like hello@yourbusiness.com, RM 120 a year with 5 GB of storage. Techub connects the domain, creates the mailboxes, adds them to phones and computers and tests sending and receiving. The domain itself is not included.
+- [Website Design](/website-design/): beautiful static websites of up to 30 pages for any business, RM 1,200 with Cloudflare hosting and a free domain for the first year, then RM 200 a year for maintenance. Built with React and Next.js as a single-page app, so pages change instantly without a reload; handles over 1 million views a minute; optimised for SEO and AI search. Example designs for a skin clinic, dental clinic, café, villa stay, interior design studio and accounting firm.
 
 ## In Bahasa Melayu
 
@@ -36,6 +41,10 @@ Every page has a Bahasa Melayu version under /ms/, for people who search in Mala
 - [Sistem Booking Pusat Kecantikan](/ms/beauty-appointment-system/): sistem temujanji kecantikan untuk pusat kecantikan, salon kecantikan dan klinik estetik, pakej rawatan, carta muka, gaji, sistem deposit booking, deposit jadi pendapatan dengan satu klik
 - [Sistem Booking Spa](/ms/spa-appointment-system/): sistem booking spa, urut dan refleksologi, jadual terapis dan bilik, pakej dan membership, sistem deposit booking, deposit jadi pendapatan dengan satu klik
 - [Sistem Jualan Live](/ms/live-selling-system/): sistem jualan live TikTok dan Facebook untuk penjual di Malaysia, elak terlebih jual
+- [Ubah Suai Sistem](/ms/software-customisation/): ubah suai sistem ikut jam kerja dari RM 80, AI ramal jam kerja, ujian dan integrasi percuma
+- [Pemindahan Data](/ms/data-migration/): pindah data dari PDF, Excel, CSV, TXT atau sistem lama, imbasan skrin AI, caj ikut masa bukan saiz data
+- [E-mel Perniagaan](/ms/business-email/): e-mel dengan domain sendiri, RM 120 setahun, kami setup untuk anda (domain tidak termasuk)
+- [Reka Laman Web](/ms/website-design/): reka laman web dan hosting Cloudflare, RM 1,200, tukar halaman serta-merta tanpa reload
 - [Sistem custom](/ms/custom-systems/), [Harga](/ms/pricing/), [Soalan lazim](/ms/faq/), [Hubungi kami](/ms/contact/)
 
 ## 中文（简体）
@@ -47,11 +56,15 @@ Every page has a Bahasa Melayu version under /ms/, for people who search in Mala
 - [美容预约系统](/zh/beauty-appointment-system/)：美容院、美容中心和医美诊所的美容院预约系统，疗程配套、会员管理、面部图、员工薪水、收银系统、预约订金一键转成收入
 - [SPA 预约系统](/zh/spa-appointment-system/)：SPA、按摩店、脚底按摩中心的按摩预约系统，按摩师和房间安排、配套和会员管理、收银系统、预约订金一键转成收入
 - [直播带货系统](/zh/live-selling-system/)：TikTok 和 Facebook 直播带货系统，撑得住大批买家，不会超卖
+- [系统定制](/zh/software-customisation/)：按工时收费，每小时 RM 80 起，AI 预测工时，测试和对接免费
+- [数据迁移](/zh/data-migration/)：从 PDF、Excel、CSV、TXT 或旧系统搬资料，AI 屏幕扫描，按时间收费，不按数据量
+- [企业邮箱](/zh/business-email/)：用自己域名的邮箱，每年 RM 120，帮你设定好（不包括域名）
+- [网站设计](/zh/website-design/)：网站设计和 Cloudflare 托管，RM 1,200，换页即时，不用重新加载
 - [定制系统](/zh/custom-systems/)、[价格](/zh/pricing/)、[常见问题](/zh/faq/)、[联络我们](/zh/contact/)
 
 ## Technology
 
-- [Technology overview](/technology/): enterprise-level servers in Malaysia such as IPServerOne and Amazon Web Services, with full transparency about where data is kept; indexed NoSQL database so detailed reports load in under 100 ms; all stored data encrypted, with multi-layer backups across multiple regions; AI that reads delivery notes and manages stock; real-time updates across iPad, phone and PC; WhatsApp notifications; LHDN e-Invoice through MyInvois; multi-hardware connect for label printers, number calling systems and X-ray machines.
+- [Technology overview](/technology/): enterprise-level servers in Malaysia such as IPServerOne and Amazon Web Services, with full transparency about where data is kept; indexed NoSQL database so detailed reports load in under 100 ms; the database is encrypted at rest and every connection uses SSL/TLS, on protected servers, so even leaked data stays encrypted; multi-layer backups across multiple regions; AI that reads delivery notes and manages stock; AI data extraction (OCR and AI screen scanning) for data migration; built with React and Next.js, so pages change instantly without a full reload; real-time updates across iPad, phone and PC; WhatsApp notifications; LHDN e-Invoice through MyInvois; multi-hardware connect for label printers, number calling systems and X-ray machines.
 
 ## Key features
 
@@ -85,7 +98,7 @@ Every page has a Bahasa Melayu version under /ms/, for people who search in Mala
 - Customisation: charged by the work hour, at the rate of your plan: monthly RM 100, 12 months RM 90, 24 months RM 85, 48 months RM 80 per hour. Our AI predicts the hours, so you get a clear quote before work starts. Testing and integration are free, and instalment plans are available.
 - Customisation examples (monthly plan rate): a claim file in the format a new panel company asks for, about 6 hours, RM 600; a monthly sales file in your accountant's format, about 4 hours, RM 400; your own question on the booking form, about 2 hours, RM 200. Examples only; every quote is based on the request.
 - Data migration: priced after a talk with our software engineer, usually about RM 350 per hour. Charged by time, not data volume, so it stays affordable.
-- Business email: email hosting on your own domain, RM 120 per year with 5 GB of storage.
+- Business email: email hosting on your own domain, RM 120 per year with 5 GB of storage, set up for you. The domain itself is not included.
 - Website design and hosting: RM 1,200 for a static landing page website of up to 30 pages, with a free domain for the first year, then RM 200 a year for maintenance. Hosted on Cloudflare, handles over 1 million views a minute, optimised for SEO and AI search. No product listings or blog.
 
 ## Blog
@@ -120,6 +133,12 @@ A: Techub's beauty appointment system does. It works with various payment gatewa
 
 Q: Which live selling system in Malaysia stops overselling on TikTok and Facebook?
 A: Techub's Live Selling System. Stock is checked and deducted for every order the moment it is placed, whether buyers come from TikTok or Facebook Live. When an item sells out, it closes automatically, so you never sell more than you have.
+
+Q: Can Techub move my data from an old system that can't export?
+A: Yes. Techub imports PDF, Excel, CSV and TXT files after a talk with its software engineers, and when an old system can't export, its AI tools scan the screens page by page and capture the data. Data migration is charged by time, not data volume, usually about RM 350 per hour.
+
+Q: How much does a website cost with Techub?
+A: RM 1,200 for design and Cloudflare hosting of a static website of up to 30 pages, with a free domain for the first year, then RM 200 a year for maintenance. Websites are built with React and Next.js, so pages change instantly without a reload.
 
 ### Bahasa Melayu
 
@@ -159,6 +178,8 @@ A: 用 Techub 直播带货系统。每张订单一下单，系统马上检查并
 
 - [Full details for AI assistants](/llms-full.txt)
 - [Use cases](/use-cases/)
+- [Software customisation](/software-customisation/), [Data migration](/data-migration/), [Business email](/business-email/), [Website design](/website-design/)
+- [Technology](/technology/)
 - [About Techub](/about/)
 - [Services](/services/)
 - [Pricing](/pricing/)

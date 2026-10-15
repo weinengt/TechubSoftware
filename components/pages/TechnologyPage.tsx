@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { getDict, getShots } from "@/content";
 import { InfraDiagram, TechHub, UptimeRing, techIcons } from "@/components/Company";
 import Device from "@/components/Device";
@@ -33,6 +33,81 @@ function HardwareVisual({ tv, paper }: { tv: Shot; paper: Shot }) {
   );
 }
 
+/** How data is protected: a record on your device goes over SSL/TLS to protected servers, where the database stores
+ *  it encrypted, so even a leaked copy can't be read. Each part comes in after the one above it. */
+function EncryptionVisual({ lang }: { lang: Locale }) {
+  const t = getDict(lang).techPage.encryption;
+  const cipher = ["a3f9 4c1e 77b2 0d58", "e81c 9b04 5fa7 23d6"];
+  const link = (label: string, d: number) => (
+    <div className="rv-part flex flex-col items-center" style={{ "--d": `${d}ms` } as CSSProperties} aria-hidden="true">
+      <span className="h-4 border-l-2 border-dashed border-teal-brand/60 sm:h-5" />
+      <span className="inline-flex items-center gap-1.5 rounded-full bg-teal-brand/15 px-3 py-1 text-[11px] font-bold text-teal-brand ring-1 ring-teal-brand/30 sm:text-xs">
+        <Icon.Lock className="h-3.5 w-3.5" /> {label}
+      </span>
+      <span className="h-4 border-l-2 border-dashed border-teal-brand/60 sm:h-5" />
+    </div>
+  );
+  const code = (rows: string[], tone: string) => (
+    <span className={`block font-mono text-[12px] leading-relaxed tracking-wide sm:text-[13px] ${tone}`}>
+      {rows.map((r) => (
+        <span key={r} className="block truncate">{r}</span>
+      ))}
+    </span>
+  );
+  return (
+    <div className="relative overflow-hidden rounded-[2rem] bg-brand-950 p-5 text-white ring-1 ring-white/10 sm:p-8" role="img" aria-label={`${t.record}: ${t.tls}, ${t.server}, ${t.stored}. ${t.leaked}: ${t.unreadable}.`}>
+      <div className="bg-grid absolute inset-0 opacity-30" aria-hidden="true" />
+      <div className="glow-mid absolute inset-0" aria-hidden="true" />
+      <div className="relative mx-auto max-w-md" aria-hidden="true">
+        <div className="rv-part flex items-center gap-3 rounded-2xl bg-white/10 p-3.5 ring-1 ring-white/15 [--d:200ms] sm:p-4">
+          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white text-brand-600">
+            <Icon.Devices className="h-6 w-6" />
+          </span>
+          <span className="min-w-0 flex-1">
+            <span className="block text-sm font-bold">{t.device}</span>
+            <span className="mt-1.5 block rounded-lg bg-white px-3 py-2 text-slate-900">
+              <span className="block text-[11px] font-semibold text-slate-500">{t.record}</span>
+              <span className="block truncate text-sm font-bold">{t.sample[0]}</span>
+              <span className="block truncate text-xs text-slate-600">{t.sample[1]}</span>
+            </span>
+          </span>
+        </div>
+
+        {link(t.tls, 380)}
+
+        <div className="rv-part rounded-2xl bg-white/5 p-3.5 ring-1 ring-teal-brand/40 [--d:540ms] sm:p-4">
+          <p className="flex items-center gap-2 text-sm font-bold text-teal-brand">
+            <Icon.Shield className="h-4 w-4 shrink-0" /> {t.server}
+          </p>
+          <div className="mt-3 flex items-center gap-3 rounded-xl bg-white/10 p-3 ring-1 ring-white/15">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-gradient">
+              <Icon.Database className="h-5 w-5" />
+            </span>
+            <span className="min-w-0 flex-1">
+              <span className="block text-sm font-bold">{t.stored}</span>
+              {code(cipher, "text-teal-brand/90")}
+            </span>
+          </div>
+        </div>
+
+        <div className="rv-part flex flex-col items-center [--d:720ms]">
+          <span className="h-6 border-l-2 border-dashed border-white/25 sm:h-7" />
+        </div>
+
+        <div className="rv-part flex items-center gap-3 rounded-2xl border border-dashed border-white/30 p-3.5 [--d:880ms] sm:p-4">
+          <span className="min-w-0 flex-1">
+            <span className="block text-sm font-bold text-slate-300">{t.leaked}</span>
+            {code(cipher, "text-slate-400")}
+          </span>
+          <span className="rv-pop inline-flex shrink-0 items-center gap-1.5 rounded-full bg-emerald-500 px-3 py-1.5 text-xs font-bold text-white shadow-lg [--d:1100ms]">
+            <Icon.Lock className="h-3.5 w-3.5" /> {t.unreadable}
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function TechnologyPage({ lang }: { lang: Locale }) {
   const d = getDict(lang);
   const t = d.techPage;
@@ -43,12 +118,22 @@ export default function TechnologyPage({ lang }: { lang: Locale }) {
   // The order of the rows on the page, each with its picture.
   const rows: { id: keyof typeof s; visual: ReactNode; cta?: { label: string; message: string } }[] = [
     { id: "servers", visual: <InfraDiagram lang={lang} /> },
+    { id: "encryption", visual: <EncryptionVisual lang={lang} /> },
     { id: "speed", visual: <Combo main={shots.reportsClinic} badge={<FloatBadge icon="Bolt">{s.speed.badge}</FloatBadge>} /> },
+    {
+      id: "framework",
+      visual: <Combo main={shots.siteTreatments} phone={shots.sitePhone} badge={<FloatBadge icon="Bolt">{s.framework.badge}</FloatBadge>} />,
+    },
     { id: "realtime", visual: <DeviceFamily main={shots.permissionsDesktop} tablet={shots.beautyCalendar} phone={shots.whatsappBeauty} /> },
     {
       id: "ai",
       visual: <Combo main={shots.clinicStock} phone={shots.scanClinic} />,
       cta: { label: s.ai.cta, message: s.ai.ctaMessage },
+    },
+    {
+      id: "extraction",
+      visual: <Combo main={shots.migrationScan} badge={<FloatBadge icon="Scan">{s.extraction.badge}</FloatBadge>} />,
+      cta: { label: s.extraction.cta, message: s.extraction.ctaMessage },
     },
     {
       id: "whatsapp",
@@ -66,7 +151,9 @@ export default function TechnologyPage({ lang }: { lang: Locale }) {
     { id: "einvoice", visual: <Combo main={shots.eInvoice} /> },
     { id: "security", visual: <Combo main={shots.clinicPermissions} /> },
   ];
-  const screenshots: ShotKey[] = ["reportsClinic", "permissionsDesktop", "clinicStock", "whatsappClinic", "queueTv", "eInvoice", "clinicPermissions"];
+  const screenshots: ShotKey[] = [
+    "reportsClinic", "siteTreatments", "permissionsDesktop", "clinicStock", "migrationScan", "whatsappClinic", "queueTv", "eInvoice", "clinicPermissions",
+  ];
 
   return (
     <>

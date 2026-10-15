@@ -8,6 +8,9 @@ export type Shot = {
   w: number;
   h: number;
   kind: "browser" | "phone" | "tablet" | "tv" | "paper";
+  /** The address shown in the browser bar above a website (browser pictures only; Techub's own screens show
+   *  "Techub Cloud"). */
+  url?: string;
   /** Set from the page's language: see getShots() in content/index.ts. */
   title: string;
   alt: string;
@@ -16,6 +19,8 @@ export type Shot = {
 const ipad = { w: 1536, h: 1080, kind: "tablet" } as const;
 const phone = { w: 720, h: 1520, kind: "phone" } as const;
 const desktop = { w: 1800, h: 1125, kind: "browser" } as const;
+/** Example websites Techub designed: the same size picture as `desktop`, with their own address in the browser bar. */
+const site = (url: string) => ({ ...desktop, url });
 
 export const shotFiles = {
   /* Clinic */
@@ -102,6 +107,40 @@ export const shotFiles = {
   depositsSpa: { ...ipad, file: "spa-booking-deposits-ipad" },
   depositInvoiceSpa: { ...ipad, file: "spa-deposit-to-income-invoice-ipad" },
   depositNotesSpa: { ...ipad, file: "spa-deposit-refund-credit-note-ipad" },
+
+  /* Software customisation: customer A's request, the AI estimate and quote, free testing, then customers A to D's changes */
+  customRequest: { ...phone, file: "customisation-request-whatsapp" },
+  customEstimate: { ...ipad, file: "customisation-ai-estimate-quote-ipad" },
+  customTesting: { ...ipad, file: "customisation-testing-integration-ipad" },
+  customClaims: { ...ipad, file: "customisation-clinic-panel-claim-export-ipad" },
+  customSalesExport: { ...ipad, file: "customisation-salon-accountant-sales-export-ipad" },
+  customFoundUs: { ...ipad, file: "customisation-spa-booking-question-ipad" },
+  customCourier: { ...ipad, file: "customisation-online-seller-courier-file-ipad" },
+
+  /* Data migration: files in any format, the AI reading an old system's screens, the checks, done */
+  migrationImport: { ...desktop, file: "data-migration-import-any-format-desktop" },
+  migrationScan: { ...desktop, file: "data-migration-ai-screen-scan-desktop" },
+  migrationCheck: { ...desktop, file: "data-migration-check-desktop" },
+  migrationDone: { ...desktop, file: "data-migration-complete-desktop" },
+  migrationChat: { ...phone, file: "data-migration-whatsapp" },
+
+  /* Business email on the customer's own domain */
+  emailInbox: { ...ipad, file: "business-email-inbox-ipad" },
+  emailSetup: { ...ipad, file: "business-email-setup-ipad" },
+  emailPhone: { ...phone, file: "business-email-phone" },
+
+  /* Website design: the example site in the main picture (three pages and its phone view), then more designs */
+  siteHome: { ...site("velisseskin.com.my"), file: "website-design-skin-clinic-home" },
+  siteTreatments: { ...site("velisseskin.com.my/treatments"), file: "website-design-skin-clinic-treatments" },
+  siteContact: { ...site("velisseskin.com.my/contact"), file: "website-design-skin-clinic-contact" },
+  sitePhone: { ...phone, file: "website-design-skin-clinic-phone" },
+  siteDental: { ...site("seridental.com.my"), file: "website-design-dental-clinic" },
+  siteCafe: { ...site("kopiandcrumb.com.my"), file: "website-design-cafe" },
+  siteCafePhone: { ...phone, file: "website-design-cafe-phone" },
+  siteHomestay: { ...site("teduhvilla.com.my"), file: "website-design-homestay" },
+  siteHomestayPhone: { ...phone, file: "website-design-homestay-phone" },
+  siteInterior: { ...site("atelierruang.com.my"), file: "website-design-interior-design" },
+  siteAccounting: { ...site("tanrahman.com.my"), file: "website-design-accounting-firm" },
 
   /* LHDN e-Invoice and custom systems */
   eInvoice: { w: 1500, h: 1050, kind: "paper", file: "lhdn-e-invoice" },

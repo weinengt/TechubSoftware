@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="fonts.css">
+<style>
+  /* Own reset (base.css is not linked: its app-screen classes such as .nav and .btn would clash with this site) */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { -webkit-font-smoothing: antialiased; }
+  body { width: 100vw; height: 100vh; overflow: hidden; }
+  /* Velisse Skin Studio: the example website in the main picture of the Website Design page.
+     ?p=home (default), ?p=treatments and ?p=contact are 1440x900 desktop pages; ?p=phone is the home page at 360x760. */
+  :root {
+    --w: 1440px; --h: 900px;
+    --ivory: #FBF7F2; --ivory2: #F5ECE3; --paper: #FFFDFA;
+    --blush: #F3E3D9; --blush2: #EAD0C2; --sand: #E8DCCD;
+    --clay: #A96850; --clay2: #8C503B;
+    --esp: #2A1F1A; --esp2: #3B2D26; --ink2: #5B4C44; --muted: #8B7B71;
+    --line: rgba(42, 31, 26, .1); --line2: rgba(42, 31, 26, .18);
+    --gold: #C49F6A; --wa: #25D366; --wa2: #1DA851;
+    --serif: "Cormorant Garamond", Georgia, serif;
+    --sans: Manrope, Inter, system-ui, sans-serif;
+  }
+  html, body { background: var(--ivory); color: var(--esp); font-family: var(--sans); }
+  a { color: inherit; text-decoration: none; }
+  svg { display: block; }
+  .page { position: absolute; inset: 0; overflow: hidden; background: var(--ivory); }
+  .i { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+  .eyebrow { display: flex; align-items: center; gap: 14px; font-size: 11.5px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: var(--clay); white-space: nowrap; }
+  .eyebrow::before { content: ""; width: 34px; height: 1px; background: currentColor; opacity: .75; }
+  h1 { font-family: var(--serif); font-weight: 500; letter-spacing: -.018em; }
+  h1 em { font-style: italic; color: var(--clay); }
+  .glass { background: rgba(255, 251, 247, .62); -webkit-backdrop-filter: blur(16px) saturate(1.15); backdrop-filter: blur(16px) saturate(1.15);
+    border: 1px solid rgba(255, 255, 255, .78); box-shadow: 0 24px 48px -26px rgba(74, 42, 28, .45), inset 0 1px 0 rgba(255, 255, 255, .6); }
+
+  /* Navigation: the same on every desktop page */
+  .nav { position: absolute; z-index: 10; left: 0; right: 0; top: 0; height: 92px; display: flex; align-items: center; padding: 0 80px; }
+  .logo { display: flex; align-items: center; gap: 12px; }
+  .logo .mk { width: 30px; height: 38px; }
+  .logo b { display: block; font-family: var(--serif); font-weight: 600; font-size: 31px; line-height: .78; letter-spacing: .005em; }
+  .logo small { display: block; font-size: 8.5px; font-weight: 700; letter-spacing: .42em; color: var(--muted); margin-top: 8px; text-transform: uppercase; }
+  .links { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: flex; gap: 26px; }
+  .links a { position: relative; font-size: 14.5px; font-weight: 500; color: var(--ink2); padding: 10px 7px; }
+  .links a.on { color: var(--esp); font-weight: 700; }
+  .links a.on::after { content: ""; position: absolute; left: 50%; bottom: 0; width: 5px; height: 5px; margin-left: -2.5px; border-radius: 50%; background: var(--clay); }
+  .nav .rt { margin-left: auto; display: flex; align-items: center; gap: 26px; }
+  .tel { display: flex; align-items: center; gap: 9px; font-size: 13.5px; font-weight: 600; white-space: nowrap; }
+  .tel .i { width: 16px; height: 16px; color: var(--clay); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 48px; padding: 0 24px; border-radius: 99px; font-size: 14px; font-weight: 700; white-space: nowrap; }
+  .btn.pri { background: var(--esp); color: #FBF2EA; box-shadow: 0 16px 30px -16px rgba(42, 31, 26, .75); }
+  .btn.ghost { border: 1px solid var(--line2); color: var(--esp); background: rgba(255, 255, 255, .4); }
+  .btn .i { width: 16px; height: 16px; }
+  .btn .ar { width: 34px; height: 34px; border-radius: 50%; background: rgba(251, 242, 234, .14); display: grid; place-items: center; }
+
+  /* Home */
+  .h-copy { position: absolute; left: 80px; top: 168px; width: max-content; }
+  .h-copy h1 { font-size: 100px; line-height: .94; margin-top: 26px; }
+  .h-copy p { font-size: 17px; line-height: 1.68; color: var(--ink2); margin-top: 30px; max-width: 470px; }
+  .acts { display: flex; gap: 14px; margin-top: 38px; }
+  .acts .btn { height: 58px; font-size: 15px; }
+  .acts .btn.pri { padding: 0 12px 0 28px; gap: 16px; }
+  .acts .btn.ghost { padding: 0 30px; }
+  .trust { position: absolute; left: 80px; top: 752px; display: flex; align-items: center; gap: 26px; }
+  .trust .vr { width: 1px; height: 38px; background: var(--line2); }
+  .stars { display: flex; gap: 2px; color: var(--gold); }
+  .stars svg { width: 14px; height: 14px; }
+  .trust .t1 span, .trust .t2 span { display: block; font-size: 13px; color: var(--ink2); margin-top: 5px; white-space: nowrap; }
+  .trust b { font-weight: 700; color: var(--esp); }
+  .trust .t2 { display: flex; align-items: center; gap: 12px; }
+  .trust .t2 .ic { width: 40px; height: 40px; border-radius: 50%; background: var(--blush); color: var(--clay2); display: grid; place-items: center; }
+  .trust .t2 b { display: block; font-size: 14px; }
+  .trust .t2 span { margin-top: 2px; }
+  .arch { position: absolute; left: 816px; top: 120px; width: 500px; height: 780px; border-radius: 250px 250px 0 0; overflow: hidden; box-shadow: 0 40px 80px -50px rgba(74, 42, 28, .5); }
+  .arch > svg { width: 100%; height: 100%; }
+  .arch-line { position: absolute; left: 846px; top: 94px; width: 500px; height: 780px; border: 1px solid rgba(169, 104, 80, .32); border-bottom: 0; border-radius: 250px 250px 0 0; }
+  .badge { position: absolute; left: 754px; top: 300px; width: 124px; height: 124px; z-index: 3; filter: drop-shadow(0 14px 22px rgba(74, 42, 28, .18)); }
+  .chip-next { position: absolute; left: 1148px; top: 288px; display: flex; align-items: center; gap: 12px; padding: 12px 20px 12px 14px; border-radius: 18px; z-index: 3; }
+  .chip-next .ic { width: 38px; height: 38px; border-radius: 12px; background: #fff; color: var(--clay); display: grid; place-items: center; }
+  .chip-next small { display: flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 600; color: var(--ink2); }
+  .chip-next small i { width: 7px; height: 7px; border-radius: 50%; background: #2DB86A; box-shadow: 0 0 0 3px rgba(45, 184, 106, .18); }
+  .chip-next b { display: block; font-size: 14px; font-weight: 700; margin-top: 3px; white-space: nowrap; }
+  .gcard { position: absolute; left: 730px; top: 690px; width: 340px; display: flex; align-items: center; gap: 14px; padding: 12px 14px 12px 12px; border-radius: 22px; z-index: 3; }
+  .gcard .th { width: 58px; height: 58px; border-radius: 50%; overflow: hidden; flex-shrink: 0; }
+  .gcard .th svg { width: 100%; height: 100%; }
+  .gcard small { display: block; font-size: 10.5px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--clay); }
+  .gcard b { display: block; font-family: var(--serif); font-size: 23px; font-weight: 600; line-height: 1.1; margin-top: 3px; white-space: nowrap; }
+  .gcard span { display: block; font-size: 12.5px; color: var(--ink2); margin-top: 2px; }
+  .gcard .go { margin-left: auto; width: 38px; height: 38px; border-radius: 50%; background: var(--esp); color: #fff; display: grid; place-items: center; flex-shrink: 0; }
+  .gcard .go .i { width: 15px; height: 15px; }
+  .band { position: absolute; left: 24px; right: 24px; top: 832px; height: 120px; border-radius: 30px 30px 0 0; background: var(--esp); overflow: hidden; z-index: 4; }
+  .mq { position: absolute; left: -46px; top: 18px; display: flex; align-items: center; gap: 30px; white-space: nowrap; }
+  .mq span { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 31px; color: #F4E6DA; letter-spacing: .005em; }
+  .mq svg { width: 13px; height: 13px; color: var(--gold); }
+
+  /* Treatments */
+  .t-head { position: absolute; left: 80px; right: 80px; top: 126px; display: flex; align-items: flex-end; justify-content: space-between; }
+  .crumbs { display: flex; align-items: center; gap: 10px; font-size: 12.5px; font-weight: 600; color: var(--muted); }
+  .crumbs b { color: var(--clay); font-weight: 700; }
+  .t-head h1 { font-size: 82px; line-height: 1; margin-top: 16px; }
+  .t-head p { width: 420px; font-size: 15px; line-height: 1.7; color: var(--ink2); padding-bottom: 8px; }
+  .t-bar { position: absolute; left: 80px; right: 80px; top: 280px; display: flex; align-items: center; padding-bottom: 0; }
+  .chips { display: flex; gap: 10px; }
+  .chips span { height: 42px; padding: 0 20px; border-radius: 99px; border: 1px solid var(--line2); display: inline-flex; align-items: center; gap: 9px; font-size: 14px; font-weight: 600; color: var(--ink2); background: rgba(255, 255, 255, .45); }
+  .chips span em { font-style: normal; font-size: 11.5px; font-weight: 700; color: var(--muted); }
+  .chips span.on { background: var(--esp); border-color: var(--esp); color: #FBF2EA; }
+  .chips span.on em { color: rgba(251, 242, 234, .55); }
+  .sort { margin-left: auto; display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: var(--muted); font-weight: 500; }
+  .sort b { color: var(--esp); font-weight: 700; }
+  .sort .i { width: 15px; height: 15px; color: var(--esp); }
+  .grid { position: absolute; left: 80px; right: 80px; top: 350px; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: 250px 250px; gap: 22px 24px; }
+  .tc { display: flex; gap: 18px; padding: 13px; background: var(--paper); border: 1px solid var(--line); border-radius: 26px; box-shadow: 0 1px 2px rgba(42, 31, 26, .04), 0 22px 40px -32px rgba(74, 42, 28, .45); min-width: 0; }
+  .tc .art { width: 142px; flex-shrink: 0; border-radius: 71px 71px 15px 15px; overflow: hidden; }
+  .tc .art svg { width: 100%; height: 100%; }
+  .tc .tb { flex: 1; min-width: 0; display: flex; flex-direction: column; padding: 12px 6px 4px 0; }
+  .tc .tt { display: flex; align-items: center; gap: 8px; }
+  .tc .cat { font-size: 10.5px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--clay); }
+  .tc .tag { margin-left: auto; font-size: 10.5px; font-weight: 700; color: var(--clay2); background: var(--blush); border-radius: 99px; padding: 4px 9px; white-space: nowrap; }
+  .tc h3 { font-family: var(--serif); font-weight: 600; font-size: 26px; line-height: 1.04; letter-spacing: -.01em; margin-top: 10px; white-space: nowrap; }
+  .tc p { font-size: 13.2px; line-height: 1.58; color: var(--ink2); margin-top: 9px; }
+  .tc .tm { margin-top: auto; display: flex; align-items: center; gap: 10px; padding-top: 12px; border-top: 1px solid var(--line); }
+  .tc .dur { display: flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; color: var(--muted); }
+  .tc .dur .i { width: 14px; height: 14px; }
+  .tc .pr { font-family: var(--serif); font-size: 23px; font-weight: 600; color: var(--esp); margin-left: auto; font-variant-numeric: lining-nums; }
+  .tc .pr small { font-family: var(--sans); font-size: 11px; font-weight: 700; color: var(--muted); margin-right: 3px; letter-spacing: .04em; }
+  .tc .go { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line2); display: grid; place-items: center; color: var(--esp); }
+  .tc .go .i { width: 14px; height: 14px; }
+
+  /* Contact */
+  .c-copy { position: absolute; left: 80px; top: 136px; width: 660px; }
+  .c-copy h1 { font-size: 78px; line-height: .98; margin-top: 24px; }
+  .c-copy p { font-size: 16px; line-height: 1.7; color: var(--ink2); margin-top: 24px; max-width: 520px; }
+  .c-acts { display: flex; align-items: center; gap: 26px; margin-top: 30px; }
+  .wa { height: 62px; padding: 0 28px 0 10px; border-radius: 99px; background: linear-gradient(135deg, #2BC26A, #1A9E4C); color: #fff; display: inline-flex; align-items: center; gap: 13px; box-shadow: 0 18px 32px -16px rgba(26, 158, 76, .85); }
+  .wa .wi { width: 44px; height: 44px; border-radius: 50%; background: #fff; color: #1FAF57; display: grid; place-items: center; }
+  .wa .wi svg { width: 25px; height: 25px; }
+  .wa b { display: block; font-size: 16px; font-weight: 800; letter-spacing: .005em; }
+  .wa small { display: block; font-size: 12.5px; font-weight: 600; opacity: .9; margin-top: 1px; }
+  .call { display: flex; align-items: center; gap: 12px; }
+  .call .ic { width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--line2); display: grid; place-items: center; color: var(--esp); }
+  .call small { display: block; font-size: 12px; color: var(--muted); font-weight: 600; }
+  .call b { display: block; font-size: 15px; font-weight: 700; margin-top: 1px; }
+  .mapband { position: absolute; left: 24px; right: 24px; top: 540px; height: 400px; border-radius: 32px 32px 0 0; overflow: hidden; }
+  .mapband > svg { width: 100%; height: 100%; }
+  .pin { position: absolute; width: 46px; height: 58px; transform: translate(-50%, -100%); }
+  .pin .pulse { position: absolute; left: 50%; bottom: -14px; width: 120px; height: 40px; margin-left: -60px; border-radius: 50%; background: radial-gradient(closest-side, rgba(169, 104, 80, .32), rgba(169, 104, 80, .12) 60%, rgba(169, 104, 80, 0)); }
+  .pin svg { position: relative; width: 46px; height: 58px; filter: drop-shadow(0 10px 12px rgba(42, 31, 26, .35)); }
+  .plabel { position: absolute; transform: translate(-50%, 0); display: flex; align-items: center; gap: 14px; padding: 9px 9px 9px 16px; border-radius: 16px; white-space: nowrap; }
+  .plabel b { display: block; font-family: var(--serif); font-size: 20px; font-weight: 600; line-height: 1.1; }
+  .plabel small { display: block; font-size: 11.5px; font-weight: 600; color: var(--ink2); margin-top: 2px; }
+  .plabel .go { width: 34px; height: 34px; border-radius: 50%; background: var(--esp); color: #fff; display: grid; place-items: center; }
+  .plabel .go .i { width: 14px; height: 14px; }
+  .plabel::after { content: ""; position: absolute; left: 50%; bottom: -6px; width: 12px; height: 12px; margin-left: -6px; transform: rotate(45deg); background: rgba(255, 251, 247, .8); border-right: 1px solid rgba(255, 255, 255, .78); border-bottom: 1px solid rgba(255, 255, 255, .78); }
+  .info { position: absolute; left: 40px; top: 108px; width: 320px; padding: 20px 22px; border-radius: 22px; }
+  .info h4 { font-size: 10.5px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--clay); display: flex; align-items: center; gap: 8px; }
+  .info h4 .open { margin-left: auto; letter-spacing: 0; text-transform: none; font-size: 11.5px; font-weight: 700; color: #1C8A47; display: flex; align-items: center; gap: 6px; }
+  .info h4 .open i { width: 7px; height: 7px; border-radius: 50%; background: #2DB86A; box-shadow: 0 0 0 3px rgba(45, 184, 106, .18); }
+  .info .ad { font-size: 14px; line-height: 1.55; color: var(--esp); font-weight: 600; margin-top: 8px; }
+  .info hr { border: 0; border-top: 1px solid var(--line); margin: 14px 0; }
+  .hrs { margin-top: 8px; display: grid; grid-template-columns: auto 1fr; gap: 6px 18px; font-size: 13px; }
+  .hrs span { color: var(--ink2); } .hrs b { text-align: right; font-weight: 700; }
+  .fcard { position: absolute; left: 792px; top: 120px; width: 568px; z-index: 3; background: var(--paper); border-radius: 30px; padding: 32px 36px 30px;
+    box-shadow: 0 0 0 1px rgba(42, 31, 26, .06), 0 50px 90px -40px rgba(74, 42, 28, .5), 0 12px 24px -16px rgba(74, 42, 28, .2); }
+  .fcard h2 { font-family: var(--serif); font-weight: 600; font-size: 36px; line-height: 1; letter-spacing: -.01em; }
+  .fcard .sub { font-size: 13.5px; color: var(--ink2); margin-top: 8px; line-height: 1.55; }
+  .fl { display: block; font-size: 10.5px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 22px; }
+  .fld { margin-top: 16px; }
+  .frow .fld { margin-top: 0; }
+  .inp { height: 50px; border-radius: 14px; border: 1px solid var(--line2); background: #fff; display: flex; align-items: center; gap: 10px; padding: 0 16px; font-size: 14.5px; font-weight: 600; color: var(--esp); white-space: nowrap; }
+  .inp .i { width: 16px; height: 16px; color: var(--muted); }
+  .inp .ch { margin-left: auto; color: var(--esp); }
+  .inp.focus { border-color: var(--clay); box-shadow: 0 0 0 4px rgba(169, 104, 80, .12); }
+  .inp .cur { width: 1.5px; height: 18px; background: var(--clay); margin-left: -8px; }
+  .inp em { font-style: normal; color: var(--muted); font-weight: 500; }
+  .inp.ta { height: 70px; align-items: flex-start; padding-top: 13px; white-space: normal; font-weight: 500; line-height: 1.5; color: var(--ink2); }
+  .fl em { font-style: normal; font-weight: 600; letter-spacing: .04em; text-transform: none; color: #B3A59B; margin-left: 6px; }
+  .fhd { display: flex; align-items: baseline; }
+  .fhd .mo { margin-left: auto; display: flex; align-items: center; gap: 10px; font-size: 12.5px; font-weight: 700; color: var(--esp); }
+  .fhd .mo .i { width: 14px; height: 14px; color: var(--muted); }
+  .dates { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+  .date { height: 66px; border-radius: 16px; border: 1px solid var(--line2); background: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .date small { font-size: 10.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  .date b { font-family: var(--serif); font-size: 27px; font-weight: 600; line-height: 1; margin-top: 3px; font-variant-numeric: lining-nums; }
+  .date.on { background: var(--esp); border-color: var(--esp); color: #FBF2EA; box-shadow: 0 12px 22px -14px rgba(42, 31, 26, .8); }
+  .date.on small { color: rgba(251, 242, 234, .65); }
+  .times { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+  .time { height: 44px; border-radius: 12px; border: 1px solid var(--line2); background: #fff; display: grid; place-items: center; font-size: 13px; font-weight: 700; white-space: nowrap; }
+  .time.off { color: #BBADA3; text-decoration: line-through; background: #F8F3EE; border-color: transparent; }
+  .time.on { background: var(--blush); border-color: var(--clay); color: var(--clay2); }
+  .fcard .btn.pri { width: 100%; height: 56px; margin-top: 22px; font-size: 15px; gap: 12px; }
+  .fnote { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 12.5px; color: var(--muted); font-weight: 600; margin-top: 14px; }
+  .fnote .i { width: 14px; height: 14px; color: var(--clay); }
+
+  /* Phone */
+  .m { background: var(--ivory); }
+  .status { height: 30px; display: flex; align-items: center; padding: 0 20px 0 24px; font-family: Inter, sans-serif; font-size: 13px; font-weight: 650; color: var(--esp); }
+  .status .r { margin-left: auto; display: flex; gap: 5px; align-items: center; }
+  .sig { display: flex; gap: 1.5px; align-items: flex-end; height: 10px; } .sig i { width: 3px; background: currentColor; border-radius: 1px; display: block; }
+  .bat { width: 22px; height: 11px; border: 1.5px solid currentColor; border-radius: 3px; padding: 1px; opacity: .9; } .bat i { display: block; height: 100%; width: 75%; background: currentColor; border-radius: 1px; }
+  .m-nav { height: 58px; display: flex; align-items: center; padding: 0 16px 0 18px; }
+  .m-nav .logo { gap: 10px; }
+  .m-nav .logo .mk { width: 24px; height: 30px; }
+  .m-nav .logo b { font-size: 26px; }
+  .m-nav .logo small { font-size: 7px; letter-spacing: .38em; margin-top: 6px; }
+  .m-menu { margin-left: auto; width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line2); display: grid; place-items: center; }
+  .m-menu .i { width: 18px; height: 18px; }
+  .m-hero { margin: 4px 16px 0; }
+  .m-art { position: relative; height: 222px; border-radius: 164px 164px 22px 22px / 120px 120px 22px 22px; overflow: hidden; }
+  .m-art > svg { width: 100%; height: 100%; }
+  .m-art .chip-next { left: 10px; top: auto; bottom: 10px; padding: 7px 13px 7px 8px; border-radius: 14px; gap: 9px; }
+  .m-art .chip-next .ic { width: 28px; height: 28px; border-radius: 9px; }
+  .m-art .chip-next .ic .i { width: 15px; height: 15px; }
+  .m-art .chip-next small { font-size: 10px; }
+  .m-art .chip-next b { font-size: 12px; margin-top: 1px; }
+  .m-hero .eyebrow { margin-top: 22px; font-size: 9.5px; gap: 10px; letter-spacing: .22em; }
+  .m-hero .eyebrow::before { width: 22px; }
+  .m-hero h1 { font-size: 46px; line-height: .96; margin-top: 12px; }
+  .m-hero p { font-size: 13.5px; line-height: 1.6; color: var(--ink2); margin-top: 12px; }
+  .m-hero .btn { width: 100%; height: 52px; margin-top: 18px; font-size: 14.5px; padding: 0 8px 0 22px; justify-content: space-between; }
+  .m-hero .btn .ar { width: 38px; height: 38px; }
+  .m-next { padding: 22px 16px 0; }
+  .m-sec { display: flex; align-items: center; }
+  .m-sec .eyebrow { font-size: 9.5px; gap: 10px; }
+  .m-sec .eyebrow::before { width: 22px; }
+  .m-sec a { margin-left: auto; font-size: 12px; font-weight: 700; display: flex; align-items: center; gap: 4px; }
+  .m-sec a .i { width: 14px; height: 14px; }
+  .m-card { margin-top: 12px; display: flex; gap: 14px; padding: 10px; background: var(--paper); border: 1px solid var(--line); border-radius: 22px; box-shadow: 0 18px 30px -24px rgba(74, 42, 28, .5); }
+  .m-card .art { width: 96px; height: 118px; border-radius: 48px 48px 12px 12px; overflow: hidden; flex-shrink: 0; }
+  .m-card .art svg { width: 100%; height: 100%; }
+  .m-card .tb { padding-top: 10px; min-width: 0; }
+  .m-card .cat { font-size: 9.5px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--clay); }
+  .m-card h3 { font-family: var(--serif); font-size: 23px; font-weight: 600; line-height: 1.05; margin-top: 6px; }
+  .m-card .mt { font-size: 12px; color: var(--ink2); margin-top: 6px; font-weight: 600; }
+</style></head>
+<body>
+<div id="root"></div>
+<script>
+  const q = new URLSearchParams(location.search).get("p");
+  const PAGE = ["home", "treatments", "contact", "phone"].includes(q) ? q : "home";
+
+  // Icons (stroke icons share the .i class)
+  const S = (d, cls = "i") => `<svg class="${cls}" viewBox="0 0 24 24">${d}</svg>`;
+  const IC = {
+    arrow: S('<path d="M5 12h14M13.5 6.5L19 12l-5.5 5.5"/>'),
+    arrowUR: S('<path d="M7.5 16.5l9-9M9.5 7.5h7v7"/>'),
+    phone: S('<path d="M21 16.4v2.7a1.8 1.8 0 01-2 1.8 17.8 17.8 0 01-7.7-2.8 17.5 17.5 0 01-5.4-5.4A17.8 17.8 0 013.1 5a1.8 1.8 0 011.8-2h2.7a1.8 1.8 0 011.8 1.5c.1.9.4 1.7.7 2.5a1.8 1.8 0 01-.4 1.9L8.5 10.1a14.4 14.4 0 005.4 5.4l1.2-1.2a1.8 1.8 0 011.9-.4c.8.3 1.6.6 2.5.7a1.8 1.8 0 011.5 1.8z"/>'),
+    clock: S('<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>'),
+    cal: S('<rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/>'),
+    chevD: S('<path d="M6.5 9.5l5.5 5.5 5.5-5.5"/>'),
+    chevL: S('<path d="M14.5 6.5L9 12l5.5 5.5"/>'),
+    chevR: S('<path d="M9.5 6.5L15 12l-5.5 5.5"/>'),
+    user: S('<circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20a7.5 7.5 0 0115 0"/>'),
+    spark: S('<path d="M12 3.5l1.6 5 5 1.6-5 1.6-1.6 5-1.6-5-5-1.6 5-1.6z"/>'),
+    steth: S('<path d="M6 3.5v5.5a4 4 0 008 0V3.5"/><path d="M10 13v1.5a5 5 0 0010 0V12"/><circle cx="20" cy="10" r="2"/>'),
+    shield: S('<path d="M12 3l7.5 3v5.5c0 4.4-3.2 8.2-7.5 9.5-4.3-1.3-7.5-5.1-7.5-9.5V6z"/><path d="M9 12l2.2 2.2L15.5 10"/>'),
+    route: S('<circle cx="6" cy="18" r="2.2"/><circle cx="18" cy="6" r="2.2"/><path d="M8.2 18H15a3 3 0 000-6H9a3 3 0 010-6h6.8"/>'),
+    menu: S('<path d="M4 9h16M9 15h11"/>'),
+    lock: S('<rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8.5 10.5V8a3.5 3.5 0 017 0v2.5"/>'),
+  };
+  const STAR = '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.8l2.7 5.9 6.4.7-4.8 4.3 1.3 6.3L12 16.8 6.4 20l1.3-6.3-4.8-4.3 6.4-.7z"/></svg>';
+  const SPARK = '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 1.5c.7 5.6 4.9 9.8 10.5 10.5-5.6.7-9.8 4.9-10.5 10.5C11.3 16.9 7.1 12.7 1.5 12 7.1 11.3 11.3 7.1 12 1.5z"/></svg>';
+  const WA = '<svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.2a9.8 9.8 0 00-8.4 14.8L2.2 21.8l4.9-1.3A9.8 9.8 0 1012 2.2zm0 1.8a8 8 0 11-4.1 14.9l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 0112 4z"/><path fill="currentColor" d="M9.1 7.3c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.9 4.5 4 2.2.9 2.7.7 3.1.7.5 0 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.5-.3l-1.8-.9c-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-.3-.1-1.1-.4-2-1.3-.8-.7-1.3-1.5-1.4-1.8-.2-.3 0-.4.1-.5l.4-.4.3-.4c.1-.2 0-.3 0-.4z"/></svg>';
+  const MARK = (c = "#2A1F1A", f = "#F6EADF") => `<svg class="mk" viewBox="0 0 30 38"><path d="M1 37.5V15a14 14 0 0128 0v22.5z" fill="${c}"/>
+    <path d="M15 33.5V14.5" stroke="${f}" stroke-width="1.2" stroke-linecap="round"/>
+    <path d="M15 22c-4.2-.3-6.6-3-6.9-6.9 4 .3 6.5 2.8 6.9 6.9z" fill="${f}"/><path d="M15 27.5c4.2-.3 6.6-3 6.9-6.9-4 .3-6.5 2.8-6.9 6.9z" fill="${f}"/>
+    <path d="M15 15.8c-1.7-1.5-1.9-4.2-.1-6.3 1.8 2.1 1.7 4.8.1 6.3z" fill="${f}"/></svg>`;
+  const LOGO = `<a class="logo">${MARK()}<span><b>Velisse</b><small>Skin Studio</small></span></a>`;
+
+  // A sprig of leaves along a gently curving stem, used for line art and for soft leaf shadows.
+  function sprig({ x, y, rot = 0, len = 200, n = 9, leafLen = 40, leafW = 12, ang = 40, taper = .55, curve = 16, color = "#000", mode = "fill", sw = 1.2, start = .1, tip = true }) {
+    const qx = len / 2, qy = -curve, f = (v) => v.toFixed(1);
+    const pt = (t) => [2 * (1 - t) * t * qx + t * t * len, 2 * (1 - t) * t * qy];
+    const dir = (t) => (Math.atan2(2 * (1 - t) * qy + 2 * t * -qy, 2 * (1 - t) * qx + 2 * t * (len - qx)) * 180) / Math.PI;
+    const leaf = (L, W) => `M0 0C${f(L * .22)} ${f(-W * .66)} ${f(L * .68)} ${f(-W * .62)} ${f(L)} 0C${f(L * .68)} ${f(W * .62)} ${f(L * .22)} ${f(W * .66)} 0 0Z`;
+    const one = (px, py, a, L, W) => {
+      const tr = `translate(${f(px)} ${f(py)}) rotate(${f(a)})`;
+      return mode === "line"
+        ? `<g transform="${tr}"><path d="${leaf(L, W)}"/><path d="M${f(L * .12)} 0L${f(L * .8)} 0" stroke-width="${(sw * .7).toFixed(2)}"/></g>`
+        : `<path transform="${tr}" d="${leaf(L, W)}"/>`;
+    };
+    let s = `<g transform="translate(${x} ${y}) rotate(${rot})"><path d="M0 0Q${qx} ${qy} ${len} 0" fill="none" stroke="${color}" stroke-width="${mode === "line" ? sw : sw * 1.6}" stroke-linecap="round"/>`;
+    s += mode === "line" ? `<g fill="none" stroke="${color}" stroke-width="${sw}" stroke-linejoin="round">` : `<g fill="${color}">`;
+    for (let i = 0; i < n; i++) {
+      const k = i / Math.max(1, n - 1), t = start + k * (.95 - start);
+      const [px, py] = pt(t), sc = 1 - (1 - taper) * k;
+      s += one(px, py, dir(t) + (i % 2 ? 1 : -1) * ang, leafLen * sc, leafW * sc);
+    }
+    if (tip) { const [px, py] = pt(1); s += one(px, py, dir(1), leafLen * taper * .9, leafW * taper * .9); }
+    return s + "</g></g>";
+  }
+
+  // The hero still life: serum bottle, cream jar and an olive sprig on travertine plinths, with leaf shadows on a warm wall.
+  function scene(k, vb = "0 0 500 780") {
+    const shadowA = sprig({ x: -40, y: 36, rot: 31, len: 430, n: 13, leafLen: 76, leafW: 23, ang: 46, curve: 30, color: "#7B4634", sw: 2.4 });
+    const shadowB = sprig({ x: 96, y: -34, rot: 68, len: 250, n: 9, leafLen: 60, leafW: 19, ang: 42, curve: -22, color: "#7B4634", sw: 2 });
+    const olive = sprig({ x: 434, y: 538, rot: -97, len: 236, n: 13, leafLen: 31, leafW: 8.6, ang: 36, curve: 20, taper: .62, color: "#7D604D", sw: 1.3 });
+    return `<svg viewBox="${vb}" preserveAspectRatio="xMidYMid slice"><defs>
+      <linearGradient id="${k}w" x1="0" y1="0" x2=".3" y2="1"><stop offset="0" stop-color="#F7E7DD"/><stop offset=".5" stop-color="#EFD0BF"/><stop offset="1" stop-color="#E1B19A"/></linearGradient>
+      <radialGradient id="${k}sun" cx=".8" cy=".17" r=".72"><stop offset="0" stop-color="#FFF9F3" stop-opacity=".95"/><stop offset=".5" stop-color="#FFF4EB" stop-opacity=".28"/><stop offset="1" stop-color="#FFF4EB" stop-opacity="0"/></radialGradient>
+      <linearGradient id="${k}st" x1="0" x2="1"><stop offset="0" stop-color="#D3BBA4"/><stop offset=".25" stop-color="#E8D7C5"/><stop offset=".6" stop-color="#F6ECE1"/><stop offset=".86" stop-color="#ECDCCB"/><stop offset="1" stop-color="#D7C1AB"/></linearGradient>
+      <linearGradient id="${k}sv" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5A3626" stop-opacity=".08"/><stop offset=".25" stop-color="#5A3626" stop-opacity="0"/><stop offset="1" stop-color="#5A3626" stop-opacity=".2"/></linearGradient>
+      <linearGradient id="${k}top" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EEE0D2"/><stop offset=".6" stop-color="#FBF6F0"/><stop offset="1" stop-color="#F4EADF"/></linearGradient>
+      <linearGradient id="${k}gl" x1="0" x2="1"><stop offset="0" stop-color="#AE6650"/><stop offset=".17" stop-color="#D79A82"/><stop offset=".42" stop-color="#F4D2C2"/><stop offset=".64" stop-color="#E0A68E"/><stop offset="1" stop-color="#A05C47"/></linearGradient>
+      <linearGradient id="${k}gd" x1="0" x2="1"><stop offset="0" stop-color="#87603A"/><stop offset=".34" stop-color="#EDD6A6"/><stop offset=".6" stop-color="#C69C63"/><stop offset="1" stop-color="#785532"/></linearGradient>
+      <linearGradient id="${k}rb" x1="0" x2="1"><stop offset="0" stop-color="#1C1410"/><stop offset=".36" stop-color="#55433A"/><stop offset="1" stop-color="#1E1612"/></linearGradient>
+      <linearGradient id="${k}ce" x1="0" x2="1"><stop offset="0" stop-color="#D0B7A1"/><stop offset=".3" stop-color="#F5ECE2"/><stop offset=".55" stop-color="#FDF9F4"/><stop offset=".8" stop-color="#EBDCCC"/><stop offset="1" stop-color="#C6AB93"/></linearGradient>
+      <linearGradient id="${k}lt" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F3E0BE"/><stop offset="1" stop-color="#CFAB74"/></linearGradient>
+      <linearGradient id="${k}tc" x1="0" x2="1"><stop offset="0" stop-color="#985842"/><stop offset=".38" stop-color="#D39276"/><stop offset=".7" stop-color="#B66F57"/><stop offset="1" stop-color="#874C39"/></linearGradient>
+      <radialGradient id="${k}pe" cx=".36" cy=".32" r=".75"><stop offset="0" stop-color="#fff"/><stop offset=".4" stop-color="#FBF1EC"/><stop offset=".8" stop-color="#E7CBC0"/><stop offset="1" stop-color="#CDA597"/></radialGradient>
+      <filter id="${k}b3" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3"/></filter>
+      <filter id="${k}b6" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="6"/></filter>
+      <filter id="${k}b12" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="12"/></filter>
+      <filter id="${k}gr" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 0 1"/></filter>
+    </defs>
+    <rect width="500" height="780" fill="url(#${k}w)"/>
+    <rect width="500" height="780" fill="url(#${k}sun)"/>
+    <path d="M300 -20H520V250L280 640H40z" fill="#FFF7F0" opacity=".22" filter="url(#${k}b12)"/>
+    <g opacity=".2" filter="url(#${k}b6)">${shadowA}${shadowB}</g>
+    <g fill="#7B4634" opacity=".16" filter="url(#${k}b12)"><rect x="98" y="262" width="76" height="228" rx="34"/><rect x="222" y="494" width="128" height="100" rx="30"/><rect x="396" y="540" width="44" height="64" rx="18"/></g>
+    <rect x="76" y="486" width="184" height="300" fill="url(#${k}st)"/><rect x="76" y="486" width="184" height="300" fill="url(#${k}sv)"/>
+    <ellipse cx="168" cy="486" rx="92" ry="15" fill="url(#${k}top)"/>
+    <ellipse cx="152" cy="488" rx="50" ry="6" fill="#6B3E2C" opacity=".38" filter="url(#${k}b3)"/>
+    <path d="M155 314V271a13 13 0 0126 0v43z" fill="url(#${k}rb)"/>
+    <rect x="149" y="311" width="38" height="27" rx="3" fill="url(#${k}gd)"/>
+    <path d="M150 318h36M150 323.5h36M150 329h36" stroke="#6E4E2C" stroke-opacity=".28" stroke-width=".8"/>
+    <rect x="153" y="337" width="30" height="16" fill="url(#${k}gl)"/>
+    <path d="M132 476V368q0-18 18-18h36q18 0 18 18v108q0 10-10 10h-52q-10 0-10-10z" fill="url(#${k}gl)"/>
+    <rect x="142" y="392" width="52" height="64" rx="2" fill="#FBF4EE" opacity=".94"/>
+    <text x="168" y="413" text-anchor="middle" font-family="Cormorant Garamond" font-weight="600" font-size="11" letter-spacing="1.2" fill="#2A1F1A">VELISSE</text>
+    <path d="M158 420h20" stroke="#A96850" stroke-width=".8"/>
+    <text x="168" y="431" text-anchor="middle" font-family="Manrope" font-weight="700" font-size="5" letter-spacing="1.1" fill="#5B4C44">HYDRA SERUM</text>
+    <text x="168" y="447" text-anchor="middle" font-family="Manrope" font-weight="600" font-size="4.6" letter-spacing=".6" fill="#8B7B71">30 ml</text>
+    <rect x="137" y="364" width="5" height="108" rx="2.5" fill="#fff" opacity=".42"/><rect x="196" y="370" width="2" height="96" rx="1" fill="#fff" opacity=".22"/>
+    <ellipse cx="234" cy="496" rx="11" ry="3" fill="#6B3E2C" opacity=".3" filter="url(#${k}b3)"/><circle cx="231" cy="486" r="10" fill="url(#${k}pe)"/>
+    <rect x="168" y="590" width="300" height="200" fill="url(#${k}st)"/><rect x="168" y="590" width="300" height="200" fill="url(#${k}sv)"/>
+    <ellipse cx="318" cy="590" rx="150" ry="22" fill="url(#${k}top)"/>
+    <ellipse cx="300" cy="592" rx="76" ry="8" fill="#6B3E2C" opacity=".34" filter="url(#${k}b3)"/>
+    <path d="M262 534h116v46q0 10-10 10h-96q-10 0-10-10z" fill="url(#${k}ce)"/>
+    <path d="M258 500h124v30q0 5-5 5H263q-5 0-5-5z" fill="url(#${k}gd)"/>
+    <ellipse cx="320" cy="500" rx="62" ry="9" fill="url(#${k}lt)"/>
+    <text x="320" y="566" text-anchor="middle" font-family="Cormorant Garamond" font-weight="600" font-size="10" letter-spacing="1.8" fill="#5B4C44">VELISSE</text>
+    ${olive}
+    <ellipse cx="428" cy="598" rx="22" ry="4" fill="#6B3E2C" opacity=".35" filter="url(#${k}b3)"/>
+    <path d="M422 596q-10-14-8-30t12-22v-8h16v8q10 6 12 22t-8 30z" fill="url(#${k}tc)"/>
+    <rect width="500" height="780" filter="url(#${k}gr)" opacity=".16" style="mix-blend-mode:soft-light"/>
+    </svg>`;
+  }
+
+  // Treatment pictures: one small still life per treatment, in the same warm palette.
+  function citrus(k, cx, cy, R) {
+    const f = (v) => v.toFixed(2), r = R * .82;
+    let w = "", ln = "", ves = "";
+    for (let i = 0; i < 10; i++) {
+      const a0 = ((i * 36 - 90) * Math.PI) / 180, a1 = (((i + 1) * 36 - 90) * Math.PI) / 180;
+      w += `<path d="M${cx} ${cy}L${f(cx + r * Math.cos(a0))} ${f(cy + r * Math.sin(a0))}A${r} ${r} 0 0 1 ${f(cx + r * Math.cos(a1))} ${f(cy + r * Math.sin(a1))}Z"/>`;
+      ln += `<path d="M${cx} ${cy}L${f(cx + (r + .6) * Math.cos(a0))} ${f(cy + (r + .6) * Math.sin(a0))}"/>`;
+      for (const t of [.3, .5, .7]) { const a = ((i * 36 - 90 + 36 * t) * Math.PI) / 180; ves += `<path d="M${f(cx + r * .3 * Math.cos(a))} ${f(cy + r * .3 * Math.sin(a))}L${f(cx + r * .82 * Math.cos(a))} ${f(cy + r * .82 * Math.sin(a))}"/>`; }
+    }
+    return `<circle cx="${cx}" cy="${cy}" r="${R}" fill="#EC9262"/><circle cx="${cx}" cy="${cy}" r="${R * .94}" fill="#F5B183"/><circle cx="${cx}" cy="${cy}" r="${R * .9}" fill="#FDECDF"/>
+      <g fill="url(#${k}s)">${w}</g><g stroke="#FDECDF" stroke-width="${(R * .045).toFixed(2)}" stroke-linecap="round">${ln}</g>
+      <g stroke="#fff" stroke-opacity=".3" stroke-width="${(R * .035).toFixed(2)}" stroke-linecap="round">${ves}</g><circle cx="${cx}" cy="${cy}" r="${R * .09}" fill="#FDECDF"/>`;
+  }
+  const ART = {
+    hydra: (k, vb = "0 0 150 226", deep = false) => `<svg viewBox="${vb}" preserveAspectRatio="xMidYMid slice"><defs>
+        <linearGradient id="${k}a" x1="0" y1="0" x2="0" y2="1">${deep ? '<stop offset="0" stop-color="#D3E3DE"/><stop offset=".6" stop-color="#BFD7D0"/><stop offset="1" stop-color="#E6CFC4"/>' : '<stop offset="0" stop-color="#EDF2EF"/><stop offset=".58" stop-color="#DBE7E3"/><stop offset="1" stop-color="#F1DDD3"/>'}</linearGradient>
+        <radialGradient id="${k}b" cx=".36" cy=".64" r=".8"><stop offset="0" stop-color="#fff"/><stop offset=".42" stop-color="#E9F3F0"/><stop offset="1" stop-color="#A3C6BE"/></radialGradient>
+        <filter id="${k}f" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3"/></filter></defs>
+      <rect width="150" height="226" fill="url(#${k}a)"/>
+      <ellipse cx="75" cy="180" rx="66" ry="13" fill="none" stroke="#fff" stroke-opacity=".55"/>
+      <ellipse cx="75" cy="180" rx="45" ry="8.6" fill="none" stroke="#fff" stroke-opacity=".8"/>
+      <ellipse cx="75" cy="180" rx="24" ry="4.4" fill="#fff" fill-opacity=".6"/>
+      <ellipse cx="80" cy="166" rx="26" ry="5" fill="#6E9C93" opacity=".28" filter="url(#${k}f)"/>
+      <path d="M75 58C75 58 108 98 108 122A33 33 0 1 1 42 122C42 98 75 58 75 58Z" fill="url(#${k}b)"/>
+      <path d="M56.5 121c-1.5-10 3-21 10-29" stroke="#fff" stroke-width="3.4" stroke-linecap="round" fill="none"/>
+      <ellipse cx="90" cy="137" rx="9" ry="4.5" fill="#fff" opacity=".45" transform="rotate(-35 90 137)"/>
+      <circle cx="75" cy="30" r="4.5" fill="url(#${k}b)"/></svg>`,
+    pico: (k) => `<svg viewBox="0 0 150 226" preserveAspectRatio="xMidYMid slice"><defs>
+        <linearGradient id="${k}a" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F0DEDA"/><stop offset=".6" stop-color="#DDB9B3"/><stop offset="1" stop-color="#C99D96"/></linearGradient>
+        <linearGradient id="${k}b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff" stop-opacity=".95"/></linearGradient>
+        <radialGradient id="${k}c"><stop offset="0" stop-color="#fff" stop-opacity=".95"/><stop offset=".35" stop-color="#FFF4F0" stop-opacity=".5"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+        <filter id="${k}f" x="-100%" y="-20%" width="300%" height="140%"><feGaussianBlur stdDeviation="5"/></filter></defs>
+      <rect width="150" height="226" fill="url(#${k}a)"/>
+      <ellipse cx="75" cy="232" rx="110" ry="50" fill="#fff" opacity=".16"/>
+      <rect x="62" y="-10" width="26" height="130" fill="url(#${k}b)" opacity=".4" filter="url(#${k}f)"/>
+      <rect x="73.6" y="-10" width="2.8" height="128" fill="url(#${k}b)"/>
+      <circle cx="75" cy="122" r="62" fill="url(#${k}c)"/>
+      <g fill="none" stroke="#fff"><circle cx="75" cy="122" r="21" stroke-opacity=".8"/><circle cx="75" cy="122" r="35" stroke-opacity=".5"/><circle cx="75" cy="122" r="51" stroke-opacity=".28"/></g>
+      <circle cx="75" cy="122" r="6.5" fill="#fff"/>
+      <g fill="#fff"><path d="M114 72l1.5 4.2 4.2 1.5-4.2 1.5-1.5 4.2-1.5-4.2-4.2-1.5 4.2-1.5z" opacity=".95"/><path d="M34 168l1 2.8 2.8 1-2.8 1-1 2.8-1-2.8-2.8-1 2.8-1z" opacity=".8"/><path d="M118 178l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z" opacity=".7"/></g></svg>`,
+    peel: (k) => `<svg viewBox="0 0 150 226" preserveAspectRatio="xMidYMid slice"><defs>
+        <linearGradient id="${k}a" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FAE9DC"/><stop offset="1" stop-color="#F0C4A7"/></linearGradient>
+        <radialGradient id="${k}s" cx=".5" cy=".5" r=".5"><stop offset=".1" stop-color="#FCCDAE"/><stop offset=".7" stop-color="#F4A47E"/><stop offset="1" stop-color="#EB8E67"/></radialGradient>
+        <linearGradient id="${k}l" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#B3C29D"/><stop offset="1" stop-color="#7F946B"/></linearGradient>
+        <filter id="${k}f" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4"/></filter></defs>
+      <rect width="150" height="226" fill="url(#${k}a)"/>
+      <path d="M96 66C104 44 124 34 146 36 140 58 122 70 96 66z" fill="url(#${k}l)"/><path d="M98 64C112 54 126 46 140 40" stroke="#E8EEDD" stroke-opacity=".7" stroke-width="1" fill="none"/>
+      <circle cx="35" cy="200" r="34" fill="#B4643F" opacity=".2" filter="url(#${k}f)"/>
+      ${citrus(k, 28, 192, 32)}
+      <circle cx="82" cy="124" r="50" fill="#B4643F" opacity=".22" filter="url(#${k}f)"/>
+      ${citrus(k, 74, 114, 48)}
+      <path d="M36 96A41 41 0 0 1 58 72" stroke="#fff" stroke-opacity=".55" stroke-width="2" fill="none" stroke-linecap="round"/></svg>`,
+    booster: (k) => {
+      const P = [[60, 128, 31], [104, 156, 19], [97, 96, 13], [40, 178, 11], [121, 115, 8], [80, 188, 7]];
+      return `<svg viewBox="0 0 150 226" preserveAspectRatio="xMidYMid slice"><defs>
+        <linearGradient id="${k}a" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F8E9E3"/><stop offset="1" stop-color="#EAC8BD"/></linearGradient>
+        <radialGradient id="${k}p" cx=".36" cy=".32" r=".75"><stop offset="0" stop-color="#fff"/><stop offset=".38" stop-color="#FCF2EE"/><stop offset=".78" stop-color="#EBCFC6"/><stop offset="1" stop-color="#CFA597"/></radialGradient>
+        <filter id="${k}f" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3"/></filter></defs>
+      <rect width="150" height="226" fill="url(#${k}a)"/>
+      <ellipse cx="75" cy="40" rx="70" ry="40" fill="#fff" opacity=".3"/>
+      ${P.map(([x, y, r]) => `<ellipse cx="${x + r * .25}" cy="${y + r * .92}" rx="${r * .9}" ry="${r * .26}" fill="#A87566" opacity=".35" filter="url(#${k}f)"/>`).join("")}
+      ${P.map(([x, y, r]) => `<circle cx="${x}" cy="${y}" r="${r}" fill="url(#${k}p)"/><ellipse cx="${x - r * .36}" cy="${y - r * .42}" rx="${r * .2}" ry="${r * .13}" fill="#fff" opacity=".95" transform="rotate(-30 ${x - r * .36} ${y - r * .42})"/>`).join("")}</svg>`;
+    },
+    carbon: (k) => {
+      let dots = "", s = 7;
+      const rnd = () => ((s = (s * 9301 + 49297) % 233280) / 233280);
+      for (let i = 0; i < 46; i++) { const a = rnd() * Math.PI * 2, d = 18 + rnd() * 78; dots += `<circle cx="${(75 + Math.cos(a) * d).toFixed(1)}" cy="${(120 + Math.sin(a) * d * 1.05).toFixed(1)}" r="${(.5 + rnd() * 1.3).toFixed(2)}" opacity="${(.25 + rnd() * .7).toFixed(2)}"/>`; }
+      return `<svg viewBox="0 0 150 226" preserveAspectRatio="xMidYMid slice"><defs>
+        <radialGradient id="${k}a" cx=".5" cy=".53" r=".75"><stop offset="0" stop-color="#6E554A"/><stop offset=".55" stop-color="#3C2E28"/><stop offset="1" stop-color="#211915"/></radialGradient>
+        <linearGradient id="${k}g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F6E2B8"/><stop offset=".5" stop-color="#C49A62"/><stop offset="1" stop-color="#F1D8A6"/></linearGradient>
+        <radialGradient id="${k}c"><stop offset="0" stop-color="#EAC796" stop-opacity=".5"/><stop offset="1" stop-color="#EAC796" stop-opacity="0"/></radialGradient>
+        <radialGradient id="${k}d" cx=".42" cy=".38" r=".7"><stop offset="0" stop-color="#4A3A33"/><stop offset="1" stop-color="#1A1310"/></radialGradient>
+        <filter id="${k}f" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4"/></filter></defs>
+      <rect width="150" height="226" fill="url(#${k}a)"/>
+      <circle cx="75" cy="120" r="66" fill="url(#${k}c)"/>
+      <circle cx="75" cy="120" r="40" fill="none" stroke="#EAC796" stroke-width="7" opacity=".35" filter="url(#${k}f)"/>
+      <circle cx="75" cy="120" r="38.5" fill="url(#${k}d)"/>
+      <circle cx="75" cy="120" r="40" fill="none" stroke="url(#${k}g)" stroke-width="2.2"/>
+      <path d="M58 104a24 24 0 0 1 20-10" stroke="#fff" stroke-opacity=".25" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <g fill="#F1D8A6">${dots}</g></svg>`;
+    },
+    calm: (k) => {
+      const f = (v) => v.toFixed(1);
+      const leaf = (x, y, r, rot) => {
+        const c = Math.cos((72 * Math.PI) / 180) * r, sn = Math.sin((72 * Math.PI) / 180) * r;
+        let v = "";
+        for (const a of [-162, -126, -90, -54, -18]) { const t = (a * Math.PI) / 180; v += `<path d="M0 ${f(r * .3)}L${f(r * .8 * Math.cos(t))} ${f(r * .8 * Math.sin(t) + r * .08)}"/>`; }
+        return `<g transform="translate(${x} ${y}) rotate(${rot})"><path d="M${f(c)} ${f(sn)}A${r} ${r} 0 1 0 ${f(-c)} ${f(sn)}L0 ${f(r * .3)}Z" fill="url(#${k}l)"/><g stroke="#E6EDDA" stroke-opacity=".8" stroke-width=".9" fill="none" stroke-linecap="round">${v}</g></g>`;
+      };
+      return `<svg viewBox="0 0 150 226" preserveAspectRatio="xMidYMid slice"><defs>
+        <linearGradient id="${k}a" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EDF0E7"/><stop offset="1" stop-color="#CED7C3"/></linearGradient>
+        <radialGradient id="${k}l" cx=".45" cy=".4" r=".7"><stop offset="0" stop-color="#B9C8A2"/><stop offset="1" stop-color="#7F9469"/></radialGradient>
+        <filter id="${k}f" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4"/></filter></defs>
+      <rect width="150" height="226" fill="url(#${k}a)"/>
+      <g fill="#5E6F4D" opacity=".18" filter="url(#${k}f)"><circle cx="60" cy="106" r="28"/><circle cx="108" cy="130" r="24"/><circle cx="74" cy="160" r="21"/></g>
+      <g stroke="#7F9469" stroke-width="2.2" fill="none" stroke-linecap="round"><path d="M52 104C58 150 70 196 76 232"/><path d="M98 128C92 170 84 200 78 232"/><path d="M68 160C72 188 76 210 77 232"/></g>
+      ${leaf(52, 92, 28, -14)}${leaf(100, 118, 24, 22)}${leaf(68, 150, 21, -4)}
+      <g fill="#fff"><circle cx="44" cy="80" r="2.2" opacity=".9"/><circle cx="106" cy="110" r="1.8" opacity=".85"/><circle cx="62" cy="142" r="1.5" opacity=".8"/></g></svg>`;
+    },
+  };
+
+  const TREATMENTS = [
+    ["hydra", "Facials", "Hydra Glow Facial", "Deep cleanse, gentle extractions and a hyaluronic infusion for instantly dewy skin.", "60 min", "280", "Most loved"],
+    ["pico", "Lasers", "Pico Laser Toning", "Fades pigment, melasma and sun spots for a clearer, even tone with little downtime.", "45 min", "650"],
+    ["peel", "Peels", "Radiance Peel", "Mandelic and lactic acids smooth rough texture and wake up dull, tired skin.", "40 min", "320"],
+    ["booster", "Injectables", "Skin Booster", "Fine hyaluronic micro-injections for deep, lasting hydration and a soft, natural glow.", "45 min", "1,200", "New"],
+    ["carbon", "Lasers", "Carbon Laser Facial", "Refines pores and controls oil for smooth, event-ready skin.", "30 min", "450"],
+    ["calm", "Facials", "Calm & Clear Facial", "Blue LED, careful extractions and a centella mask to settle breakouts.", "75 min", "330"],
+  ];
+
+  const NAV = ["Home", "Treatments", "Results", "About", "Contact"];
+  const nav = (active, navSpot) => `<header class="nav">${LOGO}
+    <nav class="links">${NAV.map((n) => `<a class="${n === active ? "on" : ""}"${n === "Treatments" && navSpot ? ' data-spot="nav"' : ""}>${n}</a>`).join("")}</nav>
+    <div class="rt"><a class="tel">${IC.phone}+60 3-2788 1234</a><a class="btn pri">Book a consultation</a></div></header>`;
+
+  const PAGES = {
+    home: () => `${nav("Home", true)}
+      <div class="arch-line"></div><div class="arch">${scene("hs")}</div>
+      <div class="badge"><svg viewBox="0 0 124 124"><defs><path id="bc" d="M62 62m-47 0a47 47 0 1 1 94 0a47 47 0 1 1-94 0"/></defs>
+        <circle cx="62" cy="62" r="62" fill="#FBF7F2"/><circle cx="62" cy="62" r="59" fill="none" stroke="#2A1F1A" stroke-opacity=".12"/>
+        <text font-family="Manrope" font-weight="700" font-size="8.6" fill="#2A1F1A"><textPath href="#bc" textLength="292" lengthAdjust="spacing">DOCTOR-LED CARE · SINCE 2014 · BANGSAR · KL ·</textPath></text>
+        <g transform="translate(49 42) scale(.9)">${MARK().replace('class="mk"', 'width="30" height="38"')}</g></svg></div>
+      <div class="chip-next glass"><span class="ic">${IC.cal}</span><div><small><i></i>Next available</small><b>Thu, 15 Oct · 11:30 am</b></div></div>
+      <div class="gcard glass"><span class="th">${ART.hydra("gh", "14 50 122 122", true)}</span><div><small>Most loved</small><b>Hydra Glow Facial</b><span>60 min · RM 280</span></div><span class="go">${IC.arrowUR}</span></div>
+      <div class="h-copy" data-spot="hero">
+        <div class="eyebrow">Aesthetic skin clinic · Bangsar</div>
+        <h1>Skin that feels<br>like you, <em>only<br>brighter.</em></h1>
+        <p>Doctor-led facials, lasers and skin treatments, planned around your skin and never rushed. A calm hour of care in the heart of Bangsar.</p>
+        <div class="acts"><a class="btn pri" data-spot="cta">Book a consultation<span class="ar">${IC.arrow}</span></a><a class="btn ghost">View treatments</a></div>
+      </div>
+      <div class="trust">
+        <div class="t1"><div class="stars">${STAR.repeat(5)}</div><span><b>4.9</b> from 620 client reviews</span></div>
+        <i class="vr"></i>
+        <div class="t2"><span class="ic">${IC.steth}</span><div><b>Doctor-led care</b><span>Bangsar, Kuala Lumpur</span></div></div>
+      </div>
+      <div class="band"><div class="mq">${["Calm & Clear Facial", "Hydra Glow Facial", "Pico Laser Toning", "Radiance Peel", "Skin Boosters", "Carbon Laser Facial", "Hydra Glow Facial"].map((t) => `<span>${t}</span>${SPARK}`).join("")}</div></div>`,
+
+    treatments: () => `${nav("Treatments", true)}
+      <section class="t-head">
+        <div><div class="crumbs">Home <span>/</span> <b>Treatments</b></div><h1>Treatments, <em>tailored to you</em></h1></div>
+        <p>Every visit starts with a skin check by our doctor, so you only do what your skin truly needs. Prices are per session and include your aftercare kit.</p>
+      </section>
+      <div class="t-bar">
+        <div class="chips"><span class="on">All treatments <em>24</em></span><span>Facials <em>8</em></span><span>Lasers <em>6</em></span><span>Peels <em>5</em></span><span>Injectables <em>5</em></span></div>
+        <div class="sort">Sort by <b>Most popular</b>${IC.chevD}</div>
+      </div>
+      <div class="grid" data-spot="list">${TREATMENTS.map(([a, cat, name, line, dur, price, tag], i) => `
+        <article class="tc"><div class="art">${ART[a]("t" + i)}</div><div class="tb">
+          <div class="tt"><span class="cat">${cat}</span>${tag ? `<span class="tag">${tag}</span>` : ""}</div>
+          <h3>${name}</h3><p>${line}</p>
+          <div class="tm"><span class="dur">${IC.clock}${dur}</span><span class="pr"><small>RM</small>${price}</span><span class="go">${IC.arrowUR}</span></div>
+        </div></article>`).join("")}</div>`,
+
+    contact: () => `${nav("Contact")}
+      <div class="mapband">${mapSVG("mp")}
+        <div class="glass info">
+          <h4>Visit us</h4><div class="ad">18, Jalan Telawi 3, Bangsar Baru<br>59100 Kuala Lumpur</div><hr>
+          <h4>Opening hours<span class="open"><i></i>Open today</span></h4>
+          <div class="hrs"><span>Mon to Fri</span><b>10 am to 8 pm</b><span>Sat &amp; Sun</span><b>10 am to 6 pm</b><span>Public holidays</span><b>By appointment</b></div>
+        </div>
+        <div class="plabel glass" style="left:610px;top:118px"><div><b>Velisse Skin Studio</b><small>2 min walk from Bangsar Village</small></div><span class="go">${IC.arrowUR}</span></div>
+        <div class="pin" style="left:610px;top:258px"><span class="pulse"></span><svg viewBox="0 0 46 58"><path d="M23 57C23 57 44 36.5 44 22A21 21 0 0 0 2 22C2 36.5 23 57 23 57Z" fill="#2A1F1A"/>
+          <g transform="translate(14.6 9.2) scale(.56)">${MARK("#F6EADF", "#2A1F1A").replace('class="mk"', 'width="30" height="38"')}</g></svg></div>
+      </div>
+      <div class="c-copy">
+        <div class="eyebrow">Contact &amp; booking</div>
+        <h1>Let&rsquo;s plan your<br><em>first visit.</em></h1>
+        <p>Tell us a little about your skin and pick a time that suits you. We confirm every booking on WhatsApp, usually within 30 minutes.</p>
+        <div class="c-acts">
+          <a class="wa" data-spot="whatsapp"><span class="wi">${WA}</span><span><b>WhatsApp us</b><small>+60 12-345 6789</small></span></a>
+          <a class="call"><span class="ic">${IC.phone}</span><span><small>Or call the studio</small><b>+60 3-2788 1234</b></span></a>
+        </div>
+      </div>
+      <form class="fcard" data-spot="form">
+        <h2>Request a booking</h2>
+        <div class="sub">Pick a treatment and a time. No payment needed now.</div>
+        <div class="frow">
+          <div class="fld"><span class="fl">Full name</span><div class="inp">${IC.user}Nurul Aisyah</div></div>
+          <div class="fld"><span class="fl">Phone</span><div class="inp focus">${IC.phone}+60 12-345 6789<span class="cur"></span></div></div>
+        </div>
+        <div class="fld"><span class="fl">Treatment</span><div class="inp">${IC.spark}Hydra Glow Facial <em>· 60 min · RM 280</em><span class="ch">${IC.chevD}</span></div></div>
+        <div class="fld"><div class="fhd"><span class="fl">Preferred date</span><span class="mo">${IC.chevL}October 2026${IC.chevR}</span></div>
+          <div class="dates">${[["Wed", 14], ["Thu", 15], ["Fri", 16], ["Sat", 17], ["Sun", 18]].map(([d, n]) => `<div class="date${n === 15 ? " on" : ""}"><small>${d}</small><b>${n}</b></div>`).join("")}</div></div>
+        <div class="fld"><span class="fl">Preferred time</span>
+          <div class="times">${[["10:30 am"], ["11:30 am", "on"], ["2:00 pm", "off"], ["4:30 pm"], ["6:00 pm"]].map(([t, c]) => `<div class="time${c ? " " + c : ""}">${t}</div>`).join("")}</div></div>
+        <div class="fld"><span class="fl">Anything we should know?<em>Optional</em></span><div class="inp ta">First visit. My cheeks turn a little red after strong facials.</div></div>
+        <a class="btn pri">Request booking${IC.arrow}</a>
+        <div class="fnote">${IC.lock}Free changes up to 24 hours before your visit</div>
+      </form>`,
+
+    phone: () => `<div class="page m">
+      <div class="status"><span>9:41</span><span class="r"><span class="sig"><i style="height:4px"></i><i style="height:6px"></i><i style="height:8px"></i><i style="height:10px"></i></span><span style="font-size:11px">5G</span><span class="bat"><i></i></span></span></div>
+      <header class="m-nav">${LOGO}<span class="m-menu">${IC.menu}</span></header>
+      <section class="m-hero" data-spot="hero">
+        <div class="m-art">${scene("ps", "0 214 500 400")}<div class="chip-next glass"><span class="ic">${IC.cal}</span><div><small><i></i>Next available</small><b>Thu, 15 Oct · 11:30 am</b></div></div></div>
+        <div class="eyebrow">Aesthetic skin clinic · Bangsar</div>
+        <h1>Skin that feels<br>like you, <em>only<br>brighter.</em></h1>
+        <p>Doctor-led facials, lasers and skin treatments, planned around your skin and never rushed.</p>
+        <a class="btn pri" data-spot="cta">Book a consultation<span class="ar">${IC.arrow}</span></a>
+      </section>
+      <section class="m-next">
+        <div class="m-sec"><span class="eyebrow">Signature treatments</span><a>View all${IC.chevR}</a></div>
+        <div class="m-card"><div class="art">${ART.hydra("pm")}</div><div class="tb"><div class="cat">Facials · Most loved</div><h3>Hydra Glow Facial</h3><div class="mt">60 min · RM 280</div></div></div>
+      </section></div>`,
+  };
+
+  // An illustrated street map of Bangsar Baru (stylised, not to scale).
+  function mapSVG(k) {
+    const roads = [
+      ["M-20 262C120 214 260 168 420 132S760 66 1000 40S1300 10 1420 4", 26, "maarof"],
+      ["M960 420C990 300 1030 160 1110 -20", 22],
+      ["M286 236L800 146", 13, "t2"], ["M296 318L810 228", 13, "t3"], ["M306 400L820 310", 11],
+      ["M388 166L420 420", 11], ["M528 140L560 420", 11], ["M668 114L700 420", 11],
+      ["M-20 344C60 334 140 302 210 318S300 362 330 420", 11], ["M150 196C170 250 180 310 160 420", 10], ["M-10 200C40 196 90 204 140 222", 8],
+    ];
+    const road = (w, c) => roads.map(([d, sw, id]) => `<path${id && c === "#FFFDF9" ? ` id="${k}${id}"` : ""} d="${d}" stroke="${c}" stroke-width="${sw + w}"/>`).join("");
+    let trees = "", s = 3;
+    const rnd = () => ((s = (s * 9301 + 49297) % 233280) / 233280);
+    for (let i = 0; i < 34; i++) { const x = 10 + rnd() * 240, y = 10 + rnd() * 130; if (y > 150 - x * .2) continue; trees += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(4 + rnd() * 5).toFixed(1)}"/>`; }
+    const lbl = (id, t, off) => `<text font-family="Manrope" font-weight="700" font-size="8.5" letter-spacing="2.2" fill="#A8968A" dy="3"><textPath href="#${k}${id}" startOffset="${off}">${t}</textPath></text>`;
+    return `<svg viewBox="0 0 1392 400" preserveAspectRatio="xMinYMin slice"><defs>
+      <pattern id="${k}bd" width="58" height="44" patternUnits="userSpaceOnUse" patternTransform="rotate(-10)">
+        <rect x="5" y="5" width="20" height="13" rx="3" fill="#ECE2D6"/><rect x="29" y="5" width="12" height="13" rx="3" fill="#E9DED1"/>
+        <rect x="45" y="5" width="9" height="13" rx="3" fill="#ECE2D6"/><rect x="5" y="23" width="13" height="16" rx="3" fill="#E9DED1"/>
+        <rect x="22" y="23" width="32" height="16" rx="3" fill="#ECE2D6"/></pattern></defs>
+      <rect width="1392" height="400" fill="#F3EBE2"/><rect width="1392" height="400" fill="url(#${k}bd)"/>
+      <path d="M-10 -10H256Q296 40 266 104Q238 152 150 158Q60 162 -10 138Z" fill="#DDE3D0"/>
+      <g fill="#CBD4BA">${trees}</g>
+      <g fill="none" stroke-linecap="round" stroke-linejoin="round">${road(4, "#E6D8C9")}${road(0, "#FFFDF9")}</g>
+      <path d="M411 230L523 210L529 263L419 283Z" fill="#E7DACA" stroke="#E7DACA" stroke-width="10" stroke-linejoin="round"/>
+      <g transform="rotate(-10 471 248)" font-family="Manrope" font-weight="800" font-size="8" letter-spacing="2" fill="#9C8878" text-anchor="middle"><text x="471" y="245">BANGSAR</text><text x="471" y="257">VILLAGE</text></g>
+      <path d="M549 273L597 264.6" stroke="#A96850" stroke-width="2.6" stroke-dasharray=".5 6" stroke-linecap="round" fill="none"/>
+      ${lbl("maarof", "JALAN MAAROF", "47%")}${lbl("t2", "JALAN TELAWI 2", "15%")}${lbl("t3", "JALAN TELAWI 3", "69%")}
+      <text x="62" y="70" font-family="Manrope" font-weight="700" font-size="9" letter-spacing="2.4" fill="#8E9A7E">TAMAN BANGSAR</text>
+      </svg>`;
+  }
+
+  document.getElementById("root").innerHTML = PAGE === "phone" ? PAGES.phone() : `<div class="page">${PAGES[PAGE]()}</div>`;
+</script>
+</body></html>

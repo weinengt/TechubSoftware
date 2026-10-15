@@ -2,7 +2,7 @@
 //
 // Placeholders are filled in from lib/site.ts, so prices and contact details only change there:
 //   {name} company name · {price} monthly price · {months} free months · {custom} lowest customisation rate per work hour
-//   {customMonthly} customisation rate per work hour on the monthly plan
+//   {customMonthly} {custom12} {custom24} customisation rate per work hour on the monthly, 12-month and 24-month plans
 //   {migration} {emailYear} {emailStorage} {website} {websiteYear} {websitePages} prices of the other services
 //   {livePrice} Live Selling System monthly price · {uptime} uptime · {phone} WhatsApp number · {email} email address
 //   {monthly} Standard Plan paid month to month · {planPrice} Standard Plan per month on 12 to 48 months
@@ -341,6 +341,32 @@ const en = {
         invoice: { title: "Invoice made for you", text: "Deposit RM 40 deducted" },
         notes: { title: "Refund & credit notes too", text: "No accounting skills needed" },
       },
+      customisation: {
+        request: { title: "Customer A asks on WhatsApp", text: "A claim file for a new panel" },
+        estimate: { title: "AI estimate: about 6 hours", text: "A clear quote before we start" },
+        quote: { title: "RM 480 on the 48-month plan", text: "Instalment plan available" },
+        testing: { title: "Testing & integration free", text: "Checked before it goes live" },
+        live: { title: "Live in the system", text: "New claim export in one tap" },
+      },
+      migration: {
+        formats: { title: "PDF, Excel, CSV & TXT", text: "Planned with our engineers" },
+        scan: { title: "AI reads the old system", text: "Page by page, when it can't export" },
+        check: { title: "Every record checked", text: "Duplicates merged, gaps fixed" },
+        done: { title: "Charged by time, not volume", text: "143,861 records moved" },
+      },
+      email: {
+        domain: { title: "Your own domain", text: "hello@demosalon.com.my" },
+        phone: { title: "On every phone & PC", text: "New enquiries right away" },
+        setup: { title: "We set it all up", text: "Domain, mailboxes & devices" },
+        storage: { title: "{emailStorage} of storage", text: "RM {emailYear} a year" },
+      },
+      website: {
+        design: { title: "Designed for your brand", text: "Up to {websitePages} pages" },
+        instant: { title: "Pages change instantly", text: "No reload, no waiting" },
+        phone: { title: "Perfect on phones", text: "Every screen size" },
+        contact: { title: "Customers reach you fast", text: "WhatsApp, booking & map" },
+        seo: { title: "Ready for SEO & AI search", text: "Hosted on Cloudflare" },
+      },
       hub: {
         devices: { title: "Every device in sync", text: "iPad, phone & PC, real time" },
         whatsapp: { title: "WhatsApp reminder sent", text: "Customer tapped Confirm" },
@@ -437,9 +463,11 @@ const en = {
         text: "Hosted in Malaysia on servers such as IPServerOne and Amazon Web Services. We are open about where your data is kept.",
       },
       database: { title: "Fast NoSQL database", text: "Indexed data, so detailed reports load in under 100 ms." },
-      security: { title: "Encrypted & backed up", text: "All saved data is encrypted, with multi-layer backups across regions." },
+      security: { title: "Encrypted & backed up", text: "Database encrypted at rest, SSL/TLS on every connection, multi-layer backups across regions." },
       ai: { title: "AI integration", text: "AI reads delivery notes, updates stock and suggests what to reorder." },
+      extraction: { title: "AI data extraction", text: "OCR and AI screen scanning bring in data from PDFs and old systems." },
       realtime: { title: "Real-time updates", text: "Every iPad, phone and PC sees changes instantly." },
+      framework: { title: "React & Next.js", text: "A modern web framework: pages change instantly, with no reload." },
       whatsapp: { title: "WhatsApp notifications", text: "Booking confirmations and reminders go out automatically." },
       hardware: { title: "Multi-hardware connect", text: "Label printers, number calling systems, X-ray machines and more." },
       einvoice: { title: "LHDN e-Invoice", text: "e-Invoices submitted to LHDN through MyInvois." },
@@ -558,6 +586,40 @@ const en = {
           "Records kept for every invoice",
         ],
       },
+      extraction: {
+        eyebrow: "AI data extraction",
+        title: "AI that moves your data, *page by page*",
+        points: [
+          "OCR reads PDFs and scanned documents",
+          "AI screen capture for old systems that can't export",
+          "Every field mapped and checked by our engineers",
+          "Charged by time, not data volume",
+        ],
+        cta: "Ask about data migration",
+        ctaMessage: "Hi Techub, I'd like to ask about moving my data to Techub.",
+        badge: "AI scanning",
+      },
+      framework: {
+        eyebrow: "React & Next.js",
+        title: "Built on a *modern web framework*",
+        points: [
+          "Built with React and Next.js",
+          "Pages change instantly, with no full reload",
+          "Fast on phones, tablets and PCs",
+          "The same technology behind the websites we build",
+        ],
+        badge: "No reload",
+      },
+      encryption: {
+        eyebrow: "Data protection",
+        title: "Your data is *our priority*",
+        points: [
+          "Database encrypted at rest",
+          "SSL/TLS encryption on every connection",
+          "Protected servers in Malaysia",
+          "Even if data ever leaked, it stays encrypted",
+        ],
+      },
       security: {
         eyebrow: "Security & control",
         title: "Every staff gets the right access",
@@ -568,6 +630,18 @@ const en = {
           "Encrypted data & connections",
         ],
       },
+    },
+    // The picture of how data is protected: a record on your device, sent over SSL/TLS, stored encrypted.
+    encryption: {
+      device: "Your device",
+      record: "Customer record",
+      tls: "SSL/TLS encrypted",
+      server: "Protected servers in Malaysia",
+      stored: "Database encrypted at rest",
+      leaked: "If a copy ever leaked",
+      unreadable: "Still encrypted",
+      // A made-up record, as staff see it on their device.
+      sample: ["Nur Aisyah", "Facial · 3:00 PM"],
     },
     infra: {
       business: "Your business",
@@ -604,11 +678,19 @@ const en = {
       },
       {
         q: "How is my data protected?",
-        a: "All saved data is encrypted and sent over encrypted connections. Backups are kept in multiple layers across multiple regions, role-based permissions control what each staff member can see, and an audit trail records every action.",
+        a: "Your database is encrypted at rest and every connection uses SSL/TLS encryption, on protected servers in Malaysia. Backups are kept in multiple layers across multiple regions, role-based permissions control what each staff member can see, and an audit trail records every action.",
+      },
+      {
+        q: "What if data were ever leaked?",
+        a: "Your data stays encrypted. The database is encrypted at rest and every connection is protected with SSL/TLS, so even leaked data stays encrypted. Your data is our priority.",
       },
       {
         q: "Why are Techub reports so fast?",
         a: "Techub uses an indexed NoSQL database, so even detailed reports are generated in under 100 milliseconds, without lag. Our servers are in Malaysia, so businesses across Malaysia get a fast response.",
+      },
+      {
+        q: "Which technology is Techub built on?",
+        a: "Techub is built with React and Next.js, a modern web framework, with a fast NoSQL database on enterprise servers in Malaysia. Pages change instantly, without a full reload.",
       },
       {
         q: "What does the {uptime} uptime guarantee mean?",
@@ -617,6 +699,10 @@ const en = {
       {
         q: "How does the AI delivery note scanning work?",
         a: "Snap or scan a supplier delivery note and the AI reads the items, quantities, batch and expiry details, then adjusts your stock automatically. Every inventory movement is logged, so you can trace stock in, stock out, transfers and adjustments.",
+      },
+      {
+        q: "How does AI data extraction work?",
+        a: "For data migration, our AI reads PDFs and scanned documents with OCR, and can capture an old system's screens page by page when it can't export. Our software engineers map and check every field before your data goes live in Techub.",
       },
       {
         q: "Does Techub support LHDN e-Invoice?",
@@ -735,11 +821,13 @@ const en = {
     customMessage: "Hi Techub, I need a customised system quote.",
     customEmail: "Email us",
     customEmailSubject: "Customised system quote",
+    customSee: "See customer examples",
     offerText: "From RM {price} per month. First {months} months free for new users, including installation and staff training.",
     // Other services (prices in lib/site.ts), a card each on the Pricing and Services pages
     extrasTitle: "More services",
     extrasText: "Also from Techub, for any business in Malaysia.",
     extrasCta: "Ask on WhatsApp",
+    extrasMore: "See how it works",
     extras: {
       migration: {
         title: "Data migration",
@@ -755,8 +843,8 @@ const en = {
         label: "",
         unit: "/ year",
         text: "Email hosting on your own domain, like hello@yourbusiness.com.",
-        points: ["Your own domain name", "{emailStorage} of storage"],
-        note: "",
+        points: ["Works with your own domain", "{emailStorage} of storage", "We set it all up for you"],
+        note: "The domain itself is not included.",
         message: "Hi Techub, I'd like business email on my own domain.",
       },
       website: {
@@ -1838,6 +1926,348 @@ const en = {
   },
 
   /* ---------- Example screens: picture titles and alt text ---------- */
+  /* ---------- Service pages (lib/site.ts servicePages), listed under Use Cases after the systems ----------
+     `label` is the name in the menu, `name` the page's name, `blurb` and `points` show on the Use Cases page and in
+     the menu, `cta` opens the page. On each page: the top (eyebrow, heading, intro, two buttons and `chips`), the
+     dark band of `highlights`, the page's own parts, `spotlights` with pictures, the price, `faqs` and `contact`. */
+  servicePages: {
+    menuSystems: "Ready systems",
+    menuServices: "For any business",
+    useCasesTitle: "More ways we help",
+    useCasesIntro: "Customisation, data migration, business email and websites, for any business in Malaysia.",
+    others: "More ways we help",
+    priceEyebrow: "Price",
+    customisation: {
+      label: "Customisation",
+      name: "Software Customisation",
+      blurb: "Changes made for your business, from RM {custom} per work hour.",
+      points: [
+        "Charged by the work hour, from RM {custom}",
+        "AI predicts the hours: a clear quote first",
+        "Free testing and integration",
+        "Instalment plans available",
+      ],
+      cta: "See customisation examples",
+      meta: {
+        title: "Software Customisation Malaysia | From RM {custom} per Hour",
+        socialTitle: "Software Customisation | Techub Software",
+        description:
+          "Custom features, reports and printouts for your system in Malaysia. Charged by the work hour from RM {custom}, with an AI estimate first, free testing and instalments.",
+        keywords: [
+          "software customisation Malaysia",
+          "system customisation",
+          "custom software Malaysia",
+          "custom report",
+          "custom printout",
+          "software development per hour",
+          "customise clinic system",
+          "customise salon system",
+        ],
+      },
+      eyebrow: "Software Customisation",
+      heading: "Small changes, *small bills*",
+      intro: "Need a new report, printout or feature? We charge by the work hour, from RM {custom}. Our AI predicts the hours, so you know the price before we start.",
+      primary: "Ask for a quote",
+      message: "Hi Techub, I'd like a quote for a customisation.",
+      price: "From RM {custom} / hour",
+      chips: ["Clinics", "Hair salons", "Beauty centres", "Spas", "Live sellers", "Any business"],
+      highlights: ["From RM {custom} per work hour", "AI predicts the hours", "Clear quote first", "Free testing & integration", "Instalment plans", "Support on WhatsApp"],
+      storiesEyebrow: "Examples",
+      storiesTitle: "What a small change *really costs*",
+      storiesIntro: "Typical requests from clinics, salons, spas and online sellers, with the hours they take.",
+      // Customers A to D. Their hours are customExamples in lib/site.ts, in the same order.
+      stories: [
+        { who: "Customer A · Clinic", task: "Claim file in a new panel company's format", result: "Panel claims go out in one tap each month." },
+        { who: "Customer B · Hair salon", task: "Monthly sales file in their accountant's format", result: "Month-end without retyping a single sale." },
+        { who: "Customer C · Spa", task: "A new booking question: how did you find us?", result: "Now they know which ads bring customers." },
+        { who: "Customer D · Online seller", task: "Order file that uploads straight to their courier", result: "No more copying addresses by hand." },
+      ],
+      hours: "About {n} hours",
+      monthly: "Monthly plan",
+      storiesNote: "Examples to show typical costs. Your quote is based on your request.",
+      buildTitle: "What we can build for you",
+      build: {
+        reports: "New reports",
+        printouts: "Printouts & forms",
+        files: "Excel & accounting files",
+        booking: "Booking form questions",
+        whatsapp: "WhatsApp messages",
+        workflow: "Workflows & approvals",
+        integration: "Links to other systems",
+        module: "A whole new module",
+      },
+      spotlights: {
+        estimate: {
+          eyebrow: "Clear quote first",
+          title: "AI predicts the hours, *before we start*",
+          points: ["Tell us what you need on WhatsApp", "Our AI estimates the work hours", "See the exact price on your plan", "We start once you approve"],
+        },
+        testing: {
+          eyebrow: "Free testing & integration",
+          title: "Tested and connected, *at no charge*",
+          points: ["Every change checked before it goes live", "Connected to the rest of your system", "Testing and integration are always free", "We tell you on WhatsApp when it's live"],
+        },
+      },
+      faqs: [
+        {
+          q: "How much does customisation cost?",
+          a: "It's charged by the work hour at your plan's rate: RM {customMonthly} on the monthly plan, RM {custom12} on 12 months, RM {custom24} on 24 months and RM {custom} on 48 months. Testing and integration are free.",
+        },
+        {
+          q: "How do I know the price before you start?",
+          a: "Tell us what you need and our AI model predicts the work hours. You get a clear quote for your plan before any work starts, and we only start once you approve it.",
+        },
+        { q: "Can I pay in instalments?", a: "Yes, instalment plans are available. Ask us about them when you get your quote." },
+        {
+          q: "What can you customise?",
+          a: "New reports, printouts and forms, Excel and accounting files, booking form questions, WhatsApp messages, workflows and approvals, links to other systems, or a whole new module.",
+        },
+        { q: "Do you charge for testing?", a: "No. Testing and integration with the rest of your system are always free." },
+      ],
+      contact: {
+        title: "Tell us what you'd like to change",
+        badge: "Clear quote first",
+        text: "Our AI estimates the hours and you see the price before we start. Testing and integration are free.",
+      },
+    },
+    migration: {
+      label: "Data migration",
+      name: "Data Migration",
+      blurb: "Bring your data from any system, charged by time, not volume.",
+      points: [
+        "PDF, Excel, CSV or TXT files",
+        "AI scans old systems that can't export",
+        "Planned with our software engineers",
+        "Charged by time, not data volume",
+      ],
+      cta: "See how data migration works",
+      meta: {
+        title: "Data Migration Malaysia | Excel, PDF & Old Systems",
+        socialTitle: "Data Migration | Techub Software",
+        description:
+          "Move your records from Excel, PDF, CSV, TXT or an old system that can't export. AI screen scanning, checked by engineers, charged by time, not data volume.",
+        keywords: [
+          "data migration Malaysia",
+          "data migration service",
+          "import Excel data",
+          "PDF data extraction",
+          "OCR data extraction",
+          "legacy system migration",
+          "migrate clinic records",
+          "AI data extraction",
+        ],
+      },
+      eyebrow: "Data Migration",
+      heading: "Bring your data, *from any system*",
+      intro: "PDF, Excel, CSV or TXT, our software engineers move it into Techub. Old system can't export? Our AI reads it from the screen, page by page.",
+      primary: "Talk to an engineer",
+      message: "Hi Techub, I'd like to move my data to Techub. Can I talk to your engineer?",
+      price: "About RM {migration} / hour",
+      chips: ["Clinics", "Hair salons", "Beauty centres", "Spas", "Online sellers", "Any business"],
+      highlights: ["PDF, Excel, CSV & TXT", "AI screen scanning", "Checked by engineers", "Charged by time", "Big data? No worry", "Ready to use in Techub"],
+      formatsEyebrow: "Any format",
+      formatsTitle: "Send us what you have, *we bring it in*",
+      formatsIntro: "Our software engineers look at your files with you first, then plan the move.",
+      formats: { pdf: "Reports & scans", excel: "Spreadsheets", csv: "System exports", txt: "Text files" },
+      formatsMore: "Another format? Send us a sample.",
+      spotlights: {
+        scan: {
+          eyebrow: "AI screen scanning",
+          title: "No export button? *Our AI reads it.*",
+          points: ["Our AI tools scan your old system's screens", "Data captured page by page, field by field", "Each field matched to its place in Techub", "Checked by our software engineers"],
+        },
+        check: {
+          eyebrow: "Quality check",
+          title: "Clean data from *day one*",
+          points: ["Duplicates found and merged", "Phone numbers and dates tidied up", "Unclear records sent for review", "Checked before it goes live"],
+        },
+      },
+      timeEyebrow: "Fair pricing",
+      timeTitle: "Charged by time, *not data volume*",
+      timeText: "A few thousand records or years of history, you pay for the engineer's time, not the size of your data. So big data stays affordable.",
+      timeSmall: "A few thousand records",
+      timeBig: "Years of history",
+      timeSame: "Same hourly rate",
+      stepsTitle: "How it works",
+      steps: ["Talk to our engineer", "Get a quote by time", "We move and check it", "Go live in Techub"],
+      faqs: [
+        {
+          q: "Which formats can you import?",
+          a: "PDF, Excel, CSV and TXT, and most other exports. Send us a sample and our software engineers will look at it with you first.",
+        },
+        {
+          q: "My old system can't export. Can you still move my data?",
+          a: "Yes. Our AI tools scan the old system's screens page by page and capture the data, and our engineers check it before it goes into Techub.",
+        },
+        {
+          q: "How is data migration priced?",
+          a: "By the time it takes, not by the amount of data, usually about RM {migration} per hour. You get the estimate after a talk with our software engineer.",
+        },
+        { q: "I have years of records. Is that a problem?", a: "No. We charge by time, not by data volume, so years of records are no worry." },
+        {
+          q: "Is my data safe after the move?",
+          a: "Yes. In Techub your database is encrypted at rest and every connection uses SSL/TLS, on enterprise servers in Malaysia.",
+        },
+      ],
+      contact: {
+        title: "Tell us where your data is today",
+        badge: "Charged by time",
+        text: "Excel, PDF, CSV, TXT or an old system: our software engineers will plan the move with you.",
+      },
+    },
+    email: {
+      label: "Business email",
+      name: "Business Email",
+      blurb: "Email on your own domain, RM {emailYear} a year, set up for you.",
+      points: ["Email on your own domain", "{emailStorage} of storage, RM {emailYear} a year", "We set it all up for you", "Domain not included"],
+      cta: "See business email",
+      meta: {
+        title: "Business Email Malaysia | Your Domain, RM {emailYear} a Year",
+        socialTitle: "Business Email | Techub Software",
+        description:
+          "Professional email on your own domain, like hello@yourbusiness.com. RM {emailYear} a year with {emailStorage} of storage, set up for you in Malaysia. Domain not included.",
+        keywords: [
+          "business email Malaysia",
+          "email hosting Malaysia",
+          "company email",
+          "custom domain email",
+          "professional email address",
+          "email with own domain",
+          "affordable email hosting",
+        ],
+      },
+      eyebrow: "Business Email",
+      heading: "Your own email, *on your own domain*",
+      intro: "Swap your free email for hello@yourbusiness.com. RM {emailYear} a year with {emailStorage} of storage, and we set it all up for you.",
+      primary: "Get business email",
+      message: "Hi Techub, I'd like business email on my own domain.",
+      price: "RM {emailYear} / year",
+      chips: ["Clinics", "Salons & spas", "Online sellers", "Offices", "Startups", "Any business"],
+      highlights: ["Your own domain", "RM {emailYear} a year", "{emailStorage} of storage", "Set up for you", "Phone, iPad & PC", "Support on WhatsApp"],
+      usesEyebrow: "Use cases",
+      usesTitle: "An address *customers trust*",
+      uses: [
+        { who: "Clinic", address: "booking@yourclinic.com.my", text: "Patients and panel companies email the clinic, not someone's personal account." },
+        { who: "Salon & spa", address: "hello@yoursalon.com.my", text: "Booking enquiries and supplier invoices in one tidy inbox." },
+        { who: "Online seller", address: "orders@yourshop.com.my", text: "Order emails from your own brand look trustworthy." },
+        { who: "Any company", address: "finance@yourcompany.com.my", text: "The address stays with the business when staff change." },
+      ],
+      spotlights: {
+        setup: {
+          eyebrow: "Set up for you",
+          title: "We set it all up, *you just use it*",
+          points: ["We connect your domain", "We create your mailboxes", "We add them to your phones and PCs", "We test sending and receiving"],
+        },
+        devices: {
+          eyebrow: "Every device",
+          title: "Your inbox on *every phone and PC*",
+          points: ["iPhone, Android, iPad, Windows and Mac", "New emails arrive right away", "{emailStorage} of storage", "Help on WhatsApp when you need it"],
+          badges: ["New enquiry", "Your own domain"],
+        },
+      },
+      faqs: [
+        { q: "How much is business email?", a: "RM {emailYear} a year with {emailStorage} of storage, and we set it up for you." },
+        {
+          q: "Is the domain included?",
+          a: "No, the price doesn't include the domain. Use a domain you already have, or buy one such as .com or .com.my, and we'll connect it for you.",
+        },
+        {
+          q: "Do you set it up for me?",
+          a: "Yes. We connect your domain, create your mailboxes and add them to your phones and computers, then test sending and receiving.",
+        },
+        { q: "Can I use it on my phone?", a: "Yes, on iPhone and Android phones, iPads, and Windows or Mac computers." },
+        {
+          q: "Why not use a free email address?",
+          a: "An address on your own domain looks more professional and builds trust, and it stays with your business even when staff change.",
+        },
+      ],
+      contact: {
+        title: "Get your business email set up",
+        badge: "RM {emailYear} a year",
+        text: "Tell us your domain, or the one you'd like, and we'll set everything up for you.",
+      },
+    },
+    website: {
+      label: "Website design",
+      name: "Website Design",
+      blurb: "Beautiful, fast websites from RM {website}, hosted for you.",
+      points: [
+        "Designed for your brand, up to {websitePages} pages",
+        "Pages change instantly, with no reload",
+        "Free domain for the first year",
+        "Cloudflare hosting: over 1 million views a minute",
+      ],
+      cta: "See website designs",
+      meta: {
+        title: "Website Design Malaysia | RM {website} With Hosting & Free Domain",
+        socialTitle: "Website Design | Techub Software",
+        description:
+          "Beautiful websites for businesses in Malaysia: up to {websitePages} pages, instant page changes, Cloudflare hosting, SEO and AI search ready. RM {website} with a free domain for year one.",
+        keywords: [
+          "website design Malaysia",
+          "web design Malaysia",
+          "landing page design",
+          "website for small business",
+          "affordable website design",
+          "Cloudflare hosting",
+          "SEO website Malaysia",
+          "website with free domain",
+        ],
+      },
+      eyebrow: "Website Design",
+      heading: "Beautiful websites that *feel instant*",
+      intro: "Designed for your brand and hosted on Cloudflare, from RM {website} with a free domain for the first year. Pages change instantly, with no reload.",
+      primary: "Get a website",
+      message: "Hi Techub, I'd like a website designed and hosted.",
+      price: "RM {website} · free domain",
+      chips: ["Clinics", "Salons & spas", "Cafés", "Homestays", "Studios", "Professional firms"],
+      highlights: ["Designed for your brand", "No reload between pages", "Perfect on phones", "Cloudflare hosting", "SEO & AI search ready", "Free domain, first year"],
+      galleryEyebrow: "Example designs",
+      galleryTitle: "Designed to *impress*",
+      galleryIntro: "Concept designs for sample businesses. Yours is designed for your own brand.",
+      gallery: { skin: "Skin clinic", dental: "Dental clinic", cafe: "Café", homestay: "Villa stay", interior: "Interior design", accounting: "Accounting firm" },
+      spotlights: {
+        instant: {
+          eyebrow: "Single-page technology",
+          title: "Pages change *instantly*",
+          points: ["Built with React and Next.js", "The address changes, the page doesn't reload", "No white flash, no waiting", "Feels like an app on phones"],
+          badge: "No reload",
+        },
+        fast: {
+          eyebrow: "Cloudflare hosting",
+          title: "Fast everywhere, *ready for crowds*",
+          points: ["Hosted on Cloudflare's global network", "Handles over 1 million views a minute", "Optimised for SEO and AI search", "Free domain for the first year"],
+          badge: "1M+ views a minute",
+        },
+      },
+      faqs: [
+        {
+          q: "How much does a website cost?",
+          a: "RM {website} for design and hosting, with a free domain for the first year. After that it's RM {websiteYear} a year for maintenance.",
+        },
+        { q: "How many pages can I have?", a: "Up to {websitePages} pages. We build static websites, without product listings or a blog." },
+        {
+          q: "What does \"no reload\" mean?",
+          a: "Your website is built with React and Next.js as a single-page app. When visitors open another page, the address changes but the browser doesn't reload, so it feels smooth and instant.",
+        },
+        { q: "Can my website handle a lot of visitors?", a: "Yes. It's hosted on Cloudflare and handles over 1 million views a minute." },
+        {
+          q: "Will customers find my website?",
+          a: "Every website is optimised for SEO and AI search, so search engines and AI assistants can read and understand your pages.",
+        },
+        {
+          q: "Can you add an online shop or a blog?",
+          a: "Our websites are static, without product listings or a blog. To sell online during live sessions, ask about our Live Selling System.",
+        },
+      ],
+      contact: {
+        title: "Let's design your website",
+        badge: "RM {website} · free domain",
+        text: "Tell us about your business and the look you like. We'll design it, host it and get it live.",
+      },
+    },
+  },
+
   shots: {
     clinicDashboard: {
       title: "Clinic dashboard on iPad",
@@ -2122,6 +2552,110 @@ const en = {
     livePayment: {
       title: "Online payment at checkout",
       alt: "A buyer paying RM 77.80 for a live sale order on a phone, by online banking (FPX), card, e-wallet or DuitNow QR, paid straight to the shop's own merchant account",
+    },
+    customRequest: {
+      title: "Customisation request on WhatsApp",
+      alt: "A clinic asking Techub on WhatsApp for a new panel claim export and getting a quote of 6 work hours at RM 80, with free testing and integration",
+    },
+    customEstimate: {
+      title: "AI work-hour estimate & quote",
+      alt: "Customisation request on an iPad with an AI estimate of 6 work hours and a quote of RM 480 on the 48-month plan, testing and integration free",
+    },
+    customTesting: {
+      title: "Free testing & integration",
+      alt: "Testing and integration of a new clinic feature on an iPad, every check passed, at no charge",
+    },
+    customClaims: {
+      title: "Customer A: panel claim export",
+      alt: "Clinic panel claims for October on an iPad with a new export button that makes the panel company's own Excel format",
+    },
+    customSalesExport: {
+      title: "Customer B: sales in the accountant's format",
+      alt: "Hair salon monthly sales report on an iPad, exported in the accountant's own Excel format",
+    },
+    customFoundUs: {
+      title: "Customer C: \"How did you find us?\"",
+      alt: "Spa booking form on an iPad with a new question, how did you find us, and a report of the answers from 312 bookings",
+    },
+    customCourier: {
+      title: "Customer D: courier upload file",
+      alt: "Online seller's 214 orders of the day on an iPad, ready to download as the courier's bulk upload file",
+    },
+    migrationImport: {
+      title: "Import from any format",
+      alt: "Data migration workspace reading Excel, PDF, CSV and TXT files from an old clinic system, with AI matching each old column to a Techub field",
+    },
+    migrationScan: {
+      title: "AI screen scanning",
+      alt: "AI scanning an old system's screens page by page and pulling out each field, for a system that can't export its data",
+    },
+    migrationCheck: {
+      title: "Every record checked",
+      alt: "Data migration check of 143,861 records with duplicates merged, phone numbers fixed and a few records sent for review",
+    },
+    migrationDone: {
+      title: "Migration complete",
+      alt: "Data migration complete with 143,861 records live in Techub, charged by engineer time, not by data volume",
+    },
+    migrationChat: {
+      title: "Data migration on WhatsApp",
+      alt: "A clinic sends its Excel and scanned PDF files to Techub on WhatsApp, gets a migration plan charged by time, then hears its 143,861 records are live",
+    },
+    emailInbox: {
+      title: "Business email on your own domain",
+      alt: "A hair salon's inbox on an iPad at its own domain address, with a bridal hair enquiry open",
+    },
+    emailSetup: {
+      title: "Email set up for you",
+      alt: "Business email set up by Techub: domain connected, four mailboxes created, staff phones and PCs added, 5 GB of storage",
+    },
+    emailPhone: {
+      title: "Email on your phone",
+      alt: "A new customer enquiry arriving in the salon's business email inbox on a phone",
+    },
+    siteHome: {
+      title: "Website design: skin clinic",
+      alt: "Example website for a skin clinic in Bangsar, Kuala Lumpur, with an elegant home page and a Book a consultation button",
+    },
+    siteTreatments: {
+      title: "Treatments page, no reload",
+      alt: "The skin clinic website's treatments page with prices in RM, opened instantly without reloading the page",
+    },
+    siteContact: {
+      title: "Booking & WhatsApp page",
+      alt: "The skin clinic website's booking page with a booking form, a WhatsApp button, opening hours and a map",
+    },
+    sitePhone: {
+      title: "Website on a phone",
+      alt: "The skin clinic website on a phone with its headline and a Book button",
+    },
+    siteDental: {
+      title: "Website design: dental clinic",
+      alt: "Example website for a family dental clinic in Petaling Jaya with treatments from RM prices and appointment booking",
+    },
+    siteCafe: {
+      title: "Website design: café",
+      alt: "Example website for an artisan bakery café in George Town, Penang, with a menu of kopi, kaya toast and pastries in RM",
+    },
+    siteCafePhone: {
+      title: "Café website on a phone",
+      alt: "The bakery café website on a phone with its menu and an order for pickup button",
+    },
+    siteHomestay: {
+      title: "Website design: villa stay",
+      alt: "Example website for a private pool villa stay in Langkawi with an availability search and prices per night",
+    },
+    siteHomestayPhone: {
+      title: "Villa website on a phone",
+      alt: "The villa stay website on a phone with a check availability button",
+    },
+    siteInterior: {
+      title: "Website design: interior studio",
+      alt: "Example website for an interior design studio in Kuala Lumpur with a gallery of projects",
+    },
+    siteAccounting: {
+      title: "Website design: accounting firm",
+      alt: "Example website for an accounting and tax firm for SMEs in Johor Bahru with services and a free consultation button",
     },
   },
 };

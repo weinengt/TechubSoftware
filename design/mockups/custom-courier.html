@@ -1,0 +1,173 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<style>
+  /* Customer D's customisation: Demo Live Shop's daily courier file, in the column order of their courier's bulk upload
+     template (no courier brand named). Spot: "export" (the download button with the template chip). Same layout as the
+     other customisation screens. */
+  :root { --w: 1024px; --h: 720px; }
+  .top { gap: 10px; }
+  .top h1 { white-space: nowrap; }
+  .btn svg { width: 15px; height: 15px; }
+  .fl { display: inline-flex; align-items: center; gap: 7px; height: 34px; padding: 0 11px; border: 1px solid var(--line); border-radius: 9px; background: #fff; font-size: 12px; font-weight: 650; color: var(--ink); white-space: nowrap; }
+  .fl svg { width: 15px; height: 15px; color: var(--muted); }
+  .content { flex-direction: row; gap: 12px; }
+  .colL { width: 718px; flex-shrink: 0; display: flex; flex-direction: column; gap: 12px; min-height: 0; }
+  .colR { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+
+  /* Today's courier file */
+  .cf { flex-shrink: 0; padding: 14px; border-color: #bfe3f7; background: linear-gradient(135deg, #ffffff 40%, #f2faff);
+    box-shadow: 0 14px 30px -18px rgba(3,110,170,.55), 0 1px 2px rgba(15,23,42,.04); }
+  .eh { display: flex; align-items: flex-start; gap: 12px; }
+  .eh .fi { width: 36px; height: 42px; border-radius: 8px; background: linear-gradient(160deg, #22c55e, #15803d); color: #fff; font-size: 8.5px; font-weight: 800; letter-spacing: .03em; display: grid; place-items: end center; padding-bottom: 6px; flex-shrink: 0; position: relative; box-shadow: 0 6px 12px -6px rgba(21,128,61,.8); }
+  .eh .fi::before { content: ""; position: absolute; top: 0; right: 0; width: 11px; height: 11px; background: linear-gradient(225deg, #eef6fc 50%, #86efac 50%); border-radius: 0 8px 0 3px; }
+  .eh .tt { min-width: 0; padding-top: 1px; }
+  .eh b { display: block; font-size: 14px; font-weight: 800; letter-spacing: -.01em; white-space: nowrap; }
+  .eh .tt > small { display: block; font-size: 11px; color: var(--muted); margin-top: 2px; white-space: nowrap; }
+  .eh .fn { display: inline-flex; align-items: center; gap: 6px; margin-top: 7px; height: 22px; padding: 0 8px; border-radius: 6px; background: #f1f5f9; font-size: 10.5px; font-weight: 600; color: var(--ink2); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .ex { margin-left: auto; display: flex; flex-direction: column; align-items: stretch; gap: 7px; flex-shrink: 0; }
+  .go { height: 42px; border-radius: 11px; display: flex; align-items: center; justify-content: center; gap: 9px; padding: 0 16px; background: linear-gradient(135deg, var(--brand), #0287c4); color: #fff; font-size: 13px; font-weight: 750; white-space: nowrap; box-shadow: 0 10px 20px -10px rgba(3,150,217,.95); }
+  .go svg { width: 17px; height: 17px; stroke-width: 2.3; }
+  .match { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 99px; background: #dcfce7; color: #15803d; font-size: 11px; font-weight: 700; white-space: nowrap; }
+  .match svg { width: 13px; height: 13px; stroke-width: 2.8; }
+  .fmt { display: flex; align-items: center; gap: 5px; margin-top: 12px; padding: 8px 10px; border-radius: 10px; background: #fff; border: 1px solid #e3eaf2; }
+  .fmt > span.k { font-size: 10px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; margin-right: 3px; white-space: nowrap; }
+  .fmt .c { display: inline-flex; align-items: center; height: 22px; padding: 0 7px; border-radius: 6px; background: #eef6fc; color: #0b4a75; font-size: 10.5px; font-weight: 650; white-space: nowrap; }
+  .fmt svg { width: 10px; height: 10px; color: #94a3b8; stroke-width: 2.6; }
+
+  /* Orders in the file */
+  .tb { padding: 0; overflow: hidden; display: flex; flex-direction: column; flex: 1; min-height: 0; }
+  .tb .hd { display: flex; align-items: center; gap: 10px; padding: 11px 14px 10px; }
+  .tb .hd h3 small { font-size: 11px; color: var(--muted); font-weight: 500; }
+  .seg { margin-left: auto; display: flex; background: #eef2f7; border-radius: 8px; padding: 2px; }
+  .seg span { font-size: 11px; font-weight: 600; padding: 4px 9px; border-radius: 6px; color: var(--muted); white-space: nowrap; }
+  .seg span.on { background: #fff; color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+  .seg span em { font-style: normal; font-weight: 500; color: #94a3b8; margin-left: 3px; }
+  table { table-layout: fixed; }
+  th { padding: 7px 8px; white-space: nowrap; font-size: 10px; letter-spacing: .03em; }
+  td { padding: 0 8px; height: 42px; font-variant-numeric: tabular-nums; }
+  th:first-child, td:first-child { padding-left: 14px; }
+  th:last-child, td:last-child { padding-right: 14px; }
+  th.num { text-align: right; }
+  td b { display: block; font-size: 12px; overflow: hidden; text-overflow: ellipsis; }
+  td small { overflow: hidden; text-overflow: ellipsis; }
+  .ord { font-weight: 700; color: var(--ink); font-size: 11px; }
+  .ph { font-size: 11px; color: var(--ink2); }
+  td b.ad { font-weight: 600; font-size: 11.5px; }
+  .pc { display: inline-block; font-size: 11px; font-weight: 700; color: var(--ink); background: #f1f5f9; border-radius: 5px; padding: 2px 6px; }
+  .tot td { background: #f8fafc; border-bottom: 0; height: 40px; color: var(--ink); font-weight: 750; }
+  .tot small { display: inline; color: var(--muted); font-weight: 500; font-size: 11px; margin-left: 6px; }
+
+  /* Right-hand column */
+  .sumc .k { font-size: 11px; color: var(--muted); font-weight: 500; margin-top: 10px; }
+  .sumc .v { display: flex; align-items: baseline; gap: 6px; font-size: 26px; font-weight: 850; letter-spacing: -.02em; font-variant-numeric: tabular-nums; margin-top: 2px; white-space: nowrap; }
+  .sumc .v span { font-size: 12px; font-weight: 650; color: var(--ink2); letter-spacing: 0; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 10px; }
+  .two div { background: #f8fafc; border: 1px solid #edf1f6; border-radius: 9px; padding: 7px 7px; min-width: 0; }
+  .two span { display: block; font-size: 10px; color: var(--muted); white-space: nowrap; }
+  .two b { display: block; font-size: 11.5px; font-weight: 800; margin-top: 1px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .reg { flex: 1; display: flex; flex-direction: column; }
+  .chk h3 svg { color: #059669; stroke-width: 2.6; }
+  .ck { display: flex; align-items: center; gap: 8px; margin-top: 8px; font-size: 11.5px; color: var(--ink2); white-space: nowrap; }
+  .ck::before { content: ""; width: 7px; height: 7px; border-radius: 99px; background: #10b981; flex-shrink: 0; }
+  .ck b { margin-left: auto; font-weight: 700; color: #047857; font-variant-numeric: tabular-nums; }
+  .ck.hold::before { background: #f59e0b; }
+  .ck.hold b { color: #b45309; }
+  .rr { padding: 5px 0; }
+  .rr .ln { display: flex; align-items: baseline; font-size: 11.5px; color: var(--ink2); white-space: nowrap; }
+  .rr .ln span { margin-left: auto; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .rr .br { height: 5px; border-radius: 9px; background: #f1f5f9; margin-top: 5px; overflow: hidden; }
+  .rr .br i { display: block; height: 100%; border-radius: 9px; background: linear-gradient(90deg, #38bdf8, #0396d9); }
+  .pick { margin-top: auto; padding: 9px 11px; border-radius: 10px; background: #fffbeb; border: 1px solid #fde9b8; box-shadow: inset 3px 0 0 #f59e0b; }
+  .pick b { display: block; font-size: 12px; font-weight: 750; white-space: nowrap; }
+  .pick small { display: block; font-size: 10.5px; color: #92400e; margin-top: 1px; white-space: nowrap; }
+</style></head>
+<body>
+<div class="app">
+  <aside class="side" data-shell="live" data-active="Orders"></aside>
+  <section class="main">
+    <header class="top">
+      <div><div class="sub">Demo Live Shop · Orders</div><h1>Courier file · 214 orders today</h1></div>
+      <span class="fl" style="margin-left:auto"><i data-i="cal"></i>Thu, 15 Oct 2026<i data-i="chevD"></i></span>
+      <span class="btn"><i data-i="print"></i>Print labels</span>
+    </header>
+    <div class="content">
+      <div class="colL">
+        <div class="card cf" id="cf"></div>
+        <div class="card tb" id="tb"></div>
+      </div>
+      <div class="colR" id="colR"></div>
+    </div>
+  </section>
+</div>
+<script>
+  const $ = (id) => document.getElementById(id);
+  const X = {
+    dl: '<path d="M12 4v11M7.5 10.5L12 15l4.5-4.5"/><path d="M5 19.5h14"/>',
+    check: '<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+    chev: '<path d="M9 6l6 6-6 6"/>',
+    truck: '<path d="M2.5 6.5h11v9.5h-11z"/><path d="M13.5 9.5h4l3 3.2V16h-7"/><circle cx="6.5" cy="17.5" r="1.9"/><circle cx="17" cy="17.5" r="1.9"/>',
+    map: '<path d="M9 4L3 6.5v13.5l6-2.5 6 2.5 6-2.5V4l-6 2.5L9 4z"/><path d="M9 4v13.5M15 6.5V20"/>',
+  };
+  const I = (n) => `<svg class="i" viewBox="0 0 24 24">${X[n]}</svg>`;
+
+  // The courier's bulk upload template: these columns, in this order
+  const COLS = ["Order", "Receiver", "Phone", "Address", "Postcode", "Weight (kg)", "Parcel value"];
+  $("cf").innerHTML = `
+    <div class="eh">
+      <span class="fi">CSV</span>
+      <div class="tt"><b>Today's courier file</b><small>Paid and packed orders, ready for the 5:00 PM pickup</small>
+        <span class="fn">courier_bulk_upload_15-10-2026.csv · 214 rows</span></div>
+      <div class="ex" data-spot="export">
+        <div class="go">${I("dl")}Download courier file (.csv)</div>
+        <span class="match">${I("check")}Matches your courier's bulk upload template</span>
+      </div>
+    </div>
+    <div class="fmt"><span class="k">Template</span>${COLS.map((c, i) => `${i ? I("chev") : ""}<span class="c">${c}</span>`).join("")}</div>`;
+
+  // Latest orders in today's file: [order, receiver, phone, address, town, postcode, kg, value]
+  const O = [
+    ["LS-25391", "Nur Aisyah", "+60 12-345 6789", "No. 8, Jalan SS 2/24", "Petaling Jaya, Selangor", "47300", "0.5", "69.80"],
+    ["LS-25390", "Tan Siew Ling", "+60 16-234 5678", "21, Lorong Mawar 3", "Ipoh, Perak", "31400", "0.6", "89.00"],
+    ["LS-25389", "Kavitha Raman", "+60 13-456 7890", "A-8-2, Vista Harmoni", "Cheras, Kuala Lumpur", "56000", "0.4", "59.80"],
+    ["LS-25388", "Farah Nadia", "+60 17-678 9012", "15, Jalan Kenanga 2", "Johor Bahru, Johor", "81200", "0.8", "47.70"],
+    ["LS-25387", "Melissa Wong", "+60 19-876 5432", "10, Lorong Cempaka 2", "Kuching, Sarawak", "93350", "0.8", "118.90"],
+    ["LS-25386", "Siti Khadijah", "+60 14-567 8901", "27, Jalan Melati 5", "Kota Bharu, Kelantan", "15150", "0.2", "29.90"],
+    ["LS-25385", "Lim Jia Hui", "+60 10-234 5678", "6, Jalan Dahlia 4", "Kota Kinabalu, Sabah", "88300", "0.8", "71.70"],
+    ["LS-25384", "Aiman Hakimi", "+60 18-765 4321", "33, Jalan Sena 7", "Ayer Keroh, Melaka", "75450", "0.6", "89.00"],
+  ];
+  $("tb").innerHTML = `
+    <div class="hd"><h3>${I("truck")}Orders in the file <small>· newest first</small></h3>
+      <div class="seg"><span class="on">Ready<em>214</em></span><span>Picked up<em>0</em></span><span>On hold<em>3</em></span></div></div>
+    <table>
+      <colgroup><col style="width:82px"><col style="width:112px"><col style="width:120px"><col><col style="width:68px"><col style="width:82px"><col style="width:100px"></colgroup>
+      <tr>${COLS.map((c, i) => `<th${i >= 5 ? ' class="num"' : ""}>${c}</th>`).join("")}</tr>
+      ${O.map(([o, n, ph, a, t, pc, kg, v]) => `<tr><td class="ord">${o}</td><td><b>${n}</b></td><td class="ph">${ph}</td>
+        <td><b class="ad">${a}</b><small>${t}</small></td><td><span class="pc">${pc}</span></td><td class="num">${kg}</td><td class="num"><b>${v}</b></td></tr>`).join("")}
+      <tr class="tot"><td colspan="4">214 orders in the file<small>newest 8 shown</small></td><td></td><td class="num">117.8</td><td class="num">14,126.40</td></tr>
+    </table>`;
+
+  // Where today's parcels go (adds up to 214)
+  const R = [["Klang Valley", 96], ["Northern", 38], ["Southern", 31], ["East Malaysia", 27], ["East Coast", 22]];
+  $("colR").innerHTML = `
+    <div class="card sumc">
+      <h3>${I("truck")}Today's parcels</h3>
+      <div class="k">Paid and packed</div>
+      <div class="v">214<span>orders</span></div>
+      <div class="two"><div><span>Weight</span><b>117.8 kg</b></div><div><span>Parcel value</span><b>RM 14,126</b></div></div>
+    </div>
+    <div class="card chk">
+      <h3>${I("check")}File checks</h3>
+      <div class="ck"><span>Postcodes valid</span><b>214 / 214</b></div>
+      <div class="ck"><span>Phone numbers</span><b>214 / 214</b></div>
+      <div class="ck"><span>Weights filled in</span><b>214 / 214</b></div>
+      <div class="ck hold"><span>On hold (address)</span><b>3</b></div>
+    </div>
+    <div class="card reg">
+      <h3>${I("map")}Where they go</h3>
+      <div style="margin-top:4px">${R.map(([r, n]) => `<div class="rr"><div class="ln">${r}<span>${n}</span></div><div class="br"><i style="width:${(n / 96) * 100}%"></i></div></div>`).join("")}</div>
+      <div class="pick"><b>Courier pickup 5:00 PM</b><small>Upload by 4:30 PM</small></div>
+    </div>`;
+</script>
+<script src="shell.js"></script>
+<script src="icons.js"></script>
+</body></html>

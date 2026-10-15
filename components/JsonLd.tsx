@@ -2,7 +2,7 @@ export default function JsonLd({ data }: { data: Record<string, unknown> | Recor
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/\u2060/g, "").replace(/</g, "\\u003c") }}
     />
   );
 }

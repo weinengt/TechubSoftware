@@ -21,6 +21,8 @@ const out = path.join(root, "public/images/screens");
 // name, html file (+ optional ?v= variant), CSS size, pixel scale, transparent background
 const ipad = { w: 1024, h: 720, scale: 1.5 }; // iPad, landscape
 const phone = { w: 360, h: 760, scale: 2 };
+const desktop = { w: 1200, h: 750, scale: 1.5 };
+const site = { w: 1440, h: 900, scale: 1.25 }; // a website on a laptop: same size picture as `desktop`
 export const screens = [
   // Clinic
   { name: "clinic-dashboard-ipad", file: "clinic-dashboard.html", ...ipad },
@@ -63,8 +65,8 @@ export const screens = [
   { name: "ai-delivery-note-scan-spa", file: "delivery-scan.html?v=spa", ...phone },
   { name: "online-payment-deposit-spa", file: "online-payment.html?v=spa", ...phone },
   // Desktop (PC) screens for the "works on every device" pictures
-  { name: "staff-permission-control-desktop", file: "permissions.html?v=salon", w: 1200, h: 750, scale: 1.5 },
-  { name: "clinic-dashboard-desktop", file: "clinic-dashboard.html", w: 1200, h: 750, scale: 1.5 },
+  { name: "staff-permission-control-desktop", file: "permissions.html?v=salon", ...desktop },
+  { name: "clinic-dashboard-desktop", file: "clinic-dashboard.html", ...desktop },
   // Reports, staff profiles and payroll for each business
   { name: "reports-clinic-ipad", file: "reports.html?v=clinic", ...ipad },
   { name: "reports-salon-ipad", file: "reports.html?v=salon", ...ipad },
@@ -84,9 +86,9 @@ export const screens = [
   ]),
   // LHDN e-Invoice and examples of custom systems
   { name: "lhdn-e-invoice", file: "e-invoice.html", w: 1000, h: 700, scale: 1.5, transparent: true },
-  { name: "custom-erp-desktop", file: "erp.html", w: 1200, h: 750, scale: 1.5 },
-  { name: "number-plate-scanner-desktop", file: "plate-scanner.html", w: 1200, h: 750, scale: 1.5 },
-  { name: "ai-object-detection-desktop", file: "object-detection.html", w: 1200, h: 750, scale: 1.5 },
+  { name: "custom-erp-desktop", file: "erp.html", ...desktop },
+  { name: "number-plate-scanner-desktop", file: "plate-scanner.html", ...desktop },
+  { name: "ai-object-detection-desktop", file: "object-detection.html", ...desktop },
   // Live selling
   { name: "live-selling-dashboard-ipad", file: "live-dashboard.html", ...ipad },
   { name: "live-selling-visitors-ipad", file: "live-visitors.html", ...ipad },
@@ -98,6 +100,37 @@ export const screens = [
   { name: "live-selling-product-phone", file: "live-shop.html?v=product", ...phone },
   { name: "live-selling-checkout-phone", file: "live-checkout.html", ...phone },
   { name: "live-selling-online-payment-phone", file: "online-payment.html?v=live", ...phone },
+  // Software customisation: a clinic's request on WhatsApp, the AI estimate and quote, free testing, then what four
+  // customers had built (the clinic's is the last moment of the main picture)
+  { name: "customisation-request-whatsapp", file: "custom-chat.html", ...phone },
+  { name: "customisation-ai-estimate-quote-ipad", file: "custom-request.html?s=estimate", ...ipad },
+  { name: "customisation-testing-integration-ipad", file: "custom-request.html?s=testing", ...ipad },
+  { name: "customisation-clinic-panel-claim-export-ipad", file: "custom-claims.html", ...ipad },
+  { name: "customisation-salon-accountant-sales-export-ipad", file: "custom-sales-export.html", ...ipad },
+  { name: "customisation-spa-booking-question-ipad", file: "custom-found-us.html", ...ipad },
+  { name: "customisation-online-seller-courier-file-ipad", file: "custom-courier.html", ...ipad },
+  // Data migration: files in any format, the AI reading an old system's screens, the checks, then done
+  { name: "data-migration-import-any-format-desktop", file: "migration.html?s=import", ...desktop },
+  { name: "data-migration-ai-screen-scan-desktop", file: "migration.html?s=scan", ...desktop },
+  { name: "data-migration-check-desktop", file: "migration.html?s=check", ...desktop },
+  { name: "data-migration-complete-desktop", file: "migration.html?s=done", ...desktop },
+  { name: "data-migration-whatsapp", file: "migration-chat.html", ...phone },
+  // Business email on the customer's own domain
+  { name: "business-email-inbox-ipad", file: "email-inbox.html", ...ipad },
+  { name: "business-email-setup-ipad", file: "email-setup.html", ...ipad },
+  { name: "business-email-phone", file: "email-phone.html", ...phone },
+  // Website design: the example site in the main picture (three pages and its phone view), then more example designs
+  { name: "website-design-skin-clinic-home", file: "site-skin.html?p=home", ...site },
+  { name: "website-design-skin-clinic-treatments", file: "site-skin.html?p=treatments", ...site },
+  { name: "website-design-skin-clinic-contact", file: "site-skin.html?p=contact", ...site },
+  { name: "website-design-skin-clinic-phone", file: "site-skin.html?p=phone", ...phone },
+  { name: "website-design-dental-clinic", file: "site-dental.html", ...site },
+  { name: "website-design-cafe", file: "site-cafe.html", ...site },
+  { name: "website-design-cafe-phone", file: "site-cafe.html?p=phone", ...phone },
+  { name: "website-design-homestay", file: "site-homestay.html", ...site },
+  { name: "website-design-homestay-phone", file: "site-homestay.html?p=phone", ...phone },
+  { name: "website-design-interior-design", file: "site-interior.html", ...site },
+  { name: "website-design-accounting-firm", file: "site-accounting.html", ...site },
   // Social share picture (WhatsApp, Facebook, LinkedIn previews). Rendered last: it uses the screens above.
   { name: "og-image", file: "og.html", w: 1200, h: 630, scale: 1, out: "public/og-image.jpg" },
 ];

@@ -30,8 +30,9 @@ function Picture({ shot, sizes, priority }: Pick<Props, "shot" | "sizes" | "prio
   );
 }
 
-/** The frame of a device (browser bar, phone, tablet or TV bezel) around any screen content. */
-export function DeviceFrame({ kind, children }: { kind: Shot["kind"]; children: ReactNode }) {
+/** The frame of a device (browser bar, phone, tablet or TV bezel) around any screen content. A browser shows `url`
+ *  in its address bar (a website's address), or "Techub Cloud" for Techub's own screens. */
+export function DeviceFrame({ kind, url, children }: { kind: Shot["kind"]; url?: string; children: ReactNode }) {
   switch (kind) {
     case "browser":
       return (
@@ -40,8 +41,14 @@ export function DeviceFrame({ kind, children }: { kind: Shot["kind"]; children: 
             <span className="h-2 w-2 rounded-full bg-red-400 sm:h-2.5 sm:w-2.5" />
             <span className="h-2 w-2 rounded-full bg-amber-400 sm:h-2.5 sm:w-2.5" />
             <span className="h-2 w-2 rounded-full bg-emerald-400 sm:h-2.5 sm:w-2.5" />
-            <span className="mx-auto hidden h-4 w-2/5 items-center justify-center rounded-md bg-white text-[10px] font-medium text-slate-400 sm:flex">
-              Techub Cloud
+            <span className="mx-auto hidden h-4 w-2/5 items-center justify-center gap-1 rounded-md bg-white text-[10px] font-medium text-slate-400 sm:flex">
+              {url && (
+                <svg viewBox="0 0 24 24" className="h-2.5 w-2.5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round">
+                  <rect x="5" y="11" width="14" height="10" rx="2" />
+                  <path d="M8 11V8a4 4 0 018 0v3" />
+                </svg>
+              )}
+              <span className="truncate">{url ?? "Techub Cloud"}</span>
             </span>
           </div>
           <div className="relative overflow-hidden">{children}</div>
@@ -80,7 +87,7 @@ export function DeviceFrame({ kind, children }: { kind: Shot["kind"]; children: 
 /** A product screenshot inside a matching device frame (browser, phone, tablet, TV or paper). */
 export default function Device({ shot, sizes, priority, zoom = true, className = "" }: Props) {
   const frame = (
-    <DeviceFrame kind={shot.kind}>
+    <DeviceFrame kind={shot.kind} url={shot.url}>
       <Picture shot={shot} sizes={sizes} priority={priority} />
     </DeviceFrame>
   );

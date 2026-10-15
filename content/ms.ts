@@ -23,7 +23,7 @@ const ms: Dict = {
   },
 
   nav: {
-    useCases: "Industri",
+    useCases: "Penyelesaian",
     technology: "Teknologi",
     services: "Perkhidmatan",
     pricing: "Harga",
@@ -32,10 +32,10 @@ const ms: Dict = {
   },
 
   menu: {
-    useCases: "Industri",
+    useCases: "Penyelesaian",
     otherTitle: "Jenis bisnes lain?",
     otherText: "Kami juga buat sistem custom.",
-    all: "Lihat semua industri",
+    all: "Lihat semua penyelesaian",
   },
 
   // The business types with a ready system. Each has its own page.
@@ -123,7 +123,7 @@ const ms: Dict = {
   footer: {
     blurb:
       "{name} ialah syarikat perisian yang berpangkalan di Malaysia. Kami bina sistem pintar dengan kos rendah untuk klinik, salon rambut, pusat kecantikan, spa dan penjual live di seluruh Malaysia, serta sistem custom seperti ERP, AI pengesanan objek dan scanner nombor plat. Jaminan uptime {uptime}, dari RM {price}/bulan.",
-    useCases: "Industri",
+    useCases: "Penyelesaian",
     custom: "Sistem custom",
     company: "Syarikat",
     about: "Tentang kami",
@@ -216,7 +216,7 @@ const ms: Dict = {
     },
     softwareName: "Sistem Pengurusan Temujanji Techub",
     softwareCategory: "Jadual temujanji dan pengurusan bisnes",
-    useCasesListName: "Sistem Techub Software ikut industri",
+    useCasesListName: "Penyelesaian Techub Software",
     servicesListName: "Perkhidmatan Techub Software",
   },
 
@@ -332,6 +332,32 @@ const ms: Dict = {
         invoice: { title: "Invois siap untuk anda", text: "Deposit RM 40 sudah ditolak" },
         notes: { title: "Nota bayaran balik & kredit", text: "Tak perlu tahu perakaunan" },
       },
+      customisation: {
+        request: { title: "Pelanggan A tanya di WhatsApp", text: "Fail tuntutan untuk panel baru" },
+        estimate: { title: "Anggaran AI: lebih kurang 6 jam", text: "Sebut harga jelas sebelum mula" },
+        quote: { title: "RM 480 dengan pelan 48 bulan", text: "Boleh bayar ansuran" },
+        testing: { title: "Ujian & integrasi percuma", text: "Disemak sebelum digunakan" },
+        live: { title: "Dah boleh guna dalam sistem", text: "Export tuntutan baru, satu tekan" },
+      },
+      migration: {
+        formats: { title: "PDF, Excel, CSV & TXT", text: "Dirancang dengan jurutera kami" },
+        scan: { title: "AI baca sistem lama", text: "Halaman demi halaman, tanpa export" },
+        check: { title: "Setiap rekod disemak", text: "Rekod sama digabung, ralat dibaiki" },
+        done: { title: "Ikut masa, bukan saiz data", text: "143,861 rekod dipindahkan" },
+      },
+      email: {
+        domain: { title: "Domain anda sendiri", text: "hello@demosalon.com.my" },
+        phone: { title: "Di semua telefon & PC", text: "Pertanyaan baru terus masuk" },
+        setup: { title: "Kami setup semuanya", text: "Domain, peti mel & peranti" },
+        storage: { title: "Storan {emailStorage}", text: "RM {emailYear} setahun" },
+      },
+      website: {
+        design: { title: "Direka untuk jenama anda", text: "Sehingga {websitePages} halaman" },
+        instant: { title: "Tukar halaman serta-merta", text: "Tiada reload, tiada tunggu" },
+        phone: { title: "Cantik di telefon", text: "Semua saiz skrin" },
+        contact: { title: "Pelanggan cepat hubungi anda", text: "WhatsApp, booking & peta" },
+        seo: { title: "Sedia untuk SEO & carian AI", text: "Dihoskan di Cloudflare" },
+      },
       hub: {
         devices: { title: "Semua peranti sentiasa sync", text: "iPad, telefon & PC, real-time" },
         whatsapp: { title: "Reminder WhatsApp dihantar", text: "Pelanggan tekan Confirm" },
@@ -395,7 +421,7 @@ const ms: Dict = {
   },
 
   useCases: {
-    eyebrow: "Industri",
+    eyebrow: "Penyelesaian",
     title: "Sedia untuk bisnes anda",
     intro: "Dibina untuk klinik, salon, pusat kecantikan, spa dan penjual live di Malaysia. Tekan salah satu untuk lihat sistemnya di iPad dan telefon.",
   },
@@ -428,9 +454,11 @@ const ms: Dict = {
         text: "Hosting di Malaysia, guna server seperti IPServerOne dan Amazon Web Services. Kami telus tentang di mana data anda disimpan.",
       },
       database: { title: "Database NoSQL yang laju", text: "Data berindeks, jadi laporan terperinci siap bawah 100 ms." },
-      security: { title: "Disulitkan & ada backup", text: "Semua data yang disimpan disulitkan, dengan backup berlapis di beberapa lokasi." },
+      security: { title: "Disulitkan & ada backup", text: "Database disulitkan semasa disimpan, SSL/TLS pada setiap sambungan, backup berlapis di beberapa lokasi." },
       ai: { title: "Integrasi AI", text: "AI baca nota penghantaran, update stok dan cadangkan bila perlu order semula." },
+      extraction: { title: "Ekstrak data dengan AI", text: "OCR dan imbasan skrin AI bawa masuk data dari PDF dan sistem lama." },
       realtime: { title: "Update real-time", text: "Setiap perubahan terus nampak di semua iPad, telefon dan PC." },
+      framework: { title: "React & Next.js", text: "Rangka kerja web moden: tukar halaman serta-merta, tanpa reload." },
       whatsapp: { title: "Notifikasi WhatsApp", text: "Pengesahan booking dan reminder dihantar secara automatik." },
       hardware: { title: "Sambung pelbagai peralatan", text: "Printer label, sistem panggil nombor giliran, mesin X-ray dan banyak lagi." },
       einvoice: { title: "e-Invois LHDN", text: "e-Invois dihantar terus ke LHDN melalui MyInvois." },
@@ -556,6 +584,40 @@ const ms: Dict = {
           "Rekod disimpan untuk setiap invois",
         ],
       },
+      extraction: {
+        eyebrow: "Ekstrak data dengan AI",
+        title: "AI pindahkan data anda, *halaman demi halaman*",
+        points: [
+          "OCR baca PDF dan dokumen yang diimbas",
+          "Imbasan skrin AI untuk sistem lama yang tak boleh export",
+          "Setiap medan dipadankan dan disemak oleh jurutera kami",
+          "Caj ikut masa, bukan saiz data",
+        ],
+        cta: "Tanya pasal pindah data",
+        ctaMessage: "Hai Techub, saya nak tanya tentang pindahkan data saya ke Techub.",
+        badge: "Imbasan AI",
+      },
+      framework: {
+        eyebrow: "React & Next.js",
+        title: "Dibina dengan *rangka kerja web moden*",
+        points: [
+          "Dibina dengan React dan Next.js",
+          "Tukar halaman serta-merta, tanpa reload penuh",
+          "Laju di telefon, tablet dan PC",
+          "Teknologi sama dengan laman web yang kami bina",
+        ],
+        badge: "Tanpa reload",
+      },
+      encryption: {
+        eyebrow: "Perlindungan data",
+        title: "Data anda *keutamaan kami*",
+        points: [
+          "Database disulitkan semasa disimpan",
+          "Penyulitan SSL/TLS pada setiap sambungan",
+          "Server yang dilindungi di Malaysia",
+          "Kalau data bocor pun, ia tetap disulitkan",
+        ],
+      },
       security: {
         eyebrow: "Keselamatan & kawalan",
         title: "Setiap staf dapat akses yang sesuai",
@@ -566,6 +628,18 @@ const ms: Dict = {
           "Data & sambungan disulitkan",
         ],
       },
+    },
+    // Gambar cara data dilindungi: rekod di peranti anda, dihantar melalui SSL/TLS, disimpan disulitkan.
+    encryption: {
+      device: "Peranti anda",
+      record: "Rekod pelanggan",
+      tls: "Disulitkan SSL/TLS",
+      server: "Server dilindungi di Malaysia",
+      stored: "Database disulitkan semasa disimpan",
+      leaked: "Kalau salinan bocor",
+      unreadable: "Tetap disulitkan",
+      // Rekod rekaan, seperti yang staf nampak di peranti mereka.
+      sample: ["Nur Aisyah", "Facial · 3:00 PTG"],
     },
     infra: {
       business: "Bisnes anda",
@@ -602,11 +676,19 @@ const ms: Dict = {
       },
       {
         q: "Macam mana data saya dilindungi?",
-        a: "Semua data yang disimpan disulitkan, dan dihantar melalui sambungan yang juga disulitkan. Backup disimpan berlapis di beberapa lokasi, akses setiap staf dikawal ikut jawatan, dan semua tindakan direkod untuk audit.",
+        a: "Database anda disulitkan semasa disimpan dan setiap sambungan guna penyulitan SSL/TLS, di server yang dilindungi di Malaysia. Backup disimpan berlapis di beberapa lokasi, akses setiap staf dikawal ikut jawatan, dan semua tindakan direkod untuk audit.",
+      },
+      {
+        q: "Bagaimana kalau data bocor?",
+        a: "Data anda tetap disulitkan. Database disulitkan semasa disimpan dan setiap sambungan dilindungi SSL/TLS, jadi data yang bocor pun tetap disulitkan. Data anda keutamaan kami.",
       },
       {
         q: "Kenapa laporan Techub sangat laju?",
         a: "Techub guna database NoSQL berindeks, jadi laporan terperinci pun siap dalam masa kurang 100 milisaat, tanpa lag. Server kami di Malaysia, jadi bisnes di seluruh Malaysia dapat respons yang laju.",
+      },
+      {
+        q: "Techub dibina dengan teknologi apa?",
+        a: "Techub dibina dengan React dan Next.js, rangka kerja web moden, dengan database NoSQL yang laju di server enterprise di Malaysia. Tukar halaman serta-merta, tanpa reload penuh.",
       },
       {
         q: "Apa maksud jaminan uptime {uptime}?",
@@ -615,6 +697,10 @@ const ms: Dict = {
       {
         q: "Macam mana AI baca nota penghantaran?",
         a: "Ambil gambar atau imbas nota penghantaran (DO) pembekal, dan AI akan baca item, kuantiti, batch dan tarikh luput, kemudian update stok anda secara automatik. Setiap pergerakan inventori direkod, jadi anda boleh semak stok masuk, stok keluar, pindahan dan pelarasan.",
+      },
+      {
+        q: "Macam mana ekstrak data dengan AI berfungsi?",
+        a: "Untuk pemindahan data, AI kami baca PDF dan dokumen yang diimbas dengan OCR, dan boleh imbas skrin sistem lama halaman demi halaman bila ia tak boleh export. Jurutera perisian kami padankan dan semak setiap medan sebelum data anda mula digunakan dalam Techub.",
       },
       {
         q: "Techub boleh buat e-Invois LHDN?",
@@ -729,10 +815,12 @@ const ms: Dict = {
     customMessage: "Hai Techub, saya nak minta quotation untuk sistem custom.",
     customEmail: "Email kami",
     customEmailSubject: "Minta sebut harga sistem custom",
+    customSee: "Lihat contoh pelanggan",
     offerText: "Dari RM {price} sebulan. {months} bulan pertama percuma untuk pengguna baru, termasuk pemasangan dan latihan staf.",
     extrasTitle: "Servis lain",
     extrasText: "Juga dari Techub, untuk apa jua bisnes di Malaysia.",
     extrasCta: "Tanya di WhatsApp",
+    extrasMore: "Lihat cara ia berfungsi",
     extras: {
       migration: {
         title: "Pemindahan data",
@@ -748,8 +836,8 @@ const ms: Dict = {
         label: "",
         unit: "/ tahun",
         text: "Hosting e-mel dengan domain anda sendiri, contohnya hello@bisnesanda.com.",
-        points: ["Nama domain anda sendiri", "Storan {emailStorage}"],
-        note: "",
+        points: ["Guna domain anda sendiri", "Storan {emailStorage}", "Kami setup semuanya untuk anda"],
+        note: "Domain tidak termasuk.",
         message: "Hai Techub, saya nak e-mel perniagaan dengan domain sendiri.",
       },
       website: {
@@ -945,7 +1033,7 @@ const ms: Dict = {
 
   /* ---------- System pages ---------- */
   product: {
-    useCases: "Industri",
+    useCases: "Penyelesaian",
     allModules: "Semua modul",
     inside: "Apa yang ada dalam {product}",
     otherSystems: "Juga ada untuk",
@@ -1944,6 +2032,344 @@ const ms: Dict = {
   },
 
   /* ---------- Example screens: picture titles and alt text ---------- */
+  /* ---------- Halaman servis (lib/site.ts servicePages), di bawah Penyelesaian selepas sistem ---------- */
+  servicePages: {
+    menuSystems: "Sistem siap guna",
+    menuServices: "Untuk semua bisnes",
+    useCasesTitle: "Cara lain kami bantu",
+    useCasesIntro: "Ubah suai sistem, pemindahan data, e-mel perniagaan dan laman web, untuk apa jua bisnes di Malaysia.",
+    others: "Cara lain kami bantu",
+    priceEyebrow: "Harga",
+    customisation: {
+      label: "Ubah suai sistem",
+      name: "Ubah Suai Sistem",
+      blurb: "Perubahan ikut keperluan bisnes anda, dari RM {custom} sejam kerja.",
+      points: [
+        "Bayar ikut jam kerja, dari RM {custom}",
+        "AI ramal jam kerja: sebut harga jelas dulu",
+        "Ujian dan integrasi percuma",
+        "Boleh bayar ansuran",
+      ],
+      cta: "Lihat contoh ubah suai",
+      meta: {
+        title: "Ubah Suai Sistem Malaysia | Dari RM {custom} Sejam",
+        socialTitle: "Ubah Suai Sistem | Techub Software",
+        description:
+          "Fungsi, laporan dan cetakan baru untuk sistem anda di Malaysia. Bayar ikut jam kerja dari RM {custom}, dengan anggaran AI dulu, ujian percuma dan ansuran.",
+        keywords: [
+          "ubah suai sistem Malaysia",
+          "sistem custom Malaysia",
+          "perisian custom Malaysia",
+          "laporan custom",
+          "cetakan custom",
+          "ubah suai sistem klinik",
+          "ubah suai sistem salon",
+          "software customisation Malaysia",
+        ],
+      },
+      eyebrow: "Ubah Suai Sistem",
+      heading: "Perubahan kecil, *bil pun kecil*",
+      intro: "Perlukan laporan, cetakan atau fungsi baru? Kami caj ikut jam kerja, dari RM {custom}. AI kami ramal jam kerja, jadi anda tahu harganya sebelum kami mula.",
+      primary: "Minta sebut harga",
+      message: "Hai Techub, saya nak minta sebut harga untuk ubah suai sistem.",
+      price: "Dari RM {custom} / jam",
+      chips: ["Klinik", "Salon rambut", "Pusat kecantikan", "Spa", "Penjual live", "Semua bisnes"],
+      highlights: ["Dari RM {custom} sejam kerja", "AI ramal jam kerja", "Sebut harga jelas dulu", "Ujian & integrasi percuma", "Pelan ansuran", "Support di WhatsApp"],
+      storiesEyebrow: "Contoh",
+      storiesTitle: "Berapa sebenarnya *kos perubahan kecil*",
+      storiesIntro: "Permintaan biasa dari klinik, salon, spa dan penjual online, dengan jam kerja yang diperlukan.",
+      stories: [
+        { who: "Pelanggan A · Klinik", task: "Fail tuntutan ikut format syarikat panel baru", result: "Tuntutan panel siap dengan satu tekan setiap bulan." },
+        { who: "Pelanggan B · Salon rambut", task: "Fail jualan bulanan ikut format akauntan mereka", result: "Tutup akaun bulanan tanpa taip semula satu jualan pun." },
+        { who: "Pelanggan C · Spa", task: "Soalan baru dalam borang booking: dari mana kenal kami?", result: "Kini mereka tahu iklan mana yang bawa pelanggan." },
+        { who: "Pelanggan D · Penjual online", task: "Fail order yang terus boleh upload ke courier", result: "Tak perlu lagi salin alamat satu per satu." },
+      ],
+      hours: "Lebih kurang {n} jam",
+      monthly: "Pelan bulanan",
+      storiesNote: "Contoh untuk tunjuk kos biasa. Sebut harga anda ikut permintaan anda.",
+      buildTitle: "Apa yang kami boleh bina untuk anda",
+      build: {
+        reports: "Laporan baru",
+        printouts: "Cetakan & borang",
+        files: "Fail Excel & akaun",
+        booking: "Soalan borang booking",
+        whatsapp: "Mesej WhatsApp",
+        workflow: "Aliran kerja & kelulusan",
+        integration: "Sambungan ke sistem lain",
+        module: "Modul baru sepenuhnya",
+      },
+      spotlights: {
+        estimate: {
+          eyebrow: "Sebut harga jelas dulu",
+          title: "AI ramal jam kerja, *sebelum kami mula*",
+          points: ["Beritahu keperluan anda di WhatsApp", "AI kami anggar jam kerja", "Lihat harga tepat ikut pelan anda", "Kami mula selepas anda setuju"],
+        },
+        testing: {
+          eyebrow: "Ujian & integrasi percuma",
+          title: "Diuji dan disambung, *tanpa caj*",
+          points: ["Setiap perubahan disemak sebelum digunakan", "Disambung dengan bahagian lain sistem anda", "Ujian dan integrasi sentiasa percuma", "Kami maklumkan di WhatsApp bila dah siap"],
+        },
+      },
+      faqs: [
+        {
+          q: "Berapa kos ubah suai sistem?",
+          a: "Caj ikut jam kerja pada kadar pelan anda: RM {customMonthly} untuk pelan bulanan, RM {custom12} untuk 12 bulan, RM {custom24} untuk 24 bulan dan RM {custom} untuk 48 bulan. Ujian dan integrasi percuma.",
+        },
+        {
+          q: "Macam mana saya tahu harga sebelum anda mula?",
+          a: "Beritahu kami apa yang anda perlukan dan model AI kami akan ramal jam kerja. Anda dapat sebut harga yang jelas ikut pelan anda sebelum kerja bermula, dan kami hanya mula selepas anda setuju.",
+        },
+        { q: "Boleh bayar ansuran?", a: "Boleh, ada pelan ansuran. Tanya kami semasa anda terima sebut harga." },
+        {
+          q: "Apa yang boleh diubah suai?",
+          a: "Laporan baru, cetakan dan borang, fail Excel dan akaun, soalan borang booking, mesej WhatsApp, aliran kerja dan kelulusan, sambungan ke sistem lain, atau modul baru sepenuhnya.",
+        },
+        { q: "Ada caj untuk ujian?", a: "Tiada. Ujian dan integrasi dengan bahagian lain sistem anda sentiasa percuma." },
+      ],
+      contact: {
+        title: "Beritahu kami apa yang anda nak ubah",
+        badge: "Sebut harga jelas dulu",
+        text: "AI kami anggar jam kerja dan anda nampak harganya sebelum kami mula. Ujian dan integrasi percuma.",
+      },
+    },
+    migration: {
+      label: "Pemindahan data",
+      name: "Pemindahan Data",
+      blurb: "Bawa data anda dari mana-mana sistem, caj ikut masa, bukan saiz data.",
+      points: [
+        "Fail PDF, Excel, CSV atau TXT",
+        "AI imbas sistem lama yang tak boleh export",
+        "Dirancang bersama jurutera perisian kami",
+        "Caj ikut masa, bukan saiz data",
+      ],
+      cta: "Lihat cara pemindahan data",
+      meta: {
+        title: "Pemindahan Data Malaysia | Excel, PDF & Sistem Lama",
+        socialTitle: "Pemindahan Data | Techub Software",
+        description:
+          "Pindahkan rekod anda dari Excel, PDF, CSV, TXT atau sistem lama yang tak boleh export. Imbasan skrin AI, disemak jurutera, caj ikut masa, bukan saiz data.",
+        keywords: [
+          "pemindahan data Malaysia",
+          "migrasi data",
+          "import data Excel",
+          "ekstrak data PDF",
+          "OCR data",
+          "pindah sistem lama",
+          "pindah rekod klinik",
+          "data migration Malaysia",
+        ],
+      },
+      eyebrow: "Pemindahan Data",
+      heading: "Bawa data anda, *dari mana-mana sistem*",
+      intro: "PDF, Excel, CSV atau TXT, jurutera perisian kami pindahkan semuanya ke Techub. Sistem lama tak boleh export? AI kami baca terus dari skrin, halaman demi halaman.",
+      primary: "Bincang dengan jurutera",
+      message: "Hai Techub, saya nak pindahkan data saya ke Techub. Boleh saya bincang dengan jurutera anda?",
+      price: "Lebih kurang RM {migration} / jam",
+      chips: ["Klinik", "Salon rambut", "Pusat kecantikan", "Spa", "Penjual online", "Semua bisnes"],
+      highlights: ["PDF, Excel, CSV & TXT", "Imbasan skrin AI", "Disemak jurutera", "Caj ikut masa", "Data banyak? Jangan risau", "Terus guna dalam Techub"],
+      formatsEyebrow: "Apa jua format",
+      formatsTitle: "Hantar apa yang ada, *kami bawa masuk*",
+      formatsIntro: "Jurutera perisian kami semak fail anda bersama anda dulu, kemudian rancang pemindahannya.",
+      formats: { pdf: "Laporan & imbasan", excel: "Spreadsheet", csv: "Export sistem", txt: "Fail teks" },
+      formatsMore: "Format lain? Hantar contoh kepada kami.",
+      spotlights: {
+        scan: {
+          eyebrow: "Imbasan skrin AI",
+          title: "Tiada butang export? *AI kami baca.*",
+          points: ["Alat AI kami imbas skrin sistem lama anda", "Data diambil halaman demi halaman, medan demi medan", "Setiap medan dipadankan ke tempatnya dalam Techub", "Disemak oleh jurutera perisian kami"],
+        },
+        check: {
+          eyebrow: "Semakan kualiti",
+          title: "Data bersih *dari hari pertama*",
+          points: ["Rekod berganda dikesan dan digabung", "Nombor telefon dan tarikh dikemaskan", "Rekod yang kurang jelas dihantar untuk semakan", "Disemak sebelum mula digunakan"],
+        },
+      },
+      timeEyebrow: "Harga yang adil",
+      timeTitle: "Caj ikut masa, *bukan saiz data*",
+      timeText: "Beberapa ribu rekod atau sejarah bertahun-tahun, anda bayar untuk masa jurutera, bukan saiz data anda. Jadi data yang banyak pun tetap mampu milik.",
+      timeSmall: "Beberapa ribu rekod",
+      timeBig: "Sejarah bertahun-tahun",
+      timeSame: "Kadar sejam yang sama",
+      stepsTitle: "Cara ia berfungsi",
+      steps: ["Bincang dengan jurutera kami", "Dapat sebut harga ikut masa", "Kami pindah dan semak", "Mula guna Techub"],
+      faqs: [
+        {
+          q: "Format apa yang boleh diimport?",
+          a: "PDF, Excel, CSV dan TXT, serta kebanyakan fail export lain. Hantar contoh kepada kami dan jurutera perisian kami akan semak bersama anda dulu.",
+        },
+        {
+          q: "Sistem lama saya tak boleh export. Masih boleh pindah data?",
+          a: "Boleh. Alat AI kami imbas skrin sistem lama halaman demi halaman dan ambil datanya, dan jurutera kami semak semuanya sebelum dimasukkan ke Techub.",
+        },
+        {
+          q: "Macam mana harga pemindahan data dikira?",
+          a: "Ikut masa yang diambil, bukan jumlah data, biasanya lebih kurang RM {migration} sejam. Anda dapat anggaran selepas berbincang dengan jurutera perisian kami.",
+        },
+        { q: "Saya ada rekod bertahun-tahun. Ada masalah?", a: "Tiada masalah. Kami caj ikut masa, bukan saiz data, jadi rekod bertahun-tahun pun jangan risau." },
+        {
+          q: "Data saya selamat selepas dipindahkan?",
+          a: "Ya. Dalam Techub, database anda disulitkan semasa disimpan dan setiap sambungan guna SSL/TLS, di server enterprise di Malaysia.",
+        },
+      ],
+      contact: {
+        title: "Beritahu kami di mana data anda sekarang",
+        badge: "Caj ikut masa",
+        text: "Excel, PDF, CSV, TXT atau sistem lama: jurutera perisian kami akan rancang pemindahannya bersama anda.",
+      },
+    },
+    email: {
+      label: "E-mel perniagaan",
+      name: "E-mel Perniagaan",
+      blurb: "E-mel dengan domain anda sendiri, RM {emailYear} setahun, kami setup untuk anda.",
+      points: ["E-mel dengan domain anda sendiri", "Storan {emailStorage}, RM {emailYear} setahun", "Kami setup semuanya untuk anda", "Domain tidak termasuk"],
+      cta: "Lihat e-mel perniagaan",
+      meta: {
+        title: "E-mel Perniagaan Malaysia | Domain Sendiri, RM {emailYear} Setahun",
+        socialTitle: "E-mel Perniagaan | Techub Software",
+        description:
+          "E-mel profesional dengan domain anda sendiri, contohnya hello@bisnesanda.com. RM {emailYear} setahun dengan storan {emailStorage}, kami setup untuk anda di Malaysia. Domain tidak termasuk.",
+        keywords: [
+          "e-mel perniagaan Malaysia",
+          "hosting e-mel Malaysia",
+          "e-mel syarikat",
+          "e-mel domain sendiri",
+          "alamat e-mel profesional",
+          "hosting e-mel murah",
+          "business email Malaysia",
+        ],
+      },
+      eyebrow: "E-mel Perniagaan",
+      heading: "E-mel anda sendiri, *dengan domain anda*",
+      intro: "Tukar e-mel percuma anda kepada hello@bisnesanda.com. RM {emailYear} setahun dengan storan {emailStorage}, dan kami setup semuanya untuk anda.",
+      primary: "Dapatkan e-mel perniagaan",
+      message: "Hai Techub, saya nak e-mel perniagaan dengan domain sendiri.",
+      price: "RM {emailYear} / tahun",
+      chips: ["Klinik", "Salon & spa", "Penjual online", "Pejabat", "Startup", "Semua bisnes"],
+      highlights: ["Domain anda sendiri", "RM {emailYear} setahun", "Storan {emailStorage}", "Kami setup untuk anda", "Telefon, iPad & PC", "Support di WhatsApp"],
+      usesEyebrow: "Contoh penggunaan",
+      usesTitle: "Alamat yang *pelanggan percaya*",
+      uses: [
+        { who: "Klinik", address: "booking@klinikanda.com.my", text: "Pesakit dan syarikat panel e-mel klinik, bukan akaun peribadi seseorang." },
+        { who: "Salon & spa", address: "hello@salonanda.com.my", text: "Pertanyaan booking dan invois pembekal dalam satu inbox yang kemas." },
+        { who: "Penjual online", address: "orders@kedaianda.com.my", text: "E-mel order dari jenama anda sendiri nampak lebih dipercayai." },
+        { who: "Mana-mana syarikat", address: "finance@syarikatanda.com.my", text: "Alamat kekal dengan bisnes walaupun staf bertukar." },
+      ],
+      spotlights: {
+        setup: {
+          eyebrow: "Kami setup untuk anda",
+          title: "Kami setup semuanya, *anda terus guna*",
+          points: ["Kami sambungkan domain anda", "Kami buat peti mel anda", "Kami tambah ke telefon dan PC anda", "Kami uji hantar dan terima e-mel"],
+        },
+        devices: {
+          eyebrow: "Semua peranti",
+          title: "Inbox anda di *semua telefon dan PC*",
+          points: ["iPhone, Android, iPad, Windows dan Mac", "E-mel baru terus masuk", "Storan {emailStorage}", "Bantuan di WhatsApp bila perlu"],
+          badges: ["Pertanyaan baru", "Domain anda sendiri"],
+        },
+      },
+      faqs: [
+        { q: "Berapa harga e-mel perniagaan?", a: "RM {emailYear} setahun dengan storan {emailStorage}, dan kami setup untuk anda." },
+        {
+          q: "Domain termasuk sekali?",
+          a: "Tidak, harga ini tidak termasuk domain. Guna domain yang anda dah ada, atau beli satu seperti .com atau .com.my, dan kami sambungkan untuk anda.",
+        },
+        {
+          q: "Anda setup untuk saya?",
+          a: "Ya. Kami sambungkan domain anda, buat peti mel dan tambah ke telefon dan komputer anda, kemudian uji hantar dan terima e-mel.",
+        },
+        { q: "Boleh guna di telefon?", a: "Boleh, di telefon iPhone dan Android, iPad, serta komputer Windows atau Mac." },
+        {
+          q: "Kenapa tak guna e-mel percuma?",
+          a: "Alamat dengan domain sendiri nampak lebih profesional dan buat pelanggan lebih percaya, dan ia kekal dengan bisnes anda walaupun staf bertukar.",
+        },
+      ],
+      contact: {
+        title: "Jom setup e-mel perniagaan anda",
+        badge: "RM {emailYear} setahun",
+        text: "Beritahu kami domain anda, atau domain yang anda mahu, dan kami setup semuanya untuk anda.",
+      },
+    },
+    website: {
+      label: "Reka laman web",
+      name: "Reka Laman Web",
+      blurb: "Laman web cantik dan laju dari RM {website}, siap dengan hosting.",
+      points: [
+        "Direka ikut jenama anda, sehingga {websitePages} halaman",
+        "Tukar halaman serta-merta, tanpa reload",
+        "Domain percuma untuk tahun pertama",
+        "Hosting Cloudflare: lebih 1 juta paparan seminit",
+      ],
+      cta: "Lihat contoh laman web",
+      meta: {
+        title: "Reka Laman Web Malaysia | RM {website} Dengan Hosting & Domain Percuma",
+        socialTitle: "Reka Laman Web | Techub Software",
+        description:
+          "Laman web cantik untuk bisnes di Malaysia: sehingga {websitePages} halaman, tukar halaman serta-merta, hosting Cloudflare, sedia untuk SEO dan carian AI. RM {website} dengan domain percuma tahun pertama.",
+        keywords: [
+          "reka laman web Malaysia",
+          "buat website Malaysia",
+          "web design Malaysia",
+          "laman web bisnes kecil",
+          "website murah Malaysia",
+          "hosting Cloudflare",
+          "website SEO Malaysia",
+          "website dengan domain percuma",
+        ],
+      },
+      eyebrow: "Reka Laman Web",
+      heading: "Laman web cantik yang *terasa pantas*",
+      intro: "Direka ikut jenama anda dan dihoskan di Cloudflare, dari RM {website} dengan domain percuma untuk tahun pertama. Tukar halaman serta-merta, tanpa reload.",
+      primary: "Dapatkan laman web",
+      message: "Hai Techub, saya nak buat laman web dengan hosting.",
+      price: "RM {website} · domain percuma",
+      chips: ["Klinik", "Salon & spa", "Kafe", "Homestay", "Studio", "Firma profesional"],
+      highlights: ["Direka ikut jenama anda", "Tiada reload antara halaman", "Cantik di telefon", "Hosting Cloudflare", "Sedia untuk SEO & carian AI", "Domain percuma, tahun pertama"],
+      galleryEyebrow: "Contoh reka bentuk",
+      galleryTitle: "Direka untuk *memikat*",
+      galleryIntro: "Konsep reka bentuk untuk bisnes contoh. Laman web anda direka ikut jenama anda sendiri.",
+      gallery: { skin: "Klinik kulit", dental: "Klinik gigi", cafe: "Kafe", homestay: "Vila percutian", interior: "Reka bentuk dalaman", accounting: "Firma perakaunan" },
+      spotlights: {
+        instant: {
+          eyebrow: "Teknologi satu halaman",
+          title: "Tukar halaman *serta-merta*",
+          points: ["Dibina dengan React dan Next.js", "Alamat bertukar, halaman tak reload", "Tiada skrin putih, tiada tunggu", "Terasa macam app di telefon"],
+          badge: "Tanpa reload",
+        },
+        fast: {
+          eyebrow: "Hosting Cloudflare",
+          title: "Laju di mana-mana, *sedia untuk ramai pelawat*",
+          points: ["Dihoskan di rangkaian global Cloudflare", "Mampu tampung lebih 1 juta paparan seminit", "Dioptimumkan untuk SEO dan carian AI", "Domain percuma untuk tahun pertama"],
+          badge: "1 juta+ paparan seminit",
+        },
+      },
+      faqs: [
+        {
+          q: "Berapa kos buat laman web?",
+          a: "RM {website} untuk reka bentuk dan hosting, dengan domain percuma untuk tahun pertama. Selepas itu RM {websiteYear} setahun untuk penyelenggaraan.",
+        },
+        { q: "Berapa banyak halaman boleh ada?", a: "Sehingga {websitePages} halaman. Kami bina laman web statik, tanpa senarai produk atau blog." },
+        {
+          q: "Apa maksud \"tanpa reload\"?",
+          a: "Laman web anda dibina dengan React dan Next.js sebagai app satu halaman. Bila pelawat buka halaman lain, alamatnya bertukar tetapi browser tak reload, jadi ia terasa lancar dan serta-merta.",
+        },
+        { q: "Laman web saya boleh tampung ramai pelawat?", a: "Boleh. Ia dihoskan di Cloudflare dan mampu tampung lebih 1 juta paparan seminit." },
+        {
+          q: "Pelanggan boleh jumpa laman web saya?",
+          a: "Setiap laman web dioptimumkan untuk SEO dan carian AI, jadi enjin carian dan pembantu AI boleh baca dan faham halaman anda.",
+        },
+        {
+          q: "Boleh tambah kedai online atau blog?",
+          a: "Laman web kami statik, tanpa senarai produk atau blog. Untuk jual online semasa live, tanya tentang Sistem Jualan Live kami.",
+        },
+      ],
+      contact: {
+        title: "Jom reka laman web anda",
+        badge: "RM {website} · domain percuma",
+        text: "Ceritakan tentang bisnes anda dan gaya yang anda suka. Kami reka, hoskan dan lancarkan untuk anda.",
+      },
+    },
+  },
+
   shots: {
     clinicDashboard: {
       title: "Dashboard klinik di iPad",
@@ -2228,6 +2654,110 @@ const ms: Dict = {
     livePayment: {
       title: "Bayaran online masa checkout",
       alt: "Pembeli bayar RM 77.80 untuk order jualan live di telefon, guna perbankan online (FPX), kad, e-wallet atau DuitNow QR, terus masuk akaun merchant kedai",
+    },
+    customRequest: {
+      title: "Permintaan ubah suai di WhatsApp",
+      alt: "Klinik minta Techub di WhatsApp untuk export tuntutan panel baru dan dapat sebut harga 6 jam kerja pada RM 80, dengan ujian dan integrasi percuma",
+    },
+    customEstimate: {
+      title: "Anggaran jam kerja AI & sebut harga",
+      alt: "Permintaan ubah suai di iPad dengan anggaran AI 6 jam kerja dan sebut harga RM 480 untuk pelan 48 bulan, ujian dan integrasi percuma",
+    },
+    customTesting: {
+      title: "Ujian & integrasi percuma",
+      alt: "Ujian dan integrasi fungsi baru klinik di iPad, semua semakan lulus, tanpa caj",
+    },
+    customClaims: {
+      title: "Pelanggan A: export tuntutan panel",
+      alt: "Tuntutan panel klinik bulan Oktober di iPad dengan butang export baru yang buat fail Excel ikut format syarikat panel",
+    },
+    customSalesExport: {
+      title: "Pelanggan B: jualan ikut format akauntan",
+      alt: "Laporan jualan bulanan salon rambut di iPad, diexport ikut format Excel akauntan mereka",
+    },
+    customFoundUs: {
+      title: "Pelanggan C: \"Dari mana kenal kami?\"",
+      alt: "Borang booking spa di iPad dengan soalan baru, dari mana kenal kami, dan laporan jawapan daripada 312 booking",
+    },
+    customCourier: {
+      title: "Pelanggan D: fail upload courier",
+      alt: "214 order hari ini penjual online di iPad, sedia dimuat turun sebagai fail upload pukal courier",
+    },
+    migrationImport: {
+      title: "Import dari apa jua format",
+      alt: "Ruang kerja pemindahan data membaca fail Excel, PDF, CSV dan TXT dari sistem klinik lama, dengan AI padankan setiap lajur lama ke medan Techub",
+    },
+    migrationScan: {
+      title: "Imbasan skrin AI",
+      alt: "AI imbas skrin sistem lama halaman demi halaman dan ambil setiap medan, untuk sistem yang tak boleh export data",
+    },
+    migrationCheck: {
+      title: "Setiap rekod disemak",
+      alt: "Semakan pemindahan data untuk 143,861 rekod dengan rekod berganda digabung, nombor telefon dibaiki dan beberapa rekod dihantar untuk semakan",
+    },
+    migrationDone: {
+      title: "Pemindahan data selesai",
+      alt: "Pemindahan data selesai dengan 143,861 rekod dalam Techub, caj ikut masa jurutera, bukan saiz data",
+    },
+    migrationChat: {
+      title: "Pemindahan data di WhatsApp",
+      alt: "Klinik hantar fail Excel dan PDF imbasan kepada Techub di WhatsApp, dapat pelan pemindahan yang dicaj ikut masa, kemudian 143,861 rekod sudah live",
+    },
+    emailInbox: {
+      title: "E-mel perniagaan dengan domain sendiri",
+      alt: "Inbox salon rambut di iPad dengan alamat domain sendiri, dengan pertanyaan rambut pengantin dibuka",
+    },
+    emailSetup: {
+      title: "E-mel disetup untuk anda",
+      alt: "E-mel perniagaan disetup oleh Techub: domain disambung, empat peti mel dibuat, telefon dan PC staf ditambah, storan 5 GB",
+    },
+    emailPhone: {
+      title: "E-mel di telefon anda",
+      alt: "Pertanyaan pelanggan baru masuk ke inbox e-mel perniagaan salon di telefon",
+    },
+    siteHome: {
+      title: "Reka laman web: klinik kulit",
+      alt: "Contoh laman web klinik kulit di Bangsar, Kuala Lumpur, dengan halaman utama yang elegan dan butang tempah konsultasi",
+    },
+    siteTreatments: {
+      title: "Halaman rawatan, tanpa reload",
+      alt: "Halaman rawatan laman web klinik kulit dengan harga dalam RM, dibuka serta-merta tanpa reload",
+    },
+    siteContact: {
+      title: "Halaman booking & WhatsApp",
+      alt: "Halaman booking laman web klinik kulit dengan borang booking, butang WhatsApp, waktu operasi dan peta",
+    },
+    sitePhone: {
+      title: "Laman web di telefon",
+      alt: "Laman web klinik kulit di telefon dengan tajuk utama dan butang tempah",
+    },
+    siteDental: {
+      title: "Reka laman web: klinik gigi",
+      alt: "Contoh laman web klinik gigi keluarga di Petaling Jaya dengan harga rawatan dalam RM dan booking temujanji",
+    },
+    siteCafe: {
+      title: "Reka laman web: kafe",
+      alt: "Contoh laman web kafe bakeri di George Town, Pulau Pinang, dengan menu kopi, roti bakar kaya dan pastri dalam RM",
+    },
+    siteCafePhone: {
+      title: "Laman web kafe di telefon",
+      alt: "Laman web kafe bakeri di telefon dengan menu dan butang order untuk pickup",
+    },
+    siteHomestay: {
+      title: "Reka laman web: vila percutian",
+      alt: "Contoh laman web vila percutian dengan kolam peribadi di Langkawi, dengan carian tarikh kosong dan harga semalam",
+    },
+    siteHomestayPhone: {
+      title: "Laman web vila di telefon",
+      alt: "Laman web vila percutian di telefon dengan butang semak tarikh kosong",
+    },
+    siteInterior: {
+      title: "Reka laman web: studio dalaman",
+      alt: "Contoh laman web studio reka bentuk dalaman di Kuala Lumpur dengan galeri projek",
+    },
+    siteAccounting: {
+      title: "Reka laman web: firma perakaunan",
+      alt: "Contoh laman web firma perakaunan dan cukai untuk PKS di Johor Bahru dengan senarai servis dan butang konsultasi percuma",
     },
   },
 };

@@ -1,0 +1,209 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<style>
+  /* Customer A's customisation, live: Demo Clinic's panel claims for October with the new export in Prima Health's
+     own Excel template. Spot: "export" (the export button and the file preview, one element). In the moving picture a
+     phone stands over the lower right corner, so the right-hand column only holds details. */
+  :root { --w: 1024px; --h: 720px; }
+  .top { gap: 10px; }
+  .top h1 { white-space: nowrap; }
+  .btn svg { width: 15px; height: 15px; }
+  .fl { display: inline-flex; align-items: center; gap: 7px; height: 34px; padding: 0 11px; border: 1px solid var(--line); border-radius: 9px; background: #fff; font-size: 12px; font-weight: 650; color: var(--ink); white-space: nowrap; }
+  .fl svg { width: 15px; height: 15px; color: var(--muted); }
+  .content { flex-direction: row; gap: 12px; }
+  .colL { width: 718px; flex-shrink: 0; display: flex; flex-direction: column; gap: 12px; min-height: 0; }
+  .colR { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+
+  /* The new export */
+  .exp { display: flex; flex-direction: column; gap: 12px; padding: 14px; border-color: #bfe3f7; flex-shrink: 0;
+    background: linear-gradient(135deg, #ffffff 40%, #f2faff); box-shadow: 0 14px 30px -18px rgba(3,110,170,.55), 0 1px 2px rgba(15,23,42,.04); }
+  .eh { display: flex; align-items: center; gap: 11px; }
+  .eh .lg { width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; color: #fff; background: linear-gradient(135deg, #7c3aed, #0396d9); flex-shrink: 0; box-shadow: 0 6px 12px -6px rgba(91,33,182,.7); }
+  .eh .lg svg { width: 19px; height: 19px; stroke-width: 2.2; }
+  .eh b { display: block; font-size: 14px; font-weight: 800; letter-spacing: -.01em; white-space: nowrap; }
+  .eh small { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--muted); margin-top: 2px; white-space: nowrap; }
+  .eh small svg { width: 12px; height: 12px; color: #059669; stroke-width: 2.8; }
+  .eh small i { width: 3px; height: 3px; border-radius: 9px; background: #cbd5e1; margin: 0 2px; }
+  .new { display: inline-flex; align-items: center; gap: 3px; height: 18px; padding: 0 7px 0 5px; border-radius: 99px; font-size: 9.5px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; }
+  .new svg { width: 10px; height: 10px; stroke: none; }
+  .go { margin-left: auto; height: 42px; border-radius: 11px; display: flex; align-items: center; gap: 9px; padding: 0 9px 0 14px; background: linear-gradient(135deg, var(--brand), #0287c4); color: #fff; font-size: 13px; font-weight: 750; white-space: nowrap; box-shadow: 0 10px 20px -10px rgba(3,150,217,.95); }
+  .go > svg { width: 17px; height: 17px; stroke-width: 2.3; }
+  .go .new { background: #fff; color: #0369a1; }
+  .go .new svg { fill: #0396d9; }
+
+  /* Preview of the Excel file */
+  .xl { border: 1px solid #d9e1ea; border-radius: 10px; overflow: hidden; background: #fff; display: flex; flex-direction: column; box-shadow: 0 1px 2px rgba(15,23,42,.05); }
+  .xh { height: 28px; flex-shrink: 0; display: flex; align-items: center; gap: 7px; padding: 0 10px; background: #f8fafc; border-bottom: 1px solid #e5eaf1; font-size: 10.5px; font-weight: 650; color: var(--ink2); white-space: nowrap; }
+  .xh .fi { width: 15px; height: 18px; border-radius: 3px; background: #16a34a; color: #fff; font-size: 6px; font-weight: 800; display: grid; place-items: end center; padding-bottom: 2px; flex-shrink: 0; }
+  .xh span.k { margin-left: auto; font-size: 10px; font-weight: 500; color: var(--muted); }
+  .gr { display: grid; grid-template-columns: 22px 24px 64px 78px minmax(0, 1fr) 116px 44px 48px 54px 62px 46px; font-size: 8.5px; color: #1e293b; font-variant-numeric: tabular-nums; position: relative; }
+  .gr::after { content: ""; position: absolute; top: 0; right: 0; bottom: 0; width: 34px; background: linear-gradient(90deg, rgba(255,255,255,0), #fff 85%); }
+  .gr span { height: 18px; line-height: 18px; padding: 0 4px; border-right: 1px solid #edf1f5; border-bottom: 1px solid #edf1f5; white-space: nowrap; overflow: hidden; }
+  .gr .c { background: #f1f5f9; color: #94a3b8; text-align: center; font-size: 8.5px; font-weight: 600; padding: 0; }
+  .gr .t { grid-column: span 10; font-weight: 800; color: #4c1d95; letter-spacing: .03em; }
+  .gr .t2 { grid-column: span 10; color: #475569; }
+  .gr .h { background: #ede9fe; color: #4c1d95; font-weight: 750; font-size: 8px; letter-spacing: .02em; }
+  .gr .n { text-align: right; }
+  .gr .b { font-weight: 700; }
+  .xt { height: 22px; flex-shrink: 0; display: flex; align-items: stretch; padding-left: 8px; background: #f8fafc; border-top: 1px solid #e5eaf1; font-size: 9.5px; font-weight: 600; color: var(--muted); }
+  .xt span { display: flex; align-items: center; padding: 0 10px; }
+  .xt span.on { background: #fff; color: #15803d; box-shadow: inset 0 -2px 0 #16a34a; }
+  .xt em { margin-left: auto; padding-right: 10px; display: flex; align-items: center; font-style: normal; font-weight: 500; }
+
+  /* Claims table */
+  .tb { padding: 0; overflow: hidden; display: flex; flex-direction: column; flex: 1; min-height: 0; }
+  .tb .hd { display: flex; align-items: center; gap: 10px; padding: 11px 14px 10px; }
+  .tb .hd h3 small { font-size: 11px; color: var(--muted); font-weight: 500; }
+  .seg { margin-left: auto; display: flex; background: #eef2f7; border-radius: 8px; padding: 2px; }
+  .seg span { font-size: 11px; font-weight: 600; padding: 4px 9px; border-radius: 6px; color: var(--muted); white-space: nowrap; }
+  .seg span.on { background: #fff; color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+  .seg span em { font-style: normal; font-weight: 500; color: #94a3b8; margin-left: 3px; }
+  table { table-layout: fixed; }
+  th { padding: 7px 10px; }
+  td { padding: 0 10px; height: 44px; }
+  th:first-child, td:first-child { padding-left: 14px; }
+  th:last-child, td:last-child { padding-right: 14px; }
+  th.num { text-align: right; white-space: nowrap; }
+  td b { display: block; font-size: 12px; overflow: hidden; text-overflow: ellipsis; }
+  td small { margin-top: 1px; overflow: hidden; text-overflow: ellipsis; }
+  .mid { font-variant-numeric: tabular-nums; font-weight: 600; color: var(--ink); font-size: 11.5px; }
+  .icd { display: inline-block; min-width: 38px; text-align: center; font-size: 10px; font-weight: 700; color: #5b21b6; background: #f5f3ff; border-radius: 5px; padding: 1px 5px; margin-right: 7px; font-variant-numeric: tabular-nums; }
+  .dg { display: flex; align-items: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .tot td { background: #f8fafc; border-bottom: 0; height: 40px; color: var(--ink); font-weight: 750; }
+  .tot td.num { font-size: 13px; }
+
+  /* Right-hand column */
+  .sumc .k { font-size: 11px; color: var(--muted); font-weight: 500; margin-top: 10px; }
+  .sumc .v { font-size: 22px; font-weight: 850; letter-spacing: -.02em; font-variant-numeric: tabular-nums; margin-top: 2px; white-space: nowrap; }
+  .sumc .d { font-size: 11px; color: var(--ink2); margin-top: 2px; }
+  .sumc .d b { font-weight: 700; color: var(--ink); }
+  .sumc { flex: 1; display: flex; flex-direction: column; }
+  .spk { display: flex; align-items: flex-end; gap: 3px; flex: 1; min-height: 38px; margin-top: 14px; }
+  .spk i { flex: 1; border-radius: 2px 2px 0 0; background: #ddd6fe; }
+  .spk i.on { background: #7c3aed; }
+  .spl { display: flex; justify-content: space-between; margin-top: 4px; font-size: 9.5px; color: #94a3b8; }
+  .bar2 { display: flex; height: 7px; gap: 2px; margin-top: 12px; }
+  .bar2 i { display: block; border-radius: 99px; }
+  .lg2 { display: flex; flex-direction: column; gap: 6px; margin-top: 10px; }
+  .lg2 div { display: flex; align-items: center; gap: 7px; font-size: 11px; color: var(--ink2); white-space: nowrap; }
+  .lg2 i { width: 8px; height: 8px; border-radius: 3px; }
+  .lg2 span { margin-left: auto; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .due { display: flex; align-items: center; gap: 9px; margin-top: 10px; padding: 9px 11px; border-radius: 10px; background: #fffbeb; border: 1px solid #fde9b8; box-shadow: inset 3px 0 0 #f59e0b; }
+  .due .ic { width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center; flex-shrink: 0; background: #fff; }
+  .due .ic svg { width: 16px; height: 16px; }
+  .due b { display: block; font-size: 12px; font-weight: 750; white-space: nowrap; }
+  .due small { display: block; font-size: 10.5px; color: #92400e; margin-top: 1px; white-space: nowrap; }
+  .pl { flex: 1; display: flex; flex-direction: column; }
+  .pr { display: flex; align-items: center; gap: 8px; padding: 8px 0; border-bottom: 1px solid #eef2f7; font-size: 11.5px; }
+  .pr:last-child { border-bottom: 0; }
+  .pr .dot { width: 8px; height: 8px; border-radius: 99px; flex-shrink: 0; }
+  .pr b { display: block; font-weight: 650; white-space: nowrap; }
+  .pr small { display: block; font-size: 10px; color: var(--muted); margin-top: 1px; }
+  .pr span { margin-left: auto; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .pr.on b { color: #5b21b6; }
+  .pr.all { border-top: 1px solid #e2e8f0; border-bottom: 0; padding-top: 9px; }
+  .pr.all span { font-size: 13px; font-weight: 800; }
+</style></head>
+<body>
+<div class="app">
+  <aside class="side" data-shell="clinic" data-active="Billing"></aside>
+  <section class="main">
+    <header class="top">
+      <div><div class="sub">Demo Clinic · Billing</div><h1>Panel claims · October 2026</h1></div>
+      <span class="fl" style="margin-left:auto"><i data-i="cal"></i>1 to 14 Oct 2026<i data-i="chevD"></i></span>
+      <span class="btn"><i data-i="print"></i>Print</span>
+      <span class="btn pri"><i data-i="plus"></i>New claim</span>
+    </header>
+    <div class="content">
+      <div class="colL">
+        <div class="card exp" data-spot="export" id="exp"></div>
+        <div class="card tb" id="tb"></div>
+      </div>
+      <div class="colR" id="colR"></div>
+    </div>
+  </section>
+</div>
+<script>
+  const $ = (id) => document.getElementById(id);
+  const X = {
+    shield: '<path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6l8-3z"/><path d="M12 8.5v7M8.5 12h7"/>',
+    dl: '<path d="M12 4v11M7.5 10.5L12 15l4.5-4.5"/><path d="M5 19.5h14"/>',
+    check: '<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+    star: '<path d="M12 2.5l2.2 6.3 6.3 2.2-6.3 2.2L12 19.5l-2.2-6.3L3.5 11l6.3-2.2z"/>',
+  };
+  const I = (n) => `<svg class="i" viewBox="0 0 24 24">${X[n]}</svg>`;
+  const NEW = `<span class="new"><svg viewBox="0 0 24 24">${X.star}</svg>New</span>`;
+
+  // The file preview: Prima Health's own template (names in capitals, dates dd/mm/yyyy, ICD-10 codes), oldest first
+  const F = [
+    ["1", "01/10/2026", "PH-3318-0042", "NURUL IZZAH BT AHMAD", "MAJU JAYA LOGISTIK", "J06.9", "35.00", "23.00", "58.00", "DR LIM WEI JIE"],
+    ["2", "01/10/2026", "PH-2207-0115", "TAN WEI MING", "SENG HENG PLASTIK", "M54.5", "45.00", "41.50", "86.50", "DR AISYAH"],
+    ["3", "01/10/2026", "PH-4102-0021", "KAVITHA A/P SELVAM", "MEWAH HARDWARE", "J02.9", "35.00", "17.00", "52.00", "DR LIM WEI JIE"],
+    ["4", "02/10/2026", "PH-3318-0064", "WONG KAR HOE", "MAJU JAYA LOGISTIK", "E11.9", "45.00", "93.00", "138.00", "DR AISYAH"],
+  ];
+  const cols = ["NO", "VISIT DATE", "MEMBER ID", "PATIENT NAME", "EMPLOYER", "ICD-10", "CONSULT", "MEDICINE", "TOTAL (RM)", "DOCTOR"];
+  const LET = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
+  $("exp").innerHTML = `
+    <div class="eh">
+      <span class="lg">${I("shield")}</span>
+      <div><b>Prima Health claim file</b><small>${I("check")}86 claims<i></i>Their own template</small></div>
+      <div class="go">${I("dl")}Export · Prima Health format (.xlsx)${NEW}</div>
+    </div>
+    <div class="xl">
+      <div class="xh"><span class="fi">XLS</span>PrimaHealth_DemoClinic_Oct2026.xlsx<span class="k">Preview · sheet 1 of 2</span></div>
+      <div class="gr">
+        <span class="c"></span>${LET.map((c) => `<span class="c">${c}</span>`).join("")}
+        <span class="c">1</span><span class="t">PRIMA HEALTH · MONTHLY CLAIM SUBMISSION</span>
+        <span class="c">2</span><span class="t2">Provider: DEMO CLINIC (PH-KL-0417) · Month: 10/2026 · Claims: 86 · Total: RM 6,142.50</span>
+        <span class="c">3</span>${cols.map((c, i) => `<span class="h${i >= 6 && i <= 8 ? " n" : ""}">${c}</span>`).join("")}
+        ${F.map((r, j) => `<span class="c">${j + 4}</span>${r.map((v, i) => `<span class="${i >= 6 && i <= 8 ? "n" : ""}${i === 8 ? " b" : ""}">${v}</span>`).join("")}`).join("")}
+      </div>
+      <div class="xt"><span class="on">Claims</span><span>Summary</span><em>86 rows · 12 columns</em></div>
+    </div>`;
+
+  // Latest Prima Health Panel claims: [date, patient, employer, member ID, ICD-10, diagnosis, amount]
+  const C = [
+    ["14 Oct", "Lee Mei Xuan", "Mewah Hardware", "PH-4102-0073", "H10.9", "Conjunctivitis", "44.00"],
+    ["14 Oct", "Rajesh Kumar a/l Muthu", "Maju Jaya Logistik", "PH-3318-0019", "I10", "Hypertension, follow-up", "72.00"],
+    ["14 Oct", "Siti Aminah bt Yusof", "Seng Heng Plastik", "PH-2207-0131", "J06.9", "Upper respiratory infection", "61.50"],
+    ["13 Oct", "Daniel Chong Kah Wai", "Mewah Hardware", "PH-4102-0016", "M54.5", "Low back pain", "88.00"],
+    ["13 Oct", "Arun a/l Krishnan", "Ace Packaging", "PH-5530-0008", "L30.9", "Dermatitis", "65.00"],
+  ];
+  $("tb").innerHTML = `
+    <div class="hd"><h3><i data-i="card" style="color:#0396d9"></i>Prima Health Panel <small>· latest claims</small></h3>
+      <div class="seg"><span class="on">Prima Health<em>86</em></span><span>Sejahtera Care<em>41</em></span><span>Sentosa Medic<em>23</em></span></div></div>
+    <table>
+      <colgroup><col style="width:72px"><col style="width:184px"><col style="width:116px"><col><col style="width:112px"></colgroup>
+      <tr><th>Date</th><th>Patient</th><th>Member ID</th><th>Diagnosis</th><th class="num">Amount (RM)</th></tr>
+      ${C.map(([d, p, e, m, icd, dg, a]) => `<tr><td>${d}</td><td><b>${p}</b><small>${e}</small></td><td class="mid">${m}</td>
+        <td><span class="dg"><span class="icd">${icd}</span>${dg}</span></td><td class="num"><b>${a}</b></td></tr>`).join("")}
+      <tr class="tot"><td colspan="3">October so far · 86 claims</td><td></td><td class="num">RM 6,142.50</td></tr>
+    </table>`;
+
+  // Prima Health claims per day, 1 to 14 Oct (1 Oct 2026 is a Thursday): adds up to 86
+  const DAYS = [7, 6, 4, 1, 8, 7, 7, 6, 7, 4, 1, 9, 9, 10];
+  $("colR").innerHTML = `
+    <div class="card sumc">
+      <h3><i data-i="chart" style="color:#7c3aed"></i>October so far</h3>
+      <div class="k">Prima Health Panel</div>
+      <div class="v">RM 6,142.50</div>
+      <div class="d"><b>86 claims</b> · avg RM 71.42</div>
+      <div class="spk">${DAYS.map((n, i) => `<i style="height:${(n / 10) * 100}%"${i === 13 ? ' class="on"' : ""}></i>`).join("")}</div>
+      <div class="spl"><span>1 Oct</span><span>Claims per day</span><span>14 Oct</span></div>
+      <div class="bar2"><i style="flex:65.1;background:#0396d9"></i><i style="flex:34.9;background:#8b5cf6"></i></div>
+      <div class="lg2"><div><i style="background:#0396d9"></i>Consultation<span>RM 3,999.00</span></div><div><i style="background:#8b5cf6"></i>Medicine<span>RM 2,143.50</span></div></div>
+    </div>
+    <div class="card">
+      <h3><i data-i="users" style="color:#0396d9"></i>Panels</h3>
+      <div style="margin-top:6px">
+        <div class="pr on"><i class="dot" style="background:#7c3aed"></i><div><b>Prima Health</b><small>86 claims</small></div><span>6,142.50</span></div>
+        <div class="pr"><i class="dot" style="background:#0396d9"></i><div><b>Sejahtera Care</b><small>41 claims</small></div><span>2,870.00</span></div>
+        <div class="pr"><i class="dot" style="background:#14b8a6"></i><div><b>Sentosa Medic</b><small>23 claims</small></div><span>1,618.50</span></div>
+        <div class="pr all"><div><b>All panels</b><small>150 claims</small></div><span>RM 10,631.00</span></div>
+      </div>
+      <div class="due"><div><b>First file due 10 Nov</b><small>Prima Health, since 1 Oct</small></div></div>
+    </div>`;
+</script>
+<script src="shell.js"></script>
+<script src="icons.js"></script>
+</body></html>

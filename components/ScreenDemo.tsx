@@ -265,7 +265,7 @@ export default function ScreenDemo({
     const last = scenes.map((_, n) => scenes[(i - n + scenes.length) % scenes.length]).find((s) => s.focus === d) ?? scene;
     const [lx, ly, lw, lh] = last.spot;
     const frame = (
-      <DeviceFrame kind={shot.kind}>
+      <DeviceFrame kind={shot.kind} url={shot.url}>
         <div className="demo-stage" style={{ transformOrigin: `${lx + lw / 2}% ${ly + lh / 2}%` }}>
           <div style={{ aspectRatio: `${shot.w} / ${shot.h}` }} />
           {keys.map((k) => {

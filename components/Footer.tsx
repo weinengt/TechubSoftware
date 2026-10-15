@@ -3,7 +3,7 @@ import { getDict } from "@/content";
 import { getLegal } from "@/content/legal";
 import { htmlLang, localeName, locales, lp, type Locale } from "@/lib/i18n";
 import { blogPath } from "@/content/blog";
-import { companyPages, emailLink, site, systems, whatsappLink } from "@/lib/site";
+import { companyPages, emailLink, servicePages, site, systems, whatsappLink } from "@/lib/site";
 import { Icon } from "./Icons";
 
 export default function Footer({ lang }: { lang: Locale }) {
@@ -34,6 +34,11 @@ export default function Footer({ lang }: { lang: Locale }) {
             {systems.map((s) => (
               <li key={s.key}>
                 <Link className={link} href={lp(lang, s.path)}>{t.systems[s.key].name}</Link>
+              </li>
+            ))}
+            {servicePages.map((s) => (
+              <li key={s.key}>
+                <Link className={link} href={lp(lang, s.path)}>{t.servicePages[s.key].name}</Link>
               </li>
             ))}
             <li><Link className={link} href={lp(lang, companyPages.customSystems)}>{f.custom}</Link></li>

@@ -1,0 +1,187 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<style>
+  /* Customer B's customisation: Demo Hair Salon's monthly sales in their accountant's own format (KS Ong & Co.).
+     Spot: "export" (the export button with its Custom chip). Same layout as the other customisation screens. */
+  :root { --w: 1024px; --h: 720px; }
+  .top { gap: 10px; }
+  .top h1 { white-space: nowrap; }
+  .btn svg { width: 15px; height: 15px; }
+  .fl { display: inline-flex; align-items: center; gap: 7px; height: 34px; padding: 0 11px; border: 1px solid var(--line); border-radius: 9px; background: #fff; font-size: 12px; font-weight: 650; color: var(--ink); white-space: nowrap; }
+  .fl svg { width: 15px; height: 15px; color: var(--muted); }
+  .content { flex-direction: row; gap: 12px; }
+  .colL { width: 718px; flex-shrink: 0; display: flex; flex-direction: column; gap: 12px; min-height: 0; }
+  .colR { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+
+  /* The accountant's file */
+  .acc { flex-shrink: 0; padding: 14px; border-color: #bfe3f7; background: linear-gradient(135deg, #ffffff 40%, #f2faff);
+    box-shadow: 0 14px 30px -18px rgba(3,110,170,.55), 0 1px 2px rgba(15,23,42,.04); }
+  .eh { display: flex; align-items: center; gap: 11px; }
+  .eh .lg { width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; color: #fff; font-size: 12.5px; font-weight: 800; letter-spacing: .02em; background: linear-gradient(135deg, #0b2f55, #1e5a8c); flex-shrink: 0; box-shadow: 0 6px 12px -6px rgba(11,47,85,.8); }
+  .eh b { display: block; font-size: 14px; font-weight: 800; letter-spacing: -.01em; white-space: nowrap; }
+  .eh small { display: block; font-size: 11px; color: var(--muted); margin-top: 2px; white-space: nowrap; }
+  .new { display: inline-flex; align-items: center; gap: 3px; height: 18px; padding: 0 7px 0 5px; border-radius: 99px; font-size: 9.5px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; }
+  .new svg { width: 10px; height: 10px; stroke: none; }
+  .go { margin-left: auto; height: 42px; border-radius: 11px; display: flex; align-items: center; gap: 9px; padding: 0 9px 0 14px; background: linear-gradient(135deg, var(--brand), #0287c4); color: #fff; font-size: 13px; font-weight: 750; white-space: nowrap; box-shadow: 0 10px 20px -10px rgba(3,150,217,.95); }
+  .go > svg { width: 17px; height: 17px; stroke-width: 2.3; }
+  .go .new { background: #fff; color: #0369a1; }
+  .go .new svg { fill: #0396d9; }
+  .fmt { display: flex; align-items: center; gap: 6px; margin-top: 13px; padding: 9px 10px; border-radius: 10px; background: #fff; border: 1px solid #e3eaf2; }
+  .fmt > span.k { font-size: 10.5px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; margin-right: 4px; white-space: nowrap; }
+  .fmt .c { display: inline-flex; align-items: center; height: 22px; padding: 0 8px; border-radius: 6px; background: #eef6fc; color: #0b4a75; font-size: 11px; font-weight: 650; white-space: nowrap; }
+  .fmt svg { width: 11px; height: 11px; color: #94a3b8; stroke-width: 2.6; }
+  .ok3 { display: flex; gap: 16px; margin-top: 11px; font-size: 11.5px; color: var(--ink2); white-space: nowrap; }
+  .ok3 span { display: inline-flex; align-items: center; gap: 6px; }
+  .ok3 svg { width: 14px; height: 14px; color: #059669; stroke-width: 2.6; }
+  .ok3 b { font-weight: 700; color: var(--ink); }
+  .ok3 .last { margin-left: auto; color: var(--muted); }
+
+  /* Sales listing */
+  .tb { padding: 0; overflow: hidden; display: flex; flex-direction: column; flex: 1; min-height: 0; }
+  .tb .hd { display: flex; align-items: center; gap: 10px; padding: 11px 14px 10px; }
+  .tb .hd h3 small { font-size: 11px; color: var(--muted); font-weight: 500; }
+  .seg { margin-left: auto; display: flex; background: #eef2f7; border-radius: 8px; padding: 2px; }
+  .seg span { font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 6px; color: var(--muted); white-space: nowrap; }
+  .seg span.on { background: #fff; color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+  table { table-layout: fixed; }
+  th { padding: 7px 10px; white-space: nowrap; }
+  td { padding: 0 10px; height: 38px; font-variant-numeric: tabular-nums; }
+  th:first-child, td:first-child { padding-left: 14px; }
+  th:last-child, td:last-child { padding-right: 14px; }
+  th.num { text-align: right; }
+  .doc { font-weight: 650; color: var(--ink); font-size: 11.5px; }
+  .doc.cn { color: #b91c1c; }
+  .ds { color: var(--ink); overflow: hidden; text-overflow: ellipsis; }
+  .tx { display: inline-block; min-width: 40px; text-align: center; font-size: 10px; font-weight: 750; border-radius: 5px; padding: 2px 6px; letter-spacing: .02em; }
+  .tx.sv { background: #e0f2fe; color: #0369a1; } .tx.nt { background: #f1f5f9; color: #475569; }
+  td.neg { color: #b91c1c; font-weight: 700; }
+  .pm { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; }
+  .pm i { width: 7px; height: 7px; border-radius: 99px; display: inline-block; }
+  .tot td { background: #f8fafc; border-bottom: 0; height: 42px; color: var(--ink); font-weight: 750; }
+  .tot td.num { font-size: 13.5px; }
+  .tot small { display: inline; color: var(--muted); font-weight: 500; font-size: 11px; margin-left: 6px; }
+
+  /* Right-hand column */
+  .sumc .k { font-size: 11px; color: var(--muted); font-weight: 500; margin-top: 10px; }
+  .sumc .v { font-size: 22px; font-weight: 850; letter-spacing: -.02em; font-variant-numeric: tabular-nums; margin-top: 2px; white-space: nowrap; }
+  .sumc .d { font-size: 11px; color: var(--ink2); margin-top: 2px; }
+  .bar2 { display: flex; height: 7px; gap: 2px; margin-top: 12px; }
+  .bar2 i { display: block; border-radius: 99px; }
+  .lg2 { display: flex; flex-direction: column; gap: 7px; margin-top: 10px; }
+  .lg2 div { display: flex; align-items: center; gap: 7px; font-size: 11px; color: var(--ink2); white-space: nowrap; }
+  .lg2 i { width: 8px; height: 8px; border-radius: 3px; flex-shrink: 0; }
+  .lg2 span { margin-left: auto; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .note { margin-top: 10px; padding: 7px 9px; border-radius: 8px; background: #f8fafc; border: 1px solid #edf1f6; font-size: 10.5px; color: var(--ink2); display: flex; justify-content: space-between; white-space: nowrap; }
+  .note b { font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .pay { flex: 1; display: flex; flex-direction: column; }
+  .pr { padding: 10px 0; }
+  .pr .ln { display: flex; align-items: baseline; font-size: 11.5px; color: var(--ink2); white-space: nowrap; }
+  .pr .ln span { margin-left: auto; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .pr .br { height: 5px; border-radius: 9px; background: #f1f5f9; margin-top: 5px; overflow: hidden; }
+  .pr .br i { display: block; height: 100%; border-radius: 9px; }
+  .sent { margin-top: auto; padding: 9px 10px 4px; border-radius: 10px; background: #f0fdf4; border: 1px solid #c6f1d6; }
+  .sent .sh { display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 750; color: #14532d; white-space: nowrap; margin-bottom: 3px; }
+  .sent .sh svg { width: 13px; height: 13px; color: #16a34a; stroke-width: 2.4; }
+  .sent .sr { display: flex; align-items: center; padding: 5px 0; border-top: 1px dashed #bbe7cb; font-size: 11px; }
+  .sent .sr b { font-weight: 650; color: #14532d; }
+  .sent .sr small { margin-left: auto; font-size: 10.5px; color: #15803d; font-weight: 600; }
+</style></head>
+<body>
+<div class="app">
+  <aside class="side" data-shell="salon" data-active=""></aside>
+  <section class="main">
+    <header class="top">
+      <div><div class="sub">Demo Hair Salon · Reports</div><h1>Monthly sales for your accountant</h1></div>
+      <span class="fl" style="margin-left:auto"><i data-i="cal"></i>October 2026<i data-i="chevD"></i></span>
+      <span class="fl"><svg class="i" viewBox="0 0 24 24"><path d="M3.5 9l1.6-5h13.8l1.6 5"/><path d="M3.5 9a2.8 2.8 0 005.6 0 2.8 2.8 0 005.8 0 2.8 2.8 0 005.6 0"/><path d="M5 12.5V20h14v-7.5"/><path d="M10 20v-4.5h4V20"/></svg>Both branches<i data-i="chevD"></i></span>
+      <span class="btn"><i data-i="print"></i>Print</span>
+    </header>
+    <div class="content">
+      <div class="colL">
+        <div class="card acc" id="acc"></div>
+        <div class="card tb" id="tb"></div>
+      </div>
+      <div class="colR" id="colR"></div>
+    </div>
+  </section>
+</div>
+<script>
+  const $ = (id) => document.getElementById(id);
+  const X = {
+    dl: '<path d="M12 4v11M7.5 10.5L12 15l4.5-4.5"/><path d="M5 19.5h14"/>',
+    check: '<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+    star: '<path d="M12 2.5l2.2 6.3 6.3 2.2-6.3 2.2L12 19.5l-2.2-6.3L3.5 11l6.3-2.2z"/>',
+    chev: '<path d="M9 6l6 6-6 6"/>',
+    send: '<path d="M21 3L10 14"/><path d="M21 3l-7 18-4-7-7-4z"/>',
+  };
+  const I = (n) => `<svg class="i" viewBox="0 0 24 24">${X[n]}</svg>`;
+  const CUSTOM = `<span class="new"><svg viewBox="0 0 24 24">${X.star}</svg>Custom</span>`;
+
+  // KS Ong & Co. asked for these columns, in this order
+  const COLS = ["Date", "Doc no.", "Description", "Tax code", "Amount (RM)", "Payment"];
+  $("acc").innerHTML = `
+    <div class="eh">
+      <span class="lg">KS</span>
+      <div><b>KS Ong &amp; Co.</b><small>Your accountant · Petaling Jaya</small></div>
+      <div class="go" data-spot="export">${I("dl")}Export for KS Ong &amp; Co. (.xlsx)${CUSTOM}</div>
+    </div>
+    <div class="fmt"><span class="k">Their format</span>${COLS.map((c, i) => `${i ? I("chev") : ""}<span class="c">${c}</span>`).join("")}</div>
+    <div class="ok3"><span>${I("check")}Their tax codes</span><span>${I("check")}One line per item</span><span>${I("check")}Refunds as credit notes</span><span>${I("check")}Excel, ready to send</span></div>`;
+
+  // Latest lines of the October sales listing: [date, doc, description, tax code, amount, payment]
+  const PAY = { Card: "#0396d9", "DuitNow QR": "#ec4899", "e-Wallet": "#8b5cf6", Cash: "#10b981", "Online banking": "#f59e0b" };
+  const L = [
+    ["15 Oct", "CS-10655", "Women's Cut & Blow", "SV-8", "75.00", "DuitNow QR"],
+    ["15 Oct", "CS-10654", "Colour Retouch", "SV-8", "150.00", "Card"],
+    ["15 Oct", "CS-10654", "Hair Serum 100 ml", "NT", "68.00", "Card"],
+    ["15 Oct", "CS-10653", "Men's Haircut", "SV-8", "38.00", "Cash"],
+    ["14 Oct", "CS-10652", "Keratin Treatment", "SV-8", "380.00", "e-Wallet"],
+    ["14 Oct", "CN-0058", "Refund · Scalp Treatment", "SV-8", "-60.00", "Online banking"],
+    ["14 Oct", "CS-10651", "Rebonding", "SV-8", "320.00", "Card"],
+    ["14 Oct", "CS-10650", "Women's Cut & Blow", "SV-8", "75.00", "Card"],
+    ["14 Oct", "CS-10650", "Shampoo 300 ml", "NT", "42.00", "Card"],
+  ];
+  $("tb").innerHTML = `
+    <div class="hd"><h3><i data-i="file" style="color:#0396d9"></i>Sales listing <small>· 1 to 15 Oct, latest first</small></h3>
+      <div class="seg"><span class="on">KS Ong &amp; Co. format</span><span>Standard view</span></div></div>
+    <table>
+      <colgroup><col style="width:76px"><col style="width:96px"><col><col style="width:84px"><col style="width:112px"><col style="width:136px"></colgroup>
+      <tr>${COLS.map((c, i) => `<th${i === 4 ? ' class="num"' : ""}>${c}</th>`).join("")}</tr>
+      ${L.map(([d, doc, ds, tx, a, p]) => `<tr><td>${d}</td><td class="doc${doc.startsWith("CN") ? " cn" : ""}">${doc}</td><td class="ds">${ds}</td>
+        <td><span class="tx ${tx === "NT" ? "nt" : "sv"}">${tx}</span></td><td class="num${a.startsWith("-") ? " neg" : ""}">${a.replace("-", "− ")}</td>
+        <td><span class="pm"><i style="background:${PAY[p]}"></i>${p}</span></td></tr>`).join("")}
+      <tr class="tot"><td colspan="3">October 2026 total<small>1 to 15 Oct · 694 lines</small></td><td></td><td class="num">48,620.00</td><td></td></tr>
+    </table>`;
+
+  // October so far: by tax code and by payment (both add up to RM 48,620.00; service tax is 8/108 of SV-8 sales)
+  const BY = [["Card", 19840], ["DuitNow QR", 12360], ["e-Wallet", 7920], ["Cash", 6180], ["Online banking", 2320]];
+  const rm = (n) => n.toLocaleString("en-MY", { minimumFractionDigits: 2 });
+  $("colR").innerHTML = `
+    <div class="card sumc">
+      <h3><i data-i="chart" style="color:#0396d9"></i>October 2026<span class="more" style="color:var(--muted);font-weight:500">RM</span></h3>
+      <div class="k">Total sales · 1 to 15 Oct</div>
+      <div class="v">RM 48,620.00</div>
+      <div class="d">641 sales · 3 credit notes</div>
+      <div class="bar2"><i style="flex:42930;background:#0396d9"></i><i style="flex:5690;background:#94a3b8"></i></div>
+      <div class="lg2"><div><i style="background:#0396d9"></i>Services · SV-8<span>42,930.00</span></div><div><i style="background:#94a3b8"></i>Products · NT<span>5,690.00</span></div></div>
+      <div class="note"><span>Includes SST 8%</span><b>3,180.00</b></div>
+    </div>
+    <div class="card pay">
+      <h3><i data-i="card" style="color:#0396d9"></i>By payment<span class="more" style="color:var(--muted);font-weight:500">RM</span></h3>
+      <div style="margin-top:4px">${BY.map(([p, v]) => `<div class="pr"><div class="ln">${p}<span>${rm(v)}</span></div><div class="br"><i style="width:${(v / 19840) * 100}%;background:${PAY[p]}"></i></div></div>`).join("")}</div>
+      <div class="sent"><div class="sh">${I("send")}Sent to KS Ong &amp; Co.</div>
+        <div class="sr"><b>September 2026</b><small>1 Oct</small></div>
+        <div class="sr"><b>August 2026</b><small>1 Sep</small></div>
+        <div class="sr"><b>July 2026</b><small>1 Aug</small></div></div>
+    </div>`;
+</script>
+<script src="shell.js"></script>
+<script>
+  // Reports have their own item in the menu (after Commission), shown as the active page
+  document.querySelectorAll(".nav a").forEach((a) => {
+    if (a.lastChild && a.lastChild.nodeType === 3 && a.lastChild.textContent === "Commission")
+      a.insertAdjacentHTML("afterend", '<a class="on"><svg class="i" viewBox="0 0 24 24"><path d="M21 12.5A9 9 0 1111.5 3v9.5z"/><path d="M15 3.4A9 9 0 0120.6 9H15z"/></svg>Reports</a>');
+  });
+</script>
+<script src="icons.js"></script>
+</body></html>

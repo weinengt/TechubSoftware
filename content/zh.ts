@@ -25,7 +25,7 @@ const zh: Dict = {
   },
 
   nav: {
-    useCases: "适用行业",
+    useCases: "解决方案",
     technology: "技术",
     services: "服务",
     pricing: "价格",
@@ -34,10 +34,10 @@ const zh: Dict = {
   },
 
   menu: {
-    useCases: "适用行业",
+    useCases: "解决方案",
     otherTitle: "做其他生意？",
     otherText: "我们也可以帮你定制系统。",
-    all: "看所有适用行业",
+    all: "看所有解决方案",
   },
 
   systems: {
@@ -124,7 +124,7 @@ const zh: Dict = {
   footer: {
     blurb:
       "{name} 是马来西亚本地的软件公司，为全马的诊所、发廊、美容中心、SPA 和直播卖家开发智能又实惠的系统，也定制 ERP、AI 物体识别和车牌识别等系统。保证 {uptime} 在线率，月费 RM {price} 起。",
-    useCases: "适用行业",
+    useCases: "解决方案",
     custom: "定制系统",
     company: "公司",
     about: "关于我们",
@@ -219,7 +219,7 @@ const zh: Dict = {
     },
     softwareName: "Techub 预约管理系统",
     softwareCategory: "预约安排与生意管理",
-    useCasesListName: "Techub Software 适用行业",
+    useCasesListName: "Techub Software 解决方案",
     servicesListName: "Techub Software 服务",
   },
 
@@ -335,6 +335,32 @@ const zh: Dict = {
         invoice: { title: "发票自动开好", text: "已扣除 RM 40 订金" },
         notes: { title: "退款单和 Credit Note 也有", text: "不需要懂会计" },
       },
+      customisation: {
+        request: { title: "顾客 A 在 WhatsApp 询问", text: "新 panel 公司的索赔文件" },
+        estimate: { title: "AI 估算：大约 6 小时", text: "开工前先给清楚报价" },
+        quote: { title: "48 个月配套 RM 480", text: "可以分期付款" },
+        testing: { title: "测试和对接免费", text: "上线前先检查" },
+        live: { title: "已在系统上线", text: "新索赔文件一键导出" },
+      },
+      migration: {
+        formats: { title: "PDF、Excel、CSV 和 TXT", text: "跟工程师一起规划" },
+        scan: { title: "AI 读取旧系统", text: "不能导出就一页一页读" },
+        check: { title: "每条记录都检查", text: "重复的合并，错的修正" },
+        done: { title: "按时间收费，不按数据量", text: "已搬 143,861 条记录" },
+      },
+      email: {
+        domain: { title: "你自己的域名", text: "hello@demosalon.com.my" },
+        phone: { title: "每台手机和电脑都能用", text: "新询问马上收到" },
+        setup: { title: "我们全部设定好", text: "域名、邮箱和设备" },
+        storage: { title: "{emailStorage} 储存空间", text: "每年 RM {emailYear}" },
+      },
+      website: {
+        design: { title: "按你的品牌设计", text: "最多 {websitePages} 页" },
+        instant: { title: "换页即时", text: "不用重新加载，不用等" },
+        phone: { title: "手机上一样好看", text: "各种屏幕尺寸" },
+        contact: { title: "顾客马上联络你", text: "WhatsApp、预约和地图" },
+        seo: { title: "SEO 和 AI 搜索优化", text: "Cloudflare 托管" },
+      },
       hub: {
         devices: { title: "所有设备即时同步", text: "iPad、手机、电脑" },
         whatsapp: { title: "WhatsApp 提醒已发出", text: "顾客按了确认" },
@@ -398,7 +424,7 @@ const zh: Dict = {
   },
 
   useCases: {
-    eyebrow: "适用行业",
+    eyebrow: "解决方案",
     title: "现成系统，适合你的行业",
     intro: "专为马来西亚的诊所、发廊、美容中心、SPA 和直播卖家而设。点一下，看看系统在 iPad 和手机上的样子。",
   },
@@ -431,9 +457,11 @@ const zh: Dict = {
         text: "系统放在马来西亚的 IPServerOne、Amazon Web Services 等服务器上。你的资料存在哪里，我们都会讲清楚。",
       },
       database: { title: "快速 NoSQL 数据库", text: "资料经过索引优化，详细报表 100 毫秒内就出来。" },
-      security: { title: "加密又有备份", text: "所有储存的资料都有加密，还有跨区域的多层备份。" },
+      security: { title: "加密又有备份", text: "数据库储存时加密，每个连接都用 SSL/TLS，还有跨区域的多层备份。" },
       ai: { title: "内置 AI", text: "AI 帮你看送货单、更新库存，还会提醒你该补什么货。" },
+      extraction: { title: "AI 资料提取", text: "OCR 和 AI 屏幕扫描，把 PDF 和旧系统的资料搬进来。" },
       realtime: { title: "即时更新", text: "每台 iPad、手机和电脑都马上看到最新变动。" },
+      framework: { title: "React 和 Next.js", text: "现代网页框架：换页即时，不用重新加载。" },
       whatsapp: { title: "WhatsApp 通知", text: "预约确认和提醒，系统自动发出。" },
       hardware: { title: "连接各种硬件", text: "标签打印机、叫号系统、X光机等等。" },
       einvoice: { title: "LHDN 电子发票", text: "电子发票通过 MyInvois 提交给 LHDN。" },
@@ -556,6 +584,40 @@ const zh: Dict = {
           "每张发票都有记录",
         ],
       },
+      extraction: {
+        eyebrow: "AI 资料提取",
+        title: "AI 帮你搬资料，*一页一页来*",
+        points: [
+          "OCR 读取 PDF 和扫描文件",
+          "旧系统不能导出，AI 扫描屏幕读资料",
+          "每一栏都由我们的工程师对应和检查",
+          "按时间收费，不按数据量",
+        ],
+        cta: "问问数据迁移",
+        ctaMessage: "Hi Techub，我想问一下怎样把资料搬到 Techub。",
+        badge: "AI 扫描",
+      },
+      framework: {
+        eyebrow: "React 和 Next.js",
+        title: "用*现代网页框架*开发",
+        points: [
+          "用 React 和 Next.js 开发",
+          "换页即时，不用整页重新加载",
+          "手机、平板、电脑都快",
+          "跟我们做的网站用同一套技术",
+        ],
+        badge: "不用重新加载",
+      },
+      encryption: {
+        eyebrow: "资料保护",
+        title: "你的资料，*是我们的首要任务*",
+        points: [
+          "数据库储存时全程加密",
+          "每个连接都有 SSL/TLS 加密",
+          "受保护的马来西亚服务器",
+          "就算资料外泄，也还是加密的",
+        ],
+      },
       security: {
         eyebrow: "安全和权限",
         title: "每位员工，权限刚刚好",
@@ -566,6 +628,18 @@ const zh: Dict = {
           "资料和连接全程加密",
         ],
       },
+    },
+    // 资料保护的图：你设备上的一条记录，经 SSL/TLS 传送，加密储存。
+    encryption: {
+      device: "你的设备",
+      record: "顾客资料",
+      tls: "SSL/TLS 加密",
+      server: "受保护的马来西亚服务器",
+      stored: "数据库储存时加密",
+      leaked: "万一资料外泄",
+      unreadable: "还是加密的",
+      // 虚构的记录，就像员工在设备上看到的样子。
+      sample: ["Nur Aisyah", "面部护理 · 下午 3:00"],
     },
     infra: {
       business: "你的生意",
@@ -602,11 +676,19 @@ const zh: Dict = {
       },
       {
         q: "你们怎样保护我的资料？",
-        a: "所有储存的资料都有加密，传送时也走加密连接。备份分多层存放在多个区域；按职位设定的权限决定每位员工看得到什么；操作记录会记下每一个动作。",
+        a: "你的数据库储存时全程加密，每个连接都用 SSL/TLS 加密，放在受保护的马来西亚服务器上。备份分多层存放在多个区域；按职位设定的权限决定每位员工看得到什么；操作记录会记下每一个动作。",
+      },
+      {
+        q: "万一资料外泄怎么办？",
+        a: "你的资料还是加密的。数据库储存时全程加密，每个连接都受 SSL/TLS 保护，所以就算资料外泄，也还是加密的。你的资料是我们的首要任务。",
       },
       {
         q: "为什么 Techub 的报表这么快？",
         a: "Techub 用的是索引优化的 NoSQL 数据库，就算是详细报表也能在 100 毫秒内出来，一点都不 lag。我们的服务器就在马来西亚，全马商家用起来反应都很快。",
+      },
+      {
+        q: "Techub 用什么技术开发？",
+        a: "Techub 用 React 和 Next.js 这个现代网页框架开发，配上快速的 NoSQL 数据库，放在马来西亚的企业级服务器上。换页即时，不用整页重新加载。",
       },
       {
         q: "{uptime} 在线率保证是什么意思？",
@@ -615,6 +697,10 @@ const zh: Dict = {
       {
         q: "AI 扫描送货单是怎样运作的？",
         a: "拍照或扫描供应商的送货单，AI 就会读出品项、数量、批号和有效期，然后自动调整库存。每一笔库存变动都有记录，进货、出货、调货和调整都查得到。",
+      },
+      {
+        q: "AI 资料提取是怎样运作的？",
+        a: "做数据迁移时，我们的 AI 用 OCR 读取 PDF 和扫描文件；旧系统不能导出的话，也可以一页一页扫描屏幕读资料。我们的软件工程师会对应和检查每一栏，确认好了才在 Techub 上线。",
       },
       {
         q: "Techub 有支援 LHDN 电子发票吗？",
@@ -729,10 +815,12 @@ const zh: Dict = {
     customMessage: "Hi Techub，我想问一下定制系统的报价。",
     customEmail: "电邮联络",
     customEmailSubject: "定制系统报价",
+    customSee: "看看顾客例子",
     offerText: "每月 RM {price} 起。新用户前 {months} 个月免费，包安装和员工培训。",
     extrasTitle: "其他服务",
     extrasText: "Techub 也提供以下服务，适合马来西亚各行各业。",
     extrasCta: "WhatsApp 询问",
+    extrasMore: "看看怎样运作",
     extras: {
       migration: {
         title: "数据迁移",
@@ -748,8 +836,8 @@ const zh: Dict = {
         label: "",
         unit: "/ 年",
         text: "用你自己域名的邮箱托管，例如 hello@yourbusiness.com。",
-        points: ["用你自己的域名", "{emailStorage} 储存空间"],
-        note: "",
+        points: ["用你自己的域名", "{emailStorage} 储存空间", "我们帮你全部设定好"],
+        note: "不包括域名。",
         message: "Hi Techub，我想要用自己域名的企业邮箱。",
       },
       website: {
@@ -938,7 +1026,7 @@ const zh: Dict = {
 
   /* ---------- System pages ---------- */
   product: {
-    useCases: "适用行业",
+    useCases: "解决方案",
     allModules: "全部功能",
     inside: "{product}有哪些功能",
     otherSystems: "其他行业也有",
@@ -1819,6 +1907,344 @@ const zh: Dict = {
   },
 
   /* ---------- Example screens: picture titles and alt text ---------- */
+  /* ---------- 服务页面（lib/site.ts servicePages），在“解决方案”里排在系统后面 ---------- */
+  servicePages: {
+    menuSystems: "现成系统",
+    menuServices: "适合所有生意",
+    useCasesTitle: "我们还能帮你",
+    useCasesIntro: "系统定制、数据迁移、企业邮箱和网站设计，马来西亚各行各业都适用。",
+    others: "我们还能帮你",
+    priceEyebrow: "价钱",
+    customisation: {
+      label: "系统定制",
+      name: "系统定制",
+      blurb: "照你的生意需要来改，每工时 RM {custom} 起。",
+      points: [
+        "按工时收费，每小时 RM {custom} 起",
+        "AI 预测工时：先给你清楚报价",
+        "测试和系统对接免费",
+        "可以分期付款",
+      ],
+      cta: "看看定制例子",
+      meta: {
+        title: "马来西亚系统定制 | 每小时 RM {custom} 起",
+        socialTitle: "系统定制 | Techub Software",
+        description:
+          "在马来西亚为你的系统加新功能、报表和打印格式。按工时收费，每小时 RM {custom} 起，先有 AI 估算，测试免费，还可以分期。",
+        keywords: [
+          "系统定制 马来西亚",
+          "软件定制",
+          "定制系统",
+          "定制报表",
+          "定制打印格式",
+          "诊所系统定制",
+          "发廊系统定制",
+          "software customisation Malaysia",
+        ],
+      },
+      eyebrow: "系统定制",
+      heading: "小改动，*小账单*",
+      intro: "需要新报表、新打印格式或新功能？我们按工时收费，每小时 RM {custom} 起。AI 先预测要几个小时，开工前你就知道价钱。",
+      primary: "索取报价",
+      message: "Hi Techub，我想问一下系统定制的报价。",
+      price: "每小时 RM {custom} 起",
+      chips: ["诊所", "发廊", "美容中心", "SPA", "直播卖家", "各行各业"],
+      highlights: ["每工时 RM {custom} 起", "AI 预测工时", "先给清楚报价", "测试和对接免费", "可以分期付款", "WhatsApp 支援"],
+      storiesEyebrow: "例子",
+      storiesTitle: "小改动，*到⁠底要多少钱*",
+      storiesIntro: "诊所、发廊、SPA 和网店常见的要求，还有各需要几个工时。",
+      stories: [
+        { who: "顾客 A · 诊所", task: "按新 panel 公司的格式导出索赔文件", result: "每个月的 panel 索赔，一键搞定。" },
+        { who: "顾客 B · 发廊", task: "按会计师的格式导⁠出每月销售文件", result: "月底结账，一笔销售都不用重新打。" },
+        { who: "顾客 C · SPA", task: "预约时多问一句：你⁠从哪里知道我们？", result: "现在知道哪个广告带来最多顾客。" },
+        { who: "顾客 D · 网店卖家", task: "订单文件可以直接上传给快递公司", result: "不用再一个一个抄地址。" },
+      ],
+      hours: "大约 {n} 小时",
+      monthly: "月付配套",
+      storiesNote: "以上例子让你参考一般费用，实际报价按你的需求而定。",
+      buildTitle: "我们可以帮你做",
+      build: {
+        reports: "新报表",
+        printouts: "打印格式和表格",
+        files: "Excel 和会计文件",
+        booking: "预约表格问题",
+        whatsapp: "WhatsApp 讯息",
+        workflow: "工作流程和审批",
+        integration: "连接其他系统",
+        module: "全新模块",
+      },
+      spotlights: {
+        estimate: {
+          eyebrow: "先给清楚报价",
+          title: "AI 预测工时，*开工前就知道*",
+          points: ["在 WhatsApp 告诉我们你的需要", "我们的 AI 估算工时", "按你的配套看到准确价钱", "你同意了我们才开工"],
+        },
+        testing: {
+          eyebrow: "测试和对接免费",
+          title: "测试好、接好，*不收钱*",
+          points: ["每个改动上线前都先检查", "跟系统其他部分接好", "测试和对接永远免费", "上线了就 WhatsApp 通知你"],
+        },
+      },
+      faqs: [
+        {
+          q: "系统定制怎么收费？",
+          a: "按工时收费，价钱看你的配套：月付配套每小时 RM {customMonthly}，12 个月配套 RM {custom12}，24 个月配套 RM {custom24}，48 个月配套 RM {custom}。测试和系统对接免费。",
+        },
+        {
+          q: "开工前怎样知道价钱？",
+          a: "告诉我们你需要什么，我们的 AI 模型会预测需要几个工时。开工前你会收到按你配套计算的清楚报价，你同意了我们才开始。",
+        },
+        { q: "可以分期付款吗？", a: "可以，我们有分期付款配套。收到报价时问我们就可以了。" },
+        {
+          q: "可以定制什么？",
+          a: "新报表、打印格式和表格、Excel 和会计文件、预约表格问题、WhatsApp 讯息、工作流程和审批、连接其他系统，甚至全新模块。",
+        },
+        { q: "测试要收费吗？", a: "不用。测试和跟系统其他部分的对接，永远免费。" },
+      ],
+      contact: {
+        title: "告诉我们你想改什么",
+        badge: "先给清楚报价",
+        text: "AI 先估算工时，开工前你就看到价钱。测试和系统对接免费。",
+      },
+    },
+    migration: {
+      label: "数据迁移",
+      name: "数据迁移",
+      blurb: "从任何系统把资料搬过来，按时间收费，不按数据量。",
+      points: [
+        "PDF、Excel、CSV 或 TXT 文件",
+        "旧系统不能导出？AI 帮你扫描",
+        "跟我们的软件工程师一起规划",
+        "按时间收费，不按数据量",
+      ],
+      cta: "看看数据迁移怎样做",
+      meta: {
+        title: "马来西亚数据迁移 | Excel、PDF 和旧系统",
+        socialTitle: "数据迁移 | Techub Software",
+        description:
+          "把你的记录从 Excel、PDF、CSV、TXT 或不能导出的旧系统搬过来。AI 屏幕扫描，工程师检查，按时间收费，不按数据量。",
+        keywords: [
+          "数据迁移 马来西亚",
+          "资料迁移",
+          "导入 Excel 资料",
+          "PDF 资料提取",
+          "OCR 文字识别",
+          "旧系统迁移",
+          "诊所病历迁移",
+          "data migration Malaysia",
+        ],
+      },
+      eyebrow: "数据迁移",
+      heading: "你的资料，*从任何系统搬过来*",
+      intro: "PDF、Excel、CSV 或 TXT，我们的软件工程师帮你搬进 Techub。旧系统不能导出？我们的 AI 直接从屏幕一页一页读出来。",
+      primary: "跟工程师聊聊",
+      message: "Hi Techub，我想把资料搬到 Techub，可以跟你们的工程师聊一下吗？",
+      price: "大约每小时 RM {migration}",
+      chips: ["诊所", "发廊", "美容中心", "SPA", "网店卖家", "各行各业"],
+      highlights: ["PDF、Excel、CSV 和 TXT", "AI 屏幕扫描", "工程师逐一检查", "按时间收费", "资料多？不用怕", "搬好马上可以用"],
+      formatsEyebrow: "任何格式",
+      formatsTitle: "你有什么就给什么，*我们帮你搬进来*",
+      formatsIntro: "我们的软件工程师会先跟你一起看看你的文件，再规划怎样搬。",
+      formats: { pdf: "报告和扫描件", excel: "电子表格", csv: "系统导出文件", txt: "文字文件" },
+      formatsMore: "其他格式？传个样本给我们看看。",
+      spotlights: {
+        scan: {
+          eyebrow: "AI 屏幕扫描",
+          title: "没有导出按钮？*AI 帮你读。*",
+          points: ["我们的 AI 工具扫描旧系统的屏幕", "一页一页、一栏一栏抓取资料", "每一栏对应到 Techub 的位置", "由我们的软件工程师检查"],
+        },
+        check: {
+          eyebrow: "质量检查",
+          title: "第一天开始，*资⁠料就干干净净*",
+          points: ["找出重复记录并合并", "电话号码和日期整理好", "不清楚的记录交给人工核对", "上线前全部检查"],
+        },
+      },
+      timeEyebrow: "收费公道",
+      timeTitle: "按时间收费，*不按数据量*",
+      timeText: "几千条记录也好，好几年的资料也好，你付的是工程师的时间，不是资料的多少。所以资料再多，价钱还是实惠。",
+      timeSmall: "几千条记录",
+      timeBig: "好几年的资料",
+      timeSame: "每小时收费一样",
+      stepsTitle: "怎样进行",
+      steps: ["跟我们的工程师聊聊", "按时间给你报价", "我们搬资料并检查", "开始用 Techub"],
+      faqs: [
+        {
+          q: "可以导入哪些格式？",
+          a: "PDF、Excel、CSV 和 TXT，还有大部分系统导出的文件。传个样本给我们，我们的软件工程师会先跟你一起看看。",
+        },
+        {
+          q: "我的旧系统不能导出，还可以搬资料吗？",
+          a: "可以。我们的 AI 工具会一页一页扫描旧系统的屏幕，把资料抓出来，工程师检查好了才放进 Techub。",
+        },
+        {
+          q: "数据迁移怎么收费？",
+          a: "按需要的时间收费，不按数据量，一般大约每小时 RM {migration}。跟我们的软件工程师聊过后，你就会拿到估价。",
+        },
+        { q: "我有好几年的记录，会有问题吗？", a: "没问题。我们按时间收费，不按数据量，资料再多也不用担心。" },
+        {
+          q: "搬过去后资料安全吗？",
+          a: "安全。在 Techub，你的数据库储存时全程加密，每个连接都用 SSL/TLS，放在马来西亚的企业级服务器上。",
+        },
+      ],
+      contact: {
+        title: "告诉我们你的资⁠料现在在哪里",
+        badge: "按时间收费",
+        text: "Excel、PDF、CSV、TXT 或旧系统都可以，我们的软件工程师会跟你一起规⁠划怎样搬。",
+      },
+    },
+    email: {
+      label: "企业邮箱",
+      name: "企业邮箱",
+      blurb: "用你自己域名的邮箱，每年 RM {emailYear}，我们帮你设定好。",
+      points: ["用你自己的域名", "{emailStorage} 储存空间，每年 RM {emailYear}", "我们帮你全部设定好", "不包括域名"],
+      cta: "看看企业邮箱",
+      meta: {
+        title: "马来西亚企业邮箱 | 自己的域名，每年 RM {emailYear}",
+        socialTitle: "企业邮箱 | Techub Software",
+        description:
+          "用你自己域名的专业邮箱，例如 hello@yourbusiness.com。每年 RM {emailYear}，{emailStorage} 储存空间，在马来西亚帮你设定好。不包括域名。",
+        keywords: [
+          "企业邮箱 马来西亚",
+          "邮箱托管",
+          "公司邮箱",
+          "自己域名的邮箱",
+          "专业邮箱地址",
+          "便宜企业邮箱",
+          "business email Malaysia",
+        ],
+      },
+      eyebrow: "企业邮箱",
+      heading: "你自己的邮箱，*用你自己的域名*",
+      intro: "把免费邮箱换成 hello@yourbusiness.com。每年 RM {emailYear}，{emailStorage} 储存空间，我们帮你全部设定好。",
+      primary: "申请企业邮箱",
+      message: "Hi Techub，我想要用自己域名的企业邮箱。",
+      price: "每年 RM {emailYear}",
+      chips: ["诊所", "发廊和 SPA", "网店卖家", "办公室", "初创公司", "各行各业"],
+      highlights: ["用自己的域名", "每年 RM {emailYear}", "{emailStorage} 储存空间", "帮你设定好", "手机、iPad 和电脑", "WhatsApp 支援"],
+      usesEyebrow: "适用例子",
+      usesTitle: "顾客*信得过*的邮箱地址",
+      uses: [
+        { who: "诊所", address: "booking@yourclinic.com.my", text: "病人和 panel 公司发邮件给诊所，不是发去某个人的私人邮箱。" },
+        { who: "发廊和 SPA", address: "hello@yoursalon.com.my", text: "预约询问和供应商发票，整整齐齐在同一个收件箱。" },
+        { who: "网店卖家", address: "orders@yourshop.com.my", text: "订单邮件来自你自己的品牌，顾客更放心。" },
+        { who: "任何公司", address: "finance@yourcompany.com.my", text: "员工换了，邮箱地址还是留在公司。" },
+      ],
+      spotlights: {
+        setup: {
+          eyebrow: "帮你设定好",
+          title: "我们全部设定好，*你直接用*",
+          points: ["帮你连接域名", "帮你开好邮箱", "帮你加进手机和电脑", "测试收发邮件"],
+        },
+        devices: {
+          eyebrow: "每台设备",
+          title: "每台手机和电脑，*都收得到*",
+          points: ["iPhone、Android、iPad、Windows 和 Mac", "新邮件马上收到", "{emailStorage} 储存空间", "需要帮忙就 WhatsApp 我们"],
+          badges: ["新询问", "你自己的域名"],
+        },
+      },
+      faqs: [
+        { q: "企业邮箱多少钱？", a: "每年 RM {emailYear}，{emailStorage} 储存空间，我们帮你设定好。" },
+        {
+          q: "包括域名吗？",
+          a: "不包括，这个价钱不包括域名。你可以用已经有的域名，或者买一个 .com 或 .com.my，我们帮你连接好。",
+        },
+        {
+          q: "你们会帮我设定吗？",
+          a: "会。我们帮你连接域名、开好邮箱、加进手机和电脑，再测试收发邮件。",
+        },
+        { q: "手机可以用吗？", a: "可以，iPhone 和 Android 手机、iPad，还有 Windows 或 Mac 电脑都可以用。" },
+        {
+          q: "为什么不用免费邮箱？",
+          a: "用自己域名的邮箱看起来更专业，顾客也更信任，而且员工换了，邮箱还是留在你的生意。",
+        },
+      ],
+      contact: {
+        title: "帮你设定企业邮箱",
+        badge: "每年 RM {emailYear}",
+        text: "告诉我们你的域名，或你想要的域名，我们帮你全部设定好。",
+      },
+    },
+    website: {
+      label: "网站设计",
+      name: "网站设计",
+      blurb: "漂亮又快的网站，RM {website} 起，包托管。",
+      points: [
+        "按你的品牌设计，最多 {websitePages} 页",
+        "换页即时，不用重新加载",
+        "第一年送域名",
+        "Cloudflare 托管：每分钟超过 100 万次浏览也没问题",
+      ],
+      cta: "看看网站设计",
+      meta: {
+        title: "马来西亚网站设计 | RM {website} 包托管，送域名",
+        socialTitle: "网站设计 | Techub Software",
+        description:
+          "为马来西亚商家设计漂亮网站：最多 {websitePages} 页，换页即时，Cloudflare 托管，做好 SEO 和 AI 搜索优化。RM {website}，第一年送域名。",
+        keywords: [
+          "网站设计 马来西亚",
+          "网页设计",
+          "落地页设计",
+          "小生意网站",
+          "便宜网站设计",
+          "Cloudflare 托管",
+          "SEO 网站 马来西亚",
+          "website design Malaysia",
+        ],
+      },
+      eyebrow: "网站设计",
+      heading: "漂亮的网站，*快得像瞬间*",
+      intro: "按你的品牌设计，放在 Cloudflare 托管，RM {website} 起，第一年送域名。换页即时，不用重新加载。",
+      primary: "我要做网站",
+      message: "Hi Techub，我想做一个网站，包托管。",
+      price: "RM {website} · 送域名",
+      chips: ["诊所", "发廊和 SPA", "咖啡馆", "民宿", "工作室", "专业事务所"],
+      highlights: ["按你的品牌设计", "换页不用重新加载", "手机上一样好看", "Cloudflare 托管", "SEO 和 AI 搜索优化", "第一年送域名"],
+      galleryEyebrow: "设计例子",
+      galleryTitle: "设计得*让人眼前一亮*",
+      galleryIntro: "以下是为示范商家做的概念设计。你的网站会按你自己的品牌来设计。",
+      gallery: { skin: "皮肤诊所", dental: "牙科诊所", cafe: "咖啡馆", homestay: "度假别墅", interior: "室内设计", accounting: "会计事务所" },
+      spotlights: {
+        instant: {
+          eyebrow: "单页技术",
+          title: "换页*即时*",
+          points: ["用 React 和 Next.js 开发", "网址变了，页面不用重新加载", "没有白屏，不用等", "在手机上用起来像 App"],
+          badge: "不用重新加载",
+        },
+        fast: {
+          eyebrow: "Cloudflare 托管",
+          title: "哪里都快，*人多也不怕*",
+          points: ["放在 Cloudflare 的全球网络", "每分钟超过 100 万次浏览也没问题", "已做好 SEO 和 AI 搜索优化", "第一年送域名"],
+          badge: "每分钟 100 万+ 浏览",
+        },
+      },
+      faqs: [
+        {
+          q: "做一个网站要多少钱？",
+          a: "设计加托管 RM {website}，第一年送域名。之后每年 RM {websiteYear} 维护费。",
+        },
+        { q: "可以有几页？", a: "最多 {websitePages} 页。我们做的是静态网站，没有产品列表或博客。" },
+        {
+          q: "“不用重新加载”是什么意思？",
+          a: "你的网站用 React 和 Next.js 做成单页应用。访客打开另一页时，网址会变，但浏览器不会重新加载，所以感觉顺畅又即时。",
+        },
+        { q: "我的网站承受得了很多访客吗？", a: "可以。网站放在 Cloudflare 托管，每分钟超过 100 万次浏览也没问题。" },
+        {
+          q: "顾客找得到我的网站吗？",
+          a: "每个网站都做好 SEO 和 AI 搜索优化，让搜索引擎和 AI 助手都读得懂你的网页。",
+        },
+        {
+          q: "可以加网店或博客吗？",
+          a: "我们的网站是静态的，没有产品列表或博客。想在直播时网上卖货，可以问问我们的直播带货系统。",
+        },
+      ],
+      contact: {
+        title: "一起来设计你的网站",
+        badge: "RM {website} · 送域名",
+        text: "告诉我们你的生意和你喜欢的风格。我们帮你设计、托管，然后上线。",
+      },
+    },
+  },
+
   shots: {
     clinicDashboard: {
       title: "iPad 上的诊所 Dashboard",
@@ -2103,6 +2529,110 @@ const zh: Dict = {
     livePayment: {
       title: "结账时网上付款",
       alt: "买家在手机上为直播订单付 RM 77.80，可用网上银行（FPX）、信用卡、电子钱包或 DuitNow QR，钱直接进网店自己的商家户口",
+    },
+    customRequest: {
+      title: "在 WhatsApp 提出定制要求",
+      alt: "诊所在 WhatsApp 请 Techub 加一个新的 panel 索赔导出功能，收到 6 个工时、每小时 RM 80 的报价，测试和对接免费",
+    },
+    customEstimate: {
+      title: "AI 工时估算和报价",
+      alt: "iPad 上的定制要求，AI 估算 6 个工时，48 个月配套报价 RM 480，测试和对接免费",
+    },
+    customTesting: {
+      title: "免费测试和对接",
+      alt: "iPad 上诊所新功能的测试和对接，每项检查都通过，不收费",
+    },
+    customClaims: {
+      title: "顾客 A：panel 索赔导出",
+      alt: "iPad 上诊所十月份的 panel 索赔，新的导出按钮按 panel 公司自己的 Excel 格式出文件",
+    },
+    customSalesExport: {
+      title: "顾客 B：按会计师格式导出销售",
+      alt: "iPad 上发廊的每月销售报表，按会计师自己的 Excel 格式导出",
+    },
+    customFoundUs: {
+      title: "顾客 C：“怎么知道我们的？”",
+      alt: "iPad 上 SPA 的预约表格加了新问题“怎么知道我们的？”，旁边是 312 个预约的答案报表",
+    },
+    customCourier: {
+      title: "顾客 D：快递上传文件",
+      alt: "iPad 上网店卖家今天的 214 张订单，可以下载成快递公司的批量上传文件",
+    },
+    migrationImport: {
+      title: "任何格式都能导入",
+      alt: "数据迁移工作台读取旧诊所系统的 Excel、PDF、CSV 和 TXT 文件，AI 把每个旧栏位对应到 Techub 的栏位",
+    },
+    migrationScan: {
+      title: "AI 屏幕扫描",
+      alt: "AI 一页一页扫描旧系统的屏幕，抓出每一栏资料，适用于不能导出资料的系统",
+    },
+    migrationCheck: {
+      title: "每条记录都检查",
+      alt: "143,861 条记录的数据迁移检查，重复记录已合并，电话号码已修正，少数记录交给人工核对",
+    },
+    migrationDone: {
+      title: "数据迁移完成",
+      alt: "数据迁移完成，143,861 条记录已在 Techub 上线，按工程师时间收费，不按数据量",
+    },
+    migrationChat: {
+      title: "在 WhatsApp 上谈数据迁移",
+      alt: "诊所在 WhatsApp 把 Excel 和扫描的 PDF 发给 Techub，收到按时间收费的迁移计划，之后 143,861 条记录已经上线",
+    },
+    emailInbox: {
+      title: "用自己域名的企业邮箱",
+      alt: "iPad 上发廊用自己域名的收件箱，打开着一封新娘造型的询问邮件",
+    },
+    emailSetup: {
+      title: "邮箱帮你设定好",
+      alt: "Techub 设定好的企业邮箱：域名已连接，开了四个邮箱，员工手机和电脑已加好，5 GB 储存空间",
+    },
+    emailPhone: {
+      title: "手机上的邮箱",
+      alt: "手机上发廊的企业邮箱收到一封新顾客的询问",
+    },
+    siteHome: {
+      title: "网站设计：皮肤诊所",
+      alt: "吉隆坡 Bangsar 一家皮肤诊所的网站例子，优雅的首页和预约咨询按钮",
+    },
+    siteTreatments: {
+      title: "疗程页面，不用重新加载",
+      alt: "皮肤诊所网站的疗程页面，标有 RM 价钱，即时打开，不用重新加载",
+    },
+    siteContact: {
+      title: "预约和 WhatsApp 页面",
+      alt: "皮肤诊所网站的预约页面，有预约表格、WhatsApp 按钮、营业时间和地图",
+    },
+    sitePhone: {
+      title: "手机上的网站",
+      alt: "手机上的皮肤诊所网站，有大标题和预约按钮",
+    },
+    siteDental: {
+      title: "网站设计：牙科诊所",
+      alt: "八打灵再也一家家庭牙科诊所的网站例子，有 RM 起价的疗程和预约",
+    },
+    siteCafe: {
+      title: "网站设计：咖啡馆",
+      alt: "槟城乔治市一家烘焙咖啡馆的网站例子，菜单有咖啡、咖椰吐司和糕点的 RM 价钱",
+    },
+    siteCafePhone: {
+      title: "手机上的咖啡馆网站",
+      alt: "手机上的烘焙咖啡馆网站，有菜单和预订自取按钮",
+    },
+    siteHomestay: {
+      title: "网站设计：度假别墅",
+      alt: "兰卡威一家私人泳池度假别墅的网站例子，有空房查询和每晚价钱",
+    },
+    siteHomestayPhone: {
+      title: "手机上的别墅网站",
+      alt: "手机上的度假别墅网站，有查询空房按钮",
+    },
+    siteInterior: {
+      title: "网站设计：室内设计工作室",
+      alt: "吉隆坡一家室内设计工作室的网站例子，有作品展示",
+    },
+    siteAccounting: {
+      title: "网站设计：会计事务所",
+      alt: "新山一家为中小企业服务的会计和税务事务所的网站例子，有服务项目和免费咨询按钮",
     },
   },
 };

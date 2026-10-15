@@ -14,7 +14,7 @@ import { FaqSection, HardwareSection, PricingSection, breadcrumbJsonLd, faqJsonL
 import { ContactSection } from "@/components/Showcase";
 import { lp, type Locale } from "@/lib/i18n";
 import { pageMetadata } from "@/lib/seo";
-import { companyPages, site, systems, type CompanyPageKey } from "@/lib/site";
+import { companyPages, servicePages, site, systems, type CompanyPageKey } from "@/lib/site";
 
 /** Each page's name in the breadcrumb: the same words as its menu or footer link. */
 const pageName = (d: Dict, page: CompanyPageKey) =>
@@ -53,7 +53,10 @@ export default function CompanyPage({ lang, page }: { lang: Locale; page: Compan
       "@context": "https://schema.org",
       "@type": "ItemList",
       name: d.home.useCasesListName,
-      itemListElement: systems.map((s, i) => ({ "@type": "ListItem", position: i + 1, name: d.systems[s.key].name, url: `${site.url}${lp(lang, s.path)}` })),
+      itemListElement: [
+        ...systems.map((s) => ({ name: d.systems[s.key].name, path: s.path })),
+        ...servicePages.map((s) => ({ name: d.servicePages[s.key].name, path: s.path })),
+      ].map((x, i) => ({ "@type": "ListItem", position: i + 1, name: x.name, url: `${site.url}${lp(lang, x.path)}` })),
     });
 
   return (

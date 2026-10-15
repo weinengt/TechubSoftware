@@ -164,7 +164,7 @@ export function FeatureTiles({ items }: { items: { icon: IconName; title: string
             <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600 ring-1 ring-brand-100">
               <I className="h-5 w-5" />
             </span>
-            <span className="text-sm leading-snug font-semibold text-slate-800">{f.title}</span>
+            <span className="text-sm leading-snug font-semibold text-balance text-slate-800">{f.title}</span>
           </li>
         );
       })}

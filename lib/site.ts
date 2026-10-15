@@ -34,9 +34,10 @@ export const site = {
     { months: 48, price: 148, free: 10, recommended: true, hourly: 80 },
     { months: 60, price: 99, until: "2026-12-31" },
   ],
-  /** Worked examples of customisation on the Pricing page: the work hours each takes. Their words are under
-   *  pricing.examples in content/*.ts, in the same order. */
-  customExamples: [6, 4, 2],
+  /** Worked examples of customisation: the work hours each takes. The Pricing page shows the first three (their
+   *  words are under pricing.examples in content/*.ts); the Software Customisation page shows all four as
+   *  customers A to D (under servicePages.customisation.stories), in the same order. */
+  customExamples: [6, 4, 2, 3],
   /** Other services. Data migration is quoted after a talk with a software engineer, usually at this rate per hour. */
   migrationHour: 350,
   /** Business email on the customer's own domain: price per year and storage. */
@@ -96,6 +97,17 @@ export const systems = [
 
 export type SystemKey = (typeof systems)[number]["key"];
 
+/** Services for any business. Each has its own page, listed under "Use Cases" after the systems above (menu,
+ *  Use Cases page, home page and footer). Their words are under `servicePages` in content/en.ts. */
+export const servicePages = [
+  { key: "customisation", path: "/software-customisation/", icon: "Wrench" },
+  { key: "migration", path: "/data-migration/", icon: "Database" },
+  { key: "email", path: "/business-email/", icon: "Mail" },
+  { key: "website", path: "/website-design/", icon: "Globe" },
+] as const;
+
+export type ServicePageKey = (typeof servicePages)[number]["key"];
+
 /** A page for each part of the company. Every menu item, footer link and button opens a page (none scrolls
  *  down the same page). Their titles are under `pages` in content/en.ts. */
 export const companyPages = {
@@ -126,6 +138,7 @@ export const pagePaths = [
   "/",
   "/technology/",
   ...systems.map((s) => s.path),
+  ...servicePages.map((s) => s.path),
   ...Object.values(companyPages),
   blogPath,
   ...posts.map((p) => postPath(p.slug)),

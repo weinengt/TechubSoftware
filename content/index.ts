@@ -14,6 +14,8 @@ const values: Record<string, string> = {
   months: String(site.freeMonths),
   custom: String(site.customFrom),
   customMonthly: String(site.plans[0].hourly),
+  custom12: String(site.plans[1].hourly),
+  custom24: String(site.plans[2].hourly),
   migration: rm(site.migrationHour),
   emailYear: rm(site.emailYear),
   emailStorage: site.emailStorage,

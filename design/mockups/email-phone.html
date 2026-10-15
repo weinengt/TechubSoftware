@@ -1,0 +1,93 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css"><link rel="stylesheet" href="phone.css"><link rel="stylesheet" href="fonts.css">
+<style>
+  /* Business email on the salon's own domain, on a phone: a new email has just arrived in hello@demosalon.com.my */
+  :root { --w: 360px; --h: 760px; --plum: linear-gradient(140deg, #6d28d9, #a855f7); }
+  .ph { width: 100%; height: 100%; display: flex; flex-direction: column; background: #fff; position: relative; overflow: hidden; }
+  .ph::before { content: ""; position: absolute; left: -60px; top: -40px; width: 480px; height: 250px; border-radius: 50%; background: radial-gradient(closest-side, rgba(3,150,217,.10), rgba(3,150,217,0)); pointer-events: none; }
+  .ph > * { position: relative; flex-shrink: 0; }
+  .bar { display: flex; align-items: center; gap: 10px; padding: 6px 16px 0; height: 50px; }
+  .cb { width: 36px; height: 36px; border-radius: 99px; display: grid; place-items: center; color: var(--ink2); flex-shrink: 0; }
+  .cb svg { width: 21px; height: 21px; }
+  .acct { margin: 0 auto; display: inline-flex; align-items: center; gap: 7px; height: 36px; padding: 0 11px 0 4px; border-radius: 99px; background: #fff; border: 1px solid #dbe5ef; box-shadow: 0 2px 8px -4px rgba(15,23,42,.18); white-space: nowrap; }
+  .acct .mb { width: 28px; height: 28px; border-radius: 99px; display: grid; place-items: center; color: #fff; background: linear-gradient(135deg, #0396d9, #00cfcb); }
+  .acct .mb svg { width: 14px; height: 14px; stroke-width: 2.1; }
+  .acct b { font-size: 13px; font-weight: 700; letter-spacing: -.01em; }
+  .acct b span { color: var(--brand); }
+  .acct > svg { width: 13px; height: 13px; color: var(--muted); }
+  .me { width: 34px; height: 34px; font-size: 11px; background: linear-gradient(135deg, #f59e0b, #ea580c); flex-shrink: 0; }
+  .ttl { display: flex; align-items: baseline; gap: 8px; padding: 10px 16px 0 18px; }
+  .ttl h1 { font-size: 28px; font-weight: 800; letter-spacing: -.03em; }
+  .ttl span { font-size: 13px; color: var(--muted); font-weight: 500; }
+  .logo { width: 34px; height: 34px; border-radius: 10px; background: var(--plum); color: #fff; display: grid; place-items: center; flex-shrink: 0; font: 600 italic 15px/1 "Playfair Display", serif; box-shadow: 0 6px 12px -8px rgba(109,40,217,.9); }
+  .ttl .wr { margin-left: auto; align-self: center; width: 42px; height: 42px; border-radius: 14px; display: grid; place-items: center; color: #fff; background: linear-gradient(135deg, #0396d9, #0287c4); box-shadow: 0 10px 18px -10px rgba(3,120,190,.95); }
+  .ttl .wr svg { width: 19px; height: 19px; stroke-width: 2.2; }
+  .srch { margin: 10px 16px 0; height: 40px; border-radius: 12px; background: #f2f5f9; display: flex; align-items: center; gap: 9px; padding: 0 13px; color: #94a3b8; font-size: 13.5px; }
+  .srch svg { width: 17px; height: 17px; }
+  .chips { display: flex; gap: 7px; padding: 11px 16px 10px; border-bottom: 1px solid #eef2f7; }
+  .chips span { height: 28px; padding: 0 12px; border-radius: 99px; display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 650; color: var(--ink2); background: #f2f5f9; white-space: nowrap; }
+  .chips span.on { background: var(--ink); color: #fff; }
+  .chips span b { color: var(--brand); font-weight: 750; }
+
+  .row { position: relative; display: flex; gap: 12px; padding: 12.5px 16px 12.5px 22px; border-bottom: 1px solid #f0f3f7; background: #fff; }
+  .row .av { width: 40px; height: 40px; font-size: 13px; margin-top: 1px; }
+  .row .av svg { width: 18px; height: 18px; }
+  .row .bd { flex: 1; min-width: 0; }
+  .row .l1 { display: flex; align-items: baseline; gap: 8px; }
+  .row .l1 b { font-size: 14px; font-weight: 600; color: var(--ink2); white-space: nowrap; }
+  .row .l1 time { margin-left: auto; font-size: 11.5px; color: #94a3b8; font-weight: 500; white-space: nowrap; }
+  .row .sj { display: block; font-size: 13px; color: var(--ink2); margin-top: 2px; white-space: nowrap; }
+  .row .pv { display: block; font-size: 12px; color: #8492a6; margin-top: 2px; white-space: nowrap; }
+  .row .tg { display: flex; gap: 5px; margin-top: 7px; }
+  .row .tg span { display: inline-flex; align-items: center; gap: 4px; height: 20px; padding: 0 8px; border-radius: 6px; font-size: 10.5px; font-weight: 650; }
+  .row.un .l1 b { color: var(--ink); font-weight: 750; }
+  .row.un .sj { color: var(--ink); font-weight: 650; }
+  .row.un .l1 time { color: var(--brand); font-weight: 650; }
+  .row.un::before { content: ""; position: absolute; left: 7px; top: 28.5px; width: 8px; height: 8px; border-radius: 99px; background: var(--brand); }
+  /* the email that has just arrived */
+  .row.new { background: linear-gradient(90deg, #e8f4fe, #f4faff 70%, #fbfdff); box-shadow: inset 3px 0 0 var(--brand); border-bottom-color: #dcebf7; }
+  .row.new .av { box-shadow: 0 0 0 2px #fff, 0 0 0 4px rgba(236,72,153,.32); }
+  .row.new .l1 time { display: inline-flex; align-items: center; gap: 5px; height: 19px; padding: 0 8px; border-radius: 99px; background: var(--brand); color: #fff; font-size: 11px; font-weight: 750; align-self: center; }
+
+  .fab { position: absolute; right: 16px; bottom: 30px; display: inline-flex; align-items: center; gap: 8px; height: 50px; padding: 0 20px 0 17px; border-radius: 16px;
+    background: linear-gradient(135deg, #0396d9, #0287c4); color: #fff; font-size: 14px; font-weight: 750; box-shadow: 0 14px 26px -12px rgba(3,120,190,.95); }
+  .fab svg { width: 18px; height: 18px; stroke-width: 2.2; }
+  .home { position: absolute; left: 50%; bottom: 8px; width: 122px; height: 5px; margin-left: -61px; border-radius: 9px; background: #0f172a; }
+  .fade { position: absolute; left: 0; right: 0; bottom: 0; height: 110px; background: linear-gradient(to bottom, rgba(255,255,255,0), #fff 75%); pointer-events: none; }
+</style></head>
+<body>
+<div class="ph">
+  <div class="status"><span>10:24</span><span class="r"><span class="sig"><i style="height:4px"></i><i style="height:6px"></i><i style="height:8px"></i><i style="height:10px"></i></span><span style="font-size:11px">5G</span><span class="bat"><i></i></span></span></div>
+  <div class="bar"><span class="logo">DH</span><span class="acct"><span class="mb"><i data-x="mail"></i></span><b>hello@<span>demosalon.com.my</span></b><i data-i="chevD"></i></span><span class="av me">NS</span></div>
+  <div class="ttl"><h1>Inbox</h1><span>3 unread</span><span class="wr"><i data-i="pen"></i></span></div>
+  <div class="srch"><i data-i="search"></i>Search mail</div>
+  <div class="chips"><span class="on">All</span><span>Unread <b>3</b></span><span>Bookings</span><span>Suppliers</span></div>
+  <div id="list"></div>
+  <span class="home"></span>
+</div>
+<script>
+  const XI = {
+    mail: '<rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7l8.5 6 8.5-6"/>',
+    menu: '<path d="M4 7h16M4 12h16M4 17h10"/>',
+    box2: '<path d="M21 8l-9-5-9 5v8l9 5 9-5V8z"/><path d="M3 8l9 5 9-5"/><path d="M12 13v8"/>',
+    camera: '<path d="M3 8a2 2 0 012-2h2l2-2h6l2 2h2a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><circle cx="12" cy="13" r="3.5"/>',
+    file: '<path d="M14 3H6a2 2 0 00-2 2v14a2 2 0 002 2h12a2 2 0 002-2V9z"/><path d="M14 3v6h6"/>',
+  };
+  document.querySelectorAll("i[data-x]").forEach((el) => { el.outerHTML = `<svg class="i" viewBox="0 0 24 24">${XI[el.dataset.x]}</svg>`; });
+  // hello@demosalon.com.my, Thursday 15 Oct 2026, 10:24 AM: [avatar, colour, sender, time, subject, preview, unread, tags]
+  const M = [
+    ["NA", "linear-gradient(135deg,#f472b6,#db2777)", "Nurul Aina", "now", "Bridal hair trial for 4 on Saturday?", "Hi! I'm getting married on 21 Nov…", "new", [["Bridal", "#fdf2f8", "#be185d"], ["Bookings", "#f3efff", "#6d28d9"]]],
+    ["@box2", "linear-gradient(135deg,#34d399,#059669)", "Sample Salon Supplies", "9:12 AM", "Invoice for delivery DN-31207", "Attached is our invoice for 13 Oct.", "un"],
+    ["JL", "linear-gradient(135deg,#fbbf24,#d97706)", "Joanne Lim", "8:47 AM", "Can I move my keratin to Friday?", "Something came up on Saturday…", "un"],
+    ["@file", "linear-gradient(135deg,#0050a0,#0396d9)", "Techub e-Invoice", "Yesterday", "12 e-Invoices validated for 14 Oct", "All validated by LHDN, nothing to do.", ""],
+    ["@camera", "linear-gradient(135deg,#a78bfa,#7c3aed)", "Sample Photo Studio", "Yesterday", "Collaboration: bridal shoot in Bangsar", "Planning a styled shoot next month…", ""],
+    ["WQ", "linear-gradient(135deg,#2dd4bf,#0d9488)", "Wen Qi", "Yesterday", "Thank you, love my new colour!", "Mei Fen did such a beautiful job!", ""],
+  ];
+  const av = (a) => (a[0] === "@" ? `<svg class="i" viewBox="0 0 24 24">${XI[a.slice(1)]}</svg>` : a);
+  document.getElementById("list").innerHTML = M.map(([a, c, n, t, s, p, st, tg]) => `
+    <div class="row${st ? " un" : ""}${st === "new" ? " new" : ""}"${st === "new" ? ' data-spot="new"' : ""}><span class="av" style="background:${c}">${av(a)}</span><div class="bd">
+      <div class="l1"><b>${n}</b><time>${t}</time></div><span class="sj">${s}</span><span class="pv">${p}</span>
+      ${tg ? `<div class="tg">${tg.map(([x, b, f]) => `<span style="background:${b};color:${f}">${x}</span>`).join("")}</div>` : ""}</div></div>`).join("");
+</script>
+<script src="icons.js"></script>
+</body></html>

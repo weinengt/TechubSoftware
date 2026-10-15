@@ -11,7 +11,12 @@ export type HeaderText = {
   homeHref: string;
   nav: { key: string; href: string; label: string; menu?: boolean }[];
   systems: { key: string; href: string; icon: IconName; label: string; blurb: string }[];
-  menu: { useCases: string; otherTitle: string; otherText: string; otherHref: string; all: string; allHref: string };
+  /** The services for any business, listed under the systems. */
+  services: { key: string; href: string; icon: IconName; label: string; blurb: string }[];
+  menu: {
+    useCases: string; otherTitle: string; otherText: string; otherHref: string; all: string; allHref: string;
+    systemsTitle: string; servicesTitle: string;
+  };
   ui: { logoAlt: string; logoHome: string; openMenu: string; closeMenu: string; language: string; freeDemo: string };
   whatsapp: { href: string; label: string };
   email: { href: string; label: string };
@@ -38,8 +43,26 @@ function useDismiss(open: boolean, ref: RefObject<HTMLElement | null>, setOpen: 
   }, [open, ref, setOpen]);
 }
 
-/** "Use Cases" in the desktop menu: a link to the Use Cases page that also shows each business type
- *  in a panel while the mouse is over it or the keyboard is on it. */
+type MenuItem = HeaderText["systems"][number];
+
+/** One system or service in the desktop menu's panel: its icon, name and one line about it. */
+function MenuLink({ item, onClick }: { item: MenuItem; onClick: () => void }) {
+  const I = Icon[item.icon];
+  return (
+    <Link href={item.href} onClick={onClick} className="group flex gap-3 rounded-xl p-2.5 transition hover:bg-brand-50">
+      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-md shadow-brand-500/25">
+        <I className="h-5 w-5" />
+      </span>
+      <span>
+        <span className="block text-[15px] leading-tight font-bold text-slate-900 group-hover:text-brand-700">{item.label}</span>
+        <span className="mt-0.5 block text-[13px] leading-snug text-slate-500">{item.blurb}</span>
+      </span>
+    </Link>
+  );
+}
+
+/** "Use Cases" in the desktop menu: a link to the Use Cases page that also shows each business type and each
+ *  service in a panel while the mouse is over it or the keyboard is on it. */
 function UseCasesMenu({ label, href, t }: { label: string; href: string; t: HeaderText }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLLIElement>(null);
@@ -76,26 +99,25 @@ function UseCasesMenu({ label, href, t }: { label: string; href: string; t: Head
         {label}
         <Icon.Chevron className={`h-4 w-4 transition ${open ? "rotate-180" : ""}`} />
       </Link>
-      <div id="use-cases-menu" hidden={!open} className="absolute top-full left-1/2 w-[36rem] -translate-x-1/2 pt-3">
+      <div id="use-cases-menu" hidden={!open} className="absolute top-full -left-4 w-[44rem] pt-3">
         <div className="card p-3 shadow-2xl shadow-slate-900/10">
-          <ul className="grid grid-cols-2 gap-1">
-            {t.systems.map((s, i) => {
-              const I = Icon[s.icon];
-              return (
-                <li key={s.key} className={wide(i, t.systems.length)}>
-                  <Link href={s.href} onClick={() => setOpen(false)} className="group flex gap-3 rounded-xl p-3 transition hover:bg-brand-50">
-                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-md shadow-brand-500/25">
-                      <I className="h-5 w-5" />
-                    </span>
-                    <span>
-                      <span className="block font-bold text-slate-900 group-hover:text-brand-700">{s.label}</span>
-                      <span className="mt-0.5 block text-[13px] leading-snug text-slate-500">{s.blurb}</span>
-                    </span>
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
+          <div className="grid grid-cols-2 gap-x-2">
+            {[
+              { title: t.menu.systemsTitle, items: t.systems },
+              { title: t.menu.servicesTitle, items: t.services },
+            ].map((group) => (
+              <div key={group.title}>
+                <p className="px-2.5 pt-1.5 pb-1 text-xs font-bold tracking-wide text-slate-400 uppercase">{group.title}</p>
+                <ul className="grid gap-0.5">
+                  {group.items.map((item) => (
+                    <li key={item.key}>
+                      <MenuLink item={item} onClick={() => setOpen(false)} />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
           <Link
             href={t.menu.otherHref}
             onClick={() => setOpen(false)}
@@ -244,6 +266,26 @@ export default function Header({ lang, t }: { lang: Locale; t: HeaderText }) {
               const I = Icon[s.icon];
               return (
                 <li key={s.key} className={wide(i, t.systems.length)}>
+                  <Link
+                    href={s.href}
+                    onClick={() => setOpen(false)}
+                    className="flex h-full items-center gap-2.5 rounded-xl bg-slate-50 p-3 text-sm font-semibold text-slate-800 ring-1 ring-slate-200 hover:bg-brand-50"
+                  >
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-brand-gradient text-white">
+                      <I className="h-4 w-4" />
+                    </span>
+                    {s.label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+          <p className="mt-4 px-1 text-xs font-bold tracking-wide text-slate-500 uppercase">{t.menu.servicesTitle}</p>
+          <ul className="mt-2 grid grid-cols-2 gap-2">
+            {t.services.map((s) => {
+              const I = Icon[s.icon];
+              return (
+                <li key={s.key}>
                   <Link
                     href={s.href}
                     onClick={() => setOpen(false)}

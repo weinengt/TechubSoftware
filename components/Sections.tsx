@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { fill, getDict, type Dict } from "@/content";
 import { htmlLang, lp, type Locale } from "@/lib/i18n";
 import { shotSrc, type Shot } from "@/lib/shots";
-import { emailLink, planAverage, planSave, planTotal, rm, site, systems, whatsappLink, type Plan } from "@/lib/site";
+import { emailLink, planAverage, planSave, planTotal, rm, servicePages, site, systems, whatsappLink, type Plan, type ServicePageKey } from "@/lib/site";
 import { Icon, type IconName } from "./Icons";
 import { hl, withContactLinks } from "./Text";
 
@@ -198,10 +198,13 @@ export function PricingSection({ lang, page, plan = "all" }: { lang: Locale; pag
   );
 }
 
+const customPath = servicePages.find((s) => s.key === "customisation")!.path;
+
 /** Customisation, charged per work hour at the rate of the customer's plan (`hourly` in lib/site.ts): the lowest
- *  rate, what it covers and why it is good value, with buttons for a quote. On the Pricing page (`full`) also the
- *  rate on each plan and worked examples. */
-function Customisation({ lang, full }: { lang: Locale; full: boolean }) {
+ *  rate, what it covers and why it is good value, with buttons for a quote and a link to the customer examples on
+ *  the Software Customisation page (`examples`). On the Pricing page (`full`) also the rate on each plan and worked
+ *  examples. */
+export function Customisation({ lang, full, examples = true }: { lang: Locale; full: boolean; examples?: boolean }) {
   const t = getDict(lang).pricing;
   return (
     <div className="card p-6 sm:p-7" data-reveal>
@@ -226,6 +229,11 @@ function Customisation({ lang, full }: { lang: Locale; full: boolean }) {
               </li>
             ))}
           </ul>
+          {examples && (
+            <Link href={lp(lang, customPath)} className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-brand-700 hover:text-brand-800">
+              {t.customSee} <Icon.Arrow className="h-4 w-4" />
+            </Link>
+          )}
         </div>
         <div className="flex shrink-0 flex-col gap-3 sm:flex-row">
           <a href={whatsappLink(t.customMessage)} target="_blank" rel="noopener" className="btn-primary">
@@ -245,33 +253,13 @@ function Customisation({ lang, full }: { lang: Locale; full: boolean }) {
  *  task takes, what that costs on the monthly plan and on the recommended plan. */
 function CustomDetails({ lang }: { lang: Locale }) {
   const t = getDict(lang).pricing;
-  const rated: Plan[] = site.plans.filter((p: Plan) => p.hourly);
   const best: Plan | undefined = site.plans.find((p: Plan) => p.recommended);
   const base = site.plans[0].hourly;
   return (
     <div className="mt-6 grid gap-8 border-t border-slate-100 pt-6 lg:grid-cols-5 lg:gap-10">
       <div className="lg:col-span-2">
         <h4 className="text-xs font-bold tracking-wide text-slate-500 uppercase">{t.customRates}</h4>
-        <ul className="mt-3 grid grid-cols-2 gap-3">
-          {rated.map((p) => {
-            const top = Boolean(p.recommended);
-            return (
-              <li key={p.months} className={`rounded-2xl p-3 sm:p-4 ${top ? "bg-brand-50 ring-2 ring-brand-500" : "bg-slate-50 ring-1 ring-slate-200"}`} data-reveal>
-                <p className="flex items-center gap-1 text-xs font-semibold text-slate-600">
-                  {planText(lang, p).name}
-                  {top && <Icon.Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" aria-label={t.recommended} />}
-                </p>
-                <p className="mt-1 flex flex-wrap items-baseline gap-x-1">
-                  <span className="whitespace-nowrap">
-                    <span className="text-sm font-bold text-slate-900">RM </span>
-                    <span className={`text-2xl font-extrabold tracking-tight ${top ? "text-gradient" : "text-slate-900"}`}>{rm(p.hourly ?? 0)}</span>
-                  </span>
-                  <span className="text-xs font-semibold whitespace-nowrap text-slate-500">{t.perHour}</span>
-                </p>
-              </li>
-            );
-          })}
-        </ul>
+        <CustomRates lang={lang} className="mt-3 grid-cols-2" />
       </div>
       <div className="lg:col-span-3">
         <h4 className="text-xs font-bold tracking-wide text-slate-500 uppercase">{t.examplesTitle}</h4>
@@ -303,7 +291,35 @@ function CustomDetails({ lang }: { lang: Locale }) {
   );
 }
 
-const extras: { key: keyof Dict["pricing"]["extras"]; icon: IconName; price: number }[] = [
+/** The customisation rate per work hour on each plan, a tile each, with the recommended plan's standing out. */
+export function CustomRates({ lang, className = "" }: { lang: Locale; className?: string }) {
+  const t = getDict(lang).pricing;
+  const rated: Plan[] = site.plans.filter((p: Plan) => p.hourly);
+  return (
+    <ul className={`grid gap-3 ${className}`}>
+      {rated.map((p) => {
+        const top = Boolean(p.recommended);
+        return (
+          <li key={p.months} className={`rounded-2xl p-3 sm:p-4 ${top ? "bg-brand-50 ring-2 ring-brand-500" : "bg-slate-50 ring-1 ring-slate-200"}`} data-reveal>
+            <p className="flex items-center gap-1 text-xs font-semibold text-slate-600">
+              {planText(lang, p).name}
+              {top && <Icon.Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" aria-label={t.recommended} />}
+            </p>
+            <p className="mt-1 flex flex-wrap items-baseline gap-x-1">
+              <span className="whitespace-nowrap">
+                <span className="text-sm font-bold text-slate-900">RM </span>
+                <span className={`text-2xl font-extrabold tracking-tight ${top ? "text-gradient" : "text-slate-900"}`}>{rm(p.hourly ?? 0)}</span>
+              </span>
+              <span className="text-xs font-semibold whitespace-nowrap text-slate-500">{t.perHour}</span>
+            </p>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
+const extras: { key: keyof Dict["pricing"]["extras"] & ServicePageKey; icon: IconName; price: number }[] = [
   { key: "migration", icon: "Database", price: site.migrationHour },
   { key: "email", icon: "Mail", price: site.emailYear },
   { key: "website", icon: "Globe", price: site.websitePrice },
@@ -320,51 +336,67 @@ export function MoreServices({ lang, className = "" }: { lang: Locale; className
         <p className="mt-1.5 text-sm text-slate-600 sm:text-base">{t.extrasText}</p>
       </div>
       <ul className="mx-auto mt-8 grid max-w-xl gap-6 lg:max-w-none lg:grid-cols-3">
-        {extras.map((e) => {
-          const x = t.extras[e.key];
-          const I = Icon[e.icon];
-          return (
-            <li key={e.key} className="card flex flex-col p-6" data-reveal>
-              <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-brand-600 ring-1 ring-brand-100">
-                <I className="h-6 w-6" />
-              </span>
-              <h4 className="mt-4 text-lg font-bold text-slate-900">{x.title}</h4>
-              {/* An empty label still keeps its line when the cards sit in a row, so their prices line up */}
-              <p className={`mt-3 text-xs font-semibold tracking-wide text-slate-500 uppercase lg:min-h-4 ${x.label ? "" : "hidden lg:block"}`}>{x.label}</p>
-              {/* The price keeps its unit on its line */}
-              <p className="mt-0.5 flex items-baseline gap-1 whitespace-nowrap">
-                <span className="text-lg font-bold text-slate-900">RM</span>
-                <span className="text-gradient text-3xl font-extrabold tracking-tight lg:text-4xl">{rm(e.price)}</span>
-                {x.unit && <span className="text-sm font-semibold text-slate-500">{x.unit}</span>}
-              </p>
-              <p className="mt-3 text-sm leading-relaxed text-slate-600">{x.text}</p>
-              <div className="flex-1">
-                <ul className="mt-4 space-y-2.5">
-                  {x.points.map((pt) => (
-                    <li key={pt} className="flex gap-2.5 text-sm leading-relaxed text-slate-700">
-                      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-500 text-white">
-                        <Icon.Check className="h-3.5 w-3.5" strokeWidth={3} />
-                      </span>
-                      {pt}
-                    </li>
-                  ))}
-                </ul>
-                {x.note && <p className="mt-4 text-xs leading-relaxed text-slate-500">{x.note}</p>}
-              </div>
-              <a
-                href={whatsappLink(x.message)}
-                target="_blank"
-                rel="noopener"
-                aria-label={`${t.extrasCta}: ${x.title}`}
-                className="btn-secondary mt-6 w-full"
-              >
-                <Icon.Whatsapp className="h-5 w-5 text-whatsapp" /> {t.extrasCta}
-              </a>
-            </li>
-          );
-        })}
+        {extras.map((e) => (
+          <ServiceCard key={e.key} lang={lang} k={e.key} as="li" />
+        ))}
       </ul>
     </div>
+  );
+}
+
+/** One service's price card: its price, what it includes and a button that asks about it on WhatsApp. On the Pricing
+ *  and Services pages it also links to the service's own page (`more`). */
+export function ServiceCard({
+  lang, k, as: Tag = "div", more = true, className = "",
+}: { lang: Locale; k: (typeof extras)[number]["key"]; as?: "li" | "div"; more?: boolean; className?: string }) {
+  const t = getDict(lang).pricing;
+  const e = extras.find((x) => x.key === k)!;
+  const x = t.extras[k];
+  const I = Icon[e.icon];
+  const path = servicePages.find((s) => s.key === k)!.path;
+  return (
+    <Tag className={`card flex flex-col p-6 ${className}`} data-reveal>
+      <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-brand-600 ring-1 ring-brand-100">
+        <I className="h-6 w-6" />
+      </span>
+      <h4 className="mt-4 text-lg font-bold text-slate-900">{x.title}</h4>
+      {/* An empty label still keeps its line when the cards sit in a row, so their prices line up */}
+      <p className={`mt-3 text-xs font-semibold tracking-wide text-slate-500 uppercase lg:min-h-4 ${x.label ? "" : "hidden lg:block"}`}>{x.label}</p>
+      {/* The price keeps its unit on its line */}
+      <p className="mt-0.5 flex items-baseline gap-1 whitespace-nowrap">
+        <span className="text-lg font-bold text-slate-900">RM</span>
+        <span className="text-gradient text-3xl font-extrabold tracking-tight lg:text-4xl">{rm(e.price)}</span>
+        {x.unit && <span className="text-sm font-semibold text-slate-500">{x.unit}</span>}
+      </p>
+      <p className="mt-3 text-sm leading-relaxed text-slate-600">{x.text}</p>
+      <div className="flex-1">
+        <ul className="mt-4 space-y-2.5">
+          {x.points.map((pt) => (
+            <li key={pt} className="flex gap-2.5 text-sm leading-relaxed text-slate-700">
+              <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-500 text-white">
+                <Icon.Check className="h-3.5 w-3.5" strokeWidth={3} />
+              </span>
+              {pt}
+            </li>
+          ))}
+        </ul>
+        {x.note && <p className="mt-4 text-xs leading-relaxed text-slate-500">{x.note}</p>}
+      </div>
+      {more && (
+        <Link href={lp(lang, path)} className="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-brand-700 hover:text-brand-800">
+          {t.extrasMore} <Icon.Arrow className="h-4 w-4" />
+        </Link>
+      )}
+      <a
+        href={whatsappLink(x.message)}
+        target="_blank"
+        rel="noopener"
+        aria-label={`${t.extrasCta}: ${x.title}`}
+        className={`btn-secondary w-full ${more ? "mt-5" : "mt-6"}`}
+      >
+        <Icon.Whatsapp className="h-5 w-5 text-whatsapp" /> {t.extrasCta}
+      </a>
+    </Tag>
   );
 }
 

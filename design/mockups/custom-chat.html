@@ -1,0 +1,72 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css"><link rel="stylesheet" href="phone.css">
+<style>
+  /* Software customisation, step 1: the clinic owner asks for a change on WhatsApp and gets the AI estimate and a quote.
+     Same look as whatsapp.html. Spots: "request" (the clinic's message) and "quote" (the quote bubble). */
+  :root { --w: 360px; --h: 760px; }
+  .ph { width: 100%; height: 100%; display: flex; flex-direction: column; background: #efeae2; }
+  .top2 { background: #008069; color: #fff; }
+  .hdr { height: 56px; display: flex; align-items: center; gap: 8px; padding: 0 10px 0 6px; }
+  .hdr img { width: 38px; height: 38px; border-radius: 99px; background: #fff; }
+  .hdr b { font-size: 15.5px; font-weight: 650; display: flex; align-items: center; gap: 4px; white-space: nowrap; }
+  .hdr small { font-size: 12px; opacity: .85; display: block; }
+  .hdr .ic { margin-left: auto; display: flex; gap: 16px; } .hdr svg { width: 21px; height: 21px; }
+  .chat { flex: 1; padding: 8px 10px; display: flex; flex-direction: column; gap: 6px; overflow: hidden;
+    background-color: #efeae2; background-image: radial-gradient(rgba(0,0,0,.035) 1.2px, transparent 1.2px); background-size: 18px 18px; }
+  .day { align-self: center; background: #fff; color: #54656f; font-size: 11.5px; font-weight: 600; padding: 4px 10px; border-radius: 8px; box-shadow: 0 1px .5px rgba(0,0,0,.13); margin: 4px 0; }
+  .b { max-width: 84%; padding: 6px 8px 5px 9px; border-radius: 8px; font-size: 13px; line-height: 1.38; color: #111b21; box-shadow: 0 1px .5px rgba(0,0,0,.13); position: relative; }
+  .b b { font-weight: 700; }
+  .in { align-self: flex-start; background: #fff; border-top-left-radius: 0; }
+  .out { align-self: flex-end; background: #d9fdd3; border-top-right-radius: 0; }
+  .in + .in, .out + .out { border-radius: 8px; }
+  .b .tm { float: right; font-size: 10.5px; color: #667781; margin: 6px 0 -3px 10px; display: inline-flex; gap: 3px; align-items: center; }
+  .b .tk { color: #53bdeb; font-weight: 700; letter-spacing: -3px; margin-right: 3px; }
+  /* The quote: a document with a caption, like a business account sends it */
+  .q { width: 84%; padding: 3px 3px 5px; }
+  .doc { display: flex; align-items: center; gap: 10px; background: #f0f2f5; border-radius: 6px; padding: 9px 10px; }
+  .doc .pdf { width: 30px; height: 36px; flex-shrink: 0; position: relative; }
+  .doc .pdf svg { width: 30px; height: 36px; display: block; }
+  .doc b { display: block; font-size: 13px; font-weight: 600; color: #111b21; }
+  .doc small { display: block; font-size: 11px; color: #667781; margin-top: 1px; }
+  .q .cap { padding: 6px 6px 0 6px; }
+  .q .cap b.t { display: block; }
+  .q .line { display: block; }
+  .q .tot { font-weight: 800; color: #111b21; }
+  .bar { display: flex; align-items: center; gap: 6px; padding: 6px 6px 10px; }
+  .inp { flex: 1; height: 44px; background: #fff; border-radius: 99px; display: flex; align-items: center; gap: 12px; padding: 0 14px; color: #8696a0; font-size: 15px; }
+  .inp svg { width: 21px; height: 21px; color: #8696a0; }
+  .mic { width: 46px; height: 46px; border-radius: 99px; background: #00a884; color: #fff; display: grid; place-items: center; } .mic svg { width: 21px; height: 21px; }
+</style></head>
+<body>
+<div class="ph">
+  <div class="top2">
+    <div class="status"><span>9:41</span><span class="r"><span class="sig"><i style="height:4px"></i><i style="height:6px"></i><i style="height:8px"></i><i style="height:10px"></i></span><span style="font-size:11px">5G</span><span class="bat"><i></i></span></span></div>
+    <div class="hdr"><i data-i="chevL" style="width:24px;height:24px"></i><img src="icon.png" alt=""><div><b>Techub Software <svg viewBox="0 0 24 24" width="15" height="15"><circle cx="12" cy="12" r="10" fill="#25d366"/><path d="M7.5 12.5l3 3 6-6.5" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></b><small>Business account</small></div><span class="ic"><i data-i="video"></i><i data-i="phone"></i><i data-i="more"></i></span></div>
+  </div>
+  <div class="chat">
+    <div class="day">Tuesday</div>
+    <div class="b out" data-spot="request">Hi Techub! We just joined a new panel company, <b>Prima Health</b>. They want our monthly claim file in their own Excel format. Can you add that? 🙏<span class="tm">9:12 AM<span class="tk">✓✓</span></span></div>
+    <div class="b in">Sure, Dr. Lim! Our AI estimated about <b>6&nbsp;work hours</b> for this. 🤖<span class="tm">9:20 AM</span></div>
+    <div class="b in q" data-spot="quote">
+      <div class="doc">
+        <span class="pdf"><svg viewBox="0 0 30 36"><path d="M3 0h17l10 10v23a3 3 0 01-3 3H3a3 3 0 01-3-3V3a3 3 0 013-3z" fill="#e5484d"/><path d="M20 0l10 10h-7a3 3 0 01-3-3z" fill="#f59a9d"/><text x="15" y="27" font-family="Inter" font-size="8.5" font-weight="800" fill="#fff" text-anchor="middle">PDF</text></svg></span>
+        <div><b>Quote CR-0142.pdf</b><small>1 page · PDF · 84 kB</small></div>
+      </div>
+      <div class="cap">
+        <b class="t">Quote for the Prima Health claim export</b>
+        <span class="line">6 hours × RM 80 = <span class="tot">RM 480</span></span>
+        <span class="line">(48-month plan)</span>
+        <span class="line">✅ Testing &amp; integration free</span>
+        <span class="line">💳 Instalment plan available<span class="tm">9:21 AM</span></span>
+      </div>
+    </div>
+    <div class="b out">Great, please go ahead 👍<span class="tm">9:25 AM<span class="tk">✓✓</span></span></div>
+    <div class="day">Yesterday</div>
+    <div class="b in">🧪 Testing done: all 14 checks passed with your October claims. Live tonight, your staff can keep working.<span class="tm">5:40 PM</span></div>
+    <div class="day">Today</div>
+    <div class="b in">Done ✅ The new export is live. Go to <b>Billing → Panel claims → Export</b>.<span class="tm">8:30 AM</span></div>
+  </div>
+  <div class="bar"><div class="inp"><span style="font-size:20px">🙂</span>Message<span style="margin-left:auto;display:flex;gap:14px"><i data-i="clip"></i><i data-i="cam"></i></span></div><span class="mic"><i data-i="mic"></i></span></div>
+</div>
+<script src="icons.js"></script>
+</body></html>

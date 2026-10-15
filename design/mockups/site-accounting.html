@@ -1,0 +1,232 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="fonts.css">
+<style>
+  /* Example website design: "Tan & Rahman Accounting", an accounting and tax firm for SMEs in Johor Bahru. Desktop home page, 1440x900. */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --w: 1440px; --h: 900px;
+    --navy: #0a1730; --navy2: #0f2142; --navy3: #16305c; --ink: #0b1730; --ink2: #3b4a63; --muted: #6b7a92; --line: #e3e9f1;
+    --em: #10b981; --em-d: #059669; --em-l: #34d399; --em-50: #ecfdf5; --em-100: #d1fae5;
+    --sl: #c3cee0; --sl2: #8e9fbb;
+    --f: "Plus Jakarta Sans", Inter, sans-serif;
+  }
+  html, body { width: 100vw; height: 100vh; overflow: hidden; background: #f5f7fb; font-family: var(--f); color: var(--ink); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  .ic { width: 18px; height: 18px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; display: block; }
+  .page { position: relative; width: 1440px; height: 900px; overflow: hidden; background: #f5f7fb; }
+  .num { font-variant-numeric: tabular-nums; }
+
+  /* Hero */
+  .hero { position: absolute; left: 0; top: 0; width: 1440px; height: 640px; overflow: hidden; color: #fff;
+    background: radial-gradient(620px 440px at 1090px 360px, rgba(16,185,129,.2), transparent 70%), radial-gradient(760px 520px at 80px -40px, rgba(56,99,186,.3), transparent 70%), linear-gradient(180deg, #0b1934, #0a1730 60%, #0b1a36); }
+  .hero::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px); background-size: 48px 48px; background-position: 24px 12px;
+    -webkit-mask-image: radial-gradient(760px 560px at 74% 52%, #000 25%, transparent 78%); mask-image: radial-gradient(760px 560px at 74% 52%, #000 25%, transparent 78%); }
+  .rings { position: absolute; left: 740px; top: 40px; width: 600px; height: 600px; border-radius: 50%; border: 1px solid rgba(255,255,255,.06); }
+  .rings::before, .rings::after { content: ""; position: absolute; border-radius: 50%; border: 1px solid rgba(255,255,255,.05); }
+  .rings::before { inset: 90px; } .rings::after { inset: 180px; border-color: rgba(52,211,153,.12); }
+
+  .topnav { position: absolute; left: 72px; right: 72px; top: 0; height: 84px; display: flex; align-items: center; z-index: 3; border-bottom: 1px solid rgba(255,255,255,.08); }
+  .logo { display: flex; align-items: center; gap: 12px; }
+  .logo .mk { width: 40px; height: 40px; border-radius: 11px; display: grid; place-items: center; background: linear-gradient(140deg, #34d399, #059669); box-shadow: 0 8px 18px -8px rgba(16,185,129,.8), inset 0 1px 0 rgba(255,255,255,.35); font-size: 14px; font-weight: 800; letter-spacing: -.02em; color: #052e22; }
+  .logo b { display: block; font-size: 18.5px; font-weight: 800; letter-spacing: -.02em; line-height: 1.1; }
+  .logo small { display: block; font-size: 9.5px; font-weight: 600; letter-spacing: .2em; color: var(--sl2); margin-top: 3px; }
+  .links { display: flex; gap: 34px; margin-left: 84px; font-size: 14.5px; font-weight: 500; color: rgba(255,255,255,.78); }
+  .links a { display: flex; align-items: center; gap: 7px; }
+  .links .new { font-size: 9.5px; font-weight: 800; letter-spacing: .04em; color: #052e22; background: var(--em-l); border-radius: 99px; padding: 2px 6px; }
+  .nav-r { margin-left: auto; display: flex; align-items: center; gap: 22px; }
+  .tel { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: #fff; white-space: nowrap; }
+  .tel .ic { width: 16px; height: 16px; color: var(--em-l); }
+  .btn { display: inline-flex; align-items: center; gap: 10px; height: 46px; padding: 0 20px; border-radius: 12px; font-size: 14.5px; font-weight: 700; white-space: nowrap; }
+  .btn .ic { width: 17px; height: 17px; stroke-width: 2.1; }
+  .btn.em { background: linear-gradient(180deg, #34d399, #10b981); color: #032b1f; box-shadow: 0 12px 24px -12px rgba(16,185,129,.9), inset 0 1px 0 rgba(255,255,255,.4); }
+  .btn.line { border: 1px solid rgba(255,255,255,.22); color: #fff; background: rgba(255,255,255,.04); }
+
+  .copy { position: absolute; left: 72px; top: 126px; width: 640px; z-index: 2; }
+  .pill { display: inline-flex; align-items: center; gap: 10px; height: 34px; padding: 0 14px 0 5px; border-radius: 99px; background: rgba(16,185,129,.1); border: 1px solid rgba(52,211,153,.28); font-size: 13px; font-weight: 600; color: #a7f3d0; white-space: nowrap; }
+  .pill b { height: 24px; padding: 0 10px; border-radius: 99px; background: var(--em); color: #032b1f; font-size: 10.5px; font-weight: 800; letter-spacing: .06em; display: grid; place-items: center; }
+  h1 { font-size: 60px; font-weight: 800; letter-spacing: -.035em; line-height: 1.05; margin-top: 22px; }
+  h1 i { font-style: normal; margin-left: -.06em; }
+  h1 span { background: linear-gradient(90deg, #6ee7b7, #10b981 80%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .lede { font-size: 17px; line-height: 1.62; color: var(--sl); margin-top: 20px; width: 520px; }
+  .ctas { display: flex; gap: 12px; margin-top: 30px; }
+  .ctas .btn { height: 54px; padding: 0 24px; font-size: 15.5px; border-radius: 13px; }
+  .stats { display: flex; margin-top: 40px; }
+  .stats div { padding: 0 30px; border-left: 1px solid rgba(255,255,255,.12); }
+  .stats div:first-child { padding-left: 0; border-left: 0; }
+  .stats b { display: block; font-size: 28px; font-weight: 800; letter-spacing: -.03em; line-height: 1; }
+  .stats b em { font-style: normal; color: var(--em-l); }
+  .stats small { display: block; font-size: 13px; color: var(--sl2); margin-top: 8px; white-space: nowrap; }
+
+  /* Illustration */
+  .art { position: absolute; left: 0; top: 0; width: 1440px; height: 640px; z-index: 1; pointer-events: none; }
+  .card { position: absolute; background: #fff; border-radius: 18px; color: var(--ink); box-shadow: 0 40px 70px -30px rgba(2,8,23,.75); }
+  .pl { left: 704px; top: 150px; width: 392px; height: 280px; padding: 20px 22px; }
+  .pl .hd { display: flex; align-items: center; gap: 10px; }
+  .pl .hd b { font-size: 14.5px; font-weight: 800; }
+  .pl .hd span { font-size: 12px; color: var(--muted); font-weight: 500; }
+  .pl .hd .yr { margin-left: auto; font-size: 11px; font-weight: 700; color: var(--ink2); background: #f1f4f9; border-radius: 7px; padding: 4px 8px; }
+  .kpis { display: flex; gap: 30px; margin-top: 14px; }
+  .kpis small { display: block; font-size: 11px; color: var(--muted); font-weight: 600; }
+  .kpis b { display: block; font-size: 21px; font-weight: 800; letter-spacing: -.02em; margin-top: 3px; }
+  .kpis i { font-style: normal; font-size: 11px; font-weight: 700; color: var(--em-d); background: var(--em-50); border-radius: 6px; padding: 2px 6px; margin-left: 6px; vertical-align: 3px; }
+  .kpis .sw { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 6px; vertical-align: 0; }
+  .chart { position: absolute; left: 22px; right: 22px; bottom: 14px; height: 134px; }
+  .chart svg { width: 100%; height: 100%; overflow: visible; display: block; }
+
+  .stack { position: absolute; left: 1112px; top: 216px; width: 252px; height: 316px; color: var(--ink); }
+  .sheet { position: absolute; inset: 0; background: #fff; border-radius: 14px; box-shadow: 0 30px 60px -26px rgba(2,8,23,.85); }
+  .sheet.s1 { transform: rotate(-5deg) translate(-6px, 10px); background: #dfe7f2; }
+  .sheet.s2 { transform: rotate(-1.5deg) translate(-2px, 5px); background: #eef2f8; }
+  .sheet.top { transform: rotate(2.5deg); padding: 20px 20px; }
+  .inv .t { display: flex; align-items: flex-start; }
+  .inv .t b { display: block; font-size: 15.5px; font-weight: 800; letter-spacing: -.01em; }
+  .inv .t small { display: block; font-size: 10.5px; color: var(--muted); font-weight: 600; margin-top: 3px; }
+  .inv .st { display: inline-flex; align-items: center; gap: 5px; margin-top: 8px; font-size: 10.5px; font-weight: 800; color: var(--em-d); background: var(--em-50); border-radius: 99px; padding: 3px 9px 3px 6px; }
+  .inv .st .ic { width: 12px; height: 12px; stroke-width: 2.8; }
+  .inv .qr { margin-left: auto; width: 46px; height: 46px; flex-shrink: 0; }
+  .inv .who { margin-top: 14px; }
+  .inv .who div { display: flex; align-items: baseline; gap: 8px; font-size: 10px; color: var(--muted); font-weight: 600; white-space: nowrap; }
+  .inv .who div + div { margin-top: 5px; }
+  .inv .who span { width: 28px; flex-shrink: 0; }
+  .inv .who b { font-size: 11px; color: var(--ink); font-weight: 700; }
+  .inv .ln { margin-top: 12px; border-top: 1px solid var(--line); }
+  .inv .ln div { display: flex; align-items: center; height: 26px; border-bottom: 1px solid #eef2f7; font-size: 10.5px; color: var(--ink2); white-space: nowrap; }
+  .inv .ln div span:last-child { margin-left: auto; font-weight: 700; color: var(--ink); }
+  .inv .tot { margin-top: 12px; }
+  .inv .tot small { display: block; font-size: 10px; color: var(--muted); font-weight: 600; }
+  .inv .tot b { display: block; font-size: 21px; font-weight: 800; letter-spacing: -.02em; margin-top: 2px; }
+
+  .seal { position: absolute; left: 1266px; top: 452px; width: 112px; height: 112px; z-index: 3; transform: rotate(-14deg); filter: drop-shadow(0 14px 20px rgba(2,8,23,.45)); }
+  .chip { position: absolute; display: flex; align-items: center; gap: 11px; padding: 10px 14px 10px 10px; border-radius: 14px; background: #fff; color: var(--ink); box-shadow: 0 24px 40px -20px rgba(2,8,23,.85); white-space: nowrap; z-index: 4; }
+  .chip .ci { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; flex-shrink: 0; }
+  .chip .ci .ic { width: 18px; height: 18px; }
+  .chip b { display: block; font-size: 13px; font-weight: 800; }
+  .chip small { display: block; font-size: 11px; color: var(--muted); font-weight: 600; margin-top: 2px; }
+  .chip .ok { width: 20px; height: 20px; border-radius: 99px; background: var(--em); color: #fff; display: grid; place-items: center; margin-left: 6px; }
+  .chip .ok .ic { width: 12px; height: 12px; stroke-width: 3; }
+  .c1 { left: 1116px; top: 128px; }
+  .c2 { left: 704px; top: 462px; }
+
+  /* Services */
+  .svc { position: absolute; left: 72px; right: 72px; top: 680px; }
+  .svc .row { display: flex; align-items: flex-end; }
+  .kick { font-size: 12.5px; font-weight: 800; letter-spacing: .16em; color: var(--em-d); text-transform: uppercase; }
+  .svc h2 { font-size: 32px; font-weight: 800; letter-spacing: -.03em; color: var(--ink); margin-top: 10px; }
+  .svc .all { margin-left: auto; display: flex; align-items: center; gap: 8px; font-size: 14.5px; font-weight: 700; color: var(--ink); padding-bottom: 6px; }
+  .grid { display: grid; grid-template-columns: repeat(5, 1fr); margin-top: 26px; background: #fff; border-radius: 18px; box-shadow: 0 1px 2px rgba(11,23,48,.04), 0 20px 40px -30px rgba(11,23,48,.35); border: 1px solid var(--line); overflow: hidden; }
+  .grid > div { display: flex; align-items: center; gap: 14px; padding: 20px 20px; position: relative; }
+  .grid > div + div { border-left: 1px solid var(--line); }
+  .grid .si { width: 46px; height: 46px; border-radius: 13px; background: var(--em-50); color: var(--em-d); display: grid; place-items: center; flex-shrink: 0; }
+  .grid .si .ic { width: 22px; height: 22px; }
+  .grid b { display: block; font-size: 15.5px; font-weight: 800; letter-spacing: -.01em; white-space: nowrap; }
+  .grid small { display: block; font-size: 12.5px; color: var(--muted); font-weight: 500; margin-top: 4px; white-space: nowrap; }
+  .grid small em { font-style: normal; color: var(--ink2); font-weight: 700; }
+  .grid .hot { background: linear-gradient(180deg, #effcf6, #fff); }
+  .grid .hot .si { background: var(--em); color: #fff; box-shadow: 0 8px 16px -8px rgba(16,185,129,.9); }
+</style></head>
+<body>
+<div class="page">
+  <section class="hero">
+    <div class="rings"></div>
+    <header class="topnav">
+      <a class="logo"><span class="mk">T&amp;R</span><div><b>Tan &amp; Rahman</b><small>ACCOUNTING · TAX · ADVISORY</small></div></a>
+      <nav class="links"><a>Services</a><a>e-Invoice <span class="new">NEW</span></a><a>Industries</a><a>About us</a><a>Insights</a></nav>
+      <div class="nav-r"><span class="tel"><span data-i2="phone"></span>+60 7-338 1234</span><a class="btn em">Get a free consultation</a></div>
+    </header>
+
+    <div class="copy" data-spot="hero">
+      <div class="pill"><b>e-INVOICE</b>Get your SME ready for LHDN e-Invoice</div>
+      <h1>Clear books<i>.</i><br>Taxes on time<i>.</i><br><span>Zero surprises<i>.</i></span></h1>
+      <p class="lede">Bookkeeping, tax, payroll and e-Invoice for SMEs in Johor Bahru, for one fixed monthly fee.</p>
+      <div class="ctas"><a class="btn em" data-spot="cta">Get a free consultation <span data-i2="arrow"></span></a><a class="btn line"><span data-i2="chat"></span>WhatsApp us</a></div>
+      <div class="stats"><div><b class="num">400<em>+</em></b><small>SMEs served</small></div><div><b class="num">18</b><small>years in Johor Bahru</small></div><div><b class="num">RM 0</b><small>late filing penalties in 2025</small></div></div>
+    </div>
+
+    <div class="art">
+      <div class="card pl">
+        <div class="hd"><b>Profit &amp; loss</b><span>Jan to Sep 2026</span><span class="yr">YTD</span></div>
+        <div class="kpis"><div><small><span class="sw" style="background:#6ee7b7"></span>Revenue</small><b class="num">RM 2,148,600<i>+12.4%</i></b></div><div><small><span class="sw" style="background:#0b1730"></span>Net profit</small><b class="num">RM 386,200</b></div></div>
+        <div class="chart" id="chart"></div>
+      </div>
+      <div class="stack">
+        <div class="sheet s1"></div><div class="sheet s2"></div>
+        <div class="sheet top inv">
+          <div class="t"><div><b>e-Invoice</b><small class="num">INV-2026-0418 · 14 Oct 2026</small><span class="st"><span data-i2="check"></span>Validated by LHDN</span></div><svg class="qr" id="qr" viewBox="0 0 21 21"></svg></div>
+          <div class="who"><div><span>From</span><b>Lim Bros Engineering Sdn Bhd</b></div><div><span>To</span><b>Bina Jaya Properties Sdn Bhd</b></div></div>
+          <div class="ln num"><div><span>Air-cond servicing · 24 units</span><span>RM 6,800.00</span></div><div><span>Ducting repair · Level 3</span><span>RM 5,200.00</span></div><div><span>SST 8%</span><span>RM 960.00</span></div></div>
+          <div class="tot"><small>Total payable</small><b class="num">RM 12,960.00</b></div>
+        </div>
+      </div>
+      <svg class="seal" viewBox="0 0 120 120"><defs><path id="sring" d="M60 60m-44 0a44 44 0 1 1 88 0a44 44 0 1 1 -88 0"/>
+          <linearGradient id="sg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#047857"/></linearGradient></defs>
+        <circle cx="60" cy="60" r="58" fill="url(#sg)"/><circle cx="60" cy="60" r="35" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="1"/><circle cx="60" cy="60" r="30" fill="#fff"/>
+        <text font-family="Plus Jakarta Sans" font-size="10" font-weight="800" letter-spacing="1.5" fill="#fff"><textPath href="#sring" textLength="272" lengthAdjust="spacing">E-INVOICE READY · LHDN COMPLIANT ·</textPath></text>
+        <path d="M48 61l8.5 8.5L73 52" stroke="#059669" stroke-width="5.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="chip c1"><span class="ci" style="background:#eef2ff;color:#3b5bdb" data-i2="file"></span><div><b>Form C · YA 2026</b><small>Filed 12 Oct · due 31 Oct</small></div><span class="ok" data-i2="check"></span></div>
+      <div class="chip c2"><span class="ci" style="background:#ecfdf5;color:#059669" data-i2="users"></span><div><b>October payroll · 24 staff</b><small>EPF, SOCSO, EIS and PCB ready</small></div><span class="ok" data-i2="check"></span></div>
+    </div>
+  </section>
+
+  <section class="svc" data-spot="services">
+    <div class="row"><div><div class="kick">What we do</div><h2>Everything your SME needs to stay compliant</h2></div><a class="all">All services <span data-i2="arrow"></span></a></div>
+    <div class="grid">
+      <div><span class="si" data-i2="book"></span><div><b>Bookkeeping</b><small>from <em>RM 350</em> / month</small></div></div>
+      <div><span class="si" data-i2="file"></span><div><b>Tax filing</b><small>Form C, Form B, SST</small></div></div>
+      <div><span class="si" data-i2="users"></span><div><b>Payroll</b><small>from <em>RM 15</em> / staff</small></div></div>
+      <div class="hot"><span class="si" data-i2="receipt"></span><div><b>LHDN e-Invoice setup</b><small>Ready in <em>2 weeks</em></small></div></div>
+      <div><span class="si" data-i2="building"></span><div><b>Company secretarial</b><small>from <em>RM 900</em> / year</small></div></div>
+    </div>
+  </section>
+</div>
+
+<script>
+  const ICON = {
+    arrow: '<path d="M5 12h14M13.5 6.5L19 12l-5.5 5.5"/>',
+    chat: '<path d="M4 20l1.3-3.9A7.9 7.9 0 1 1 8.2 19z"/><path d="M9.2 9.3c.2 2.6 2.3 4.9 5 5.4l.9-1.1-1.6-.9-.7.7c-1-.4-1.8-1.2-2.2-2.2l.7-.7-.9-1.6z" stroke-width="1.3"/>',
+    phone: '<path d="M21 16.4v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 1.1 3.7 2 2 0 0 1 3.1 1.5h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L7 9.3a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/>',
+    check: '<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+    file: '<path d="M14 3H6.5A2.5 2.5 0 0 0 4 5.5v13A2.5 2.5 0 0 0 6.5 21h11a2.5 2.5 0 0 0 2.5-2.5V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/>',
+    users: '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14.5a6.5 6.5 0 0 1 3.5 5.5"/>',
+    book: '<path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5M8 8h8M8 12h6"/>',
+    receipt: '<path d="M5 3h14v18l-3-2-2 2-2-2-2 2-2-2-3 2z"/><path d="M9 8h6M9 12h6M9 16h3"/>',
+    building: '<path d="M4 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16M16 9h2a2 2 0 0 1 2 2v10M2 21h20"/><path d="M8 7h4M8 11h4M8 15h4"/>',
+  };
+  document.querySelectorAll("[data-i2]").forEach((el) => el.insertAdjacentHTML("beforeend", `<svg class="ic" viewBox="0 0 24 24">${ICON[el.dataset.i2]}</svg>`));
+
+  // Monthly revenue and net profit (RM '000), Jan to Sep 2026: they add up to the KPIs (2,148 and 386)
+  const rev = [212, 198, 236, 229, 241, 247, 252, 261, 272], prof = [36, 31, 42, 40, 43, 44, 47, 49, 54];
+  const M = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"];
+  (() => {
+    const W = 348, H = 134, top = 6, base = 112, max = 300, bw = 22, gap = (W - 36 - bw * 9) / 8;
+    let s = "";
+    for (const v of [100, 200, 300]) { const y = base - (v / max) * (base - top); s += `<path d="M36 ${y}H${W}" stroke="#eef2f7" stroke-width="1"/><text x="0" y="${y + 3.5}" font-size="9.5" fill="#94a3b8" font-family="Plus Jakarta Sans" font-weight="600">${v}k</text>`; }
+    s += `<path d="M36 ${base}H${W}" stroke="#dbe3ee" stroke-width="1"/>`;
+    const pts = [];
+    rev.forEach((v, i) => {
+      const x = 36 + i * (bw + gap), h = (v / max) * (base - top), hp = (prof[i] / max) * (base - top);
+      const last = i === rev.length - 1;
+      s += `<rect x="${x}" y="${base - h}" width="${bw}" height="${h}" rx="5" fill="${last ? "url(#barL)" : "url(#bar)"}"/>`;
+      s += `<rect x="${x}" y="${base - hp}" width="${bw}" height="${hp}" rx="4" fill="${last ? "#065f46" : "#0b1730"}" opacity="${last ? 1 : 0.85}"/>`;
+      s += `<text x="${x + bw / 2}" y="${base + 16}" font-size="9.5" text-anchor="middle" fill="${last ? "#0b1730" : "#94a3b8"}" font-family="Plus Jakarta Sans" font-weight="${last ? 800 : 600}">${M[i]}</text>`;
+      pts.push([x + bw / 2, base - h]);
+    });
+    const [lx, ly] = pts[pts.length - 1];
+    s += `<g transform="translate(${Math.min(lx - 34, W - 66)} ${ly - 28})"><rect width="66" height="20" rx="6" fill="#0b1730"/><text x="33" y="13.6" text-anchor="middle" font-size="10" font-weight="800" fill="#fff" font-family="Plus Jakarta Sans">RM 272k</text></g>`;
+    document.getElementById("chart").innerHTML = `<svg viewBox="0 0 ${W} ${H}"><defs>
+      <linearGradient id="bar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a7f3d0"/><stop offset="1" stop-color="#d1fae5"/></linearGradient>
+      <linearGradient id="barL" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#10b981"/></linearGradient></defs>${s}</svg>`;
+  })();
+
+  // A generic QR-style code
+  (() => {
+    let seed = 41; const r = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+    let s = "";
+    const finder = (x, y) => `<rect x="${x}" y="${y}" width="7" height="7" fill="#0b1730"/><rect x="${x + 1}" y="${y + 1}" width="5" height="5" fill="#fff"/><rect x="${x + 2}" y="${y + 2}" width="3" height="3" fill="#0b1730"/>`;
+    for (let y = 0; y < 21; y++) for (let x = 0; x < 21; x++) {
+      if ((x < 8 && y < 8) || (x > 12 && y < 8) || (x < 8 && y > 12)) continue;
+      if (r() < 0.48) s += `<rect x="${x}" y="${y}" width="1" height="1" fill="#0b1730"/>`;
+    }
+    document.getElementById("qr").innerHTML = s + finder(0, 0) + finder(14, 0) + finder(0, 14);
+  })();
+</script>
+</body></html>

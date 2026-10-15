@@ -4,12 +4,14 @@ import { blogPath, postPath, posts } from "@/content/blog";
 import { locales, lp } from "@/lib/i18n";
 import { languageAlternates } from "@/lib/seo";
 import { shotFiles, shotSrc, type ShotKey } from "@/lib/shots";
-import { site } from "@/lib/site";
+import { pagePaths, site } from "@/lib/site";
 
 export const dynamic = "force-static";
 
+type Page = { path: string; priority: number; images: ShotKey[] };
+
 // The main pictures on each page, so they can show in image search.
-const pages: { path: string; priority: number; images: ShotKey[] }[] = [
+const listed: Page[] = [
   {
     path: "/",
     priority: 1,
@@ -18,7 +20,7 @@ const pages: { path: string; priority: number; images: ShotKey[] }[] = [
       "salonCalendar", "permissionsDesktop", "queueTv", "clinicDashboard", "faceChart", "erpDesktop", "objectDetection", "plateScanner", "whatsappSalon",
     ],
   },
-  { path: "/technology/", priority: 0.9, images: ["reportsClinic", "permissionsDesktop", "clinicStock", "scanClinic", "whatsappClinic", "queueTv", "eInvoice", "clinicPermissions"] },
+  { path: "/technology/", priority: 0.9, images: ["reportsClinic", "siteTreatments", "permissionsDesktop", "clinicStock", "scanClinic", "migrationScan", "whatsappClinic", "queueTv", "eInvoice", "clinicPermissions"] },
   {
     path: "/clinic-management-system/",
     priority: 0.9,
@@ -49,6 +51,18 @@ const pages: { path: string; priority: number; images: ShotKey[] }[] = [
     priority: 0.9,
     images: ["clinicDashboard", "whatsappClinic", "salonCalendar", "staffSalon", "faceChart", "beautyPackage", "spaCalendar", "spaPackage", "liveDashboard", "liveShop"],
   },
+  {
+    path: "/software-customisation/",
+    priority: 0.8,
+    images: ["customEstimate", "customRequest", "customTesting", "customClaims", "customSalesExport", "customFoundUs", "customCourier"],
+  },
+  { path: "/data-migration/", priority: 0.8, images: ["migrationImport", "migrationScan", "migrationCheck", "migrationDone", "migrationChat"] },
+  { path: "/business-email/", priority: 0.8, images: ["emailInbox", "emailPhone", "emailSetup"] },
+  {
+    path: "/website-design/",
+    priority: 0.8,
+    images: ["siteHome", "siteTreatments", "siteContact", "sitePhone", "siteDental", "siteCafe", "siteHomestay", "siteInterior", "siteAccounting"],
+  },
   { path: "/custom-systems/", priority: 0.8, images: ["erpDesktop", "objectDetection", "plateScanner"] },
   { path: "/services/", priority: 0.8, images: ["salonCalendar", "permissionsDesktop", "queueTv"] },
   { path: "/pricing/", priority: 0.8, images: [] },
@@ -60,6 +74,10 @@ const pages: { path: string; priority: number; images: ShotKey[] }[] = [
   { path: "/terms/", priority: 0.3, images: [] },
   { path: "/privacy/", priority: 0.3, images: [] },
 ];
+
+// Every page goes in the sitemap so search engines find it (tt's rule): a page in lib/site.ts pagePaths that the list
+// above leaves out is still added, without pictures.
+const pages: Page[] = [...listed, ...pagePaths.filter((path) => !listed.some((p) => p.path === path)).map((path) => ({ path, priority: 0.7, images: [] }))];
 
 // Every page in every language, each listing its versions in the other languages.
 export default function sitemap(): MetadataRoute.Sitemap {

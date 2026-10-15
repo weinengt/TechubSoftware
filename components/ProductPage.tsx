@@ -269,7 +269,7 @@ export default function ProductPage({ lang, k }: { lang: Locale; k: SystemKey })
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/10 text-teal-brand ring-1 ring-white/15">
                   <I className="h-5 w-5" />
                 </span>
-                <span className="text-sm leading-snug font-semibold text-slate-100">{h.title}</span>
+                <span className="text-sm leading-snug font-semibold text-balance text-slate-100">{h.title}</span>
               </li>
             );
           })}
