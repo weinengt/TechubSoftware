@@ -14,6 +14,7 @@ export const dynamic = "force-static";
 export function GET() {
   const t = getDict("en");
   const legal = getLegal("en");
+  const welcomeUsers = (site.plans as readonly Plan[]).find((p) => p.limit)?.limit;
   const list = (items: string[]) => items.map((x) => `- ${x}`).join("\n");
   const product = (k: (typeof systems)[number]["key"]) => {
     const p = t.products[k];
@@ -112,12 +113,13 @@ ${getFeatures("en")
 ${list(Object.values(t.hardware.items))}
 
 ## Pricing (${site.url}/pricing/)
-- ${t.pricing.plan}: from RM ${site.priceFrom} per month.
+- ${t.pricing.plan}: from RM ${site.priceFrom} per month (${t.pricing.welcome}, ${fill(t.pricing.limit, { n: String(welcomeUsers) }).toLowerCase()}).
+- ${t.pricing.monthly}: RM ${site.plans[0].price} per month. ${t.pricing.yearly} (${t.pricing.yearlyNote}): RM ${site.planPrice} per month. ${t.pricing.yearlySave}.
 ${site.plans
   .map((p: Plan) => {
     const x = planText("en", p);
     const name = [x.offer, x.name, x.free].filter(Boolean).join(", ") + (p.recommended ? ` (${t.pricing.recommended.toLowerCase()})` : "");
-    return `- ${name}: RM ${p.price} per month. ${x.lines.map((l) => l.text).join(". ")}.`;
+    return `- ${name}: RM ${p.price} per month. ${[...x.lines.map((l) => l.text), x.daily].filter(Boolean).join(". ")}.`;
   })
   .join("\n")}
 - ${t.pricing.free}

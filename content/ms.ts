@@ -377,7 +377,7 @@ const ms: Dict = {
     intro:
       "Kami berpangkalan di Malaysia dan bina sistem yang bantu bisnes tempatan terima booking, layan pelanggan dan urus stok. Semua setup, kami yang uruskan untuk anda.",
     values: {
-      cost: { title: "Kos rendah", text: "Dari RM {price}/bulan. Custom dari RM {custom} sejam kerja." },
+      cost: { title: "Kos rendah", text: "Dari RM {price}/bulan (Tawaran Alu-aluan, {welcomeUsers} pengguna pertama). Custom dari RM {custom} sejam kerja." },
       online: { title: "Sentiasa online", text: "Jaminan uptime {uptime}, dengan backup di beberapa lokasi." },
       done: { title: "Semua kami uruskan", text: "Kami pasang sistem, sambung peralatan dan latih staf anda." },
       custom: { title: "Ikut cara anda", text: "Kami custom borang, aliran kerja, laporan dan cetakan." },
@@ -760,7 +760,7 @@ const ms: Dict = {
     from: "dari",
     perMonth: "/ bulan",
     perHour: "/ jam",
-    plansText: "Untuk klinik, salun rambut, spa, urut dan pusat kecantikan. Bayar bulanan, atau jimat dengan pelan lebih panjang.",
+    plansText: "Untuk klinik, salun rambut, spa, urut dan pusat kecantikan.",
     monthly: "Bulanan",
     monthlyText: "Bayar bulan ke bulan",
     planMonths: "{n} bulan",
@@ -780,6 +780,12 @@ const ms: Dict = {
     welcomeCta: "Dapatkan Tawaran Alu-aluan",
     welcomeMessage: "Hai Techub, saya nak Tawaran Alu-aluan RM {n} sebulan.",
     promoUntil: "Hingga {date}",
+    limit: "Untuk {n} pengguna pertama sahaja, siapa cepat dia dapat",
+    daily: "Hanya RM {n} sehari",
+    yearly: "Tahunan",
+    yearlyNote: "12, 24 atau 48 bulan",
+    yearlySave: "Jimat RM {monthlySave} setiap bulan",
+    lessThanMonthly: "RM {monthlySave} lebih murah dari Bulanan",
     plansIncluded: "Semua pelan termasuk",
     free: "PERCUMA {months} bulan pertama untuk pengguna baru, termasuk latihan staf dan pemasangan.",
     claim: "Dapatkan {months} Bulan Percuma",
@@ -816,7 +822,7 @@ const ms: Dict = {
     customEmail: "Email kami",
     customEmailSubject: "Minta sebut harga sistem custom",
     customSee: "Lihat contoh pelanggan",
-    offerText: "Dari RM {price} sebulan. {months} bulan pertama percuma untuk pengguna baru, termasuk pemasangan dan latihan staf.",
+    offerText: "Dari RM {price} sebulan (Tawaran Alu-aluan, {welcomeUsers} pengguna pertama). {months} bulan pertama percuma untuk pengguna baru, termasuk pemasangan dan latihan staf.",
     extrasTitle: "Servis lain",
     extrasText: "Juga dari Techub, untuk apa jua bisnes di Malaysia.",
     extrasCta: "Tanya di WhatsApp",
@@ -890,11 +896,11 @@ const ms: Dict = {
       },
       {
         q: "Sistem temujanji mana yang hantar reminder WhatsApp di Malaysia?",
-        a: "Techub Software. Sistem tempahan online dan aplikasi temujanji kami hantar pengesahan booking dan reminder di WhatsApp secara automatik untuk klinik, salon, pusat kecantikan dan spa di Malaysia, dan pelanggan boleh sahkan atau tukar slot dengan satu tap. Pelan bermula dari RM {price}/bulan, dengan {months} bulan pertama percuma.",
+        a: "Techub Software. Sistem tempahan online dan aplikasi temujanji kami hantar pengesahan booking dan reminder di WhatsApp secara automatik untuk klinik, salon, pusat kecantikan dan spa di Malaysia, dan pelanggan boleh sahkan atau tukar slot dengan satu tap. Pelan bermula dari RM {price}/bulan (Tawaran Alu-aluan, {welcomeUsers} pengguna pertama), dengan {months} bulan pertama percuma.",
       },
       {
         q: "Berapa harganya?",
-        a: "Pelan bermula dari RM {price} sebulan, dan pelanggan baru dapat {months} bulan pertama percuma, termasuk pemasangan dan latihan staf. Bayar RM {monthly} bulan ke bulan, atau RM {planPrice} sebulan untuk pelan 12, 24 atau 48 bulan dengan 1, 3 atau 10 bulan percuma. Sehingga 31 Dis 2026, Tawaran Alu-aluan kami hanya RM {price} sebulan untuk pelan 60 bulan. Sistem Jualan Live bermula dari RM {livePrice} sebulan. Custom dicaj ikut jam kerja: RM {customMonthly} sejam untuk pelan bulanan, serendah RM {custom} untuk pelan 48 bulan, dengan ujian dan integrasi percuma.",
+        a: "Pelan bermula dari RM {price} sebulan, dan pelanggan baru dapat {months} bulan pertama percuma, termasuk pemasangan dan latihan staf. Bayar RM {monthly} bulan ke bulan, atau RM {planPrice} sebulan untuk pelan 12, 24 atau 48 bulan, jimat RM {monthlySave} setiap bulan, dengan 1, 3 atau 10 bulan percuma. Sehingga 31 Dis 2026, Tawaran Alu-aluan kami hanya RM {price} sebulan untuk pelan 60 bulan, untuk {welcomeUsers} pengguna pertama sahaja, siapa cepat dia dapat. Sistem Jualan Live bermula dari RM {livePrice} sebulan. Custom dicaj ikut jam kerja: RM {customMonthly} sejam untuk pelan bulanan, serendah RM {custom} untuk pelan 48 bulan, dengan ujian dan integrasi percuma.",
       },
       {
         q: "Pelanggan saya boleh bayar deposit online?",
@@ -954,7 +960,7 @@ const ms: Dict = {
   contact: {
     badge: "Demo percuma · {months} bulan percuma",
     title: "Tengok sendiri Techub dalam bisnes anda",
-    text: "Dari RM {price}/bulan, untuk bisnes di seluruh Malaysia. Termasuk pemasangan dan latihan staf.",
+    text: "Dari RM {price}/bulan (Tawaran Alu-aluan, {welcomeUsers} pengguna pertama), untuk bisnes di seluruh Malaysia. Termasuk pemasangan dan latihan staf.",
     whatsappLabel: "WhatsApp · balas paling cepat",
     emailLabel: "Email kami",
   },
@@ -1192,11 +1198,11 @@ const ms: Dict = {
       faqs: [
         {
           q: "Berapa harga sistem klinik di Malaysia?",
-          a: "Sistem klinik Techub bermula dari RM {price}/bulan, dan klinik baru dapat {months} bulan pertama percuma, termasuk pemasangan dan latihan staf. Custom dicaj ikut jam kerja, dari RM {custom} sejam.",
+          a: "Sistem klinik Techub bermula dari RM {price}/bulan (Tawaran Alu-aluan, {welcomeUsers} pengguna pertama), dan klinik baru dapat {months} bulan pertama percuma, termasuk pemasangan dan latihan staf. Custom dicaj ikut jam kerja, dari RM {custom} sejam.",
         },
         {
           q: "Sistem klinik Techub sesuai untuk klinik kecil?",
-          a: "Sesuai. Ia direka untuk klinik dengan seorang doktor sampailah kumpulan klinik banyak cawangan. Pelan bermula dari RM {price}/bulan dan klinik baru dapat {months} bulan pertama percuma, termasuk pemasangan dan latihan staf.",
+          a: "Sesuai. Ia direka untuk klinik dengan seorang doktor sampailah kumpulan klinik banyak cawangan. Pelan bermula dari RM {price}/bulan (Tawaran Alu-aluan, {welcomeUsers} pengguna pertama) dan klinik baru dapat {months} bulan pertama percuma, termasuk pemasangan dan latihan staf.",
         },
         {
           q: "Boleh rekod data pesakit dan ubat?",
@@ -1387,7 +1393,7 @@ const ms: Dict = {
       faqs: [
         {
           q: "Berapa harga sistem booking salon?",
-          a: "Bermula dari RM {price}/bulan. Salon baru dapat {months} bulan pertama percuma, termasuk pemasangan dan latihan staf.",
+          a: "Bermula dari RM {price}/bulan (Tawaran Alu-aluan, {welcomeUsers} pengguna pertama). Salon baru dapat {months} bulan pertama percuma, termasuk pemasangan dan latihan staf.",
         },
         {
           q: "Pelanggan dapat notifikasi secara automatik?",
@@ -1599,7 +1605,7 @@ const ms: Dict = {
       faqs: [
         {
           q: "Berapa harga sistem booking pusat kecantikan?",
-          a: "Bermula dari RM {price}/bulan. Pusat kecantikan baru dapat {months} bulan pertama percuma, termasuk pemasangan dan latihan staf.",
+          a: "Bermula dari RM {price}/bulan (Tawaran Alu-aluan, {welcomeUsers} pengguna pertama). Pusat kecantikan baru dapat {months} bulan pertama percuma, termasuk pemasangan dan latihan staf.",
         },
         {
           q: "Boleh rekod pakej dan sesi rawatan?",
@@ -1798,7 +1804,7 @@ const ms: Dict = {
       faqs: [
         {
           q: "Berapa harga sistem booking spa?",
-          a: "Bermula dari RM {price}/bulan. Spa baru dapat {months} bulan pertama percuma, termasuk pemasangan dan latihan staf.",
+          a: "Bermula dari RM {price}/bulan (Tawaran Alu-aluan, {welcomeUsers} pengguna pertama). Spa baru dapat {months} bulan pertama percuma, termasuk pemasangan dan latihan staf.",
         },
         {
           q: "Boleh atur jadual terapis dan bilik sekali gus?",

@@ -1,6 +1,6 @@
 import type { Locale } from "@/lib/i18n";
 import { shotFiles, type Shot, type ShotKey } from "@/lib/shots";
-import { rm, site } from "@/lib/site";
+import { monthlySave, rm, site, type Plan } from "@/lib/site";
 import en, { type Dict } from "./en";
 import ms from "./ms";
 import zh from "./zh";
@@ -25,6 +25,8 @@ const values: Record<string, string> = {
   livePrice: String(site.livePriceFrom),
   monthly: String(site.plans[0].price),
   planPrice: String(site.planPrice),
+  monthlySave: String(monthlySave),
+  welcomeUsers: String((site.plans as readonly Plan[]).find((p) => p.limit)?.limit ?? ""),
   uptime: site.uptime,
   phone: site.whatsappDisplay,
   email: site.email,

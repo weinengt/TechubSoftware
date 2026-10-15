@@ -6,6 +6,7 @@
 //   {migration} {emailYear} {emailStorage} {website} {websiteYear} {websitePages} prices of the other services
 //   {livePrice} Live Selling System monthly price · {uptime} uptime · {phone} WhatsApp number · {email} email address
 //   {monthly} Standard Plan paid month to month · {planPrice} Standard Plan per month on 12 to 48 months
+//   {monthlySave} how much less a month costs on 12 to 48 months · {welcomeUsers} users who can get the Welcome offer
 // Words between *asterisks* are shown in the blue gradient colour (headings only).
 
 const en = {
@@ -386,7 +387,7 @@ const en = {
     intro:
       "We are based in Malaysia and build systems that help local businesses take bookings, serve customers and manage stock. Then we set everything up for you.",
     values: {
-      cost: { title: "Low cost", text: "From RM {price}/month. Customisation from RM {custom} per work hour." },
+      cost: { title: "Low cost", text: "From RM {price}/month (Welcome offer, first {welcomeUsers} users). Customisation from RM {custom} per work hour." },
       online: { title: "Always online", text: "{uptime} uptime guarantee, with multi-region backups." },
       done: { title: "Done for you", text: "We install, connect your hardware and train your staff." },
       custom: { title: "Built your way", text: "We customise forms, workflows, reports and printouts." },
@@ -764,7 +765,7 @@ const en = {
     perHour: "/ hour",
     // The ways to pay (plans in lib/site.ts), a card each. {n} is a number, {date} the Welcome offer's last day and
     // {plan} a plan's name.
-    plansText: "For clinics, hair salons, spas, massage and beauty centres. Pay monthly, or save with a longer plan.",
+    plansText: "For clinics, hair salons, spas, massage and beauty centres.",
     monthly: "Monthly",
     monthlyText: "Pay month by month",
     planMonths: "{n} months",
@@ -784,6 +785,13 @@ const en = {
     welcomeCta: "Get the Welcome offer",
     welcomeMessage: "Hi Techub, I'd like the Welcome offer at RM {n} a month.",
     promoUntil: "Until {date}",
+    limit: "Only for the first {n} users, first come, first served",
+    daily: "Only RM {n} a day",
+    // Monthly against the 12 to 48-month plans, above the cards
+    yearly: "Yearly",
+    yearlyNote: "12, 24 or 48 months",
+    yearlySave: "Save RM {monthlySave} every month",
+    lessThanMonthly: "RM {monthlySave} less than Monthly",
     plansIncluded: "Every plan includes",
     free: "FREE for the first {months} months for new users, including staff training and installation.",
     claim: "Claim {months} Months Free",
@@ -822,7 +830,7 @@ const en = {
     customEmail: "Email us",
     customEmailSubject: "Customised system quote",
     customSee: "See customer examples",
-    offerText: "From RM {price} per month. First {months} months free for new users, including installation and staff training.",
+    offerText: "From RM {price} per month (Welcome offer, first {welcomeUsers} users). First {months} months free for new users, including installation and staff training.",
     // Other services (prices in lib/site.ts), a card each on the Pricing and Services pages
     extrasTitle: "More services",
     extrasText: "Also from Techub, for any business in Malaysia.",
@@ -897,11 +905,11 @@ const en = {
       },
       {
         q: "Which appointment system in Malaysia sends WhatsApp reminders?",
-        a: "Techub Software. Its online booking system and appointment booking app send booking confirmations and reminders on WhatsApp automatically for clinics, salons, beauty centres and spas in Malaysia, and customers confirm or reschedule with one tap. Plans start from RM {price}/month, with the first {months} months free.",
+        a: "Techub Software. Its online booking system and appointment booking app send booking confirmations and reminders on WhatsApp automatically for clinics, salons, beauty centres and spas in Malaysia, and customers confirm or reschedule with one tap. Plans start from RM {price}/month (Welcome offer, first {welcomeUsers} users), with the first {months} months free.",
       },
       {
         q: "How much does it cost?",
-        a: "Plans start from RM {price} per month, and new customers get the first {months} months free, including installation and staff training. Pay RM {monthly} month by month, or RM {planPrice} a month on 12, 24 or 48 months with 1, 3 or 10 months free. Until 31 Dec 2026, our Welcome offer is RM {price} a month on a 60-month plan. The Live Selling System starts from RM {livePrice} per month. Customisation is charged by the work hour, from RM {customMonthly} an hour on the monthly plan down to RM {custom} on 48 months, with free testing and integration.",
+        a: "Plans start from RM {price} per month, and new customers get the first {months} months free, including installation and staff training. Pay RM {monthly} month by month, or RM {planPrice} a month on 12, 24 or 48 months, which saves RM {monthlySave} every month, with 1, 3 or 10 months free. Until 31 Dec 2026, our Welcome offer is RM {price} a month on a 60-month plan, only for the first {welcomeUsers} users, first come, first served. The Live Selling System starts from RM {livePrice} per month. Customisation is charged by the work hour, from RM {customMonthly} an hour on the monthly plan down to RM {custom} on 48 months, with free testing and integration.",
       },
       {
         q: "Can my customers pay a deposit online?",
@@ -961,7 +969,7 @@ const en = {
   contact: {
     badge: "Free demo · {months} months free",
     title: "See Techub running in your business",
-    text: "From RM {price}/month, for businesses across Malaysia. Installation and staff training included.",
+    text: "From RM {price}/month (Welcome offer, first {welcomeUsers} users), for businesses across Malaysia. Installation and staff training included.",
     whatsappLabel: "WhatsApp · fastest reply",
     emailLabel: "Email us",
   },
@@ -1169,11 +1177,11 @@ const en = {
       faqs: [
         {
           q: "How much does a clinic management system cost in Malaysia?",
-          a: "Techub's clinic system in Malaysia starts from RM {price}/month, and new clinics get the first {months} months free, including installation and staff training. Customisation is charged by the work hour, from RM {custom} an hour.",
+          a: "Techub's clinic system in Malaysia starts from RM {price}/month (Welcome offer, first {welcomeUsers} users), and new clinics get the first {months} months free, including installation and staff training. Customisation is charged by the work hour, from RM {custom} an hour.",
         },
         {
           q: "Is the Techub clinic system suitable for small clinics?",
-          a: "Yes. It is designed for single-doctor clinics up to multi-branch groups. Plans start from RM {price}/month and new clinics get the first {months} months free, including installation and staff training.",
+          a: "Yes. It is designed for single-doctor clinics up to multi-branch groups. Plans start from RM {price}/month (Welcome offer, first {welcomeUsers} users) and new clinics get the first {months} months free, including installation and staff training.",
         },
         {
           q: "Can I track patient records and medication?",
@@ -1341,7 +1349,7 @@ const en = {
       faqs: [
         {
           q: "How much is the salon appointment system?",
-          a: "It starts from RM {price}/month. New salons get the first {months} months free, including installation and staff training.",
+          a: "It starts from RM {price}/month (Welcome offer, first {welcomeUsers} users). New salons get the first {months} months free, including installation and staff training.",
         },
         {
           q: "Does it notify customers automatically?",
@@ -1519,7 +1527,7 @@ const en = {
       faqs: [
         {
           q: "How much is the beauty centre appointment system?",
-          a: "It starts from RM {price}/month. New beauty centres get the first {months} months free, including installation and staff training.",
+          a: "It starts from RM {price}/month (Welcome offer, first {welcomeUsers} users). New beauty centres get the first {months} months free, including installation and staff training.",
         },
         {
           q: "Can it track treatment packages and sessions?",
@@ -1696,7 +1704,7 @@ const en = {
       faqs: [
         {
           q: "How much is the spa appointment system?",
-          a: "It starts from RM {price}/month. New spas get the first {months} months free, including installation and staff training.",
+          a: "It starts from RM {price}/month (Welcome offer, first {welcomeUsers} users). New spas get the first {months} months free, including installation and staff training.",
         },
         {
           q: "Can I schedule both therapists and rooms?",

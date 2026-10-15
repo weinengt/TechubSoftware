@@ -380,7 +380,7 @@ const zh: Dict = {
     intro:
       "我们在马来西亚，专门为本地生意开发系统，帮你接预约、招呼顾客、管库存。系统设定，全部交给我们。",
     values: {
-      cost: { title: "价钱实惠", text: "月费 RM {price} 起。定制按工时收费，每小时 RM {custom} 起。" },
+      cost: { title: "价钱实惠", text: "月费 RM {price} 起（迎新优惠，限前 {welcomeUsers} 位用户）。定制按工时收费，每小时 RM {custom} 起。" },
       online: { title: "24 小时在线", text: "保证 {uptime} 在线率，还有多区域备份。" },
       done: { title: "我们帮你搞定", text: "安装、连接硬件、培训员工，我们全包。" },
       custom: { title: "照你的要求做", text: "表格、工作流程、报表和打印格式，都可以定制。" },
@@ -760,7 +760,7 @@ const zh: Dict = {
     from: "低至",
     perMonth: "/ 月",
     perHour: "/ 小时",
-    plansText: "适用于诊所、发廊、SPA 按摩和美容中心。可以按月付，选长一点的配套更省。",
+    plansText: "适用于诊所、发廊、SPA 按摩和美容中心。",
     monthly: "月付",
     monthlyText: "按月付费",
     planMonths: "{n} 个月",
@@ -780,6 +780,12 @@ const zh: Dict = {
     welcomeCta: "领取迎新优惠",
     welcomeMessage: "Hi Techub，我想要每月 RM {n} 的迎新优惠。",
     promoUntil: "优惠至 {date}",
+    limit: "只限前 {n} 位用户，先到先得",
+    daily: "每天只要 RM {n}",
+    yearly: "年付",
+    yearlyNote: "12、24 或 48 个月",
+    yearlySave: "每个月省 RM {monthlySave}",
+    lessThanMonthly: "比月付每月便宜 RM {monthlySave}",
     plansIncluded: "每个配套都包括",
     free: "新用户前 {months} 个月完全免费，包安装和员工培训。",
     claim: "领取 {months} 个月免费",
@@ -816,7 +822,7 @@ const zh: Dict = {
     customEmail: "电邮联络",
     customEmailSubject: "定制系统报价",
     customSee: "看看顾客例子",
-    offerText: "每月 RM {price} 起。新用户前 {months} 个月免费，包安装和员工培训。",
+    offerText: "每月 RM {price} 起（迎新优惠，限前 {welcomeUsers} 位用户）。新用户前 {months} 个月免费，包安装和员工培训。",
     extrasTitle: "其他服务",
     extrasText: "Techub 也提供以下服务，适合马来西亚各行各业。",
     extrasCta: "WhatsApp 询问",
@@ -889,11 +895,11 @@ const zh: Dict = {
       },
       {
         q: "马来西亚哪个预约系统会自动发 WhatsApp 提醒？",
-        a: "Techub Software。我们的网上预约系统和预约软件会自动在 WhatsApp 发送预约确认和提醒，适合马来西亚的诊所、美容院、发廊和 SPA，顾客点一下就能确认或改时间。月费 RM {price} 起，前 {months} 个月免费。",
+        a: "Techub Software。我们的网上预约系统和预约软件会自动在 WhatsApp 发送预约确认和提醒，适合马来西亚的诊所、美容院、发廊和 SPA，顾客点一下就能确认或改时间。月费 RM {price} 起（迎新优惠，限前 {welcomeUsers} 位用户），前 {months} 个月免费。",
       },
       {
         q: "收费多少？",
-        a: "月费 RM {price} 起，新客户前 {months} 个月免费，包安装和员工培训。按月付每月 RM {monthly}；选 12、24 或 48 个月配套，每月 RM {planPrice}，分别有 1、3 或 10 个月免费。2026 年 12 月 31 日前，迎新优惠每月只需 RM {price}（60 个月配套）。直播带货系统月费 RM {livePrice} 起。定制按工时收费：月付配套每小时 RM {customMonthly}，48 个月配套低至每小时 RM {custom}，测试和系统对接免费。",
+        a: "月费 RM {price} 起，新客户前 {months} 个月免费，包安装和员工培训。按月付每月 RM {monthly}；选 12、24 或 48 个月配套，每月 RM {planPrice}，每个月省 RM {monthlySave}，分别有 1、3 或 10 个月免费。2026 年 12 月 31 日前，迎新优惠每月只需 RM {price}（60 个月配套），只限前 {welcomeUsers} 位用户，先到先得。直播带货系统月费 RM {livePrice} 起。定制按工时收费：月付配套每小时 RM {customMonthly}，48 个月配套低至每小时 RM {custom}，测试和系统对接免费。",
       },
       {
         q: "顾客可以在网上付订金吗？",
@@ -953,7 +959,7 @@ const zh: Dict = {
   contact: {
     badge: "免费 Demo · 前 {months} 个月免费",
     title: "看看 Techub 怎样帮到你的生意",
-    text: "月费 RM {price} 起，全马商家都适用，包安装和员工培训。",
+    text: "月费 RM {price} 起（迎新优惠，限前 {welcomeUsers} 位用户），全马商家都适用，包安装和员工培训。",
     whatsappLabel: "WhatsApp · 回复最快",
     emailLabel: "电邮联络",
   },
@@ -1155,11 +1161,11 @@ const zh: Dict = {
       faqs: [
         {
           q: "马来西亚诊所管理系统多少钱？",
-          a: "Techub 诊所管理系统月费 RM {price} 起，新诊所前 {months} 个月免费，包安装和员工培训。定制按工时收费，每小时 RM {custom} 起。",
+          a: "Techub 诊所管理系统月费 RM {price} 起（迎新优惠，限前 {welcomeUsers} 位用户），新诊所前 {months} 个月免费，包安装和员工培训。定制按工时收费，每小时 RM {custom} 起。",
         },
         {
           q: "Techub 诊所系统适合小诊所吗？",
-          a: "适合。从只有一位医生的小诊所，到有多间分行的连锁诊所都适用。月费 RM {price} 起，新诊所前 {months} 个月免费，包安装和员工培训。",
+          a: "适合。从只有一位医生的小诊所，到有多间分行的连锁诊所都适用。月费 RM {price} 起（迎新优惠，限前 {welcomeUsers} 位用户），新诊所前 {months} 个月免费，包安装和员工培训。",
         },
         {
           q: "可以追踪病人记录和用药吗？",
@@ -1325,7 +1331,7 @@ const zh: Dict = {
       faqs: [
         {
           q: "发廊预约系统收费多少？",
-          a: "月费 RM {price} 起。新发廊前 {months} 个月免费，包安装和员工培训。",
+          a: "月费 RM {price} 起（迎新优惠，限前 {welcomeUsers} 位用户）。新发廊前 {months} 个月免费，包安装和员工培训。",
         },
         {
           q: "会自动通知顾客吗？",
@@ -1502,7 +1508,7 @@ const zh: Dict = {
       faqs: [
         {
           q: "美容中心预约系统收费多少？",
-          a: "月费 RM {price} 起。新美容中心前 {months} 个月免费，包安装和员工培训。",
+          a: "月费 RM {price} 起（迎新优惠，限前 {welcomeUsers} 位用户）。新美容中心前 {months} 个月免费，包安装和员工培训。",
         },
         {
           q: "可以追踪疗程配套和次数吗？",
@@ -1677,7 +1683,7 @@ const zh: Dict = {
       faqs: [
         {
           q: "SPA 预约系统收费多少？",
-          a: "月费 RM {price} 起。新 SPA 前 {months} 个月免费，包安装和员工培训。",
+          a: "月费 RM {price} 起（迎新优惠，限前 {welcomeUsers} 位用户）。新 SPA 前 {months} 个月免费，包安装和员工培训。",
         },
         {
           q: "可以同时安排按摩师和房间吗？",

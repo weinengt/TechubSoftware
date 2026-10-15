@@ -80,7 +80,7 @@ In Techub's systems, e-Invoices are issued from billing and POS, then submitted 
 
 LHDN e-Invoice is included in our [Clinic Management System](/clinic-management-system/), [Salon Appointment System](/salon-appointment-system/), [Beauty Appointment System](/beauty-appointment-system/) and [Spa Appointment System](/spa-appointment-system/). The same systems make invoices, credit notes, refund notes and official receipts for you.
 
-Plans start from RM 99/month with our 60-month Welcome offer until 31 Dec 2026, or RM 178 month by month, and new users get the first 3 months free, including installation and staff training. See our [technology page](/technology/) and [pricing](/pricing/).
+Plans start from RM 99/month with our 60-month Welcome offer for the first 80 users until 31 Dec 2026, or RM 178 month by month, and new users get the first 3 months free, including installation and staff training. See our [technology page](/technology/) and [pricing](/pricing/).
 
 ## FAQ
 

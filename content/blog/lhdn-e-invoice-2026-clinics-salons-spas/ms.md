@@ -80,7 +80,7 @@ Dalam sistem Techub, e-Invois dikeluarkan dari bil dan POS, kemudian dihantar ke
 
 e-Invois LHDN termasuk dalam [Sistem Pengurusan Klinik](/ms/clinic-management-system/), [Sistem Booking Salon](/ms/salon-appointment-system/), [Sistem Booking Pusat Kecantikan](/ms/beauty-appointment-system/) dan [Sistem Booking Spa](/ms/spa-appointment-system/) kami. Sistem yang sama juga buat invois, nota kredit, nota bayaran balik dan resit rasmi secara automatik.
 
-Pelan bermula dari RM 99/bulan dengan Tawaran Alu-aluan 60 bulan sehingga 31 Dis 2026, atau RM 178 bulan ke bulan, dan pengguna baru dapat 3 bulan pertama percuma, termasuk pemasangan dan latihan staf. Lihat [halaman teknologi](/ms/technology/) dan [harga](/ms/pricing/) kami.
+Pelan bermula dari RM 99/bulan dengan Tawaran Alu-aluan 60 bulan untuk 80 pengguna pertama sehingga 31 Dis 2026, atau RM 178 bulan ke bulan, dan pengguna baru dapat 3 bulan pertama percuma, termasuk pemasangan dan latihan staf. Lihat [halaman teknologi](/ms/technology/) dan [harga](/ms/pricing/) kami.
 
 ## Soalan lazim
 

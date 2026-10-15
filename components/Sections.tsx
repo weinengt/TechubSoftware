@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { fill, getDict, type Dict } from "@/content";
 import { htmlLang, lp, type Locale } from "@/lib/i18n";
 import { shotSrc, type Shot } from "@/lib/shots";
-import { emailLink, planAverage, planSave, planTotal, rm, servicePages, site, systems, whatsappLink, type Plan, type ServicePageKey } from "@/lib/site";
+import { emailLink, planAverage, planDaily, planSave, planTotal, rm, servicePages, site, systems, whatsappLink, type Plan, type ServicePageKey } from "@/lib/site";
 import { Icon, type IconName } from "./Icons";
 import { hl, withContactLinks } from "./Text";
 
@@ -436,8 +436,8 @@ function LivePlan({ lang }: { lang: Locale }) {
   );
 }
 
-/** A plan's name, free months, saving and last day, and the lines under its price, in the page's language. `offer`
- *  is the Welcome offer's name, for the plan that is a promotion. */
+/** A plan's name, free months, saving, last day, user limit and price a day, and the lines under its price, in the
+ *  page's language. `offer` is the Welcome offer's name, for the plan that is a promotion. */
 export function planText(lang: Locale, p: Plan) {
   const t = getDict(lang).pricing;
   const n = (s: string, v: number) => fill(s, { n: rm(v) });
@@ -451,11 +451,13 @@ export function planText(lang: Locale, p: Plan) {
       })
     : "";
   const save = long ? n(t.save, planSave(p)) : "";
+  const limit = p.limit ? fill(t.limit, { n: String(p.limit) }) : "";
   const lines: { text: string; save?: boolean }[] = [
     { text: long ? n(t.total, planTotal(p)) : t.monthlyText },
     { text: free ? n(t.average, planAverage(p)) : "" },
     { text: save, save: true },
     { text: until },
+    { text: limit },
   ];
   return {
     offer: p.until ? t.welcome : "",
@@ -463,6 +465,8 @@ export function planText(lang: Locale, p: Plan) {
     free: free ? n(free === 1 ? t.freeOne : t.freeMany, free) : "",
     save,
     until,
+    limit,
+    daily: long ? n(t.daily, planDaily(p)) : "",
     lines: lines.filter((l) => l.text),
   };
 }
@@ -471,8 +475,9 @@ export function planText(lang: Locale, p: Plan) {
 const fromShortest = ["sm:order-1", "sm:order-2", "sm:order-3", "sm:order-4"];
 
 /** The ways to pay for the Standard Plan, a card each, like a VPN price list: what a month comes to, the free months
- *  and the saving, with the recommended plan standing out. On phones the longest plan comes first. The Welcome offer
- *  (the plan with a last day) follows as a wide dark card, then what every plan includes. */
+ *  and the saving, with the recommended plan standing out. Above them, Monthly against the longer plans, so the
+ *  RM 30 a month difference is plain. On phones the longest plan comes first. The Welcome offer (the plan with a last
+ *  day) follows as a wide dark card, then what every plan includes. */
 function Plans({ lang }: { lang: Locale }) {
   const t = getDict(lang).pricing;
   const plans: Plan[] = site.plans.filter((p: Plan) => !p.until).reverse();
@@ -481,8 +486,9 @@ function Plans({ lang }: { lang: Locale }) {
     <div className="mx-auto mt-10 max-w-6xl">
       <div className="text-center" data-reveal>
         <h3 className="text-xl font-bold text-slate-900 sm:text-2xl">{t.plan}</h3>
-        <p className="mt-1.5 text-sm text-slate-600 sm:text-base">{t.plansText}</p>
+        <p className="mt-1.5 text-sm text-balance text-slate-600 sm:text-base">{t.plansText}</p>
       </div>
+      <MonthlyVsYearly lang={lang} />
       <div
         className="mx-auto mt-6 flex max-w-3xl flex-col items-center gap-3 rounded-2xl border border-brand-100 bg-brand-50/70 p-4 text-center sm:flex-row sm:gap-4 sm:p-5 sm:text-left"
         data-reveal
@@ -505,6 +511,44 @@ function Plans({ lang }: { lang: Locale }) {
         <h3 className="text-lg font-bold text-slate-900">{t.plansIncluded}</h3>
         <CheckList items={t.included} columns className="mt-5" />
       </div>
+    </div>
+  );
+}
+
+/** Monthly next to the 12 to 48-month plans: what a month costs on each and how much the longer plans save every
+ *  month (`monthlySave` in lib/site.ts). */
+function MonthlyVsYearly({ lang }: { lang: Locale }) {
+  const t = getDict(lang).pricing;
+  const price = (n: number, best: boolean) => (
+    // "/ month" moves under the amount when the box is too narrow for both
+    <p className="mt-auto flex flex-wrap items-baseline justify-center gap-x-1 pt-1">
+      <span className="whitespace-nowrap">
+        <span className="text-sm font-bold text-slate-900">RM</span>{" "}
+        <span className={`text-3xl font-extrabold tracking-tight sm:text-4xl ${best ? "text-gradient" : "text-slate-900"}`}>{rm(n)}</span>
+      </span>
+      <span className="text-xs font-semibold whitespace-nowrap text-slate-500 sm:text-sm">{t.perMonth}</span>
+    </p>
+  );
+  return (
+    <div className="mx-auto mt-6 max-w-xl" data-reveal>
+      <div className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-2 sm:gap-4">
+        <div className="flex h-full flex-col rounded-2xl border border-slate-200 bg-white px-2 py-4 text-center sm:px-5">
+          <p className="text-sm font-bold text-slate-700">{t.monthly}</p>
+          <p className="text-xs text-balance text-slate-500">{t.monthlyText}</p>
+          {price(site.plans[0].price, false)}
+        </div>
+        <Icon.Arrow className="h-5 w-5 text-brand-500" />
+        <div className="flex h-full flex-col rounded-2xl bg-white px-2 py-4 text-center shadow-lg ring-2 shadow-brand-500/15 ring-brand-500 sm:px-5">
+          <p className="text-sm font-bold text-brand-700">{t.yearly}</p>
+          <p className="text-xs text-balance text-slate-500">{t.yearlyNote}</p>
+          {price(site.planPrice, true)}
+        </div>
+      </div>
+      <p className="mt-4 text-center">
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-4 py-1.5 text-sm font-bold text-emerald-700 sm:text-base">
+          <Icon.Check className="h-4 w-4" strokeWidth={3} /> {t.yearlySave}
+        </span>
+      </p>
     </div>
   );
 }
@@ -556,13 +600,15 @@ function PlanCard({ lang, p, className }: { lang: Locale; p: Plan; className: st
           </span>
           <span className="text-sm font-semibold text-slate-500">{t.perMonth}</span>
         </p>
+        <p className="mt-1 min-h-5 text-sm font-bold text-emerald-600">{x.daily}</p>
         {long && (
           <dl className="mt-5 space-y-2 border-t border-slate-100 pt-4 text-sm">
-            <div className="flex items-baseline justify-between gap-3">
+            <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-0.5">
               <dt className="text-slate-500">{t.youPay}</dt>
               <dd className="font-semibold whitespace-nowrap text-slate-900">
                 RM {rm(p.price)} {t.perMonth}
               </dd>
+              {p.price < site.plans[0].price && <dd className="w-full text-right text-xs font-semibold text-emerald-600">{t.lessThanMonthly}</dd>}
             </div>
             <div className="flex items-baseline justify-between gap-3">
               <dt className="text-slate-500">{t.totalLabel}</dt>
@@ -610,6 +656,11 @@ function WelcomeCard({ lang, p }: { lang: Locale; p: Plan }) {
           </p>
           <h4 className="mt-3 text-2xl font-bold">{x.name}</h4>
           <p className="mt-1 text-sm text-white/70">{x.until}</p>
+          {x.limit && (
+            <p className="mt-3 flex w-fit items-start gap-1.5 rounded-2xl bg-amber-400/15 px-3 py-1.5 text-sm font-bold text-amber-200">
+              <Icon.Users className="mt-0.5 h-4 w-4 shrink-0" /> {x.limit}
+            </p>
+          )}
         </div>
         <div>
           <p className="flex items-baseline gap-1 whitespace-nowrap">
@@ -617,6 +668,7 @@ function WelcomeCard({ lang, p }: { lang: Locale; p: Plan }) {
             <span className="text-gradient-light text-5xl font-extrabold tracking-tight">{rm(p.price)}</span>
             <span className="text-sm font-semibold text-white/70">{t.perMonth}</span>
           </p>
+          <p className="mt-1 text-sm font-bold text-emerald-300">{x.daily}</p>
           <p className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-sm">
             <span className="text-white/80">{fill(t.total, { n: rm(planTotal(p)) })}</span>
             <span className="rounded-full bg-emerald-400/15 px-2.5 py-0.5 text-xs font-bold text-emerald-300">{x.save}</span>

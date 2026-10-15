@@ -33,14 +33,14 @@ export const site = {
   livePriceFrom: 199,
   /** The ways to pay for the Standard Plan, per month. A plan's free months are inside its length, so 12 months
    *  with 1 free is 11 paid months. `recommended` is the plan the pricing cards point visitors to. The plan with
-   *  `until` is the Welcome offer, a promotion that ends on that day. `hourly` is what customisation costs per
-   *  work hour on that plan. */
+   *  `until` is the Welcome offer, a promotion that ends on that day; `limit` is how many users can get it, first
+   *  come, first served. `hourly` is what customisation costs per work hour on that plan. */
   plans: [
     { months: 1, price: 178, hourly: 100 },
     { months: 12, price: 148, free: 1, hourly: 90 },
     { months: 24, price: 148, free: 3, hourly: 85 },
     { months: 48, price: 148, free: 10, recommended: true, hourly: 80 },
-    { months: 60, price: 99, until: "2026-12-31" },
+    { months: 60, price: 99, until: "2026-12-31", limit: 80 },
   ],
   /** Worked examples of customisation: the work hours each takes. The Pricing page shows the first three (their
    *  words are under pricing.examples in content/*.ts); the Software Customisation page shows all four as
@@ -77,13 +77,17 @@ export const site = {
   ],
 } as const;
 
-export type Plan = { months: number; price: number; free?: number; recommended?: boolean; until?: string; hourly?: number };
+export type Plan = { months: number; price: number; free?: number; recommended?: boolean; until?: string; limit?: number; hourly?: number };
 
 /** What a plan costs in all, what that comes to a month, and how much it saves against paying the plan price
  *  every month. */
 export const planTotal = (p: Plan) => (p.months - (p.free ?? 0)) * p.price;
 export const planAverage = (p: Plan) => planTotal(p) / p.months;
 export const planSave = (p: Plan) => p.months * site.planPrice - planTotal(p);
+/** What a plan comes to a day, to the sen: its total over its days (a month is 365/12 days). */
+export const planDaily = (p: Plan) => Math.round((planTotal(p) / ((p.months * 365) / 12)) * 100) / 100;
+/** How much less a month costs on the 12 to 48-month plans than on Monthly. */
+export const monthlySave = site.plans[0].price - site.planPrice;
 
 /** RM amounts as 1,628 or 135.67 (two decimals only when there are cents). */
 export const rm = (n: number) =>

@@ -82,12 +82,12 @@ It also has body and dental charts with e-signature, billing and panel claims, a
 
 Data is kept on [servers in Malaysia](/technology/), encrypted, with multi-layer backups across multiple regions and a 99.95% uptime guarantee. Every staff action is recorded, and detailed reports are ready in under 100 ms. It works on iPad, phone and PC.
 
-Plans start from RM 99/month with our 60-month Welcome offer until 31 Dec 2026, or RM 178 month by month, and new users get the first 3 months free, including installation and staff training. Customisation is charged by the work hour, from RM 80 an hour. See [pricing](/pricing/).
+Plans start from RM 99/month with our 60-month Welcome offer for the first 80 users until 31 Dec 2026, or RM 178 month by month, and new users get the first 3 months free, including installation and staff training. Customisation is charged by the work hour, from RM 80 an hour. See [pricing](/pricing/).
 
 ## FAQ
 
 ### How much does a clinic management system cost in Malaysia?
-Prices vary with features and setup. Techub's clinic system starts from RM 99/month with our 60-month Welcome offer until 31 Dec 2026, or RM 178 month by month. New users get the first 3 months free, including installation and staff training.
+Prices vary with features and setup. Techub's clinic system starts from RM 99/month with our 60-month Welcome offer for the first 80 users until 31 Dec 2026, or RM 178 month by month. New users get the first 3 months free, including installation and staff training.
 
 ### What features should a clinic management system have?
 At minimum: patient records (EMR), medication tracking with allergy alerts, queue calling, WhatsApp appointment reminders, billing with panel claims, and reports. Also check hardware support, staff permissions and where the data is kept.

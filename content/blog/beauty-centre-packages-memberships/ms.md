@@ -89,7 +89,7 @@ Rekod siapa yang jual setiap pakej masa jualan berlaku. Lepas itu, setiap beauti
 - **Komisen dan gaji:** komisen rawatan, pakej dan jualan produk dikira automatik. Gaji bulanan termasuk gaji asas dan elaun.
 - **Kawalan:** setiap tindakan staf direkod, dan laporan jualan pakej serta sesi yang digunakan siap bawah 100 ms.
 
-Boleh guna di iPad, telefon dan PC, dengan server di Malaysia dan jaminan uptime 99.95%. Pelan bermula dari RM 99/bulan dengan Tawaran Alu-aluan 60 bulan sehingga 31 Dis 2026, atau RM 178 bulan ke bulan, dan pengguna baru dapat 3 bulan pertama percuma, termasuk pemasangan dan latihan staf. Lihat [harga](/ms/pricing/) untuk butiran.
+Boleh guna di iPad, telefon dan PC, dengan server di Malaysia dan jaminan uptime 99.95%. Pelan bermula dari RM 99/bulan dengan Tawaran Alu-aluan 60 bulan untuk 80 pengguna pertama sehingga 31 Dis 2026, atau RM 178 bulan ke bulan, dan pengguna baru dapat 3 bulan pertama percuma, termasuk pemasangan dan latihan staf. Lihat [harga](/ms/pricing/) untuk butiran.
 
 ## Soalan lazim
 
@@ -100,4 +100,4 @@ Rekod setiap pakej dalam profil pelanggan, dan tolak satu sesi setiap kali dia d
 Pakej ialah jumlah sesi yang tetap untuk satu rawatan, manakala membership biasanya bermaksud kredit prabayar dengan harga member. Kalau anda tawarkan kedua-duanya, simpan sesi dan kredit dalam profil pelanggan yang sama.
 
 ### Berapa harga sistem temujanji kecantikan di Malaysia?
-Sistem temujanji kecantikan Techub bermula dari RM 99/bulan dengan Tawaran Alu-aluan 60 bulan sehingga 31 Dis 2026, atau RM 178 bulan ke bulan. Pengguna baru dapat 3 bulan pertama percuma, termasuk pemasangan dan latihan staf.
+Sistem temujanji kecantikan Techub bermula dari RM 99/bulan dengan Tawaran Alu-aluan 60 bulan untuk 80 pengguna pertama sehingga 31 Dis 2026, atau RM 178 bulan ke bulan. Pengguna baru dapat 3 bulan pertama percuma, termasuk pemasangan dan latihan staf.
