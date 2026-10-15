@@ -157,10 +157,12 @@ const en = {
   /* ---------- Home page ---------- */
   home: {
     meta: {
-      title: "Appointment & Booking System Malaysia | Techub Software",
+      title: "Appointment & Online Booking System Malaysia | Techub Software",
       description:
         "AI appointment and booking system for clinics, salons, beauty centres and spas in Malaysia. WhatsApp reminders, {uptime} uptime. From RM {price}/month, {months} months free.",
       keywords: [
+        "online booking system Malaysia",
+        "appointment booking app",
         "appointment system Malaysia",
         "appointment management system Malaysia",
         "booking system Malaysia",
@@ -182,7 +184,7 @@ const en = {
       badge: "Malaysia's most chosen appointment system",
       title: "Advanced booking system with *AI integration*",
       intro:
-        "Real-time updates, WhatsApp notifications and stock control on an enterprise-level database in Malaysia, with {uptime} uptime and guaranteed speed.",
+        "Online booking, real-time updates, WhatsApp notifications and stock control on an enterprise-level database in Malaysia, with {uptime} uptime and guaranteed speed.",
       secondary: "Explore use cases",
       note: "First {months} months free, including installation and staff training.",
       statUptime: "Uptime",
@@ -728,6 +730,10 @@ const en = {
         a: "Techub Software is a software company based in Malaysia. We build smart, low-cost systems for businesses across Malaysia: ready appointment systems for clinics, hair salons, beauty centres and spas, a live selling system for online sellers, and custom systems such as ERP, AI object detection and number plate scanners.",
       },
       {
+        q: "Which appointment system in Malaysia sends WhatsApp reminders?",
+        a: "Techub Software. Its online booking system and appointment booking app send booking confirmations and reminders on WhatsApp automatically for clinics, salons, beauty centres and spas in Malaysia, and customers confirm or reschedule with one tap. Plans start from RM {price}/month, with the first {months} months free.",
+      },
+      {
         q: "How much does it cost?",
         a: "Plans start from RM {price} per month, and new customers get the first {months} months free, including installation and staff training. The Live Selling System starts from RM {livePrice} per month. Customisation starts from RM {custom}, depending on your requirements.",
       },
@@ -864,6 +870,8 @@ const en = {
         description:
           "Clinic management system for Malaysia: patient records (EMR), medication tracking, queue calling, AI medicine stock and LHDN e-Invoice. From RM {price}/month.",
         keywords: [
+          "clinic system Malaysia",
+          "clinic queue system",
           "clinic management system Malaysia",
           "clinic system",
           "sistem klinik",
@@ -894,7 +902,7 @@ const en = {
       },
       spotlights: {
         queue: {
-          eyebrow: "Queue number calling",
+          eyebrow: "Clinic queue system",
           title: "Call the next patient in one tap",
           points: ["TV display with voice announcement", "Rooms, pharmacy & payment counters", "English, Malay & Chinese", "A calmer, shorter wait"],
         },
@@ -975,6 +983,10 @@ const en = {
       },
       faqs: [
         {
+          q: "How much does a clinic management system cost in Malaysia?",
+          a: "Techub's clinic system in Malaysia starts from RM {price}/month, and new clinics get the first {months} months free, including installation and staff training. Customisation starts from RM {custom}, based on your needs.",
+        },
+        {
           q: "Is the Techub clinic system suitable for small clinics?",
           a: "Yes. It is designed for single-doctor clinics up to multi-branch groups. Plans start from RM {price}/month and new clinics get the first {months} months free, including installation and staff training.",
         },
@@ -1029,6 +1041,9 @@ const en = {
         description:
           "Hair salon booking system for Malaysia: stylist calendar, WhatsApp reminders, staff app, payroll and commission, POS and stock. From RM {price}/month, {months} months free.",
         keywords: [
+          "salon POS system Malaysia",
+          "salon commission system",
+          "booking deposit system",
           "salon appointment system",
           "hair salon booking system Malaysia",
           "salon management system",
@@ -1046,7 +1061,7 @@ const en = {
       category: "Hair salon booking, staff, payroll and POS",
       eyebrow: "Hair Salon Appointment System",
       heading: "Keep every *stylist* fully booked",
-      intro: "Built for salons in Malaysia: bookings, automatic WhatsApp notifications, staff profiles, payroll and POS. On iPad, phone and PC.",
+      intro: "A hair salon and barbershop booking system for Malaysia: automatic WhatsApp notifications, staff profiles, payroll and POS. On iPad, phone and PC.",
       whoFor: ["Hair salons", "Barbershops", "Unisex salons", "Colour & treatment studios", "Bridal hair & make-up", "Multi-branch salons"],
       highlights: {
         notify: "Automatic customer notifications",
@@ -1074,7 +1089,7 @@ const en = {
           badges: ["Formula saved", "Member points"],
         },
         pos: {
-          eyebrow: "POS & commission",
+          eyebrow: "Salon POS & commission system",
           title: "Fast checkout. Commission done for you.",
           points: ["Services and retail in one bill", "Commission per stylist", "Cash, card, DuitNow QR & e-wallet", "Packages & member discounts"],
         },
@@ -1090,7 +1105,7 @@ const en = {
           badges: ["Deposit paid", "Straight to your account"],
         },
         deposits: {
-          eyebrow: "Deposits & accounting",
+          eyebrow: "Booking deposit system",
           title: "Collect deposits. Turn them into income in *one click*.",
           points: [
             "Collect a deposit with each booking",
@@ -1152,8 +1167,8 @@ const en = {
           a: "Yes. Every staff member logs in on their own phone, iPad or PC to see and manage their appointments, and only sees what their role allows.",
         },
         {
-          q: "Does it calculate payroll and commission?",
-          a: "Yes. Commission on services and product sales is calculated from your POS, and monthly payroll adds basic salary and allowances for each staff member.",
+          q: "Which salon booking system in Malaysia calculates staff commission?",
+          a: "Techub's salon booking system does. Commission on services and product sales is calculated from your POS, and monthly payroll adds basic salary and allowances for each staff member.",
         },
         {
           q: "Can it track salon product inventory?",
@@ -1193,11 +1208,15 @@ const en = {
 
     beauty: {
       meta: {
-        title: "Beauty Centre System Malaysia | Booking & Packages",
-        socialTitle: "Beauty Centre Appointment System Malaysia | Techub Software",
+        title: "Beauty Appointment System Malaysia | Beauty Centre & Salon",
+        socialTitle: "Beauty Appointment System Malaysia | Techub Software",
         description:
-          "Beauty centre and beauty salon system for Malaysia: booking, WhatsApp reminders, treatment packages, face charts, payroll and POS. From RM {price}/month.",
+          "Beauty appointment system for beauty centres, salons and aesthetic clinics in Malaysia: WhatsApp reminders, packages, face charts, payroll and POS. From RM {price}/month.",
         keywords: [
+          "beauty appointment system Malaysia",
+          "beauty appointment system",
+          "aesthetic clinic system",
+          "booking deposit system",
           "beauty centre system",
           "beauty salon system Malaysia",
           "beauty salon booking system",
@@ -1213,10 +1232,10 @@ const en = {
         ],
       },
       category: "Beauty centre booking, packages and treatment records",
-      eyebrow: "Beauty Centre Appointment System",
+      eyebrow: "Beauty Appointment System",
       heading: "The *beauty centre system* that brings customers back",
-      intro: "Built for beauty centres in Malaysia: bookings, packages, face charts, staff payroll and WhatsApp reminders. On iPad, phone and PC.",
-      whoFor: ["Beauty centres", "Facial & skincare", "Lash & brow studios", "Nail salons", "Slimming centres", "Aesthetic centres", "Bridal make-up"],
+      intro: "One beauty appointment system for beauty centres, aesthetic clinics, nail salons and lash studios in Malaysia: packages, face charts, staff payroll and WhatsApp reminders. On iPad, phone and PC.",
+      whoFor: ["Beauty centres", "Facial & skincare", "Lash & brow studios", "Nail salons", "Slimming centres", "Aesthetic clinics", "Bridal make-up"],
       highlights: {
         notify: "Automatic customer notifications",
         platform: "Cross-platform",
@@ -1264,7 +1283,7 @@ const en = {
           badges: ["Deposit paid", "Straight to your account"],
         },
         deposits: {
-          eyebrow: "Deposits & accounting",
+          eyebrow: "Booking deposit system",
           title: "Collect deposits. Turn them into income in *one click*.",
           points: [
             "Collect a deposit with each booking",
@@ -1342,8 +1361,8 @@ const en = {
           a: "Yes. Techub is cross-platform: iPad and Android tablets, phones and computers.",
         },
         {
-          q: "Can customers pay a deposit online?",
-          a: "Yes. Techub works with various payment gateways, so customers can pay a deposit or the full amount online when they book, by online banking (FPX), card or e-wallet, depending on your gateway. The money goes straight into your beauty centre's own merchant account, and deposits help cut no-shows.",
+          q: "Which beauty centre system in Malaysia takes booking deposits online?",
+          a: "Techub's beauty appointment system does. It works with various payment gateways, so customers can pay a deposit or the full amount online when they book, by online banking (FPX), card or e-wallet, depending on your gateway. The money goes straight into your beauty centre's own merchant account, and deposits help cut no-shows.",
         },
         {
           q: "Do I need accounting knowledge to handle deposits?",
@@ -1368,6 +1387,8 @@ const en = {
         description:
           "Spa and massage booking system for Malaysia: therapist and room scheduling, WhatsApp reminders, packages, memberships, payroll and POS. From RM {price}/month.",
         keywords: [
+          "reflexology booking system",
+          "booking deposit system",
           "spa appointment system",
           "spa booking system Malaysia",
           "spa management software",
@@ -1385,7 +1406,7 @@ const en = {
       category: "Spa and massage booking, rooms and memberships",
       eyebrow: "Spa Appointment System",
       heading: "A calm front desk and *fully booked* therapists",
-      intro: "Built for spas in Malaysia: therapists, rooms, packages, payroll and WhatsApp reminders. On iPad, phone and PC.",
+      intro: "A spa, massage and reflexology booking system for Malaysia: therapists, rooms, packages, payroll and WhatsApp reminders. On iPad, phone and PC.",
       whoFor: ["Day spas", "Massage centres", "Foot reflexology", "Wellness centres", "Hotel & resort spas", "Couple spas"],
       highlights: {
         notify: "Automatic customer notifications",
@@ -1434,7 +1455,7 @@ const en = {
           badges: ["Deposit paid", "Straight to your account"],
         },
         deposits: {
-          eyebrow: "Deposits & accounting",
+          eyebrow: "Booking deposit system",
           title: "Collect deposits. Turn them into income in *one click*.",
           points: [
             "Collect a deposit with each booking",
@@ -1566,7 +1587,7 @@ const en = {
       eyebrow: "Live Selling System",
       heading: "Sell to big crowds live, and *never oversell*",
       intro:
-        "Built for live sellers in Malaysia: add products, set the selling date, and let a big crowd buy at the same time. Kafka order queueing keeps every order in line, and you see your visitors live.",
+        "Built for TikTok and Facebook live sellers in Malaysia: add products, set the selling date, and let a big crowd buy at the same time. Kafka order queueing keeps every order in line, and you see your visitors live.",
       whoFor: ["Facebook Live sellers", "TikTok Live sellers", "Instagram shops", "Fashion & tudung", "Beauty & skincare", "Food & snacks", "Flash sales & pre-orders"],
       highlights: {
         crowd: "Handles big crowds",
@@ -1678,8 +1699,8 @@ const en = {
           a: "Yes. Orders go through Kafka order queueing, which takes a big rush of orders at the same moment and processes each one in turn, so your sale page stays fast.",
         },
         {
-          q: "How does it stop overselling?",
-          a: "Stock is checked and deducted for every order the moment it is placed. When an item sells out, it closes automatically, so you never sell more than you have.",
+          q: "Which live selling system in Malaysia stops overselling on TikTok and Facebook?",
+          a: "Techub's Live Selling System. Stock is checked and deducted for every order the moment it is placed, whether buyers come from TikTok or Facebook Live. When an item sells out, it closes automatically, so you never sell more than you have.",
         },
         {
           q: "Can I choose when each product goes on sale?",

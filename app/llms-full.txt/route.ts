@@ -22,7 +22,9 @@ For: ${p.whoFor.join(", ")}.
 Modules: ${Object.values(p.modules).join(", ")}.
 ${Object.values(p.spotlights)
   .map((s) => `- ${s.eyebrow}: ${s.points.join("; ")}`)
-  .join("\n")}`;
+  .join("\n")}
+Questions:
+${p.faqs.map((f) => `Q: ${f.q}\nA: ${f.a}`).join("\n")}`;
   };
 
   const body = `# ${site.name}

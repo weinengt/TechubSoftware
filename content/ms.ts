@@ -157,6 +157,8 @@ const ms: Dict = {
       description:
         "Sistem temujanji dan booking AI untuk klinik, salon, pusat kecantikan dan spa di Malaysia. Reminder WhatsApp, uptime {uptime}. Dari RM {price}/bulan, {months} bulan percuma.",
       keywords: [
+        "sistem tempahan online",
+        "aplikasi temujanji",
         "sistem temujanji Malaysia",
         "sistem booking Malaysia",
         "sistem booking online",
@@ -180,7 +182,7 @@ const ms: Dict = {
       badge: "Sistem temujanji pilihan utama di Malaysia",
       title: "Sistem booking canggih dengan *integrasi AI*",
       intro:
-        "Update real-time, notifikasi WhatsApp dan kawalan stok, semua guna database bertaraf enterprise di Malaysia. Uptime {uptime} dan kelajuan dijamin.",
+        "Tempahan online, update real-time, notifikasi WhatsApp dan kawalan stok, semua guna database bertaraf enterprise di Malaysia. Uptime {uptime} dan kelajuan dijamin.",
       secondary: "Lihat ikut industri",
       note: "{months} bulan pertama percuma, termasuk pemasangan dan latihan staf.",
       statUptime: "Uptime",
@@ -729,6 +731,10 @@ const ms: Dict = {
         a: "Techub Software ialah syarikat perisian yang berpangkalan di Malaysia. Kami bina sistem pintar dengan kos rendah untuk bisnes di seluruh Malaysia: sistem temujanji siap guna untuk klinik, salon rambut, pusat kecantikan dan spa, sistem jualan live untuk penjual online, serta sistem custom seperti ERP, AI pengesanan objek dan scanner nombor plat.",
       },
       {
+        q: "Sistem temujanji mana yang hantar reminder WhatsApp di Malaysia?",
+        a: "Techub Software. Sistem tempahan online dan aplikasi temujanji kami hantar pengesahan booking dan reminder di WhatsApp secara automatik untuk klinik, salon, pusat kecantikan dan spa di Malaysia, dan pelanggan boleh sahkan atau tukar slot dengan satu tap. Pelan bermula dari RM {price}/bulan, dengan {months} bulan pertama percuma.",
+      },
+      {
         q: "Berapa harganya?",
         a: "Pelan bermula dari RM {price} sebulan, dan pelanggan baru dapat {months} bulan pertama percuma, termasuk pemasangan dan latihan staf. Sistem Jualan Live bermula dari RM {livePrice} sebulan. Harga custom bermula dari RM {custom}, ikut keperluan anda.",
       },
@@ -860,11 +866,13 @@ const ms: Dict = {
   products: {
     clinic: {
       meta: {
-        title: "Sistem Pengurusan Klinik Malaysia | EMR, Giliran & Ubat",
+        title: "Sistem Pengurusan Klinik Malaysia | Temujanji, Giliran, EMR & Ubat",
         socialTitle: "Sistem Pengurusan Klinik Malaysia | Techub Software",
         description:
-          "Sistem pengurusan klinik di Malaysia: rekod pesakit (EMR), rekod ubat, nombor giliran, stok ubat AI dan e-Invois LHDN. Dari RM {price}/bulan, {months} bulan percuma.",
+          "Sistem pengurusan dan temujanji klinik di Malaysia: rekod pesakit (EMR), rekod ubat, sistem giliran, stok ubat AI dan e-Invois LHDN. Dari RM {price}/bulan, {months} bulan percuma.",
         keywords: [
+          "sistem temujanji klinik",
+          "sistem giliran klinik",
           "sistem pengurusan klinik",
           "sistem klinik",
           "sistem klinik Malaysia",
@@ -885,7 +893,7 @@ const ms: Dict = {
       category: "Pengurusan klinik, EMR dan giliran pesakit",
       eyebrow: "Sistem Pengurusan Klinik",
       heading: "*Sistem klinik* pintar untuk rawatan lebih cepat dan selamat",
-      intro: "Dibina khas untuk klinik di Malaysia: rekod pesakit, rekod ubat, giliran, bil dan stok. Guna di iPad, telefon dan PC.",
+      intro: "Dibina khas untuk klinik di Malaysia: sistem temujanji klinik, rekod pesakit, rekod ubat, giliran, bil dan stok. Guna di iPad, telefon dan PC.",
       whoFor: [
         "Klinik am",
         "Klinik gigi",
@@ -905,7 +913,7 @@ const ms: Dict = {
       },
       spotlights: {
         queue: {
-          eyebrow: "Panggil nombor giliran",
+          eyebrow: "Sistem giliran klinik",
           title: "Panggil pesakit seterusnya dengan sekali tekan",
           points: [
             "Paparan TV dengan pengumuman suara",
@@ -1006,6 +1014,10 @@ const ms: Dict = {
       },
       faqs: [
         {
+          q: "Berapa harga sistem klinik di Malaysia?",
+          a: "Sistem klinik Techub bermula dari RM {price}/bulan, dan klinik baru dapat {months} bulan pertama percuma, termasuk pemasangan dan latihan staf. Harga custom bermula dari RM {custom}, ikut keperluan anda.",
+        },
+        {
           q: "Sistem klinik Techub sesuai untuk klinik kecil?",
           a: "Sesuai. Ia direka untuk klinik dengan seorang doktor sampailah kumpulan klinik banyak cawangan. Pelan bermula dari RM {price}/bulan dan klinik baru dapat {months} bulan pertama percuma, termasuk pemasangan dan latihan staf.",
         },
@@ -1060,6 +1072,8 @@ const ms: Dict = {
         description:
           "Sistem booking salon rambut di Malaysia: jadual stylist, reminder WhatsApp, app staf, gaji dan komisen, POS dan stok. Dari RM {price}/bulan, {months} bulan percuma.",
         keywords: [
+          "sistem booking barber",
+          "sistem deposit booking",
           "sistem booking salon",
           "sistem temujanji salon",
           "sistem tempahan salon",
@@ -1079,7 +1093,7 @@ const ms: Dict = {
       category: "Booking salon rambut, staf, gaji dan POS",
       eyebrow: "Sistem Booking Salon Rambut",
       heading: "Pastikan slot setiap *stylist* sentiasa penuh",
-      intro: "Dibina khas untuk salon di Malaysia: booking, notifikasi WhatsApp automatik, profil staf, gaji dan POS. Guna di iPad, telefon dan PC.",
+      intro: "Sistem booking salon rambut dan barber untuk Malaysia: notifikasi WhatsApp automatik, profil staf, gaji dan POS. Guna di iPad, telefon dan PC.",
       whoFor: [
         "Salon rambut",
         "Barbershop",
@@ -1114,7 +1128,7 @@ const ms: Dict = {
           badges: ["Formula disimpan", "Point member"],
         },
         pos: {
-          eyebrow: "POS & komisen",
+          eyebrow: "Sistem POS & komisen salon",
           title: "Bayar cepat. Komisen dikira untuk anda.",
           points: [
             "Perkhidmatan dan produk runcit dalam satu bil",
@@ -1135,7 +1149,7 @@ const ms: Dict = {
           badges: ["Deposit dibayar", "Terus ke akaun anda"],
         },
         deposits: {
-          eyebrow: "Deposit & perakaunan",
+          eyebrow: "Sistem deposit booking",
           title: "Kutip deposit. Tukar jadi pendapatan dengan *satu klik*.",
           points: [
             "Kutip deposit setiap kali booking",
@@ -1207,8 +1221,8 @@ const ms: Dict = {
           a: "Boleh. Setiap staf log masuk di telefon, iPad atau PC sendiri untuk tengok dan urus booking mereka, dan cuma nampak apa yang dibenarkan ikut jawatan.",
         },
         {
-          q: "Boleh kira gaji dan komisen?",
-          a: "Boleh. Komisen perkhidmatan dan jualan produk dikira dari POS anda, dan gaji bulanan termasuk gaji asas dan elaun setiap staf.",
+          q: "Sistem booking salon mana yang boleh kira komisen staf?",
+          a: "Sistem booking salon Techub. Komisen perkhidmatan dan jualan produk dikira dari POS anda, dan gaji bulanan termasuk gaji asas dan elaun setiap staf.",
         },
         {
           q: "Boleh pantau inventori produk salon?",
@@ -1248,11 +1262,14 @@ const ms: Dict = {
 
     beauty: {
       meta: {
-        title: "Sistem Pusat Kecantikan Malaysia | Booking, Pakej & Gaji",
+        title: "Sistem Temujanji Pusat Kecantikan Malaysia | Booking, Pakej & Gaji",
         socialTitle: "Sistem Booking Pusat Kecantikan Malaysia | Techub Software",
         description:
           "Sistem booking pusat kecantikan dan salon kecantikan di Malaysia: reminder WhatsApp, pakej rawatan, carta muka, gaji dan POS. Dari RM {price}/bulan, {months} bulan percuma.",
         keywords: [
+          "sistem temujanji kecantikan",
+          "sistem klinik estetik",
+          "sistem deposit booking",
           "sistem pusat kecantikan",
           "sistem booking pusat kecantikan",
           "sistem temujanji pusat kecantikan",
@@ -1272,14 +1289,14 @@ const ms: Dict = {
       category: "Booking pusat kecantikan, pakej dan rekod rawatan",
       eyebrow: "Sistem Booking Pusat Kecantikan",
       heading: "*Sistem pusat kecantikan* yang buat pelanggan datang lagi",
-      intro: "Dibina khas untuk pusat kecantikan di Malaysia: booking, pakej, carta muka, gaji staf dan reminder WhatsApp. Guna di iPad, telefon dan PC.",
+      intro: "Sistem temujanji kecantikan untuk pusat kecantikan, klinik estetik, salon kuku dan studio bulu mata di Malaysia: pakej, carta muka, gaji staf dan reminder WhatsApp. Guna di iPad, telefon dan PC.",
       whoFor: [
         "Pusat kecantikan",
         "Facial & rawatan kulit",
         "Studio bulu mata & kening",
         "Salon kuku",
         "Pusat slimming",
-        "Pusat estetik",
+        "Klinik estetik",
         "Solekan pengantin",
       ],
       highlights: {
@@ -1344,7 +1361,7 @@ const ms: Dict = {
           badges: ["Deposit dibayar", "Terus ke akaun anda"],
         },
         deposits: {
-          eyebrow: "Deposit & perakaunan",
+          eyebrow: "Sistem deposit booking",
           title: "Kutip deposit. Tukar jadi pendapatan dengan *satu klik*.",
           points: [
             "Kutip deposit setiap kali booking",
@@ -1432,8 +1449,8 @@ const ms: Dict = {
           a: "Boleh. Techub boleh guna di semua peranti: tablet iPad dan Android, telefon dan komputer.",
         },
         {
-          q: "Pelanggan boleh bayar deposit online?",
-          a: "Boleh. Techub boleh guna pelbagai payment gateway, jadi pelanggan boleh bayar deposit atau bayaran penuh secara online masa buat booking, guna perbankan online (FPX), kad atau e-wallet, ikut gateway anda. Duit terus masuk ke akaun merchant pusat kecantikan anda sendiri, dan deposit bantu kurangkan kes tak datang.",
+          q: "Sistem pusat kecantikan mana yang boleh terima deposit online?",
+          a: "Sistem temujanji kecantikan Techub. Ia boleh guna pelbagai payment gateway, jadi pelanggan boleh bayar deposit atau bayaran penuh secara online masa buat booking, guna perbankan online (FPX), kad atau e-wallet, ikut gateway anda. Duit terus masuk ke akaun merchant pusat kecantikan anda sendiri, dan deposit bantu kurangkan kes tak datang.",
         },
         {
           q: "Perlu ada ilmu perakaunan untuk urus deposit?",
@@ -1458,6 +1475,7 @@ const ms: Dict = {
         description:
           "Sistem booking spa dan urutan di Malaysia: jadual terapis dan bilik, reminder WhatsApp, pakej, membership, gaji dan POS. Dari RM {price}/bulan, {months} bulan percuma.",
         keywords: [
+          "sistem deposit booking",
           "sistem booking spa",
           "sistem spa",
           "sistem temujanji spa",
@@ -1478,7 +1496,7 @@ const ms: Dict = {
       category: "Booking spa dan urutan, bilik dan membership",
       eyebrow: "Sistem Booking Spa",
       heading: "Kaunter depan tenang, slot terapis *sentiasa penuh*",
-      intro: "Dibina khas untuk spa di Malaysia: terapis, bilik, pakej, gaji dan reminder WhatsApp. Guna di iPad, telefon dan PC.",
+      intro: "Sistem booking spa, urut dan refleksologi untuk Malaysia: terapis, bilik, pakej, gaji dan reminder WhatsApp. Guna di iPad, telefon dan PC.",
       whoFor: ["Day spa", "Pusat urut", "Refleksologi kaki", "Pusat wellness", "Spa hotel & resort", "Spa pasangan"],
       highlights: {
         notify: "Notifikasi pelanggan automatik",
@@ -1542,7 +1560,7 @@ const ms: Dict = {
           badges: ["Deposit dibayar", "Terus ke akaun anda"],
         },
         deposits: {
-          eyebrow: "Deposit & perakaunan",
+          eyebrow: "Sistem deposit booking",
           title: "Kutip deposit. Tukar jadi pendapatan dengan *satu klik*.",
           points: [
             "Kutip deposit setiap kali booking",
@@ -1660,6 +1678,7 @@ const ms: Dict = {
         description:
           "Sistem jualan live untuk penjual Facebook dan TikTok di Malaysia: tampung ramai pembeli, elak terlebih jual, jadual produk, pelawat live. Dari RM {livePrice}/bulan.",
         keywords: [
+          "sistem jualan live TikTok",
           "sistem live selling Malaysia",
           "sistem jualan live",
           "sistem jualan live Malaysia",
@@ -1682,7 +1701,7 @@ const ms: Dict = {
       eyebrow: "Sistem Jualan Live",
       heading: "Jual live kepada ramai pembeli, *tak pernah terlebih jual*",
       intro:
-        "Dibina khas untuk penjual live di Malaysia: tambah produk, tetapkan tarikh jualan, dan biar ramai pembeli beli serentak. Giliran order Kafka susun setiap order ikut turutan, dan anda boleh tengok pelawat anda secara live.",
+        "Sistem jualan live untuk penjual TikTok dan Facebook di Malaysia: tambah produk, tetapkan tarikh jualan, dan biar ramai pembeli beli serentak. Giliran order Kafka susun setiap order ikut turutan, dan anda boleh tengok pelawat anda secara live.",
       whoFor: ["Penjual Facebook Live", "Penjual TikTok Live", "Kedai Instagram", "Fesyen & tudung", "Kecantikan & skincare", "Makanan & snek", "Flash sale & pre-order"],
       highlights: {
         crowd: "Tampung ramai pembeli",
@@ -1794,8 +1813,8 @@ const ms: Dict = {
           a: "Boleh. Setiap order melalui giliran Kafka, yang boleh terima lonjakan order pada masa yang sama dan proses satu per satu ikut turutan, jadi halaman jualan anda kekal laju.",
         },
         {
-          q: "Macam mana sistem elak terlebih jual?",
-          a: "Stok disemak dan ditolak untuk setiap order sebaik saja order dibuat. Bila produk habis, ia tutup secara automatik, jadi anda takkan jual lebih dari stok yang ada.",
+          q: "Macam mana nak elak terlebih jual masa jualan live?",
+          a: "Guna Sistem Jualan Live Techub. Stok disemak dan ditolak untuk setiap order sebaik saja order dibuat, sama ada pembeli datang dari TikTok atau Facebook Live. Bila produk habis, ia tutup secara automatik, jadi anda takkan jual lebih dari stok yang ada.",
         },
         {
           q: "Boleh pilih bila setiap produk mula dijual?",
