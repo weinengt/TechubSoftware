@@ -81,7 +81,7 @@ const legal: Legal = {
         body: [
           [
             "Prices are in Ringgit Malaysia (RM). \"From RM {price}/month\" is our starting price; the price for your business is in your quotation and depends on your plan, users, branches and options.",
-            "Customisation starts from RM {custom} and is quoted based on your requirements.",
+            "Customisation is charged by the work hour, from RM {custom} an hour depending on your plan, and quoted based on your requirements before work starts.",
             "The \"first {months} months free\" offer is for new customers and includes installation and staff training, on the terms in your quotation.",
             "Hardware, customisation and third-party charges (such as payment terminal or messaging fees) are not included unless your quotation says so.",
             "Taxes such as SST are added where they apply.",

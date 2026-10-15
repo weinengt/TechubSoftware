@@ -55,7 +55,7 @@ const legal: Legal = {
         body: [
           [
             "Harga adalah dalam Ringgit Malaysia (RM). \"Dari RM {price}/bulan\" ialah harga permulaan kami. Harga untuk perniagaan anda dinyatakan dalam sebut harga anda dan bergantung pada pelan, bilangan pengguna dan cawangan, serta pilihan yang anda ambil.",
-            "Ubah suai sistem bermula dari RM {custom}. Kami berikan sebut harga mengikut keperluan anda.",
+            "Ubah suai sistem dicaj ikut jam kerja, dari RM {custom} sejam bergantung pada pelan anda. Kami berikan sebut harga mengikut keperluan anda sebelum kerja bermula.",
             "Tawaran \"{months} bulan pertama percuma\" adalah untuk pelanggan baru dan termasuk pemasangan serta latihan staf, mengikut terma dalam sebut harga anda.",
             "Peralatan, ubah suai sistem dan caj pihak ketiga (seperti caj terminal pembayaran atau caj penghantaran mesej) tidak termasuk, kecuali jika dinyatakan dalam sebut harga anda.",
             "Cukai seperti SST akan ditambah jika berkenaan.",

@@ -9,7 +9,7 @@ import { demos, useCaseStart } from "./demoScenes";
 import Device from "./Device";
 import HubDemo from "./HubDemo";
 import { Icon, type IconName } from "./Icons";
-import { CheckList, SectionHeading, pageTop, type PageOf } from "./Sections";
+import { CheckList, MoreServices, SectionHeading, pageTop, type PageOf } from "./Sections";
 import { hl } from "./Text";
 
 const keysOf = <T extends object>(o: T) => Object.keys(o) as (keyof T)[];
@@ -257,7 +257,9 @@ export function ServicesSection({ lang, page }: { lang: Locale; page?: PageOf })
           })}
         </ul>
 
-        <div className="mt-10">
+        {page && <MoreServices lang={lang} className="mt-16" />}
+
+        <div className={page ? "mt-16" : "mt-10"}>
           <HowWeWork lang={lang} />
         </div>
       </div>

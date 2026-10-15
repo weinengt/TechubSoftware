@@ -7,7 +7,7 @@ export const site = {
   // Set NEXT_PUBLIC_SITE_URL as a Cloudflare build variable if your domain is different.
   url: (process.env.NEXT_PUBLIC_SITE_URL || "https://techubsoftware.com").replace(/\/$/, ""),
   description:
-    "Techub Software is a software company based in Malaysia: appointment systems with AI for clinics, hair salons, beauty centres and spas, a live selling system for online sellers, and custom systems such as ERP, AI object detection and number plate scanners. Enterprise servers in Malaysia, reports in under 100 ms, WhatsApp notifications, LHDN e-Invoice and a 99.95% uptime guarantee. Appointment systems from RM 99/month with the first 3 months free; live selling from RM 199/month; customisation from RM 300.",
+    "Techub Software is a software company based in Malaysia: appointment systems with AI for clinics, hair salons, beauty centres and spas, a live selling system for online sellers, and custom systems such as ERP, AI object detection and number plate scanners. Enterprise servers in Malaysia, reports in under 100 ms, WhatsApp notifications, LHDN e-Invoice and a 99.95% uptime guarantee. Appointment systems from RM 99/month with the first 3 months free; live selling from RM 199/month; customisation from RM 80 per work hour.",
   /** Registration number with the Companies Commission of Malaysia (SSM). */
   ssm: "202603150314 (TR0343876-V)",
   whatsappNumber: "601112310521",
@@ -17,19 +17,34 @@ export const site = {
   currency: "MYR",
   priceFrom: 99,
   freeMonths: 3,
-  customFrom: 300,
+  /** Customisation is charged per work hour, at the `hourly` rate of the customer's plan; this is the lowest one. */
+  customFrom: 80,
   /** Live Selling System, per month. */
   livePriceFrom: 199,
   /** The ways to pay for the Standard Plan, per month. A plan's free months are inside its length, so 12 months
    *  with 1 free is 11 paid months. `recommended` is the plan the pricing cards point visitors to. The plan with
-   *  `until` is the Welcome offer, a promotion that ends on that day. */
+   *  `until` is the Welcome offer, a promotion that ends on that day. `hourly` is what customisation costs per
+   *  work hour on that plan. */
   plans: [
-    { months: 1, price: 178 },
-    { months: 12, price: 148, free: 1 },
-    { months: 24, price: 148, free: 3 },
-    { months: 48, price: 148, free: 10, recommended: true },
+    { months: 1, price: 178, hourly: 100 },
+    { months: 12, price: 148, free: 1, hourly: 90 },
+    { months: 24, price: 148, free: 3, hourly: 85 },
+    { months: 48, price: 148, free: 10, recommended: true, hourly: 80 },
     { months: 60, price: 99, until: "2026-12-31" },
   ],
+  /** Worked examples of customisation on the Pricing page: the work hours each takes. Their words are under
+   *  pricing.examples in content/*.ts, in the same order. */
+  customExamples: [6, 4, 2],
+  /** Other services. Data migration is quoted after a talk with a software engineer, usually at this rate per hour. */
+  migrationHour: 350,
+  /** Business email on the customer's own domain: price per year and storage. */
+  emailYear: 120,
+  emailStorage: "5 GB",
+  /** A static landing page website of up to `websitePages` pages, designed and hosted on Cloudflare, with a free
+   *  domain for the first year; after that, a yearly maintenance fee. */
+  websitePrice: 1200,
+  websiteYear: 200,
+  websitePages: 30,
   /** What each month costs on the 12 to 48-month plans; savings are counted against it. */
   planPrice: 148,
   uptime: "99.95%",
@@ -51,7 +66,7 @@ export const site = {
   ],
 } as const;
 
-export type Plan = { months: number; price: number; free?: number; recommended?: boolean; until?: string };
+export type Plan = { months: number; price: number; free?: number; recommended?: boolean; until?: string; hourly?: number };
 
 /** What a plan costs in all, what that comes to a month, and how much it saves against paying the plan price
  *  every month. */

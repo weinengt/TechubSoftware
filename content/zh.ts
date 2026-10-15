@@ -352,7 +352,7 @@ const zh: Dict = {
     intro:
       "我们在马来西亚，专门为本地生意开发系统，帮你接预约、招呼顾客、管库存。系统设定，全部交给我们。",
     values: {
-      cost: { title: "价钱实惠", text: "月费 RM {price} 起。定制 RM {custom} 起，看你的需要。" },
+      cost: { title: "价钱实惠", text: "月费 RM {price} 起。定制按工时收费，每小时 RM {custom} 起。" },
       online: { title: "24 小时在线", text: "保证 {uptime} 在线率，还有多区域备份。" },
       done: { title: "我们帮你搞定", text: "安装、连接硬件、培训员工，我们全包。" },
       custom: { title: "照你的要求做", text: "表格、工作流程、报表和打印格式，都可以定制。" },
@@ -373,7 +373,7 @@ const zh: Dict = {
       systems: { title: "现成系统", text: "诊所、发廊、美容中心和 SPA 的预约系统，还有直播带货系统，拿来就能用。" },
       custom: {
         title: "定制系统开发",
-        text: "ERP、AI 物体识别、车牌识别等等。定制 RM {custom} 起。",
+        text: "ERP、AI 物体识别、车牌识别等等，按工时收费，每小时 RM {custom} 起。",
       },
       hardware: {
         title: "硬件安装",
@@ -382,7 +382,7 @@ const zh: Dict = {
       support: { title: "培训和支援", text: "免费安装和员工培训，之后有大马本地团队在 WhatsApp 支援你。" },
     },
     howTitle: "合作流程",
-    howText: "定制 RM {custom} 起，看你的需要而定。",
+    howText: "按工时收费，每小时 RM {custom} 起。开工前先给你清楚的报价，测试和系统对接免费。",
     howCta: "跟我们聊聊你的需要",
     howMessage: "Hi Techub，我想跟你们聊一下定制系统。",
     steps: ["咨询", "定制", "安装和培训", "正式上线"],
@@ -404,7 +404,7 @@ const zh: Dict = {
   custom: {
     eyebrow: "定制系统",
     title: "需要其他系统？*我们帮你做。*",
-    intro: "除了预约系统，我们也为马来西亚各行各业定制系统。定制 RM {custom} 起，看你的需要而定。",
+    intro: "除了预约系统，我们也为马来西亚各行各业定制系统，按工时收费，每小时 RM {custom} 起。",
     items: {
       erp: { title: "ERP 系统", text: "销售、采购、库存、会计和人事，一个系统全包。" },
       detection: { title: "AI 物体识别", text: "CCTV 镜头自动认出人、车辆、安全装备和物品。" },
@@ -671,7 +671,8 @@ const zh: Dict = {
     plan: "Techub 标准配套",
     from: "低至",
     perMonth: "/ 月",
-    plansText: "可以按月付，选长一点的配套更省。",
+    perHour: "/ 小时",
+    plansText: "适用于诊所、发廊、SPA 按摩和美容中心。可以按月付，选长一点的配套更省。",
     monthly: "月付",
     monthlyText: "按月付费",
     planMonths: "{n} 个月",
@@ -684,6 +685,7 @@ const zh: Dict = {
     averageLabel: "平均",
     youPay: "付款",
     totalLabel: "总共",
+    customRate: "定制",
     choose: "选这个配套",
     planMessage: "Hi Techub，我想了解这个配套：{plan}。",
     welcome: "迎新优惠",
@@ -709,12 +711,59 @@ const zh: Dict = {
     ],
     customTitle: "定制服务",
     customFrom: "起价",
-    customText: "看你的需要：加新功能、报表、打印格式、连接其他系统，甚至整个新系统都可以。",
+    customText: "按工时收费：加新功能、报表、打印格式、连接其他系统，甚至整个新系统都可以。",
+    customPoints: ["开工前给你清楚报价：AI 先预测需要几个小时", "测试和系统对接免费", "价钱实惠，还可以分期付款"],
+    customRates: "各配套的每小时工时费",
+    examplesTitle: "例子",
+    examples: [
+      { type: "诊所", task: "按新 panel 公司要求的格式，导出索赔文件" },
+      { type: "发廊", task: "按你会计师要的格式，导出每月销售文件" },
+      { type: "SPA 按摩", task: "在预约表格加上你自己的问题，例如顾客是怎么知道你的" },
+    ],
+    exampleHours: "大约 {n} 小时",
+    exampleLong: "{plan}配套只需 RM {n}",
+    examplesNote: "以上只是例子，实际报价按你的需求而定。",
     customCta: "索取报价",
     customMessage: "Hi Techub，我想问一下定制系统的报价。",
     customEmail: "电邮联络",
     customEmailSubject: "定制系统报价",
     offerText: "每月 RM {price} 起。新用户前 {months} 个月免费，包安装和员工培训。",
+    extrasTitle: "其他服务",
+    extrasText: "Techub 也提供以下服务，适合马来西亚各行各业。",
+    extrasCta: "WhatsApp 询问",
+    extras: {
+      migration: {
+        title: "数据迁移",
+        label: "一般大约",
+        unit: "/ 小时",
+        text: "把你的资料从旧系统搬过来。",
+        points: ["先和我们的软件工程师谈过再报价", "按时间收费，不按数据量，所以价钱实惠"],
+        note: "",
+        message: "Hi Techub，我想了解数据迁移服务。",
+      },
+      email: {
+        title: "企业邮箱",
+        label: "",
+        unit: "/ 年",
+        text: "用你自己域名的邮箱托管，例如 hello@yourbusiness.com。",
+        points: ["用你自己的域名", "{emailStorage} 储存空间"],
+        note: "",
+        message: "Hi Techub，我想要用自己域名的企业邮箱。",
+      },
+      website: {
+        title: "网站设计和托管",
+        label: "",
+        unit: "",
+        text: "最多 {websitePages} 页的形象网站（landing page），我们帮你设计和托管。",
+        points: [
+          "第一年送域名，之后每年维护费 RM {websiteYear}",
+          "Cloudflare 托管，每分钟超过 100 万次浏览也没问题",
+          "已做好 SEO 和 AI 搜索优化",
+        ],
+        note: "只提供静态网站，不包括产品列表或博客。",
+        message: "Hi Techub，我想做一个网站，包托管。",
+      },
+    },
     // Live Selling System: a row on the pricing page, and the main card on its own page
     liveTitle: "直播带货系统",
     liveFrom: "低至",
@@ -754,7 +803,7 @@ const zh: Dict = {
       },
       {
         q: "收费多少？",
-        a: "月费 RM {price} 起，新客户前 {months} 个月免费，包安装和员工培训。按月付每月 RM {monthly}；选 12、24 或 48 个月配套，每月 RM {planPrice}，分别有 1、3 或 10 个月免费。2026 年 12 月 31 日前，迎新优惠每月只需 RM {price}（60 个月配套）。直播带货系统月费 RM {livePrice} 起。定制 RM {custom} 起，看你的需要而定。",
+        a: "月费 RM {price} 起，新客户前 {months} 个月免费，包安装和员工培训。按月付每月 RM {monthly}；选 12、24 或 48 个月配套，每月 RM {planPrice}，分别有 1、3 或 10 个月免费。2026 年 12 月 31 日前，迎新优惠每月只需 RM {price}（60 个月配套）。直播带货系统月费 RM {livePrice} 起。定制按工时收费：月付配套每小时 RM {customMonthly}，48 个月配套低至每小时 RM {custom}，测试和系统对接免费。",
       },
       {
         q: "顾客可以在网上付订金吗？",
@@ -831,7 +880,7 @@ const zh: Dict = {
     customSystems: {
       meta: {
         title: "马来西亚定制系统开发 | ERP、AI 物体识别、车牌识别",
-        description: "{name} 为马来西亚商家定制系统和软件开发：ERP、AI 物体识别、车牌识别等。定制 RM {custom} 起，看你的需要而定。",
+        description: "{name} 为马来西亚商家定制系统和软件开发：ERP、AI 物体识别、车牌识别等。定制按工时收费，每小时 RM {custom} 起。",
       },
     },
     services: {
@@ -843,7 +892,7 @@ const zh: Dict = {
     pricing: {
       meta: {
         title: "价格 | 预约系统 RM {price}/月起，前 {months} 个月免费",
-        description: "马来西亚预约系统月费 RM {price} 起，新客户前 {months} 个月免费，包安装和员工培训。直播带货系统 RM {livePrice}/月起；定制 RM {custom} 起。",
+        description: "马来西亚预约系统月费 RM {price} 起，新客户前 {months} 个月免费，包安装和员工培训。直播带货系统 RM {livePrice}/月起；定制每小时 RM {custom} 起。",
       },
     },
     about: {
@@ -997,7 +1046,7 @@ const zh: Dict = {
       faqs: [
         {
           q: "马来西亚诊所管理系统多少钱？",
-          a: "Techub 诊所管理系统月费 RM {price} 起，新诊所前 {months} 个月免费，包安装和员工培训。定制 RM {custom} 起，看你的需要而定。",
+          a: "Techub 诊所管理系统月费 RM {price} 起，新诊所前 {months} 个月免费，包安装和员工培训。定制按工时收费，每小时 RM {custom} 起。",
         },
         {
           q: "Techub 诊所系统适合小诊所吗？",

@@ -1,10 +1,10 @@
-import { getDict } from "@/content";
+import { fill, getDict } from "@/content";
 import { getLegal } from "@/content/legal";
 import { customSystems, services, techIcons } from "@/components/Company";
 import { getFeatures, planText } from "@/components/Sections";
 import { plain } from "@/components/Text";
 import { localeName, locales, lp } from "@/lib/i18n";
-import { site, systems, type Plan } from "@/lib/site";
+import { rm, site, systems, type Plan } from "@/lib/site";
 
 export const dynamic = "force-static";
 
@@ -87,7 +87,26 @@ ${site.plans
 - Included: ${t.pricing.included.join("; ")}.
 - ${t.pricing.liveTitle}: from RM ${site.livePriceFrom} per month. ${t.pricing.liveText}
 - Live Selling System includes: ${t.pricing.liveIncluded.join("; ")}.
-- ${t.pricing.customTitle}: from RM ${site.customFrom}. ${t.pricing.customText}
+- ${t.pricing.customTitle}: from RM ${site.customFrom} per work hour. ${t.pricing.customText} ${t.pricing.customPoints.join(". ")}.
+- ${t.pricing.customRates}: ${site.plans
+  .filter((p: Plan) => p.hourly)
+  .map((p: Plan) => `${planText("en", p).name} RM ${p.hourly}`)
+  .join(", ")}.
+- ${t.pricing.examplesTitle}: ${t.pricing.examples
+  .map((x, i) => {
+    const h = site.customExamples[i] ?? 0;
+    return `${x.type}, ${x.task.toLowerCase()}: ${fill(t.pricing.exampleHours, { n: String(h) }).toLowerCase()}, RM ${rm(h * site.plans[0].hourly)}`;
+  })
+  .join("; ")}. ${t.pricing.examplesNote}
+- ${t.pricing.extrasTitle} (also on ${site.url}/services/):
+${(["migration", "email", "website"] as const)
+  .map((k) => {
+    const x = t.pricing.extras[k];
+    const price = { migration: site.migrationHour, email: site.emailYear, website: site.websitePrice }[k];
+    const cost = [x.label.toLowerCase(), `RM ${rm(price)}`, x.unit.replace("/ ", "per ")].filter(Boolean).join(" ");
+    return `  - ${x.title}: ${cost}. ${x.text} ${x.points.join(". ")}.${x.note ? ` ${x.note}` : ""}`;
+  })
+  .join("\n")}
 
 ## Frequently asked questions (${site.url}/faq/)
 ${[...t.faq.items, ...t.techPage.faqs].map((f) => `Q: ${f.q}\nA: ${f.a}`).join("\n\n")}

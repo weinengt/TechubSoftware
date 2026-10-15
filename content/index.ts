@@ -1,6 +1,6 @@
 import type { Locale } from "@/lib/i18n";
 import { shotFiles, type Shot, type ShotKey } from "@/lib/shots";
-import { site } from "@/lib/site";
+import { rm, site } from "@/lib/site";
 import en, { type Dict } from "./en";
 import ms from "./ms";
 import zh from "./zh";
@@ -13,6 +13,13 @@ const values: Record<string, string> = {
   price: String(site.priceFrom),
   months: String(site.freeMonths),
   custom: String(site.customFrom),
+  customMonthly: String(site.plans[0].hourly),
+  migration: rm(site.migrationHour),
+  emailYear: rm(site.emailYear),
+  emailStorage: site.emailStorage,
+  website: rm(site.websitePrice),
+  websiteYear: rm(site.websiteYear),
+  websitePages: String(site.websitePages),
   livePrice: String(site.livePriceFrom),
   monthly: String(site.plans[0].price),
   planPrice: String(site.planPrice),

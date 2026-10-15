@@ -349,7 +349,7 @@ const ms: Dict = {
     intro:
       "Kami berpangkalan di Malaysia dan bina sistem yang bantu bisnes tempatan terima booking, layan pelanggan dan urus stok. Semua setup, kami yang uruskan untuk anda.",
     values: {
-      cost: { title: "Kos rendah", text: "Dari RM {price}/bulan. Custom ikut keperluan anda, dari RM {custom}." },
+      cost: { title: "Kos rendah", text: "Dari RM {price}/bulan. Custom dari RM {custom} sejam kerja." },
       online: { title: "Sentiasa online", text: "Jaminan uptime {uptime}, dengan backup di beberapa lokasi." },
       done: { title: "Semua kami uruskan", text: "Kami pasang sistem, sambung peralatan dan latih staf anda." },
       custom: { title: "Ikut cara anda", text: "Kami custom borang, aliran kerja, laporan dan cetakan." },
@@ -370,7 +370,7 @@ const ms: Dict = {
       systems: { title: "Sistem siap guna", text: "Sistem temujanji untuk klinik, salon, pusat kecantikan dan spa, serta sistem jualan live." },
       custom: {
         title: "Bina sistem custom",
-        text: "ERP, AI pengesanan objek, scanner nombor plat dan banyak lagi. Custom dari RM {custom}.",
+        text: "ERP, AI pengesanan objek, scanner nombor plat dan banyak lagi, dari RM {custom} sejam kerja.",
       },
       hardware: {
         title: "Pasang peralatan",
@@ -379,7 +379,7 @@ const ms: Dict = {
       support: { title: "Latihan & support", text: "Pemasangan dan latihan staf percuma, kemudian support tempatan di Malaysia melalui WhatsApp." },
     },
     howTitle: "Cara kerja kami",
-    howText: "Harga custom bermula dari RM {custom}, ikut keperluan anda.",
+    howText: "Caj ikut jam kerja, dari RM {custom} sejam. Anda dapat sebut harga yang jelas sebelum kami mula, dan ujian serta integrasi percuma.",
     howCta: "Bincang keperluan anda",
     howMessage: "Hai Techub, saya nak bincang pasal sistem custom.",
     steps: ["Konsultasi", "Ubah suai", "Pasang & latih", "Mula guna"],
@@ -401,7 +401,7 @@ const ms: Dict = {
   custom: {
     eyebrow: "Sistem custom",
     title: "Perlu sistem lain? *Kami boleh buat.*",
-    intro: "Selain sistem temujanji, kami juga bina sistem custom untuk apa jua bisnes di Malaysia. Harga custom dari RM {custom}, ikut keperluan anda.",
+    intro: "Selain sistem temujanji, kami juga bina sistem custom untuk apa jua bisnes di Malaysia, dengan caj ikut jam kerja dari RM {custom} sejam.",
     items: {
       erp: { title: "Sistem ERP", text: "Jualan, pembelian, inventori, akaun dan HR dalam satu sistem." },
       detection: { title: "AI pengesanan objek", text: "Kamera yang boleh kesan orang, kenderaan, peralatan keselamatan dan objek secara automatik." },
@@ -671,7 +671,8 @@ const ms: Dict = {
     plan: "Pelan Standard Techub",
     from: "dari",
     perMonth: "/ bulan",
-    plansText: "Bayar bulanan, atau jimat dengan pelan lebih panjang.",
+    perHour: "/ jam",
+    plansText: "Untuk klinik, salun rambut, spa, urut dan pusat kecantikan. Bayar bulanan, atau jimat dengan pelan lebih panjang.",
     monthly: "Bulanan",
     monthlyText: "Bayar bulan ke bulan",
     planMonths: "{n} bulan",
@@ -684,6 +685,7 @@ const ms: Dict = {
     averageLabel: "Purata",
     youPay: "Anda bayar",
     totalLabel: "Jumlah",
+    customRate: "Ubah suai",
     choose: "Pilih pelan",
     planMessage: "Hai Techub, saya berminat dengan pelan ini: {plan}.",
     welcome: "Tawaran Alu-aluan",
@@ -709,12 +711,59 @@ const ms: Dict = {
     ],
     customTitle: "Ubah suai sistem",
     customFrom: "dari",
-    customText: "Ikut keperluan anda: fungsi baru, laporan, cetakan, integrasi atau sistem baru sepenuhnya.",
+    customText: "Bayar ikut jam kerja untuk fungsi baru, laporan, cetakan, integrasi atau sistem baru sepenuhnya.",
+    customPoints: ["Sebut harga yang jelas sebelum kami mula: AI kami ramal jam kerja", "Ujian dan integrasi percuma", "Harga mampu milik, ada pelan ansuran"],
+    customRates: "Kadar sejam kerja, ikut pelan",
+    examplesTitle: "Contoh",
+    examples: [
+      { type: "Klinik", task: "Fail tuntutan dalam format yang syarikat panel baru minta" },
+      { type: "Salun rambut", task: "Fail jualan bulanan dalam format akauntan anda" },
+      { type: "Spa dan urut", task: "Soalan anda sendiri dalam borang tempahan, contohnya dari mana pelanggan kenal anda" },
+    ],
+    exampleHours: "Lebih kurang {n} jam",
+    exampleLong: "RM {n} dengan pelan {plan}",
+    examplesNote: "Contoh sahaja. Sebut harga anda ikut permintaan anda.",
     customCta: "Minta sebut harga",
     customMessage: "Hai Techub, saya nak minta quotation untuk sistem custom.",
     customEmail: "Email kami",
     customEmailSubject: "Minta sebut harga sistem custom",
     offerText: "Dari RM {price} sebulan. {months} bulan pertama percuma untuk pengguna baru, termasuk pemasangan dan latihan staf.",
+    extrasTitle: "Servis lain",
+    extrasText: "Juga dari Techub, untuk apa jua bisnes di Malaysia.",
+    extrasCta: "Tanya di WhatsApp",
+    extras: {
+      migration: {
+        title: "Pemindahan data",
+        label: "Biasanya lebih kurang",
+        unit: "/ jam",
+        text: "Pindahkan rekod anda dari sistem lama.",
+        points: ["Harga ditentukan selepas berbincang dengan jurutera perisian kami", "Caj ikut masa, bukan jumlah data, jadi harganya berpatutan"],
+        note: "",
+        message: "Hai Techub, saya nak tanya tentang pemindahan data.",
+      },
+      email: {
+        title: "E-mel perniagaan",
+        label: "",
+        unit: "/ tahun",
+        text: "Hosting e-mel dengan domain anda sendiri, contohnya hello@bisnesanda.com.",
+        points: ["Nama domain anda sendiri", "Storan {emailStorage}"],
+        note: "",
+        message: "Hai Techub, saya nak e-mel perniagaan dengan domain sendiri.",
+      },
+      website: {
+        title: "Reka laman web dan hosting",
+        label: "",
+        unit: "",
+        text: "Laman web landing page sehingga {websitePages} muka surat, kami reka dan hoskan untuk anda.",
+        points: [
+          "Domain percuma untuk tahun pertama, kemudian RM {websiteYear} setahun untuk penyelenggaraan",
+          "Hosting Cloudflare yang mampu tampung lebih 1 juta paparan seminit",
+          "Dioptimumkan untuk SEO dan carian AI",
+        ],
+        note: "Laman web statik sahaja, tanpa senarai produk atau blog.",
+        message: "Hai Techub, saya nak buat laman web dengan hosting.",
+      },
+    },
     // Live Selling System: a row on the pricing page, and the main card on its own page
     liveTitle: "Sistem Jualan Live",
     liveFrom: "dari",
@@ -755,7 +804,7 @@ const ms: Dict = {
       },
       {
         q: "Berapa harganya?",
-        a: "Pelan bermula dari RM {price} sebulan, dan pelanggan baru dapat {months} bulan pertama percuma, termasuk pemasangan dan latihan staf. Bayar RM {monthly} bulan ke bulan, atau RM {planPrice} sebulan untuk pelan 12, 24 atau 48 bulan dengan 1, 3 atau 10 bulan percuma. Sehingga 31 Dis 2026, Tawaran Alu-aluan kami hanya RM {price} sebulan untuk pelan 60 bulan. Sistem Jualan Live bermula dari RM {livePrice} sebulan. Harga custom bermula dari RM {custom}, ikut keperluan anda.",
+        a: "Pelan bermula dari RM {price} sebulan, dan pelanggan baru dapat {months} bulan pertama percuma, termasuk pemasangan dan latihan staf. Bayar RM {monthly} bulan ke bulan, atau RM {planPrice} sebulan untuk pelan 12, 24 atau 48 bulan dengan 1, 3 atau 10 bulan percuma. Sehingga 31 Dis 2026, Tawaran Alu-aluan kami hanya RM {price} sebulan untuk pelan 60 bulan. Sistem Jualan Live bermula dari RM {livePrice} sebulan. Custom dicaj ikut jam kerja: RM {customMonthly} sejam untuk pelan bulanan, serendah RM {custom} untuk pelan 48 bulan, dengan ujian dan integrasi percuma.",
       },
       {
         q: "Pelanggan saya boleh bayar deposit online?",
@@ -833,7 +882,7 @@ const ms: Dict = {
       meta: {
         title: "Buat Sistem Custom Malaysia | ERP, AI & Scanner Nombor Plat",
         description:
-          "Kami bina sistem custom untuk bisnes anda di Malaysia: ERP, AI pengesanan objek, scanner nombor plat dan lagi. Ubah suai dari RM {custom}, ikut keperluan.",
+          "Kami bina sistem custom untuk bisnes anda di Malaysia: ERP, AI pengesanan objek, scanner nombor plat dan lagi. Ubah suai dari RM {custom} sejam kerja.",
       },
     },
     services: {
@@ -847,7 +896,7 @@ const ms: Dict = {
       meta: {
         title: "Harga | Dari RM {price}/bulan, {months} Bulan Pertama Percuma",
         description:
-          "Sistem temujanji di Malaysia dari RM {price}/bulan, {months} bulan pertama percuma termasuk pemasangan dan latihan. Jualan live dari RM {livePrice}/bulan; custom dari RM {custom}.",
+          "Sistem temujanji di Malaysia dari RM {price}/bulan, {months} bulan pertama percuma termasuk pemasangan dan latihan. Jualan live dari RM {livePrice}/bulan; custom dari RM {custom}/jam.",
       },
     },
     about: {
@@ -1034,7 +1083,7 @@ const ms: Dict = {
       faqs: [
         {
           q: "Berapa harga sistem klinik di Malaysia?",
-          a: "Sistem klinik Techub bermula dari RM {price}/bulan, dan klinik baru dapat {months} bulan pertama percuma, termasuk pemasangan dan latihan staf. Harga custom bermula dari RM {custom}, ikut keperluan anda.",
+          a: "Sistem klinik Techub bermula dari RM {price}/bulan, dan klinik baru dapat {months} bulan pertama percuma, termasuk pemasangan dan latihan staf. Custom dicaj ikut jam kerja, dari RM {custom} sejam.",
         },
         {
           q: "Sistem klinik Techub sesuai untuk klinik kecil?",

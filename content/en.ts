@@ -1,7 +1,9 @@
 // All English text on the site. ms.ts (Bahasa Melayu) and zh.ts (Simplified Chinese) have the same keys.
 //
 // Placeholders are filled in from lib/site.ts, so prices and contact details only change there:
-//   {name} company name · {price} monthly price · {months} free months · {custom} customisation price
+//   {name} company name · {price} monthly price · {months} free months · {custom} lowest customisation rate per work hour
+//   {customMonthly} customisation rate per work hour on the monthly plan
+//   {migration} {emailYear} {emailStorage} {website} {websiteYear} {websitePages} prices of the other services
 //   {livePrice} Live Selling System monthly price · {uptime} uptime · {phone} WhatsApp number · {email} email address
 //   {monthly} Standard Plan paid month to month · {planPrice} Standard Plan per month on 12 to 48 months
 // Words between *asterisks* are shown in the blue gradient colour (headings only).
@@ -356,7 +358,7 @@ const en = {
     intro:
       "We are based in Malaysia and build systems that help local businesses take bookings, serve customers and manage stock. Then we set everything up for you.",
     values: {
-      cost: { title: "Low cost", text: "From RM {price}/month. Customisation from RM {custom}, based on your needs." },
+      cost: { title: "Low cost", text: "From RM {price}/month. Customisation from RM {custom} per work hour." },
       online: { title: "Always online", text: "{uptime} uptime guarantee, with multi-region backups." },
       done: { title: "Done for you", text: "We install, connect your hardware and train your staff." },
       custom: { title: "Built your way", text: "We customise forms, workflows, reports and printouts." },
@@ -377,7 +379,7 @@ const en = {
       systems: { title: "Ready-made systems", text: "Appointment systems for clinics, salons, beauty centres and spas, plus live selling." },
       custom: {
         title: "Custom system development",
-        text: "ERP, AI object detection, number plate scanners and more. Customisation from RM {custom}.",
+        text: "ERP, AI object detection, number plate scanners and more, from RM {custom} per work hour.",
       },
       hardware: {
         title: "Hardware setup",
@@ -386,7 +388,7 @@ const en = {
       support: { title: "Training & support", text: "Free installation and staff training, then local support in Malaysia on WhatsApp." },
     },
     howTitle: "How we work",
-    howText: "Customisation starts from RM {custom}, based on your requirements.",
+    howText: "Charged by the work hour, from RM {custom}. You get a clear quote before we start, and testing and integration are free.",
     howCta: "Discuss your needs",
     howMessage: "Hi Techub, I'd like to discuss a customised system.",
     steps: ["Consult", "Customise", "Install & train", "Go live"],
@@ -408,7 +410,7 @@ const en = {
   custom: {
     eyebrow: "Custom systems",
     title: "Need another system? *We build it.*",
-    intro: "Beyond appointment systems, we build custom systems for any business in Malaysia. Customisation from RM {custom}, based on your requirements.",
+    intro: "Beyond appointment systems, we build custom systems for any business in Malaysia, charged by the work hour from RM {custom}.",
     items: {
       erp: { title: "ERP system", text: "Sales, purchasing, inventory, accounting and HR in one system." },
       detection: { title: "AI object detection", text: "Cameras that spot people, vehicles, safety gear and objects automatically." },
@@ -671,9 +673,10 @@ const en = {
     plan: "Techub Standard Plan",
     from: "from",
     perMonth: "/ month",
+    perHour: "/ hour",
     // The ways to pay (plans in lib/site.ts), a card each. {n} is a number, {date} the Welcome offer's last day and
     // {plan} a plan's name.
-    plansText: "Pay monthly, or save with a longer plan.",
+    plansText: "For clinics, hair salons, spas, massage and beauty centres. Pay monthly, or save with a longer plan.",
     monthly: "Monthly",
     monthlyText: "Pay month by month",
     planMonths: "{n} months",
@@ -686,6 +689,7 @@ const en = {
     averageLabel: "Average",
     youPay: "You pay",
     totalLabel: "Total",
+    customRate: "Customisation",
     choose: "Choose plan",
     planMessage: "Hi Techub, I'm interested in this plan: {plan}.",
     welcome: "Welcome offer",
@@ -711,12 +715,62 @@ const en = {
     ],
     customTitle: "Customisation",
     customFrom: "from",
-    customText: "Based on your requirements: new features, reports, printouts, integrations or a whole new system.",
+    // Customisation is charged per work hour, at the rate of the customer's plan (`hourly` in lib/site.ts)
+    customText: "Pay by the work hour for new features, reports, printouts, integrations or a whole new system.",
+    customPoints: ["A clear quote before we start: our AI predicts the hours", "Free testing and integration", "Affordable, with instalment plans"],
+    customRates: "Rate per work hour, by plan",
+    examplesTitle: "Examples",
+    // The hours each takes are customExamples in lib/site.ts, in the same order. {n} is a price, {plan} a plan's name.
+    examples: [
+      { type: "Clinic", task: "A claim file in the format a new panel company asks for" },
+      { type: "Hair salon", task: "A monthly sales file in your accountant's format" },
+      { type: "Spa and massage", task: "Your own question on the booking form, like how the customer found you" },
+    ],
+    exampleHours: "About {n} hours",
+    exampleLong: "RM {n} on {plan}",
+    examplesNote: "Examples only. Your quote is based on your request.",
     customCta: "Get a quote",
     customMessage: "Hi Techub, I need a customised system quote.",
     customEmail: "Email us",
     customEmailSubject: "Customised system quote",
     offerText: "From RM {price} per month. First {months} months free for new users, including installation and staff training.",
+    // Other services (prices in lib/site.ts), a card each on the Pricing and Services pages
+    extrasTitle: "More services",
+    extrasText: "Also from Techub, for any business in Malaysia.",
+    extrasCta: "Ask on WhatsApp",
+    extras: {
+      migration: {
+        title: "Data migration",
+        label: "Usually about",
+        unit: "/ hour",
+        text: "Move your records from your old system.",
+        points: ["Priced after a talk with our software engineer", "Charged by time, not data volume, so it stays affordable"],
+        note: "",
+        message: "Hi Techub, I'd like to ask about data migration.",
+      },
+      email: {
+        title: "Business email",
+        label: "",
+        unit: "/ year",
+        text: "Email hosting on your own domain, like hello@yourbusiness.com.",
+        points: ["Your own domain name", "{emailStorage} of storage"],
+        note: "",
+        message: "Hi Techub, I'd like business email on my own domain.",
+      },
+      website: {
+        title: "Website design and hosting",
+        label: "",
+        unit: "",
+        text: "A landing page website of up to {websitePages} pages, designed and hosted for you.",
+        points: [
+          "Free domain for the first year, then RM {websiteYear} a year for maintenance",
+          "Cloudflare hosting that handles over 1 million views a minute",
+          "Optimised for SEO and AI search",
+        ],
+        note: "Static websites only, without product listings or a blog.",
+        message: "Hi Techub, I'd like a website designed and hosted.",
+      },
+    },
     // Live Selling System: a row on the pricing page, and the main card on its own page
     liveTitle: "Live Selling System",
     liveFrom: "from",
@@ -757,7 +811,7 @@ const en = {
       },
       {
         q: "How much does it cost?",
-        a: "Plans start from RM {price} per month, and new customers get the first {months} months free, including installation and staff training. Pay RM {monthly} month by month, or RM {planPrice} a month on 12, 24 or 48 months with 1, 3 or 10 months free. Until 31 Dec 2026, our Welcome offer is RM {price} a month on a 60-month plan. The Live Selling System starts from RM {livePrice} per month. Customisation starts from RM {custom}, depending on your requirements.",
+        a: "Plans start from RM {price} per month, and new customers get the first {months} months free, including installation and staff training. Pay RM {monthly} month by month, or RM {planPrice} a month on 12, 24 or 48 months with 1, 3 or 10 months free. Until 31 Dec 2026, our Welcome offer is RM {price} a month on a 60-month plan. The Live Selling System starts from RM {livePrice} per month. Customisation is charged by the work hour, from RM {customMonthly} an hour on the monthly plan down to RM {custom} on 48 months, with free testing and integration.",
       },
       {
         q: "Can my customers pay a deposit online?",
@@ -835,7 +889,7 @@ const en = {
       meta: {
         title: "Custom Software Development Malaysia | ERP & AI",
         description:
-          "Custom systems built for your business in Malaysia: ERP, AI object detection, number plate recognition and more. Customisation from RM {custom}.",
+          "Custom systems built for your business in Malaysia: ERP, AI object detection, number plate recognition and more. Customisation from RM {custom} per work hour.",
       },
     },
     services: {
@@ -849,7 +903,7 @@ const en = {
       meta: {
         title: "Pricing | From RM {price}/month, First {months} Months Free",
         description:
-          "Appointment systems in Malaysia from RM {price}/month, first {months} months free with installation and training. Live selling from RM {livePrice}/month; custom from RM {custom}.",
+          "Appointment systems in Malaysia from RM {price}/month, first {months} months free with installation and training. Live selling from RM {livePrice}/month; custom work from RM {custom}/hour.",
       },
     },
     about: {
@@ -1006,7 +1060,7 @@ const en = {
       faqs: [
         {
           q: "How much does a clinic management system cost in Malaysia?",
-          a: "Techub's clinic system in Malaysia starts from RM {price}/month, and new clinics get the first {months} months free, including installation and staff training. Customisation starts from RM {custom}, based on your needs.",
+          a: "Techub's clinic system in Malaysia starts from RM {price}/month, and new clinics get the first {months} months free, including installation and staff training. Customisation is charged by the work hour, from RM {custom} an hour.",
         },
         {
           q: "Is the Techub clinic system suitable for small clinics?",
