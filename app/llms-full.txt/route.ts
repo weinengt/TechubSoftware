@@ -4,7 +4,7 @@ import { customSystems, services, techIcons } from "@/components/Company";
 import { getFeatures, planText } from "@/components/Sections";
 import { plain } from "@/components/Text";
 import { localeName, locales, lp } from "@/lib/i18n";
-import { site, systems } from "@/lib/site";
+import { site, systems, type Plan } from "@/lib/site";
 
 export const dynamic = "force-static";
 
@@ -77,9 +77,10 @@ ${list(Object.values(t.hardware.items))}
 ## Pricing (${site.url}/pricing/)
 - ${t.pricing.plan}: from RM ${site.priceFrom} per month.
 ${site.plans
-  .map((p) => {
+  .map((p: Plan) => {
     const x = planText("en", p);
-    return `- ${[x.name, x.free].filter(Boolean).join(", ")}: RM ${p.price} per month. ${x.lines.map((l) => l.text).join(". ")}.`;
+    const name = [x.offer, x.name, x.free].filter(Boolean).join(", ") + (p.recommended ? ` (${t.pricing.recommended.toLowerCase()})` : "");
+    return `- ${name}: RM ${p.price} per month. ${x.lines.map((l) => l.text).join(". ")}.`;
   })
   .join("\n")}
 - ${t.pricing.free}

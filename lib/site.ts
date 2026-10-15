@@ -21,12 +21,13 @@ export const site = {
   /** Live Selling System, per month. */
   livePriceFrom: 199,
   /** The ways to pay for the Standard Plan, per month. A plan's free months are inside its length, so 12 months
-   *  with 1 free is 11 paid months. `until` is the last day of a promotion. */
+   *  with 1 free is 11 paid months. `recommended` is the plan the pricing cards point visitors to. The plan with
+   *  `until` is the Welcome offer, a promotion that ends on that day. */
   plans: [
     { months: 1, price: 178 },
     { months: 12, price: 148, free: 1 },
     { months: 24, price: 148, free: 3 },
-    { months: 48, price: 148, free: 10 },
+    { months: 48, price: 148, free: 10, recommended: true },
     { months: 60, price: 99, until: "2026-12-31" },
   ],
   /** What each month costs on the 12 to 48-month plans; savings are counted against it. */
@@ -50,7 +51,7 @@ export const site = {
   ],
 } as const;
 
-export type Plan = { months: number; price: number; free?: number; until?: string };
+export type Plan = { months: number; price: number; free?: number; recommended?: boolean; until?: string };
 
 /** What a plan costs in all, what that comes to a month, and how much it saves against paying the plan price
  *  every month. */

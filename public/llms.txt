@@ -75,8 +75,8 @@ Every page has a Bahasa Melayu version under /ms/, for people who search in Mala
   - Monthly: RM 178 per month, paid month by month
   - 12 months with 1 month free: RM 148 per month, RM 1,628 in total (average RM 135.67 per month), save RM 148
   - 24 months with 3 months free: RM 148 per month, RM 3,108 in total (average RM 129.50 per month), save RM 444
-  - 48 months with 10 months free: RM 148 per month, RM 5,624 in total (average RM 117.17 per month), save RM 1,480
-  - 60 months, a promotion until 31 Dec 2026: RM 99 per month, RM 5,940 in total, save RM 2,940
+  - 48 months with 10 months free (recommended): RM 148 per month, RM 5,624 in total (average RM 117.17 per month), save RM 1,480
+  - Welcome offer, 60 months, until 31 Dec 2026: RM 99 per month, RM 5,940 in total, save RM 2,940
 - New users: first 3 months free, including staff training and installation
 - Live Selling System: from RM 199 per month
 - Customisation: from RM 300, depending on requirements

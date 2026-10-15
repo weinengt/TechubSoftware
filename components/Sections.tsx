@@ -60,9 +60,9 @@ export function SectionHeading({
   );
 }
 
-export function CheckList({ items, className = "" }: { items: string[]; className?: string }) {
+export function CheckList({ items, columns = false, className = "" }: { items: string[]; columns?: boolean; className?: string }) {
   return (
-    <ul className={`space-y-3 ${className}`}>
+    <ul className={`${columns ? "grid gap-x-8 gap-y-3 sm:grid-cols-2" : "space-y-3"} ${className}`}>
       {items.map((t) => (
         <li key={t} className="flex gap-3 text-slate-700" data-reveal>
           <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-500 text-white">
@@ -160,37 +160,10 @@ export function PricingSection({ lang, page, plan = "all" }: { lang: Locale; pag
     <section id="pricing" className={`${page ? pageTop : "pt-20 sm:pt-24"} pb-20 sm:pb-24`}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeading eyebrow={t.eyebrow} title={t.title} page={page} />
-        <div className="mx-auto mt-12 grid max-w-5xl items-stretch gap-6 lg:grid-cols-5">
-          <div className="relative overflow-hidden rounded-3xl bg-brand-gradient p-7 text-white shadow-2xl shadow-brand-500/30 sm:p-8 lg:col-span-3" data-reveal="zoom">
-            <div className="bg-grid absolute inset-0 opacity-20" aria-hidden="true" />
-            <div className="relative flex h-full flex-col">
-              <p className="inline-flex items-center gap-2 rounded-full bg-white/20 px-3 py-1 text-xs font-bold tracking-wide uppercase">
-                {live ? <Icon.Live className="h-4 w-4" /> : <Icon.Gift className="h-4 w-4" />} {live ? t.liveBadge : t.offer}
-              </p>
-              <h3 className="mt-5 text-2xl font-bold">{live ? t.livePlan : t.plan}</h3>
-              <p className="mt-5 flex flex-wrap items-end gap-x-2">
-                <span className="text-lg font-semibold text-white/80">{t.from}</span>
-                <span className="text-5xl font-extrabold tracking-tight sm:text-6xl">RM {live ? site.livePriceFrom : site.priceFrom}</span>
-                <span className="pb-1.5 text-lg font-semibold text-white/80">{t.perMonth}</span>
-              </p>
-              <p className="mt-5 rounded-2xl bg-white/15 p-4 text-base font-semibold">{live ? t.liveNote : t.free}</p>
-              <a
-                href={whatsappLink(live ? t.liveMessage : t.claimMessage)}
-                target="_blank"
-                rel="noopener"
-                className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-bold text-brand-800 shadow-lg transition hover:bg-brand-50 lg:mt-auto"
-              >
-                <Icon.Whatsapp className="h-5 w-5 text-whatsapp" /> {live ? t.liveCta : t.claim}
-              </a>
-            </div>
-          </div>
-          <div className="card p-7 sm:p-8 lg:col-span-2" data-reveal>
-            <h3 className="text-lg font-bold text-slate-900">{t.includedTitle}</h3>
-            <CheckList items={live ? t.liveIncluded : t.included} className="mt-5" />
-          </div>
-          {!live && <Plans lang={lang} />}
+        {live ? <LivePlan lang={lang} /> : <Plans lang={lang} />}
+        <div className={`mx-auto mt-6 grid gap-6 ${live ? "max-w-5xl" : "max-w-6xl"}`}>
           {plan === "all" && (
-            <div className="card flex flex-col gap-5 p-6 sm:p-7 lg:col-span-5 lg:flex-row lg:items-center lg:gap-8" data-reveal>
+            <div className="card flex flex-col gap-5 p-6 sm:p-7 lg:flex-row lg:items-center lg:gap-8" data-reveal>
               <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-brand-gradient text-white shadow-lg shadow-brand-500/25">
                 <Icon.Live className="h-7 w-7" />
               </span>
@@ -216,7 +189,7 @@ export function PricingSection({ lang, page, plan = "all" }: { lang: Locale; pag
               </div>
             </div>
           )}
-          <div className="card flex flex-col gap-5 p-6 sm:p-7 lg:col-span-5 lg:flex-row lg:items-center lg:gap-8" data-reveal>
+          <div className="card flex flex-col gap-5 p-6 sm:p-7 lg:flex-row lg:items-center lg:gap-8" data-reveal>
             <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-brand-gradient text-white shadow-lg shadow-brand-500/25">
               <Icon.Code className="h-7 w-7" />
             </span>
@@ -245,77 +218,226 @@ export function PricingSection({ lang, page, plan = "all" }: { lang: Locale; pag
   );
 }
 
-/** A plan's name, free months and the lines under its price, in the page's language. */
+/** The Live Selling plan as the main card, with what it includes beside it (the Live Selling System page). */
+function LivePlan({ lang }: { lang: Locale }) {
+  const t = getDict(lang).pricing;
+  return (
+    <div className="mx-auto mt-12 grid max-w-5xl items-stretch gap-6 lg:grid-cols-5">
+      <div className="relative overflow-hidden rounded-3xl bg-brand-gradient p-7 text-white shadow-2xl shadow-brand-500/30 sm:p-8 lg:col-span-3" data-reveal="zoom">
+        <div className="bg-grid absolute inset-0 opacity-20" aria-hidden="true" />
+        <div className="relative flex h-full flex-col">
+          <p className="inline-flex items-center gap-2 rounded-full bg-white/20 px-3 py-1 text-xs font-bold tracking-wide uppercase">
+            <Icon.Live className="h-4 w-4" /> {t.liveBadge}
+          </p>
+          <h3 className="mt-5 text-2xl font-bold">{t.livePlan}</h3>
+          <p className="mt-5 flex flex-wrap items-end gap-x-2">
+            <span className="text-lg font-semibold text-white/80">{t.from}</span>
+            <span className="text-5xl font-extrabold tracking-tight sm:text-6xl">RM {site.livePriceFrom}</span>
+            <span className="pb-1.5 text-lg font-semibold text-white/80">{t.perMonth}</span>
+          </p>
+          <p className="mt-5 rounded-2xl bg-white/15 p-4 text-base font-semibold">{t.liveNote}</p>
+          <a
+            href={whatsappLink(t.liveMessage)}
+            target="_blank"
+            rel="noopener"
+            className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-bold text-brand-800 shadow-lg transition hover:bg-brand-50 lg:mt-auto"
+          >
+            <Icon.Whatsapp className="h-5 w-5 text-whatsapp" /> {t.liveCta}
+          </a>
+        </div>
+      </div>
+      <div className="card p-7 sm:p-8 lg:col-span-2" data-reveal>
+        <h3 className="text-lg font-bold text-slate-900">{t.includedTitle}</h3>
+        <CheckList items={t.liveIncluded} className="mt-5" />
+      </div>
+    </div>
+  );
+}
+
+/** A plan's name, free months, saving and last day, and the lines under its price, in the page's language. `offer`
+ *  is the Welcome offer's name, for the plan that is a promotion. */
 export function planText(lang: Locale, p: Plan) {
   const t = getDict(lang).pricing;
   const n = (s: string, v: number) => fill(s, { n: rm(v) });
   const free = p.free ?? 0;
   const long = p.months > 1;
   const until = p.until
-    ? new Intl.DateTimeFormat(htmlLang[lang], { day: "numeric", month: "short", year: "numeric", timeZone: "Asia/Kuala_Lumpur" }).format(
-        new Date(`${p.until}T12:00:00+08:00`),
-      )
+    ? fill(t.promoUntil, {
+        date: new Intl.DateTimeFormat(htmlLang[lang], { day: "numeric", month: "short", year: "numeric", timeZone: "Asia/Kuala_Lumpur" }).format(
+          new Date(`${p.until}T12:00:00+08:00`),
+        ),
+      })
     : "";
+  const save = long ? n(t.save, planSave(p)) : "";
   const lines: { text: string; save?: boolean }[] = [
     { text: long ? n(t.total, planTotal(p)) : t.monthlyText },
     { text: free ? n(t.average, planAverage(p)) : "" },
-    { text: long ? n(t.save, planSave(p)) : "", save: true },
-    { text: until ? fill(t.promoUntil, { date: until }) : "" },
+    { text: save, save: true },
+    { text: until },
   ];
   return {
+    offer: p.until ? t.welcome : "",
     name: long ? n(t.planMonths, p.months) : t.monthly,
     free: free ? n(free === 1 ? t.freeOne : t.freeMany, free) : "",
+    save,
+    until,
     lines: lines.filter((l) => l.text),
   };
 }
 
-/** The ways to pay for the Standard Plan, a card each: what a month costs, and for longer plans their free months,
- *  total, average and saving. A promotion is the dark card, with its last day. */
+/** Grid positions from tablets up, so the cards run from Monthly to 48 months there (phones keep the page order). */
+const fromShortest = ["sm:order-1", "sm:order-2", "sm:order-3", "sm:order-4"];
+
+/** The ways to pay for the Standard Plan, a card each, like a VPN price list: what a month comes to, the free months
+ *  and the saving, with the recommended plan standing out. On phones the longest plan comes first. The Welcome offer
+ *  (the plan with a last day) follows as a wide dark card, then what every plan includes. */
 function Plans({ lang }: { lang: Locale }) {
   const t = getDict(lang).pricing;
+  const plans: Plan[] = site.plans.filter((p: Plan) => !p.until).reverse();
+  const welcome: Plan | undefined = site.plans.find((p: Plan) => p.until);
   return (
-    <div className="lg:col-span-5">
-      <div className="pt-4 text-center" data-reveal>
-        <h3 className="text-xl font-bold text-slate-900 sm:text-2xl">{t.plansTitle}</h3>
+    <div className="mx-auto mt-10 max-w-6xl">
+      <div className="text-center" data-reveal>
+        <h3 className="text-xl font-bold text-slate-900 sm:text-2xl">{t.plan}</h3>
         <p className="mt-1.5 text-sm text-slate-600 sm:text-base">{t.plansText}</p>
       </div>
-      <ul className="mt-6 grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
-        {site.plans.map((p: Plan) => {
-          const x = planText(lang, p);
-          const promo = Boolean(p.until);
-          return (
-            <li
-              key={p.months}
-              className={`rounded-2xl p-4 sm:p-5 ${promo ? "bg-slate-900 text-white shadow-xl shadow-brand-500/20 ring-2 ring-brand-500 sm:col-span-2" : "card"}`}
-              data-reveal
-            >
-              {promo && (
-                <p className="mb-3 inline-flex items-center gap-1.5 rounded-full bg-brand-gradient px-3 py-1 text-xs font-bold tracking-wide text-white uppercase">
-                  <Icon.Star className="h-3.5 w-3.5 shrink-0 fill-amber-300 text-amber-300" /> {t.promo}
-                </p>
-              )}
-              <div className="flex items-start justify-between gap-3">
-                <div className="min-w-0">
-                  <p className={`text-base font-bold sm:text-lg ${promo ? "text-white" : "text-slate-900"}`}>{x.name}</p>
-                  {x.free && <p className="mt-1 inline-flex rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-bold text-emerald-700">{x.free}</p>}
-                </div>
-                {/* The price keeps its "/month" on its line */}
-                <p className="flex shrink-0 items-baseline gap-1 whitespace-nowrap">
-                  <span className={`text-2xl font-extrabold tracking-tight sm:text-3xl ${promo ? "text-white" : "text-gradient"}`}>RM {p.price}</span>
-                  <span className={`text-sm font-semibold ${promo ? "text-white/70" : "text-slate-500"}`}>{t.perMonth}</span>
-                </p>
-              </div>
-              <p className={`mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm ${promo ? "text-white/80" : "text-slate-600"}`}>
-                {x.lines.map((l) => (
-                  <span key={l.text} className={l.save ? `font-semibold ${promo ? "text-emerald-300" : "text-emerald-700"}` : undefined}>
-                    {l.text}
-                  </span>
-                ))}
-              </p>
-            </li>
-          );
-        })}
+      <div
+        className="mx-auto mt-6 flex max-w-3xl flex-col items-center gap-3 rounded-2xl border border-brand-100 bg-brand-50/70 p-4 text-center sm:flex-row sm:gap-4 sm:p-5 sm:text-left"
+        data-reveal
+      >
+        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-gradient text-white shadow-lg shadow-brand-500/25">
+          <Icon.Gift className="h-5 w-5" />
+        </span>
+        <p className="flex-1 text-sm leading-relaxed font-semibold text-brand-900 sm:text-base">{t.free}</p>
+        <a href={whatsappLink(t.claimMessage)} target="_blank" rel="noopener" className="btn-primary shrink-0 px-5 py-2.5">
+          <Icon.Whatsapp className="h-4 w-4" /> {t.claim}
+        </a>
+      </div>
+      <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-4">
+        {plans.map((p, i) => (
+          <PlanCard key={p.months} lang={lang} p={p} className={fromShortest[plans.length - 1 - i] ?? ""} />
+        ))}
       </ul>
+      {welcome && <WelcomeCard lang={lang} p={welcome} />}
+      <div className="card mt-6 p-6 sm:p-8" data-reveal>
+        <h3 className="text-lg font-bold text-slate-900">{t.plansIncluded}</h3>
+        <CheckList items={t.included} columns className="mt-5" />
+      </div>
+    </div>
+  );
+}
+
+/** One way to pay, as a card: the free months and saving (one under the other from tablets up, so the prices in a
+ *  row line up), what a month comes to (on average, for plans with free months), what is paid each month and in
+ *  all, and a button that asks for it on WhatsApp. */
+function PlanCard({ lang, p, className }: { lang: Locale; p: Plan; className: string }) {
+  const t = getDict(lang).pricing;
+  const x = planText(lang, p);
+  const best = Boolean(p.recommended);
+  const long = p.months > 1;
+  return (
+    <li
+      className={`relative flex flex-col rounded-3xl border bg-white p-6 lg:p-5 xl:p-6 ${
+        best
+          ? "border-transparent shadow-2xl shadow-brand-500/20 ring-2 ring-brand-500"
+          : "border-slate-200/80 shadow-[0_1px_2px_rgb(15_23_42/0.04),0_8px_24px_-12px_rgb(15_23_42/0.12)]"
+      } ${className}`}
+      data-reveal
+    >
+      {best && (
+        <p className="absolute -top-3.5 left-1/2 inline-flex -translate-x-1/2 items-center gap-1.5 rounded-full bg-brand-gradient px-3.5 py-1 text-xs font-bold tracking-wide whitespace-nowrap text-white uppercase shadow-lg shadow-brand-500/30">
+          <Icon.Star className="h-3.5 w-3.5 fill-amber-300 text-amber-300" /> {t.recommended}
+        </p>
+      )}
+      <div className="flex-1">
+        <h4 className="text-lg font-bold text-slate-900">{x.name}</h4>
+        <p className="mt-2 flex flex-wrap gap-1.5 sm:min-h-12 sm:flex-col sm:items-start">
+          {long ? (
+            <>
+              {x.free && (
+                <span className="inline-flex items-center gap-1 rounded-full bg-brand-50 px-2.5 py-0.5 text-xs font-bold text-brand-700">
+                  <Icon.Gift className="h-3.5 w-3.5" /> {x.free}
+                </span>
+              )}
+              <span className="rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-bold text-emerald-700">{x.save}</span>
+            </>
+          ) : (
+            <span className="text-sm text-slate-500">{t.monthlyText}</span>
+          )}
+        </p>
+        <p className="mt-5 min-h-4 text-xs font-semibold tracking-wide text-slate-500 uppercase">{x.free ? t.averageLabel : ""}</p>
+        {/* The price keeps its "/month" on its line */}
+        <p className="mt-0.5 flex items-baseline gap-1 whitespace-nowrap">
+          <span className="text-lg font-bold text-slate-900">RM</span>
+          <span className={`text-4xl font-extrabold tracking-tight lg:text-3xl xl:text-4xl ${best ? "text-gradient" : "text-slate-900"}`}>
+            {rm(x.free ? planAverage(p) : p.price)}
+          </span>
+          <span className="text-sm font-semibold text-slate-500">{t.perMonth}</span>
+        </p>
+        {long && (
+          <dl className="mt-5 space-y-2 border-t border-slate-100 pt-4 text-sm">
+            <div className="flex items-baseline justify-between gap-3">
+              <dt className="text-slate-500">{t.youPay}</dt>
+              <dd className="font-semibold whitespace-nowrap text-slate-900">
+                RM {rm(p.price)} {t.perMonth}
+              </dd>
+            </div>
+            <div className="flex items-baseline justify-between gap-3">
+              <dt className="text-slate-500">{t.totalLabel}</dt>
+              <dd className="font-semibold whitespace-nowrap text-slate-900">RM {rm(planTotal(p))}</dd>
+            </div>
+          </dl>
+        )}
+      </div>
+      <a
+        href={whatsappLink(fill(t.planMessage, { plan: x.name }))}
+        target="_blank"
+        rel="noopener"
+        aria-label={`${t.choose}: ${x.name}`}
+        className={`${best ? "btn-primary" : "btn-secondary"} mt-6 w-full`}
+      >
+        <Icon.Whatsapp className={`h-5 w-5 ${best ? "" : "text-whatsapp"}`} /> {t.choose}
+      </a>
+    </li>
+  );
+}
+
+/** The Welcome offer, a promotion with a last day, as a wide dark card under the plans. */
+function WelcomeCard({ lang, p }: { lang: Locale; p: Plan }) {
+  const t = getDict(lang).pricing;
+  const x = planText(lang, p);
+  return (
+    <div className="relative mt-8 overflow-hidden rounded-3xl bg-slate-900 p-6 text-white shadow-2xl shadow-brand-900/30 ring-1 ring-white/10 sm:p-8" data-reveal>
+      <div className="bg-grid absolute inset-0 opacity-30" aria-hidden="true" />
+      <div className="absolute -top-28 -right-20 h-72 w-72 rounded-full bg-brand-500/25 blur-3xl" aria-hidden="true" />
+      <div className="relative flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
+        <div className="min-w-0">
+          <p className="inline-flex items-center gap-1.5 rounded-full bg-brand-gradient px-3 py-1 text-xs font-bold tracking-wide text-white uppercase">
+            <Icon.Star className="h-3.5 w-3.5 fill-amber-300 text-amber-300" /> {x.offer}
+          </p>
+          <h4 className="mt-3 text-2xl font-bold">{x.name}</h4>
+          <p className="mt-1 text-sm text-white/70">{x.until}</p>
+        </div>
+        <div>
+          <p className="flex items-baseline gap-1 whitespace-nowrap">
+            <span className="text-lg font-bold">RM</span>
+            <span className="text-gradient-light text-5xl font-extrabold tracking-tight">{rm(p.price)}</span>
+            <span className="text-sm font-semibold text-white/70">{t.perMonth}</span>
+          </p>
+          <p className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-sm">
+            <span className="text-white/80">{fill(t.total, { n: rm(planTotal(p)) })}</span>
+            <span className="rounded-full bg-emerald-400/15 px-2.5 py-0.5 text-xs font-bold text-emerald-300">{x.save}</span>
+          </p>
+        </div>
+        <a
+          href={whatsappLink(fill(t.welcomeMessage, { n: rm(p.price) }))}
+          target="_blank"
+          rel="noopener"
+          className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-bold text-brand-800 shadow-lg transition hover:bg-brand-50"
+        >
+          <Icon.Whatsapp className="h-5 w-5 text-whatsapp" /> {t.welcomeCta}
+        </a>
+      </div>
     </div>
   );
 }
@@ -413,7 +535,7 @@ export function softwareJsonLd(opts: {
       : site.plans.map((p: Plan) => {
           const x = planText(opts.lang, p);
           return offer(p.price, {
-            name: [x.name, x.free].filter(Boolean).join(comma),
+            name: [x.offer, x.name, x.free].filter(Boolean).join(comma),
             description: x.lines.map((l) => l.text).join(stop),
             ...(p.until ? { priceValidUntil: p.until } : {}),
           });

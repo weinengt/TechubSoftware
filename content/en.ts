@@ -668,12 +668,11 @@ const en = {
   pricing: {
     eyebrow: "Simple pricing",
     title: "Affordable for every business in Malaysia",
-    offer: "New customer offer",
     plan: "Techub Standard Plan",
     from: "from",
     perMonth: "/ month",
-    // The ways to pay (plans in lib/site.ts), a card each. {n} is a number, {date} the promotion's last day.
-    plansTitle: "Pick your plan",
+    // The ways to pay (plans in lib/site.ts), a card each. {n} is a number, {date} the Welcome offer's last day and
+    // {plan} a plan's name.
     plansText: "Pay monthly, or save with a longer plan.",
     monthly: "Monthly",
     monthlyText: "Pay month by month",
@@ -683,8 +682,17 @@ const en = {
     total: "Total RM {n}",
     average: "Average RM {n}/month",
     save: "Save RM {n}",
-    promo: "Promotion",
+    recommended: "Recommended",
+    averageLabel: "Average",
+    youPay: "You pay",
+    totalLabel: "Total",
+    choose: "Choose plan",
+    planMessage: "Hi Techub, I'm interested in this plan: {plan}.",
+    welcome: "Welcome offer",
+    welcomeCta: "Get the Welcome offer",
+    welcomeMessage: "Hi Techub, I'd like the Welcome offer at RM {n} a month.",
     promoUntil: "Until {date}",
+    plansIncluded: "Every plan includes",
     free: "FREE for the first {months} months for new users, including staff training and installation.",
     claim: "Claim {months} Months Free",
     claimMessage: "Hi Techub, I want to claim the {months} months free offer.",
@@ -749,7 +757,7 @@ const en = {
       },
       {
         q: "How much does it cost?",
-        a: "Plans start from RM {price} per month, and new customers get the first {months} months free, including installation and staff training. Pay RM {monthly} month by month, or RM {planPrice} a month on 12, 24 or 48 months with 1, 3 or 10 months free. Until 31 Dec 2026, the 60-month plan is RM {price} a month. The Live Selling System starts from RM {livePrice} per month. Customisation starts from RM {custom}, depending on your requirements.",
+        a: "Plans start from RM {price} per month, and new customers get the first {months} months free, including installation and staff training. Pay RM {monthly} month by month, or RM {planPrice} a month on 12, 24 or 48 months with 1, 3 or 10 months free. Until 31 Dec 2026, our Welcome offer is RM {price} a month on a 60-month plan. The Live Selling System starts from RM {livePrice} per month. Customisation starts from RM {custom}, depending on your requirements.",
       },
       {
         q: "Can my customers pay a deposit online?",
