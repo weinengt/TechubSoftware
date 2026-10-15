@@ -3,6 +3,14 @@
 
 import { blogPath, postPath, posts } from "@/content/blog";
 
+/** Where Techub serves, for structured data: all of Malaysia, named cities first for local search. */
+export const areaServed = [
+  { "@type": "Country", name: "Malaysia" },
+  { "@type": "City", name: "Kuala Lumpur" },
+  { "@type": "City", name: "Johor Bahru" },
+  { "@type": "State", name: "Penang" },
+];
+
 export const site = {
   name: "Techub Software",
   shortName: "Techub",

@@ -5,7 +5,7 @@ import JsonLd from "@/components/JsonLd";
 import RefreshScript from "@/components/RefreshScript";
 import RevealScript from "@/components/RevealScript";
 import { htmlLang, locales } from "@/lib/i18n";
-import { site } from "@/lib/site";
+import { areaServed, site } from "@/lib/site";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -77,7 +77,7 @@ const organization = {
       url: site.url,
       logo: `${site.url}/icon-512.png`,
       description: site.description,
-      areaServed: { "@type": "Country", name: "Malaysia" },
+      areaServed,
       address: { "@type": "PostalAddress", addressCountry: "MY" },
       identifier: { "@type": "PropertyValue", propertyID: "SSM registration number", value: site.ssm },
       knowsAbout: [

@@ -669,6 +669,55 @@ export function FaqList({ lang, items, className = "" }: { lang: Locale; items: 
   );
 }
 
+/* ---------- Cities we serve ---------- */
+
+export type LocalKey = keyof Dict["local"]["pages"];
+
+/** A cities text with the page's phrase ("Clinic management system") and who it serves ("clinics") put in. */
+function localFill(lang: Locale, k: LocalKey, s: string) {
+  const p = getDict(lang).local.pages[k];
+  return s.replace(/\{phrase\}/g, p.phrase).replace(/\{who\}/g, p.who);
+}
+
+/** "Do you serve clinics in Kuala Lumpur, Johor Bahru and Penang?", added to a use case page's questions. */
+export function localFaq(lang: Locale, k: LocalKey) {
+  const { faq } = getDict(lang).local;
+  return { q: localFill(lang, k, faq.q), a: localFill(lang, k, faq.a) };
+}
+
+/** Kuala Lumpur, Johor Bahru and Penang with the areas in each, on every use case page, for local searches. */
+export function LocalSection({ lang, k, tint }: { lang: Locale; k: LocalKey; tint?: boolean }) {
+  const { local: t } = getDict(lang);
+  return (
+    <section className={`overflow-hidden py-20 sm:py-24 ${tint ? "bg-slate-50" : ""}`}>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <SectionHeading eyebrow={t.eyebrow} title={localFill(lang, k, t.title)} intro={localFill(lang, k, t.text)} />
+        <ul className="mt-12 grid gap-4 md:grid-cols-3 lg:gap-6">
+          {t.cities.map((c) => (
+            <li key={c.name} className="card relative overflow-hidden p-6" data-reveal>
+              <Icon.MapPin className="pointer-events-none absolute -right-6 -bottom-8 h-36 w-36 text-brand-50" strokeWidth={1.2} />
+              <span className="relative flex h-11 w-11 items-center justify-center rounded-xl bg-brand-gradient text-white shadow-md shadow-brand-500/25">
+                <Icon.MapPin className="h-5 w-5" />
+              </span>
+              <h3 className="relative mt-4 text-lg font-extrabold text-slate-900">{c.name}</h3>
+              <ul className="relative mt-3 flex flex-wrap gap-2">
+                {c.places.map((p) => (
+                  <li key={p} className="rounded-full bg-white px-3 py-1 text-[13px] font-semibold text-brand-700 ring-1 ring-brand-100">
+                    {p}
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-8 text-center text-sm text-slate-500" data-reveal>
+          {t.more}
+        </p>
+      </div>
+    </section>
+  );
+}
+
 /* ---------- Structured data helpers ---------- */
 
 export function faqJsonLd(items: { q: string; a: string }[]) {

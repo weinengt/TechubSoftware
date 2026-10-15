@@ -5,14 +5,14 @@ import Demo from "@/components/Demo";
 import Device from "@/components/Device";
 import { Icon, type IconName } from "@/components/Icons";
 import JsonLd from "@/components/JsonLd";
-import { CustomRates, Customisation, FaqSection, SectionHeading, ServiceCard, breadcrumbJsonLd, faqJsonLd, planText } from "@/components/Sections";
+import { CustomRates, Customisation, FaqSection, LocalSection, SectionHeading, ServiceCard, breadcrumbJsonLd, faqJsonLd, localFaq, planText } from "@/components/Sections";
 import { Combo, ContactSection, FeatureTiles, FloatBadge, PhoneShowcase, Spotlight } from "@/components/Showcase";
 import { hl } from "@/components/Text";
 import { serviceLayout } from "@/components/demoScenes";
 import { htmlLang, lp, type Locale } from "@/lib/i18n";
 import { pageMetadata } from "@/lib/seo";
 import { shotSrc, type ShotKey } from "@/lib/shots";
-import { companyPages, rm, servicePages, site, whatsappLink, type Plan, type ServicePageKey } from "@/lib/site";
+import { areaServed, companyPages, rm, servicePages, site, whatsappLink, type Plan, type ServicePageKey } from "@/lib/site";
 
 /* The service pages: Software Customisation, Data Migration, Business Email and Website Design. Their words are under
    `servicePages` in content/en.ts, with the same keys; the picture at the top shows the service at work (its moments
@@ -446,7 +446,7 @@ function serviceJsonLd(lang: Locale, k: Key, url: string) {
     url,
     inLanguage: htmlLang[lang],
     provider: { "@id": `${site.url}/#organization` },
-    areaServed: { "@type": "Country", name: "Malaysia" },
+    areaServed,
     image: pictures.map((p) => `${site.url}${shotSrc(shots[p])}`),
     offers: {
       "@type": "Offer",
@@ -465,6 +465,7 @@ export default function ServicePage({ lang, k }: { lang: Locale; k: Key }) {
   const t = d.servicePages[k] as Text<Key>;
   const spec = specs[k];
   const shots = getShots(lang);
+  const faqs = [...t.faqs, localFaq(lang, k)];
   const path = servicePath(k);
   const url = `${site.url}${lp(lang, path)}`;
   const layout = serviceLayout[k];
@@ -475,7 +476,7 @@ export default function ServicePage({ lang, k }: { lang: Locale; k: Key }) {
       <JsonLd
         data={[
           serviceJsonLd(lang, k, url),
-          faqJsonLd(t.faqs),
+          faqJsonLd(faqs),
           breadcrumbJsonLd([
             { name: d.ui.home, url: `${site.url}${lp(lang, "/")}` },
             { name: d.product.useCases, url: `${site.url}${lp(lang, companyPages.useCases)}` },
@@ -540,7 +541,8 @@ export default function ServicePage({ lang, k }: { lang: Locale; k: Key }) {
 
       <Parts lang={lang} />
 
-      <FaqSection lang={lang} items={t.faqs} />
+      <LocalSection lang={lang} k={k} />
+      <FaqSection lang={lang} items={faqs} />
       <OtherServices lang={lang} current={k} />
       <ContactSection lang={lang} phoneShot={shots[spec.contactPhone]} title={t.contact.title} offer={{ ...t.contact, message: t.message }} />
     </>

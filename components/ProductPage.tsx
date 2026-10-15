@@ -8,7 +8,7 @@ import Demo from "./Demo";
 import { demos, type DemoKey } from "./demoScenes";
 import JsonLd from "./JsonLd";
 import { Icon, type IconName } from "./Icons";
-import { FaqSection, HardwareSection, PricingSection, SectionHeading, breadcrumbJsonLd, faqJsonLd, softwareJsonLd } from "./Sections";
+import { FaqSection, HardwareSection, LocalSection, PricingSection, SectionHeading, breadcrumbJsonLd, faqJsonLd, localFaq, softwareJsonLd } from "./Sections";
 import { Combo, ContactSection, FeatureTiles, FloatBadge, OtherSystems, PhoneShowcase, Spotlight } from "./Showcase";
 import { hl } from "./Text";
 
@@ -174,6 +174,7 @@ export default function ProductPage({ lang, k }: { lang: Locale; k: SystemKey })
   const url = `${site.url}${lp(lang, path)}`;
   const shotOf = (v: Visual) => ("demo" in v ? demos[v.demo][0].tablet! : "phoneOnly" in v ? v.phoneOnly : v.main);
   const pics = [shots[demos[k][0].tablet!], ...spotlights.map((s) => shots[shotOf(s.visual)])];
+  const faqs = [...t.faqs, localFaq(lang, k)];
 
   const visual = (s: (typeof spotlights)[number]) => {
     const v = s.visual;
@@ -214,7 +215,7 @@ export default function ProductPage({ lang, k }: { lang: Locale; k: SystemKey })
             screenshots: pics,
             ...(live && { price: site.livePriceFrom, offerText: d.pricing.liveOfferText }),
           }),
-          faqJsonLd(t.faqs),
+          faqJsonLd(faqs),
           breadcrumbJsonLd([
             { name: d.ui.home, url: `${site.url}${lp(lang, "/")}` },
             { name, url },
@@ -302,7 +303,8 @@ export default function ProductPage({ lang, k }: { lang: Locale; k: SystemKey })
       {/* The clinic page already has its own hardware spotlight, and live selling needs no counter hardware. */}
       {!live && !spotlights.some((s) => s.id === "hardware") && <HardwareSection lang={lang} />}
       <PricingSection lang={lang} plan={live ? "live" : "standard"} />
-      <FaqSection lang={lang} items={t.faqs} />
+      <LocalSection lang={lang} k={k} />
+      <FaqSection lang={lang} items={faqs} />
       <OtherSystems lang={lang} current={k} />
       <ContactSection lang={lang} phoneShot={shots[spec.contactPhone]} title={offer?.title} offer={offer} />
     </>

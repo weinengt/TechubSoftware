@@ -10,7 +10,7 @@ import {
   UseCasesSection,
 } from "@/components/Company";
 import JsonLd from "@/components/JsonLd";
-import { FaqSection, HardwareSection, PricingSection, breadcrumbJsonLd, faqJsonLd } from "@/components/Sections";
+import { FaqSection, HardwareSection, LocalSection, PricingSection, breadcrumbJsonLd, faqJsonLd } from "@/components/Sections";
 import { ContactSection } from "@/components/Showcase";
 import { lp, type Locale } from "@/lib/i18n";
 import { pageMetadata } from "@/lib/seo";
@@ -62,11 +62,17 @@ export default function CompanyPage({ lang, page }: { lang: Locale; page: Compan
   return (
     <>
       <JsonLd data={data} />
-      {page === "useCases" && <UseCasesList lang={lang} page={of} />}
+      {page === "useCases" && (
+        <>
+          <UseCasesList lang={lang} page={of} />
+          <LocalSection lang={lang} k="useCases" />
+        </>
+      )}
       {page === "customSystems" && (
         <>
           <CustomSystemsSection lang={lang} page={of} />
           <HowWeWorkSection lang={lang} />
+          <LocalSection lang={lang} k="customSystems" />
         </>
       )}
       {page === "services" && (

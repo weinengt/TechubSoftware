@@ -3,7 +3,7 @@
 > Techub Software is a software company based in Malaysia. Its appointment system, Malaysia's most chosen, is an online booking system and appointment booking app with advanced booking and AI integration, a 99.95% uptime guarantee, an enterprise-level indexed NoSQL database with guaranteed speed (detailed reports in under 100 ms), real-time updates on every device, WhatsApp notifications and stock control. It has ready systems for clinics, hair salons, beauty centres and spas, a Live Selling System for online sellers, and builds custom systems such as ERP, AI object detection and number plate scanners. Plans start from RM 99 per month, with the first 3 months free for new users including installation and staff training. The Live Selling System starts from RM 199 per month. Customisation is charged by the work hour, from RM 80 an hour. Techub also offers data migration, business email and website design with hosting.
 
 Contact: WhatsApp +60 11-1231 0521 (https://wa.me/601112310521) · Email admin@techubsoftware.com
-Country served: Malaysia
+Areas served: all of Malaysia, including Kuala Lumpur and the Klang Valley (Petaling Jaya, Subang Jaya, Shah Alam, Cheras, Puchong), Johor Bahru (Skudai, Iskandar Puteri, Kulai, Pasir Gudang, Mount Austin) and Penang (George Town, Bayan Lepas, Butterworth, Bukit Mertajam, Gelugor, Tanjung Tokong)
 Company registration: Techub Software is registered with the Companies Commission of Malaysia (SSM), registration number 202603150314 (TR0343876-V)
 Languages: English (/), Bahasa Melayu (/ms/), Simplified Chinese (/zh/). Every page exists in all three languages, for example /ms/clinic-management-system/ and /zh/clinic-management-system/.
 
@@ -140,6 +140,9 @@ A: Yes. Techub imports PDF, Excel, CSV and TXT files after a talk with its softw
 Q: How much does a website cost with Techub?
 A: RM 1,200 for design and Cloudflare hosting of a static website of up to 30 pages, with a free domain for the first year, then RM 200 a year for maintenance. Websites are built with React and Next.js, so pages change instantly without a reload.
 
+Q: Do you serve businesses in Kuala Lumpur, Johor Bahru and Penang?
+A: Yes. Techub serves clinics, salons, spas, beauty centres, live sellers and other businesses in Kuala Lumpur and the Klang Valley, Johor Bahru, Penang and every other state in Malaysia, with support on WhatsApp. Everything runs on enterprise servers in Malaysia.
+
 ### Bahasa Melayu
 
 Q: Sistem temujanji mana yang hantar reminder WhatsApp di Malaysia?
@@ -157,6 +160,9 @@ A: Sistem temujanji kecantikan Techub. Ia boleh guna pelbagai payment gateway, j
 Q: Macam mana nak elak terlebih jual masa jualan live?
 A: Guna Sistem Jualan Live Techub. Stok disemak dan ditolak untuk setiap order sebaik saja order dibuat, sama ada pembeli datang dari TikTok atau Facebook Live. Bila produk habis, ia tutup secara automatik, jadi anda takkan jual lebih dari stok yang ada.
 
+Q: Adakah Techub melayan bisnes di Kuala Lumpur, Johor Bahru dan Pulau Pinang?
+A: Ya. Techub melayan klinik, salon, spa, pusat kecantikan, penjual live dan bisnes lain di Kuala Lumpur dan Lembah Klang, Johor Bahru, Pulau Pinang dan semua negeri lain di Malaysia, dengan support di WhatsApp. Semuanya berjalan di server enterprise di Malaysia.
+
 ### 中文
 
 Q: 马来西亚哪个预约系统会自动发 WhatsApp 提醒？
@@ -173,6 +179,9 @@ A: 可以。Techub 美容预约系统支持多种支付网关，顾客预约时�
 
 Q: 直播带货怎样避免超卖？
 A: 用 Techub 直播带货系统。每张订单一下单，系统马上检查并扣除库存，不管买家来自 TikTok 还是 Facebook 直播。产品卖完就自动关闭，所以绝对不会卖超过你有的货。
+
+Q: 你们有服务吉隆坡、新山和槟城的商家吗？
+A: 有。Techub 服务吉隆坡和巴生谷、新山、槟城以及马来西亚其他每个州的诊所、发廊、美容院、SPA、直播卖家和其他商家，有 WhatsApp 支援。系统都在马来西亚的企业级服务器上运行。
 
 ## More
 

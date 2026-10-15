@@ -157,7 +157,7 @@ const ms: Dict = {
     meta: {
       title: "Sistem Temujanji & Booking Malaysia | Techub Software",
       description:
-        "Sistem temujanji dan booking AI untuk klinik, salon, pusat kecantikan dan spa di Malaysia. Reminder WhatsApp, uptime {uptime}. Dari RM {price}/bulan, {months} bulan percuma.",
+        "Sistem temujanji dan booking AI untuk klinik, salon, pusat kecantikan dan spa di Kuala Lumpur, Johor Bahru, Pulau Pinang dan seluruh Malaysia. Reminder WhatsApp. Dari RM {price}/bulan, {months} bulan percuma.",
       keywords: [
         "sistem tempahan online",
         "aplikasi temujanji",
@@ -984,14 +984,14 @@ const ms: Dict = {
       meta: {
         title: "Sistem Klinik, Salon, Kecantikan, Spa & Jualan Live Malaysia",
         description:
-          "Sistem siap guna untuk klinik, salon rambut, pusat kecantikan, spa dan penjual live di Malaysia: reminder WhatsApp, kawalan stok, laporan bawah 100 ms.",
+          "Sistem siap guna untuk klinik, salon rambut, pusat kecantikan, spa dan penjual live di Kuala Lumpur, Johor Bahru, Pulau Pinang dan seluruh Malaysia: reminder WhatsApp, kawalan stok dan laporan pantas.",
       },
     },
     customSystems: {
       meta: {
-        title: "Buat Sistem Custom Malaysia | ERP, AI & Scanner Nombor Plat",
+        title: "Buat Sistem Custom Malaysia | KL, JB & Pulau Pinang",
         description:
-          "Kami bina sistem custom untuk bisnes anda di Malaysia: ERP, AI pengesanan objek, scanner nombor plat dan lagi. Ubah suai dari RM {custom} sejam kerja.",
+          "Kami bina sistem custom untuk bisnes di Kuala Lumpur, Johor Bahru, Pulau Pinang dan seluruh Malaysia: ERP, AI pengesanan objek, scanner nombor plat. Dari RM {custom} sejam kerja.",
       },
     },
     services: {
@@ -1043,10 +1043,10 @@ const ms: Dict = {
   products: {
     clinic: {
       meta: {
-        title: "Sistem Pengurusan Klinik Malaysia | Temujanji, Giliran, EMR & Ubat",
+        title: "Sistem Pengurusan Klinik Malaysia | KL, JB & Pulau Pinang",
         socialTitle: "Sistem Pengurusan Klinik Malaysia | Techub Software",
         description:
-          "Sistem pengurusan dan temujanji klinik di Malaysia: rekod pesakit (EMR), rekod ubat, sistem giliran, stok ubat AI dan e-Invois LHDN. Dari RM {price}/bulan, {months} bulan percuma.",
+          "Sistem pengurusan klinik untuk klinik di Kuala Lumpur, Johor Bahru, Pulau Pinang dan seluruh Malaysia: EMR, sistem giliran, stok ubat AI, e-Invois LHDN. Dari RM {price}/bulan.",
         keywords: [
           "sistem temujanji klinik",
           "sistem giliran klinik",
@@ -1244,10 +1244,10 @@ const ms: Dict = {
 
     salon: {
       meta: {
-        title: "Sistem Booking Salon Malaysia | Temujanji, Gaji & POS",
+        title: "Sistem Booking Salon Malaysia | KL, JB & Pulau Pinang",
         socialTitle: "Sistem Booking Salon Malaysia | Techub Software",
         description:
-          "Sistem booking salon rambut di Malaysia: jadual stylist, reminder WhatsApp, app staf, gaji dan komisen, POS dan stok. Dari RM {price}/bulan, {months} bulan percuma.",
+          "Sistem booking salon rambut di Kuala Lumpur, Johor Bahru, Pulau Pinang dan seluruh Malaysia: jadual stylist, reminder WhatsApp, komisen, POS. Dari RM {price}/bulan, {months} bulan percuma.",
         keywords: [
           "sistem booking barber",
           "sistem deposit booking",
@@ -1439,10 +1439,10 @@ const ms: Dict = {
 
     beauty: {
       meta: {
-        title: "Sistem Temujanji Pusat Kecantikan Malaysia | Booking, Pakej & Gaji",
+        title: "Sistem Temujanji Pusat Kecantikan Malaysia | KL, JB & Pulau Pinang",
         socialTitle: "Sistem Booking Pusat Kecantikan Malaysia | Techub Software",
         description:
-          "Sistem booking pusat kecantikan dan salon kecantikan di Malaysia: reminder WhatsApp, pakej rawatan, carta muka, gaji dan POS. Dari RM {price}/bulan, {months} bulan percuma.",
+          "Sistem temujanji pusat kecantikan di Kuala Lumpur, Johor Bahru, Pulau Pinang dan seluruh Malaysia: pakej, carta muka, reminder WhatsApp, gaji. Dari RM {price}/bulan.",
         keywords: [
           "sistem temujanji kecantikan",
           "sistem klinik estetik",
@@ -1647,10 +1647,10 @@ const ms: Dict = {
 
     spa: {
       meta: {
-        title: "Sistem Booking Spa & Urut Malaysia | Terapis, Bilik & Pakej",
+        title: "Sistem Booking Spa & Urut Malaysia | KL, JB & Pulau Pinang",
         socialTitle: "Sistem Booking Spa Malaysia | Techub Software",
         description:
-          "Sistem booking spa dan urutan di Malaysia: jadual terapis dan bilik, reminder WhatsApp, pakej, membership, gaji dan POS. Dari RM {price}/bulan, {months} bulan percuma.",
+          "Sistem booking spa dan urut di Kuala Lumpur, Johor Bahru, Pulau Pinang dan seluruh Malaysia: terapis, bilik, pakej, reminder WhatsApp, gaji. Dari RM {price}/bulan.",
         keywords: [
           "sistem deposit booking",
           "sistem booking spa",
@@ -1850,10 +1850,10 @@ const ms: Dict = {
 
     live: {
       meta: {
-        title: "Sistem Jualan Live Malaysia | Tak Terlebih Jual",
+        title: "Sistem Jualan Live Malaysia | KL, JB & Pulau Pinang",
         socialTitle: "Sistem Jualan Live Malaysia | Techub Software",
         description:
-          "Sistem jualan live untuk penjual Facebook dan TikTok di Malaysia: tampung ramai pembeli, elak terlebih jual, jadual produk, pelawat live. Dari RM {livePrice}/bulan.",
+          "Sistem jualan live untuk penjual Facebook dan TikTok di Kuala Lumpur, Johor Bahru, Pulau Pinang dan seluruh Malaysia: tampung ramai pembeli, tak terlebih jual. Dari RM {livePrice}/bulan.",
         keywords: [
           "sistem jualan live TikTok",
           "sistem live selling Malaysia",
@@ -2052,10 +2052,10 @@ const ms: Dict = {
       ],
       cta: "Lihat contoh ubah suai",
       meta: {
-        title: "Ubah Suai Sistem Malaysia | Dari RM {custom} Sejam",
+        title: "Ubah Suai Sistem Malaysia | KL, JB & Pulau Pinang",
         socialTitle: "Ubah Suai Sistem | Techub Software",
         description:
-          "Fungsi, laporan dan cetakan baru untuk sistem anda di Malaysia. Bayar ikut jam kerja dari RM {custom}, dengan anggaran AI dulu, ujian percuma dan ansuran.",
+          "Ubah suai sistem di Kuala Lumpur, Johor Bahru, Pulau Pinang dan seluruh Malaysia: fungsi, laporan dan cetakan baru dari RM {custom} sejam kerja, dengan anggaran AI dulu dan ujian percuma.",
         keywords: [
           "ubah suai sistem Malaysia",
           "sistem custom Malaysia",
@@ -2144,10 +2144,10 @@ const ms: Dict = {
       ],
       cta: "Lihat cara pemindahan data",
       meta: {
-        title: "Pemindahan Data Malaysia | Excel, PDF & Sistem Lama",
+        title: "Pemindahan Data Malaysia | KL, JB & Pulau Pinang",
         socialTitle: "Pemindahan Data | Techub Software",
         description:
-          "Pindahkan rekod anda dari Excel, PDF, CSV, TXT atau sistem lama yang tak boleh export. Imbasan skrin AI, disemak jurutera, caj ikut masa, bukan saiz data.",
+          "Pemindahan data di Kuala Lumpur, Johor Bahru, Pulau Pinang dan seluruh Malaysia: Excel, PDF, CSV, TXT atau sistem lama yang tak boleh export. Imbasan skrin AI, caj ikut masa, bukan saiz data.",
         keywords: [
           "pemindahan data Malaysia",
           "migrasi data",
@@ -2224,10 +2224,10 @@ const ms: Dict = {
       points: ["E-mel dengan domain anda sendiri", "Storan {emailStorage}, RM {emailYear} setahun", "Kami setup semuanya untuk anda", "Domain tidak termasuk"],
       cta: "Lihat e-mel perniagaan",
       meta: {
-        title: "E-mel Perniagaan Malaysia | Domain Sendiri, RM {emailYear} Setahun",
+        title: "E-mel Perniagaan Malaysia | KL, JB & Pulau Pinang",
         socialTitle: "E-mel Perniagaan | Techub Software",
         description:
-          "E-mel profesional dengan domain anda sendiri, contohnya hello@bisnesanda.com. RM {emailYear} setahun dengan storan {emailStorage}, kami setup untuk anda di Malaysia. Domain tidak termasuk.",
+          "E-mel perniagaan dengan domain sendiri untuk syarikat di Kuala Lumpur, Johor Bahru, Pulau Pinang dan seluruh Malaysia. RM {emailYear} setahun, storan {emailStorage}, kami setup. Domain tidak termasuk.",
         keywords: [
           "e-mel perniagaan Malaysia",
           "hosting e-mel Malaysia",
@@ -2301,10 +2301,10 @@ const ms: Dict = {
       ],
       cta: "Lihat contoh laman web",
       meta: {
-        title: "Reka Laman Web Malaysia | RM {website} Dengan Hosting & Domain Percuma",
+        title: "Reka Laman Web Malaysia | KL, JB & Pulau Pinang",
         socialTitle: "Reka Laman Web | Techub Software",
         description:
-          "Laman web cantik untuk bisnes di Malaysia: sehingga {websitePages} halaman, tukar halaman serta-merta, hosting Cloudflare, sedia untuk SEO dan carian AI. RM {website} dengan domain percuma tahun pertama.",
+          "Reka laman web di Kuala Lumpur, Johor Bahru, Pulau Pinang dan seluruh Malaysia: sehingga {websitePages} halaman, tukar halaman tanpa reload, hosting Cloudflare, sedia SEO. RM {website}, domain percuma tahun pertama.",
         keywords: [
           "reka laman web Malaysia",
           "buat website Malaysia",
@@ -2367,6 +2367,36 @@ const ms: Dict = {
         badge: "RM {website} · domain percuma",
         text: "Ceritakan tentang bisnes anda dan gaya yang anda suka. Kami reka, hoskan dan lancarkan untuk anda.",
       },
+    },
+  },
+
+  /* ---------- Bandar yang kami layan (carian tempatan) ---------- */
+  local: {
+    eyebrow: "Kuala Lumpur · Johor Bahru · Pulau Pinang",
+    title: "{phrase} di *Kuala Lumpur, Johor Bahru & Pulau Pinang*",
+    text: "Techub melayan {who} di Kuala Lumpur dan Lembah Klang, Johor Bahru, Pulau Pinang dan seluruh Malaysia. Semuanya berjalan di server enterprise di Malaysia, dengan support di WhatsApp dalam Bahasa Melayu, Inggeris dan Cina.",
+    cities: [
+      { name: "Kuala Lumpur & Lembah Klang", places: ["Kuala Lumpur", "Petaling Jaya", "Subang Jaya", "Shah Alam", "Cheras", "Puchong"] },
+      { name: "Johor Bahru", places: ["Johor Bahru", "Skudai", "Iskandar Puteri", "Kulai", "Pasir Gudang", "Mount Austin"] },
+      { name: "Pulau Pinang", places: ["George Town", "Bayan Lepas", "Butterworth", "Bukit Mertajam", "Gelugor", "Tanjung Tokong"] },
+    ],
+    more: "Di tempat lain di Malaysia? Kami layan semua negeri.",
+    faq: {
+      q: "Adakah Techub melayan {who} di Kuala Lumpur, Johor Bahru dan Pulau Pinang?",
+      a: "Ya. Techub melayan {who} di Kuala Lumpur dan Lembah Klang, Johor Bahru, Pulau Pinang dan semua negeri lain di Malaysia, dengan support di WhatsApp. Semuanya berjalan di server enterprise di Malaysia.",
+    },
+    pages: {
+      useCases: { phrase: "Sistem bisnes", who: "klinik, salon, spa, pusat kecantikan dan penjual live" },
+      clinic: { phrase: "Sistem pengurusan klinik", who: "klinik" },
+      salon: { phrase: "Sistem booking salon", who: "salon rambut" },
+      beauty: { phrase: "Sistem temujanji pusat kecantikan", who: "pusat kecantikan" },
+      spa: { phrase: "Sistem booking spa & urut", who: "spa dan pusat urut" },
+      live: { phrase: "Sistem jualan live", who: "penjual live" },
+      customSystems: { phrase: "Buat sistem custom", who: "bisnes" },
+      customisation: { phrase: "Ubah suai sistem", who: "bisnes" },
+      migration: { phrase: "Pemindahan data", who: "bisnes" },
+      email: { phrase: "E-mel perniagaan", who: "bisnes" },
+      website: { phrase: "Reka laman web", who: "bisnes" },
     },
   },
 

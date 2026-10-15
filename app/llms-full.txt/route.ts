@@ -68,6 +68,7 @@ Website: ${site.url}
 WhatsApp: ${site.whatsappDisplay} (https://wa.me/${site.whatsappNumber})
 Email: ${site.email}
 Country: Malaysia
+Areas served: all of Malaysia, including ${t.local.cities.map((c) => `${c.name} (${c.places.join(", ")})`).join("; ")}
 Company registration: SSM ${site.ssm} (Companies Commission of Malaysia)
 Languages: ${locales.map((l) => `${localeName[l]} (${site.url}${lp(l, "/")})`).join(", ")}
 
