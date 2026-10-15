@@ -177,6 +177,14 @@ const en = {
     form: {
       pay: "Pay this month",
       period: "Pay month",
+      payYear: "Payroll year",
+      payMonth: "Month",
+      rulesUsed: "Rules for this month:",
+      rulePcb: "LHDN PCB schedule",
+      ruleCeiling: "SOCSO and EIS on wages up to RM",
+      ruleSkbbkOff: "LINDUNG 24 Jam starts 1 June 2026",
+      ruleForeignEpfOff: "foreign workers have no compulsory EPF until October 2025",
+      ruleForeignSocsoOff: "foreign workers pay no SOCSO until July 2024 (employer pays Employment Injury only)",
       payDate: "Pay date",
       type: "Type",
       amount: "Amount",
@@ -245,7 +253,7 @@ const en = {
       deducted: "Deductions",
       net: "Net pay",
       cost: "Employer cost",
-      disclaimer: "Uses the EPF schedule from 1 Oct 2025, PERKESO's table with LINDUNG 24 Jam, and LHDN's PCB formula for 2026. Check with your payroll provider for special cases.",
+      disclaimer: "Uses the EPF, PERKESO and LHDN PCB rules in force in the pay month you pick, from January 2024. Check with your payroll provider for special cases.",
     },
     faq: [
       {
@@ -262,7 +270,7 @@ const en = {
       },
       {
         q: "How is PCB worked out?",
-        a: "With LHDN's formula for 2026: the year's expected income, less EPF up to RM 4,000 and your reliefs, gives the year's tax, which is spread over the months left. A bonus is taxed in full in the month it is paid.",
+        a: "With LHDN's formula for the payroll year you pick: the year's expected income, less EPF up to RM 4,000 and your reliefs, gives the year's tax, which is spread over the months left. A bonus is taxed in full in the month it is paid.",
       },
       {
         q: "Is the payroll data safe?",

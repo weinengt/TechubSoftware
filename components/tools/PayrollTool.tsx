@@ -4,7 +4,7 @@ import { forwardRef, useMemo, useRef, type CSSProperties } from "react";
 import { docLabels, type DocLang } from "@/content/tools/docs";
 import type { ToolsDict } from "@/content/tools";
 import { amountInWords, money, num } from "@/lib/money";
-import { epfRates, payroll, type Citizenship, type EarningType, type PayResult, type TaxCategory } from "@/lib/payroll";
+import { epfRates, payroll, rulesFor, type Citizenship, type EarningType, type PayResult, type TaxCategory } from "@/lib/payroll";
 import { fileName } from "@/lib/pdf";
 import { A4Preview, Area, ExportBar, Field, IconButton, LogoPicker, Panel, Plus, Select, Text, Trash, inputClass, useSaved } from "./ui";
 
@@ -30,9 +30,16 @@ const types: EarningType[] = ["basic", "allowance", "overtime", "commission", "b
 const colors = ["#0278b4", "#0f766e", "#334155", "#111827", "#7c3aed", "#be185d"];
 const category: Record<Marital, TaxCategory> = { single: 1, spouseHome: 2, spouseWorks: 3, singleParent: 3 };
 
+/** The payroll years whose rules this tool has; the newest comes first. */
+const payYears = [2026, 2025, 2024];
 const thisMonth = () => {
   const d = new Date();
+  if (d.getFullYear() > payYears[0]) return `${payYears[0]}-12`;
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
+};
+const periodParts = (period: string) => {
+  const [y, m] = period.split("-").map(Number);
+  return { year: payYears.includes(y) ? y : payYears[0], month: m >= 1 && m <= 12 ? m : 1 };
 };
 const lastDay = (period: string) => {
   const [y, m] = period.split("-").map(Number);
@@ -65,6 +72,8 @@ const fmtPeriod = (period: string, lang: DocLang) => {
   if (lang === "zh") return `${y}年${m}月`;
   return new Date(y, m - 1, 1).toLocaleDateString(lang === "ms" ? "ms-MY" : "en-GB", { month: "long", year: "numeric" });
 };
+const fmtMonth = (m: number, lang: DocLang) =>
+  lang === "zh" ? `${m}月` : new Date(2024, m - 1, 1).toLocaleDateString(lang === "ms" ? "ms-MY" : "en-GB", { month: "long" });
 const fmtDate = (iso: string, lang: DocLang) => {
   const d = new Date(`${iso}T00:00:00`);
   if (!iso || Number.isNaN(d.getTime())) return iso;
@@ -74,13 +83,15 @@ const fmtDate = (iso: string, lang: DocLang) => {
 
 /** The standard EPF rates for this employee, from their normal monthly wage. */
 function standardEpf(s: State) {
+  const rules = rulesFor(periodParts(s.period));
   const normal = s.earnings.reduce((a, l) => (l.type === "bonus" || l.type === "overtime" || l.type === "claim" ? a : a + (l.type === "unpaid" ? -Math.abs(num(l.amount)) : num(l.amount))), 0);
-  return epfRates(Math.max(0, normal), { citizenship: s.citizenship, age60: s.age60 });
+  return epfRates(Math.max(0, normal), { citizenship: s.citizenship, age60: s.age60, rules });
 }
 
 function compute(s: State): PayResult {
-  const month = Number(s.period.split("-")[1]) || 1;
+  const { year, month } = periodParts(s.period);
   return payroll({
+    year,
     month,
     since: Number(s.since) || 1,
     earnings: s.earnings.map((l) => ({ type: l.type, label: l.label, amount: num(l.amount) })),
@@ -107,7 +118,9 @@ export default function PayrollTool({ t, ex, lang }: { t: T; ex: ToolsDict["expo
   const stdEpf = standardEpf(s);
   const L = docLabels[s.docLang].payslip;
   const f = t.form;
-  const month = Number(s.period.split("-")[1]) || 1;
+  const pp = periodParts(s.period);
+  const month = pp.month;
+  const setPeriod = (v: string) => setS((o) => ({ ...o, period: v, since: String(Math.min(Number(o.since) || 1, Number(v.split("-")[1]))), payDate: o.payDate === lastDay(o.period) ? lastDay(v) : o.payDate }));
 
   const setEarning = (i: number, k: "type" | "label" | "amount", v: string) =>
     setS((o) => ({ ...o, earnings: o.earnings.map((l, j) => (j === i ? { ...l, [k]: v } : l)) }));
@@ -118,10 +131,23 @@ export default function PayrollTool({ t, ex, lang }: { t: T; ex: ToolsDict["expo
     <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-8">
       <div className="space-y-5 lg:col-span-5">
         <Panel n={1} title={f.pay}>
-          <div className="grid gap-4 sm:grid-cols-2">
-            <Text label={f.period} type="month" value={s.period} onChange={(v) => setS((o) => ({ ...o, period: v, payDate: o.payDate === lastDay(o.period) ? lastDay(v) : o.payDate }))} />
-            <Text label={f.payDate} type="date" value={s.payDate} onChange={(v) => set("payDate", v)} />
+          <div className="grid grid-cols-2 gap-4">
+            <Select label={f.payYear} value={String(pp.year)} onChange={(v) => setPeriod(`${v}-${String(pp.month).padStart(2, "0")}`)}
+              options={payYears.map((y) => ({ value: String(y), label: String(y) }))} />
+            <Select label={f.payMonth} value={String(pp.month)} onChange={(v) => setPeriod(`${pp.year}-${v.padStart(2, "0")}`)}
+              options={Array.from({ length: 12 }, (_, i) => ({ value: String(i + 1), label: fmtMonth(i + 1, lang) }))} />
+            <Text label={f.payDate} type="date" value={s.payDate} onChange={(v) => set("payDate", v)} className="col-span-2" />
           </div>
+          <p className="mt-3 rounded-xl bg-brand-50 px-3 py-2 text-xs leading-relaxed text-slate-600">
+            <b className="font-semibold text-slate-700">{f.rulesUsed}</b>{" "}
+            {[
+              `${f.rulePcb} ${pp.year}`,
+              `${f.ruleCeiling} ${money(r.rules.socsoCeiling).replace(".00", "")}`,
+              ...(!r.rules.skbbk ? [f.ruleSkbbkOff] : []),
+              ...(s.citizenship === "foreign" && !r.rules.foreignEpf ? [f.ruleForeignEpfOff] : []),
+              ...(s.citizenship === "foreign" && !r.rules.foreignInvalidity ? [f.ruleForeignSocsoOff] : []),
+            ].join(" · ")}
+          </p>
           <ol className="mt-4 space-y-2.5">
             {s.earnings.map((l, i) => (
               <li key={i} className="flex items-start gap-2 rounded-xl bg-slate-50 p-2.5 ring-1 ring-slate-200">
@@ -158,7 +184,7 @@ export default function PayrollTool({ t, ex, lang }: { t: T; ex: ToolsDict["expo
             {s.marital !== "single" && <Text label={f.children} hint={f.childrenHint} inputMode="numeric" value={s.children} onChange={(v) => set("children", v.replace(/\D/g, ""))} />}
           </div>
           <div className="mt-4 grid gap-2.5">
-            <Check label={f.skbbk} hint={s.citizenship === "foreign" ? f.skbbkForeign : f.skbbkHint} checked={s.skbbk || s.citizenship === "foreign"} disabled={s.citizenship === "foreign"} onChange={(v) => set("skbbk", v)} />
+            <Check label={f.skbbk} hint={!r.rules.skbbk ? f.ruleSkbbkOff : s.citizenship === "foreign" ? f.skbbkForeign : f.skbbkHint} checked={r.rules.skbbk && (s.skbbk || s.citizenship === "foreign")} disabled={!r.rules.skbbk || s.citizenship === "foreign"} onChange={(v) => set("skbbk", v)} />
             <Check label={f.resident} hint={f.residentHint} checked={s.resident} onChange={(v) => set("resident", v)} />
           </div>
           <details className="mt-4 rounded-xl ring-1 ring-slate-200 [&_summary::-webkit-details-marker]:hidden">

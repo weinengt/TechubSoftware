@@ -1,5 +1,13 @@
 // Malaysia payroll for one employee and one month: EPF, SOCSO (with LINDUNG 24 Jam), EIS, PCB and the HRD Corp levy.
-// Rules as of October 2026 (researched 2026-10-15):
+// Rules for pay months from January 2024 to December 2026 (researched 2026-10-15). Rules that changed on a date follow
+// the pay month (see `rulesFor`):
+// - SOCSO and EIS wage ceiling RM 5,000 until September 2024, RM 6,000 from 1 Oct 2024.
+// - Foreign workers: SOCSO Employment Injury only (employer 1.25%) until June 2024; Invalidity too (employer 1.75%,
+//   employee 0.5%) from 1 Jul 2024. EPF compulsory (2% / 2%) from 1 Oct 2025; before that it isn't worked out.
+// - LINDUNG 24 Jam (SKBBK) from 1 Jun 2026.
+// - PCB: LHDN's MTD specification; the tax rates, the M, R and B table and the reliefs it uses are the same for 2024,
+//   2025 and 2026.
+// Current rules:
 // - EPF: Third Schedule from 1 Oct 2025, kwsp.gov.my. Part A citizens and PRs under 60 (11% / 13%, employer 12% above
 //   RM 5,000), Part C PRs 60+ (5.5% / 6.5% or 6%), Part E citizens 60+ (0% / 4%), Part F foreign workers (2% / 2% of
 //   the actual wage, at least the minimum wage). Up to RM 20,000 the share is worked out on the top of the wage band
@@ -31,10 +39,27 @@ export const minimumWage = 1700;
 
 const ceilRM = (x: number) => Math.ceil(Math.round(x * 1e6) / 1e6);
 
+/** A pay month as a number like 202410, to compare with the dates rules changed. */
+export type PayMonth = { year: number; month: number };
+const ym = (d: PayMonth) => d.year * 100 + d.month;
+
+/** The rules that changed by date, for one pay month. */
+export function rulesFor(d: PayMonth) {
+  const t = ym(d);
+  return {
+    socsoCeiling: t >= 202410 ? 6000 : 5000,
+    foreignInvalidity: t >= 202407,
+    foreignEpf: t >= 202510,
+    skbbk: t >= 202606,
+  };
+}
+export type Rules = ReturnType<typeof rulesFor>;
+const latest = rulesFor({ year: 2026, month: 12 });
+
 /** The statutory EPF rates (%) for this worker: [employee, employer]. `normalWage` decides the employer's 13% or 12%
  *  (a bonus doesn't move a RM 5,000 earner to 12%). */
-export function epfRates(normalWage: number, opts: { citizenship: Citizenship; age60: boolean }): [number, number] {
-  if (opts.citizenship === "foreign") return [2, 2];
+export function epfRates(normalWage: number, opts: { citizenship: Citizenship; age60: boolean; rules?: Rules }): [number, number] {
+  if (opts.citizenship === "foreign") return (opts.rules ?? latest).foreignEpf ? [2, 2] : [0, 0];
   const low = normalWage <= 5000;
   return opts.age60 && opts.citizenship === "citizen" ? [0, 4] : opts.age60 ? [5.5, low ? 6.5 : 6] : [11, low ? 13 : 12];
 }
@@ -42,8 +67,9 @@ export function epfRates(normalWage: number, opts: { citizenship: Citizenship; a
 /** EPF for one month. The statutory amounts follow the Third Schedule's wage bands; a rate the employer or employee
  *  chose instead (`rates`, in %) is worked on the actual wage and rounded up to the ringgit, as EPF does for
  *  contributions above the schedule. */
-export function epf(wage: number, opts: { citizenship: Citizenship; age60: boolean; normalWage?: number; rates?: { ee?: number; er?: number } }) {
+export function epf(wage: number, opts: { citizenship: Citizenship; age60: boolean; normalWage?: number; rates?: { ee?: number; er?: number }; rules?: Rules }) {
   if (wage <= 10) return { ee: 0, er: 0 };
+  if (opts.citizenship === "foreign" && !(opts.rules ?? latest).foreignEpf) return { ee: 0, er: 0 };
   const [eeRate, erRate] = epfRates(opts.normalWage ?? wage, opts);
   const foreign = opts.citizenship === "foreign";
   const base = foreign ? Math.max(wage, minimumWage) : wage;
@@ -61,9 +87,9 @@ const round5 = (rm: number) => {
   return (r * 5) / 100;
 };
 
-/** The middle of PERKESO's wage band, up to the RM 6,000 ceiling. */
-function bandMiddle(wage: number) {
-  if (wage > 6000) return 5950;
+/** The middle of PERKESO's wage band, up to the wage ceiling (RM 5,000 or RM 6,000). */
+function bandMiddle(wage: number, ceiling: number) {
+  if (wage > ceiling) return ceiling - 50;
   const edges = [30, 50, 70, 100, 140, 200, 300];
   let lo = 0;
   for (const e of edges) {
@@ -75,23 +101,27 @@ function bandMiddle(wage: number) {
 }
 
 /** SOCSO (Act 4 and LINDUNG 24 Jam) and EIS for one month. */
-export function socso(wage: number, opts: { citizenship: Citizenship; age60: boolean; skbbk: boolean }) {
+export function socso(wage: number, opts: { citizenship: Citizenship; age60: boolean; skbbk: boolean; rules?: Rules }) {
   if (wage <= 0) return { er: 0, ee: 0, skbbk: 0, eisEr: 0, eisEe: 0 };
-  let er: number, ee: number, all: number;
+  const rules = opts.rules ?? latest;
+  // Category 2 (Employment Injury only): workers 60 and over, and foreign workers until June 2024.
+  const cat2 = opts.age60 || (opts.citizenship === "foreign" && !rules.foreignInvalidity);
+  const skbbkOn = opts.skbbk && rules.skbbk;
+  let er: number, ee: number;
   if (wage <= 30) {
     // PERKESO's first row doesn't follow the middle-of-band rule.
-    [er, ee, all] = opts.age60 ? [0.3, 0, 0.5] : [0.4, 0.1, 0.7];
-    return { er, ee, skbbk: opts.skbbk ? 0.2 : 0, eisEr: 0, eisEe: 0 };
+    [er, ee] = cat2 ? [0.3, 0] : [0.4, 0.1];
+    return { er, ee, skbbk: skbbkOn ? 0.2 : 0, eisEr: 0, eisEe: 0 };
   }
-  const mid = bandMiddle(wage);
-  if (opts.age60) {
+  const mid = bandMiddle(wage, rules.socsoCeiling);
+  if (cat2) {
     er = round5(mid * 0.0125);
     ee = 0;
   } else {
     ee = round5(mid * 0.005);
     er = round5(mid * 0.0225) - ee;
   }
-  const skbbk = opts.skbbk ? round5(mid * (opts.age60 ? 0.0075 : 0.0125)) - ee : 0;
+  const skbbk = skbbkOn ? round5(mid * (cat2 ? 0.0075 : 0.0125)) - ee : 0;
   const eis = !opts.age60 && opts.citizenship !== "foreign" ? round5(mid * 0.002) : 0;
   return { er: fix(er), ee: fix(ee), skbbk: fix(skbbk), eisEr: eis, eisEe: eis };
 }
@@ -162,6 +192,7 @@ function mtd(month: number, ytd: Ytd, cur: { Y1: number; K1: number; Yt: number;
 export type Line = { type: EarningType; label: string; amount: number };
 
 export type PayInput = {
+  year: number;
   month: number; // 1 to 12
   /** The month this pay started; earlier months of the year are left out of the year-to-date figures. */
   since: number;
@@ -191,22 +222,29 @@ export function payroll(input: PayInput) {
   const hrdWage = Math.max(0, sum((t) => earningRules[t].hrd));
 
   const who = { citizenship: input.citizenship, age60: input.age60 };
-  const e = epf(epfWage, { ...who, normalWage: epfNormal, rates: input.epfRates });
-  const eNormal = epf(epfNormal, { ...who, rates: input.epfRates });
-  const s = socso(socsoWage, { ...who, skbbk: input.skbbk });
+  const rulesAt = (month: number) => rulesFor({ year: input.year, month });
+  const rules = rulesAt(input.month);
+  const e = epf(epfWage, { ...who, normalWage: epfNormal, rates: input.epfRates, rules });
+  const eNormal = epf(epfNormal, { ...who, rates: input.epfRates, rules });
+  const s = socso(socsoWage, { ...who, skbbk: input.skbbk, rules });
   const socsoEe = s.ee + s.skbbk + s.eisEe;
 
   // Earlier months this year at the same normal pay, to carry the year-to-date figures into the formula.
   const ytd: Ytd = { Y: 0, K: 0, X: 0, Z: 0, LP: 0 };
-  const lp = (have: number) => (input.tax.socsoRelief ? Math.min(socsoEe, Math.max(0, 350 - have)) : 0);
+  const lp = (have: number, paid = socsoEe) => (input.tax.socsoRelief ? Math.min(paid, Math.max(0, 350 - have)) : 0);
   const zakat = Math.max(0, input.zakat);
   const resident = input.tax.resident;
   const months = [] as { gross: number; epf: number; socso: number; pcb: number; zakat: number }[];
   for (let m = Math.max(1, Math.min(input.since, input.month)); m < input.month; m++) {
-    const r = mtd(m, ytd, { Y1: normalPay, K1: eNormal.ee, Yt: 0, Kt: 0, LP1: lp(ytd.LP), zakat }, input.tax);
+    // Each earlier month under the rules of that month (the SOCSO ceiling, for one, changed in October 2024).
+    const rm = rulesAt(m);
+    const em = epf(epfNormal, { ...who, rates: input.epfRates, rules: rm });
+    const sm = socso(socsoWage, { ...who, skbbk: input.skbbk, rules: rm });
+    const paid = sm.ee + sm.skbbk + sm.eisEe;
+    const r = mtd(m, ytd, { Y1: normalPay, K1: em.ee, Yt: 0, Kt: 0, LP1: lp(ytd.LP, paid), zakat }, input.tax);
     const pcb = resident ? r.pcb : up5(normalPay * 0.3);
-    months.push({ gross: normalPay + Math.max(0, gross - normalPay - bonus), epf: eNormal.ee, socso: socsoEe, pcb, zakat });
-    ytd.Y += normalPay; ytd.K += r.K1; ytd.X += resident ? r.normal : 0; ytd.Z += zakat; ytd.LP += lp(ytd.LP);
+    months.push({ gross: normalPay + Math.max(0, gross - normalPay - bonus), epf: em.ee, socso: paid, pcb, zakat });
+    ytd.Y += normalPay; ytd.K += r.K1; ytd.X += resident ? r.normal : 0; ytd.Z += zakat; ytd.LP += lp(ytd.LP, paid);
   }
   const now = mtd(input.month, ytd, { Y1: normalPay, K1: eNormal.ee, Yt: bonus, Kt: Math.max(0, e.ee - eNormal.ee), LP1: lp(ytd.LP), zakat }, input.tax);
   const autoPcb = resident ? now.pcb : up5((normalPay + bonus) * 0.3);
@@ -233,7 +271,7 @@ export function payroll(input: PayInput) {
   return {
     gross, epfWage, socsoWage,
     epf: e, socso: s, pcb, autoPcb, pcbParts: { normal: now.normal, bonus: now.extra }, zakat, others,
-    totalDeductions, net, employer, ytd: ytdOut, costToEmployer: fix(gross + employer.total),
+    totalDeductions, net, employer, ytd: ytdOut, costToEmployer: fix(gross + employer.total), rules,
   };
 }
 

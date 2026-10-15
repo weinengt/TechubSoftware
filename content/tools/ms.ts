@@ -177,6 +177,14 @@ const ms: ToolsDict = {
     form: {
       pay: "Gaji bulan ini",
       period: "Bulan gaji",
+      payYear: "Tahun gaji",
+      payMonth: "Bulan",
+      rulesUsed: "Peraturan bulan ini:",
+      rulePcb: "Jadual PCB LHDN",
+      ruleCeiling: "PERKESO dan SIP atas gaji sehingga RM",
+      ruleSkbbkOff: "LINDUNG 24 Jam bermula 1 Jun 2026",
+      ruleForeignEpfOff: "pekerja asing belum wajib KWSP sehingga Oktober 2025",
+      ruleForeignSocsoOff: "pekerja asing tiada potongan PERKESO sehingga Julai 2024 (majikan bayar Bencana Pekerjaan sahaja)",
       payDate: "Tarikh bayaran",
       type: "Jenis",
       amount: "Jumlah",
@@ -245,7 +253,7 @@ const ms: ToolsDict = {
       deducted: "Potongan",
       net: "Gaji bersih",
       cost: "Kos majikan",
-      disclaimer: "Guna jadual KWSP dari 1 Okt 2025, jadual PERKESO dengan LINDUNG 24 Jam, dan formula PCB LHDN untuk 2026. Semak dengan penyedia gaji anda untuk kes khas.",
+      disclaimer: "Guna peraturan KWSP, PERKESO dan PCB LHDN yang berkuat kuasa pada bulan gaji yang anda pilih, dari Januari 2024. Semak dengan penyedia gaji anda untuk kes khas.",
     },
     faq: [
       {
@@ -262,7 +270,7 @@ const ms: ToolsDict = {
       },
       {
         q: "Bagaimana PCB dikira?",
-        a: "Dengan formula LHDN 2026: jangkaan pendapatan setahun, tolak KWSP sehingga RM 4,000 dan pelepasan anda, memberi cukai setahun yang dibahagi ikut bulan yang tinggal. Bonus dicukai sepenuhnya dalam bulan ia dibayar.",
+        a: "Dengan formula LHDN untuk tahun gaji yang anda pilih: jangkaan pendapatan setahun, tolak KWSP sehingga RM 4,000 dan pelepasan anda, memberi cukai setahun yang dibahagi ikut bulan yang tinggal. Bonus dicukai sepenuhnya dalam bulan ia dibayar.",
       },
       {
         q: "Selamat ke data gaji?",

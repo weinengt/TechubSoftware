@@ -177,6 +177,14 @@ const zh: ToolsDict = {
     form: {
       pay: "本月工资",
       period: "工资月份",
+      payYear: "工资年份",
+      payMonth: "月份",
+      rulesUsed: "本月适用：",
+      rulePcb: "LHDN PCB 规定",
+      ruleCeiling: "SOCSO 和 EIS 工资上限 RM",
+      ruleSkbbkOff: "LINDUNG 24 Jam 从 2026 年 6 月 1 日开始",
+      ruleForeignEpfOff: "外劳在 2025 年 10 月前不强制缴 EPF",
+      ruleForeignSocsoOff: "外劳在 2024 年 7 月前不扣 SOCSO（雇主只缴工伤保险）",
       payDate: "发薪日期",
       type: "类型",
       amount: "金额",
@@ -245,7 +253,7 @@ const zh: ToolsDict = {
       deducted: "扣除",
       net: "实发工资",
       cost: "雇主成本",
-      disclaimer: "采用 2025 年 10 月 1 日起的 EPF 表、含 LINDUNG 24 Jam 的 SOCSO 表，以及 LHDN 2026 年 PCB 公式。特殊情况请向你的工资服务商确认。",
+      disclaimer: "按你选的工资月份当时生效的 EPF、PERKESO 和 LHDN PCB 规定计算，从 2024 年 1 月起。特殊情况请向你的工资服务商确认。",
     },
     faq: [
       {
@@ -262,7 +270,7 @@ const zh: ToolsDict = {
       },
       {
         q: "PCB 是怎么算的？",
-        a: "按 LHDN 2026 年公式：预计全年收入，减去最多 RM 4,000 的 EPF 和你的减免，得出全年税额，再按剩下的月份平均扣。花红在发放的那个月一次过计税。",
+        a: "按你选的工资年份的 LHDN 公式：预计全年收入，减去最多 RM 4,000 的 EPF 和你的减免，得出全年税额，再按剩下的月份平均扣。花红在发放的那个月一次过计税。",
       },
       {
         q: "工资资料安全吗？",
