@@ -48,6 +48,7 @@ const ms: Dict = {
       blurb: "Rekod pesakit & ubat, nombor giliran dan cetakan.",
       points: [
         "Rekod pesakit lengkap",
+        "Pengimbas IC (OCR) untuk daftar pesakit pantas",
         "Sistem rekod ubat",
         "Panggil nombor giliran di TV",
         "Sambung mesin X-ray & printer",
@@ -1209,6 +1210,17 @@ const ms: Dict = {
             "Masa menunggu lebih singkat & tenang",
           ],
         },
+        ic: {
+          eyebrow: "Pengimbas IC (OCR)",
+          title: "Imbas IC. *Pesakit terus berdaftar.*",
+          points: [
+            "OCR baca IC terus di peranti itu sendiri",
+            "Boleh guna di semua peranti: iPad, telefon atau PC",
+            "Nama, nombor IC & alamat diisi automatik",
+            "Pendaftaran pesakit di kaunter lebih cepat",
+          ],
+          badges: ["IC dibaca di peranti ini", "Daftar pantas"],
+        },
         records: {
           eyebrow: "Rekod pesakit & ubat",
           title: "Rekod setiap pesakit dan ubat, semua tersusun",
@@ -1282,7 +1294,7 @@ const ms: Dict = {
         },
       },
       modules: {
-        records: "Pendaftaran & rekod pesakit",
+        records: "Daftar dengan imbas IC & rekod pesakit",
         queue: "Panggil nombor giliran",
         whatsapp: "Notifikasi temujanji WhatsApp",
         emr: "Konsultasi & EMR",
@@ -1311,6 +1323,10 @@ const ms: Dict = {
         {
           q: "Boleh rekod data pesakit dan ubat?",
           a: "Boleh. Setiap pesakit ada rekod lengkap: lawatan, diagnosis, preskripsi dan sejarah ubat yang dikeluarkan. Sistem rekod ubat tunjuk dos, kekerapan, batch dan amaran alahan sebelum anda tulis preskripsi.",
+        },
+        {
+          q: "Boleh sistem klinik imbas IC pesakit?",
+          a: "Boleh. Pengimbas IC guna OCR yang berjalan terus di peranti itu sendiri, jadi setiap iPad, telefon atau PC di klinik anda boleh imbas IC pesakit. Nama, nombor IC dan alamat diisi automatik, jadi pendaftaran pesakit lebih cepat.",
         },
         {
           q: "Sistem klinik ada panggil nombor giliran?",
@@ -2718,6 +2734,10 @@ const ms: Dict = {
     scanClinic: {
       title: "AI imbas nota penghantaran",
       alt: "Telefon imbas nota penghantaran pembekal ubat, AI baca setiap item, batch dan tarikh luput, lalu update stok klinik",
+    },
+    icScanClinic: {
+      title: "Pengimbas IC untuk pendaftaran pesakit",
+      alt: "Kamera telefon imbas contoh IC, OCR di peranti baca nama, nombor IC dan alamat, lalu isi pendaftaran pesakit baru",
     },
     paymentClinic: {
       title: "Bayaran online & deposit",

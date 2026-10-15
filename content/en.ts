@@ -57,6 +57,7 @@ const en = {
       blurb: "Patient records, medication tracking, queue and printing.",
       points: [
         "Patient records tracking",
+        "IC scanner (OCR) for fast patient registration",
         "Medication tracking system",
         "Queue number calling on TV",
         "X-ray machine & printer connection",
@@ -1206,6 +1207,17 @@ const en = {
           title: "Call the next patient in one tap",
           points: ["TV display with voice announcement", "Rooms, pharmacy & payment counters", "English, Malay & Chinese", "A calmer, shorter wait"],
         },
+        ic: {
+          eyebrow: "IC scanner (OCR)",
+          title: "Scan the IC. *Patient registered.*",
+          points: [
+            "OCR reads the IC on the device itself",
+            "Works on every device: iPad, phone or PC",
+            "Name, IC number & address filled in for you",
+            "Faster patient registration at the counter",
+          ],
+          badges: ["IC read on this device", "Fast registration"],
+        },
         records: {
           eyebrow: "Patient records & medication tracking",
           title: "Every patient record and medicine, tracked",
@@ -1264,7 +1276,7 @@ const en = {
         },
       },
       modules: {
-        records: "Patient registration & records",
+        records: "IC scan registration & records",
         queue: "Queue number calling",
         whatsapp: "WhatsApp appointment alerts",
         emr: "Consultation & EMR",
@@ -1293,6 +1305,10 @@ const en = {
         {
           q: "Can I track patient records and medication?",
           a: "Yes. Each patient has a full record with visits, diagnoses, prescriptions and dispensing history. The medication tracking system shows dosage, frequency, batch and allergy alerts before you prescribe.",
+        },
+        {
+          q: "Can the clinic system scan a patient's IC?",
+          a: "Yes. Its IC scanner uses OCR that runs on the device itself, so every iPad, phone or PC in your clinic can scan a patient's IC. The name, IC number and address are filled in for you, for fast patient registration.",
         },
         {
           q: "Does the clinic system support queue number calling?",
@@ -2623,6 +2639,10 @@ const en = {
     scanClinic: {
       title: "AI delivery note scan",
       alt: "Phone scanning a medicine supplier's delivery note while AI reads each item, batch and expiry and updates clinic stock",
+    },
+    icScanClinic: {
+      title: "IC scanner for patient registration",
+      alt: "Phone camera scanning a sample IC while OCR on the device reads the name, IC number and address and fills in a new patient's registration",
     },
     paymentClinic: {
       title: "Online payment & deposit",

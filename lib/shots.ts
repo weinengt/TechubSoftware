@@ -31,6 +31,7 @@ export const shotFiles = {
   clinicPermissions: { ...ipad, file: "clinic-staff-permissions-ipad" },
   whatsappClinic: { ...phone, file: "whatsapp-appointment-reminder-clinic" },
   scanClinic: { ...phone, file: "ai-delivery-note-scan" },
+  icScanClinic: { ...phone, file: "ic-scanner-patient-registration" },
   paymentClinic: { ...phone, file: "online-payment-deposit-clinic" },
   queueTv: { w: 1920, h: 1080, kind: "tv", file: "queue-number-calling-display" },
   printouts: { w: 1500, h: 1050, kind: "paper", file: "printouts-receipt-label-mc" },

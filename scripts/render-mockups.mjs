@@ -32,6 +32,7 @@ export const screens = [
   { name: "clinic-staff-permissions-ipad", file: "permissions.html?v=clinic", ...ipad },
   { name: "whatsapp-appointment-reminder-clinic", file: "whatsapp.html?v=clinic", ...phone },
   { name: "ai-delivery-note-scan", file: "delivery-scan.html?v=clinic", ...phone },
+  { name: "ic-scanner-patient-registration", file: "ic-scan.html", ...phone },
   { name: "online-payment-deposit-clinic", file: "online-payment.html?v=clinic", ...phone },
   { name: "queue-number-calling-display", file: "queue-display.html", w: 1280, h: 720, scale: 1.5 },
   { name: "printouts-receipt-label-mc", file: "printouts.html", w: 1000, h: 700, scale: 1.5, transparent: true },

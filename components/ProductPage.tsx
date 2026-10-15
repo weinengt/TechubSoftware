@@ -38,6 +38,7 @@ const specs: { [K in SystemKey]: Spec<K> } = {
     highlights: { records: "Users", medication: "Pill", queue: "Megaphone", hardware: "XRay", einvoice: "Invoice", reports: "Bolt" },
     spotlights: {
       queue: { main: "queueTv" },
+      ic: { phoneOnly: "icScanClinic", badges: ["Scan", "Bolt"] },
       records: { main: "medication" },
       drawing: { main: "bodyChart" },
       hardware: { main: "printouts" },

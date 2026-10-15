@@ -729,20 +729,16 @@ function WelcomeCard({ lang, p }: { lang: Locale; p: Plan }) {
           )}
         </div>
         <div>
-          {x.free && <p className="text-xs font-semibold tracking-wide text-white/60 uppercase">{t.averageLabel}</p>}
-          <p className="mt-0.5 flex items-baseline gap-1 whitespace-nowrap">
+          {/* What is paid each month is the big price; what that comes to with the free months sits under it */}
+          <p className="flex items-baseline gap-1 whitespace-nowrap">
             <span className="text-lg font-bold">RM</span>
-            <span className="text-gradient-light text-5xl font-extrabold tracking-tight">{rm(x.free ? planAverage(p) : p.price)}</span>
+            <span className="text-gradient-light text-5xl font-extrabold tracking-tight">{rm(p.price)}</span>
             <span className="text-sm font-semibold text-white/70">{t.perMonth}</span>
           </p>
           <p className="text-sm font-semibold text-white/70">{t.perOutlet}</p>
-          <p className="mt-1 text-sm font-bold text-emerald-300">{x.daily}</p>
+          {x.free && <p className="mt-2 text-sm font-semibold text-white">{fill(t.average, { n: rm(planAverage(p)) })}</p>}
+          <p className={`${x.free ? "" : "mt-1"} text-sm font-bold text-emerald-300`}>{x.daily}</p>
           <p className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-sm">
-            {x.free && (
-              <span className="whitespace-nowrap text-white/80">
-                {t.youPay} RM {rm(p.price)} {t.perMonth}
-              </span>
-            )}
             <span className="text-white/80">{fill(t.total, { n: rm(planTotal(p)) })}</span>
             <span className="rounded-full bg-emerald-400/15 px-2.5 py-0.5 text-xs font-bold text-emerald-300">{x.save}</span>
           </p>

@@ -78,6 +78,7 @@ Every page has a Bahasa Melayu version under /ms/, for people who search in Mala
 - Automatic accounting documents: invoices, credit notes, refund notes and official receipts, with no accounting staff needed
 - Enterprise-level automatic document sending (every system): receipts, invoices, credit notes (CN) and refund notes (RN) go to customers automatically, and clinics' digital MCs go to patients; each customer's document formats (receipt, invoice, MC and more) are tuned free
 - Online referral letters (Clinic Management System): written online, in a format Techub tunes for each clinic free
+- IC scanner (Clinic Management System): OCR reads a patient's IC on the device itself, so every iPad, phone or PC can scan an IC for fast patient registration
 - Multiple outlets (every system): one app for all of a business's outlets; the owner switches between outlets and views each outlet's information; prices are per outlet
 - Barcode & QR tracking (Inventory & ERP System): print barcodes, generate QR codes and follow every item from stock in to delivery
 - Deposits to income in one click (salons, beauty centres and spas): each booking deposit is held until the service is done, then one click turns it into income, and the system makes the invoice, refund note or credit note, so no accounting knowledge is needed
