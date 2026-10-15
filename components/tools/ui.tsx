@@ -7,7 +7,7 @@ import { Icon } from "../Icons";
 /* Form parts shared by the free tools. Inputs are 16px on phones so iPhones don't zoom in on them. */
 
 export const inputClass =
-  "block w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-base text-slate-900 shadow-sm outline-none transition placeholder:text-slate-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 sm:text-sm";
+  "block w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-base text-slate-900 shadow-sm outline-none transition placeholder:text-slate-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 pointer-fine:sm:text-sm";
 
 export function Field({ label, hint, children, className = "" }: { label: string; hint?: string; children: ReactNode; className?: string }) {
   return (

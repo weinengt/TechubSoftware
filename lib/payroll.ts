@@ -31,20 +31,26 @@ export const minimumWage = 1700;
 
 const ceilRM = (x: number) => Math.ceil(Math.round(x * 1e6) / 1e6);
 
-/** EPF for one month. `normalWage` decides the employer's 13% or 12% (a bonus doesn't move a RM 5,000 earner to 12%). */
-export function epf(wage: number, opts: { citizenship: Citizenship; age60: boolean; normalWage?: number }) {
+/** The statutory EPF rates (%) for this worker: [employee, employer]. `normalWage` decides the employer's 13% or 12%
+ *  (a bonus doesn't move a RM 5,000 earner to 12%). */
+export function epfRates(normalWage: number, opts: { citizenship: Citizenship; age60: boolean }): [number, number] {
+  if (opts.citizenship === "foreign") return [2, 2];
+  const low = normalWage <= 5000;
+  return opts.age60 && opts.citizenship === "citizen" ? [0, 4] : opts.age60 ? [5.5, low ? 6.5 : 6] : [11, low ? 13 : 12];
+}
+
+/** EPF for one month. The statutory amounts follow the Third Schedule's wage bands; a rate the employer or employee
+ *  chose instead (`rates`, in %) is worked on the actual wage and rounded up to the ringgit, as EPF does for
+ *  contributions above the schedule. */
+export function epf(wage: number, opts: { citizenship: Citizenship; age60: boolean; normalWage?: number; rates?: { ee?: number; er?: number } }) {
   if (wage <= 10) return { ee: 0, er: 0 };
-  if (opts.citizenship === "foreign") {
-    const base = Math.max(wage, minimumWage);
-    return { ee: ceilRM(base * 0.02), er: ceilRM(base * 0.02) };
-  }
-  const low = (opts.normalWage ?? wage) <= 5000;
-  const [eeRate, erRate] =
-    opts.age60 && opts.citizenship === "citizen" ? [0, 0.04]
-      : opts.age60 ? [0.055, low ? 0.065 : 0.06]
-        : [0.11, low ? 0.13 : 0.12];
-  const top = wage > 20000 ? wage : wage <= 20 ? 20 : wage <= 5000 ? Math.ceil(wage / 20) * 20 : Math.ceil(wage / 100) * 100;
-  return { ee: ceilRM(top * eeRate), er: ceilRM(top * erRate) };
+  const [eeRate, erRate] = epfRates(opts.normalWage ?? wage, opts);
+  const foreign = opts.citizenship === "foreign";
+  const base = foreign ? Math.max(wage, minimumWage) : wage;
+  const top = foreign || wage > 20000 ? base : wage <= 20 ? 20 : wage <= 5000 ? Math.ceil(wage / 20) * 20 : Math.ceil(wage / 100) * 100;
+  const share = (rate: number, chosen?: number) =>
+    chosen === undefined || chosen === rate ? ceilRM(top * (rate / 100)) : ceilRM(base * (Math.max(0, chosen) / 100));
+  return { ee: share(eeRate, opts.rates?.ee), er: share(erRate, opts.rates?.er) };
 }
 
 /** Rounds to 5 sen, a half going to the even 5 sen. */
@@ -168,8 +174,8 @@ export type PayInput = {
   tax: TaxProfile;
   /** HRD Corp levy rate: 0, 0.5 or 1 (%). */
   hrd: number;
-  /** PCB typed in by hand instead of worked out. */
-  pcbOverride?: number;
+  /** EPF rates (%) chosen instead of the statutory ones; leave out to use the statutory rates. */
+  epfRates?: { ee?: number; er?: number };
 };
 
 /** One month's pay, with pay this month and the same normal pay assumed for each earlier month since `since`. */
@@ -185,8 +191,8 @@ export function payroll(input: PayInput) {
   const hrdWage = Math.max(0, sum((t) => earningRules[t].hrd));
 
   const who = { citizenship: input.citizenship, age60: input.age60 };
-  const e = epf(epfWage, { ...who, normalWage: epfNormal });
-  const eNormal = epf(epfNormal, who);
+  const e = epf(epfWage, { ...who, normalWage: epfNormal, rates: input.epfRates });
+  const eNormal = epf(epfNormal, { ...who, rates: input.epfRates });
   const s = socso(socsoWage, { ...who, skbbk: input.skbbk });
   const socsoEe = s.ee + s.skbbk + s.eisEe;
 
@@ -202,9 +208,9 @@ export function payroll(input: PayInput) {
     months.push({ gross: normalPay + Math.max(0, gross - normalPay - bonus), epf: eNormal.ee, socso: socsoEe, pcb, zakat });
     ytd.Y += normalPay; ytd.K += r.K1; ytd.X += resident ? r.normal : 0; ytd.Z += zakat; ytd.LP += lp(ytd.LP);
   }
-  const now = mtd(input.month, ytd, { Y1: normalPay, K1: epf(epfNormal, who).ee, Yt: bonus, Kt: Math.max(0, e.ee - eNormal.ee), LP1: lp(ytd.LP), zakat }, input.tax);
+  const now = mtd(input.month, ytd, { Y1: normalPay, K1: eNormal.ee, Yt: bonus, Kt: Math.max(0, e.ee - eNormal.ee), LP1: lp(ytd.LP), zakat }, input.tax);
   const autoPcb = resident ? now.pcb : up5((normalPay + bonus) * 0.3);
-  const pcb = input.pcbOverride !== undefined ? Math.max(0, input.pcbOverride) : autoPcb;
+  const pcb = autoPcb;
 
   const others = input.deductions.reduce((a, d) => a + Math.max(0, d.amount), 0);
   const totalDeductions = fix(e.ee + s.ee + s.skbbk + s.eisEe + pcb + zakat + others);

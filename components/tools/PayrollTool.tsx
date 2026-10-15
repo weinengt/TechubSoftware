@@ -4,9 +4,9 @@ import { forwardRef, useMemo, useRef, type CSSProperties } from "react";
 import { docLabels, type DocLang } from "@/content/tools/docs";
 import type { ToolsDict } from "@/content/tools";
 import { amountInWords, money, num } from "@/lib/money";
-import { payroll, type Citizenship, type EarningType, type PayResult, type TaxCategory } from "@/lib/payroll";
+import { epfRates, payroll, type Citizenship, type EarningType, type PayResult, type TaxCategory } from "@/lib/payroll";
 import { fileName } from "@/lib/pdf";
-import { A4Preview, Area, ExportBar, IconButton, LogoPicker, Panel, Plus, Select, Text, Trash, inputClass, useSaved } from "./ui";
+import { A4Preview, Area, ExportBar, Field, IconButton, LogoPicker, Panel, Plus, Select, Text, Trash, inputClass, useSaved } from "./ui";
 
 /* Free payroll calculator and payslip for Malaysia: EPF, SOCSO (with LINDUNG 24 Jam), EIS and PCB worked out by the
    rules in lib/payroll.ts, on a payslip laid out like an enterprise payroll system's. Everything stays in the browser. */
@@ -21,7 +21,9 @@ type State = {
   citizenship: Citizenship; age60: boolean; skbbk: boolean; resident: boolean; marital: Marital; children: string; socsoRelief: boolean; hrd: string;
   earnings: { type: EarningType; label: string; amount: string }[];
   deductions: { label: string; amount: string }[];
-  zakat: string; pcbManual: string;
+  zakat: string;
+  /** EPF rates (%) typed in; null uses the standard rate for this employee. */
+  epfEe: string | null; epfEr: string | null;
 };
 
 const types: EarningType[] = ["basic", "allowance", "overtime", "commission", "bonus", "claim", "unpaid"];
@@ -53,7 +55,7 @@ function initial(t: T, lang: DocLang): State {
       { type: "overtime", label: "", amount: "" },
     ],
     deductions: [],
-    zakat: "", pcbManual: "",
+    zakat: "", epfEe: null, epfEr: null,
   };
 }
 
@@ -70,6 +72,12 @@ const fmtDate = (iso: string, lang: DocLang) => {
   return d.toLocaleDateString(lang === "ms" ? "ms-MY" : "en-GB", { day: "2-digit", month: "short", year: "numeric" });
 };
 
+/** The standard EPF rates for this employee, from their normal monthly wage. */
+function standardEpf(s: State) {
+  const normal = s.earnings.reduce((a, l) => (l.type === "bonus" || l.type === "overtime" || l.type === "claim" ? a : a + (l.type === "unpaid" ? -Math.abs(num(l.amount)) : num(l.amount))), 0);
+  return epfRates(Math.max(0, normal), { citizenship: s.citizenship, age60: s.age60 });
+}
+
 function compute(s: State): PayResult {
   const month = Number(s.period.split("-")[1]) || 1;
   return payroll({
@@ -83,16 +91,20 @@ function compute(s: State): PayResult {
     skbbk: s.skbbk || s.citizenship === "foreign",
     tax: { category: category[s.marital], children: s.marital === "single" ? 0 : Math.max(0, Math.floor(num(s.children))), resident: s.resident, socsoRelief: s.socsoRelief },
     hrd: num(s.hrd),
-    pcbOverride: s.pcbManual.trim() === "" ? undefined : num(s.pcbManual),
+    epfRates: {
+      ee: s.epfEe == null || s.epfEe.trim() === "" ? undefined : num(s.epfEe),
+      er: s.epfEr == null || s.epfEr.trim() === "" ? undefined : num(s.epfEr),
+    },
   });
 }
 
 export default function PayrollTool({ t, ex, lang }: { t: T; ex: ToolsDict["export"]; lang: DocLang }) {
   const start = useMemo(() => initial(t, lang), [t, lang]);
-  const [s, setS] = useSaved<State>("techub-payroll-v1", start);
+  const [s, setS] = useSaved<State>("techub-payroll-v2", start);
   const docRef = useRef<HTMLDivElement>(null);
   const set = <K extends keyof State>(k: K, v: State[K]) => setS((o) => ({ ...o, [k]: v }));
   const r = compute(s);
+  const stdEpf = standardEpf(s);
   const L = docLabels[s.docLang].payslip;
   const f = t.form;
   const month = Number(s.period.split("-")[1]) || 1;
@@ -121,7 +133,7 @@ export default function PayrollTool({ t, ex, lang }: { t: T; ex: ToolsDict["expo
                     <span className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-sm text-slate-400">RM</span>
                     <input className={`${inputClass} pl-10 text-right`} inputMode="decimal" aria-label={f.amount} placeholder="0.00" value={l.amount} onChange={(e) => setEarning(i, "amount", e.target.value)} />
                   </div>
-                  <input className={`${inputClass} col-span-2 !py-2 !text-sm`} aria-label={f.label} placeholder={f.label} value={l.label} onChange={(e) => setEarning(i, "label", e.target.value)} />
+                  <input className={`${inputClass} col-span-2 !py-2 pointer-fine:sm:!text-sm`} aria-label={f.label} placeholder={f.label} value={l.label} onChange={(e) => setEarning(i, "label", e.target.value)} />
                 </div>
                 <IconButton label={f.remove} onClick={() => setS((o) => ({ ...o, earnings: o.earnings.filter((_, j) => j !== i) }))}><Trash /></IconButton>
               </li>
@@ -137,9 +149,9 @@ export default function PayrollTool({ t, ex, lang }: { t: T; ex: ToolsDict["expo
         <Panel n={2} title={f.employee}>
           <div className="grid gap-4 sm:grid-cols-2">
             <Text label={f.name} value={s.name} onChange={(v) => set("name", v)} className="sm:col-span-2" />
-            <Select label={f.citizenship} value={s.citizenship} onChange={(v) => set("citizenship", v)}
+            <Select label={f.citizenship} value={s.citizenship} onChange={(v) => setS((o) => ({ ...o, citizenship: v, epfEe: null, epfEr: null }))}
               options={(["citizen", "pr", "foreign"] as Citizenship[]).map((c) => ({ value: c, label: f.citizenships[c] }))} />
-            <Select label={f.age} value={s.age60 ? "60" : "u60"} onChange={(v) => set("age60", v === "60")}
+            <Select label={f.age} value={s.age60 ? "60" : "u60"} onChange={(v) => setS((o) => ({ ...o, age60: v === "60", epfEe: null, epfEr: null }))}
               options={[{ value: "u60", label: f.under60 }, { value: "60", label: f.over60 }]} />
             <Select label={f.marital} value={s.marital} onChange={(v) => set("marital", v)}
               options={(["single", "spouseHome", "spouseWorks", "singleParent"] as Marital[]).map((m) => ({ value: m, label: f.maritals[m] }))} />
@@ -166,8 +178,27 @@ export default function PayrollTool({ t, ex, lang }: { t: T; ex: ToolsDict["expo
 
         <Panel n={3} title={f.deductionsTitle}>
           <div className="grid gap-4 sm:grid-cols-2">
+            <Text label={`${f.epfEe} · RM ${money(r.epf.ee)}`} hint={`${f.epfStandard} ${stdEpf[0]}%`} inputMode="decimal" value={s.epfEe ?? String(stdEpf[0])} onChange={(v) => set("epfEe", v.replace(/[^\d.]/g, ""))} />
+            <Text label={`${f.epfEr} · RM ${money(r.epf.er)}`} hint={`${f.epfStandard} ${stdEpf[1]}%`} inputMode="decimal" value={s.epfEr ?? String(stdEpf[1])} onChange={(v) => set("epfEr", v.replace(/[^\d.]/g, ""))} />
+          </div>
+          {(s.epfEe != null || s.epfEr != null) && (
+            <button type="button" onClick={() => setS((o) => ({ ...o, epfEe: null, epfEr: null }))} className="mt-2 text-sm font-semibold text-brand-700 hover:underline">
+              {f.useStandard}
+            </button>
+          )}
+          <div className="mt-4 rounded-xl bg-slate-50 p-3 ring-1 ring-slate-200">
+            <p className="flex items-center gap-1.5 text-[13px] font-semibold text-slate-700"><Lock /> {f.autoTitle}</p>
+            <div className="mt-2 grid grid-cols-3 gap-2">
+              {([[f.autoSocso, r.socso.ee + r.socso.skbbk], [f.autoEis, r.socso.eisEe], [f.autoPcb, r.pcb]] as [string, number][]).map(([k, v]) => (
+                <Field key={k} label={k}>
+                  <input className={`${inputClass} !px-2 cursor-not-allowed !bg-slate-100 text-right !text-slate-600`} value={money(v)} readOnly disabled aria-readonly="true" />
+                </Field>
+              ))}
+            </div>
+            <p className="mt-2 text-xs text-slate-500">{f.autoHint}</p>
+          </div>
+          <div className="mt-4 grid gap-4 sm:grid-cols-2">
             <Text label={f.zakat} inputMode="decimal" value={s.zakat} onChange={(v) => set("zakat", v)} placeholder="0.00" />
-            <Text label={f.pcbManual} hint={`${f.pcbAuto} RM ${money(r.autoPcb)}`} inputMode="decimal" value={s.pcbManual} onChange={(v) => set("pcbManual", v)} placeholder={money(r.autoPcb)} />
           </div>
           {s.deductions.length > 0 && (
             <ol className="mt-4 space-y-2.5">
@@ -368,4 +399,12 @@ function tint(hex: string) {
   const n = parseInt(hex.slice(1), 16);
   const mix = (c: number) => Math.round(c + (255 - c) * 0.88);
   return `rgb(${mix((n >> 16) & 255)}, ${mix((n >> 8) & 255)}, ${mix(n & 255)})`;
+}
+
+function Lock() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 text-slate-500" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+      <rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" />
+    </svg>
+  );
 }

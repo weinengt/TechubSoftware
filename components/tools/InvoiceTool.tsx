@@ -129,7 +129,7 @@ export default function InvoiceTool({ t, ex, lang }: { t: T; ex: ToolsDict["expo
                   <span className="mt-2.5 w-5 shrink-0 text-center text-xs font-bold text-slate-400">{i + 1}</span>
                   <div className="grid min-w-0 flex-1 gap-2">
                     <input className={inputClass} aria-label={t.form.desc} placeholder={t.form.desc} value={it.desc} onChange={(e) => setItem(i, "desc", e.target.value)} />
-                    <input className={`${inputClass} !py-2 !text-sm`} aria-label={t.form.note} placeholder={t.form.note} value={it.note} onChange={(e) => setItem(i, "note", e.target.value)} />
+                    <input className={`${inputClass} !py-2 pointer-fine:sm:!text-sm`} aria-label={t.form.note} placeholder={t.form.note} value={it.note} onChange={(e) => setItem(i, "note", e.target.value)} />
                     <div className="grid grid-cols-[4.5rem_1fr_6rem] gap-2">
                       <label>
                         <span className="mb-1 block text-[11px] font-semibold text-slate-500">{t.form.qty}</span>
