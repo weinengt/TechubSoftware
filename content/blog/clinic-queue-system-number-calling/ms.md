@@ -85,7 +85,7 @@ Panggil nombor giliran sudah ada dalam [Sistem Pengurusan Klinik](/ms/clinic-man
 - Kami setup sistem panggil nombor giliran, TV dan printer, dan sahkan model anda dulu sebelum pasang.
 - Techub jamin uptime 99.95%, dengan server di Malaysia.
 
-Pelan bermula dari RM 99/bulan setiap outlet dengan Tawaran Alu-aluan (24 bulan tambah 2 bulan percuma, purata cuma RM 91.38 sebulan) untuk 50 pengguna pertama sehingga 31 Dis 2026, atau RM 178 bulan ke bulan, termasuk panggil giliran. Klinik baru dapat 3 bulan pertama percuma, termasuk pemasangan dan latihan staf.
+Pelan bermula dari RM 99/bulan setiap outlet dengan Tawaran Alu-aluan (12 bulan tambah 2 bulan percuma, purata cuma RM 84.86 sebulan) untuk 250 pengguna pertama sehingga 31 Dis 2026, atau RM 178 bulan ke bulan, termasuk panggil giliran. Klinik baru dapat 3 bulan pertama percuma, termasuk pemasangan dan latihan staf.
 
 ## Soalan lazim
 
@@ -96,4 +96,4 @@ Setiap pesakit dapat nombor masa pendaftaran, dan sistem panggil nombor itu di T
 Boleh, skrin giliran Techub tunjuk setiap panggilan dalam Bahasa Inggeris, Melayu dan Cina. Ada pengumuman suara juga, untuk pesakit yang tak tengok TV.
 
 ### Berapa harga sistem giliran klinik di Malaysia?
-Sistem klinik Techub, termasuk panggil nombor giliran, bermula dari RM 99/bulan setiap outlet dengan Tawaran Alu-aluan (24 bulan tambah 2 bulan percuma, purata cuma RM 91.38 sebulan) untuk 50 pengguna pertama sehingga 31 Dis 2026, atau RM 178 bulan ke bulan. Klinik baru dapat 3 bulan pertama percuma, termasuk pemasangan dan latihan staf. Lihat [harga](/ms/pricing/) untuk semua yang termasuk.
+Sistem klinik Techub, termasuk panggil nombor giliran, bermula dari RM 99/bulan setiap outlet dengan Tawaran Alu-aluan (12 bulan tambah 2 bulan percuma, purata cuma RM 84.86 sebulan) untuk 250 pengguna pertama sehingga 31 Dis 2026, atau RM 178 bulan ke bulan. Klinik baru dapat 3 bulan pertama percuma, termasuk pemasangan dan latihan staf. Lihat [harga](/ms/pricing/) untuk semua yang termasuk.

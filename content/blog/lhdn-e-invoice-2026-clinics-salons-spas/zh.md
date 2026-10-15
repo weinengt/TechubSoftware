@@ -80,7 +80,7 @@ LHDN 提到，API 方式需要先在技术上投入成本。用已经连接 MyIn
 
 LHDN 电子发票功能已包括在我们的[诊所管理系统](/zh/clinic-management-system/)、[发廊预约系统](/zh/salon-appointment-system/)、[美容预约系统](/zh/beauty-appointment-system/)和 [SPA 预约系统](/zh/spa-appointment-system/)里。同一个系统也会自动开发票、Credit Note、退款单和正式收据（OR）。
 
-迎新优惠每间分店每月只需 RM 99（24 个月配套再送 2 个月，平均每月只要 RM 91.38，限前 50 位用户，至 2026 年 12 月 31 日），按月付每月 RM 178，新用户前 3 个月免费，包安装和员工培训。可以看看我们的[技术页面](/zh/technology/)和[价格](/zh/pricing/)。
+迎新优惠每间分店每月只需 RM 99（12 个月配套再送 2 个月，平均每月只要 RM 84.86，限前 250 位用户，至 2026 年 12 月 31 日），按月付每月 RM 178，新用户前 3 个月免费，包安装和员工培训。可以看看我们的[技术页面](/zh/technology/)和[价格](/zh/pricing/)。
 
 ## 常见问题
 

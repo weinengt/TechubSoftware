@@ -76,7 +76,7 @@ Techub's [Spa Appointment System](/spa-appointment-system/) is built for day spa
 - Once the service is done, one click turns the deposit into income, with the invoice, refund note or credit note made for you.
 - Each therapist manages their own appointments on their own profile. Commission and payroll, with basic salary and allowances, are worked out for you.
 
-Plans start from RM 99 a month per outlet with our Welcome offer (24 months plus 2 months free, only RM 91.38 a month on average) for the first 50 users until 31 Dec 2026, or RM 178 month by month, and new users get the first 3 months free, including installation and staff training. See [pricing](/pricing/) for details.
+Plans start from RM 99 a month per outlet with our Welcome offer (12 months plus 2 months free, only RM 84.86 a month on average) for the first 250 users until 31 Dec 2026, or RM 178 month by month, and new users get the first 3 months free, including installation and staff training. See [pricing](/pricing/) for details.
 
 ## FAQ
 
@@ -87,4 +87,4 @@ Book the therapist and the room together, in one calendar all staff use. When ea
 Yes, as long as it can book two therapists and one couple suite for the same time. Techub's Spa Appointment System supports couple and group bookings, and each booking holds a therapist and a room.
 
 ### How much does a spa booking system cost in Malaysia?
-Techub's Spa Appointment System starts from RM 99 a month per outlet with our Welcome offer (24 months plus 2 months free, only RM 91.38 a month on average) for the first 50 users until 31 Dec 2026, or RM 178 month by month. New users get the first 3 months free, including installation and staff training.
+Techub's Spa Appointment System starts from RM 99 a month per outlet with our Welcome offer (12 months plus 2 months free, only RM 84.86 a month on average) for the first 250 users until 31 Dec 2026, or RM 178 month by month. New users get the first 3 months free, including installation and staff training.

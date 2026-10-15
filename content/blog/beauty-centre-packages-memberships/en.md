@@ -89,7 +89,7 @@ Techub's [beauty appointment system](/beauty-appointment-system/) covers everyth
 - **Commission and payroll:** commission on treatments, packages and product sales is calculated automatically. Monthly payroll adds basic salary and allowances.
 - **Control:** every staff action is recorded, and reports on package sales and sessions redeemed load in under 100 ms.
 
-It works on iPad, phone and PC, with servers in Malaysia and a 99.95% uptime guarantee. Plans start from RM 99/month per outlet with our Welcome offer (24 months plus 2 months free, only RM 91.38 a month on average) for the first 50 users until 31 Dec 2026, or RM 178 month by month, and new users get the first 3 months free, including installation and staff training. See [pricing](/pricing/) for details.
+It works on iPad, phone and PC, with servers in Malaysia and a 99.95% uptime guarantee. Plans start from RM 99/month per outlet with our Welcome offer (12 months plus 2 months free, only RM 84.86 a month on average) for the first 250 users until 31 Dec 2026, or RM 178 month by month, and new users get the first 3 months free, including installation and staff training. See [pricing](/pricing/) for details.
 
 ## FAQ
 
@@ -100,4 +100,4 @@ Record each package on the customer's profile and deduct one session at every vi
 A package is a set number of sessions for one treatment, while a membership usually means prepaid credit with member prices. If you offer both, keep sessions and credit on the same customer profile.
 
 ### How much is a beauty appointment system in Malaysia?
-Techub's beauty appointment system starts from RM 99/month per outlet with our Welcome offer (24 months plus 2 months free, only RM 91.38 a month on average) for the first 50 users until 31 Dec 2026, or RM 178 month by month. New users get the first 3 months free, including installation and staff training.
+Techub's beauty appointment system starts from RM 99/month per outlet with our Welcome offer (12 months plus 2 months free, only RM 84.86 a month on average) for the first 250 users until 31 Dec 2026, or RM 178 month by month. New users get the first 3 months free, including installation and staff training.

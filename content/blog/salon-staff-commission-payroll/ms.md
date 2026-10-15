@@ -86,7 +86,7 @@ Gaji ialah topik sensitif, jadi tetapkan akses yang jelas dari hari pertama:
 - Setiap tindakan staf direkod, siap dengan siapa yang buat dan bila. Akses berbeza untuk pemilik, pengurus, stylist dan receptionist, dan diskaun perlu kelulusan pengurus.
 - Laporan tunjuk jualan ikut stylist dan perkhidmatan, dengan komisen terus nampak, dalam masa bawah 100 ms.
 
-Pelan bermula dari RM 99/bulan setiap outlet dengan Tawaran Alu-aluan (24 bulan tambah 2 bulan percuma, purata cuma RM 91.38 sebulan) untuk 50 pengguna pertama sehingga 31 Dis 2026, atau RM 178 bulan ke bulan. Pengguna baru dapat 3 bulan pertama percuma, termasuk pemasangan dan latihan staf. Lihat [harga](/ms/pricing/) untuk butiran.
+Pelan bermula dari RM 99/bulan setiap outlet dengan Tawaran Alu-aluan (12 bulan tambah 2 bulan percuma, purata cuma RM 84.86 sebulan) untuk 250 pengguna pertama sehingga 31 Dis 2026, atau RM 178 bulan ke bulan. Pengguna baru dapat 3 bulan pertama percuma, termasuk pemasangan dan latihan staf. Lihat [harga](/ms/pricing/) untuk butiran.
 
 ## Soalan lazim
 
@@ -94,7 +94,7 @@ Pelan bermula dari RM 99/bulan setiap outlet dengan Tawaran Alu-aluan (24 bulan 
 Darab jualan bulanan stylist dengan kadar komisen anda, guna kadar berasingan untuk perkhidmatan dan produk kalau ada. Contohnya, pada kadar 10%, jualan perkhidmatan RM 6,000 beri komisen RM 600. Kalau guna tier, tulis sama ada kadar lebih tinggi kena pada semua jualan atau cuma bahagian atas sasaran.
 
 ### Sistem salon mana di Malaysia yang boleh kira komisen dan gaji staf?
-Sistem Booking Salon Techub boleh buat semua ini. Komisen perkhidmatan dan jualan produk dikira dari POS anda, dan gaji bulanan termasuk gaji asas dan elaun setiap staf. Pelan bermula dari RM 99/bulan setiap outlet dengan Tawaran Alu-aluan (24 bulan tambah 2 bulan percuma, purata cuma RM 91.38 sebulan) untuk 50 pengguna pertama sehingga 31 Dis 2026, atau RM 178 bulan ke bulan, dengan 3 bulan pertama percuma.
+Sistem Booking Salon Techub boleh buat semua ini. Komisen perkhidmatan dan jualan produk dikira dari POS anda, dan gaji bulanan termasuk gaji asas dan elaun setiap staf. Pelan bermula dari RM 99/bulan setiap outlet dengan Tawaran Alu-aluan (12 bulan tambah 2 bulan percuma, purata cuma RM 84.86 sebulan) untuk 250 pengguna pertama sehingga 31 Dis 2026, atau RM 178 bulan ke bulan, dengan 3 bulan pertama percuma.
 
 ### Stylist boleh tengok booking sendiri dalam sistem salon?
 Boleh, kalau sistem bagi setiap staf log masuk sendiri. Dengan Techub, setiap stylist tengok dan urus booking sendiri di telefon, iPad atau PC. Mereka cuma nampak apa yang dibenarkan ikut jawatan.

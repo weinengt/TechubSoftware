@@ -85,7 +85,7 @@ Queue number calling is built into the Techub [Clinic Management System](/clinic
 - We set up the number calling system, TV and printers, and confirm your models before installation.
 - Techub guarantees 99.95% uptime, on servers in Malaysia.
 
-Plans start from RM 99/month per outlet with our Welcome offer (24 months plus 2 months free, only RM 91.38 a month on average) for the first 50 users until 31 Dec 2026, or RM 178 month by month, with queue calling included. New clinics get the first 3 months free, including installation and staff training.
+Plans start from RM 99/month per outlet with our Welcome offer (12 months plus 2 months free, only RM 84.86 a month on average) for the first 250 users until 31 Dec 2026, or RM 178 month by month, with queue calling included. New clinics get the first 3 months free, including installation and staff training.
 
 ## FAQ
 
@@ -96,4 +96,4 @@ Each patient gets a number at registration, and the system calls it on a TV, wit
 Yes, Techub's queue screen shows each call in English, Malay and Chinese. A voice announcement plays too, for patients who are not watching the TV.
 
 ### How much does a clinic queue system cost in Malaysia?
-Techub's clinic system, with queue number calling included, starts from RM 99/month per outlet with our Welcome offer (24 months plus 2 months free, only RM 91.38 a month on average) for the first 50 users until 31 Dec 2026, or RM 178 month by month. New clinics get the first 3 months free, including installation and staff training. See our [pricing](/pricing/) for everything included.
+Techub's clinic system, with queue number calling included, starts from RM 99/month per outlet with our Welcome offer (12 months plus 2 months free, only RM 84.86 a month on average) for the first 250 users until 31 Dec 2026, or RM 178 month by month. New clinics get the first 3 months free, including installation and staff training. See our [pricing](/pricing/) for everything included.
