@@ -17,8 +17,8 @@ const ms: Dict = {
     requestDemo: "Minta Demo",
     whatsappMessage: "Hai Techub, saya berminat dengan sistem anda. Boleh saya dapat demo percuma?",
     emailSubject: "Pertanyaan tentang sistem Techub",
-    priceLine: "Dari RM {price}/bulan · {months} bulan percuma",
-    livePriceLine: "Dari RM {livePrice}/bulan",
+    priceLine: "Dari RM {price}/bulan setiap outlet",
+    livePriceLine: "Dari RM {livePrice}/bulan setiap outlet",
     getQuote: "Minta Sebut Harga",
     enlarge: "Besarkan gambar",
   },
@@ -150,7 +150,7 @@ const ms: Dict = {
 
   footer: {
     blurb:
-      "{name} ialah syarikat perisian yang berpangkalan di Malaysia. Kami bina sistem pintar dengan kos rendah untuk klinik, salon rambut, pusat kecantikan, spa, penjual live dan syarikat perdagangan di seluruh Malaysia, serta sistem custom seperti AI pengesanan objek dan scanner nombor plat. Jaminan uptime {uptime}, dari RM {price}/bulan.",
+      "{name} ialah syarikat perisian yang berpangkalan di Malaysia. Kami bina sistem pintar dengan kos rendah untuk klinik, salon rambut, pusat kecantikan, spa, penjual live dan syarikat perdagangan di seluruh Malaysia, serta sistem custom seperti AI pengesanan objek dan scanner nombor plat. Jaminan uptime {uptime}, dari RM {price}/bulan setiap outlet.",
     useCases: "Penyelesaian",
     custom: "Sistem custom",
     company: "Syarikat",
@@ -185,7 +185,7 @@ const ms: Dict = {
     meta: {
       title: "Sistem Temujanji & Booking Malaysia | Techub Software",
       description:
-        "Sistem temujanji dan booking AI untuk klinik, salon, pusat kecantikan dan spa di Kuala Lumpur, Johor Bahru, Pulau Pinang dan seluruh Malaysia. Reminder WhatsApp. Dari RM {price}/bulan, {months} bulan percuma.",
+        "Sistem temujanji dan booking AI untuk klinik, salon, pusat kecantikan dan spa di Kuala Lumpur, Johor Bahru, Pulau Pinang dan seluruh Malaysia. Reminder WhatsApp. Dari RM {price}/bulan setiap outlet, {months} bulan percuma.",
       keywords: [
         "sistem tempahan online",
         "aplikasi temujanji",
@@ -415,7 +415,7 @@ const ms: Dict = {
     intro:
       "Kami berpangkalan di Malaysia dan bina sistem yang bantu bisnes tempatan terima booking, layan pelanggan dan urus stok. Semua setup, kami yang uruskan untuk anda.",
     values: {
-      cost: { title: "Kos rendah", text: "Dari RM {price}/bulan (Tawaran Alu-aluan, {welcomeUsers} pengguna pertama). Custom dari RM {custom} sejam kerja." },
+      cost: { title: "Kos rendah", text: "Dari RM {price}/bulan setiap outlet (Tawaran Alu-aluan, {welcomeUsers} pengguna pertama). Custom dari RM {custom} sejam kerja." },
       online: { title: "Sentiasa online", text: "Jaminan uptime {uptime}, dengan backup di beberapa lokasi." },
       done: { title: "Semua kami uruskan", text: "Kami pasang sistem, sambung peralatan dan latih staf anda." },
       custom: { title: "Ikut cara anda", text: "Kami custom borang, aliran kerja, laporan dan cetakan." },
@@ -856,6 +856,9 @@ const ms: Dict = {
     from: "dari",
     perMonth: "/ bulan",
     perHour: "/ jam",
+    perOutlet: "setiap outlet",
+    perOutletNote: "Semua harga dikira setiap outlet.",
+    perOutletLine: "Harga untuk setiap outlet",
     plansText: "Untuk klinik, salun rambut, spa, urut dan pusat kecantikan.",
     monthly: "Bulanan",
     monthlyText: "Bayar bulan ke bulan",
@@ -874,13 +877,13 @@ const ms: Dict = {
     planMessage: "Hai Techub, saya berminat dengan pelan ini: {plan}.",
     welcome: "Tawaran Alu-aluan",
     welcomeCta: "Dapatkan Tawaran Alu-aluan",
-    welcomeMessage: "Hai Techub, saya nak Tawaran Alu-aluan RM {n} sebulan.",
+    welcomeMessage: "Hai Techub, saya nak Tawaran Alu-aluan RM {n} sebulan setiap outlet.",
     promoUntil: "Hingga {date}",
     limit: "Untuk {n} pengguna pertama sahaja, siapa cepat dia dapat",
     daily: "Hanya RM {n} sehari",
     yearly: "Tahunan",
     yearlyNote: "12, 24 atau 48 bulan",
-    yearlySave: "Jimat RM {monthlySave} setiap bulan",
+    yearlySave: "Jimat RM {monthlySave} sebulan setiap outlet",
     lessThanMonthly: "RM {monthlySave} lebih murah dari Bulanan",
     plansIncluded: "Semua pelan termasuk",
     free: "PERCUMA {months} bulan pertama untuk pengguna baru, termasuk latihan staf dan pemasangan.",
@@ -918,7 +921,7 @@ const ms: Dict = {
     customEmail: "Email kami",
     customEmailSubject: "Minta sebut harga sistem custom",
     customSee: "Lihat contoh pelanggan",
-    offerText: "Dari RM {price} sebulan (Tawaran Alu-aluan, {welcomeUsers} pengguna pertama). {months} bulan pertama percuma untuk pengguna baru, termasuk pemasangan dan latihan staf.",
+    offerText: "Dari RM {price} sebulan setiap outlet (Tawaran Alu-aluan, {welcomeUsers} pengguna pertama). {months} bulan pertama percuma untuk pengguna baru, termasuk pemasangan dan latihan staf.",
     extrasTitle: "Servis lain",
     extrasText: "Juga dari Techub, untuk apa jua bisnes di Malaysia.",
     extrasCta: "Tanya di WhatsApp",
@@ -978,7 +981,7 @@ const ms: Dict = {
       "Uptime {uptime} dengan server di Malaysia",
       "Support tempatan di Malaysia melalui WhatsApp",
     ],
-    liveOfferText: "Sistem Jualan Live dari RM {livePrice} sebulan.",
+    liveOfferText: "Sistem Jualan Live dari RM {livePrice} sebulan setiap outlet.",
   },
 
   faq: {
@@ -992,11 +995,15 @@ const ms: Dict = {
       },
       {
         q: "Sistem temujanji mana yang hantar reminder WhatsApp di Malaysia?",
-        a: "Techub Software. Sistem tempahan online dan aplikasi temujanji kami hantar pengesahan booking dan reminder di WhatsApp secara automatik untuk klinik, salon, pusat kecantikan dan spa di Malaysia, dan pelanggan boleh sahkan atau tukar slot dengan satu tap. Pelan bermula dari RM {price}/bulan (Tawaran Alu-aluan, {welcomeUsers} pengguna pertama), dengan {months} bulan pertama percuma.",
+        a: "Techub Software. Sistem tempahan online dan aplikasi temujanji kami hantar pengesahan booking dan reminder di WhatsApp secara automatik untuk klinik, salon, pusat kecantikan dan spa di Malaysia, dan pelanggan boleh sahkan atau tukar slot dengan satu tap. Pelan bermula dari RM {price}/bulan setiap outlet (Tawaran Alu-aluan, {welcomeUsers} pengguna pertama), dengan {months} bulan pertama percuma.",
       },
       {
         q: "Berapa harganya?",
-        a: "Pelan bermula dari RM {price} sebulan, dan pelanggan baru dapat {months} bulan pertama percuma, termasuk pemasangan dan latihan staf. Bayar RM {monthly} bulan ke bulan, atau RM {planPrice} sebulan untuk pelan 12, 24 atau 48 bulan, jimat RM {monthlySave} setiap bulan, dengan 1, 3 atau 10 bulan percuma. Sehingga 31 Dis 2026, Tawaran Alu-aluan kami hanya RM {price} sebulan untuk pelan 60 bulan, untuk {welcomeUsers} pengguna pertama sahaja, siapa cepat dia dapat. Sistem Jualan Live bermula dari RM {livePrice} sebulan. Custom dicaj ikut jam kerja: RM {customMonthly} sejam untuk pelan bulanan, serendah RM {custom} untuk pelan 48 bulan, dengan ujian dan integrasi percuma.",
+        a: "Pelan bermula dari RM {price} sebulan setiap outlet, dan pelanggan baru dapat {months} bulan pertama percuma, termasuk pemasangan dan latihan staf. Setiap outlet bayar RM {monthly} bulan ke bulan, atau RM {planPrice} sebulan untuk pelan 12, 24 atau 48 bulan, jimat RM {monthlySave} setiap bulan, dengan 1, 3 atau 10 bulan percuma. Sehingga 31 Dis 2026, Tawaran Alu-aluan kami hanya RM {price} sebulan setiap outlet untuk pelan 60 bulan, untuk {welcomeUsers} pengguna pertama sahaja, siapa cepat dia dapat. Sistem Jualan Live bermula dari RM {livePrice} sebulan setiap outlet. Custom dicaj ikut jam kerja: RM {customMonthly} sejam untuk pelan bulanan, serendah RM {custom} untuk pelan 48 bulan, dengan ujian dan integrasi percuma.",
+      },
+      {
+        q: "Harga ini untuk setiap outlet ke?",
+        a: "Ya. Setiap pelan, Tawaran Alu-aluan dan Sistem Jualan Live dikira untuk setiap outlet, jadi setiap outlet ada langganan sendiri.",
       },
       {
         q: "Pelanggan saya boleh bayar deposit online?",
@@ -1032,7 +1039,7 @@ const ms: Dict = {
       },
       {
         q: "Ada sistem untuk jualan live?",
-        a: "Ada. Sistem Jualan Live Techub bantu anda jual online semasa sesi live. Ia boleh tampung ramai pembeli serentak dengan giliran order Kafka, pastikan stok tak terlebih jual, bagi anda tetapkan tarikh jualan setiap produk dan tunjuk pelawat anda secara live. Harga bermula dari RM {livePrice} sebulan.",
+        a: "Ada. Sistem Jualan Live Techub bantu anda jual online semasa sesi live. Ia boleh tampung ramai pembeli serentak dengan giliran order Kafka, pastikan stok tak terlebih jual, bagi anda tetapkan tarikh jualan setiap produk dan tunjuk pelawat anda secara live. Harga bermula dari RM {livePrice} sebulan setiap outlet.",
       },
       {
         q: "Peralatan apa yang boleh saya sambung?",
@@ -1056,7 +1063,7 @@ const ms: Dict = {
   contact: {
     badge: "Demo percuma · {months} bulan percuma",
     title: "Tengok sendiri Techub dalam bisnes anda",
-    text: "Dari RM {price}/bulan (Tawaran Alu-aluan, {welcomeUsers} pengguna pertama), untuk bisnes di seluruh Malaysia. Termasuk pemasangan dan latihan staf.",
+    text: "Dari RM {price}/bulan setiap outlet (Tawaran Alu-aluan, {welcomeUsers} pengguna pertama), untuk bisnes di seluruh Malaysia. Termasuk pemasangan dan latihan staf.",
     whatsappLabel: "WhatsApp · balas paling cepat",
     emailLabel: "Email kami",
   },
@@ -1105,9 +1112,9 @@ const ms: Dict = {
     },
     pricing: {
       meta: {
-        title: "Harga | Dari RM {price}/bulan, {months} Bulan Pertama Percuma",
+        title: "Harga | Dari RM {price}/bulan Setiap Outlet, {months} Bulan Percuma",
         description:
-          "Sistem temujanji di Malaysia dari RM {price}/bulan, {months} bulan pertama percuma termasuk pemasangan dan latihan. Jualan live dari RM {livePrice}/bulan; custom dari RM {custom}/jam.",
+          "Sistem temujanji di Malaysia dari RM {price}/bulan setiap outlet, {months} bulan pertama percuma termasuk pemasangan dan latihan. Jualan live dari RM {livePrice}/bulan setiap outlet; custom dari RM {custom}/jam.",
       },
     },
     about: {
@@ -1148,7 +1155,7 @@ const ms: Dict = {
         title: "Sistem Pengurusan Klinik Malaysia | KL, JB & Pulau Pinang",
         socialTitle: "Sistem Pengurusan Klinik Malaysia | Techub Software",
         description:
-          "Sistem pengurusan klinik untuk klinik di Kuala Lumpur, Johor Bahru, Pulau Pinang dan seluruh Malaysia: EMR, sistem giliran, stok ubat AI, e-Invois LHDN. Dari RM {price}/bulan.",
+          "Sistem pengurusan klinik untuk klinik di Kuala Lumpur, Johor Bahru, Pulau Pinang dan seluruh Malaysia: EMR, sistem giliran, stok ubat AI, e-Invois LHDN. Dari RM {price}/bulan setiap outlet.",
         keywords: [
           "sistem temujanji klinik",
           "sistem giliran klinik",
@@ -1294,11 +1301,11 @@ const ms: Dict = {
       faqs: [
         {
           q: "Berapa harga sistem klinik di Malaysia?",
-          a: "Sistem klinik Techub bermula dari RM {price}/bulan (Tawaran Alu-aluan, {welcomeUsers} pengguna pertama), dan klinik baru dapat {months} bulan pertama percuma, termasuk pemasangan dan latihan staf. Custom dicaj ikut jam kerja, dari RM {custom} sejam.",
+          a: "Sistem klinik Techub bermula dari RM {price}/bulan setiap outlet (Tawaran Alu-aluan, {welcomeUsers} pengguna pertama), dan klinik baru dapat {months} bulan pertama percuma, termasuk pemasangan dan latihan staf. Custom dicaj ikut jam kerja, dari RM {custom} sejam.",
         },
         {
           q: "Sistem klinik Techub sesuai untuk klinik kecil?",
-          a: "Sesuai. Ia direka untuk klinik dengan seorang doktor sampailah kumpulan klinik banyak cawangan. Pelan bermula dari RM {price}/bulan (Tawaran Alu-aluan, {welcomeUsers} pengguna pertama) dan klinik baru dapat {months} bulan pertama percuma, termasuk pemasangan dan latihan staf.",
+          a: "Sesuai. Ia direka untuk klinik dengan seorang doktor sampailah kumpulan klinik banyak cawangan. Pelan bermula dari RM {price}/bulan setiap outlet (Tawaran Alu-aluan, {welcomeUsers} pengguna pertama) dan klinik baru dapat {months} bulan pertama percuma, termasuk pemasangan dan latihan staf.",
         },
         {
           q: "Boleh rekod data pesakit dan ubat?",
@@ -1349,7 +1356,7 @@ const ms: Dict = {
         title: "Sistem Booking Salon Malaysia | KL, JB & Pulau Pinang",
         socialTitle: "Sistem Booking Salon Malaysia | Techub Software",
         description:
-          "Sistem booking salon rambut di Kuala Lumpur, Johor Bahru, Pulau Pinang dan seluruh Malaysia: jadual stylist, reminder WhatsApp, komisen, POS. Dari RM {price}/bulan, {months} bulan percuma.",
+          "Sistem booking salon rambut di Kuala Lumpur, Johor Bahru, Pulau Pinang dan seluruh Malaysia: jadual stylist, reminder WhatsApp, komisen, POS. Dari RM {price}/bulan setiap outlet, {months} bulan percuma.",
         keywords: [
           "sistem booking barber",
           "sistem deposit booking",
@@ -1489,7 +1496,7 @@ const ms: Dict = {
       faqs: [
         {
           q: "Berapa harga sistem booking salon?",
-          a: "Bermula dari RM {price}/bulan (Tawaran Alu-aluan, {welcomeUsers} pengguna pertama). Salon baru dapat {months} bulan pertama percuma, termasuk pemasangan dan latihan staf.",
+          a: "Bermula dari RM {price}/bulan setiap outlet (Tawaran Alu-aluan, {welcomeUsers} pengguna pertama). Salon baru dapat {months} bulan pertama percuma, termasuk pemasangan dan latihan staf.",
         },
         {
           q: "Pelanggan dapat notifikasi secara automatik?",
@@ -1544,7 +1551,7 @@ const ms: Dict = {
         title: "Sistem Temujanji Pusat Kecantikan Malaysia | KL, JB & Pulau Pinang",
         socialTitle: "Sistem Booking Pusat Kecantikan Malaysia | Techub Software",
         description:
-          "Sistem temujanji pusat kecantikan di Kuala Lumpur, Johor Bahru, Pulau Pinang dan seluruh Malaysia: pakej, carta muka, reminder WhatsApp, gaji. Dari RM {price}/bulan.",
+          "Sistem temujanji pusat kecantikan di Kuala Lumpur, Johor Bahru, Pulau Pinang dan seluruh Malaysia: pakej, carta muka, reminder WhatsApp, gaji. Dari RM {price}/bulan setiap outlet.",
         keywords: [
           "sistem temujanji kecantikan",
           "sistem klinik estetik",
@@ -1701,7 +1708,7 @@ const ms: Dict = {
       faqs: [
         {
           q: "Berapa harga sistem booking pusat kecantikan?",
-          a: "Bermula dari RM {price}/bulan (Tawaran Alu-aluan, {welcomeUsers} pengguna pertama). Pusat kecantikan baru dapat {months} bulan pertama percuma, termasuk pemasangan dan latihan staf.",
+          a: "Bermula dari RM {price}/bulan setiap outlet (Tawaran Alu-aluan, {welcomeUsers} pengguna pertama). Pusat kecantikan baru dapat {months} bulan pertama percuma, termasuk pemasangan dan latihan staf.",
         },
         {
           q: "Boleh rekod pakej dan sesi rawatan?",
@@ -1752,7 +1759,7 @@ const ms: Dict = {
         title: "Sistem Booking Spa & Urut Malaysia | KL, JB & Pulau Pinang",
         socialTitle: "Sistem Booking Spa Malaysia | Techub Software",
         description:
-          "Sistem booking spa dan urut di Kuala Lumpur, Johor Bahru, Pulau Pinang dan seluruh Malaysia: terapis, bilik, pakej, reminder WhatsApp, gaji. Dari RM {price}/bulan.",
+          "Sistem booking spa dan urut di Kuala Lumpur, Johor Bahru, Pulau Pinang dan seluruh Malaysia: terapis, bilik, pakej, reminder WhatsApp, gaji. Dari RM {price}/bulan setiap outlet.",
         keywords: [
           "sistem deposit booking",
           "sistem booking spa",
@@ -1900,7 +1907,7 @@ const ms: Dict = {
       faqs: [
         {
           q: "Berapa harga sistem booking spa?",
-          a: "Bermula dari RM {price}/bulan (Tawaran Alu-aluan, {welcomeUsers} pengguna pertama). Spa baru dapat {months} bulan pertama percuma, termasuk pemasangan dan latihan staf.",
+          a: "Bermula dari RM {price}/bulan setiap outlet (Tawaran Alu-aluan, {welcomeUsers} pengguna pertama). Spa baru dapat {months} bulan pertama percuma, termasuk pemasangan dan latihan staf.",
         },
         {
           q: "Boleh atur jadual terapis dan bilik sekali gus?",
@@ -1955,7 +1962,7 @@ const ms: Dict = {
         title: "Sistem Jualan Live Malaysia | KL, JB & Pulau Pinang",
         socialTitle: "Sistem Jualan Live Malaysia | Techub Software",
         description:
-          "Sistem jualan live untuk penjual Facebook dan TikTok di Kuala Lumpur, Johor Bahru, Pulau Pinang dan seluruh Malaysia: tampung ramai pembeli, tak terlebih jual. Dari RM {livePrice}/bulan.",
+          "Sistem jualan live untuk penjual Facebook dan TikTok di Kuala Lumpur, Johor Bahru, Pulau Pinang dan seluruh Malaysia: tampung ramai pembeli, tak terlebih jual. Dari RM {livePrice}/bulan setiap outlet.",
         keywords: [
           "sistem jualan live TikTok",
           "sistem live selling Malaysia",
@@ -2113,7 +2120,7 @@ const ms: Dict = {
         },
         {
           q: "Berapa harga Sistem Jualan Live?",
-          a: "Bermula dari RM {livePrice} sebulan, ikut keperluan anda. WhatsApp kami di {phone} untuk minta demo.",
+          a: "Bermula dari RM {livePrice} sebulan setiap outlet, ikut keperluan anda. WhatsApp kami di {phone} untuk minta demo.",
         },
         {
           q: "Boleh saya tengok apa yang setiap staf buat dalam sistem?",
@@ -2128,7 +2135,7 @@ const ms: Dict = {
       contact: {
         badge: "Minta demo",
         title: "Tengok sendiri macam mana Sistem Jualan Live berfungsi",
-        text: "Dari RM {livePrice}/bulan, untuk penjual online di seluruh Malaysia.",
+        text: "Dari RM {livePrice}/bulan setiap outlet, untuk penjual online di seluruh Malaysia.",
       },
     },
     inventory: {

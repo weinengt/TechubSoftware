@@ -77,12 +77,12 @@ Setiap deposit disimpan berasingan sampai servis siap. Lepas itu, satu klik tuka
 
 Setiap tindakan staf direkod, dan anda tetapkan siapa boleh bagi diskaun atau buat refund. Boleh guna di iPad, telefon dan PC, dengan jaminan uptime 99.95%.
 
-Pelan bermula dari RM 99/bulan dengan Tawaran Alu-aluan 60 bulan untuk 80 pengguna pertama sehingga 31 Dis 2026, atau RM 178 bulan ke bulan, dan pengguna baru dapat 3 bulan pertama percuma, termasuk pemasangan dan latihan staf. Lihat [harga](/ms/pricing/) untuk butiran.
+Pelan bermula dari RM 99/bulan setiap outlet dengan Tawaran Alu-aluan 60 bulan untuk 80 pengguna pertama sehingga 31 Dis 2026, atau RM 178 bulan ke bulan, dan pengguna baru dapat 3 bulan pertama percuma, termasuk pemasangan dan latihan staf. Lihat [harga](/ms/pricing/) untuk butiran.
 
 ## Soalan lazim
 
 ### Macam mana nak hantar reminder temujanji WhatsApp secara automatik?
-Guna sistem temujanji yang hantar reminder untuk anda. Techub hantar pengesahan booking dan reminder di WhatsApp secara automatik, dan pelanggan boleh sahkan atau tukar slot dengan satu tap. Pelan bermula dari RM 99/bulan dengan Tawaran Alu-aluan 60 bulan untuk 80 pengguna pertama sehingga 31 Dis 2026, atau RM 178 bulan ke bulan, dengan 3 bulan pertama percuma.
+Guna sistem temujanji yang hantar reminder untuk anda. Techub hantar pengesahan booking dan reminder di WhatsApp secara automatik, dan pelanggan boleh sahkan atau tukar slot dengan satu tap. Pelan bermula dari RM 99/bulan setiap outlet dengan Tawaran Alu-aluan 60 bulan untuk 80 pengguna pertama sehingga 31 Dis 2026, atau RM 178 bulan ke bulan, dengan 3 bulan pertama percuma.
 
 ### Berapa deposit booking yang patut salon minta?
 Pilih jumlah yang cukup besar supaya pelanggan ambil serius, tapi cukup kecil supaya pelanggan baru tak lari. Guna jumlah tetap untuk servis pendek, dan lebih tinggi untuk servis yang lama atau mahal, seperti warna rambut atau pakej spa. Pastikan deposit ditolak dari bil akhir.

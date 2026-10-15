@@ -109,6 +109,7 @@ export default function HomePage({ lang }: { lang: Locale }) {
                 <dd className="mt-1 text-xl font-extrabold text-slate-900 sm:text-2xl">
                   RM {site.priceFrom}
                   <span className="text-sm font-semibold text-slate-500">{h.perMonth}</span>
+                  <span className="block text-xs font-semibold text-slate-500">{d.pricing.perOutlet}</span>
                 </dd>
               </div>
             </dl>

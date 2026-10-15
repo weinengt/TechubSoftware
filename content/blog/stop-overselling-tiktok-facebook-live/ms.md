@@ -65,7 +65,7 @@ Techub boleh guna pelbagai payment gateway. Pembeli bayar masa checkout guna per
 
 Dashboard live tunjuk pelawat anda dan halaman yang setiap seorang sedang buka. Tukar harga masa live boleh perlukan kelulusan anda. Laporan produk terlaris dan kadar conversion siap dalam masa kurang 100 ms.
 
-Sistem ini guna server di Malaysia, dengan jaminan uptime 99.95%. Harga bermula dari RM 199 sebulan, ikut keperluan anda. Lihat halaman [harga](/ms/pricing/) untuk apa yang termasuk.
+Sistem ini guna server di Malaysia, dengan jaminan uptime 99.95%. Harga bermula dari RM 199 sebulan setiap outlet, ikut keperluan anda. Lihat halaman [harga](/ms/pricing/) untuk apa yang termasuk.
 
 ## Soalan lazim
 
@@ -76,4 +76,4 @@ Ambil order di halaman jualan yang semak dan tolak stok sebaik saja setiap order
 Boleh, kalau sistem itu susun order dalam giliran dan proses satu per satu. Sistem Jualan Live Techub guna giliran order Kafka, jadi halaman jualan kekal laju dan satu barang takkan dijual dua kali.
 
 ### Berapa harga sistem jualan live di Malaysia?
-Sistem Jualan Live Techub bermula dari RM 199 sebulan, ikut keperluan anda. Anda boleh minta demo di WhatsApp dan tengok sistem ini berfungsi guna produk anda sendiri.
+Sistem Jualan Live Techub bermula dari RM 199 sebulan setiap outlet, ikut keperluan anda. Anda boleh minta demo di WhatsApp dan tengok sistem ini berfungsi guna produk anda sendiri.

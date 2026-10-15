@@ -86,7 +86,7 @@ Techub's [Salon Appointment System](/salon-appointment-system/) is a booking sys
 - Every staff action is recorded with who did it and when, with separate roles and manager approval for discounts.
 - Reports show sales by stylist and service, with commission at a glance, in under 100 ms.
 
-Plans start from RM 99/month with our 60-month Welcome offer for the first 80 users until 31 Dec 2026, or RM 178 month by month. New users get the first 3 months free, including installation and staff training. See [pricing](/pricing/) for details.
+Plans start from RM 99/month per outlet with our 60-month Welcome offer for the first 80 users until 31 Dec 2026, or RM 178 month by month. New users get the first 3 months free, including installation and staff training. See [pricing](/pricing/) for details.
 
 ## FAQ
 
@@ -94,7 +94,7 @@ Plans start from RM 99/month with our 60-month Welcome offer for the first 80 us
 Multiply the stylist's monthly sales by your commission rate, with separate rates for services and products if you use them. For example, 10% of RM 6,000 in services is RM 600. With tiers, write down whether the higher rate covers all sales or only the part above the target.
 
 ### Which salon system in Malaysia calculates staff commission and payroll?
-Techub's Salon Appointment System does. Commission on services and product sales is calculated from your POS, and monthly payroll adds basic salary and allowances for each staff member. Plans start from RM 99/month with our 60-month Welcome offer for the first 80 users until 31 Dec 2026, or RM 178 month by month, with the first 3 months free.
+Techub's Salon Appointment System does. Commission on services and product sales is calculated from your POS, and monthly payroll adds basic salary and allowances for each staff member. Plans start from RM 99/month per outlet with our 60-month Welcome offer for the first 80 users until 31 Dec 2026, or RM 178 month by month, with the first 3 months free.
 
 ### Can stylists see their own appointments in a salon system?
 Yes, if the system gives each staff member their own login. With Techub, each stylist views and manages their own appointments on their phone, iPad or PC. They only see what their role allows.
