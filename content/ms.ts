@@ -823,7 +823,7 @@ const ms: Dict = {
   outlets: {
     eyebrow: "Banyak outlet",
     title: "Semua outlet, *satu app*",
-    points: ["Pemilik tukar outlet dengan satu tekan", "Lihat maklumat setiap outlet secara berasingan", "Harga dikira setiap outlet"],
+    points: ["Pemilik tukar outlet dengan satu tekan", "Lihat maklumat setiap outlet secara\u00a0berasingan", "Harga dikira setiap outlet"],
     switch: "Tukar outlet",
     tap: "Tekan outlet untuk lihat maklumatnya",
     places: [

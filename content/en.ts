@@ -826,7 +826,7 @@ const en = {
   outlets: {
     eyebrow: "Multiple outlets",
     title: "Every outlet, *one app*",
-    points: ["Owners switch between outlets in one tap", "View each outlet's information on its own", "Priced per outlet"],
+    points: ["Owners switch between outlets in one\u00a0tap", "View each outlet's information on its\u00a0own", "Priced per outlet"],
     switch: "Switch outlet",
     tap: "Tap an outlet to view it",
     places: [
