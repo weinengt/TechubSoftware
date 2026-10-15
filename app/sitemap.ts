@@ -20,7 +20,14 @@ const listed: Page[] = [
       "salonCalendar", "permissionsDesktop", "queueTv", "clinicDashboard", "faceChart", "erpDesktop", "objectDetection", "plateScanner", "whatsappSalon",
     ],
   },
-  { path: "/technology/", priority: 0.9, images: ["reportsClinic", "siteTreatments", "permissionsDesktop", "clinicStock", "scanClinic", "migrationScan", "whatsappClinic", "queueTv", "eInvoice", "clinicPermissions"] },
+  {
+    path: "/technology/",
+    priority: 0.9,
+    images: [
+      "reportsClinic", "siteTreatments", "permissionsDesktop", "clinicStock", "scanClinic", "stockTrail", "stockScan", "migrationScan", "whatsappClinic", "queueTv",
+      "eInvoice", "erpReturn", "clinicPermissions",
+    ],
+  },
   {
     path: "/clinic-management-system/",
     priority: 0.9,
@@ -47,9 +54,17 @@ const listed: Page[] = [
     images: ["liveDashboard", "liveShop", "liveQueue", "liveCheckout", "liveProduct", "liveProducts", "liveVisitors", "reportsLive", "livePermissions"],
   },
   {
+    path: "/inventory-management-system/",
+    priority: 0.9,
+    images: ["inventoryDashboard", "stockScan", "stockIn", "stockTrail", "barcodeLabels", "erpSales", "erpReturn", "reportsInventory", "inventoryPermissions"],
+  },
+  {
     path: "/use-cases/",
     priority: 0.9,
-    images: ["clinicDashboard", "whatsappClinic", "salonCalendar", "staffSalon", "faceChart", "beautyPackage", "spaCalendar", "spaPackage", "liveDashboard", "liveShop"],
+    images: [
+      "clinicDashboard", "whatsappClinic", "salonCalendar", "staffSalon", "faceChart", "beautyPackage", "spaCalendar", "spaPackage", "liveDashboard", "liveShop",
+      "stockTrail", "stockScan",
+    ],
   },
   {
     path: "/software-customisation/",

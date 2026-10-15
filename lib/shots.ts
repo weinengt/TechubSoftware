@@ -79,6 +79,17 @@ export const shotFiles = {
   liveCheckout: { ...phone, file: "live-selling-checkout-phone" },
   livePayment: { ...phone, file: "live-selling-online-payment-phone" },
 
+  /* Inventory & ERP */
+  inventoryDashboard: { ...ipad, file: "inventory-erp-dashboard-ipad" },
+  stockIn: { ...ipad, file: "inventory-batch-stock-in-ipad" },
+  stockTrail: { ...ipad, file: "inventory-stock-activity-trail-ipad" },
+  barcodeLabels: { w: 1500, h: 1050, kind: "paper", file: "inventory-barcode-qr-labels" },
+  erpSales: { ...ipad, file: "inventory-sales-accounting-ipad" },
+  erpReturn: { ...ipad, file: "inventory-one-click-return-credit-note-ipad" },
+  reportsInventory: { ...ipad, file: "inventory-reports-ipad" },
+  inventoryPermissions: { ...ipad, file: "inventory-staff-permissions-ipad" },
+  stockScan: { ...phone, file: "inventory-scan-barcode-phone" },
+
   /* PC */
   permissionsDesktop: { ...desktop, file: "staff-permission-control-desktop" },
   clinicDashboardDesktop: { ...desktop, file: "clinic-dashboard-desktop" },

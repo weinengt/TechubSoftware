@@ -1,0 +1,172 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<style>
+  /* Batch stock in (goods received note GRN-2026-0412), just posted: 8 batches, 1,240 units, labels printed and the
+     supplier bill sent to Accounting by itself. The phone stands over the lower right corner in the moving picture,
+     so the right column holds only the extra detail. */
+  :root { --w: 1024px; --h: 720px; }
+  .top { gap: 10px; }
+  .top h1 { display: flex; align-items: center; gap: 9px; }
+  .top h1 .chip { font-size: 11px; }
+  .btn svg { width: 15px; height: 15px; }
+  .chip svg { width: 11px; height: 11px; stroke-width: 2.6; }
+  .content { gap: 12px; }
+
+  /* Posted banner */
+  .posted { display: flex; align-items: center; gap: 13px; padding: 12px 14px; border-radius: 12px; background: linear-gradient(135deg, #ecfdf5, #d1fae5); border: 1px solid #a7f3d0; box-shadow: 0 8px 20px -14px rgba(5,150,105,.6); }
+  .posted .ok { width: 38px; height: 38px; border-radius: 99px; background: #22c55e; color: #fff; display: grid; place-items: center; flex-shrink: 0; box-shadow: 0 6px 12px -6px rgba(22,163,74,.9); }
+  .posted .ok svg { width: 21px; height: 21px; stroke-width: 2.8; }
+  .posted .h b { display: block; font-size: 16px; font-weight: 800; color: #14532d; letter-spacing: -.01em; white-space: nowrap; }
+  .posted .h small { display: block; font-size: 11px; color: #047857; font-weight: 600; margin-top: 2px; white-space: nowrap; }
+  .pills { margin-left: auto; display: flex; gap: 8px; }
+  .pills span { display: inline-flex; align-items: center; gap: 7px; height: 34px; padding: 0 11px; border-radius: 9px; background: #fff; border: 1px solid #bbf7d0; font-size: 11.5px; font-weight: 650; color: #166534; white-space: nowrap; }
+  .pills span svg { width: 15px; height: 15px; }
+  .pills span b { font-weight: 800; color: #14532d; }
+
+  /* Supplier strip */
+  .info { display: grid; grid-template-columns: 1.55fr 1fr 1.05fr 1fr 1.25fr; padding: 0; }
+  .info div { padding: 10px 14px; border-left: 1px solid #eef2f7; min-width: 0; }
+  .info div:first-child { border-left: 0; }
+  .info span { display: block; font-size: 10.5px; color: var(--muted); font-weight: 500; }
+  .info b { display: block; font-size: 12.5px; font-weight: 700; margin-top: 2px; white-space: nowrap; }
+  .info small { display: block; font-size: 10.5px; color: var(--muted); margin-top: 1px; white-space: nowrap; }
+
+  .rw { flex: 1; min-height: 0; display: flex; gap: 12px; }
+  /* Lines */
+  .lines { flex: 1; min-width: 0; padding: 0; overflow: hidden; display: flex; flex-direction: column; }
+  .lines h3 { padding: 11px 14px 10px; }
+  .lines h3 small { font-size: 11px; color: var(--muted); font-weight: 500; }
+  table { table-layout: fixed; }
+  th { padding: 7px 8px; white-space: nowrap; }
+  td { padding: 0 8px; height: 45px; }
+  th:first-child, td:first-child { padding-left: 14px; } th:last-child, td:last-child { padding-right: 14px; }
+  .pr { display: flex; align-items: center; gap: 9px; min-width: 0; }
+  .pr .pic { width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center; flex-shrink: 0; }
+  .pr .pic svg { width: 24px; height: 24px; }
+  .pr b { display: block; font-size: 12px; font-weight: 700; color: var(--ink); overflow: hidden; text-overflow: ellipsis; }
+  .pr small { display: block; font-size: 10.5px; color: var(--muted); margin-top: 1px; }
+  .bt { font-size: 11.5px; font-weight: 650; color: var(--ink); font-variant-numeric: tabular-nums; letter-spacing: .01em; }
+  .loc { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 700; color: #b45309; background: #fef3c7; padding: 3px 7px; border-radius: 6px; }
+  .loc svg { width: 11px; height: 11px; stroke-width: 2.4; }
+  .lbl { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 650; color: #15803d; }
+  .lbl svg { width: 13px; height: 13px; stroke-width: 2.6; }
+  .qty { font-weight: 750; color: #059669; font-size: 12.5px; }
+  tr.tot td { background: #f8fafc; border-bottom: 0; color: var(--ink); font-weight: 750; height: 40px; }
+
+  /* Right column: what the system did by itself (under the phone in the moving picture) */
+  .auto { width: 214px; flex-shrink: 0; display: flex; flex-direction: column; gap: 0; }
+  .auto h3 svg { color: var(--brand); }
+  .stp { display: flex; gap: 9px; align-items: flex-start; padding: 8px 0; border-top: 1px dashed #e3e9f0; }
+  .stp:first-of-type { margin-top: 8px; }
+  .stp .fi { width: 26px; height: 28px; border-radius: 7px; display: grid; place-items: center; flex-shrink: 0; }
+  .stp .fi svg { width: 14px; height: 14px; stroke-width: 2.1; }
+  .stp b { display: block; font-size: 11.5px; font-weight: 700; }
+  .stp small { display: block; font-size: 10.5px; color: var(--muted); margin-top: 2px; line-height: 1.35; }
+  .fi.g { background: #dcfce7; color: #15803d; } .fi.b { background: var(--brand-100); color: #036295; } .fi.s { background: #f1f5f9; color: #475569; } .fi.v { background: #ede9fe; color: #6d28d9; }
+  .jr { margin-top: 2px; border-radius: 8px; background: #f8fafc; border: 1px solid #eef2f7; padding: 5px 7px; font-size: 10.5px; color: var(--ink2); font-variant-numeric: tabular-nums; }
+  .jr div { display: flex; justify-content: space-between; line-height: 1.55; gap: 6px; }
+  .jr div span:last-child { font-weight: 700; color: var(--ink); }
+  .mini { margin-top: auto; border: 1px solid var(--line); border-radius: 9px; padding: 8px 9px; display: flex; gap: 8px; align-items: center; background: #fff; box-shadow: 0 6px 14px -10px rgba(15,23,42,.35); }
+  .mini .t b { display: block; font-size: 10.5px; font-weight: 800; }
+  .mini .t small { display: block; font-size: 9.5px; color: var(--muted); }
+  .mini svg.bc { height: 22px; width: 92px; display: block; margin-top: 3px; }
+  .mini svg.qr { width: 40px; height: 40px; flex-shrink: 0; }
+</style></head>
+<body>
+<div class="app">
+  <aside class="side" data-shell="trade" data-active="Stock In"></aside>
+  <section class="main">
+    <header class="top">
+      <div><div class="sub">Stock In · Goods received</div><h1>GRN-2026-0412<span class="chip g"><i data-i="check"></i>Posted</span></h1></div>
+      <span class="btn" style="margin-left:auto"><i data-i="print"></i>Reprint labels</span>
+      <span class="btn"><i data-i="file"></i>Supplier bill</span>
+      <span class="btn pri"><i data-i="stockin"></i>New stock in</span>
+    </header>
+    <div class="content">
+      <div class="posted" id="posted">
+        <span class="ok"><i data-i="check"></i></span>
+        <div class="h"><b>Posted · 1,240 units in · 8 batches</b><small>Stock updated at 9:20 AM. Nothing left to key in.</small></div>
+        <div class="pills">
+          <span><i data-i="print"></i>Labels printed <b>1,240</b></span>
+          <span><i data-i="file"></i>Bill <b>PB-2026-0388</b> sent to Accounting</span>
+        </div>
+      </div>
+      <div class="card info">
+        <div><span>Supplier</span><b>Sample Home Appliances Sdn Bhd</b><small>Shah Alam · supplier DO SHA-55120</small></div>
+        <div><span>Received</span><b>14 Oct 2026</b><small>9:20 AM · Puchong</small></div>
+        <div><span>Checked by</span><b>Ravi Kumar</b><small>Storekeeper · scanned</small></div>
+        <div><span>Batches</span><b>8 batches</b><small>B2410-031 to 038</small></div>
+        <div><span>Supplier bill</span><b>RM 56,650.00</b><small>Due 13 Nov · 30 days</small></div>
+      </div>
+      <div class="rw">
+        <div class="card lines">
+          <h3><i data-i="layers" style="color:#0396d9"></i>Items received <small>· 8 lines</small><span class="more">Export ↓</span></h3>
+          <table>
+            <colgroup><col style="width:220px"><col style="width:90px"><col style="width:62px"><col style="width:88px"><col style="width:104px"><col></colgroup>
+            <thead><tr><th>Product</th><th>Batch no.</th><th class="num">Qty</th><th>Location</th><th class="num">Amount (RM)</th><th>Labels</th></tr></thead>
+            <tbody id="rows"></tbody>
+          </table>
+        </div>
+        <div class="card auto">
+          <h3><i data-i="spark"></i>Done automatically</h3>
+          <div class="stp"><span class="fi g"><i data-i="box"></i></span><div><b>Stock updated</b><small>+1,240 units in 8 batches, each on its rack</small></div></div>
+          <div class="stp"><span class="fi s"><i data-i="print"></i></span><div><b>1,240 labels printed</b><small>Barcode and QR on every unit</small></div></div>
+          <div class="stp"><span class="fi v"><i data-i="file"></i></span><div><b>Bill PB-2026-0388</b><small>Sent to Accounting, due 13 Nov</small></div></div>
+          <div class="stp"><span class="fi b"><i data-i="layers"></i></span><div><b>Journal entry posted</b><small>No accounting knowledge needed</small></div></div>
+          <div class="jr"><div><span>Dr Inventory</span><span>56,650.00</span></div><div><span>Cr Trade payables</span><span>56,650.00</span></div></div>
+          <div class="mini"><svg class="qr" id="qr" viewBox="0 0 25 25" shape-rendering="crispEdges"></svg><div class="t"><b>B2410-031</b><small>RC-1800 · A-03-2</small><svg class="bc" id="bc" viewBox="0 0 95 22" preserveAspectRatio="none" shape-rendering="crispEdges"></svg></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<script>
+  // Small product pictures (48px box), tinted with the item colour
+  const ILL = {
+    rc: (c) => `<rect x="20" y="7" width="8" height="4" rx="2" fill="#334155"/><path d="M8 22c0-6.5 7.2-10.5 16-10.5S40 15.5 40 22v14a6 6 0 01-6 6H14a6 6 0 01-6-6z" fill="${c}"/><path d="M8.5 22h31" stroke="#fff" stroke-width="1.6" opacity=".75"/><rect x="16" y="27" width="16" height="9" rx="2.5" fill="#fff" opacity=".92"/><circle cx="20.5" cy="31.5" r="1.6" fill="${c}"/><rect x="24" y="30.3" width="5" height="2.4" rx="1.2" fill="#94a3b8"/>`,
+    ek: (c) => `<rect x="17" y="6" width="12" height="4" rx="2" fill="#334155"/><path d="M16 10h14l4.5 30h-23z" fill="${c}"/><path d="M14.5 17L7 12.5v4.5l6.5 5.5z" fill="${c}"/><path d="M32 14c6 0 7.5 4.5 7.5 9.5S37 32 33.5 33" stroke="#334155" stroke-width="3" fill="none" stroke-linecap="round"/><rect x="9.5" y="40" width="27" height="4" rx="2" fill="#334155"/><rect x="21" y="20" width="4" height="12" rx="2" fill="#fff" opacity=".85"/>`,
+    af: (c) => `<rect x="10" y="5" width="28" height="38" rx="9" fill="${c}"/><circle cx="24" cy="14" r="4" fill="#fff" opacity=".92"/><circle cx="24" cy="14" r="1.5" fill="${c}"/><rect x="14" y="22" width="20" height="16" rx="4" fill="#1e293b"/><rect x="18.5" y="28" width="11" height="3.2" rx="1.6" fill="#94a3b8"/>`,
+    sf: (c) => `<circle cx="24" cy="16" r="12.5" fill="#fff" stroke="${c}" stroke-width="2.6"/><ellipse cx="24" cy="10" rx="3.6" ry="6" fill="${c}"/><ellipse cx="24" cy="10" rx="3.6" ry="6" fill="${c}" transform="rotate(120 24 16)"/><ellipse cx="24" cy="10" rx="3.6" ry="6" fill="${c}" transform="rotate(240 24 16)"/><circle cx="24" cy="16" r="2.6" fill="#334155"/><rect x="22.5" y="28.5" width="3" height="11" fill="#334155"/><ellipse cx="24" cy="41.5" rx="10" ry="3" fill="#334155"/>`,
+    si: (c) => `<path d="M17 21c0-6 3.5-9.5 9-9.5h9a4 4 0 014 4V21" stroke="#334155" stroke-width="3.2" fill="none" stroke-linecap="round"/><path d="M5 35c2.2-10 10-15.5 21.5-15.5H39a4 4 0 014 4V35z" fill="${c}"/><rect x="4" y="35" width="40" height="4.5" rx="2.2" fill="#94a3b8"/><circle cx="34" cy="27.5" r="2.6" fill="#fff" opacity=".9"/>`,
+    bl: (c) => `<rect x="12.5" y="3.5" width="23" height="4.5" rx="2" fill="#334155"/><path d="M14 8h20l-3 19H17z" fill="${c}" opacity=".45"/><path d="M19 13h10" stroke="#fff" stroke-width="1.6" opacity=".8"/><path d="M14.5 27h19l2.5 15H12z" fill="${c}"/><circle cx="24" cy="34.5" r="2.8" fill="#fff" opacity=".92"/>`,
+    led: (c) => `<path d="M24 4.5a12.5 12.5 0 00-7.3 22.6c1.3 1 2.1 2.5 2.1 4.1V33h10.4v-1.8c0-1.6.8-3.1 2.1-4.1A12.5 12.5 0 0024 4.5z" fill="${c}"/><path d="M20.5 15.5a4.5 4.5 0 014-3.5" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" opacity=".85"/><rect x="18.8" y="34" width="10.4" height="3" rx="1.2" fill="#94a3b8"/><rect x="18.8" y="38" width="10.4" height="3" rx="1.2" fill="#94a3b8"/><path d="M21 42h6l-1.2 3h-3.6z" fill="#334155"/>`,
+    es: (c) => `<rect x="3" y="17" width="36" height="14" rx="4" fill="${c}"/>${[0, 1, 2, 3].map((i) => `<rect x="${6.5 + i * 8}" y="20.5" width="6" height="7" rx="1.6" fill="#fff" opacity=".92"/>`).join("")}<path d="M39 24c4 0 5.5 3 5.5 6.5s-1.5 7-5 8" stroke="#334155" stroke-width="2.2" fill="none" stroke-linecap="round"/>`,
+  };
+  const art = (k, c) => `<svg class="ill" viewBox="0 0 48 48">${ILL[k](c)}</svg>`;
+  // [sku, product, colour, picture, batch, qty, unit, location, unit cost]
+  const L = [
+    ["RC-1800", "Digital Rice Cooker 1.8L", "#ec4899", "rc", "B2410-031", 120, "pcs", "A-03-2", 89.0],
+    ["EK-1700", "Electric Kettle 1.7L", "#14b8a6", "ek", "B2410-032", 200, "pcs", "A-04-1", 32.5],
+    ["AF-450", "Air Fryer 4.5L", "#8b5cf6", "af", "B2410-033", 80, "pcs", "A-05-3", 129.0],
+    ["SF-16", "Stand Fan 16 inch", "#0396d9", "sf", "B2410-034", 150, "pcs", "B-01-1", 68.0],
+    ["SI-2200", "Steam Iron 2200W", "#6366f1", "si", "B2410-035", 140, "pcs", "A-06-2", 41.0],
+    ["BL-1500", "Blender 1.5L", "#f59e0b", "bl", "B2410-036", 90, "pcs", "A-05-1", 58.0],
+    ["LED-12", "LED Bulb 12W (10 pack)", "#eab308", "led", "B2410-037", 300, "packs", "C-02-4", 18.9],
+    ["ES-403", "Extension Socket 4-way 3m", "#64748b", "es", "B2410-038", 160, "pcs", "C-03-1", 14.5],
+  ];
+  const money = (n) => n.toLocaleString("en-MY", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  let units = 0, total = 0;
+  document.getElementById("rows").innerHTML = L.map(([sku, n, c, a, b, q, u, loc, cost]) => {
+    units += q; total += q * cost;
+    return `<tr><td><div class="pr"><span class="pic" style="background:${c}1f">${art(a, c)}</span><div style="min-width:0"><b>${n}</b><small>${sku}</small></div></div></td>
+      <td class="bt">${b}</td><td class="num"><span class="qty">+${q.toLocaleString("en-MY")}</span></td>
+      <td><span class="loc"><i data-i="pin"></i>${loc}</span></td><td class="num">${money(q * cost)}</td>
+      <td><span class="lbl"><i data-i="check"></i>${q.toLocaleString("en-MY")} printed</span></td></tr>`;
+  }).join("") + `<tr class="tot"><td>8 batches</td><td></td><td class="num">${units.toLocaleString("en-MY")}</td><td></td><td class="num">${money(total)}</td><td style="color:#15803d">All printed</td></tr>`;
+
+  // Decorative QR-like pattern and barcode on the label preview
+  let seed = 11; const rnd = () => ((seed = (seed * 9301 + 49297) % 233280) / 233280);
+  const finder = (x, y) => `<rect x="${x}" y="${y}" width="7" height="7" fill="#111"/><rect x="${x + 1}" y="${y + 1}" width="5" height="5" fill="#fff"/><rect x="${x + 2}" y="${y + 2}" width="3" height="3" fill="#111"/>`;
+  let h = "";
+  for (let y = 0; y < 25; y++) for (let x = 0; x < 25; x++) {
+    const inF = (x < 8 && y < 8) || (x > 16 && y < 8) || (x < 8 && y > 16);
+    if (!inF && rnd() > 0.52) h += `<rect x="${x}" y="${y}" width="1" height="1" fill="#111"/>`;
+  }
+  document.getElementById("qr").innerHTML = h + finder(0, 0) + finder(18, 0) + finder(0, 18);
+  let bx = 0, bars = "";
+  while (bx < 93) { const w = rnd() > 0.6 ? 2 : 1; if (rnd() > 0.35) bars += `<rect x="${bx}" y="0" width="${w}" height="22" fill="#111"/>`; bx += w + (rnd() > 0.5 ? 1 : 2); }
+  document.getElementById("bc").innerHTML = bars;
+</script>
+<script src="shell.js"></script>
+<script src="icons.js"></script>
+</body></html>

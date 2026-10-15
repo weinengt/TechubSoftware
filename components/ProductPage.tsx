@@ -8,7 +8,9 @@ import Demo from "./Demo";
 import { demos, type DemoKey } from "./demoScenes";
 import JsonLd from "./JsonLd";
 import { Icon, type IconName } from "./Icons";
-import { FaqSection, HardwareSection, LocalSection, PricingSection, SectionHeading, breadcrumbJsonLd, faqJsonLd, localFaq, softwareJsonLd } from "./Sections";
+import {
+  FaqSection, HardwareSection, LocalSection, PricingSection, QuoteSection, SectionHeading, breadcrumbJsonLd, faqJsonLd, localFaq, softwareJsonLd,
+} from "./Sections";
 import { Combo, ContactSection, FeatureTiles, FloatBadge, OtherSystems, PhoneShowcase, Spotlight } from "./Showcase";
 import { hl } from "./Text";
 
@@ -127,6 +129,24 @@ const specs: { [K in SystemKey]: Spec<K> } = {
     },
     contactPhone: "liveCheckout",
   },
+  inventory: {
+    highlights: { batch: "Box", trail: "Route", barcode: "Barcode", sales: "Card", accounting: "Invoice", returns: "Receipt" },
+    spotlights: {
+      stockIn: { main: "stockIn", phone: "stockScan" },
+      trail: { main: "stockTrail" },
+      labels: { main: "barcodeLabels" },
+      sales: { main: "erpSales" },
+      returns: { main: "erpReturn" },
+      reports: { main: "reportsInventory", speed: true },
+      permissions: { main: "inventoryPermissions" },
+    },
+    modules: {
+      batch: "Layers", barcode: "Printer", qr: "Barcode", scan: "Scan", trail: "Route", levels: "Database",
+      delivery: "Car", sales: "Card", orders: "Box", returns: "Sync", notes: "Receipt", accounting: "Coins",
+      einvoice: "Invoice", reports: "Bolt", permissions: "Lock", devices: "Devices",
+    },
+    contactPhone: "stockScan",
+  },
 };
 
 // The picture at the top is wider than the ones further down.
@@ -166,9 +186,11 @@ export function productMetadata(lang: Locale, k: SystemKey) {
 
 export default function ProductPage({ lang, k }: { lang: Locale; k: SystemKey }) {
   const { d, t, spec, name, highlights, spotlights, modules } = content(lang, k);
-  // The Live Selling System has its own price and asks for a demo; the appointment systems share one plan.
+  // The Live Selling System has its own price and asks for a demo; the appointment systems share one plan. The
+  // Inventory & ERP System has no set price: it asks for a quote instead.
   const live = k === "live";
-  const offer = "contact" in t ? { ...t.contact, message: t.demoMessage } : undefined;
+  const quote = "quote" in t ? { ...t.quote, message: t.quoteMessage } : undefined;
+  const offer = "contact" in t ? { ...t.contact, message: quote?.message ?? t.demoMessage } : undefined;
   const shots = getShots(lang);
   const path = pathOf(k);
   const url = `${site.url}${lp(lang, path)}`;
@@ -214,6 +236,7 @@ export default function ProductPage({ lang, k }: { lang: Locale; k: SystemKey })
             features: modules.map((m) => m.title),
             screenshots: pics,
             ...(live && { price: site.livePriceFrom, offerText: d.pricing.liveOfferText }),
+            ...(quote && { offers: false }),
           }),
           faqJsonLd(faqs),
           breadcrumbJsonLd([
@@ -242,9 +265,15 @@ export default function ProductPage({ lang, k }: { lang: Locale; k: SystemKey })
               <a href={whatsappLink(t.demoMessage)} target="_blank" rel="noopener" className="btn-primary !py-3.5">
                 <Icon.Whatsapp className="h-5 w-5" /> {live ? d.ui.requestDemo : d.ui.bookFreeDemo}
               </a>
-              <Link href={lp(lang, companyPages.pricing)} className="btn-secondary !py-3.5">
-                {live ? d.ui.livePriceLine : d.ui.priceLine}
-              </Link>
+              {quote ? (
+                <a href={whatsappLink(quote.message)} target="_blank" rel="noopener" className="btn-secondary !py-3.5">
+                  {d.ui.getQuote}
+                </a>
+              ) : (
+                <Link href={lp(lang, companyPages.pricing)} className="btn-secondary !py-3.5">
+                  {live ? d.ui.livePriceLine : d.ui.priceLine}
+                </Link>
+              )}
             </div>
           </div>
           <div className="mx-auto mt-14 max-w-5xl">
@@ -302,7 +331,7 @@ export default function ProductPage({ lang, k }: { lang: Locale; k: SystemKey })
 
       {/* The clinic page already has its own hardware spotlight, and live selling needs no counter hardware. */}
       {!live && !spotlights.some((s) => s.id === "hardware") && <HardwareSection lang={lang} />}
-      <PricingSection lang={lang} plan={live ? "live" : "standard"} />
+      {quote ? <QuoteSection lang={lang} quote={quote} /> : <PricingSection lang={lang} plan={live ? "live" : "standard"} />}
       <LocalSection lang={lang} k={k} />
       <FaqSection lang={lang} items={faqs} />
       <OtherSystems lang={lang} current={k} />

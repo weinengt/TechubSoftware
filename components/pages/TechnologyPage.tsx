@@ -131,6 +131,11 @@ export default function TechnologyPage({ lang }: { lang: Locale }) {
       cta: { label: s.ai.cta, message: s.ai.ctaMessage },
     },
     {
+      id: "tracking",
+      visual: <Combo main={shots.stockTrail} phone={shots.stockScan} />,
+      cta: { label: s.tracking.cta, message: s.tracking.ctaMessage },
+    },
+    {
       id: "extraction",
       visual: <Combo main={shots.migrationScan} badge={<FloatBadge icon="Scan">{s.extraction.badge}</FloatBadge>} />,
       cta: { label: s.extraction.cta, message: s.extraction.ctaMessage },
@@ -149,10 +154,12 @@ export default function TechnologyPage({ lang }: { lang: Locale }) {
     },
     { id: "hardware", visual: <HardwareVisual tv={shots.queueTv} paper={shots.printouts} /> },
     { id: "einvoice", visual: <Combo main={shots.eInvoice} /> },
+    { id: "accounting", visual: <Combo main={shots.erpReturn} /> },
     { id: "security", visual: <Combo main={shots.clinicPermissions} /> },
   ];
   const screenshots: ShotKey[] = [
-    "reportsClinic", "siteTreatments", "permissionsDesktop", "clinicStock", "migrationScan", "whatsappClinic", "queueTv", "eInvoice", "clinicPermissions",
+    "reportsClinic", "siteTreatments", "permissionsDesktop", "clinicStock", "stockTrail", "migrationScan", "whatsappClinic", "queueTv", "eInvoice",
+    "erpReturn", "clinicPermissions",
   ];
 
   return (

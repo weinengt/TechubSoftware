@@ -197,7 +197,7 @@ export const demoShots = (k: DemoKey): ShotKey[] => [...new Set(demos[k].flatMap
 
 /** The moment each system's row on the Use Cases page starts at, so the rows don't all open on the same kind of screen. */
 export const useCaseStart: Record<SystemKey | ServicePageKey, string> = {
-  clinic: "queue", salon: "staff", beauty: "faceChart", spa: "package", live: "visitors",
+  clinic: "queue", salon: "staff", beauty: "faceChart", spa: "package", live: "visitors", inventory: "trail",
   customisation: "estimate", migration: "scan", email: "domain", website: "design",
 };
 
