@@ -55,9 +55,10 @@ const en = {
     clinic: {
       label: "Clinic",
       name: "Clinic Management System",
-      blurb: "Patient records, medication tracking, queue and printing.",
+      blurb: "Digital patient records, medication tracking, queue and printing.",
       points: [
-        "Patient records tracking",
+        "Digital patient records & health reports",
+        "Upload reports from labs & hospitals",
         "IC scanner (OCR) for fast patient registration",
         "Medication tracking system",
         "Queue number calling on TV",
@@ -1193,10 +1194,10 @@ const en = {
       category: "Clinic management, EMR and patient queue",
       eyebrow: "Clinic Management System",
       heading: "A smarter *clinic system* for faster, safer care",
-      intro: "Built for clinics in Malaysia: patient records, medication tracking, queue, billing and stock. On iPad, phone and PC.",
+      intro: "Built for clinics in Malaysia: digital patient records, medication tracking, queue, billing and stock. On iPad, phone and PC.",
       whoFor: ["GP clinics", "Dental clinics", "Specialist clinics", "Aesthetic clinics", "Physiotherapy", "TCM", "Multi-branch groups"],
       highlights: {
-        records: "Patient records tracking",
+        records: "Digital patient records",
         medication: "Medication tracking",
         queue: "Queue number calling",
         hardware: "X-ray & printer connection",
@@ -1220,12 +1221,22 @@ const en = {
           ],
           badges: ["IC read on this device", "Fast registration"],
         },
-        records: {
-          eyebrow: "Patient records & medication tracking",
-          title: "Every patient record and medicine, tracked",
+        health: {
+          eyebrow: "Digital patient records",
+          title: "Every patient's *health report*, in one place",
           points: [
-            "Patient records with full visit history",
-            "Medication tracking for every patient",
+            "Medication report for each patient",
+            "Diagnosis & treatment plan history",
+            "A full health report on one screen",
+            "Upload reports from any lab or hospital",
+          ],
+        },
+        records: {
+          eyebrow: "Medication tracking",
+          title: "Every prescription and medicine, tracked",
+          points: [
+            "Medication history for every patient",
+            "Dosage & frequency on every prescription",
             "Allergy alerts before prescribing",
             "Batch & expiry on every dispense",
           ],
@@ -1278,16 +1289,16 @@ const en = {
         },
       },
       modules: {
-        records: "IC scan registration & records",
+        records: "Digital patient records",
+        emr: "Diagnosis & treatment plan history",
+        medication: "Medication tracking & reports",
+        uploads: "Lab & hospital report upload",
+        ic: "IC scan registration (OCR)",
         queue: "Queue number calling",
         whatsapp: "WhatsApp appointment alerts",
-        emr: "Consultation & EMR",
-        medication: "Medication tracking system",
         drawing: "Body chart & e-signature",
         ai: "AI medicine stock control",
-        inventory: "Inventory movement tracking",
-        printing: "MC, label & receipt printing",
-        xray: "X-ray machine connection",
+        xray: "X-ray & printer connection",
         billing: "Billing & panel claims",
         payment: "Payment gateway integration",
         einvoice: "LHDN e-Invoice",
@@ -1306,7 +1317,11 @@ const en = {
         },
         {
           q: "Can I track patient records and medication?",
-          a: "Yes. Each patient has a full record with visits, diagnoses, prescriptions and dispensing history. The medication tracking system shows dosage, frequency, batch and allergy alerts before you prescribe.",
+          a: "Yes. Each patient has a digital record with visits, diagnoses, treatment plans, prescriptions and dispensing history. You can view a patient's medication report, diagnosis and treatment plan history and full health report in one place. The medication tracking system shows dosage, frequency, batch and allergy alerts before you prescribe.",
+        },
+        {
+          q: "Can I upload lab or hospital reports to a patient's record?",
+          a: "Yes. You can upload any health or diagnosis report from a third party, such as a lab, hospital or specialist, straight into the patient's digital record. The doctor sees it next to the patient's medication report and diagnosis and treatment plan history.",
         },
         {
           q: "Can the clinic system scan a patient's IC?",
@@ -2619,7 +2634,7 @@ const en = {
       alt: "Techub clinic management system on an iPad showing the live queue, today's appointments confirmed on WhatsApp, revenue and low stock alerts",
     },
     medication: {
-      title: "Patient records & medication tracking",
+      title: "Medication tracking",
       alt: "Patient medication history on an iPad with a penicillin allergy alert and a suggested alternative medicine",
     },
     bodyChart: {
@@ -2641,6 +2656,14 @@ const en = {
     scanClinic: {
       title: "AI delivery note scan",
       alt: "Phone scanning a medicine supplier's delivery note while AI reads each item, batch and expiry and updates clinic stock",
+    },
+    patientRecord: {
+      title: "Digital patient record & health report",
+      alt: "A patient's digital record on an iPad: diagnosis and treatment plan history, blood pressure trend, medication report and reports uploaded from a lab and hospitals",
+    },
+    reportUpload: {
+      title: "Upload a lab report",
+      alt: "Phone taking a photo of a sample blood test report from a lab and saving it to the patient's record with the lab's name, the report date and a note",
     },
     icScanClinic: {
       title: "IC scanner for patient registration",

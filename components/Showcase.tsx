@@ -219,7 +219,7 @@ export function OutletsSection({ lang, k }: { lang: Locale; k: SystemKey }) {
 
 export function FeatureTiles({ items }: { items: { icon: IconName; title: string }[] }) {
   return (
-    <ul className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
+    <ul className="mt-12 grid grid-cols-1 gap-3 min-[380px]:grid-cols-2 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
       {items.map((f) => {
         const I = Icon[f.icon];
         return (

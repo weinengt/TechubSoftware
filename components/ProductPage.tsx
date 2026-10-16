@@ -39,6 +39,7 @@ const specs: { [K in SystemKey]: Spec<K> } = {
     spotlights: {
       queue: { main: "queueTv" },
       ic: { phoneOnly: "icScanClinic", badges: ["Scan", "Bolt"] },
+      health: { main: "patientRecord", phone: "reportUpload" },
       records: { main: "medication" },
       drawing: { main: "bodyChart" },
       hardware: { main: "printouts" },
@@ -48,8 +49,8 @@ const specs: { [K in SystemKey]: Spec<K> } = {
       permissions: { main: "clinicPermissions" },
     },
     modules: {
-      records: "Users", queue: "Megaphone", whatsapp: "Whatsapp", emr: "Stethoscope", medication: "Pill", drawing: "Pen",
-      ai: "Sparkles", inventory: "Route", printing: "Printer", xray: "XRay", billing: "Card", payment: "Wallet",
+      records: "Users", emr: "Stethoscope", medication: "Pill", uploads: "Upload", ic: "Scan", queue: "Megaphone",
+      whatsapp: "Whatsapp", drawing: "Pen", ai: "Sparkles", xray: "XRay", billing: "Card", payment: "Wallet",
       einvoice: "Invoice", reports: "Bolt", permissions: "Lock", devices: "Devices",
     },
     contactPhone: "whatsappClinic",

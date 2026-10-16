@@ -84,6 +84,9 @@ export const Icon = {
   Headset: (p: IconProps) => (
     <svg {...base(p)}><path d="M4 14v-2a8 8 0 0116 0v2" /><rect x="3" y="14" width="4" height="6" rx="1.5" /><rect x="17" y="14" width="4" height="6" rx="1.5" /><path d="M19 20a3 3 0 01-3 2h-3" /></svg>
   ),
+  Upload: (p: IconProps) => (
+    <svg {...base(p)}><path d="M12 15V4M7.5 8.5L12 4l4.5 4.5" /><path d="M4 15v4a2 2 0 002 2h12a2 2 0 002-2v-4" /></svg>
+  ),
   Cloud: (p: IconProps) => (
     <svg {...base(p)}><path d="M7 18a4.5 4.5 0 01-.6-8.96A6 6 0 0118 9.5a4.25 4.25 0 01-.5 8.5H7z" /></svg>
   ),

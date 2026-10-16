@@ -1,0 +1,79 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css"><link rel="stylesheet" href="phone.css">
+<style>
+  :root { --w: 360px; --h: 760px; }
+  .ph { width: 100%; height: 100%; display: flex; flex-direction: column; background: #fff; position: relative; overflow: hidden; }
+  .hd { display: flex; align-items: center; gap: 10px; padding: 8px 16px 10px; }
+  .hd .bk { width: 34px; height: 34px; border-radius: 99px; background: #f1f5f9; display: grid; place-items: center; } .hd .bk svg { width: 18px; height: 18px; }
+  .hd b { display: block; font-size: 16px; font-weight: 800; } .hd small { font-size: 11.5px; color: var(--muted); }
+  .hd .av { margin-left: auto; width: 32px; height: 32px; }
+  .shot { position: relative; height: 340px; margin: 0 14px; border-radius: 16px; overflow: hidden; display: grid; place-items: center;
+    background: radial-gradient(circle at 50% 40%, #e2e8f0, #cbd5e1 80%); }
+  /* A made-up sample lab report, marked SAMPLE */
+  .paper { width: 256px; height: 306px; background: #fff; border-radius: 4px; transform: rotate(-2deg); box-shadow: 0 18px 30px -10px rgba(15,23,42,.45);
+    padding: 14px 14px 10px; font-family: "Liberation Sans", Arial, sans-serif; color: #1e293b; position: relative; }
+  .paper .lab { display: flex; align-items: center; gap: 7px; border-bottom: 2px solid #0f766e; padding-bottom: 7px; }
+  .paper .lab i { width: 20px; height: 20px; border-radius: 5px; background: linear-gradient(135deg, #14b8a6, #0f766e); display: block; }
+  .paper .lab b { font-size: 11px; font-weight: 800; letter-spacing: .06em; color: #0f766e; } .paper .lab span { margin-left: auto; font-size: 7.5px; font-weight: 700; color: #475569; letter-spacing: .05em; }
+  .paper .pt { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 8px; font-size: 7.5px; color: #475569; margin: 7px 0 6px; }
+  .paper .pt b { color: #0f172a; }
+  .paper table { font-size: 7.5px; } .paper th { font-size: 6.5px; padding: 4px 4px; background: #f1f5f9; } .paper td { padding: 4.5px 4px; color: #1e293b; }
+  .paper td.h { color: #b91c1c; font-weight: 800; }
+  .paper .sig { margin-top: 8px; display: flex; justify-content: space-between; align-items: flex-end; font-size: 6.5px; color: #64748b; }
+  .paper .sig .hand { font-size: 15px; color: #1e3a8a; line-height: 1; }
+  .stamp { position: absolute; left: 70px; bottom: 26px; font-size: 11px; font-weight: 800; letter-spacing: .2em; color: #dc2626; border: 1.5px solid #dc2626; border-radius: 4px; padding: 1px 6px; opacity: .7; transform: rotate(-12deg); }
+  .brk { position: absolute; width: 30px; height: 30px; border: 3.5px solid var(--brand); }
+  .brk.tl { top: 10px; left: 12px; border-right: 0; border-bottom: 0; border-radius: 10px 0 0 0; } .brk.tr { top: 10px; right: 12px; border-left: 0; border-bottom: 0; border-radius: 0 10px 0 0; }
+  .brk.bl { bottom: 10px; left: 12px; border-right: 0; border-top: 0; border-radius: 0 0 0 10px; } .brk.br { bottom: 10px; right: 12px; border-left: 0; border-top: 0; border-radius: 0 0 10px 0; }
+  .pages { display: flex; gap: 8px; align-items: center; padding: 10px 16px 0; }
+  .pg { width: 38px; height: 48px; border-radius: 6px; background: #fff; border: 1px solid var(--line); position: relative; overflow: hidden; }
+  .pg::before { content: ""; position: absolute; left: 6px; right: 6px; top: 7px; height: 3px; background: #0f766e; border-radius: 2px; box-shadow: 0 7px 0 -0.5px #e2e8f0, 0 13px 0 -0.5px #e2e8f0, 0 19px 0 -0.5px #e2e8f0, 0 25px 0 -0.5px #e2e8f0; }
+  .pg.on { border: 2px solid var(--brand); }
+  .add { width: 38px; height: 48px; border-radius: 6px; border: 1.5px dashed #94a3b8; display: grid; place-items: center; color: #64748b; } .add svg { width: 16px; height: 16px; }
+  .pages small { margin-left: auto; font-size: 11px; color: var(--brand); font-weight: 650; display: flex; align-items: center; gap: 5px; } .pages small svg { width: 14px; height: 14px; }
+  .form { padding: 8px 16px 0; display: flex; flex-direction: column; gap: 9px; }
+  .lb { font-size: 10.5px; font-weight: 650; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 5px; }
+  .seg { display: flex; gap: 6px; flex-wrap: wrap; }
+  .seg span { font-size: 11.5px; font-weight: 650; padding: 6px 10px; border-radius: 99px; background: #f1f5f9; color: #475569; }
+  .seg span.on { background: var(--brand); color: #fff; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .inp { height: 38px; border: 1px solid var(--line); border-radius: 10px; display: flex; align-items: center; gap: 7px; padding: 0 10px; font-size: 12.5px; font-weight: 650; }
+  .inp svg { width: 15px; height: 15px; color: var(--muted); }
+  .go { margin: auto 16px 18px; height: 48px; border-radius: 13px; background: linear-gradient(135deg, #0396d9, #0287c4); color: #fff; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 8px 20px -8px rgba(3,150,217,.8); }
+  .go svg { width: 18px; height: 18px; }
+</style></head>
+<body>
+<div class="ph">
+  <div class="status"><span>9:41</span><span class="r"><span class="sig"><i style="height:4px"></i><i style="height:6px"></i><i style="height:8px"></i><i style="height:10px"></i></span><span style="font-size:11px">5G</span><span class="bat"><i></i></span></span></div>
+  <div class="hd"><span class="bk"><i data-i="chevL"></i></span><div><b>Upload report</b><small>Tan Mei Ling · P-001042</small></div><span class="av">TM</span></div>
+  <div class="shot">
+    <div class="paper">
+      <div class="lab"><i></i><b>DEMO LAB</b><span>LABORATORY REPORT</span></div>
+      <div class="pt"><span>Patient: <b>TAN MEI LING</b></span><span>Date: <b>10/10/2026</b></span><span>Ref: <b>P-001042</b></span><span>Fasting: <b>Yes</b></span></div>
+      <table>
+        <tr><th>Test</th><th class="num">Result</th><th>Unit</th><th>Range</th></tr>
+        <tr><td>Haemoglobin</td><td class="num">13.2</td><td>g/dL</td><td>12.0–15.0</td></tr>
+        <tr><td>Fasting glucose</td><td class="num">5.1</td><td>mmol/L</td><td>3.9–6.0</td></tr>
+        <tr><td>HbA1c</td><td class="num">5.6</td><td>%</td><td>4.0–5.6</td></tr>
+        <tr><td>Total cholesterol</td><td class="num h">5.8 H</td><td>mmol/L</td><td>&lt; 5.2</td></tr>
+        <tr><td>LDL cholesterol</td><td class="num h">3.9 H</td><td>mmol/L</td><td>&lt; 3.4</td></tr>
+        <tr><td>Creatinine</td><td class="num">72</td><td>µmol/L</td><td>45–90</td></tr>
+      </table>
+      <div class="sig"><span>Page 1 of 2</span><span style="text-align:right"><span class="hand">N. Rahman</span><br>Pathologist</span></div>
+      <span class="stamp">SAMPLE</span>
+    </div>
+    <span class="brk tl"></span><span class="brk tr"></span><span class="brk bl"></span><span class="brk br"></span>
+  </div>
+  <div class="pages"><span class="pg on"></span><span class="pg"></span><span class="add"><i data-i="plus"></i></span><small><i data-i="file"></i>Or choose a file</small></div>
+  <div class="form">
+    <div><div class="lb">Report type</div><div class="seg"><span class="on">Blood test</span><span>X-ray</span><span>Specialist letter</span><span>Other</span></div></div>
+    <div class="two">
+      <div><div class="lb">From</div><div class="inp"><i data-i="home"></i>Demo Lab</div></div>
+      <div><div class="lb">Report date</div><div class="inp"><i data-i="cal"></i>10 Oct 2026</div></div>
+    </div>
+    <div><div class="lb">Note</div><div class="inp" style="font-weight:550;color:var(--ink2)"><i data-i="pen"></i>Lipids high, review at next visit</div></div>
+  </div>
+  <div class="go"><i data-i="check"></i>Save to patient record</div>
+</div>
+<script src="icons.js"></script>
+</body></html>

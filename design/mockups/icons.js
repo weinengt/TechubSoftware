@@ -60,6 +60,8 @@ const P = {
   barcode: '<path d="M3 5v14M21 5v14M6.5 5v14M17.5 5v14"/><path d="M9.5 5v14M14.5 5v14M12 5v14" stroke-width="1.1"/>',
   pin: '<path d="M12 21s-7-6.2-7-11.5a7 7 0 0114 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>',
   layers: '<path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/>',
+  upload: '<path d="M12 15V4M7.5 8.5L12 4l4.5 4.5"/><path d="M4 15v4a2 2 0 002 2h12a2 2 0 002-2v-4"/>',
+  pulse: '<path d="M3 12h4l3-7 4 14 3-7h4"/>',
 };
 document.querySelectorAll("i[data-i]").forEach((el) => {
   const svg = `<svg class="i ${el.className}" viewBox="0 0 24 24" style="${el.getAttribute("style") || ""}">${P[el.dataset.i] || ""}</svg>`;

@@ -1,0 +1,148 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<style>
+  :root { --w: 1024px; --h: 720px; }
+  .search { white-space: nowrap; }
+  .crumb { font-size: 12px; color: var(--muted); } .crumb b { color: var(--ink); }
+  .ph { display: flex; align-items: center; gap: 16px; padding: 12px 14px; }
+  .ph .av { width: 52px; height: 52px; font-size: 17px; }
+  .ph h2 { font-size: 18px; font-weight: 800; letter-spacing: -.01em; display: flex; align-items: center; gap: 8px; }
+  .meta { font-size: 12px; color: var(--muted); margin-top: 3px; }
+  .chips { display: flex; gap: 6px; margin-top: 7px; }
+  .mini { margin-left: auto; display: flex; gap: 8px; }
+  .mini div { background: #f8fafc; border: 1px solid var(--line); border-radius: 10px; padding: 7px 12px; text-align: center; min-width: 74px; }
+  .mini b { display: block; font-size: 16px; font-weight: 800; letter-spacing: -.01em; } .mini span { font-size: 10px; color: var(--muted); }
+  .tabs { display: flex; gap: 20px; border-bottom: 1px solid var(--line); padding: 0 4px; margin-top: -2px; }
+  .tabs span { font-size: 12.5px; font-weight: 600; color: var(--muted); padding: 9px 0; white-space: nowrap; }
+  .tabs span.on { color: var(--brand); border-bottom: 2px solid var(--brand); }
+  .cols { flex: 1; min-height: 0; display: grid; grid-template-columns: 1.25fr 1fr 1fr; gap: 12px; }
+  .col { display: flex; flex-direction: column; gap: 12px; min-height: 0; }
+  .card h3 svg { color: var(--brand); }
+  /* Diagnosis & plan history */
+  .tl { margin-top: 10px; display: flex; flex-direction: column; }
+  .ev { position: relative; padding: 0 0 12px 22px; }
+  .ev::before { content: ""; position: absolute; left: 5px; top: 14px; bottom: 0; width: 2px; background: #e2e8f0; }
+  .ev:last-child::before { display: none; } .ev:last-child { padding-bottom: 0; }
+  .ev .dt { position: absolute; left: 0; top: 3px; width: 12px; height: 12px; border-radius: 99px; background: #fff; border: 3px solid var(--brand); }
+  .ev.old .dt { border-color: #cbd5e1; }
+  .ev .when { font-size: 10.5px; color: var(--muted); font-weight: 600; }
+  .ev .dx { font-size: 12.5px; font-weight: 750; margin-top: 2px; display: flex; align-items: center; gap: 6px; }
+  .ev .dx .chip { padding: 1px 6px; font-size: 9.5px; }
+  .ev .plan { margin-top: 5px; font-size: 11px; line-height: 1.45; color: var(--ink2); background: #f8fafc; border: 1px solid #eef2f7; border-radius: 8px; padding: 6px 8px; }
+  .ev .plan b { color: var(--brand-d); font-weight: 700; }
+  /* Blood pressure trend */
+  .bp { display: flex; align-items: baseline; gap: 8px; margin-top: 8px; }
+  .bp b { font-size: 20px; font-weight: 800; letter-spacing: -.02em; } .bp span { font-size: 11px; color: var(--muted); }
+  .bp .chip { margin-left: auto; }
+  svg.trend { display: block; width: 100%; height: 62px; margin-top: 6px; }
+  .axis { display: flex; justify-content: space-between; font-size: 9.5px; color: #94a3b8; margin-top: 2px; }
+  /* Medication report */
+  .med { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid #f1f5f9; }
+  .med:last-child { border-bottom: 0; padding-bottom: 0; }
+  .med .ic { width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center; flex-shrink: 0; } .med .ic svg { width: 15px; height: 15px; }
+  .med b { font-size: 12px; font-weight: 700; display: block; } .med small { font-size: 10.5px; color: var(--muted); }
+  .med .chip { margin-left: auto; }
+  /* Uploaded reports */
+  .doc { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid #f1f5f9; }
+  .doc .ty { width: 32px; height: 38px; border-radius: 6px; display: grid; place-items: center; font-size: 8.5px; font-weight: 800; letter-spacing: .03em; color: #fff; flex-shrink: 0; position: relative; }
+  .doc .ty.pdf { background: linear-gradient(160deg, #f87171, #dc2626); } .doc .ty.img { background: linear-gradient(160deg, #60a5fa, #2563eb); }
+  .doc b { font-size: 12px; font-weight: 700; display: block; line-height: 1.3; } .doc small { font-size: 10.5px; color: var(--muted); display: block; margin-top: 1px; white-space: nowrap; }
+  .doc .chip { margin-left: auto; align-self: flex-start; margin-top: 2px; }
+  .drop { margin-top: 10px; border: 1.5px dashed #93c5fd; background: var(--brand-50); border-radius: 10px; padding: 10px; display: flex; align-items: center; gap: 10px; font-size: 11px; color: #035b8a; }
+  .drop .u { width: 32px; height: 32px; border-radius: 9px; background: #fff; display: grid; place-items: center; color: var(--brand); flex-shrink: 0; box-shadow: 0 2px 6px -2px rgba(3,150,217,.4); }
+  .drop b { display: block; font-size: 11.5px; color: var(--ink); }
+  .new { box-shadow: 0 0 0 2px rgba(16,185,129,.25); border-radius: 10px; margin: 0 -6px; padding: 8px 6px; border-bottom: 0; background: #f0fdf9; }
+  @media (max-width: 1100px) { .search { width: 200px; } }
+</style></head>
+<body>
+<div class="app">
+  <aside class="side" data-shell="clinic" data-active="Patients"></aside>
+  <section class="main">
+    <header class="top">
+      <div><div class="crumb">Patients › <b>Tan Mei Ling</b></div><h1>Patient Record</h1></div>
+      <div class="search"><i data-i="search"></i>Search patient, IC or phone…</div>
+      <span class="btn"><i data-i="print"></i>Print health report</span>
+      <span class="btn pri"><i data-i="upload"></i>Upload report</span>
+    </header>
+    <div class="content">
+      <div class="card ph">
+        <span class="av">TM</span>
+        <div>
+          <h2>Tan Mei Ling <span class="chip s">P-001042</span></h2>
+          <div class="meta">Female · 34 yrs · IC ******-**-5523 · Panel: Demo Corp</div>
+          <div class="chips"><span class="chip r"><i data-i="alert" style="width:12px;height:12px"></i>Allergy: Penicillin</span><span class="chip a">Hypertension</span><span class="chip s">Last visit 13 Oct 2026</span></div>
+        </div>
+        <div class="mini"><div><b>128/82</b><span>Blood pressure</span></div><div><b>23.4</b><span>BMI</span></div><div><b>14</b><span>Visits</span></div></div>
+      </div>
+      <div class="tabs"><span class="on">Health report</span><span>Visits</span><span>Medications</span><span>Diagnosis &amp; plans</span><span>Uploaded reports</span><span>Body Chart</span><span>Billing</span></div>
+      <div class="cols">
+        <div class="card" style="overflow:hidden">
+          <h3><i data-i="steth"></i>Diagnosis &amp; plan history<span class="more">All 14 ›</span></h3>
+          <div class="tl">
+            <div class="ev">
+              <span class="dt"></span>
+              <div class="when">13 Oct 2026 · Dr. Lim</div>
+              <div class="dx">Acute bronchitis <span class="chip s">J20.9</span></div>
+              <div class="plan"><b>Plan:</b> Azithromycin 3 days, rest and fluids. Review in 1 week.</div>
+            </div>
+            <div class="ev">
+              <span class="dt"></span>
+              <div class="when">2 Oct 2026 · Dr. Aisyah</div>
+              <div class="dx">Hypertension, follow-up <span class="chip s">I10</span></div>
+              <div class="plan"><b>Plan:</b> Continue Amlodipine 5mg daily. BP 128/82, well controlled. Recheck in 1 month.</div>
+            </div>
+            <div class="ev old">
+              <span class="dt"></span>
+              <div class="when">18 Sep 2026 · Dr. Lim</div>
+              <div class="dx">Gastritis <span class="chip s">K29.7</span></div>
+              <div class="plan"><b>Plan:</b> Omeprazole 14 days. Avoid spicy food and late meals.</div>
+            </div>
+            <div class="ev old">
+              <span class="dt"></span>
+              <div class="when">21 Aug 2026 · Dr. Aisyah</div>
+              <div class="dx">Chest discomfort, referred <span class="chip s">R07.4</span></div>
+              <div class="plan"><b>Plan:</b> Referral letter to cardiology. ECG normal, see uploaded letter.</div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <h3><i data-i="pulse"></i>Blood pressure<span class="more">6 visits</span></h3>
+            <div class="bp"><b>128/82</b><span>mmHg · 13 Oct</span><span class="chip g">Controlled</span></div>
+            <svg class="trend" viewBox="0 0 220 62" preserveAspectRatio="none">
+              <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0396d9" stop-opacity=".22"/><stop offset="1" stop-color="#0396d9" stop-opacity="0"/></linearGradient></defs>
+              <path d="M0 14 L44 10 L88 22 L132 30 L176 38 L220 42 L220 62 L0 62 Z" fill="url(#g)"/>
+              <path d="M0 14 L44 10 L88 22 L132 30 L176 38 L220 42" fill="none" stroke="#0396d9" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+              <path d="M0 40 L44 38 L88 44 L132 47 L176 50 L220 51" fill="none" stroke="#00cfcb" stroke-width="2" stroke-dasharray="4 3" stroke-linecap="round"/>
+              <circle cx="220" cy="42" r="3.5" fill="#fff" stroke="#0396d9" stroke-width="2.2"/>
+            </svg>
+            <div class="axis"><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span></div>
+          </div>
+          <div class="card" style="flex:1">
+            <h3><i data-i="pill"></i>Medication report<span class="more">Export ↓</span></h3>
+            <div style="margin-top:4px">
+              <div class="med"><span class="ic g"><i data-i="pill"></i></span><div><b>Azithromycin 250mg</b><small>1 tab daily · 3 days</small></div><span class="chip g">Active</span></div>
+              <div class="med"><span class="ic v"><i data-i="pill"></i></span><div><b>Amlodipine 5mg</b><small>1 tab every morning</small></div><span class="chip v">Long-term</span></div>
+              <div class="med"><span class="ic b"><i data-i="pill"></i></span><div><b>Paracetamol 500mg</b><small>2 tabs if fever</small></div><span class="chip b">As needed</span></div>
+              <div class="med"><span class="ic a"><i data-i="pill"></i></span><div><b>Omeprazole 20mg</b><small>14 days · Sep 2026</small></div><span class="chip s">Done</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="overflow:hidden">
+          <h3><i data-i="clip"></i>Uploaded reports<span class="more">5 files</span></h3>
+          <div style="margin-top:4px">
+            <div class="doc new"><span class="ty pdf">PDF</span><div><b>Blood test, full panel</b><small>Demo Lab · 10 Oct 2026</small></div><span class="chip g">New</span></div>
+            <div class="doc"><span class="ty img">IMG</span><div><b>Chest X-ray report</b><small>Demo Hospital · 8 Oct 2026</small></div></div>
+            <div class="doc"><span class="ty pdf">PDF</span><div><b>Cardiology letter</b><small>Demo Heart Centre · 28 Aug 2026</small></div></div>
+            <div class="doc"><span class="ty pdf">PDF</span><div><b>ECG result</b><small>Demo Heart Centre · 28 Aug 2026</small></div></div>
+            <div class="doc" style="border-bottom:0"><span class="ty img">IMG</span><div><b>Ultrasound, abdomen</b><small>Demo Hospital · 3 Jun 2026</small></div></div>
+          </div>
+          <div class="drop"><span class="u"><i data-i="upload"></i></span><div><b>Add a report from any lab or hospital</b>Drop a file here, or snap it with your phone</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<script src="shell.js"></script>
+<script src="icons.js"></script>
+</body></html>

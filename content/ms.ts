@@ -46,9 +46,10 @@ const ms: Dict = {
     clinic: {
       label: "Klinik",
       name: "Sistem Pengurusan Klinik",
-      blurb: "Rekod pesakit & ubat, nombor giliran dan cetakan.",
+      blurb: "Rekod pesakit digital & ubat, nombor giliran dan cetakan.",
       points: [
-        "Rekod pesakit lengkap",
+        "Rekod pesakit digital & laporan kesihatan",
+        "Muat naik laporan dari makmal & hospital",
         "Pengimbas IC (OCR) untuk daftar pesakit pantas",
         "Sistem rekod ubat",
         "Panggil nombor giliran di TV",
@@ -1183,7 +1184,7 @@ const ms: Dict = {
       category: "Pengurusan klinik, EMR dan giliran pesakit",
       eyebrow: "Sistem Pengurusan Klinik",
       heading: "*Sistem klinik* pintar untuk rawatan lebih cepat dan selamat",
-      intro: "Dibina khas untuk klinik di Malaysia: sistem temujanji klinik, rekod pesakit, rekod ubat, giliran, bil dan stok. Guna di iPad, telefon dan PC.",
+      intro: "Dibina khas untuk klinik di Malaysia: sistem temujanji klinik, rekod pesakit digital, rekod ubat, giliran, bil dan stok. Guna di iPad, telefon dan PC.",
       whoFor: [
         "Klinik am",
         "Klinik gigi",
@@ -1194,7 +1195,7 @@ const ms: Dict = {
         "Klinik banyak cawangan",
       ],
       highlights: {
-        records: "Rekod pesakit",
+        records: "Rekod pesakit digital",
         medication: "Rekod ubat",
         queue: "Panggil nombor giliran",
         hardware: "Sambung X-ray & printer",
@@ -1223,12 +1224,22 @@ const ms: Dict = {
           ],
           badges: ["IC dibaca di peranti ini", "Daftar pantas"],
         },
-        records: {
-          eyebrow: "Rekod pesakit & ubat",
-          title: "Rekod setiap pesakit dan ubat, semua tersusun",
+        health: {
+          eyebrow: "Rekod pesakit digital",
+          title: "*Laporan kesihatan* setiap pesakit, semua di satu tempat",
           points: [
-            "Rekod pesakit dengan sejarah lawatan penuh",
-            "Rekod ubat untuk setiap pesakit",
+            "Laporan ubat untuk setiap pesakit",
+            "Sejarah diagnosis & pelan rawatan",
+            "Laporan kesihatan penuh dalam satu skrin",
+            "Muat naik laporan dari mana-mana makmal atau hospital",
+          ],
+        },
+        records: {
+          eyebrow: "Rekod ubat",
+          title: "Setiap preskripsi dan ubat, semua direkod",
+          points: [
+            "Sejarah ubat untuk setiap pesakit",
+            "Dos & kekerapan pada setiap preskripsi",
             "Amaran alahan sebelum tulis preskripsi",
             "Batch & tarikh luput direkod setiap kali ubat dikeluarkan",
           ],
@@ -1296,16 +1307,16 @@ const ms: Dict = {
         },
       },
       modules: {
-        records: "Daftar dengan imbas IC & rekod pesakit",
+        records: "Rekod pesakit digital",
+        emr: "Sejarah diagnosis & pelan rawatan",
+        medication: "Rekod & laporan ubat",
+        uploads: "Muat naik laporan makmal & hospital",
+        ic: "Daftar dengan imbas IC (OCR)",
         queue: "Panggil nombor giliran",
         whatsapp: "Notifikasi temujanji WhatsApp",
-        emr: "Konsultasi & EMR",
-        medication: "Sistem rekod ubat",
-        drawing: "Carta badan & e-tandatangan",
+        drawing: "Carta badan & tandatangan digital",
         ai: "Kawalan stok ubat AI",
-        inventory: "Pantau pergerakan stok",
-        printing: "Cetak MC, label & resit",
-        xray: "Sambung mesin X-ray",
+        xray: "Sambung X-\u2060ray & printer",
         billing: "Bil & claim panel",
         payment: "Integrasi payment gateway",
         einvoice: "e-Invois LHDN",
@@ -1324,7 +1335,11 @@ const ms: Dict = {
         },
         {
           q: "Boleh rekod data pesakit dan ubat?",
-          a: "Boleh. Setiap pesakit ada rekod lengkap: lawatan, diagnosis, preskripsi dan sejarah ubat yang dikeluarkan. Sistem rekod ubat tunjuk dos, kekerapan, batch dan amaran alahan sebelum anda tulis preskripsi.",
+          a: "Boleh. Setiap pesakit ada rekod digital lengkap: lawatan, diagnosis, pelan rawatan, preskripsi dan sejarah ubat yang dikeluarkan. Anda boleh lihat laporan ubat, sejarah diagnosis dan pelan rawatan, serta laporan kesihatan penuh pesakit di satu tempat. Sistem rekod ubat tunjuk dos, kekerapan, batch dan amaran alahan sebelum anda tulis preskripsi.",
+        },
+        {
+          q: "Boleh muat naik laporan makmal atau hospital ke rekod pesakit?",
+          a: "Boleh. Anda boleh muat naik apa-apa laporan kesihatan atau diagnosis dari pihak ketiga, seperti makmal, hospital atau doktor pakar, terus ke rekod digital pesakit. Doktor boleh tengok laporan itu bersama laporan ubat dan sejarah diagnosis serta pelan rawatan pesakit.",
         },
         {
           q: "Boleh sistem klinik imbas IC pesakit?",
@@ -2714,7 +2729,7 @@ const ms: Dict = {
       alt: "Sistem pengurusan klinik Techub di iPad yang tunjuk giliran semasa, temujanji hari ini yang disahkan melalui WhatsApp, pendapatan dan amaran stok rendah",
     },
     medication: {
-      title: "Rekod pesakit & ubat",
+      title: "Rekod ubat",
       alt: "Sejarah ubat pesakit di iPad dengan amaran alahan penisilin dan cadangan ubat alternatif",
     },
     bodyChart: {
@@ -2736,6 +2751,14 @@ const ms: Dict = {
     scanClinic: {
       title: "AI imbas nota penghantaran",
       alt: "Telefon imbas nota penghantaran pembekal ubat, AI baca setiap item, batch dan tarikh luput, lalu update stok klinik",
+    },
+    patientRecord: {
+      title: "Rekod pesakit digital & laporan kesihatan",
+      alt: "Rekod digital pesakit di iPad: sejarah diagnosis dan pelan rawatan, trend tekanan darah, laporan ubat dan laporan yang dimuat naik dari makmal dan hospital",
+    },
+    reportUpload: {
+      title: "Muat naik laporan makmal",
+      alt: "Telefon ambil gambar contoh laporan ujian darah dari makmal dan simpan ke rekod pesakit bersama nama makmal, tarikh laporan dan nota",
     },
     icScanClinic: {
       title: "Pengimbas IC untuk pendaftaran pesakit",

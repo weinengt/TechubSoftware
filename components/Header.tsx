@@ -22,7 +22,8 @@ export type HeaderText = {
   email: { href: string; label: string };
 };
 
-const linkClass = "rounded-full px-4 py-2 text-sm font-medium text-slate-600 transition hover:bg-brand-50 hover:text-brand-700";
+const linkClass =
+  "rounded-full px-2 py-2 text-sm font-medium whitespace-nowrap text-slate-600 transition hover:bg-brand-50 hover:text-brand-700 xl:px-4";
 
 /** Closes a popup on a click outside it or on Escape. */
 function useDismiss(open: boolean, ref: RefObject<HTMLElement | null>, setOpen: (open: boolean) => void) {
@@ -211,12 +212,12 @@ export default function Header({ lang, t }: { lang: Locale; t: HeaderText }) {
         scrolled || open ? "border-b border-slate-200/70 bg-white" : "bg-transparent"
       }`}
     >
-      <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-2 px-3 min-[380px]:px-4 sm:px-6 lg:px-8" aria-label="Main">
+      <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-2 px-3 min-[380px]:px-4 sm:px-6 xl:px-8" aria-label="Main">
         <Link href={t.homeHref} className="flex shrink-0 items-center" aria-label={t.ui.logoHome}>
           <img src="/images/logo.webp" alt={t.ui.logoAlt} width={125} height={40} className="h-7 w-auto min-[380px]:h-8 sm:h-9" />
         </Link>
 
-        <ul className="hidden items-center gap-1 lg:flex">
+        <ul className="hidden items-center gap-0.5 lg:flex xl:gap-1">
           {t.nav.map((item) =>
             item.menu ? (
               <UseCasesMenu key={item.key} label={item.label} href={item.href} t={t} />
@@ -233,7 +234,7 @@ export default function Header({ lang, t }: { lang: Locale; t: HeaderText }) {
         <div className="flex items-center gap-1 sm:gap-2">
           <LanguageMenu lang={lang} label={t.ui.language} />
           {/* Hidden on the narrowest phones, where the floating WhatsApp button does the same job. */}
-          <a href={t.whatsapp.href} target="_blank" rel="noopener" className="btn-primary !px-3 !py-2 whitespace-nowrap max-[359px]:!hidden min-[400px]:!px-4 sm:!px-6 sm:!py-2.5">
+          <a href={t.whatsapp.href} target="_blank" rel="noopener" className="btn-primary !px-3 !py-2 whitespace-nowrap max-[359px]:!hidden min-[400px]:!px-4 sm:!px-6 sm:!py-2.5 lg:!px-4 xl:!px-6">
             {t.ui.freeDemo}
           </a>
           <button
