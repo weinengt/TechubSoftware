@@ -2964,6 +2964,18 @@ const ms: Dict = {
       title: "Gaji staf spa",
       alt: "Senarai gaji bulanan di iPad dengan gaji asas, komisen jualan, elaun dan gaji bersih setiap terapis",
     },
+    budget2027: {
+      title: "Bajet 2027 sepintas lalu",
+      alt: "Perubahan Bajet 2027 untuk perniagaan kecil di Malaysia: cukai SME 14%, gaji minimum RM 2,000, aset RM 3,000, RM 30 juta untuk AI, pelepasan individu RM 12,000 dan MediAsas",
+    },
+    budget2027Ms: {
+      title: "Bajet 2027 sepintas lalu",
+      alt: "Perubahan Bajet 2027 untuk perniagaan kecil di Malaysia: cukai SME 14%, gaji minimum RM 2,000, aset RM 3,000, RM 30 juta untuk AI, pelepasan individu RM 12,000 dan MediAsas",
+    },
+    budget2027Zh: {
+      title: "Bajet 2027 sepintas lalu",
+      alt: "Perubahan Bajet 2027 untuk perniagaan kecil di Malaysia: cukai SME 14%, gaji minimum RM 2,000, aset RM 3,000, RM 30 juta untuk AI, pelepasan individu RM 12,000 dan MediAsas",
+    },
     eInvoice: {
       title: "e-Invois LHDN",
       alt: "e-Invois yang disahkan melalui LHDN MyInvois, dengan nombor pengenalan unik dan kod QR",

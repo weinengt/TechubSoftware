@@ -161,6 +161,11 @@ export const shotFiles = {
   erpDesktop: { ...desktop, file: "custom-erp-desktop" },
   plateScanner: { ...desktop, file: "number-plate-scanner-desktop" },
   objectDetection: { ...desktop, file: "ai-object-detection-desktop" },
+
+  /* Blog post pictures (one per post, in each language) */
+  budget2027: { w: 1500, h: 938, kind: "paper", file: "budget-2027-malaysia-en" },
+  budget2027Ms: { w: 1500, h: 938, kind: "paper", file: "budget-2027-malaysia-ms" },
+  budget2027Zh: { w: 1500, h: 938, kind: "paper", file: "budget-2027-malaysia-zh" },
 } satisfies Record<string, Omit<Shot, "title" | "alt">>;
 
 export type ShotKey = keyof typeof shotFiles;

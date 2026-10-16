@@ -1,5 +1,6 @@
 import type { DemoKey } from "@/components/demoScenes";
 import type { ShotKey } from "@/lib/shots";
+import type { Locale } from "@/lib/i18n";
 import type { SystemKey } from "@/lib/site";
 
 /** One blog post. Its words are in content/blog/<slug>/<en|ms|zh>.md, the same slug in every language. */
@@ -9,16 +10,19 @@ export type PostInfo = {
   date: string;
   /** The system the post is about: its page is linked from the post. Null for a post about every system. */
   system: SystemKey | null;
-  /** The moving picture at the top of the post, and the moment it starts at. */
-  demo: DemoKey;
+  /** The moving picture at the top of the post, and the moment it starts at. Without one, the post's own picture
+   *  (`image`) shows at the top instead. */
+  demo?: DemoKey;
   start?: string;
-  /** The picture on the post's card on the Blog page. */
+  /** The picture on the post's card on the Blog page (and when shared). */
   image: ShotKey;
+  /** The same picture in Malay or Chinese, when it has words on it. */
+  images?: Partial<Record<Exclude<Locale, "en">, ShotKey>>;
 };
 
 /** Newest first. */
 export const posts: PostInfo[] = [
-  { slug: "budget-2027-malaysia-clinics-salons-spas", date: "2026-10-16", system: null, demo: "spa", start: "payroll", image: "payrollSpa" },
+  { slug: "budget-2027-malaysia-clinics-salons-spas", date: "2026-10-16", system: null, image: "budget2027", images: { ms: "budget2027Ms", zh: "budget2027Zh" } },
   { slug: "how-to-choose-clinic-management-system-malaysia", date: "2026-10-15", system: "clinic", demo: "clinic", image: "clinicDashboard" },
   { slug: "clinic-queue-system-number-calling", date: "2026-10-15", system: "clinic", demo: "clinic", start: "queue", image: "queueTv" },
   { slug: "reduce-no-shows-whatsapp-reminders-booking-deposits", date: "2026-10-15", system: "salon", demo: "salon", start: "confirmed", image: "whatsappSalon" },

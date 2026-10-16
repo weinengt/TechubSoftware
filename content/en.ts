@@ -2869,6 +2869,18 @@ const en = {
       title: "Spa payroll",
       alt: "Monthly payroll on an iPad with basic salary, commission from sales, allowances and net pay for each therapist",
     },
+    budget2027: {
+      title: "Budget 2027 at a glance",
+      alt: "Budget 2027 changes for small businesses in Malaysia: SME tax 14%, minimum wage RM 2,000, RM 3,000 asset write-off, RM 30 million for AI, RM 12,000 individual relief and MediAsas",
+    },
+    budget2027Ms: {
+      title: "Budget 2027 at a glance",
+      alt: "Budget 2027 changes for small businesses in Malaysia: SME tax 14%, minimum wage RM 2,000, RM 3,000 asset write-off, RM 30 million for AI, RM 12,000 individual relief and MediAsas",
+    },
+    budget2027Zh: {
+      title: "Budget 2027 at a glance",
+      alt: "Budget 2027 changes for small businesses in Malaysia: SME tax 14%, minimum wage RM 2,000, RM 3,000 asset write-off, RM 30 million for AI, RM 12,000 individual relief and MediAsas",
+    },
     eInvoice: {
       title: "LHDN e-Invoice",
       alt: "An e-Invoice validated through LHDN MyInvois, with its unique identifier and QR code",

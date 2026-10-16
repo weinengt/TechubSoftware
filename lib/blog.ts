@@ -49,6 +49,7 @@ function read(lang: Locale, info: PostInfo): Post {
           });
   return {
     ...info,
+    image: (lang !== "en" && info.images?.[lang]) || info.image,
     title: fill(meta.title),
     description: fill(meta.description),
     keywords: (meta.keywords ?? "").split(",").map((k) => k.trim()).filter(Boolean),

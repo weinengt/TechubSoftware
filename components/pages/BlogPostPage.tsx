@@ -2,6 +2,7 @@ import Link from "next/link";
 import { fill, getDict, getShots } from "@/content";
 import { blogPath, postPath } from "@/content/blog";
 import Demo from "@/components/Demo";
+import Device from "@/components/Device";
 import { Icon } from "@/components/Icons";
 import JsonLd from "@/components/JsonLd";
 import Markdown, { Inline } from "@/components/Markdown";
@@ -94,7 +95,11 @@ export default function BlogPostPage({ lang, slug }: { lang: Locale; slug: strin
         </header>
 
         <div className="mx-auto mt-12 max-w-5xl px-4 sm:px-6 lg:px-8">
-          <Demo lang={lang} demo={p.demo} start={p.start} layout="combo" product={product} priority sizes={heroSizes} />
+          {p.demo ? (
+            <Demo lang={lang} demo={p.demo} start={p.start} layout="combo" product={product} priority sizes={heroSizes} />
+          ) : (
+            <Device shot={image} priority sizes="(min-width: 1024px) 976px, 92vw" className="overflow-hidden rounded-2xl shadow-[0_30px_60px_-25px_rgb(11_47_85/0.45)]" />
+          )}
         </div>
 
         <div className="mx-auto mt-14 max-w-3xl px-4 sm:px-6 lg:px-8">
