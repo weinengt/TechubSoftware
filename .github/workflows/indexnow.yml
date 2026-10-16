@@ -1,0 +1,21 @@
+# Tells Bing (and the other IndexNow search engines) which pages changed, once Cloudflare has put them live.
+# The changed pages are the ones whose date moved in lib/page-dates.json (see scripts/page-dates.mjs).
+name: IndexNow
+
+on:
+  push:
+    branches: [main]
+    paths: [lib/page-dates.json]
+
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Submit changed pages
+        env:
+          BEFORE: ${{ github.event.before }}
+        run: node scripts/indexnow.mjs

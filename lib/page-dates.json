@@ -1,0 +1,410 @@
+{
+ "/": {
+  "hash": "fc48171a5079b903",
+  "date": "2026-10-16"
+ },
+ "/ms/": {
+  "hash": "720cbe8ee99faa14",
+  "date": "2026-10-16"
+ },
+ "/zh/": {
+  "hash": "eccda6cffeb92a9f",
+  "date": "2026-10-16"
+ },
+ "/technology/": {
+  "hash": "4ee29ced9b30df54",
+  "date": "2026-10-16"
+ },
+ "/ms/technology/": {
+  "hash": "dddf7946553f1233",
+  "date": "2026-10-16"
+ },
+ "/zh/technology/": {
+  "hash": "4139f5042a6210db",
+  "date": "2026-10-16"
+ },
+ "/clinic-management-system/": {
+  "hash": "ca8e51c640674b4f",
+  "date": "2026-10-16"
+ },
+ "/ms/clinic-management-system/": {
+  "hash": "18397c18141ac678",
+  "date": "2026-10-16"
+ },
+ "/zh/clinic-management-system/": {
+  "hash": "8173e089d46f4432",
+  "date": "2026-10-16"
+ },
+ "/salon-appointment-system/": {
+  "hash": "9f75dc0cfb8a7046",
+  "date": "2026-10-16"
+ },
+ "/ms/salon-appointment-system/": {
+  "hash": "92efbb1538f6a094",
+  "date": "2026-10-16"
+ },
+ "/zh/salon-appointment-system/": {
+  "hash": "deeb5bb4bf0cedcd",
+  "date": "2026-10-16"
+ },
+ "/beauty-appointment-system/": {
+  "hash": "0b98e3736264a3bd",
+  "date": "2026-10-16"
+ },
+ "/ms/beauty-appointment-system/": {
+  "hash": "3e011bc45f050280",
+  "date": "2026-10-16"
+ },
+ "/zh/beauty-appointment-system/": {
+  "hash": "8ee7ea5b075acb6e",
+  "date": "2026-10-16"
+ },
+ "/spa-appointment-system/": {
+  "hash": "52d9a03f5d2fcc56",
+  "date": "2026-10-16"
+ },
+ "/ms/spa-appointment-system/": {
+  "hash": "6590652eb11871ac",
+  "date": "2026-10-16"
+ },
+ "/zh/spa-appointment-system/": {
+  "hash": "b26cab4d2d06d7af",
+  "date": "2026-10-16"
+ },
+ "/live-selling-system/": {
+  "hash": "ef6d99308b364f6a",
+  "date": "2026-10-16"
+ },
+ "/ms/live-selling-system/": {
+  "hash": "fe131f492a0276fb",
+  "date": "2026-10-16"
+ },
+ "/zh/live-selling-system/": {
+  "hash": "aba0d7e290c31846",
+  "date": "2026-10-16"
+ },
+ "/inventory-management-system/": {
+  "hash": "c07d89b10e4ace16",
+  "date": "2026-10-16"
+ },
+ "/ms/inventory-management-system/": {
+  "hash": "f75b35831b07a9c2",
+  "date": "2026-10-16"
+ },
+ "/zh/inventory-management-system/": {
+  "hash": "f20f37d79357c250",
+  "date": "2026-10-16"
+ },
+ "/use-cases/": {
+  "hash": "7bbfc5739f048873",
+  "date": "2026-10-16"
+ },
+ "/ms/use-cases/": {
+  "hash": "a241a4ac815eb89d",
+  "date": "2026-10-16"
+ },
+ "/zh/use-cases/": {
+  "hash": "960c9f4a0f98c0e8",
+  "date": "2026-10-16"
+ },
+ "/software-customisation/": {
+  "hash": "84fb7430cca6c0ce",
+  "date": "2026-10-16"
+ },
+ "/ms/software-customisation/": {
+  "hash": "0f96b26462a5f032",
+  "date": "2026-10-16"
+ },
+ "/zh/software-customisation/": {
+  "hash": "0516f16074e937e6",
+  "date": "2026-10-16"
+ },
+ "/data-migration/": {
+  "hash": "b0a4318a2329b674",
+  "date": "2026-10-16"
+ },
+ "/ms/data-migration/": {
+  "hash": "304b2347b31a02c2",
+  "date": "2026-10-16"
+ },
+ "/zh/data-migration/": {
+  "hash": "0c621571d6e75a7d",
+  "date": "2026-10-16"
+ },
+ "/business-email/": {
+  "hash": "670c5c1e3360d924",
+  "date": "2026-10-16"
+ },
+ "/ms/business-email/": {
+  "hash": "96c6a40d422bcd57",
+  "date": "2026-10-16"
+ },
+ "/zh/business-email/": {
+  "hash": "77d4719dc159694d",
+  "date": "2026-10-16"
+ },
+ "/website-design/": {
+  "hash": "6ed590786ccd8f02",
+  "date": "2026-10-16"
+ },
+ "/ms/website-design/": {
+  "hash": "1db3b813d563fa62",
+  "date": "2026-10-16"
+ },
+ "/zh/website-design/": {
+  "hash": "e2c2cb00b44d5686",
+  "date": "2026-10-16"
+ },
+ "/custom-systems/": {
+  "hash": "96bb3e634d850d9c",
+  "date": "2026-10-16"
+ },
+ "/ms/custom-systems/": {
+  "hash": "4e4eec9cd5f5a49c",
+  "date": "2026-10-16"
+ },
+ "/zh/custom-systems/": {
+  "hash": "6f658dbbedc4317c",
+  "date": "2026-10-16"
+ },
+ "/services/": {
+  "hash": "aadd9c8c5ec5a51e",
+  "date": "2026-10-16"
+ },
+ "/ms/services/": {
+  "hash": "d7d1a76e2cc2a153",
+  "date": "2026-10-16"
+ },
+ "/zh/services/": {
+  "hash": "f37c6ad0c663cb77",
+  "date": "2026-10-16"
+ },
+ "/pricing/": {
+  "hash": "ef9d2888e2e03870",
+  "date": "2026-10-16"
+ },
+ "/ms/pricing/": {
+  "hash": "40bd6dcd9d1b2f73",
+  "date": "2026-10-16"
+ },
+ "/zh/pricing/": {
+  "hash": "ef100ae33075e286",
+  "date": "2026-10-16"
+ },
+ "/about/": {
+  "hash": "565acc16aabf1416",
+  "date": "2026-10-16"
+ },
+ "/ms/about/": {
+  "hash": "82075b7e853e346c",
+  "date": "2026-10-16"
+ },
+ "/zh/about/": {
+  "hash": "0a5c73a2d78b2ebe",
+  "date": "2026-10-16"
+ },
+ "/faq/": {
+  "hash": "6dc5967736f17603",
+  "date": "2026-10-16"
+ },
+ "/ms/faq/": {
+  "hash": "c2fc2e831a51b38b",
+  "date": "2026-10-16"
+ },
+ "/zh/faq/": {
+  "hash": "f9321d03c06b702b",
+  "date": "2026-10-16"
+ },
+ "/blog/": {
+  "hash": "41190e2f73289a45",
+  "date": "2026-10-16"
+ },
+ "/ms/blog/": {
+  "hash": "8ae256d136383388",
+  "date": "2026-10-16"
+ },
+ "/zh/blog/": {
+  "hash": "0b0ef8e1cf31d4cd",
+  "date": "2026-10-16"
+ },
+ "/blog/how-to-choose-clinic-management-system-malaysia/": {
+  "hash": "168c84367c47225c",
+  "date": "2026-10-16"
+ },
+ "/ms/blog/how-to-choose-clinic-management-system-malaysia/": {
+  "hash": "7d4b060a1224b158",
+  "date": "2026-10-16"
+ },
+ "/zh/blog/how-to-choose-clinic-management-system-malaysia/": {
+  "hash": "95bd144b9d3ab9d8",
+  "date": "2026-10-16"
+ },
+ "/blog/clinic-queue-system-number-calling/": {
+  "hash": "7ed07c946637abe6",
+  "date": "2026-10-16"
+ },
+ "/ms/blog/clinic-queue-system-number-calling/": {
+  "hash": "663dba8dcaf40746",
+  "date": "2026-10-16"
+ },
+ "/zh/blog/clinic-queue-system-number-calling/": {
+  "hash": "60babef5795b2ff5",
+  "date": "2026-10-16"
+ },
+ "/blog/reduce-no-shows-whatsapp-reminders-booking-deposits/": {
+  "hash": "f106a18ee8768a1b",
+  "date": "2026-10-16"
+ },
+ "/ms/blog/reduce-no-shows-whatsapp-reminders-booking-deposits/": {
+  "hash": "73250f66556ededd",
+  "date": "2026-10-16"
+ },
+ "/zh/blog/reduce-no-shows-whatsapp-reminders-booking-deposits/": {
+  "hash": "fe2274c4fe1f51d0",
+  "date": "2026-10-16"
+ },
+ "/blog/salon-staff-commission-payroll/": {
+  "hash": "0f9cd62e5cd3e427",
+  "date": "2026-10-16"
+ },
+ "/ms/blog/salon-staff-commission-payroll/": {
+  "hash": "789a46fca270b3bb",
+  "date": "2026-10-16"
+ },
+ "/zh/blog/salon-staff-commission-payroll/": {
+  "hash": "61996c3d8069f447",
+  "date": "2026-10-16"
+ },
+ "/blog/beauty-centre-packages-memberships/": {
+  "hash": "6e3a7baf269f9355",
+  "date": "2026-10-16"
+ },
+ "/ms/blog/beauty-centre-packages-memberships/": {
+  "hash": "60fb57a592062e13",
+  "date": "2026-10-16"
+ },
+ "/zh/blog/beauty-centre-packages-memberships/": {
+  "hash": "03e5ed41d56e7e4a",
+  "date": "2026-10-16"
+ },
+ "/blog/spa-massage-booking-therapists-rooms/": {
+  "hash": "c85c28cb0c8c81b8",
+  "date": "2026-10-16"
+ },
+ "/ms/blog/spa-massage-booking-therapists-rooms/": {
+  "hash": "e7c72532167ba929",
+  "date": "2026-10-16"
+ },
+ "/zh/blog/spa-massage-booking-therapists-rooms/": {
+  "hash": "561f11c8d4cdfd9e",
+  "date": "2026-10-16"
+ },
+ "/blog/stop-overselling-tiktok-facebook-live/": {
+  "hash": "13b01482ae149f41",
+  "date": "2026-10-16"
+ },
+ "/ms/blog/stop-overselling-tiktok-facebook-live/": {
+  "hash": "a883edee09e280c8",
+  "date": "2026-10-16"
+ },
+ "/zh/blog/stop-overselling-tiktok-facebook-live/": {
+  "hash": "a405a028b3d888e6",
+  "date": "2026-10-16"
+ },
+ "/blog/lhdn-e-invoice-2026-clinics-salons-spas/": {
+  "hash": "4ccefa65bc1eda07",
+  "date": "2026-10-16"
+ },
+ "/ms/blog/lhdn-e-invoice-2026-clinics-salons-spas/": {
+  "hash": "60ee7fbdc99339ea",
+  "date": "2026-10-16"
+ },
+ "/zh/blog/lhdn-e-invoice-2026-clinics-salons-spas/": {
+  "hash": "74eca9846fdaac39",
+  "date": "2026-10-16"
+ },
+ "/contact/": {
+  "hash": "3470bf6320b70d50",
+  "date": "2026-10-16"
+ },
+ "/ms/contact/": {
+  "hash": "62130cfacbe0ed78",
+  "date": "2026-10-16"
+ },
+ "/zh/contact/": {
+  "hash": "e782307ec176dd17",
+  "date": "2026-10-16"
+ },
+ "/terms/": {
+  "hash": "d8569a69d5a7c426",
+  "date": "2026-10-16"
+ },
+ "/ms/terms/": {
+  "hash": "dfbe55b5ef9abb25",
+  "date": "2026-10-16"
+ },
+ "/zh/terms/": {
+  "hash": "ee3905e4b2580b80",
+  "date": "2026-10-16"
+ },
+ "/privacy/": {
+  "hash": "48b538ded8d93f02",
+  "date": "2026-10-16"
+ },
+ "/ms/privacy/": {
+  "hash": "f60ea9fac5166720",
+  "date": "2026-10-16"
+ },
+ "/zh/privacy/": {
+  "hash": "782603a7039085fd",
+  "date": "2026-10-16"
+ },
+ "/tools/": {
+  "hash": "946eea196d56fecf",
+  "date": "2026-10-16"
+ },
+ "/ms/tools/": {
+  "hash": "36b1c7d46b9501a6",
+  "date": "2026-10-16"
+ },
+ "/zh/tools/": {
+  "hash": "4c0df673d8127919",
+  "date": "2026-10-16"
+ },
+ "/tools/invoice-generator/": {
+  "hash": "250563ba8f96b5e4",
+  "date": "2026-10-16"
+ },
+ "/ms/tools/invoice-generator/": {
+  "hash": "aafc8aac0d1ba6c2",
+  "date": "2026-10-16"
+ },
+ "/zh/tools/invoice-generator/": {
+  "hash": "75076aef2cdc6f1c",
+  "date": "2026-10-16"
+ },
+ "/tools/payroll-calculator/": {
+  "hash": "382004c5c8c0d6f0",
+  "date": "2026-10-16"
+ },
+ "/ms/tools/payroll-calculator/": {
+  "hash": "7e0714c7c208922c",
+  "date": "2026-10-16"
+ },
+ "/zh/tools/payroll-calculator/": {
+  "hash": "b2b385bd5976a5d4",
+  "date": "2026-10-16"
+ },
+ "/tools/tax-relief-calculator/": {
+  "hash": "a51895ec2d162adb",
+  "date": "2026-10-16"
+ },
+ "/ms/tools/tax-relief-calculator/": {
+  "hash": "09cc1f40a1d8141a",
+  "date": "2026-10-16"
+ },
+ "/zh/tools/tax-relief-calculator/": {
+  "hash": "bee5d3b47e24ecc4",
+  "date": "2026-10-16"
+ }
+}
