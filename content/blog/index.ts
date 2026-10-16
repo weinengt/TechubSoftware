@@ -18,6 +18,7 @@ export type PostInfo = {
 
 /** Newest first. */
 export const posts: PostInfo[] = [
+  { slug: "budget-2027-malaysia-clinics-salons-spas", date: "2026-10-16", system: null, demo: "spa", start: "payroll", image: "payrollSpa" },
   { slug: "how-to-choose-clinic-management-system-malaysia", date: "2026-10-15", system: "clinic", demo: "clinic", image: "clinicDashboard" },
   { slug: "clinic-queue-system-number-calling", date: "2026-10-15", system: "clinic", demo: "clinic", start: "queue", image: "queueTv" },
   { slug: "reduce-no-shows-whatsapp-reminders-booking-deposits", date: "2026-10-15", system: "salon", demo: "salon", start: "confirmed", image: "whatsappSalon" },
