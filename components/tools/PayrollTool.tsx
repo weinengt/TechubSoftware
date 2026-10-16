@@ -51,7 +51,7 @@ function initial(t: T, lang: DocLang): State {
   const e = t.example;
   const period = thisMonth();
   return {
-    docLang: lang, color: colors[0], logo: "",
+    docLang: "en", color: colors[0], logo: "",
     coName: e.coName, coReg: e.coReg, coAddress: e.coAddress, coNos: "",
     name: e.name, ic: e.ic, staffNo: "E001", position: e.position, department: e.department, epfNo: "", socsoNo: "", taxNo: "", bank: "",
     period, payDate: lastDay(period), since: "1",
@@ -111,7 +111,7 @@ function compute(s: State): PayResult {
 
 export default function PayrollTool({ t, ex, lang }: { t: T; ex: ToolsDict["export"]; lang: DocLang }) {
   const start = useMemo(() => initial(t, lang), [t, lang]);
-  const [s, setS] = useSaved<State>("techub-payroll-v2", start);
+  const [s, setS] = useSaved<State>("techub-payroll-v3", start);
   const docRef = useRef<HTMLDivElement>(null);
   const set = <K extends keyof State>(k: K, v: State[K]) => setS((o) => ({ ...o, [k]: v }));
   const r = compute(s);

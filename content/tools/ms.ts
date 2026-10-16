@@ -98,6 +98,7 @@ const ms: ToolsDict = {
     eyebrow: "Penjana invois percuma",
     title: "Buat invois dalam *1 minit*",
     intro: "Letak logo dan maklumat anda, senaraikan item, kemudian muat turun atau kongsi PDF.",
+    // Sample values stay in English on every language: invoices and payslips in Malaysia are mostly in English.
     example: {
       bizName: "Kedai Kek Sinar",
       bizReg: "202501012345 (003712345-K)",
@@ -106,9 +107,9 @@ const ms: ToolsDict = {
       bizEmail: "",
       payment: "DuitNow QR",
       custName: "Ahmad Faizal",
-      items: [{ desc: "Kek hari jadi (1 kg)", note: "Coklat, dengan nama di atas", qty: "1", price: "120" }, { desc: "Kek cawan (kotak 6 biji)", note: "", qty: "2", price: "36" }],
+      items: [{ desc: "Birthday cake (1 kg)", note: "Chocolate, with name on top", qty: "1", price: "120" }, { desc: "Cupcakes (box of 6)", note: "", qty: "2", price: "36" }],
     },
-    defaultNotes: "1. Terima kasih atas sokongan anda.\n2. Sila nyatakan nombor di atas untuk sebarang pertanyaan.\n3. E. & O. E.",
+    defaultNotes: "1. Thank you for your support.\n2. Please quote the number above for any enquiries.\n3. E. & O. E.",
     form: {
       business: "Bisnes anda",
       logo: "Logo",
@@ -199,15 +200,16 @@ const ms: ToolsDict = {
     eyebrow: "Kalkulator gaji percuma",
     title: "Gaji dan slip gaji Malaysia, *tepat*",
     intro: "Masukkan gaji. KWSP, PERKESO, SIP dan PCB dikira ikut peraturan 2026, dalam slip gaji yang sedia dihantar.",
+    // Sample values stay in English on every language: invoices and payslips in Malaysia are mostly in English.
     example: {
       coName: "Sinar Trading Sdn. Bhd.",
       coReg: "202401234567 (1551234-A)",
       coAddress: "8, Jalan Kenari 5, Bandar Puchong Jaya,\n47100 Puchong, Selangor",
       name: "Nur Aisyah binti Ahmad",
       ic: "950812-10-5566",
-      position: "Eksekutif Kanan",
-      department: "Operasi",
-      allowance: "Pengangkutan",
+      position: "Senior Executive",
+      department: "Operations",
+      allowance: "Transport",
     },
     form: {
       pay: "Gaji bulan ini",

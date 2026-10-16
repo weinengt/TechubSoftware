@@ -98,6 +98,7 @@ const zh: ToolsDict = {
     eyebrow: "免费发票生成器",
     title: "1 分钟​*开好发票*",
     intro: "填上 Logo 和公司资料，列出项目，然后下载或分享 PDF。",
+    // Sample values stay in English on every language: invoices and payslips in Malaysia are mostly in English.
     example: {
       bizName: "Kedai Kek Sinar",
       bizReg: "202501012345 (003712345-K)",
@@ -106,9 +107,9 @@ const zh: ToolsDict = {
       bizEmail: "",
       payment: "DuitNow QR",
       custName: "Ahmad Faizal",
-      items: [{ desc: "生日蛋糕（1 公斤）", note: "巧克力口味，蛋糕上写名字", qty: "1", price: "120" }, { desc: "杯子蛋糕（6 个装）", note: "", qty: "2", price: "36" }],
+      items: [{ desc: "Birthday cake (1 kg)", note: "Chocolate, with name on top", qty: "1", price: "120" }, { desc: "Cupcakes (box of 6)", note: "", qty: "2", price: "36" }],
     },
-    defaultNotes: "1. 谢谢你的支持。\n2. 如有疑问，请注明以上号码。\n3. E. & O. E.",
+    defaultNotes: "1. Thank you for your support.\n2. Please quote the number above for any enquiries.\n3. E. & O. E.",
     form: {
       business: "你的公司",
       logo: "Logo",
@@ -199,15 +200,16 @@ const zh: ToolsDict = {
     eyebrow: "免费工资计算器",
     title: "马来西亚​工资和工资单，​*算得准*",
     intro: "填上工资，EPF、SOCSO、EIS 和 PCB 就按 2026 年规则算好，工资单直接可以发。",
+    // Sample values stay in English on every language: invoices and payslips in Malaysia are mostly in English.
     example: {
       coName: "Sinar Trading Sdn. Bhd.",
       coReg: "202401234567 (1551234-A)",
       coAddress: "8, Jalan Kenari 5, Bandar Puchong Jaya,\n47100 Puchong, Selangor",
-      name: "Lim Wei Jie",
-      ic: "950812-10-5567",
-      position: "高级执行员",
-      department: "运营部",
-      allowance: "交通",
+      name: "Nur Aisyah binti Ahmad",
+      ic: "950812-10-5566",
+      position: "Senior Executive",
+      department: "Operations",
+      allowance: "Transport",
     },
     form: {
       pay: "本月工资",
