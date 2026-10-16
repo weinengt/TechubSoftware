@@ -181,7 +181,7 @@ const zh: ToolsDict = {
   payroll: {
     name: "工资计算器",
     blurb: "算好 EPF、SOCSO、EIS 和 PCB，附 PDF 工资单。",
-    points: ["2026 年 EPF、SOCSO、LINDUNG 24 Jam、EIS 和 PCB", "花红、加班费、津贴和天课", "带公司 Logo 的专业工资单", "下载或分享 PDF"],
+    points: ["2024 至 2026 年 EPF、SOCSO、LINDUNG 24 Jam、EIS 和 PCB", "花红、加班费、津贴和天课", "带公司 Logo 的专业工资单", "下载或分享 PDF"],
     meta: {
       title: "马来西亚工资计算器 2026 | EPF、SOCSO、EIS 与 PCB 工资单",
       socialTitle: "马来西亚工资计算器与工资单 | Techub Software",
@@ -199,7 +199,7 @@ const zh: ToolsDict = {
     },
     eyebrow: "免费工资计算器",
     title: "马来西亚​工资和工资单，​*算得准*",
-    intro: "填上工资，EPF、SOCSO、EIS 和 PCB 就按 2026 年规则算好，工资单直接可以发。",
+    intro: "选好月份、填上工资，EPF、SOCSO、EIS 和 PCB 就按当月规则算好，工资单直接可以发。",
     // Sample values stay in English on every language: invoices and payslips in Malaysia are mostly in English.
     example: {
       coName: "Sinar Trading Sdn. Bhd.",

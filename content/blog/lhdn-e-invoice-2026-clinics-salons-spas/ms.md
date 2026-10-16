@@ -82,6 +82,8 @@ e-Invois LHDN termasuk dalam [Sistem Pengurusan Klinik](/ms/clinic-management-sy
 
 Pelan bermula dari RM 99/bulan setiap outlet dengan Tawaran Alu-aluan (12 bulan tambah 2 bulan percuma, purata cuma RM 84.86 sebulan) untuk 250 pengguna pertama sehingga 31 Dis 2026, atau RM 178 bulan ke bulan, dan pengguna baru dapat 3 bulan pertama percuma, termasuk pemasangan dan latihan staf. Lihat [halaman teknologi](/ms/technology/) dan [harga](/ms/pricing/) kami.
 
+Dikecualikan daripada e-Invois tapi masih perlu invois atau resit biasa? [Penjana invois](/ms/tools/invoice-generator/) percuma kami buat satu dengan logo anda dalam bentuk PDF dalam seminit.
+
 ## Soalan lazim
 
 ### Perlu ke keluarkan e-Invois LHDN kalau jualan bawah RM 3 juta?

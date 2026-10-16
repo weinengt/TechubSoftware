@@ -116,7 +116,7 @@ Every page has a Bahasa Melayu version under /ms/, for people who search in Mala
 
 Free with no sign-up; they run in the browser, so nothing typed is sent anywhere. Also in Bahasa Melayu (/ms/tools/) and Chinese (/zh/tools/).
 - [Invoice Generator](/tools/invoice-generator/): invoices, receipts and quotations for businesses in Malaysia with the business's own logo, SSM number, SST and amount in words, downloaded or shared as a PDF
-- [Payroll Calculator](/tools/payroll-calculator/): Malaysia payroll for 2026 with EPF, SOCSO (including LINDUNG 24 Jam), EIS, PCB (MTD) and HRD Corp levy by the official rules, and a payslip PDF
+- [Payroll Calculator](/tools/payroll-calculator/): Malaysia payroll for 2024 to 2026 (pick the year and month) with EPF, SOCSO (including LINDUNG 24 Jam), EIS, PCB (MTD) and HRD Corp levy by the official rules, and a payslip PDF
 - [Tax Relief Calculator](/tools/tax-relief-calculator/): every personal income tax relief for YA 2024, 2025, 2026 and 2027 (Budget 2027 proposals), with chargeable income, tax, rebate, zakat and refund worked out
 
 ## Blog

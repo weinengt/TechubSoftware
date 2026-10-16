@@ -82,6 +82,8 @@ LHDN e-Invoice is included in our [Clinic Management System](/clinic-management-
 
 Plans start from RM 99/month per outlet with our Welcome offer (12 months plus 2 months free, only RM 84.86 a month on average) for the first 250 users until 31 Dec 2026, or RM 178 month by month, and new users get the first 3 months free, including installation and staff training. See our [technology page](/technology/) and [pricing](/pricing/).
 
+Exempt from e-Invoice but still need a normal invoice or receipt? Our free [invoice generator](/tools/invoice-generator/) makes one with your logo as a PDF in a minute.
+
 ## FAQ
 
 ### Do I need to issue LHDN e-Invoices if my sales are below RM 3 million?

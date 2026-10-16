@@ -181,7 +181,7 @@ const ms: ToolsDict = {
   payroll: {
     name: "Kalkulator Gaji",
     blurb: "KWSP, PERKESO, SIP dan PCB dikira, dengan slip gaji PDF.",
-    points: ["KWSP, PERKESO, LINDUNG 24 Jam, SIP dan PCB 2026", "Bonus, OT, elaun dan zakat", "Slip gaji profesional dengan logo anda", "Muat turun atau kongsi PDF"],
+    points: ["KWSP, PERKESO, LINDUNG 24 Jam, SIP dan PCB 2024 hingga 2026", "Bonus, OT, elaun dan zakat", "Slip gaji profesional dengan logo anda", "Muat turun atau kongsi PDF"],
     meta: {
       title: "Kalkulator Gaji Malaysia 2026 | KWSP, PERKESO, SIP & PCB",
       socialTitle: "Kalkulator Gaji & Slip Gaji Malaysia | Techub Software",
@@ -199,7 +199,7 @@ const ms: ToolsDict = {
     },
     eyebrow: "Kalkulator gaji percuma",
     title: "Gaji dan slip gaji Malaysia, *tepat*",
-    intro: "Masukkan gaji. KWSP, PERKESO, SIP dan PCB dikira ikut peraturan 2026, dalam slip gaji yang sedia dihantar.",
+    intro: "Pilih bulan dan masukkan gaji. KWSP, PERKESO, SIP dan PCB dikira ikut peraturan bulan itu, dalam slip gaji yang sedia dihantar.",
     // Sample values stay in English on every language: invoices and payslips in Malaysia are mostly in English.
     example: {
       coName: "Sinar Trading Sdn. Bhd.",

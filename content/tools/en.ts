@@ -180,7 +180,7 @@ const en = {
   payroll: {
     name: "Payroll Calculator",
     blurb: "EPF, SOCSO, EIS and PCB worked out, with a payslip PDF.",
-    points: ["EPF, SOCSO, LINDUNG 24 Jam, EIS and PCB for 2026", "Bonus, overtime, allowances and zakat", "Professional payslip with your logo", "Download or share the PDF"],
+    points: ["EPF, SOCSO, LINDUNG 24 Jam, EIS and PCB for 2024 to 2026", "Bonus, overtime, allowances and zakat", "Professional payslip with your logo", "Download or share the PDF"],
     meta: {
       title: "Malaysia Payroll Calculator 2026 | EPF, SOCSO, EIS & PCB Payslip",
       socialTitle: "Malaysia Payroll Calculator & Payslip | Techub Software",
@@ -198,7 +198,7 @@ const en = {
     },
     eyebrow: "Free payroll calculator",
     title: "Malaysia payroll and payslip, *done right*",
-    intro: "Enter the pay. EPF, SOCSO, EIS and PCB are worked out by the 2026 rules, on a payslip ready to send.",
+    intro: "Pick the month and enter the pay. EPF, SOCSO, EIS and PCB are worked out by that month's rules, on a payslip ready to send.",
     example: {
       coName: "Sinar Trading Sdn. Bhd.",
       coReg: "202401234567 (1551234-A)",

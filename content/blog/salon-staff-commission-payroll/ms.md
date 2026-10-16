@@ -88,6 +88,8 @@ Gaji ialah topik sensitif, jadi tetapkan akses yang jelas dari hari pertama:
 
 Pelan bermula dari RM 99/bulan setiap outlet dengan Tawaran Alu-aluan (12 bulan tambah 2 bulan percuma, purata cuma RM 84.86 sebulan) untuk 250 pengguna pertama sehingga 31 Dis 2026, atau RM 178 bulan ke bulan. Pengguna baru dapat 3 bulan pertama percuma, termasuk pemasangan dan latihan staf. Lihat [harga](/ms/pricing/) untuk butiran.
 
+Nak semak satu slip gaji dulu? [Kalkulator gaji Malaysia](/ms/tools/payroll-calculator/) percuma kami kira KWSP, PERKESO, SIP dan PCB, dan buat slip gaji PDF.
+
 ## Soalan lazim
 
 ### Macam mana nak kira komisen stylist rambut?

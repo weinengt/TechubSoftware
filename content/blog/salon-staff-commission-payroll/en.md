@@ -88,6 +88,8 @@ Techub's [Salon Appointment System](/salon-appointment-system/) is a booking sys
 
 Plans start from RM 99/month per outlet with our Welcome offer (12 months plus 2 months free, only RM 84.86 a month on average) for the first 250 users until 31 Dec 2026, or RM 178 month by month. New users get the first 3 months free, including installation and staff training. See [pricing](/pricing/) for details.
 
+Want to check one payslip by hand first? Our free [Malaysia payroll calculator](/tools/payroll-calculator/) works out EPF, SOCSO, EIS and PCB and makes a payslip PDF.
+
 ## FAQ
 
 ### How do you calculate a hair stylist's commission?
