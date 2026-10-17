@@ -2881,6 +2881,18 @@ const en = {
       title: "Budget 2027 at a glance",
       alt: "Budget 2027 changes for small businesses in Malaysia: SME tax 14%, minimum wage RM 2,000, RM 3,000 asset write-off, RM 30 million for AI, RM 12,000 individual relief and MediAsas",
     },
+    rtsLink: {
+      title: "RTS Link and your JB business",
+      alt: "The Johor Bahru-Singapore RTS Link from Woodlands North to Bukit Chagar in about 5 minutes from February 2027, with 6 steps for JB clinics, salons and spas to get ready",
+    },
+    rtsLinkMs: {
+      title: "RTS Link and your JB business",
+      alt: "The Johor Bahru-Singapore RTS Link from Woodlands North to Bukit Chagar in about 5 minutes from February 2027, with 6 steps for JB clinics, salons and spas to get ready",
+    },
+    rtsLinkZh: {
+      title: "RTS Link and your JB business",
+      alt: "The Johor Bahru-Singapore RTS Link from Woodlands North to Bukit Chagar in about 5 minutes from February 2027, with 6 steps for JB clinics, salons and spas to get ready",
+    },
     eInvoice: {
       title: "LHDN e-Invoice",
       alt: "An e-Invoice validated through LHDN MyInvois, with its unique identifier and QR code",

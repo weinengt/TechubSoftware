@@ -2976,6 +2976,18 @@ const ms: Dict = {
       title: "Bajet 2027 sepintas lalu",
       alt: "Perubahan Bajet 2027 untuk perniagaan kecil di Malaysia: cukai SME 14%, gaji minimum RM 2,000, aset RM 3,000, RM 30 juta untuk AI, pelepasan individu RM 12,000 dan MediAsas",
     },
+    rtsLink: {
+      title: "RTS Link dan bisnes anda di JB",
+      alt: "RTS Link Johor Bahru-Singapura dari Woodlands North ke Bukit Chagar dalam kira-kira 5 minit mulai Februari 2027, dengan 6 langkah untuk klinik, salon dan spa di JB bersedia",
+    },
+    rtsLinkMs: {
+      title: "RTS Link dan bisnes anda di JB",
+      alt: "RTS Link Johor Bahru-Singapura dari Woodlands North ke Bukit Chagar dalam kira-kira 5 minit mulai Februari 2027, dengan 6 langkah untuk klinik, salon dan spa di JB bersedia",
+    },
+    rtsLinkZh: {
+      title: "RTS Link dan bisnes anda di JB",
+      alt: "RTS Link Johor Bahru-Singapura dari Woodlands North ke Bukit Chagar dalam kira-kira 5 minit mulai Februari 2027, dengan 6 langkah untuk klinik, salon dan spa di JB bersedia",
+    },
     eInvoice: {
       title: "e-Invois LHDN",
       alt: "e-Invois yang disahkan melalui LHDN MyInvois, dengan nombor pengenalan unik dan kod QR",

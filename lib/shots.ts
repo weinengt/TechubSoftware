@@ -166,6 +166,9 @@ export const shotFiles = {
   budget2027: { w: 1500, h: 938, kind: "paper", file: "budget-2027-malaysia-en" },
   budget2027Ms: { w: 1500, h: 938, kind: "paper", file: "budget-2027-malaysia-ms" },
   budget2027Zh: { w: 1500, h: 938, kind: "paper", file: "budget-2027-malaysia-zh" },
+  rtsLink: { w: 1500, h: 938, kind: "paper", file: "rts-link-jb-en" },
+  rtsLinkMs: { w: 1500, h: 938, kind: "paper", file: "rts-link-jb-ms" },
+  rtsLinkZh: { w: 1500, h: 938, kind: "paper", file: "rts-link-jb-zh" },
 } satisfies Record<string, Omit<Shot, "title" | "alt">>;
 
 export type ShotKey = keyof typeof shotFiles;
