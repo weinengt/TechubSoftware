@@ -2988,6 +2988,18 @@ const ms: Dict = {
       title: "RTS Link dan bisnes anda di JB",
       alt: "RTS Link Johor Bahru-Singapura dari Woodlands North ke Bukit Chagar dalam kira-kira 5 minit mulai Februari 2027, dengan 6 langkah untuk klinik, salon dan spa di JB bersedia",
     },
+    minWage: {
+      title: "Gaji minimum RM 2,000 dan e-Wages",
+      alt: "Siapa bayar gaji minimum RM 2,000 mulai 1 Jun 2027: kumpulan dengan jualan RM 50 juta ke atas; bawah itu dikecualikan buat masa ini. e-Wages semak gaji minimum dan hari gaji",
+    },
+    minWageMs: {
+      title: "Gaji minimum RM 2,000 dan e-Wages",
+      alt: "Siapa bayar gaji minimum RM 2,000 mulai 1 Jun 2027: kumpulan dengan jualan RM 50 juta ke atas; bawah itu dikecualikan buat masa ini. e-Wages semak gaji minimum dan hari gaji",
+    },
+    minWageZh: {
+      title: "Gaji minimum RM 2,000 dan e-Wages",
+      alt: "Siapa bayar gaji minimum RM 2,000 mulai 1 Jun 2027: kumpulan dengan jualan RM 50 juta ke atas; bawah itu dikecualikan buat masa ini. e-Wages semak gaji minimum dan hari gaji",
+    },
     eInvoice: {
       title: "e-Invois LHDN",
       alt: "e-Invois yang disahkan melalui LHDN MyInvois, dengan nombor pengenalan unik dan kod QR",

@@ -1,0 +1,110 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<style>
+  /* Minimum wage RM 2,000 and e-Wages: the picture for the minimum wage blog post. ?lang=en|ms|zh */
+  :root { --w: 1000px; --h: 625px; }
+  body { background: linear-gradient(145deg, #f2f8fd 0%, #e3f1fb 60%, #d6eef8 100%); position: relative; }
+  body::before { content: ""; position: absolute; right: -120px; top: -180px; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, rgba(0,207,203,.22), rgba(0,207,203,0) 70%); }
+  .wrap { position: relative; z-index: 1; height: 100%; padding: 38px 48px 0; display: flex; flex-direction: column; }
+  .tag { align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; background: #fff; border: 1px solid #cfe3f2; border-radius: 99px; padding: 6px 14px 6px 8px; font-size: 13px; font-weight: 750; letter-spacing: .08em; color: var(--navy); }
+  .tag i { width: 22px; height: 22px; border-radius: 99px; background: linear-gradient(135deg, #10b981, #047857); display: grid; place-items: center; font-style: normal; color: #fff; font-size: 9.5px; font-weight: 900; letter-spacing: 0; }
+  h1 { margin-top: 16px; font-size: 34px; line-height: 1.15; font-weight: 850; letter-spacing: -.02em; color: var(--navy); }
+  h1 em { font-style: normal; color: #0396d9; }
+  .row { margin-top: 26px; flex: 1; display: grid; grid-template-columns: 1.25fr 1fr; gap: 18px; min-height: 0; }
+  .card { background: #fff; border-radius: 18px; padding: 20px 22px; box-shadow: 0 20px 40px -26px rgba(11,47,85,.45); border: 1px solid #e3edf6; display: flex; flex-direction: column; }
+  .card h2 { font-size: 15px; font-weight: 800; color: var(--navy); display: flex; align-items: center; gap: 9px; }
+  .card h2 span { width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center; color: #fff; background: linear-gradient(135deg, #0396d9, #0050a0); }
+  .card h2 svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2.1; stroke-linecap: round; stroke-linejoin: round; }
+  /* Who pays */
+  .q { margin-top: 16px; background: #f4f8fc; border-radius: 12px; padding: 11px 14px; font-size: 14px; font-weight: 700; color: var(--ink2); text-align: center; }
+  .split { margin-top: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; flex: 1; }
+  .opt { border-radius: 14px; padding: 18px 18px; display: flex; flex-direction: column; justify-content: center; gap: 12px; }
+  .opt small { font-size: 12px; font-weight: 750; letter-spacing: .02em; }
+  .opt b { white-space: nowrap; font-size: 36px; font-weight: 850; letter-spacing: -.02em; }
+  .opt p { font-size: 14px; line-height: 1.45; font-weight: 550; }
+  .yes { background: linear-gradient(160deg, #0b2f55, #0a4a7a); color: #fff; } .yes small { color: #8fd8ff; } .yes p { color: #c6def2; }
+  .no { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; } .no small { color: #047857; } .no b { color: #064e3b; }
+  .grp { margin-top: 12px; display: flex; align-items: center; gap: 9px; font-size: 12px; color: var(--muted); }
+  .grp svg { width: 16px; height: 16px; stroke: #0396d9; fill: none; stroke-width: 2; flex-shrink: 0; }
+  /* e-Wages */
+  .ew .dash { margin-top: 14px; border-radius: 12px; background: #0b2f55; padding: 12px 14px; color: #fff; }
+  .ew .dash .t { display: flex; align-items: center; gap: 7px; font-size: 11px; font-weight: 700; color: #8fd8ff; letter-spacing: .06em; }
+  .ew .dash .t i { width: 7px; height: 7px; border-radius: 99px; background: #34d399; box-shadow: 0 0 0 3px rgba(52,211,153,.25); }
+  .ew .bars { margin-top: 12px; display: flex; align-items: flex-end; gap: 8px; height: 110px; }
+  .ew .bars span { flex: 1; border-radius: 4px 4px 0 0; background: linear-gradient(180deg, #5fd4ff, #0396d9); }
+  .ew ul { list-style: none; margin-top: 18px; display: flex; flex-direction: column; gap: 13px; }
+  .ew li { display: flex; align-items: center; gap: 11px; font-size: 15px; font-weight: 650; color: var(--ink2); }
+  .ew li i { width: 22px; height: 22px; flex-shrink: 0; border-radius: 99px; background: linear-gradient(135deg, #10b981, #047857); display: grid; place-items: center; }
+  .ew li i svg { width: 12px; height: 12px; stroke: #fff; fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+  .ew .when { margin-top: auto; padding-top: 12px; font-size: 12px; color: var(--muted); }
+  .ft { display: flex; align-items: center; gap: 10px; padding: 18px 0 20px; font-size: 12px; color: var(--muted); }
+  .ft img { width: 26px; height: 26px; border-radius: 7px; background: #fff; padding: 3px; box-shadow: 0 2px 6px rgba(11,47,85,.15); }
+  .ft b { color: var(--navy); font-weight: 750; }
+  .ft .r { margin-left: auto; }
+  html[lang="zh"] h1 { letter-spacing: 0; font-size: 29px; margin-top: 12px; }
+  html[lang="zh"] .row { margin-top: 18px; }
+  html[lang="zh"] .ew .bars { height: 84px; }
+</style></head>
+<body>
+<div class="wrap">
+  <div class="tag"><i>RM</i><span data-t="tag"></span></div>
+  <h1 data-t="title"></h1>
+  <div class="row">
+    <div class="card">
+      <h2><span><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/></svg></span><span style="all:unset" data-t="who"></span></h2>
+      <div class="q" data-t="q"></div>
+      <div class="split">
+        <div class="opt yes"><small data-t="yesL"></small><b>RM 2,000</b><p data-t="yesP"></p></div>
+        <div class="opt no"><small data-t="noL"></small><b>RM 1,700</b><p data-t="noP"></p></div>
+      </div>
+      <div class="grp"><svg viewBox="0 0 24 24"><rect x="3" y="10" width="7" height="10" rx="1.5"/><rect x="14" y="4" width="7" height="16" rx="1.5"/><path d="M10 15h4"/></svg><span data-t="grp"></span></div>
+    </div>
+    <div class="card ew">
+      <h2><span><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M7 13l3-3 3 2 4-4"/></svg></span><span style="all:unset">e-Wages</span></h2>
+      <div class="dash"><div class="t"><i></i><span data-t="live"></span></div><div class="bars"><span style="height:55%"></span><span style="height:72%"></span><span style="height:64%"></span><span style="height:88%"></span><span style="height:78%"></span><span style="height:96%"></span></div></div>
+      <ul id="checks"></ul>
+      <div class="when" data-t="when"></div>
+    </div>
+  </div>
+  <div class="ft"><img src="icon.png" alt=""><b>Techub Software</b><span class="r" data-t="note"></span></div>
+</div>
+<script>
+const lang = new URLSearchParams(location.search).get("lang") || "en";
+document.documentElement.lang = lang;
+const T = {
+  en: {
+    tag: "1 JUNE 2027", title: "Minimum wage goes to <em>RM 2,000</em>: does it apply to you?",
+    who: "Who pays what", q: "Your group's annual sales",
+    yesL: "RM 50 MILLION OR MORE", yesP: "Must pay at least RM 2,000 a month",
+    noL: "BELOW RM 50 MILLION", noP: "Exempt from the increase for now; RM 2,000 by choice",
+    grp: "Parent and subsidiary companies count together",
+    live: "LIVE DASHBOARD", checks: ["Minimum wage followed", "Paid on payday", "All workers covered"],
+    when: "Planned for June 2027 · Human Resources Ministry",
+    note: "Sources: Budget 2027, The Star · 16 Oct 2026",
+  },
+  ms: {
+    tag: "1 JUN 2027", title: "Gaji minimum naik ke <em>RM 2,000</em>: kena pada anda?",
+    who: "Siapa bayar berapa", q: "Jualan tahunan kumpulan anda",
+    yesL: "RM 50 JUTA KE ATAS", yesP: "Wajib bayar sekurang-kurangnya RM 2,000 sebulan",
+    noL: "BAWAH RM 50 JUTA", noP: "Dikecualikan buat masa ini; RM 2,000 secara sukarela",
+    grp: "Syarikat induk dan anak syarikat dikira bersama",
+    live: "PAPAN PEMUKA LANGSUNG", checks: ["Ikut gaji minimum", "Dibayar pada hari gaji", "Semua pekerja diliputi"],
+    when: "Dirancang Jun 2027 · Kementerian Sumber Manusia",
+    note: "Sumber: Bajet 2027, The Star · 16 Okt 2026",
+  },
+  zh: {
+    tag: "2027 年 6 月 1 日", title: "最低工资调到 <em>RM 2,000</em>：<br>你的生意要跟吗？",
+    who: "谁要付多少", q: "你集团的年销售额",
+    yesL: "RM 5,000 万或以上", yesP: "每月至少付 RM 2,000",
+    noL: "低于 RM 5,000 万", noP: "目前豁免这次调高，可自愿付 RM 2,000",
+    grp: "母公司和子公司合并计算",
+    live: "即时仪表板", checks: ["遵守最低工资", "发薪日准时发", "涵盖所有员工"],
+    when: "计划 2027 年 6 月推出 · 人力资源部",
+    note: "资料来源：2027 年财政预算案、The Star · 2026 年 10 月 16 日",
+  },
+}[lang];
+document.querySelectorAll("[data-t]").forEach((el) => (el.innerHTML = T[el.dataset.t]));
+const tick = '<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+document.getElementById("checks").innerHTML = T.checks.map((x) => `<li><i>${tick}</i>${x}</li>`).join("");
+</script>
+</body></html>

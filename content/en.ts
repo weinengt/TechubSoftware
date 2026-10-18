@@ -2893,6 +2893,18 @@ const en = {
       title: "RTS Link and your JB business",
       alt: "The Johor Bahru-Singapore RTS Link from Woodlands North to Bukit Chagar in about 5 minutes from February 2027, with 6 steps for JB clinics, salons and spas to get ready",
     },
+    minWage: {
+      title: "RM 2,000 minimum wage and e-Wages",
+      alt: "Who pays the RM 2,000 minimum wage from 1 June 2027: groups with RM 50 million sales or more; below that, exempt from the increase for now. e-Wages checks minimum wage and payday",
+    },
+    minWageMs: {
+      title: "RM 2,000 minimum wage and e-Wages",
+      alt: "Who pays the RM 2,000 minimum wage from 1 June 2027: groups with RM 50 million sales or more; below that, exempt from the increase for now. e-Wages checks minimum wage and payday",
+    },
+    minWageZh: {
+      title: "RM 2,000 minimum wage and e-Wages",
+      alt: "Who pays the RM 2,000 minimum wage from 1 June 2027: groups with RM 50 million sales or more; below that, exempt from the increase for now. e-Wages checks minimum wage and payday",
+    },
     eInvoice: {
       title: "LHDN e-Invoice",
       alt: "An e-Invoice validated through LHDN MyInvois, with its unique identifier and QR code",
