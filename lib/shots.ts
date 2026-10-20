@@ -172,6 +172,9 @@ export const shotFiles = {
   minWage: { w: 1500, h: 938, kind: "paper", file: "minimum-wage-2027-en" },
   minWageMs: { w: 1500, h: 938, kind: "paper", file: "minimum-wage-2027-ms" },
   minWageZh: { w: 1500, h: 938, kind: "paper", file: "minimum-wage-2027-zh" },
+  smeLoans: { w: 1500, h: 938, kind: "paper", file: "sme-loans-2027-en" },
+  smeLoansMs: { w: 1500, h: 938, kind: "paper", file: "sme-loans-2027-ms" },
+  smeLoansZh: { w: 1500, h: 938, kind: "paper", file: "sme-loans-2027-zh" },
 } satisfies Record<string, Omit<Shot, "title" | "alt">>;
 
 export type ShotKey = keyof typeof shotFiles;

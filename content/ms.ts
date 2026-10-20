@@ -3000,6 +3000,18 @@ const ms: Dict = {
       title: "Gaji minimum RM 2,000 dan e-Wages",
       alt: "Siapa bayar gaji minimum RM 2,000 mulai 1 Jun 2027: kumpulan dengan jualan RM 50 juta ke atas; bawah itu dikecualikan buat masa ini. e-Wages semak gaji minimum dan hari gaji",
     },
+    smeLoans: {
+      title: "Pinjaman PKS Bajet 2027",
+      alt: "Bajet 2027 peruntuk RM 57 bilion untuk pinjaman dan jaminan PKS: jaminan SJPP dan CGC, bantuan PKS BNM sehingga RM 750,000 pada 3.75%, dan pinjaman mikro AIM, BSN dan TEKUN, dengan senarai semak untuk sedia memohon",
+    },
+    smeLoansMs: {
+      title: "Pinjaman PKS Bajet 2027",
+      alt: "Bajet 2027 peruntuk RM 57 bilion untuk pinjaman dan jaminan PKS: jaminan SJPP dan CGC, bantuan PKS BNM sehingga RM 750,000 pada 3.75%, dan pinjaman mikro AIM, BSN dan TEKUN, dengan senarai semak untuk sedia memohon",
+    },
+    smeLoansZh: {
+      title: "Pinjaman PKS Bajet 2027",
+      alt: "Bajet 2027 peruntuk RM 57 bilion untuk pinjaman dan jaminan PKS: jaminan SJPP dan CGC, bantuan PKS BNM sehingga RM 750,000 pada 3.75%, dan pinjaman mikro AIM, BSN dan TEKUN, dengan senarai semak untuk sedia memohon",
+    },
     eInvoice: {
       title: "e-Invois LHDN",
       alt: "e-Invois yang disahkan melalui LHDN MyInvois, dengan nombor pengenalan unik dan kod QR",

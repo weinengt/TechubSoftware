@@ -1,0 +1,116 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<style>
+  /* SME loans in Budget 2027: the picture for the SME loans blog post. ?lang=en|ms|zh */
+  :root { --w: 1000px; --h: 625px; }
+  body { background: linear-gradient(145deg, #f3f8fd 0%, #e6f1fb 55%, #dbeefa 100%); position: relative; }
+  body::before { content: ""; position: absolute; left: -140px; bottom: -200px; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, rgba(3,150,217,.16), rgba(3,150,217,0) 70%); }
+  .wrap { position: relative; z-index: 1; height: 100%; padding: 36px 48px 0; display: flex; flex-direction: column; }
+  .tag { align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; background: #fff; border: 1px solid #cfe3f2; border-radius: 99px; padding: 6px 14px 6px 8px; font-size: 13px; font-weight: 750; letter-spacing: .08em; color: var(--navy); }
+  .tag i { width: 22px; height: 22px; border-radius: 99px; background: linear-gradient(135deg, #f59e0b, #d97706); display: grid; place-items: center; font-style: normal; color: #fff; font-size: 9.5px; font-weight: 900; letter-spacing: 0; }
+  h1 { margin-top: 14px; font-size: 34px; line-height: 1.15; font-weight: 850; letter-spacing: -.02em; color: var(--navy); }
+  h1 em { font-style: normal; color: #0396d9; }
+  .row { margin-top: 22px; flex: 1; display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 18px; min-height: 0; }
+  .card { background: #fff; border-radius: 18px; padding: 20px 22px; box-shadow: 0 20px 40px -26px rgba(11,47,85,.45); border: 1px solid #e3edf6; display: flex; flex-direction: column; }
+  .card h2 { font-size: 15px; font-weight: 800; color: var(--navy); display: flex; align-items: center; gap: 9px; }
+  .card h2 span.ic { width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center; color: #fff; background: linear-gradient(135deg, #0396d9, #0050a0); }
+  .card h2 svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2.1; stroke-linecap: round; stroke-linejoin: round; }
+  .card h2 .tot { margin-left: auto; font-size: 22px; font-weight: 850; color: #0396d9; white-space: nowrap; }
+  /* Bars */
+  .bars { margin-top: 18px; flex: 1; display: flex; flex-direction: column; justify-content: space-around; gap: 12px; }
+  .b { display: grid; grid-template-columns: 186px minmax(0, 1fr) 84px; align-items: center; gap: 10px; font-size: 13px; }
+  .b .n { font-weight: 700; color: var(--ink2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .b .t { height: 14px; border-radius: 99px; background: #eef4fa; overflow: hidden; }
+  .b .t span { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, #5fd4ff, #0396d9); }
+  .b.hl .t span { background: linear-gradient(90deg, #fbbf24, #d97706); }
+  .b .v { font-weight: 800; color: var(--navy); text-align: right; white-space: nowrap; }
+  .srf { margin-top: 8px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+  .srf div { background: #fff8eb; border: 1px solid #fde3b0; border-radius: 12px; padding: 9px 10px; }
+  .srf b { display: block; font-size: 18px; font-weight: 850; color: #92400e; white-space: nowrap; }
+  .srf small { display: block; font-size: 11px; color: #a16207; margin-top: 1px; line-height: 1.3; }
+  .srfh { margin-top: auto; padding-top: 14px; font-size: 11.5px; font-weight: 800; letter-spacing: .06em; color: #b45309; }
+  /* Loan-ready */
+  .rep { margin-top: 14px; border-radius: 12px; background: #0b2f55; padding: 12px 14px; color: #fff; }
+  .rep .t { display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; color: #8fd8ff; letter-spacing: .06em; }
+  .rep .t b { color: #fff; font-size: 13px; letter-spacing: 0; }
+  .rep .ch { margin-top: 10px; display: flex; align-items: flex-end; gap: 7px; height: 104px; }
+  .rep .ch span { flex: 1; border-radius: 4px 4px 0 0; background: linear-gradient(180deg, #5fd4ff, #0396d9); }
+  .rep .m { margin-top: 5px; display: flex; gap: 7px; font-size: 10px; color: #8fb6d8; }
+  .rep .m i { flex: 1; text-align: center; font-style: normal; }
+  ul { list-style: none; margin-top: 18px; display: flex; flex-direction: column; gap: 14px; }
+  li { display: flex; align-items: center; gap: 11px; font-size: 14px; font-weight: 650; color: var(--ink2); }
+  li i { width: 22px; height: 22px; flex-shrink: 0; border-radius: 99px; background: linear-gradient(135deg, #10b981, #047857); display: grid; place-items: center; }
+  li i svg { width: 12px; height: 12px; stroke: #fff; fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+  .ft { display: flex; align-items: center; gap: 10px; padding: 16px 0 18px; font-size: 12px; color: var(--muted); }
+  .ft img { width: 26px; height: 26px; border-radius: 7px; background: #fff; padding: 3px; box-shadow: 0 2px 6px rgba(11,47,85,.15); }
+  .ft b { color: var(--navy); font-weight: 750; }
+  .ft .r { margin-left: auto; }
+  html[lang="ms"] h1 { font-size: 31px; }
+  html[lang="zh"] h1 { letter-spacing: 0; font-size: 31px; }
+  html[lang="zh"] .rep .ch { height: 84px; }
+</style></head>
+<body>
+<div class="wrap">
+  <div class="tag"><i>RM</i><span data-t="tag"></span></div>
+  <h1 data-t="title"></h1>
+  <div class="row">
+    <div class="card">
+      <h2><span class="ic"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V10M10 21V10M14 21V10M19 21V10M2 10l10-6 10 6"/></svg></span><span data-t="where"></span><span class="tot" data-t="total"></span></h2>
+      <div class="bars" id="bars"></div>
+      <div class="srfh" data-t="srfh"></div>
+      <div class="srf" id="srf"></div>
+    </div>
+    <div class="card">
+      <h2><span class="ic"><svg viewBox="0 0 24 24"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg></span><span data-t="ready"></span></h2>
+      <div class="rep"><div class="t"><span data-t="rep"></span><b>RM 48,620</b></div>
+        <div class="ch"><span style="height:58%"></span><span style="height:66%"></span><span style="height:61%"></span><span style="height:74%"></span><span style="height:82%"></span><span style="height:92%"></span></div>
+        <div class="m" id="months"></div></div>
+      <ul id="checks"></ul>
+    </div>
+  </div>
+  <div class="ft"><img src="icon.png" alt=""><b>Techub Software</b><span class="r" data-t="note"></span></div>
+</div>
+<script>
+const lang = new URLSearchParams(location.search).get("lang") || "en";
+document.documentElement.lang = lang;
+const T = {
+  en: {
+    tag: "BUDGET 2027 · SME LOANS", title: "<em>RM 57 billion</em> for SME loans: which one fits you?",
+    where: "Where the money goes", total: "RM 57 bil",
+    bars: [["SJPP & CGC guarantees", 32, "RM 32 bil"], ["BNM SME relief (SRF)", 10, "RM 10 bil", 1], ["AIM microloans", 3, "RM 3 bil"], ["BSN microloans", 1.7, "RM 1.7 bil"], ["TEKUN Nasional", 1.3, "RM 1.3 bil"]],
+    srfh: "BNM SME SRF · OPEN TO 30 JUNE 2027",
+    srf: [["RM 750k", "max per SME"], ["3.75%", "max rate a year"], ["5 years", "max tenure"], ["80%", "guarantee"]],
+    ready: "Be loan-ready", rep: "MONTHLY SALES · SAMPLE", months: ["May", "Jun", "Jul", "Aug", "Sep", "Oct"],
+    checks: ["SSM registration", "6 months of bank statements", "Clear sales reports", "EPF and SOCSO records"],
+    note: "Sources: Budget 2027, Bernama, BNM · Oct 2026",
+  },
+  ms: {
+    tag: "BAJET 2027 · PINJAMAN PKS", title: "<em>RM 57 bilion</em> pinjaman PKS: mana satu sesuai untuk anda?",
+    where: "Ke mana duit pergi", total: "RM 57 bil",
+    bars: [["Jaminan SJPP & CGC", 32, "RM 32 bil"], ["Bantuan PKS BNM (SRF)", 10, "RM 10 bil", 1], ["Pinjaman mikro AIM", 3, "RM 3 bil"], ["Pinjaman mikro BSN", 1.7, "RM 1.7 bil"], ["TEKUN Nasional", 1.3, "RM 1.3 bil"]],
+    srfh: "SME SRF BNM · DIBUKA SEHINGGA 30 JUN 2027",
+    srf: [["RM 750k", "maks setiap PKS"], ["3.75%", "kadar maks setahun"], ["5 tahun", "tempoh maks"], ["80%", "jaminan"]],
+    ready: "Sedia untuk pinjaman", rep: "JUALAN BULANAN · CONTOH", months: ["Mei", "Jun", "Jul", "Ogo", "Sep", "Okt"],
+    checks: ["Pendaftaran SSM", "Penyata bank 6 bulan", "Laporan jualan yang jelas", "Rekod EPF dan SOCSO"],
+    note: "Sumber: Bajet 2027, Bernama, BNM · Okt 2026",
+  },
+  zh: {
+    tag: "2027 年财政预算案 · 中小企业贷款", title: "<em>RM 570 亿</em>中小企业贷款：<br>哪一种适合你？",
+    where: "钱用在哪里", total: "RM 570 亿",
+    bars: [["SJPP 和 CGC 担保", 32, "RM 320 亿"], ["国家银行援助融资", 10, "RM 100 亿", 1], ["AIM 微型贷款", 3, "RM 30 亿"], ["BSN 微型贷款", 1.7, "RM 17 亿"], ["TEKUN Nasional", 1.3, "RM 13 亿"]],
+    srfh: "国家银行 SME SRF · 开放至 2027 年 6 月 30 日",
+    srf: [["RM 75 万", "每家最高"], ["3.75%", "每年最高利率"], ["5 年", "最长期限"], ["80%", "担保"]],
+    ready: "准备好申请贷款", rep: "每月销售 · 示例", months: ["5月", "6月", "7月", "8月", "9月", "10月"],
+    checks: ["SSM 注册", "6 个月银行月结单", "清楚的销售报表", "EPF 和 SOCSO 记录"],
+    note: "资料来源：2027 年财政预算案、Bernama、国家银行 · 2026 年 10 月",
+  },
+}[lang];
+document.querySelectorAll("[data-t]").forEach((el) => (el.innerHTML = T[el.dataset.t]));
+const max = 32;
+document.getElementById("bars").innerHTML = T.bars.map(([n, v, l, hl]) => `<div class="b${hl ? " hl" : ""}"><span class="n">${n}</span><span class="t"><span style="width:${Math.max(4, (v / max) * 100)}%"></span></span><span class="v">${l}</span></div>`).join("");
+document.getElementById("srf").innerHTML = T.srf.map(([b, s]) => `<div><b>${b}</b><small>${s}</small></div>`).join("");
+document.getElementById("months").innerHTML = T.months.map((m) => `<i>${m}</i>`).join("");
+const tick = '<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+document.getElementById("checks").innerHTML = T.checks.map((x) => `<li><i>${tick}</i>${x}</li>`).join("");
+</script>
+</body></html>

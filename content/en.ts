@@ -2905,6 +2905,18 @@ const en = {
       title: "RM 2,000 minimum wage and e-Wages",
       alt: "Who pays the RM 2,000 minimum wage from 1 June 2027: groups with RM 50 million sales or more; below that, exempt from the increase for now. e-Wages checks minimum wage and payday",
     },
+    smeLoans: {
+      title: "SME loans in Budget 2027",
+      alt: "Budget 2027 puts RM 57 billion into SME loans and guarantees: SJPP and CGC guarantees, BNM's SME relief facility of up to RM 750,000 at 3.75%, and AIM, BSN and TEKUN microloans, with a checklist to be loan-ready",
+    },
+    smeLoansMs: {
+      title: "SME loans in Budget 2027",
+      alt: "Budget 2027 puts RM 57 billion into SME loans and guarantees: SJPP and CGC guarantees, BNM's SME relief facility of up to RM 750,000 at 3.75%, and AIM, BSN and TEKUN microloans, with a checklist to be loan-ready",
+    },
+    smeLoansZh: {
+      title: "SME loans in Budget 2027",
+      alt: "Budget 2027 puts RM 57 billion into SME loans and guarantees: SJPP and CGC guarantees, BNM's SME relief facility of up to RM 750,000 at 3.75%, and AIM, BSN and TEKUN microloans, with a checklist to be loan-ready",
+    },
     eInvoice: {
       title: "LHDN e-Invoice",
       alt: "An e-Invoice validated through LHDN MyInvois, with its unique identifier and QR code",

@@ -104,6 +104,7 @@ export const screens = [
   ...["en", "ms", "zh"].map((l) => ({ name: `budget-2027-malaysia-${l}`, file: `budget-2027.html?lang=${l}`, w: 1000, h: 625, scale: 1.5 })),
   ...["en", "ms", "zh"].map((l) => ({ name: `rts-link-jb-${l}`, file: `rts-link-jb.html?lang=${l}`, w: 1000, h: 625, scale: 1.5 })),
   ...["en", "ms", "zh"].map((l) => ({ name: `minimum-wage-2027-${l}`, file: `minimum-wage-2027.html?lang=${l}`, w: 1000, h: 625, scale: 1.5 })),
+  ...["en", "ms", "zh"].map((l) => ({ name: `sme-loans-2027-${l}`, file: `sme-loans-2027.html?lang=${l}`, w: 1000, h: 625, scale: 1.5 })),
   { name: "custom-erp-desktop", file: "erp.html", ...desktop },
   { name: "number-plate-scanner-desktop", file: "plate-scanner.html", ...desktop },
   { name: "ai-object-detection-desktop", file: "object-detection.html", ...desktop },
