@@ -81,7 +81,7 @@ const ms: ToolsDict = {
     blurb: "Invois, resit dan sebut harga dengan logo anda, dalam PDF.",
     points: ["Logo, no. SSM dan alamat anda", "SST dan diskaun dikira untuk anda", "Jumlah dalam perkataan, macam invois sebenar", "Muat turun atau kongsi di WhatsApp"],
     meta: {
-      title: "Penjana Invois Percuma Malaysia | Invois PDF dengan Logo Anda",
+      title: "Buat Invois Percuma Malaysia | Invois, Resit & Sebut Harga PDF",
       socialTitle: "Penjana Invois Percuma Malaysia | Techub Software",
       description:
         "Buat invois, resit atau sebut harga yang profesional secara percuma. Letak logo, no. SSM dan SST anda, kemudian muat turun PDF atau kongsi di WhatsApp. Tak perlu daftar; maklumat anda kekal dalam peranti anda.",

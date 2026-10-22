@@ -81,7 +81,7 @@ const zh: ToolsDict = {
     blurb: "带你公司 Logo 的发票、收据和报价单，一键生成 PDF。",
     points: ["公司 Logo、SSM 注册号和地址", "自动算 SST 和折扣", "英文大写金额，像正式发票一样", "下载或分享到 WhatsApp"],
     meta: {
-      title: "马来西亚免费发票生成器 | 带公司 Logo 的 PDF 发票",
+      title: "马来西亚免费发票生成器 | 发票、收据、报价单 PDF",
       socialTitle: "马来西亚免费发票生成器 | Techub Software",
       description:
         "免费制作专业的发票、收据或报价单。加上你的 Logo、SSM 注册号和 SST，再下载 PDF 或分享到 WhatsApp。免注册，资料只留在你的设备。",

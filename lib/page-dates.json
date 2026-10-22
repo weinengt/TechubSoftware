@@ -12,16 +12,16 @@
   "date": "2026-10-16"
  },
  "/technology/": {
-  "hash": "e175b39a6b006b09",
-  "date": "2026-10-16"
+  "hash": "127d954a9dbfc680",
+  "date": "2026-10-22"
  },
  "/ms/technology/": {
-  "hash": "d4a9cb7626c85131",
-  "date": "2026-10-16"
+  "hash": "1f2d4973b20b09a5",
+  "date": "2026-10-22"
  },
  "/zh/technology/": {
-  "hash": "ffef956f7a947ed9",
-  "date": "2026-10-16"
+  "hash": "589c9787eefb5269",
+  "date": "2026-10-22"
  },
  "/clinic-management-system/": {
   "hash": "5d2afbeb50c3e0cb",
@@ -36,28 +36,28 @@
   "date": "2026-10-22"
  },
  "/salon-appointment-system/": {
-  "hash": "65a97d029fb1f96a",
-  "date": "2026-10-16"
+  "hash": "8a29440ae38e94d4",
+  "date": "2026-10-22"
  },
  "/ms/salon-appointment-system/": {
-  "hash": "f33ae016a676e9a8",
-  "date": "2026-10-16"
+  "hash": "95a819db157c9cb3",
+  "date": "2026-10-22"
  },
  "/zh/salon-appointment-system/": {
   "hash": "bfeb437160765497",
   "date": "2026-10-16"
  },
  "/beauty-appointment-system/": {
-  "hash": "bc97f78a35abc154",
-  "date": "2026-10-16"
+  "hash": "12cd60ba01b3c3d7",
+  "date": "2026-10-22"
  },
  "/ms/beauty-appointment-system/": {
-  "hash": "e0f6dacf18d73a1c",
-  "date": "2026-10-16"
+  "hash": "079d9545c94fb0ed",
+  "date": "2026-10-22"
  },
  "/zh/beauty-appointment-system/": {
-  "hash": "b36da63b881c051f",
-  "date": "2026-10-16"
+  "hash": "c3cd9e023ef2e853",
+  "date": "2026-10-22"
  },
  "/spa-appointment-system/": {
   "hash": "a654ff98e9a51717",
@@ -72,16 +72,16 @@
   "date": "2026-10-16"
  },
  "/live-selling-system/": {
-  "hash": "bffa3f3269451c87",
-  "date": "2026-10-16"
+  "hash": "0a5496446a523688",
+  "date": "2026-10-22"
  },
  "/ms/live-selling-system/": {
-  "hash": "feda9e37e6b82f9b",
-  "date": "2026-10-16"
+  "hash": "ed017336314f7544",
+  "date": "2026-10-22"
  },
  "/zh/live-selling-system/": {
-  "hash": "1722e721c85c8be0",
-  "date": "2026-10-16"
+  "hash": "901476f0c3455ae8",
+  "date": "2026-10-22"
  },
  "/inventory-management-system/": {
   "hash": "19455f45161d01e6",
@@ -108,52 +108,52 @@
   "date": "2026-10-16"
  },
  "/software-customisation/": {
-  "hash": "ebd0450941e404f3",
-  "date": "2026-10-16"
+  "hash": "330279dd6bf966a7",
+  "date": "2026-10-22"
  },
  "/ms/software-customisation/": {
-  "hash": "712b503c9ac12c6a",
-  "date": "2026-10-16"
+  "hash": "de957a6480adca8d",
+  "date": "2026-10-22"
  },
  "/zh/software-customisation/": {
-  "hash": "d30bed4a0fcacaf0",
-  "date": "2026-10-16"
+  "hash": "a16f0548bef557e3",
+  "date": "2026-10-22"
  },
  "/data-migration/": {
-  "hash": "cddc357ab33fed75",
-  "date": "2026-10-16"
+  "hash": "452cff12b1e8a36f",
+  "date": "2026-10-22"
  },
  "/ms/data-migration/": {
-  "hash": "28517d92c77ae836",
-  "date": "2026-10-16"
+  "hash": "f74b3a72345c8bb0",
+  "date": "2026-10-22"
  },
  "/zh/data-migration/": {
-  "hash": "8a5292ebe88cd326",
-  "date": "2026-10-16"
+  "hash": "013a91bf0e14658f",
+  "date": "2026-10-22"
  },
  "/business-email/": {
-  "hash": "d2ee2f955ae47c69",
-  "date": "2026-10-16"
+  "hash": "544e77371e01fb5c",
+  "date": "2026-10-22"
  },
  "/ms/business-email/": {
-  "hash": "a657b62d5377bb40",
-  "date": "2026-10-16"
+  "hash": "cca0380a0e360886",
+  "date": "2026-10-22"
  },
  "/zh/business-email/": {
-  "hash": "eab3a4aa3b3445a7",
-  "date": "2026-10-16"
+  "hash": "204c598941f1c4ad",
+  "date": "2026-10-22"
  },
  "/website-design/": {
   "hash": "dbc9ed5834626c9f",
   "date": "2026-10-16"
  },
  "/ms/website-design/": {
-  "hash": "d3fac141364fca0f",
-  "date": "2026-10-16"
+  "hash": "36505e6f37a9457b",
+  "date": "2026-10-22"
  },
  "/zh/website-design/": {
-  "hash": "899eefc773b1afdb",
-  "date": "2026-10-16"
+  "hash": "b782a2415511bd75",
+  "date": "2026-10-22"
  },
  "/custom-systems/": {
   "hash": "78f1f3b4d36d8863",
@@ -168,28 +168,28 @@
   "date": "2026-10-16"
  },
  "/services/": {
-  "hash": "951d46f08e879f2d",
-  "date": "2026-10-16"
+  "hash": "235ccca10dffe7f2",
+  "date": "2026-10-22"
  },
  "/ms/services/": {
-  "hash": "f5c3d16c732aa16c",
-  "date": "2026-10-16"
+  "hash": "70d85c9db0a1d0f6",
+  "date": "2026-10-22"
  },
  "/zh/services/": {
-  "hash": "fe23ca25618225ca",
-  "date": "2026-10-16"
+  "hash": "3233feb7af4fdb54",
+  "date": "2026-10-22"
  },
  "/pricing/": {
-  "hash": "c8a736e19159ae63",
-  "date": "2026-10-16"
+  "hash": "29869f15757ac5d4",
+  "date": "2026-10-22"
  },
  "/ms/pricing/": {
-  "hash": "6b83acba7ba8c31b",
-  "date": "2026-10-16"
+  "hash": "2c1f7ae1def89b8a",
+  "date": "2026-10-22"
  },
  "/zh/pricing/": {
-  "hash": "b15081affb5ab719",
-  "date": "2026-10-16"
+  "hash": "02a7f2ab43b0dc78",
+  "date": "2026-10-22"
  },
  "/about/": {
   "hash": "c56693f7101424d0",
@@ -420,15 +420,15 @@
   "date": "2026-10-22"
  },
  "/tools/invoice-generator/": {
-  "hash": "fd4ebad90940ea91",
+  "hash": "8baf9c298ebfd826",
   "date": "2026-10-22"
  },
  "/ms/tools/invoice-generator/": {
-  "hash": "f680cab510c810d3",
+  "hash": "9373575a07180519",
   "date": "2026-10-22"
  },
  "/zh/tools/invoice-generator/": {
-  "hash": "a31951a9040cbecc",
+  "hash": "9a0ec9e276da67b2",
   "date": "2026-10-22"
  },
  "/tools/payroll-calculator/": {

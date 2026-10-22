@@ -538,14 +538,13 @@ const en = {
   /* ---------- Technology page ---------- */
   techPage: {
     meta: {
-      title: "Technology | Malaysia Servers, AI & LHDN e-Invoice",
+      title: "LHDN e-Invoice, AI Stock Control & Malaysia Cloud Servers | Technology",
       socialTitle: "Technology | Techub Software",
       description:
         "Enterprise servers in Malaysia (IPServerOne, AWS), encrypted backups, reports in under 100 ms, AI stock control, WhatsApp and LHDN e-Invoice. {uptime} uptime.",
       keywords: [
         "cloud business system Malaysia",
         "Malaysia data centre",
-        "NoSQL database",
         "encrypted backup",
         "AI stock control",
         "delivery note scanning",
@@ -1122,14 +1121,14 @@ const en = {
     },
     services: {
       meta: {
-        title: "Services | Systems, Custom Software, Hardware & Training",
+        title: "System Installation, Staff Training & Hardware Setup Malaysia | Services",
         description:
           "Ready appointment and live selling systems, custom software, hardware setup, installation, staff training and WhatsApp support for businesses in Malaysia.",
       },
     },
     pricing: {
       meta: {
-        title: "Pricing | From RM {price}/month per Outlet, First {months} Months Free",
+        title: "Clinic & Salon System Price Malaysia | From RM {price}/month per Outlet, {months} Months Free",
         description:
           "Appointment systems in Malaysia from RM {price}/month per outlet, first {months} months free with installation and training. Live selling from RM {livePrice}/month per outlet; custom work from RM {custom}/hour.",
       },
@@ -1377,7 +1376,7 @@ const en = {
 
     salon: {
       meta: {
-        title: "Salon Booking System Malaysia | KL, JB & Penang",
+        title: "Hair Salon & Barber Booking System Malaysia | KL, JB & Penang",
         socialTitle: "Salon Appointment System Malaysia | Techub Software",
         description:
           "Hair salon booking system for Kuala Lumpur, Johor Bahru, Penang and all of Malaysia: stylist calendar, WhatsApp reminders, commission, POS. From RM {price}/month per outlet, {months} months free.",
@@ -1549,7 +1548,7 @@ const en = {
 
     beauty: {
       meta: {
-        title: "Beauty Appointment System Malaysia | KL, JB & Penang",
+        title: "Beauty Salon & Beauty Centre System Malaysia | KL, JB & Penang",
         socialTitle: "Beauty Appointment System Malaysia | Techub Software",
         description:
           "Beauty appointment system for beauty centres in Kuala Lumpur, Johor Bahru, Penang and all of Malaysia: packages, face charts, WhatsApp reminders, payroll. From RM {price}/month per outlet.",
@@ -1904,7 +1903,7 @@ const en = {
 
     live: {
       meta: {
-        title: "Live Selling System Malaysia | KL, JB & Penang",
+        title: "TikTok & Facebook Live Selling System Malaysia | KL, JB & Penang",
         socialTitle: "Live Selling System Malaysia | Techub Software",
         description:
           "Live selling system for Facebook and TikTok sellers in Kuala Lumpur, Johor Bahru, Penang and all of Malaysia: big crowds, no overselling, scheduled products. From RM {livePrice}/month per outlet.",
@@ -1919,7 +1918,6 @@ const en = {
           "Facebook live selling system",
           "TikTok live selling system",
           "prevent overselling",
-          "Kafka order queue",
           "live selling payment gateway",
           "payment gateway integration Malaysia",
         ],
@@ -2287,10 +2285,10 @@ const en = {
       ],
       cta: "See customisation examples",
       meta: {
-        title: "Software Customisation Malaysia | KL, JB & Penang",
+        title: "Software Customisation & System Upgrades Malaysia | KL, JB & Penang",
         socialTitle: "Software Customisation | Techub Software",
         description:
-          "Software customisation in Kuala Lumpur, Johor Bahru, Penang and all of Malaysia: new features, reports and printouts from RM {custom} per work hour, with an AI estimate first and free testing.",
+          "Add features, reports or printouts to the system you already use, from RM {custom} per work hour, in Kuala Lumpur, Johor Bahru, Penang and all of Malaysia. AI estimate first, testing free.",
         keywords: [
           "software customisation Malaysia",
           "system customisation",
@@ -2380,7 +2378,7 @@ const en = {
       ],
       cta: "See how data migration works",
       meta: {
-        title: "Data Migration Services Malaysia | KL, JB & Penang",
+        title: "Data Migration & Data Transfer Malaysia | KL, JB & Penang",
         socialTitle: "Data Migration | Techub Software",
         description:
           "Data migration in Kuala Lumpur, Johor Bahru, Penang and all of Malaysia: Excel, PDF, CSV, TXT or old systems that can't export. AI screen scanning, charged by time, not data volume.",
@@ -2460,7 +2458,7 @@ const en = {
       points: ["Email on your own domain", "{emailStorage} of storage, RM {emailYear} a year", "We set it all up for you", "Domain not included"],
       cta: "See business email",
       meta: {
-        title: "Business Email Malaysia | KL, JB & Penang",
+        title: "Business Email & Company Email Hosting Malaysia | KL, JB & Penang",
         socialTitle: "Business Email | Techub Software",
         description:
           "Business email on your own domain for companies in Kuala Lumpur, Johor Bahru, Penang and all of Malaysia. RM {emailYear} a year, {emailStorage} of storage, set up for you. Domain not included.",

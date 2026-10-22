@@ -530,7 +530,7 @@ const zh: Dict = {
   /* ---------- Technology page ---------- */
   techPage: {
     meta: {
-      title: "系统技术 | 马来西亚服务器、AI、WhatsApp 和电子发票",
+      title: "LHDN 电子发票、AI 库存管理、马来西亚云端服务器 | 系统技术",
       socialTitle: "技术 | Techub Software",
       description:
         "马来西亚企业级服务器（IPServerOne、AWS）、加密多区域备份、报表 100 毫秒内出来、AI 库存管理、WhatsApp 和 LHDN 电子发票。{uptime} 在线率。",
@@ -539,7 +539,6 @@ const zh: Dict = {
         "马来西亚数据中心",
         "马来西亚服务器",
         "云端商业系统",
-        "NoSQL数据库",
         "加密备份",
         "AI库存管理",
         "送货单扫描",
@@ -1108,13 +1107,13 @@ const zh: Dict = {
     },
     services: {
       meta: {
-        title: "服务 | 预约系统、定制开发、硬件安装和员工培训",
+        title: "马来西亚系统安装、硬件设置和员工培训 | 服务",
         description: "{name} 为马来西亚商家提供现成预约系统、直播带货系统、定制系统开发、硬件安装和员工培训，还有本地团队在 WhatsApp 支援你。",
       },
     },
     pricing: {
       meta: {
-        title: "价格 | 预约系统每间分店 RM {price}/月起，前 {months} 个月免费",
+        title: "马来西亚诊所、发廊系统价格 | 每间分店 RM {price}/月起，前 {months} 个月免费",
         description: "马来西亚预约系统每间分店月费 RM {price} 起，新客户前 {months} 个月免费，包安装和员工培训。直播带货系统每间分店 RM {livePrice}/月起；定制每小时 RM {custom} 起。",
       },
     },
@@ -1524,7 +1523,7 @@ const zh: Dict = {
 
     beauty: {
       meta: {
-        title: "马来西亚美容预约系统 | 吉隆坡、新山、槟城",
+        title: "马来西亚美容院系统、美容预约系统 | 吉隆坡、新山、槟城",
         socialTitle: "马来西亚美容预约系统 | Techub Software",
         description:
           "适合吉隆坡、新山、槟城和全马美容院的预约系统：疗程配套、面部图、WhatsApp 自动提醒、员工薪水。每间分店月费 RM {price} 起，前 {months} 个月免费。",
@@ -1876,7 +1875,7 @@ const zh: Dict = {
 
     live: {
       meta: {
-        title: "马来西亚直播带货系统 | 吉隆坡、新山、槟城",
+        title: "马来西亚 TikTok、Facebook 直播带货系统 | 吉隆坡、新山、槟城",
         socialTitle: "马来西亚直播带货系统 | Techub Software",
         description:
           "适合吉隆坡、新山、槟城和全马 Facebook、TikTok 直播卖家的直播带货系统：撑得住大批买家，不会超卖，产品定时开卖。每间分店月费 RM {livePrice} 起。",
@@ -1894,7 +1893,6 @@ const zh: Dict = {
           "网上卖货系统",
           "Facebook直播卖货",
           "TikTok直播带货",
-          "Kafka订单排队",
           "live selling system Malaysia",
           "flash sale system",
           "直播带货 支付网关",
@@ -2255,7 +2253,7 @@ const zh: Dict = {
       ],
       cta: "看看定制例子",
       meta: {
-        title: "马来西亚系统定制 | 吉隆坡、新山、槟城",
+        title: "马来西亚系统定制、系统修改 | 吉隆坡、新山、槟城",
         socialTitle: "系统定制 | Techub Software",
         description:
           "吉隆坡、新山、槟城和全马的系统定制：加新功能、报表和打印格式，按工时收费，每小时 RM {custom} 起，先有 AI 估算，测试免费。",
@@ -2347,7 +2345,7 @@ const zh: Dict = {
       ],
       cta: "看看数据迁移怎样做",
       meta: {
-        title: "马来西亚数据迁移 | 吉隆坡、新山、槟城",
+        title: "马来西亚资料迁移、数据转移 | 吉隆坡、新山、槟城",
         socialTitle: "数据迁移 | Techub Software",
         description:
           "吉隆坡、新山、槟城和全马的数据迁移：Excel、PDF、CSV、TXT 或不能导出的旧系统都可以。AI 屏幕扫描，按时间收费，不按数据量。",
@@ -2427,7 +2425,7 @@ const zh: Dict = {
       points: ["用你自己的域名", "{emailStorage} 储存空间，每年 RM {emailYear}", "我们帮你全部设定好", "不包括域名"],
       cta: "看看企业邮箱",
       meta: {
-        title: "马来西亚企业邮箱 | 吉隆坡、新山、槟城",
+        title: "马来西亚企业邮箱、公司电邮 | 吉隆坡、新山、槟城",
         socialTitle: "企业邮箱 | Techub Software",
         description:
           "给吉隆坡、新山、槟城和全马公司的企业邮箱，用你自己的域名。每年 RM {emailYear}，{emailStorage} 储存空间，帮你设定好。不包括域名。",
@@ -2504,7 +2502,7 @@ const zh: Dict = {
       ],
       cta: "看看网站设计",
       meta: {
-        title: "马来西亚网站设计 | 吉隆坡、新山、槟城",
+        title: "马来西亚网站设计、做网站 | 吉隆坡、新山、槟城",
         socialTitle: "网站设计 | Techub Software",
         description:
           "吉隆坡、新山、槟城和全马的网站设计：最多 {websitePages} 页，换页不用重新加载，Cloudflare 托管，做好 SEO。RM {website}，第一年送域名。",

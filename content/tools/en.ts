@@ -81,7 +81,7 @@ const en = {
     blurb: "Invoices, receipts and quotations with your logo, as a PDF.",
     points: ["Your logo, SSM no. and address", "SST and discounts worked out", "Amount in words, like a real invoice", "Download or share on WhatsApp"],
     meta: {
-      title: "Free Invoice Generator Malaysia | PDF Invoice with Your Logo",
+      title: "Free Invoice Generator Malaysia | Invoice, Receipt & Quotation PDF",
       socialTitle: "Free Invoice Generator Malaysia | Techub Software",
       description:
         "Make a professional invoice, receipt or quotation in Malaysia for free. Add your logo, SSM number and SST, then download the PDF or share it on WhatsApp. No sign-up; your details stay on your device.",

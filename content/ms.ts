@@ -527,7 +527,7 @@ const ms: Dict = {
   /* ---------- Technology page ---------- */
   techPage: {
     meta: {
-      title: "Teknologi | Server Malaysia, AI & e-Invois LHDN",
+      title: "e-Invois LHDN, Kawalan Stok AI & Server Cloud Malaysia | Teknologi",
       socialTitle: "Teknologi | Techub Software",
       description:
         "Server enterprise di Malaysia (IPServerOne, AWS), backup disulitkan, laporan bawah 100 ms, kawalan stok AI, WhatsApp dan e-Invois LHDN. Uptime {uptime}.",
@@ -535,7 +535,6 @@ const ms: Dict = {
         "sistem cloud Malaysia",
         "pusat data Malaysia",
         "server Malaysia",
-        "database NoSQL",
         "backup data disulitkan",
         "kawalan stok AI",
         "imbas nota penghantaran",
@@ -1110,14 +1109,14 @@ const ms: Dict = {
     },
     services: {
       meta: {
-        title: "Perkhidmatan | Sistem, Custom, Peralatan & Latihan",
+        title: "Pemasangan Sistem, Latihan Staf & Setup Peralatan Malaysia | Perkhidmatan",
         description:
           "Sistem temujanji dan jualan live siap guna, sistem custom, setup peralatan, pemasangan, latihan staf dan sokongan WhatsApp untuk bisnes di Malaysia.",
       },
     },
     pricing: {
       meta: {
-        title: "Harga | Dari RM {price}/bulan Setiap Outlet, {months} Bulan Percuma",
+        title: "Harga Sistem Klinik & Salon Malaysia | Dari RM {price}/bulan Setiap Outlet, {months} Bulan Percuma",
         description:
           "Sistem temujanji di Malaysia dari RM {price}/bulan setiap outlet, {months} bulan pertama percuma termasuk pemasangan dan latihan. Jualan live dari RM {livePrice}/bulan setiap outlet; custom dari RM {custom}/jam.",
       },
@@ -1391,7 +1390,7 @@ const ms: Dict = {
 
     salon: {
       meta: {
-        title: "Sistem Booking Salon Malaysia | KL, JB & Pulau Pinang",
+        title: "Sistem Booking Salon Rambut & Barber Malaysia | KL, JB & Pulau Pinang",
         socialTitle: "Sistem Booking Salon Malaysia | Techub Software",
         description:
           "Sistem booking salon rambut di Kuala Lumpur, Johor Bahru, Pulau Pinang dan seluruh Malaysia: jadual stylist, reminder WhatsApp, komisen, POS. Dari RM {price}/bulan setiap outlet, {months} bulan percuma.",
@@ -1586,7 +1585,7 @@ const ms: Dict = {
 
     beauty: {
       meta: {
-        title: "Sistem Temujanji Pusat Kecantikan Malaysia | KL, JB & Pulau Pinang",
+        title: "Sistem Booking Pusat Kecantikan Malaysia | KL, JB & Pulau Pinang",
         socialTitle: "Sistem Booking Pusat Kecantikan Malaysia | Techub Software",
         description:
           "Sistem temujanji pusat kecantikan di Kuala Lumpur, Johor Bahru, Pulau Pinang dan seluruh Malaysia: pakej, carta muka, reminder WhatsApp, gaji. Dari RM {price}/bulan setiap outlet.",
@@ -1997,7 +1996,7 @@ const ms: Dict = {
 
     live: {
       meta: {
-        title: "Sistem Jualan Live Malaysia | KL, JB & Pulau Pinang",
+        title: "Sistem Jualan Live TikTok & Facebook Malaysia | KL, JB & Pulau Pinang",
         socialTitle: "Sistem Jualan Live Malaysia | Techub Software",
         description:
           "Sistem jualan live untuk penjual Facebook dan TikTok di Kuala Lumpur, Johor Bahru, Pulau Pinang dan seluruh Malaysia: tampung ramai pembeli, tak terlebih jual. Dari RM {livePrice}/bulan setiap outlet.",
@@ -2016,7 +2015,6 @@ const ms: Dict = {
           "sistem pre-order",
           "live selling system Malaysia",
           "flash sale system",
-          "Kafka order queue",
           "payment gateway jualan live",
           "integrasi payment gateway",
         ],
@@ -2378,7 +2376,7 @@ const ms: Dict = {
       ],
       cta: "Lihat contoh ubah suai",
       meta: {
-        title: "Ubah Suai Sistem Malaysia | KL, JB & Pulau Pinang",
+        title: "Ubah Suai & Upgrade Sistem Malaysia | KL, JB & Pulau Pinang",
         socialTitle: "Ubah Suai Sistem | Techub Software",
         description:
           "Ubah suai sistem di Kuala Lumpur, Johor Bahru, Pulau Pinang dan seluruh Malaysia: fungsi, laporan dan cetakan baru dari RM {custom} sejam kerja, dengan anggaran AI dulu dan ujian percuma.",
@@ -2470,7 +2468,7 @@ const ms: Dict = {
       ],
       cta: "Lihat cara pemindahan data",
       meta: {
-        title: "Pemindahan Data Malaysia | KL, JB & Pulau Pinang",
+        title: "Pindah Data & Migrasi Data Malaysia | KL, JB & Pulau Pinang",
         socialTitle: "Pemindahan Data | Techub Software",
         description:
           "Pemindahan data di Kuala Lumpur, Johor Bahru, Pulau Pinang dan seluruh Malaysia: Excel, PDF, CSV, TXT atau sistem lama yang tak boleh export. Imbasan skrin AI, caj ikut masa, bukan saiz data.",
@@ -2550,7 +2548,7 @@ const ms: Dict = {
       points: ["E-mel dengan domain anda sendiri", "Storan {emailStorage}, RM {emailYear} setahun", "Kami setup semuanya untuk anda", "Domain tidak termasuk"],
       cta: "Lihat e-mel perniagaan",
       meta: {
-        title: "E-mel Perniagaan Malaysia | KL, JB & Pulau Pinang",
+        title: "Email Syarikat & E-mel Perniagaan Malaysia | KL, JB & Pulau Pinang",
         socialTitle: "E-mel Perniagaan | Techub Software",
         description:
           "E-mel perniagaan dengan domain sendiri untuk syarikat di Kuala Lumpur, Johor Bahru, Pulau Pinang dan seluruh Malaysia. RM {emailYear} setahun, storan {emailStorage}, kami setup. Domain tidak termasuk.",
@@ -2627,7 +2625,7 @@ const ms: Dict = {
       ],
       cta: "Lihat contoh laman web",
       meta: {
-        title: "Reka Laman Web Malaysia | KL, JB & Pulau Pinang",
+        title: "Buat Website & Reka Laman Web Malaysia | KL, JB & Pulau Pinang",
         socialTitle: "Reka Laman Web | Techub Software",
         description:
           "Reka laman web di Kuala Lumpur, Johor Bahru, Pulau Pinang dan seluruh Malaysia: sehingga {websitePages} halaman, tukar halaman tanpa reload, hosting Cloudflare, sedia SEO. RM {website}, domain percuma tahun pertama.",
