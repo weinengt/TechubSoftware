@@ -157,7 +157,7 @@ const zh: Dict = {
       blurb: "EPF、SOCSO、EIS、PCB 自动算好，工资单发到 WhatsApp。",
       points: [
         "EPF、SOCSO、EIS 和 PCB 自动算好",
-        "一键算好整个月薪水，老板批准就好",
+        "全公司薪水一键算好，老板批准就好",
         "工资单直接发到每位员工的手机",
         "员工 App 里请假和报销",
         "KWSP、PERKESO 和 LHDN 的缴款文件",
@@ -354,7 +354,7 @@ const zh: Dict = {
       },
       payroll: {
         run: { title: "薪水待审批", text: "24 位员工 · 实发 RM 70,923" },
-        statutory: { title: "EPF、SOCSO、EIS、PCB 算好了", text: "24 位员工全部算好" },
+        statutory: { title: "EPF、SOCSO、EIS、PCB", text: "24 位员工全部算好" },
         approve: { title: "一按就批准", text: "工资单已发给 24 位员工" },
         payslip: { title: "工资单发到 WhatsApp", text: "实发工资 RM 2,627.20" },
         claim: { title: "AI 读了 3 张收据", text: "RM 86.40 跟薪水一起发" },
@@ -2283,10 +2283,10 @@ const zh: Dict = {
       },
       category: "薪资和人事",
       eyebrow: "薪资和人事系统",
-      heading: "整个月的薪水，\u200b*一键算好*",
+      heading: "每月出粮，\u200b*一键搞定*",
       intro:
-        "专为马来西亚的公司、商店、诊所和分店而设：每位员工的 EPF、SOCSO、EIS 和 PCB 自动算好，工资单直接发到手机，请假和报销在员工 App 里就能办。",
-      whoFor: ["中小企业和办公室", "商店和分店", "餐厅和咖啡馆", "诊所", "发廊和 SPA", "工厂和工作坊", "有外劳的公司"],
+        "专为马来西亚的公司、商店、诊所和连锁店而设：每位员工的 EPF、SOCSO、EIS 和 PCB 自动算好，工资单直接发到手机，员工用 App 就能请假和报销。",
+      whoFor: ["中小企业和办公室", "商店和连锁店", "餐厅和咖啡馆", "诊所", "发廊和 SPA", "工厂和工作坊", "有外劳的公司"],
       highlights: {
         statutory: "EPF、SOCSO、EIS 和 PCB",
         oneClick: "一键算薪水",
@@ -2308,7 +2308,7 @@ const zh: Dict = {
         },
         statutory: {
           eyebrow: "EPF、SOCSO、EIS 和 PCB",
-          title: "缴款自动算好，\u200b*文件准备好*",
+          title: "缴款自动算好，\u200b*文件也准备好*",
           points: [
             "最新的 EPF、SOCSO、EIS 和 PCB 费率",
             "LINDUNG 24 Jam、外劳和 60 岁以上员工",
@@ -2380,7 +2380,7 @@ const zh: Dict = {
       faqs: [
         {
           q: "Techub 薪资和人事系统是什么？",
-          a: "它是适合马来西亚商家的薪资和人事系统。它帮你算好每位员工的薪水，包括 EPF、SOCSO、EIS 和 PCB，把工资单发到员工手机，员工也可以在 App 里请假和报销。老板检查后一按就批准。",
+          a: "这是一套适合马来西亚商家的薪资和人事系统：帮你算好每位员工的薪水，包括 EPF、SOCSO、EIS 和 PCB，把工资单发到员工手机，员工也能在 App 里请假和报销。老板检查后一按就批准。",
         },
         {
           q: "会自动算 EPF、SOCSO、EIS 和 PCB 吗？",
