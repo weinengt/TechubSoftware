@@ -3095,6 +3095,18 @@ const zh: Dict = {
       title: "2027 年预算案中小企业贷款",
       alt: "2027 年财政预算案拨出 RM 570 亿给中小企业贷款和担保：SJPP 和 CGC 担保、国家银行最高 RM 75 万、利率 3.75% 的援助融资，以及 AIM、BSN 和 TEKUN 微型贷款，附申请贷款准备清单",
     },
+    epfSocso: {
+      title: "EPF、SOCSO、EIS 和 PCB 怎么算",
+      alt: "一张虚构的 RM 3,000 工资单（2026 年 10 月）：EPF RM 330、SOCSO RM 14.75、LINDUNG 24 Jam RM 22.15、EIS RM 5.90、PCB RM 0，实拿工资 RM 2,627.20，雇主另付 RM 447.55。旁边是 2026 年员工和雇主的费率",
+    },
+    epfSocsoMs: {
+      title: "EPF、SOCSO、EIS 和 PCB 怎么算",
+      alt: "一张虚构的 RM 3,000 工资单（2026 年 10 月）：EPF RM 330、SOCSO RM 14.75、LINDUNG 24 Jam RM 22.15、EIS RM 5.90、PCB RM 0，实拿工资 RM 2,627.20，雇主另付 RM 447.55。旁边是 2026 年员工和雇主的费率",
+    },
+    epfSocsoZh: {
+      title: "EPF、SOCSO、EIS 和 PCB 怎么算",
+      alt: "一张虚构的 RM 3,000 工资单（2026 年 10 月）：EPF RM 330、SOCSO RM 14.75、LINDUNG 24 Jam RM 22.15、EIS RM 5.90、PCB RM 0，实拿工资 RM 2,627.20，雇主另付 RM 447.55。旁边是 2026 年员工和雇主的费率",
+    },
     eInvoice: {
       title: "LHDN 电子发票",
       alt: "通过 LHDN MyInvois 验证的电子发票，附唯一识别码和 QR 码",

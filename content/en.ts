@@ -3128,6 +3128,18 @@ const en = {
       title: "SME loans in Budget 2027",
       alt: "Budget 2027 puts RM 57 billion into SME loans and guarantees: SJPP and CGC guarantees, BNM's SME relief facility of up to RM 750,000 at 3.75%, and AIM, BSN and TEKUN microloans, with a checklist to be loan-ready",
     },
+    epfSocso: {
+      title: "How to calculate EPF, SOCSO, EIS and PCB in 2026",
+      alt: "A made-up RM 3,000 payslip for October 2026: EPF RM 330, SOCSO RM 14.75, LINDUNG 24 Jam RM 22.15, EIS RM 5.90 and PCB RM 0 leave net pay of RM 2,627.20, and the employer pays RM 447.55 on top. Beside it, the 2026 rates for staff and employer",
+    },
+    epfSocsoMs: {
+      title: "How to calculate EPF, SOCSO, EIS and PCB in 2026",
+      alt: "A made-up RM 3,000 payslip for October 2026: EPF RM 330, SOCSO RM 14.75, LINDUNG 24 Jam RM 22.15, EIS RM 5.90 and PCB RM 0 leave net pay of RM 2,627.20, and the employer pays RM 447.55 on top. Beside it, the 2026 rates for staff and employer",
+    },
+    epfSocsoZh: {
+      title: "How to calculate EPF, SOCSO, EIS and PCB in 2026",
+      alt: "A made-up RM 3,000 payslip for October 2026: EPF RM 330, SOCSO RM 14.75, LINDUNG 24 Jam RM 22.15, EIS RM 5.90 and PCB RM 0 leave net pay of RM 2,627.20, and the employer pays RM 447.55 on top. Beside it, the 2026 rates for staff and employer",
+    },
     eInvoice: {
       title: "LHDN e-Invoice",
       alt: "An e-Invoice validated through LHDN MyInvois, with its unique identifier and QR code",

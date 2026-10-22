@@ -36,6 +36,8 @@ export default function BlogPostPage({ lang, slug }: { lang: Locale; slug: strin
   const label = postLabel(lang, p);
   const sys = p.system ? systems.find((s) => s.key === p.system)! : null;
   const product = p.system ? d.systems[p.system].name : undefined;
+  // A system priced by quote (Inventory & ERP, Payroll & HR) shows no price under the demo button.
+  const quoted = p.system ? "quote" in d.products[p.system] : false;
   const url = `${site.url}${lp(lang, postPath(slug))}`;
   const blogUrl = `${site.url}${lp(lang, blogPath)}`;
   const image = getShots(lang)[p.image];
@@ -115,7 +117,9 @@ export default function BlogPostPage({ lang, slug }: { lang: Locale; slug: strin
           <div className="card mt-14 p-6 sm:p-8" data-reveal>
             <h2 className="text-xl font-bold text-slate-900">{d.blog.ctaTitle}</h2>
             <p className="mt-2 leading-relaxed text-slate-600">{p.cta ?? d.blog.ctaText}</p>
-            <p className="mt-2 text-sm font-semibold text-slate-800">{p.system === "live" ? d.ui.livePriceLine : `${d.ui.priceLine} · ${d.ui.freeMonths}`}</p>
+            {!quoted && (
+              <p className="mt-2 text-sm font-semibold text-slate-800">{p.system === "live" ? d.ui.livePriceLine : `${d.ui.priceLine} · ${d.ui.freeMonths}`}</p>
+            )}
             <div className="mt-5 flex flex-col gap-3 sm:flex-row">
               <a href={whatsappLink(p.system ? d.products[p.system].demoMessage : d.ui.whatsappMessage)} target="_blank" rel="noopener" className="btn-primary">
                 <Icon.Whatsapp className="h-5 w-5" /> {p.system === "live" ? d.ui.requestDemo : d.ui.bookFreeDemo}

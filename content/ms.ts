@@ -3217,6 +3217,18 @@ const ms: Dict = {
       title: "Pinjaman PKS Bajet 2027",
       alt: "Bajet 2027 peruntuk RM 57 bilion untuk pinjaman dan jaminan PKS: jaminan SJPP dan CGC, bantuan PKS BNM sehingga RM 750,000 pada 3.75%, dan pinjaman mikro AIM, BSN dan TEKUN, dengan senarai semak untuk sedia memohon",
     },
+    epfSocso: {
+      title: "Cara kira KWSP, PERKESO, SIP dan PCB 2026",
+      alt: "Slip gaji rekaan RM 3,000 untuk Oktober 2026: KWSP RM 330, PERKESO RM 14.75, LINDUNG 24 Jam RM 22.15, SIP RM 5.90 dan PCB RM 0, jadi gaji bersih RM 2,627.20, dan majikan bayar RM 447.55 lagi. Di sebelahnya, kadar 2026 untuk pekerja dan majikan",
+    },
+    epfSocsoMs: {
+      title: "Cara kira KWSP, PERKESO, SIP dan PCB 2026",
+      alt: "Slip gaji rekaan RM 3,000 untuk Oktober 2026: KWSP RM 330, PERKESO RM 14.75, LINDUNG 24 Jam RM 22.15, SIP RM 5.90 dan PCB RM 0, jadi gaji bersih RM 2,627.20, dan majikan bayar RM 447.55 lagi. Di sebelahnya, kadar 2026 untuk pekerja dan majikan",
+    },
+    epfSocsoZh: {
+      title: "Cara kira KWSP, PERKESO, SIP dan PCB 2026",
+      alt: "Slip gaji rekaan RM 3,000 untuk Oktober 2026: KWSP RM 330, PERKESO RM 14.75, LINDUNG 24 Jam RM 22.15, SIP RM 5.90 dan PCB RM 0, jadi gaji bersih RM 2,627.20, dan majikan bayar RM 447.55 lagi. Di sebelahnya, kadar 2026 untuk pekerja dan majikan",
+    },
     eInvoice: {
       title: "e-Invois LHDN",
       alt: "e-Invois yang disahkan melalui LHDN MyInvois, dengan nombor pengenalan unik dan kod QR",

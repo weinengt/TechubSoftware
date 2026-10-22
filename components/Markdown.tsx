@@ -23,6 +23,9 @@ const cells = (row: string) =>
     .split("|")
     .map((c) => c.trim());
 
+/** Keeps an amount like "− RM 1,791.50" on one line in a narrow table column. */
+const keepAmounts = (c: string) => c.replace(/(?:([−–-]) )?\bRM (?=\d)/g, (_, sign) => `${sign ? `${sign}\u00a0` : ""}RM\u00a0`);
+
 export function parseBlocks(text: string): Block[] {
   const blocks: Block[] = [];
   let para: string[] = [];
@@ -105,15 +108,16 @@ function BlockView({ b }: { b: Block }) {
       );
     }
     case "table":
+      // Two or three columns fit a phone screen; wider tables scroll sideways.
       return (
         <div className="mt-5 overflow-x-auto rounded-2xl ring-1 ring-slate-200">
-          <table className="w-full min-w-[30rem] border-collapse text-left text-sm">
+          <table className={`w-full border-collapse text-left text-sm ${b.head.length > 3 ? "min-w-[30rem]" : ""}`}>
             <thead className="bg-slate-50 text-slate-900">
-              <tr>{b.head.map((c, i) => <th key={i} scope="col" className="px-4 py-3 font-semibold"><Inline text={c} /></th>)}</tr>
+              <tr>{b.head.map((c, i) => <th key={i} scope="col" className="px-3 py-3 font-semibold sm:px-4"><Inline text={keepAmounts(c)} /></th>)}</tr>
             </thead>
             <tbody className="divide-y divide-slate-200 text-slate-600">
               {b.rows.map((r, i) => (
-                <tr key={i}>{r.map((c, j) => <td key={j} className="px-4 py-3 align-top"><Inline text={c} /></td>)}</tr>
+                <tr key={i}>{r.map((c, j) => <td key={j} className="px-3 py-3 align-top sm:px-4"><Inline text={keepAmounts(c)} /></td>)}</tr>
               ))}
             </tbody>
           </table>
