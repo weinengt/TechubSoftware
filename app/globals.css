@@ -27,6 +27,21 @@ body {
 }
 
 @layer base {
+  /* iPhone Safari gives date and month fields a built-in minimum width, so they spill out of narrow cards; drop the
+     native box so they fit their column like other fields, with the date on the left. */
+  input[type="date"],
+  input[type="month"] {
+    -webkit-appearance: none;
+    appearance: none;
+    min-width: 0;
+    max-width: 100%;
+    /* An empty date has no text on iPhone; keep it as tall as the other fields. */
+    min-height: 2.875rem;
+  }
+  input[type="date"]::-webkit-date-and-time-value,
+  input[type="month"]::-webkit-date-and-time-value {
+    text-align: left;
+  }
   /* Even line lengths in headings, so a title never ends with one lonely word or character. */
   h1,
   h2,
