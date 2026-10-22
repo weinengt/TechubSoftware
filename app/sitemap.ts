@@ -59,11 +59,16 @@ const listed: Page[] = [
     images: ["inventoryDashboard", "stockScan", "stockIn", "stockTrail", "barcodeLabels", "erpSales", "erpReturn", "reportsInventory", "inventoryPermissions"],
   },
   {
+    path: "/payroll-system/",
+    priority: 0.9,
+    images: ["hrPayroll", "payslipPhone", "hrContributions", "leaveClaims", "reportsPayroll", "payrollPermissions"],
+  },
+  {
     path: "/use-cases/",
     priority: 0.9,
     images: [
       "clinicDashboard", "whatsappClinic", "salonCalendar", "staffSalon", "faceChart", "beautyPackage", "spaCalendar", "spaPackage", "liveDashboard", "liveShop",
-      "stockTrail", "stockScan",
+      "stockTrail", "stockScan", "hrPayroll", "payslipPhone",
     ],
   },
   {

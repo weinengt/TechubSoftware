@@ -151,6 +151,22 @@ const zh: Dict = {
       ],
       cta: "看看库存管理系统",
     },
+    payroll: {
+      label: "薪资和人事",
+      name: "薪资和人事系⁠统",
+      blurb: "EPF、SOCSO、EIS、PCB 自动算好，工资单发到 WhatsApp。",
+      points: [
+        "EPF、SOCSO、EIS 和 PCB 自动算好",
+        "一键算好整个月薪水，老板批准就好",
+        "工资单直接发到每位员工的手机",
+        "员工 App 里请假和报销",
+        "KWSP、PERKESO 和 LHDN 的缴款文件",
+        "每年 EA 表格自动准备好",
+        "支持多间分店，一键切换查看",
+        "每位员工的操作都有记录，薪水资料保密",
+      ],
+      cta: "看看薪资系统",
+    },
   },
 
   footer: {
@@ -335,6 +351,16 @@ const zh: Dict = {
         creditNote: { title: "Credit Note 自动开好", text: "CN-2026-0093 · RM 378.00" },
         report: { title: "报表 74 毫秒出来", text: "48,326 条记录" },
         activity: { title: "员工操作全记录", text: "已阻止 Farid 导出客户名单" },
+      },
+      payroll: {
+        run: { title: "薪水待审批", text: "24 位员工 · 实发 RM 70,923" },
+        statutory: { title: "EPF、SOCSO、EIS、PCB 算好了", text: "24 位员工全部算好" },
+        approve: { title: "一按就批准", text: "工资单已发给 24 位员工" },
+        payslip: { title: "工资单发到 WhatsApp", text: "实发工资 RM 2,627.20" },
+        claim: { title: "AI 读了 3 张收据", text: "RM 86.40 跟薪水一起发" },
+        contributions: { title: "上传文件准备好了", text: "RM 21,240，11 月 15 日前缴" },
+        report: { title: "报表 68 毫秒出来", text: "9,846 条记录" },
+        activity: { title: "薪水资料保密", text: "已阻止 Goh 查看薪水表" },
       },
       contact: {
         whatsapp: { title: "WhatsApp 提醒已发出", text: "Wen Qi 按了确认" },
@@ -808,7 +834,7 @@ const zh: Dict = {
     eyebrow: "自动发送单据",
     title: "单据*自动发出去*",
     intro: "企业级单据自动发送：单据一开好，就马⁠上发⁠给{who}。",
-    who: { customers: "你⁠的⁠顾⁠客", patients: "你⁠的⁠病⁠人" },
+    who: { customers: "你⁠的⁠顾⁠客", patients: "你⁠的⁠病⁠人", staff: "你⁠的⁠员⁠工" },
     sent: "自动发送",
     written: "网上写好",
     items: {
@@ -818,6 +844,10 @@ const zh: Dict = {
       creditNote: "贷⁠项⁠通⁠知⁠单 (CN)",
       refundNote: "退款单 (RN)",
       referral: "转介信",
+      payslip: "工资单",
+      eaForm: "EA 表格",
+      leave: "请假批准",
+      claim: "报销批准",
     },
     points: ["每张单据都自动发送，员工不用动手", "单据格式免费帮你调整"],
     referral: "网上写转介信，格式免费按你的诊所调好",
@@ -1096,7 +1126,7 @@ const zh: Dict = {
       meta: {
         title: "马来西亚诊所、美容院、发廊、SPA 和直播带货系统",
         description:
-          "专为吉隆坡、新山、槟城和全马的诊所、发廊、美容院、SPA、直播卖家和贸易公司而设的现成系统：WhatsApp 提醒、员工账号、库存管理和 ERP，报表 100 毫秒内出来。",
+          "专为吉隆坡、新山、槟城和全马的诊所、发廊、美容院、SPA、直播卖家和贸易公司而设的现成系统：WhatsApp 提醒、员工账号、库存管理和 ERP、薪资和人事，报表 100 毫秒内出来。",
       },
     },
     customSystems: {
@@ -2230,6 +2260,179 @@ const zh: Dict = {
         text: "按你的生意报价，全马商家都适用。",
       },
     },
+    payroll: {
+      meta: {
+        title: "马来西亚薪资系统、Payroll、HR 人事管理系统 | 吉隆坡、新山、槟城",
+        socialTitle: "马来西亚薪资和人事系统 | Techub Software",
+        description:
+          "适合吉隆坡、新山、槟城和全马商家的薪资和人事系统：EPF、SOCSO、EIS 和 PCB 自动算好，工资单发到 WhatsApp，请假和报销，EA 表格。",
+        keywords: [
+          "薪资系统",
+          "马来西亚薪资系统",
+          "工资系统",
+          "薪水系统",
+          "人事管理系统",
+          "HR 系统",
+          "出粮系统",
+          "电子工资单",
+          "请假报销系统",
+          "EA 表格",
+          "payroll system Malaysia",
+          "HR payroll Malaysia",
+        ],
+      },
+      category: "薪资和人事",
+      eyebrow: "薪资和人事系统",
+      heading: "整个月的薪水，\u200b*一键算好*",
+      intro:
+        "专为马来西亚的公司、商店、诊所和分店而设：每位员工的 EPF、SOCSO、EIS 和 PCB 自动算好，工资单直接发到手机，请假和报销在员工 App 里就能办。",
+      whoFor: ["中小企业和办公室", "商店和分店", "餐厅和咖啡馆", "诊所", "发廊和 SPA", "工厂和工作坊", "有外劳的公司"],
+      highlights: {
+        statutory: "EPF、SOCSO、EIS 和 PCB",
+        oneClick: "一键算薪水",
+        payslips: "工资单发到 WhatsApp",
+        leave: "请假和报销",
+        ea: "EA 表格准备好",
+        reports: "报表 100 毫秒内出来",
+      },
+      spotlights: {
+        run: {
+          eyebrow: "每月薪水",
+          title: "全公司的薪水，\u200b*一键算好*",
+          points: [
+            "底薪、津贴、加班费和佣金",
+            "无薪假和批准的报销自动算进去",
+            "每位员工的实发工资，一看就清楚",
+            "老板一按就批准",
+          ],
+        },
+        statutory: {
+          eyebrow: "EPF、SOCSO、EIS 和 PCB",
+          title: "缴款自动算好，\u200b*文件准备好*",
+          points: [
+            "最新的 EPF、SOCSO、EIS 和 PCB 费率",
+            "LINDUNG 24 Jam、外劳和 60 岁以上员工",
+            "KWSP、PERKESO 和 LHDN 的文件准备好",
+            "15 号之前 WhatsApp 提醒你",
+          ],
+        },
+        payslips: {
+          eyebrow: "工资单",
+          title: "工资单发到\u200b*每位员工的手机*",
+          points: [
+            "发到每位员工的 App 和 WhatsApp",
+            "收入、扣除和雇主缴的部分",
+            "以前的工资单和 EA 表格随时看",
+            "不用打印，不用装信封",
+          ],
+          badges: ["已发到 WhatsApp", "只有本人看得到"],
+        },
+        leave: {
+          eyebrow: "请假和报销",
+          title: "请假和报销，\u200b*手机搞定*",
+          points: [
+            "手机请假，剩几天假一看就知",
+            "拍下收据，AI 读出金额",
+            "经理一按就批准",
+            "批准的报销和无薪假自动算进薪水",
+          ],
+          badges: ["一按就批准", "AI 读收据"],
+        },
+        reports: {
+          eyebrow: "报表 100 毫秒内出来",
+          title: "员工成本，\u200b*一目了然*",
+          points: [
+            "每月和每间分店的员工成本",
+            "加班、请假和报销一眼看清",
+            "详细报表 100 毫秒内出来",
+            "手机、iPad、电脑都能看",
+          ],
+        },
+        permissions: {
+          eyebrow: "员工操作记录",
+          title: "薪水资料\u200b*保密*",
+          points: [
+            "只有你指定的人看得到薪水",
+            "老板、人事、会计、经理和员工角色",
+            "改薪水需要批准",
+            "每个操作都有记录：谁做了什么、几点做的",
+          ],
+        },
+      },
+      modules: {
+        run: "一键算每月薪水",
+        epf: "EPF（KWSP）",
+        socso: "SOCSO、LINDUNG 24 Jam 和 EIS",
+        pcb: "PCB 每月扣税（LHDN）",
+        hrd: "HRD Corp 税和天课",
+        foreign: "外劳薪水",
+        commission: "佣金和津贴",
+        overtime: "加班费和无薪假",
+        leave: "请假申请和剩余假期",
+        claims: "拍收据报销",
+        payslips: "工资单发到 WhatsApp 和 App",
+        ea: "每年 EA 表格",
+        approvals: "发薪前批准",
+        reports: "详细报表 100 毫秒内出来",
+        permissions: "操作记录和权限",
+        devices: "手机、iPad、电脑都能用",
+      },
+      faqs: [
+        {
+          q: "Techub 薪资和人事系统是什么？",
+          a: "它是适合马来西亚商家的薪资和人事系统。它帮你算好每位员工的薪水，包括 EPF、SOCSO、EIS 和 PCB，把工资单发到员工手机，员工也可以在 App 里请假和报销。老板检查后一按就批准。",
+        },
+        {
+          q: "会自动算 EPF、SOCSO、EIS 和 PCB 吗？",
+          a: "会。系统按最新的 EPF、SOCSO、EIS 和 LHDN PCB 规定计算，包括 2026 年 6 月开始的 LINDUNG 24 Jam、外劳和 60 岁或以上的员工。加班费、花红和津贴都按各自的规定正确计算。",
+        },
+        {
+          q: "马来西亚有哪个薪资系统会把工资单发到 WhatsApp？",
+          a: "Techub 薪资和人事系统。薪水一批准，每张工资单就发到员工的 App 和 WhatsApp，收入、扣除和雇主缴的部分都列清楚。员工随时可以看以前的工资单和 EA 表格。",
+        },
+        {
+          q: "员工可以用手机请假和报销吗？",
+          a: "可以。员工在 App 里请假，也看得到剩几天假。报销时拍下收据，AI 读出金额。经理一按就批准，批准的报销和无薪假自动算进当月薪水。",
+        },
+        {
+          q: "会准备 KWSP、PERKESO 和 LHDN 的文件吗？",
+          a: "会。薪水批准后，系统算好 EPF、SOCSO、LINDUNG 24 Jam、EIS、PCB 和 HRD Corp 税的总数，准备好上传的文件。15 号截止之前，还会 WhatsApp 提醒你。",
+        },
+        {
+          q: "会做 EA 表格吗？",
+          a: "会。系统从全年的薪水记录准备好每位员工的 EA 表格，赶得上 2 月底的期限，员工也可以在 App 里下载自己的。",
+        },
+        {
+          q: "薪资和人事系统多少钱？",
+          a: "按你的生意报价，看员工人数和分店数量。WhatsApp {phone}，我们给你清楚的报价。",
+        },
+        {
+          q: "谁可以看到员工的薪水？",
+          a: "只有你指定的人。老板、人事、会计、经理和员工每个角色只看到需要的部分。改薪水需要批准，每个操作都记录谁做的、几点做的，员工也只看得到自己的工资单。",
+        },
+        {
+          q: "可以免费试算薪水吗？",
+          a: "可以。我们免费工具页的工资计算器可以算任何薪水的 EPF、SOCSO、EIS 和 PCB，还能做 PDF 工资单，免注册。",
+        },
+        {
+          q: "怎样预约 Demo？",
+          a: "WhatsApp {phone} 或发邮件到 {email}。我们照你公司的情况，示范薪资和人事系统怎样运作。",
+        },
+      ],
+      demoMessage: "Hi Techub，我想预约薪资和人事系统的免费 Demo。",
+      quoteMessage: "Hi Techub，我想要薪资和人事系统的报价。",
+      quote: {
+        eyebrow: "价钱",
+        title: "按你的生意\u200b*来报价*",
+        text: "每家公司发薪水的方式都不一样，所以我们按你的需要报价。在 WhatsApp 告诉我们你有多少员工和分店就好。",
+        points: ["开工前给你清楚的报价", "马来西亚本地 WhatsApp 支援", "马来西亚企业级服务器"],
+      },
+      contact: {
+        badge: "我要报价",
+        title: "看看薪资和人事系统怎样运作",
+        text: "按你的生意报价，全马商家都适用。",
+      },
+    },
   },
 
   /* ---------- Example screens: picture titles and alt text ---------- */
@@ -2594,6 +2797,7 @@ const zh: Dict = {
       spa: { phrase: "SPA 和按摩预约系统", who: "SPA 和按摩店" },
       live: { phrase: "直播带货系统", who: "直播卖家" },
       inventory: { phrase: "库存管理系统", who: "贸易公司、批发商和零售店" },
+      payroll: { phrase: "薪资系统", who: "商家" },
       customSystems: { phrase: "定制系统开发", who: "商家" },
       customisation: { phrase: "系统定制", who: "商家" },
       migration: { phrase: "数据迁移", who: "商家" },
@@ -2930,6 +3134,30 @@ const zh: Dict = {
     stockScan: {
       title: "用手机扫条码",
       alt: "手机相机扫描纸箱上的条码，马上找到货品、现有库存、货架位置和最近动态",
+    },
+    hrPayroll: {
+      title: "iPad 上的每月薪水",
+      alt: "iPad 上的 Techub 薪资系统：24 位员工的 10 月薪水，底薪、津贴、EPF、SOCSO、EIS、PCB 和实发工资都算好，等老板批准",
+    },
+    hrContributions: {
+      title: "EPF、SOCSO、EIS 和 PCB",
+      alt: "iPad 上的每月缴款：交给 KWSP 的 EPF，交给 PERKESO 的 SOCSO、LINDUNG 24 Jam 和 EIS，交给 LHDN 的 PCB，还有 HRD Corp 税，文件已准备好，11 月 15 日截止，每位员工的金额都列出来",
+    },
+    payslipPhone: {
+      title: "员工 App 里的工资单",
+      alt: "手机上一位员工的 10 月工资单：实发 RM 2,627.20，已发到 WhatsApp，列出 EPF、SOCSO、LINDUNG 24 Jam、EIS 和 PCB 扣除，以及雇主缴的部分",
+    },
+    leaveClaims: {
+      title: "手机请假和报销",
+      alt: "员工 App 里的请假和报销：剩余假期、经理批准的年假、AI 读出的过路费和停车费收据跟薪水一起发，还有一项等待批准的报销",
+    },
+    reportsPayroll: {
+      title: "薪水报表",
+      alt: "iPad 上 68 毫秒生成的薪水报表：每月和每间分店的员工成本、加班时数、请假天数和加班最多的员工",
+    },
+    payrollPermissions: {
+      title: "员工操作记录与权限",
+      alt: "iPad 上的员工权限：老板、人事薪资、会计、经理和员工各有权限，还有操作记录和一项等待批准的改薪",
     },
     erpDesktop: {
       title: "定制 ERP 系统",

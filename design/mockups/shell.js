@@ -1,5 +1,5 @@
-// Builds the left sidebar: <aside class="side" data-shell="clinic|salon|beauty|spa|live|trade" data-active="Patients"></aside>
-// A ?v=clinic|salon|beauty|spa|live|trade query string overrides data-shell; data-active-salon="POS" etc. overrides the active item.
+// Builds the left sidebar: <aside class="side" data-shell="clinic|salon|beauty|spa|live|trade|hr" data-active="Patients"></aside>
+// A ?v=clinic|salon|beauty|spa|live|trade|hr query string overrides data-shell; data-active-salon="POS" etc. overrides the active item.
 (() => {
   const NAV = {
     clinic: {
@@ -37,6 +37,12 @@
       items: [["home", "Dashboard"], ["stockin", "Stock In"], ["box", "Inventory"], ["cart", "Sales"], ["truck", "Deliveries", 2],
         ["undo", "Returns"], ["wallet", "Accounting"], ["users", "Customers"], ["chart", "Reports"], ["lock", "Staff & Roles"], ["gear", "Settings"]],
       me: ["HT", "Henry Tan", "Owner · Puchong"],
+    },
+    hr: {
+      place: "Demo Company · KL",
+      items: [["home", "Dashboard"], ["wallet", "Payroll"], ["users", "Staff"], ["cal", "Leave", 3], ["file", "Claims", 2],
+        ["shield", "EPF, SOCSO & PCB"], ["chart", "Reports"], ["lock", "Staff & Roles"], ["gear", "Settings"]],
+      me: ["MT", "Michelle Tan", "Director · KL"],
     },
   };
   const v = new URLSearchParams(location.search).get("v");

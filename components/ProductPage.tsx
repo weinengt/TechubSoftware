@@ -150,6 +150,23 @@ const specs: { [K in SystemKey]: Spec<K> } = {
     },
     contactPhone: "stockScan",
   },
+  payroll: {
+    highlights: { statutory: "Shield", oneClick: "Coins", payslips: "Whatsapp", leave: "Calendar", ea: "Invoice", reports: "Bolt" },
+    spotlights: {
+      run: { main: "hrPayroll", phone: "payslipPhone" },
+      statutory: { main: "hrContributions" },
+      payslips: { phoneOnly: "payslipPhone", badges: ["Whatsapp", "Lock"] },
+      leave: { phoneOnly: "leaveClaims", badges: ["Calendar", "Sparkles"] },
+      reports: { main: "reportsPayroll", speed: true },
+      permissions: { main: "payrollPermissions" },
+    },
+    modules: {
+      run: "Coins", epf: "Shield", socso: "Shield", pcb: "Receipt", hrd: "Layers", foreign: "Globe",
+      commission: "Chart", overtime: "Sync", leave: "Calendar", claims: "Wallet", payslips: "Whatsapp", ea: "Invoice",
+      approvals: "Check", reports: "Bolt", permissions: "Lock", devices: "Devices",
+    },
+    contactPhone: "payslipPhone",
+  },
 };
 
 // The picture at the top is wider than the ones further down.
@@ -190,7 +207,7 @@ export function productMetadata(lang: Locale, k: SystemKey) {
 export default function ProductPage({ lang, k }: { lang: Locale; k: SystemKey }) {
   const { d, t, spec, name, highlights, spotlights, modules } = content(lang, k);
   // The Live Selling System has its own price and asks for a demo; the appointment systems share one plan. The
-  // Inventory & ERP System has no set price: it asks for a quote instead.
+  // Inventory & ERP System and the Payroll & HR System have no set price: they ask for a quote instead.
   const live = k === "live";
   const quote = "quote" in t ? { ...t.quote, message: t.quoteMessage } : undefined;
   const offer = "contact" in t ? { ...t.contact, message: quote?.message ?? t.demoMessage } : undefined;
@@ -339,9 +356,9 @@ export default function ProductPage({ lang, k }: { lang: Locale; k: SystemKey })
       <DocumentsSection lang={lang} k={k} />
       <OutletsSection lang={lang} k={k} />
 
-      {/* The clinic page already has its own hardware spotlight, live selling needs no counter hardware, and the
-          inventory page shows its label printing and scanning in its own spotlights. */}
-      {!live && k !== "inventory" && !spotlights.some((s) => s.id === "hardware") && <HardwareSection lang={lang} />}
+      {/* The clinic page already has its own hardware spotlight, live selling and payroll need no counter hardware,
+          and the inventory page shows its label printing and scanning in its own spotlights. */}
+      {!live && k !== "inventory" && k !== "payroll" && !spotlights.some((s) => s.id === "hardware") && <HardwareSection lang={lang} />}
       {quote ? <QuoteSection lang={lang} quote={quote} /> : <PricingSection lang={lang} plan={live ? "live" : "standard"} />}
       <LocalSection lang={lang} k={k} />
       <FaqSection lang={lang} items={faqs} />

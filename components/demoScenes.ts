@@ -102,6 +102,17 @@ const inventory: DemoScene[] = [
   { key: "activity", focus: "tablet", tablet: "inventoryPermissions", spot: [9.5, 74.8, 58, 6.6], icon: "Lock" },
 ];
 
+const payroll: DemoScene[] = [
+  { key: "run", focus: "tablet", tablet: "hrPayroll", phone: "payslipPhone", spot: [7.6, 8.9, 53.7, 19], icon: "Coins" },
+  { key: "statutory", focus: "tablet", spot: [52.4, 35.3, 22.2, 58.2], icon: "Shield" },
+  { key: "approve", focus: "tablet", spot: [84.4, 0.8, 14.4, 5.8], tap: true, icon: "Check" },
+  { key: "payslip", focus: "phone", spot: [6.9, 19.1, 86.1, 10.9], icon: "Whatsapp", green: true },
+  { key: "claim", focus: "phone", phone: "leaveClaims", spot: [2.8, 34.1, 94.4, 19.5], icon: "Sparkles" },
+  { key: "contributions", focus: "tablet", tablet: "hrContributions", spot: [7.6, 8.9, 68.7, 22.2], icon: "Receipt" },
+  { key: "report", focus: "tablet", tablet: "reportsPayroll", spot: [22.8, 1, 26.1, 5.3], icon: "Bolt" },
+  { key: "activity", focus: "tablet", tablet: "payrollPermissions", spot: [9.1, 74.2, 58.8, 7.7], icon: "Lock" },
+];
+
 const contact: DemoScene[] = [
   { key: "whatsapp", focus: "phone", phone: "whatsappSalon", spot: [2.8, 56.5, 79.3, 4.2], tap: true, icon: "Whatsapp", green: true },
   { key: "deposit", focus: "phone", phone: "paymentSalon", spot: [3.9, 88.2, 92.2, 6.6], tap: true, icon: "Card" },
@@ -186,6 +197,7 @@ export const demos = {
   spa: resolve(spa),
   live: resolve(live),
   inventory: resolve(inventory),
+  payroll: resolve(payroll),
   contact: resolve(contact),
   erp: resolve(erp),
   detection: resolve(detection),
@@ -209,7 +221,7 @@ export const demoShots = (k: DemoKey): ShotKey[] => [...new Set(demos[k].flatMap
 
 /** The moment each system's row on the Use Cases page starts at, so the rows don't all open on the same kind of screen. */
 export const useCaseStart: Record<SystemKey | ServicePageKey, string> = {
-  clinic: "queue", salon: "staff", beauty: "faceChart", spa: "package", live: "visitors", inventory: "trail",
+  clinic: "queue", salon: "staff", beauty: "faceChart", spa: "package", live: "visitors", inventory: "trail", payroll: "run",
   customisation: "estimate", migration: "scan", email: "domain", website: "design",
 };
 

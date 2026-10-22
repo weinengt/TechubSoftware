@@ -30,9 +30,9 @@ const en = {
     payroll: {
       title: "Payroll for your whole team, *worked out every month*",
       points: [
-        "Pay and commission worked out for every staff member",
-        "Payslips ready to send",
-        "Staff activity tracking and permission control",
+        "EPF, SOCSO, EIS and PCB worked out for every staff member",
+        "Payslips sent to each staff member's phone and WhatsApp",
+        "Leave and claims from the staff app",
         "All your outlets in one system",
       ],
       message: "Hi Techub, I used the free payroll calculator. I'd like a free demo of your payroll system.",

@@ -159,6 +159,22 @@ const en = {
       ],
       cta: "See the inventory system",
     },
+    payroll: {
+      label: "Payroll & HR",
+      name: "Payroll & HR System",
+      blurb: "EPF, SOCSO, EIS and PCB worked out, payslips on WhatsApp.",
+      points: [
+        "EPF, SOCSO, EIS & PCB worked out for you",
+        "Payroll in one click, approved by the owner",
+        "Payslips sent to each staff member's phone",
+        "Leave and claims from the staff app",
+        "Contribution files for KWSP, PERKESO & LHDN",
+        "EA forms ready every year",
+        "Multiple outlets: switch and view each one",
+        "Every staff action tracked, salaries kept private",
+      ],
+      cta: "See the payroll system",
+    },
   },
 
   footer: {
@@ -343,6 +359,16 @@ const en = {
         creditNote: { title: "Credit note made by itself", text: "CN-2026-0093 · RM 378.00" },
         report: { title: "Report ready in 74 ms", text: "48,326 records" },
         activity: { title: "Staff activity tracked", text: "Export blocked for Farid" },
+      },
+      payroll: {
+        run: { title: "Payroll ready to approve", text: "24 staff · net pay RM 70,923" },
+        statutory: { title: "EPF, SOCSO, EIS & PCB done", text: "Worked out for all 24 staff" },
+        approve: { title: "Approved in one tap", text: "Payslips sent to 24 staff" },
+        payslip: { title: "Payslip on WhatsApp", text: "Net pay RM 2,627.20" },
+        claim: { title: "AI read 3 receipts", text: "RM 86.40 paid with salary" },
+        contributions: { title: "Files ready to upload", text: "RM 21,240 due by 15 Nov" },
+        report: { title: "Report ready in 68 ms", text: "9,846 records" },
+        activity: { title: "Salaries kept private", text: "Salary list blocked for Goh" },
       },
       contact: {
         whatsapp: { title: "WhatsApp reminder sent", text: "Wen Qi tapped Confirm" },
@@ -812,7 +838,7 @@ const en = {
     eyebrow: "Automatic documents",
     title: "Documents sent *by themselves*",
     intro: "Enterprise-level document sending: each one reaches {who} right away.",
-    who: { customers: "your customers", patients: "your patients" },
+    who: { customers: "your customers", patients: "your patients", staff: "your staff" },
     sent: "Sent automatically",
     written: "Written online",
     items: {
@@ -822,6 +848,10 @@ const en = {
       creditNote: "Credit note (CN)",
       refundNote: "Refund note (RN)",
       referral: "Referral letter",
+      payslip: "Payslip",
+      eaForm: "EA form",
+      leave: "Leave approval",
+      claim: "Claim approval",
     },
     points: ["Sent automatically, no staff needed", "Document formats tuned for your business, free"],
     referral: "Referral letters written online, in a format we tune free for your clinic",
@@ -1109,7 +1139,7 @@ const en = {
       meta: {
         title: "Clinic, Salon, Beauty, Spa & Live Selling Systems Malaysia",
         description:
-          "Ready systems for clinics, hair salons, beauty centres, spas, live sellers and trading companies in Kuala Lumpur, Johor Bahru, Penang and all of Malaysia: WhatsApp reminders, inventory and ERP, fast reports.",
+          "Ready systems for clinics, hair salons, beauty centres, spas, live sellers and trading companies in Kuala Lumpur, Johor Bahru, Penang and all of Malaysia: WhatsApp reminders, inventory and ERP, payroll and HR, fast reports.",
       },
     },
     customSystems: {
@@ -2259,6 +2289,179 @@ const en = {
         text: "Priced for your business, for companies across Malaysia.",
       },
     },
+    payroll: {
+      meta: {
+        title: "Payroll Software & HR System Malaysia | KL, JB & Penang",
+        socialTitle: "Payroll & HR System Malaysia | Techub Software",
+        description:
+          "Payroll and HR system for businesses in Kuala Lumpur, Johor Bahru, Penang and all of Malaysia: EPF, SOCSO, EIS and PCB worked out, payslips on WhatsApp, leave and claims, EA forms.",
+        keywords: [
+          "payroll system Malaysia",
+          "payroll software Malaysia",
+          "HR payroll Malaysia",
+          "HR system Malaysia",
+          "payroll Malaysia",
+          "EPF SOCSO EIS PCB payroll",
+          "payslip system",
+          "e-payslip Malaysia",
+          "leave and claims system",
+          "EA form Malaysia",
+          "sistem gaji",
+          "薪资系统",
+        ],
+      },
+      category: "Payroll and HR",
+      eyebrow: "Payroll & HR System",
+      heading: "Payroll done *in one click*",
+      intro:
+        "For companies, shops, clinics and outlets in Malaysia: EPF, SOCSO, EIS and PCB worked out for every staff member, payslips sent to their phones, and leave and claims straight from the staff app.",
+      whoFor: ["SMEs & offices", "Shops & outlets", "Restaurants & cafés", "Clinics", "Salons & spas", "Factories & workshops", "Companies with foreign workers"],
+      highlights: {
+        statutory: "EPF, SOCSO, EIS & PCB",
+        oneClick: "Payroll in one click",
+        payslips: "Payslips on WhatsApp",
+        leave: "Leave & claims",
+        ea: "EA forms ready",
+        reports: "Reports in under 100 ms",
+      },
+      spotlights: {
+        run: {
+          eyebrow: "Monthly payroll",
+          title: "The whole payroll, *in one click*",
+          points: [
+            "Basic salary, allowances, overtime and commission",
+            "Unpaid leave and approved claims added for you",
+            "Every staff member's net pay, ready to check",
+            "The owner approves in one tap",
+          ],
+        },
+        statutory: {
+          eyebrow: "EPF, SOCSO, EIS & PCB",
+          title: "Contributions worked out, *files ready*",
+          points: [
+            "The latest EPF, SOCSO, EIS and PCB rates",
+            "LINDUNG 24 Jam, foreign workers and staff over 60",
+            "Files ready for KWSP, PERKESO and LHDN",
+            "A WhatsApp reminder before the 15th",
+          ],
+        },
+        payslips: {
+          eyebrow: "Payslips",
+          title: "Payslips on *every staff phone*",
+          points: [
+            "Sent to each staff member's app and WhatsApp",
+            "Earnings, deductions and the employer's share",
+            "Past payslips and EA forms any time",
+            "No printing, no envelopes",
+          ],
+          badges: ["Sent on WhatsApp", "Only they can see it"],
+        },
+        leave: {
+          eyebrow: "Leave & claims",
+          title: "Leave and claims, *from their phone*",
+          points: [
+            "Apply for leave and see the days left",
+            "Snap a receipt, AI reads the amount",
+            "Managers approve in one tap",
+            "Approved claims and unpaid leave go into payroll",
+          ],
+          badges: ["Approved in one tap", "AI reads receipts"],
+        },
+        reports: {
+          eyebrow: "Reports in under 100 ms",
+          title: "Your staff costs, *in numbers*",
+          points: [
+            "Staff cost by month and by outlet",
+            "Overtime, leave and claims at a glance",
+            "Detailed reports in under 100 ms",
+            "On your phone, iPad or PC",
+          ],
+        },
+        permissions: {
+          eyebrow: "Staff activity tracking",
+          title: "Salaries stay *private*",
+          points: [
+            "Only the people you choose see salaries",
+            "Owner, HR, account, manager and staff roles",
+            "Approval for every salary change",
+            "Every action logged: who did what, and when",
+          ],
+        },
+      },
+      modules: {
+        run: "One-click monthly payroll",
+        epf: "EPF (KWSP)",
+        socso: "SOCSO, LINDUNG 24 Jam & EIS",
+        pcb: "PCB monthly tax (LHDN)",
+        hrd: "HRD Corp levy & zakat",
+        foreign: "Foreign worker payroll",
+        commission: "Commission & allowances",
+        overtime: "Overtime & unpaid leave",
+        leave: "Leave applications & balances",
+        claims: "Claims with receipt photos",
+        payslips: "Payslips on WhatsApp & app",
+        ea: "EA forms every year",
+        approvals: "Approval before pay day",
+        reports: "Detailed reports in under 100 ms",
+        permissions: "Activity tracking & permissions",
+        devices: "Works on phone, iPad & PC",
+      },
+      faqs: [
+        {
+          q: "What is the Techub Payroll & HR System?",
+          a: "It is a payroll and HR system for businesses in Malaysia. It works out each staff member's pay with EPF, SOCSO, EIS and PCB, sends payslips to their phones, and takes leave and claims from the staff app. The owner checks and approves payroll in one tap.",
+        },
+        {
+          q: "Does it calculate EPF, SOCSO, EIS and PCB automatically?",
+          a: "Yes. It follows the latest EPF, SOCSO, EIS and LHDN PCB rules, including LINDUNG 24 Jam from June 2026, foreign workers and staff aged 60 and above. Overtime, bonuses and allowances are counted the right way for each one.",
+        },
+        {
+          q: "Which payroll software in Malaysia sends payslips on WhatsApp?",
+          a: "Techub's Payroll & HR System. Once payroll is approved, each payslip goes to the staff member's app and WhatsApp, with earnings, deductions and the employer's share. Staff can open past payslips and EA forms any time.",
+        },
+        {
+          q: "Can staff apply for leave and claims on their phone?",
+          a: "Yes. Staff apply for leave and see the days left in their app. For a claim, they snap the receipt and AI reads the amount. Managers approve in one tap, and approved claims and unpaid leave go into that month's payroll.",
+        },
+        {
+          q: "Does it prepare the KWSP, PERKESO and LHDN files?",
+          a: "Yes. Once payroll is approved, it totals EPF, SOCSO, LINDUNG 24 Jam, EIS, PCB and the HRD Corp levy, and makes the files ready to upload. A WhatsApp reminder comes before the 15th, when they are due.",
+        },
+        {
+          q: "Does it make EA forms?",
+          a: "Yes. Each staff member's EA form is ready from the year's payroll, in time for the end of February, and staff can download theirs in the app.",
+        },
+        {
+          q: "How much is the Payroll & HR System?",
+          a: "It is priced for your business, based on how many staff and outlets you have. WhatsApp us at {phone} for a clear quote.",
+        },
+        {
+          q: "Who can see the salaries?",
+          a: "Only the people you choose. Each role, such as owner, HR, account, manager and staff, sees only what it needs. Salary changes need approval, every action is logged with who did it and when, and staff see only their own payslips.",
+        },
+        {
+          q: "Can I try the payroll calculation for free?",
+          a: "Yes. The free payroll calculator on our Free Tools page works out EPF, SOCSO, EIS and PCB for any salary and makes a payslip PDF, with no sign-up.",
+        },
+        {
+          q: "How do I book a demo?",
+          a: "WhatsApp us at {phone} or email {email}. We will show you the Payroll & HR System working, set up like your company.",
+        },
+      ],
+      demoMessage: "Hi Techub, I'd like a free demo of the Payroll & HR System.",
+      quoteMessage: "Hi Techub, I'd like a quote for the Payroll & HR System.",
+      quote: {
+        eyebrow: "Pricing",
+        title: "Priced for *your business*",
+        text: "Every company pays its staff differently, so we quote for what you need. Tell us how many staff and outlets you have on WhatsApp.",
+        points: ["A clear quote before we start", "Local support in Malaysia on WhatsApp", "Enterprise servers in Malaysia"],
+      },
+      contact: {
+        badge: "Get a quote",
+        title: "See the Payroll & HR System in action",
+        text: "Priced for your business, for companies across Malaysia.",
+      },
+    },
   },
 
   /* ---------- Example screens: picture titles and alt text ---------- */
@@ -2627,6 +2830,7 @@ const en = {
       spa: { phrase: "Spa and massage booking system", who: "spas and massage centres" },
       live: { phrase: "Live selling system", who: "live sellers" },
       inventory: { phrase: "Inventory management system", who: "trading companies, wholesalers and retailers" },
+      payroll: { phrase: "Payroll system", who: "businesses" },
       customSystems: { phrase: "Custom software development", who: "businesses" },
       customisation: { phrase: "Software customisation", who: "businesses" },
       migration: { phrase: "Data migration", who: "businesses" },
@@ -2963,6 +3167,30 @@ const en = {
     stockScan: {
       title: "Scan a barcode with your phone",
       alt: "Phone camera scanning a carton barcode to find the item, its stock on hand, rack location and last activity",
+    },
+    hrPayroll: {
+      title: "Monthly payroll on iPad",
+      alt: "Techub payroll system on an iPad showing October payroll for 24 staff, with basic salary, allowances, EPF, SOCSO, EIS, PCB and net pay worked out, ready for the owner to approve",
+    },
+    hrContributions: {
+      title: "EPF, SOCSO, EIS & PCB",
+      alt: "Monthly contributions on an iPad: EPF for KWSP, SOCSO, LINDUNG 24 Jam and EIS for PERKESO, PCB for LHDN and the HRD Corp levy, with the files ready, the 15 November due date and each staff member's share",
+    },
+    payslipPhone: {
+      title: "Payslip on the staff app",
+      alt: "A staff member's October payslip on a phone: net pay RM 2,627.20, sent on WhatsApp, with the EPF, SOCSO, LINDUNG 24 Jam, EIS and PCB deductions and the employer's share",
+    },
+    leaveClaims: {
+      title: "Leave & claims on phone",
+      alt: "Leave and claims in the staff app: leave days left, annual leave approved by the manager, toll and parking receipts read by AI and paid with the salary, and a claim waiting for approval",
+    },
+    reportsPayroll: {
+      title: "Payroll reports",
+      alt: "Payroll report on an iPad, generated in 68 ms: staff cost by month and by outlet, overtime hours, leave taken and the staff with the most overtime",
+    },
+    payrollPermissions: {
+      title: "Staff activity tracking & permissions",
+      alt: "Staff permissions for owner, HR and payroll, account, manager and staff roles on an iPad, with an activity log and a salary change waiting for approval",
     },
     erpDesktop: {
       title: "Custom ERP system",

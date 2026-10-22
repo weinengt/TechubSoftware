@@ -86,7 +86,7 @@
 </div>
 <script>
   const v = new URLSearchParams(location.search).get("v");
-  const V = ["salon", "beauty", "spa", "live", "trade"].includes(v) ? v : "clinic";
+  const V = ["salon", "beauty", "spa", "live", "trade", "hr"].includes(v) ? v : "clinic";
   // cells: 1 allowed, 2 needs manager approval, 0 blocked, text = limited access
   const D = {
     clinic: {
@@ -155,11 +155,23 @@
         ["9:20 AM", "g", "RK", "Ravi", "Storekeeper", "Stock in GRN-2026-0412 · 1,240 units", "b", "8 batches"]],
       appr: ["p", "JW", "Jessica", "Sales · 2:58 PM", "Selling price change", "<s>RM 189.00</s><i data-i=\"arrowR\"></i>RM 179.00", "Air Fryer 4.5L · AF-450 · all customers", "Sales price changes need approval"],
     },
+    // Payroll & HR System: who sees salaries and who can change pay (same people as hr-payroll.html)
+    hr: {
+      biz: "Demo Company", staff: 25,
+      roles: [["star", "a", "Owner", 1], ["wallet", "v", "HR & Payroll", 1], ["chart", "b", "Account", 1], ["shield", "g", "Manager", 3], ["users", "t", "Staff", 19]],
+      perms: [["money", "View salaries", 1, 1, "Totals only", 0, "Own only"], ["check", "Run & approve payroll", 1, 2, 0, 0, 0], ["sliders", "Change salary & allowance", 1, 2, 0, 0, 0],
+        ["cal", "Approve leave", 1, 1, 0, "Own team", 0], ["file", "Approve claims", 1, 1, 1, "Own team", 0], ["dl", "Export payroll data", 1, 2, 1, 0, 0]],
+      log: [["5:40 PM", "v", "LS", "Lim Shu Fen", "HR & Payroll", "Ran October payroll · 24 staff", "a", "Waiting approval"],
+        ["4:12 PM", "g", "GT", "Goh Tze Wei", "Manager · JB", "Tried to open the salary list", "r", "Blocked"],
+        ["2:35 PM", "g", "DW", "Daniel Wong", "Manager · KL", "Approved claim · Faizal · RM 86.40", "g", "✓ Approved"],
+        ["11:02 AM", "t", "NA", "Nurul Aina", "Staff", "Opened her own payslip · Sep 2026", "t", "Own only"]],
+      appr: ["v", "LS", "Lim Shu Fen", "HR & Payroll · 5:52 PM", "Salary change from 1 Nov", "<s>RM 3,000</s><i data-i=\"arrowR\"></i>RM 3,200", "Nurul Aina · confirmed after probation", "Salary changes need the owner's approval"],
+    },
   }[V];
   const AV = { b: "#0396d9", g: "#10b981", a: "#f59e0b", v: "#8b5cf6", p: "#ec4899", t: "#14b8a6", r: "#ef4444" };
   const DL = '<svg class="i" viewBox="0 0 24 24"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></svg>';
   const ic = (n) => (n === "dl" ? DL : `<i data-i="${n}"></i>`);
-  if (V === "trade") document.body.classList.add("v-trade");
+  if (V === "trade" || V === "hr") document.body.classList.add("v-trade");
   document.getElementById("biz").textContent = `${D.biz} · Settings`;
   document.getElementById("staffN").textContent = D.staff;
   const cell = (x) => (typeof x === "string" ? `<span class="own">${x}</span>` : `<span class="tg ${x === 1 ? "on" : x === 2 ? "ap" : ""}"></span>`);

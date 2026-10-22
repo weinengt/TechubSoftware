@@ -150,6 +150,22 @@ const ms: Dict = {
       ],
       cta: "Lihat sistem inventori",
     },
+    payroll: {
+      label: "Gaji & HR",
+      name: "Sistem Gaji & HR",
+      blurb: "KWSP, PERKESO, SIP dan PCB dikira, slip gaji di WhatsApp.",
+      points: [
+        "KWSP, PERKESO, SIP & PCB dikira untuk anda",
+        "Gaji siap dengan satu klik, diluluskan pemilik",
+        "Slip gaji dihantar ke telefon setiap staf",
+        "Cuti dan tuntutan dari app staf",
+        "Fail caruman untuk KWSP, PERKESO & LHDN",
+        "Borang EA siap setiap tahun",
+        "Banyak outlet: tukar dan lihat setiap satu",
+        "Setiap tindakan staf direkod, gaji kekal sulit",
+      ],
+      cta: "Lihat sistem gaji",
+    },
   },
 
   footer: {
@@ -332,6 +348,16 @@ const ms: Dict = {
         creditNote: { title: "Nota kredit dibuat sendiri", text: "CN-2026-0093 · RM 378.00" },
         report: { title: "Laporan siap dalam 74 ms", text: "48,326 rekod" },
         activity: { title: "Aktiviti staf direkod", text: "Export disekat untuk Farid" },
+      },
+      payroll: {
+        run: { title: "Gaji sedia untuk diluluskan", text: "24 staf · gaji bersih RM 70,923" },
+        statutory: { title: "KWSP, PERKESO, SIP & PCB siap", text: "Dikira untuk semua 24 staf" },
+        approve: { title: "Lulus dengan satu tekan", text: "Slip gaji dihantar ke 24 staf" },
+        payslip: { title: "Slip gaji di WhatsApp", text: "Gaji bersih RM 2,627.20" },
+        claim: { title: "AI baca 3 resit", text: "RM 86.40 dibayar bersama gaji" },
+        contributions: { title: "Fail sedia dimuat naik", text: "RM 21,240 sebelum 15 Nov" },
+        report: { title: "Laporan siap dalam 68 ms", text: "9,846 rekod" },
+        activity: { title: "Gaji kekal sulit", text: "Senarai gaji disekat untuk Goh" },
       },
       contact: {
         whatsapp: { title: "Reminder WhatsApp dihantar", text: "Wen Qi tekan Confirm" },
@@ -808,7 +834,7 @@ const ms: Dict = {
     eyebrow: "Dokumen automatik",
     title: "Dokumen *dihantar sendiri*",
     intro: "Penghantaran dokumen tahap enterprise: setiap dokumen terus sampai kepada {who} sebaik siap.",
-    who: { customers: "pelanggan anda", patients: "pesakit anda" },
+    who: { customers: "pelanggan anda", patients: "pesakit anda", staff: "staf anda" },
     sent: "Dihantar automatik",
     written: "Ditulis online",
     items: {
@@ -818,6 +844,10 @@ const ms: Dict = {
       creditNote: "Nota kredit (CN)",
       refundNote: "Nota bayaran balik (RN)",
       referral: "Surat rujukan",
+      payslip: "Slip gaji",
+      eaForm: "Borang EA",
+      leave: "Kelulusan cuti",
+      claim: "Kelulusan tuntutan",
     },
     points: ["Dihantar automatik, staf tak perlu buat apa-apa", "Format dokumen diubah suai percuma untuk bisnes anda"],
     referral: "Surat rujukan ditulis online, formatnya kami sediakan percuma",
@@ -1097,7 +1127,7 @@ const ms: Dict = {
       meta: {
         title: "Sistem Klinik, Salon, Kecantikan, Spa & Jualan Live Malaysia",
         description:
-          "Sistem siap guna untuk klinik, salon rambut, pusat kecantikan, spa, penjual live dan syarikat perdagangan di Kuala Lumpur, Johor Bahru, Pulau Pinang dan seluruh Malaysia: reminder WhatsApp, inventori dan ERP, laporan pantas.",
+          "Sistem siap guna untuk klinik, salon rambut, pusat kecantikan, spa, penjual live dan syarikat perdagangan di Kuala Lumpur, Johor Bahru, Pulau Pinang dan seluruh Malaysia: reminder WhatsApp, inventori dan ERP, gaji dan HR, laporan pantas.",
       },
     },
     customSystems: {
@@ -2353,6 +2383,178 @@ const ms: Dict = {
         text: "Harga ikut bisnes anda, untuk syarikat di seluruh Malaysia.",
       },
     },
+    payroll: {
+      meta: {
+        title: "Sistem Gaji, Payroll & HR Malaysia | KL, JB & Pulau Pinang",
+        socialTitle: "Sistem Gaji & HR Malaysia | Techub Software",
+        description:
+          "Sistem gaji dan HR untuk bisnes di Kuala Lumpur, Johor Bahru, Pulau Pinang dan seluruh Malaysia: KWSP, PERKESO, SIP dan PCB dikira, slip gaji di WhatsApp, cuti dan tuntutan, borang EA.",
+        keywords: [
+          "sistem gaji",
+          "sistem gaji Malaysia",
+          "sistem payroll Malaysia",
+          "software gaji",
+          "sistem HR Malaysia",
+          "sistem slip gaji",
+          "slip gaji online",
+          "sistem cuti dan tuntutan",
+          "borang EA",
+          "payroll system Malaysia",
+          "HR payroll Malaysia",
+        ],
+      },
+      category: "Gaji dan HR",
+      eyebrow: "Sistem Gaji & HR",
+      heading: "Gaji siap *dengan satu klik*",
+      intro:
+        "Untuk syarikat, kedai, klinik dan outlet di Malaysia: KWSP, PERKESO, SIP dan PCB dikira untuk setiap staf, slip gaji terus ke telefon mereka, dan cuti serta tuntutan terus dari app staf.",
+      whoFor: ["PKS & pejabat", "Kedai & outlet", "Restoran & kafe", "Klinik", "Salon & spa", "Kilang & bengkel", "Syarikat dengan pekerja asing"],
+      highlights: {
+        statutory: "KWSP, PERKESO, SIP & PCB",
+        oneClick: "Gaji dengan satu klik",
+        payslips: "Slip gaji di WhatsApp",
+        leave: "Cuti & tuntutan",
+        ea: "Borang EA siap",
+        reports: "Laporan bawah 100 ms",
+      },
+      spotlights: {
+        run: {
+          eyebrow: "Gaji bulanan",
+          title: "Gaji semua staf, *satu klik saja*",
+          points: [
+            "Gaji asas, elaun, OT dan komisen",
+            "Cuti tanpa gaji dan tuntutan yang lulus dikira sekali",
+            "Gaji bersih setiap staf, sedia untuk disemak",
+            "Pemilik luluskan dengan satu tekan",
+          ],
+        },
+        statutory: {
+          eyebrow: "KWSP, PERKESO, SIP & PCB",
+          title: "Caruman dikira, *fail siap*",
+          points: [
+            "Kadar terkini KWSP, PERKESO, SIP dan PCB",
+            "LINDUNG 24 Jam, pekerja asing dan staf 60 tahun ke atas",
+            "Fail siap untuk KWSP, PERKESO dan LHDN",
+            "Peringatan WhatsApp sebelum 15hb",
+          ],
+        },
+        payslips: {
+          eyebrow: "Slip gaji",
+          title: "Slip gaji di *telefon setiap staf*",
+          points: [
+            "Dihantar ke app dan WhatsApp setiap staf",
+            "Pendapatan, potongan dan caruman majikan",
+            "Slip gaji lama dan borang EA bila-bila masa",
+            "Tak perlu cetak, tak perlu sampul",
+          ],
+          badges: ["Dihantar di WhatsApp", "Hanya dia boleh tengok"],
+        },
+        leave: {
+          eyebrow: "Cuti & tuntutan",
+          title: "Cuti dan tuntutan, *dari telefon*",
+          points: [
+            "Mohon cuti dan tengok baki hari",
+            "Snap resit, AI baca jumlahnya",
+            "Pengurus luluskan dengan satu tekan",
+            "Tuntutan yang lulus dan cuti tanpa gaji terus masuk gaji",
+          ],
+          badges: ["Lulus dengan satu tekan", "AI baca resit"],
+        },
+        reports: {
+          eyebrow: "Laporan bawah 100 ms",
+          title: "Kos staf anda, *dalam angka*",
+          points: [
+            "Kos staf ikut bulan dan ikut outlet",
+            "OT, cuti dan tuntutan sekali pandang",
+            "Laporan terperinci dalam masa bawah 100 ms",
+            "Di telefon, iPad atau PC",
+          ],
+        },
+        permissions: {
+          eyebrow: "Jejak aktiviti staf",
+          title: "Gaji kekal *sulit*",
+          points: [
+            "Hanya orang yang anda pilih boleh tengok gaji",
+            "Peranan pemilik, HR, akaun, pengurus dan staf",
+            "Kelulusan untuk setiap perubahan gaji",
+            "Setiap tindakan direkod: siapa buat apa, dan bila",
+          ],
+        },
+      },
+      modules: {
+        run: "Gaji bulanan satu klik",
+        epf: "KWSP (EPF)",
+        socso: "PERKESO, LINDUNG 24 Jam & SIP",
+        pcb: "PCB cukai bulanan (LHDN)",
+        hrd: "Levi HRD Corp & zakat",
+        foreign: "Gaji pekerja asing",
+        commission: "Komisen & elaun",
+        overtime: "OT & cuti tanpa gaji",
+        leave: "Permohonan & baki cuti",
+        claims: "Tuntutan dengan gambar resit",
+        payslips: "Slip gaji di WhatsApp & app",
+        ea: "Borang EA setiap tahun",
+        approvals: "Kelulusan sebelum hari gaji",
+        reports: "Laporan terperinci bawah 100 ms",
+        permissions: "Jejak aktiviti & kebenaran",
+        devices: "Guna di telefon, iPad & PC",
+      },
+      faqs: [
+        {
+          q: "Apa itu Sistem Gaji & HR Techub?",
+          a: "Ia sistem gaji dan HR untuk bisnes di Malaysia. Ia kira gaji setiap staf dengan KWSP, PERKESO, SIP dan PCB, hantar slip gaji ke telefon mereka, dan terima permohonan cuti dan tuntutan dari app staf. Pemilik semak dan luluskan gaji dengan satu tekan.",
+        },
+        {
+          q: "Adakah ia kira KWSP, PERKESO, SIP dan PCB secara automatik?",
+          a: "Ya. Ia ikut peraturan terkini KWSP, PERKESO, SIP dan PCB LHDN, termasuk LINDUNG 24 Jam dari Jun 2026, pekerja asing dan staf berumur 60 tahun ke atas. OT, bonus dan elaun dikira dengan cara yang betul untuk setiap satu.",
+        },
+        {
+          q: "Sistem gaji mana di Malaysia yang hantar slip gaji di WhatsApp?",
+          a: "Sistem Gaji & HR Techub. Sebaik gaji diluluskan, setiap slip gaji dihantar ke app dan WhatsApp staf, dengan pendapatan, potongan dan caruman majikan. Staf boleh buka slip gaji lama dan borang EA bila-bila masa.",
+        },
+        {
+          q: "Boleh staf mohon cuti dan buat tuntutan dari telefon?",
+          a: "Boleh. Staf mohon cuti dan tengok baki hari dalam app mereka. Untuk tuntutan, mereka snap resit dan AI baca jumlahnya. Pengurus luluskan dengan satu tekan, dan tuntutan yang lulus serta cuti tanpa gaji terus masuk gaji bulan itu.",
+        },
+        {
+          q: "Adakah ia sediakan fail untuk KWSP, PERKESO dan LHDN?",
+          a: "Ya. Sebaik gaji diluluskan, ia jumlahkan KWSP, PERKESO, LINDUNG 24 Jam, SIP, PCB dan levi HRD Corp, dan sediakan fail untuk dimuat naik. Peringatan WhatsApp dihantar sebelum 15hb, tarikh akhir bayaran.",
+        },
+        {
+          q: "Boleh ia buat borang EA?",
+          a: "Boleh. Borang EA setiap staf siap dari rekod gaji setahun, sebelum akhir Februari, dan staf boleh muat turun borang mereka dalam app.",
+        },
+        {
+          q: "Berapa harga Sistem Gaji & HR?",
+          a: "Harganya ikut bisnes anda, berdasarkan bilangan staf dan outlet. WhatsApp kami di {phone} untuk sebut harga yang jelas.",
+        },
+        {
+          q: "Siapa boleh tengok gaji staf?",
+          a: "Hanya orang yang anda pilih. Setiap peranan, seperti pemilik, HR, akaun, pengurus dan staf, cuma nampak apa yang perlu. Perubahan gaji perlu kelulusan, setiap tindakan direkod dengan siapa buat dan bila, dan staf cuma nampak slip gaji sendiri.",
+        },
+        {
+          q: "Boleh saya cuba kira gaji secara percuma?",
+          a: "Boleh. Kalkulator gaji percuma di halaman Alat Percuma kami kira KWSP, PERKESO, SIP dan PCB untuk apa jua gaji dan buat slip gaji PDF, tak perlu daftar.",
+        },
+        {
+          q: "Macam mana nak tempah demo?",
+          a: "WhatsApp kami di {phone} atau e-mel {email}. Kami tunjuk Sistem Gaji & HR berfungsi, disediakan macam syarikat anda.",
+        },
+      ],
+      demoMessage: "Hai Techub, saya nak demo percuma Sistem Gaji & HR.",
+      quoteMessage: "Hai Techub, saya nak sebut harga untuk Sistem Gaji & HR.",
+      quote: {
+        eyebrow: "Harga",
+        title: "Harga ikut *bisnes anda*",
+        text: "Setiap syarikat bayar gaji staf dengan cara sendiri, jadi kami beri sebut harga ikut keperluan anda. Beritahu kami bilangan staf dan outlet anda di WhatsApp.",
+        points: ["Sebut harga yang jelas sebelum mula", "Support tempatan di Malaysia melalui WhatsApp", "Server enterprise di Malaysia"],
+      },
+      contact: {
+        badge: "Minta sebut harga",
+        title: "Tengok sendiri macam mana Sistem Gaji & HR berfungsi",
+        text: "Harga ikut bisnes anda, untuk syarikat di seluruh Malaysia.",
+      },
+    },
   },
 
   /* ---------- Example screens: picture titles and alt text ---------- */
@@ -2717,6 +2919,7 @@ const ms: Dict = {
       spa: { phrase: "Sistem booking spa & urut", who: "spa dan pusat urut" },
       live: { phrase: "Sistem jualan live", who: "penjual live" },
       inventory: { phrase: "Sistem pengurusan inventori", who: "syarikat trading, pemborong dan kedai runcit" },
+      payroll: { phrase: "Sistem gaji", who: "bisnes" },
       customSystems: { phrase: "Buat sistem custom", who: "bisnes" },
       customisation: { phrase: "Ubah suai sistem", who: "bisnes" },
       migration: { phrase: "Pemindahan data", who: "bisnes" },
@@ -3053,6 +3256,30 @@ const ms: Dict = {
     stockScan: {
       title: "Imbas barcode dengan telefon",
       alt: "Kamera telefon mengimbas barcode pada kotak untuk cari barang, stok yang ada, lokasi rak dan aktiviti terakhir",
+    },
+    hrPayroll: {
+      title: "Gaji bulanan di iPad",
+      alt: "Sistem gaji Techub di iPad: gaji Oktober untuk 24 staf, dengan gaji asas, elaun, KWSP, PERKESO, SIP, PCB dan gaji bersih sudah dikira, sedia untuk diluluskan pemilik",
+    },
+    hrContributions: {
+      title: "KWSP, PERKESO, SIP & PCB",
+      alt: "Caruman bulanan di iPad: KWSP, PERKESO dengan LINDUNG 24 Jam dan SIP, PCB untuk LHDN dan levi HRD Corp, dengan fail siap, tarikh akhir 15 November dan bahagian setiap staf",
+    },
+    payslipPhone: {
+      title: "Slip gaji di app staf",
+      alt: "Slip gaji Oktober seorang staf di telefon: gaji bersih RM 2,627.20, dihantar di WhatsApp, dengan potongan KWSP, PERKESO, LINDUNG 24 Jam, SIP dan PCB serta caruman majikan",
+    },
+    leaveClaims: {
+      title: "Cuti & tuntutan di telefon",
+      alt: "Cuti dan tuntutan dalam app staf: baki cuti, cuti tahunan diluluskan pengurus, resit tol dan parkir dibaca AI dan dibayar bersama gaji, dan satu tuntutan menunggu kelulusan",
+    },
+    reportsPayroll: {
+      title: "Laporan gaji",
+      alt: "Laporan gaji di iPad, siap dalam 68 ms: kos staf ikut bulan dan outlet, jam OT, cuti diambil dan staf paling banyak OT",
+    },
+    payrollPermissions: {
+      title: "Jejak aktiviti & akses staf",
+      alt: "Akses staf untuk pemilik, HR & gaji, akaun, pengurus dan staf di iPad, dengan log aktiviti dan perubahan gaji yang menunggu kelulusan",
     },
     erpDesktop: {
       title: "Sistem ERP custom",

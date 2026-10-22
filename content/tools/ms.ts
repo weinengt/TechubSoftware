@@ -30,9 +30,9 @@ const ms: ToolsDict = {
     payroll: {
       title: "Gaji seluruh pasukan anda, *dikira setiap bulan*",
       points: [
-        "Gaji dan komisen dikira untuk setiap staf",
-        "Slip gaji sedia untuk dihantar",
-        "Jejak aktiviti staf dan kawalan akses",
+        "KWSP, PERKESO, SIP dan PCB dikira untuk setiap staf",
+        "Slip gaji dihantar ke telefon dan WhatsApp setiap staf",
+        "Cuti dan tuntutan dari app staf",
         "Semua cawangan dalam satu sistem",
       ],
       message: "Hi Techub, saya guna kalkulator gaji percuma. Saya nak demo percuma untuk sistem gaji anda.",

@@ -1,0 +1,88 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css"><link rel="stylesheet" href="phone.css">
+<style>
+  /* Payroll & HR System: leave and claims in the staff app. Faizal Hamid (driver, hr-payroll.html): leave approved by
+     his manager, and three toll and parking receipts read by AI, approved and paid with his October salary. */
+  :root { --w: 360px; --h: 760px; }
+  .ph { width: 100%; height: 100%; display: flex; flex-direction: column; background: #f4f7fb; }
+  .bar { display: flex; align-items: center; gap: 10px; padding: 2px 16px 7px; font-size: 16px; font-weight: 750; }
+  .bar .r { margin-left: auto; display: flex; gap: 16px; color: var(--ink2); }
+  .bar svg { width: 22px; height: 22px; }
+  .bell { position: relative; display: flex; }
+  .bell::after { content: ""; position: absolute; top: 0; right: 0; width: 8px; height: 8px; border-radius: 99px; background: var(--red); box-shadow: 0 0 0 2px #f4f7fb; }
+  .scroll { flex: 1; overflow: hidden; padding: 0 14px; display: flex; flex-direction: column; gap: 12px; }
+  /* Leave left */
+  .bal { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; flex-shrink: 0; }
+  .bal div { background: #fff; border: 1px solid var(--line); border-radius: 13px; padding: 8px 10px; }
+  .bal span { display: block; font-size: 10px; color: var(--muted); font-weight: 600; white-space: nowrap; }
+  .bal b { display: block; font-size: 19px; font-weight: 850; letter-spacing: -.02em; margin-top: 1px; white-space: nowrap; }
+  .bal b small { font-size: 10.5px; font-weight: 600; color: var(--muted); letter-spacing: 0; margin-left: 2px; }
+  .bal u { display: block; height: 4px; border-radius: 9px; background: var(--brand-50); margin-top: 5px; overflow: hidden; }
+  .bal u i { display: block; height: 100%; border-radius: 9px; background: linear-gradient(90deg, #0396d9, #00cfcb); }
+  h4 { font-size: 13px; font-weight: 800; display: flex; align-items: baseline; margin-top: 2px; }
+  h4 span { margin-left: auto; font-size: 11.5px; color: var(--muted); font-weight: 600; }
+  /* Cards */
+  .it { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 11px 12px; display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
+  .it .r1 { display: flex; gap: 10px; align-items: center; }
+  .it .ic { width: 36px; height: 36px; border-radius: 11px; display: grid; place-items: center; flex-shrink: 0; }
+  .it .ic svg { width: 18px; height: 18px; }
+  .it .tx { flex: 1; min-width: 0; }
+  .it .tx b { display: block; font-size: 13px; font-weight: 750; white-space: nowrap; }
+  .it .tx small { display: block; font-size: 11px; color: var(--muted); margin-top: 1px; white-space: nowrap; }
+  .it .amt { font-size: 13.5px; font-weight: 800; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .it .st { display: flex; align-items: center; gap: 6px; font-size: 10.5px; color: var(--muted); white-space: nowrap; }
+  .it .st .chip { font-size: 10px; }
+  .it .st svg { width: 12px; height: 12px; }
+  .it.hot { border: 1.5px solid var(--brand); padding: 10.5px 11.5px; box-shadow: 0 10px 22px -14px rgba(3,150,217,.75); }
+  /* Receipts read by AI */
+  .rc { display: flex; gap: 7px; }
+  .rc div { flex: 1; background: #f8fafc; border: 1px solid #eef2f7; border-radius: 9px; padding: 6px 7px; position: relative; }
+  .rc div::before { content: ""; display: block; height: 3px; width: 60%; background: #cbd5e1; border-radius: 3px; margin-bottom: 4px; }
+  .rc span { display: block; font-size: 9.5px; color: var(--muted); white-space: nowrap; }
+  .rc b { display: block; font-size: 11.5px; font-weight: 750; font-variant-numeric: tabular-nums; }
+  .ai { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 700; color: #6d28d9; background: #ede9fe; padding: 2px 7px 2px 5px; border-radius: 99px; }
+  .ai svg { width: 11px; height: 11px; }
+  /* Actions */
+  .acts { display: flex; gap: 8px; flex-shrink: 0; margin-top: 1px; }
+  .acts span { flex: 1; height: 38px; border-radius: 11px; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 12.5px; font-weight: 700; white-space: nowrap; }
+  .acts svg { width: 16px; height: 16px; }
+  .acts .go { background: linear-gradient(135deg, #0396d9, #0287c4); color: #fff; box-shadow: 0 6px 14px -8px rgba(3,150,217,.9); }
+  .acts .sec { border: 1px solid var(--line); color: var(--ink2); background: #fff; }
+  /* Bottom tabs */
+  .tabs { height: 62px; flex-shrink: 0; background: #fff; border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(4, 1fr); align-items: center; text-align: center; font-size: 10px; font-weight: 600; color: #94a3b8; }
+  .tabs div { display: flex; flex-direction: column; align-items: center; gap: 3px; position: relative; }
+  .tabs svg { width: 21px; height: 21px; } .tabs .on { color: var(--brand); }
+</style></head>
+<body>
+<div class="ph">
+  <div class="status"><span>10:44</span><span class="r"><span class="sig"><i style="height:4px"></i><i style="height:6px"></i><i style="height:8px"></i><i style="height:10px"></i></span><span style="font-size:11px">5G</span><span class="bat"><i></i></span></span></div>
+  <div class="bar">Leave &amp; Claims<span class="r"><span class="bell"><i data-i="bell"></i></span><i data-i="gear"></i></span></div>
+  <div class="scroll">
+    <div class="bal">
+      <div><span>Annual leave</span><b>9<small>of 14 days</small></b><u><i style="width:64%"></i></u></div>
+      <div><span>Medical leave</span><b>13<small>of 14 days</small></b><u><i style="width:93%"></i></u></div>
+      <div><span>Replacement</span><b>1<small>day</small></b><u><i style="width:100%"></i></u></div>
+    </div>
+    <h4>Latest<span>Faizal Hamid · Driver</span></h4>
+    <div class="it hot">
+      <div class="r1"><span class="ic g"><i data-i="cal"></i></span><div class="tx"><b>Annual leave · 2 – 3 Nov</b><small>Monday to Tuesday · 2 days</small></div><span class="chip g"><i data-i="check" style="width:11px;height:11px"></i>Approved</span></div>
+      <div class="st"><span class="av" style="width:18px;height:18px;font-size:7.5px;background:#0050a0">DW</span>Daniel Wong approved it · 10:42 AM<span style="margin-left:auto;color:#15803d;font-weight:650">Calendar updated</span></div>
+    </div>
+    <div class="it">
+      <div class="r1"><span class="ic v"><i data-i="file"></i></span><div class="tx"><b>Toll &amp; parking</b><small>3 receipts · 6 – 19 Oct</small></div><span class="amt">RM 86.40</span></div>
+      <div class="rc"><div><span>Highway toll · 6 Oct</span><b>RM 32.70</b></div><div><span>Parking · 13 Oct</span><b>RM 21.00</b></div><div><span>Highway toll · 19 Oct</span><b>RM 32.70</b></div></div>
+      <div class="st"><span class="ai"><i data-i="spark"></i>AI read the receipts</span><span class="chip g" style="margin-left:auto"><i data-i="check" style="width:11px;height:11px"></i>Paid with Oct salary</span></div>
+    </div>
+    <div class="it">
+      <div class="r1"><span class="ic a"><i data-i="phone"></i></span><div class="tx"><b>Phone bill · October</b><small>1 receipt · sent today, 9:15 AM</small></div><span class="amt">RM 50.00</span></div>
+      <div class="st"><span class="ai"><i data-i="spark"></i>AI read the receipt</span><span class="chip a" style="margin-left:auto"><i data-i="clock" style="width:11px;height:11px"></i>Waiting for approval</span></div>
+    </div>
+    <div class="it">
+      <div class="r1"><span class="ic b"><i data-i="steth"></i></span><div class="tx"><b>Medical leave · 14 Oct</b><small>1 day · MC photo uploaded</small></div><span class="chip g"><i data-i="check" style="width:11px;height:11px"></i>Approved</span></div>
+    </div>
+    <div class="acts"><span class="go"><i data-i="cal"></i>Apply leave</span><span class="sec"><i data-i="cam"></i>Snap a receipt</span></div>
+  </div>
+  <div class="tabs"><div><i data-i="home"></i>Home</div><div><i data-i="file"></i>Payslips</div><div class="on"><i data-i="cal"></i>Leave &amp; claims</div><div><i data-i="user"></i>Profile</div></div>
+</div>
+<script src="icons.js"></script>
+</body></html>

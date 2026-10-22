@@ -151,11 +151,19 @@ export function HardwareSection({ lang }: { lang: Locale }) {
 
 type DocKey = keyof Dict["docs"]["items"];
 
-/** The documents a system sends by itself. The clinic adds digital MCs, and referral letters written online. */
+/** The documents a system sends by itself. The clinic adds digital MCs, and referral letters written online; the
+ *  payroll system sends its own to each staff member. */
 export const docKeys = (k: SystemKey): DocKey[] =>
-  k === "clinic" ? ["mc", "receipt", "invoice", "creditNote", "refundNote", "referral"] : ["receipt", "invoice", "creditNote", "refundNote"];
+  k === "clinic"
+    ? ["mc", "receipt", "invoice", "creditNote", "refundNote", "referral"]
+    : k === "payroll"
+      ? ["payslip", "eaForm", "leave", "claim"]
+      : ["receipt", "invoice", "creditNote", "refundNote"];
 
-const docIcons: Record<DocKey, IconName> = { mc: "Stethoscope", receipt: "Receipt", invoice: "Invoice", creditNote: "Sync", refundNote: "Wallet", referral: "Pen" };
+const docIcons: Record<DocKey, IconName> = {
+  mc: "Stethoscope", receipt: "Receipt", invoice: "Invoice", creditNote: "Sync", refundNote: "Wallet", referral: "Pen",
+  payslip: "Coins", eaForm: "Invoice", leave: "Calendar", claim: "Wallet",
+};
 
 /** Every system page: the documents that go to customers automatically, each drawn as a small paper, and the free
  *  format tuning. */
@@ -165,7 +173,7 @@ export function DocumentsSection({ lang, k }: { lang: Locale; k: SystemKey }) {
   return (
     <section id="documents" className="overflow-hidden bg-slate-50 py-20 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <SectionHeading eyebrow={t.eyebrow} title={t.title} intro={t.intro.replace("{who}", clinic ? t.who.patients : t.who.customers)} />
+        <SectionHeading eyebrow={t.eyebrow} title={t.title} intro={t.intro.replace("{who}", clinic ? t.who.patients : k === "payroll" ? t.who.staff : t.who.customers)} />
         <ul className={`mx-auto mt-12 grid grid-cols-2 gap-3 sm:gap-4 ${clinic ? "max-w-6xl sm:grid-cols-3 xl:grid-cols-6" : "max-w-5xl lg:grid-cols-4"}`}>
           {docKeys(k).map((d) => {
             const I = Icon[docIcons[d]];

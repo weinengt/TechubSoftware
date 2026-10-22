@@ -93,6 +93,14 @@ export const shotFiles = {
   inventoryPermissions: { ...ipad, file: "inventory-staff-permissions-ipad" },
   stockScan: { ...phone, file: "inventory-scan-barcode-phone" },
 
+  /* Payroll & HR */
+  hrPayroll: { ...ipad, file: "payroll-system-monthly-payroll-ipad" },
+  hrContributions: { ...ipad, file: "payroll-epf-socso-eis-pcb-contributions-ipad" },
+  payslipPhone: { ...phone, file: "payroll-payslip-whatsapp-phone" },
+  leaveClaims: { ...phone, file: "payroll-leave-claims-phone" },
+  reportsPayroll: { ...ipad, file: "payroll-reports-ipad" },
+  payrollPermissions: { ...ipad, file: "payroll-staff-permissions-ipad" },
+
   /* PC */
   permissionsDesktop: { ...desktop, file: "staff-permission-control-desktop" },
   clinicDashboardDesktop: { ...desktop, file: "clinic-dashboard-desktop" },

@@ -1,0 +1,93 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css"><link rel="stylesheet" href="phone.css">
+<style>
+  /* Payroll & HR System: a staff member's October payslip in the staff app, also sent on WhatsApp. Nurul Aina's pay
+     from hr-payroll.html: RM 3,000 basic, net RM 2,627.20 (lib/payroll.ts, the free calculator's worked example). */
+  :root { --w: 360px; --h: 760px; }
+  .ph { width: 100%; height: 100%; display: flex; flex-direction: column; background: #f4f7fb; }
+  .bar { display: flex; align-items: center; gap: 10px; padding: 2px 16px 7px; font-size: 16px; font-weight: 750; }
+  .bar .r { margin-left: auto; display: flex; gap: 16px; color: var(--ink2); }
+  .bar svg { width: 22px; height: 22px; }
+  .scroll { flex: 1; overflow: hidden; padding: 0 14px; display: flex; flex-direction: column; gap: 7px; }
+  .mo { display: flex; gap: 6px; flex-shrink: 0; }
+  .mo span { font-size: 11.5px; font-weight: 650; padding: 5px 11px; border-radius: 99px; background: #fff; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
+  .mo span.on { background: var(--navy); border-color: var(--navy); color: #fff; }
+  /* Net pay */
+  .net { background: radial-gradient(circle at calc(100% - 26px) 26px, rgba(255,255,255,.12) 58.5px, transparent 59px), linear-gradient(135deg, #0050a0, #0396d9 60%, #00cfcb);
+    color: #fff; border-radius: 18px; padding: 12px 15px; position: relative; overflow: hidden; flex-shrink: 0; }
+  .net .who { display: flex; align-items: center; gap: 9px; position: relative; z-index: 1; }
+  .net .who .av { width: 34px; height: 34px; background: #fff; color: #0050a0; font-size: 12px; font-weight: 800; }
+  .net .who b { display: block; font-size: 13.5px; font-weight: 750; line-height: 16px; }
+  .net .who small { display: block; font-size: 10.5px; opacity: .9; }
+  .net .k { margin-top: 9px; font-size: 11px; opacity: .9; position: relative; z-index: 1; }
+  .net .v { font-size: 30px; font-weight: 850; letter-spacing: -.02em; line-height: 1.1; font-variant-numeric: tabular-nums; position: relative; z-index: 1; }
+  .net .v small { font-size: 14px; font-weight: 700; margin-right: 4px; opacity: .92; }
+  .net .ln { display: flex; align-items: center; gap: 8px; margin-top: 8px; position: relative; z-index: 1; }
+  .net .ln span { font-size: 10.5px; opacity: .92; white-space: nowrap; }
+  .net .wa { margin-left: auto; display: inline-flex; align-items: center; gap: 5px; background: #fff; color: #15803d; font-size: 10.5px; font-weight: 700; padding: 3px 9px 3px 5px; border-radius: 99px; white-space: nowrap; opacity: 1 !important; }
+  .net .wa svg { width: 14px; height: 14px; }
+  /* Sections */
+  .sec { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 7px 12px; flex-shrink: 0; }
+  .sec h4 { display: flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 800; margin-bottom: 3px; }
+  .sec h4 span { margin-left: auto; font-size: 10.5px; color: var(--muted); font-weight: 600; }
+  .sec h4 i, .sec h4 svg { width: 15px; height: 15px; }
+  .li { display: flex; align-items: baseline; gap: 8px; font-size: 12px; color: var(--ink2); padding: 2.5px 0; font-variant-numeric: tabular-nums; }
+  .li em { font-style: normal; font-size: 10.5px; color: var(--muted); }
+  .li b { margin-left: auto; font-weight: 650; color: var(--ink); }
+  .li.t { border-top: 1px dashed #dbe3ec; margin-top: 3px; padding-top: 6px; font-weight: 750; color: var(--ink); }
+  .li.t b { font-weight: 800; }
+  .ytd { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 3px; }
+  .ytd div { background: #f8fafc; border-radius: 9px; padding: 5px 8px; }
+  .ytd span { display: block; font-size: 9.5px; color: var(--muted); font-weight: 600; white-space: nowrap; }
+  .ytd b { display: block; font-size: 12px; font-weight: 750; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .dl { display: flex; gap: 8px; flex-shrink: 0; }
+  .dl span { flex: 1; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 12.5px; font-weight: 700; white-space: nowrap; }
+  .dl svg { width: 15px; height: 15px; }
+  .dl .go { background: linear-gradient(135deg, #0396d9, #0287c4); color: #fff; box-shadow: 0 6px 14px -8px rgba(3,150,217,.9); }
+  .dl .sec2 { border: 1px solid var(--line); color: var(--ink2); background: #fff; }
+  /* Bottom tabs */
+  .tabs { height: 62px; flex-shrink: 0; background: #fff; border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(4, 1fr); align-items: center; text-align: center; font-size: 10px; font-weight: 600; color: #94a3b8; }
+  .tabs div { display: flex; flex-direction: column; align-items: center; gap: 3px; position: relative; }
+  .tabs svg { width: 21px; height: 21px; } .tabs .on { color: var(--brand); }
+</style></head>
+<body>
+<div class="ph">
+  <div class="status"><span>9:02</span><span class="r"><span class="sig"><i style="height:4px"></i><i style="height:6px"></i><i style="height:8px"></i><i style="height:10px"></i></span><span style="font-size:11px">5G</span><span class="bat"><i></i></span></span></div>
+  <div class="bar">My Payslips<span class="r"><i data-i="bell"></i><i data-i="gear"></i></span></div>
+  <div class="scroll">
+    <div class="mo"><span class="on">Oct 2026</span><span>Sep</span><span>Aug</span><span>Jul</span><span>Jun</span></div>
+    <div class="net">
+      <div class="who"><span class="av">NA</span><div><b>Nurul Aina</b><small>Admin Executive · Demo Company</small></div></div>
+      <div class="k">Net pay · October 2026</div>
+      <div class="v"><small>RM</small>2,627.20</div>
+      <div class="ln"><span>Paid Fri, 30 Oct · bank transfer</span>
+        <span class="wa"><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="8" fill="#22c55e"/><path d="M4.6 8.2l2.3 2.3 4.6-4.8" stroke="#fff" stroke-width="1.9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Sent on WhatsApp</span></div>
+    </div>
+    <div class="sec">
+      <h4><i data-i="wallet" style="color:#0396d9"></i>Earnings</h4>
+      <div class="li">Basic salary<b>3,000.00</b></div>
+      <div class="li t">Gross pay<b>3,000.00</b></div>
+    </div>
+    <div class="sec">
+      <h4><i data-i="shield" style="color:#8b5cf6"></i>Deductions<span>worked out automatically</span></h4>
+      <div class="li">EPF <em>11%</em><b>330.00</b></div>
+      <div class="li">SOCSO<b>14.75</b></div>
+      <div class="li">LINDUNG 24 Jam <em>0.75%</em><b>22.15</b></div>
+      <div class="li">EIS <em>0.2%</em><b>5.90</b></div>
+      <div class="li">PCB (monthly tax)<b>0.00</b></div>
+      <div class="li t">Total deductions<b>372.80</b></div>
+    </div>
+    <div class="sec">
+      <h4><i data-i="heart" style="color:#14b8a6"></i>Your employer also pays<span>on top of your pay</span></h4>
+      <div class="ytd"><div><span>EPF 13%</span><b>390.00</b></div><div><span>SOCSO</span><b>51.65</b></div><div><span>EIS</span><b>5.90</b></div></div>
+    </div>
+    <div class="sec">
+      <h4><i data-i="chart" style="color:#f59e0b"></i>This year so far<span>Jan – Oct 2026</span></h4>
+      <div class="ytd"><div><span>Gross pay</span><b>30,000.00</b></div><div><span>EPF</span><b>3,300.00</b></div><div><span>PCB</span><b>0.00</b></div></div>
+    </div>
+    <div class="dl"><span class="go"><svg class="i" viewBox="0 0 24 24"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></svg>Download PDF</span><span class="sec2"><i data-i="file"></i>EA form 2025</span></div>
+  </div>
+  <div class="tabs"><div><i data-i="home"></i>Home</div><div class="on"><i data-i="file"></i>Payslips</div><div><i data-i="cal"></i>Leave &amp; claims</div><div><i data-i="user"></i>Profile</div></div>
+</div>
+<script src="icons.js"></script>
+</body></html>

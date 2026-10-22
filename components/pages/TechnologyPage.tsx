@@ -252,11 +252,12 @@ export default function TechnologyPage({ lang }: { lang: Locale }) {
           <SectionHeading eyebrow={t.featuresEyebrow} title={t.featuresTitle} />
           <FeatureTiles items={getFeatures(lang)} />
           <h2 className="mt-16 text-center text-sm font-bold tracking-wide text-slate-500 uppercase" data-reveal>{t.industries}</h2>
-          <ul className="mx-auto mt-5 grid max-w-5xl gap-3 sm:grid-cols-3 lg:grid-cols-5">
+          {/* Rows that don't fill up stay centred */}
+          <ul className="mx-auto mt-5 flex max-w-5xl flex-wrap justify-center gap-3">
             {systems.map((sys) => {
               const I = Icon[sys.icon];
               return (
-                <li key={sys.key} data-reveal>
+                <li key={sys.key} className="w-full sm:w-[calc(33.333%-0.5rem)] lg:w-[calc(25%-0.5625rem)]" data-reveal>
                   <Link href={lp(lang, sys.path)} className="card group flex items-center gap-3 p-4 transition hover:-translate-y-0.5 hover:ring-brand-200">
                     <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600 ring-1 ring-brand-100">
                       <I className="h-5 w-5" />

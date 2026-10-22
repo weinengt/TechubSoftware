@@ -1,0 +1,150 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<style>
+  /* Payroll & HR System: the month's EPF, SOCSO (with LINDUNG 24 Jam), EIS, PCB and HRD Corp levy for Demo Company,
+     what each agency gets, the files to upload, the due date and each staff member's share. Same people and amounts
+     as hr-payroll.html (lib/payroll.ts). */
+  :root { --w: 1024px; --h: 720px; }
+  .top { gap: 10px; }
+  .top h1 { white-space: nowrap; }
+  .btn svg { width: 15px; height: 15px; }
+  .content { gap: 12px; }
+  /* Agency cards */
+  .ag { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; flex-shrink: 0; }
+  .agc { display: flex; flex-direction: column; gap: 8px; padding: 12px 13px; }
+  .agc .hd { display: flex; align-items: center; gap: 9px; }
+  .lo { min-width: 34px; padding: 0 6px; height: 34px; border-radius: 10px; display: grid; place-items: center; color: #fff; font-size: 9px; font-weight: 800; letter-spacing: .02em; flex-shrink: 0; }
+  .agc .hd b { display: block; font-size: 12.5px; font-weight: 750; line-height: 15px; white-space: nowrap; }
+  .agc .hd small { display: block; font-size: 10.5px; color: var(--muted); line-height: 13px; white-space: nowrap; }
+  .agc .amt { font-size: 21px; font-weight: 800; letter-spacing: -.02em; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .agc .amt small { font-size: 11px; font-weight: 600; color: var(--muted); letter-spacing: 0; margin-right: 3px; }
+  .agc .sp { font-size: 10.5px; color: var(--ink2); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .agc .sp em { font-style: normal; color: var(--muted); }
+  .agc .ft { display: flex; align-items: center; gap: 6px; margin-top: 2px; padding-top: 8px; border-top: 1px solid #eef2f7; }
+  .agc .ft .dl { margin-left: auto; display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 650; color: var(--brand); }
+  .agc .ft .dl svg { width: 13px; height: 13px; }
+  .chip svg { width: 11px; height: 11px; stroke-width: 2.6; }
+  /* Lower row */
+  .lr { display: flex; gap: 12px; flex: 1; min-height: 0; }
+  .tb { padding: 0; overflow: hidden; display: flex; flex-direction: column; flex: 1; min-width: 0; }
+  .tb h3 { padding: 12px 14px 10px; }
+  .card h3 small { font-size: 11px; color: var(--muted); font-weight: 500; }
+  .tb th, .tb td { padding: 6.5px 8px; }
+  .tb td:first-child, .tb th:first-child { padding-left: 14px; }
+  .tb td:last-child, .tb th:last-child { padding-right: 14px; }
+  .tb th.num { text-align: right; }
+  .tb th small { display: block; font-size: 9.5px; text-transform: none; letter-spacing: 0; font-weight: 500; color: #94a3b8; margin-top: 1px; }
+  .tb td { font-variant-numeric: tabular-nums; }
+  .tb td small { line-height: 13px; margin-top: 1px; }
+  .who { display: flex; align-items: center; gap: 9px; }
+  .who .av { width: 26px; height: 26px; font-size: 9.5px; }
+  .who b { display: block; line-height: 15px; }
+  .tb td.nil { color: #94a3b8; }
+  .tb tr.tot td { background: #f8fafc; border-bottom: 0; color: var(--ink); font-weight: 750; }
+  .tfoot { margin-top: auto; display: flex; align-items: center; gap: 8px; padding: 8px 14px 10px; border-top: 1px solid #eef2f7; font-size: 11px; color: var(--muted); white-space: nowrap; }
+  .tfoot .more { margin-left: auto; color: var(--brand); font-weight: 600; }
+  /* Due date and rules */
+  .side2 { width: 270px; flex-shrink: 0; display: flex; flex-direction: column; gap: 12px; }
+  .due { background: linear-gradient(135deg, #0b2f55, #0050a0 65%, #0396d9); color: #cfe6f7; border: 0; }
+  .due h3 { color: #fff; }
+  .due .big { margin-top: 8px; font-size: 24px; font-weight: 800; letter-spacing: -.02em; color: #fff; font-variant-numeric: tabular-nums; }
+  .due .big small { font-size: 12px; font-weight: 600; color: #8fd8ff; margin-right: 4px; letter-spacing: 0; }
+  .due p { font-size: 11px; margin-top: 2px; }
+  .tl { margin-top: 12px; display: flex; flex-direction: column; gap: 9px; }
+  .tl div { display: flex; align-items: center; gap: 9px; font-size: 11.5px; color: #e2f0fb; white-space: nowrap; }
+  .tl i { width: 18px; height: 18px; border-radius: 99px; display: grid; place-items: center; flex-shrink: 0; background: rgba(255,255,255,.16); }
+  .tl i.ok { background: #10b981; }
+  .tl i svg { width: 11px; height: 11px; stroke: #fff; fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+  .tl span { margin-left: auto; font-weight: 700; color: #fff; }
+  .rules { flex: 1; display: flex; flex-direction: column; }
+  .rules ul { list-style: none; margin-top: 8px; display: flex; flex-direction: column; gap: 9px; }
+  .rules li { display: flex; gap: 9px; font-size: 11.5px; line-height: 1.4; color: var(--ink2); }
+  .rules li b { color: var(--ink); font-weight: 700; }
+  .rules li .ic { width: 26px; height: 26px; border-radius: 8px; display: grid; place-items: center; flex-shrink: 0; }
+  .rules li .ic svg { width: 14px; height: 14px; }
+</style></head>
+<body>
+<div class="app">
+  <aside class="side" data-shell="hr" data-active="EPF, SOCSO &amp; PCB"></aside>
+  <section class="main">
+    <header class="top">
+      <div><div class="sub">Demo Company · October 2026 payroll</div><h1>EPF, SOCSO, EIS &amp; PCB</h1></div>
+      <span class="chip a"><i data-i="clock" style="width:12px;height:12px"></i>Due by 15 Nov</span>
+      <span class="btn" style="margin-left:auto"><i data-i="bell"></i>Remind me</span>
+      <span class="btn pri"><svg class="i" viewBox="0 0 24 24"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></svg>Download all files</span>
+    </header>
+    <div class="content">
+      <div class="ag" id="ag"></div>
+      <div class="lr">
+        <div class="card tb" id="table"></div>
+        <div class="side2">
+          <div class="card due" id="due"></div>
+          <div class="card rules" id="rules"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<script>
+  const $ = (id) => document.getElementById(id);
+  const money = (n) => n.toLocaleString("en-MY", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const DL = '<svg class="i" viewBox="0 0 24 24"><path d="M12 4v11M7 10.5l5 5 5-5M5 20h14"/></svg>';
+  const TICK = '<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+
+  // Totals for all 24 staff (see hr-payroll.html)
+  const A = [
+    { lo: "KWSP", c: "linear-gradient(135deg,#8b5cf6,#6d28d9)", n: "EPF", s: "KWSP · 24 staff", amt: 17319, sp: "Staff 7,946.00 · <em>Employer</em> 9,373.00", st: "File ready" },
+    { lo: "PERKESO", c: "linear-gradient(135deg,#14b8a6,#0f766e)", n: "SOCSO, LINDUNG &amp; EIS", s: "PERKESO · 24 staff", amt: 2629.35, sp: "Staff 1,117.40 · <em>Employer</em> 1,511.95", st: "File ready" },
+    { lo: "LHDN", c: "linear-gradient(135deg,#f59e0b,#d97706)", n: "PCB", s: "LHDN · 9 staff", amt: 598.1, sp: "Monthly tax from salary", st: "File ready" },
+    { lo: "HRD", c: "linear-gradient(135deg,#0396d9,#0050a0)", n: "HRD Corp levy", s: "1% · 21 Malaysia staff", amt: 693.58, sp: "Paid by the company", st: "Amount ready" },
+  ];
+  $("ag").innerHTML = A.map((a) => `<div class="card agc">
+      <div class="hd"><span class="lo" style="background:${a.c}">${a.lo}</span><div><b>${a.n}</b><small>${a.s}</small></div></div>
+      <div class="amt"><small>RM</small>${money(a.amt)}</div>
+      <div class="sp">${a.sp}</div>
+      <div class="ft"><span class="chip g"><svg class="i" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>${a.st}</span>${a.st === "File ready" ? `<span class="dl">${DL}Download</span>` : ""}</div>
+    </div>`).join("");
+
+  // Each staff member's share: [EPF staff, EPF employer], [SOCSO staff, SOCSO employer], LINDUNG 24 Jam, EIS (each), PCB
+  const R = [
+    ["DW", "#0050a0", "Daniel Wong", [803, 876], [29.75, 104.15], 44.65, 11.9, 272.45],
+    ["NA", "#ec4899", "Nurul Aina", [330, 390], [14.75, 51.65], 22.15, 5.9, 0],
+    ["KR", "#8b5cf6", "Kavitha Rajan", [484, 572], [21.75, 76.15], 32.65, 8.7, 61],
+    ["JL", "#0396d9", "Jason Lim", [522, 617], [23.75, 83.15], 35.65, 9.5, 91.55],
+    ["MH", "#0b2f55", "Muhammad Hafiz", [403, 476], [20.25, 70.85], 30.35, 8.1, 0],
+    ["SZ", "#14b8a6", "Siti Zulaikha", [256, 302], [11.75, 41.15], 17.65, 4.7, 0],
+    ["FH", "#f59e0b", "Faizal Hamid", [242, 286], [12.25, 42.85], 18.35, 4.9, 0],
+    ["RU", "#10b981", "Rahim Uddin", [36, 36], [9.75, 34.15], 14.65, 0, 0, "Foreign worker"],
+  ];
+  const pair = ([a, b]) => `<b>${money(a)}</b><small>${money(b)}</small>`;
+  $("table").innerHTML = `<h3><i data-i="users" style="color:#0396d9"></i>Each staff member <small>· 8 of 24 · staff share, employer below</small><span class="more" style="margin-left:auto">All 24 staff →</span></h3>
+    <table>
+      <tr><th>Staff</th><th class="num">EPF</th><th class="num">SOCSO</th><th class="num">LINDUNG<small>24 Jam</small></th><th class="num">EIS<small>each</small></th><th class="num">PCB</th></tr>
+      ${R.map(([i, c, n, epf, ss, ld, eis, pcb, note]) => `<tr>
+        <td><div class="who"><span class="av" style="background:${c}">${i}</span><div><b>${n}</b>${note ? `<small>${note}</small>` : ""}</div></div></td>
+        <td class="num">${pair(epf)}</td><td class="num">${pair(ss)}</td><td class="num">${money(ld)}</td>
+        <td class="num${eis ? "" : " nil"}">${eis ? money(eis) : "—"}</td><td class="num">${money(pcb)}</td></tr>`).join("")}
+      <tr class="tot"><td>Total · 24 staff</td><td class="num">${pair([7946, 9373])}</td><td class="num">${pair([383.75, 1369.95])}</td><td class="num">591.65</td><td class="num">142.00</td><td class="num">598.10</td></tr>
+    </table>`;
+
+  $("due").innerHTML = `<h3><i data-i="cal" style="color:#8fd8ff"></i>Pay by 15 November</h3>
+    <div class="big"><small>RM</small>21,240.03</div>
+    <p>KWSP, PERKESO, LHDN and HRD Corp</p>
+    <div class="tl">
+      <div><i class="ok">${TICK}</i>Payroll approved<span>30 Oct</span></div>
+      <div><i class="ok">${TICK}</i>Files ready to upload<span>30 Oct</span></div>
+      <div><i></i>WhatsApp reminder<span>12 Nov</span></div>
+      <div><i></i>Last day to pay<span>15 Nov</span></div>
+    </div>`;
+
+  $("rules").innerHTML = `<h3><i data-i="shield" style="color:#0396d9"></i>Handled for you</h3>
+    <ul>
+      <li><span class="ic v"><i data-i="users"></i></span><span><b>Foreign workers:</b> EPF 2% each, no EIS</span></li>
+      <li><span class="ic a"><i data-i="clock"></i></span><span><b>Over 60:</b> employer EPF 4%, injury cover only</span></li>
+      <li><span class="ic g"><i data-i="shield"></i></span><span><b>LINDUNG 24 Jam:</b> 0.75% from each staff</span></li>
+      <li><span class="ic b"><i data-i="percent"></i></span><span><b>Overtime:</b> SOCSO yes, EPF no</span></li>
+    </ul>`;
+</script>
+<script src="shell.js"></script>
+<script src="icons.js"></script>
+</body></html>

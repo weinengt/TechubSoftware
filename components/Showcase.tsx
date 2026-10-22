@@ -90,14 +90,14 @@ export function OtherSystems({ lang, current }: { lang: Locale; current: SystemK
         <h2 id="other-systems" className="text-center text-sm font-bold tracking-wide text-slate-500 uppercase" data-reveal>
           {t.product.otherSystems}
         </h2>
-        {/* Five other systems: rows that don't fill up stay centred */}
-        <ul className="mx-auto mt-5 flex max-w-6xl flex-wrap justify-center gap-3">
+        {/* Six other systems, three to a row on wide screens: rows that don't fill up stay centred */}
+        <ul className="mx-auto mt-5 flex max-w-5xl flex-wrap justify-center gap-3">
           {systems
             .filter((s) => s.key !== current)
             .map((s) => {
               const I = Icon[s.icon];
               return (
-                <li key={s.key} className="w-full sm:w-[calc(50%-0.375rem)] lg:w-[calc(20%-0.6rem)]" data-reveal>
+                <li key={s.key} className="w-full sm:w-[calc(50%-0.375rem)] lg:w-[calc(33.333%-0.5rem)]" data-reveal>
                   <Link href={lp(lang, s.path)} className="card group flex h-full items-center gap-3 p-4 transition hover:-translate-y-0.5 hover:ring-brand-200">
                     <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600 ring-1 ring-brand-100">
                       <I className="h-5 w-5" />
@@ -158,6 +158,7 @@ export function Spotlight({
 /** The made-up business each system's example screens use. */
 const sampleBusiness: Record<SystemKey, string> = {
   clinic: "Demo Clinic", salon: "Demo Hair Salon", beauty: "Demo Beauty Centre", spa: "Demo Day Spa", live: "Demo Live Shop", inventory: "Demo Trading",
+  payroll: "Demo Company",
 };
 
 const outletBars = [[45, 70, 55, 85, 75], [60, 45, 75, 55, 90], [35, 60, 50, 65, 55]];

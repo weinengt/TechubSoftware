@@ -14,7 +14,7 @@ import TaxTables from "@/components/tools/TaxTables";
 import TaxTool from "@/components/tools/TaxTool";
 import { htmlLang, lp, type Locale } from "@/lib/i18n";
 import { pageMetadata } from "@/lib/seo";
-import { companyPages, site, toolPages, toolsPath, type ToolKey } from "@/lib/site";
+import { companyPages, site, systems, toolPages, toolsPath, type SystemKey, type ToolKey } from "@/lib/site";
 
 /* The free tools: the Tools page lists them, and each has its own page with the tool itself, its questions, the other
    tools and a way to get in touch. The tools run in the browser; their words are in content/tools/*.ts. */
@@ -207,13 +207,16 @@ export function ToolsHubPage({ lang }: { lang: Locale }) {
   );
 }
 
-const promoShots = { invoice: "depositInvoiceSalon", payroll: "payrollSalon", tax: "reportsSalon" } as const;
+const promoShots = { invoice: "depositInvoiceSalon", payroll: "hrPayroll", tax: "reportsSalon" } as const;
+// Under the payroll calculator the link opens the Payroll & HR System page; under the other tools, the Use Cases page.
+const promoSystem: Partial<Record<ToolKey, SystemKey>> = { payroll: "payroll" };
 
 /** Under each tool: what Techub's systems do for the same job, the Welcome offer and a way to ask for a demo. */
 function Promo({ lang, k }: { lang: Locale; k: ToolKey }) {
   const p = getTools(lang).promo;
   const x = p[k];
   const welcome = site.plans.find((plan) => "until" in plan && plan.until);
+  const sys = systems.find((s) => s.key === promoSystem[k]);
   return (
     <section className="overflow-hidden py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -226,7 +229,9 @@ function Promo({ lang, k }: { lang: Locale; k: ToolKey }) {
         />
         {welcome && <WelcomeCard lang={lang} p={welcome} />}
         <p className="mt-6 text-center text-sm" data-reveal>
-          <Link href={lp(lang, companyPages.useCases)} className="font-semibold text-brand-700 hover:underline">{p.more} →</Link>
+          <Link href={lp(lang, sys?.path ?? companyPages.useCases)} className="font-semibold text-brand-700 hover:underline">
+            {sys ? getDict(lang).systems[sys.key].cta : p.more} →
+          </Link>
         </p>
       </div>
     </section>

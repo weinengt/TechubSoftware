@@ -98,6 +98,14 @@ export const screens = [
   { name: "inventory-scan-barcode-phone", file: "stock-scan.html", ...phone },
   { name: "inventory-reports-ipad", file: "reports.html?v=trade", ...ipad },
   { name: "inventory-staff-permissions-ipad", file: "permissions.html?v=trade", ...ipad },
+  // Payroll & HR: a company of 24 staff in KL, JB and Penang. October 2026's payroll worked out with lib/payroll.ts, its
+  // EPF, SOCSO, EIS and PCB, one staff member's payslip, another's leave and claims, the report and who sees salaries
+  { name: "payroll-system-monthly-payroll-ipad", file: "hr-payroll.html", ...ipad },
+  { name: "payroll-epf-socso-eis-pcb-contributions-ipad", file: "hr-contributions.html", ...ipad },
+  { name: "payroll-payslip-whatsapp-phone", file: "hr-payslip.html", ...phone },
+  { name: "payroll-leave-claims-phone", file: "hr-leave.html", ...phone },
+  { name: "payroll-reports-ipad", file: "reports.html?v=hr", ...ipad },
+  { name: "payroll-staff-permissions-ipad", file: "permissions.html?v=hr", ...ipad },
   // LHDN e-Invoice and examples of custom systems
   { name: "lhdn-e-invoice", file: "e-invoice.html", w: 1000, h: 700, scale: 1.5, transparent: true },
   // Blog post pictures: one for each post, in each language
