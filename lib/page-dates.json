@@ -408,51 +408,51 @@
   "date": "2026-10-16"
  },
  "/tools/": {
-  "hash": "6afb07d05d7f1b82",
-  "date": "2026-10-16"
+  "hash": "6ac92d64ef6c9a72",
+  "date": "2026-10-22"
  },
  "/ms/tools/": {
-  "hash": "53a1be30b50d4c1b",
-  "date": "2026-10-16"
+  "hash": "29bd863f658fb7cf",
+  "date": "2026-10-22"
  },
  "/zh/tools/": {
-  "hash": "0826038ba63c4fa1",
-  "date": "2026-10-16"
+  "hash": "902dec259bcca051",
+  "date": "2026-10-22"
  },
  "/tools/invoice-generator/": {
-  "hash": "f76eb1de6e69f5ba",
-  "date": "2026-10-16"
+  "hash": "fd4ebad90940ea91",
+  "date": "2026-10-22"
  },
  "/ms/tools/invoice-generator/": {
-  "hash": "f766267808b2b488",
-  "date": "2026-10-16"
+  "hash": "f680cab510c810d3",
+  "date": "2026-10-22"
  },
  "/zh/tools/invoice-generator/": {
-  "hash": "4fc4f36e9087ca61",
-  "date": "2026-10-16"
+  "hash": "a31951a9040cbecc",
+  "date": "2026-10-22"
  },
  "/tools/payroll-calculator/": {
-  "hash": "9392f4ade445ed48",
-  "date": "2026-10-16"
+  "hash": "91005b49095fa7e4",
+  "date": "2026-10-22"
  },
  "/ms/tools/payroll-calculator/": {
-  "hash": "2fa99259e85d7f9f",
-  "date": "2026-10-16"
+  "hash": "88e46ac1e5453d66",
+  "date": "2026-10-22"
  },
  "/zh/tools/payroll-calculator/": {
-  "hash": "95dbe39481064f08",
-  "date": "2026-10-16"
+  "hash": "f5fdc042889f0b7e",
+  "date": "2026-10-22"
  },
  "/tools/tax-relief-calculator/": {
-  "hash": "980269c29535c133",
-  "date": "2026-10-16"
+  "hash": "70de7a7079349641",
+  "date": "2026-10-22"
  },
  "/ms/tools/tax-relief-calculator/": {
-  "hash": "a1b2c6d212d93751",
-  "date": "2026-10-16"
+  "hash": "90a8eee6ce1b0b45",
+  "date": "2026-10-22"
  },
  "/zh/tools/tax-relief-calculator/": {
-  "hash": "c50acfce9e6b8d59",
-  "date": "2026-10-16"
+  "hash": "fe5c9a3fdd6463dd",
+  "date": "2026-10-22"
  }
 }

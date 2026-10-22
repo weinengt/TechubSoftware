@@ -61,7 +61,7 @@ const ms: ToolsDict = {
       title: "Alat Bisnes Percuma Malaysia | Invois, Gaji & Pelepasan Cukai",
       socialTitle: "Alat Bisnes Percuma Malaysia | Techub Software",
       description:
-        "Alat percuma untuk bisnes di Malaysia: penjana invois dengan logo anda, kalkulator gaji dengan KWSP, PERKESO, SIP dan PCB serta slip gaji, dan kalkulator pelepasan cukai untuk TT 2024 hingga 2027. Tak perlu daftar; data kekal dalam peranti anda.",
+        "Alat percuma untuk bisnes di Malaysia: penjana invois dengan logo anda, kalkulator gaji dengan KWSP, PERKESO, SIP dan PCB serta slip gaji, dan kalkulator pelepasan cukai Malaysia untuk 2027, 2026, 2025 dan 2024. Tak perlu daftar; data kekal dalam peranti anda.",
       keywords: [
         "alat bisnes percuma Malaysia",
         "penjana invois percuma",
@@ -322,16 +322,19 @@ const ms: ToolsDict = {
 
   tax: {
     name: "Kalkulator Pelepasan Cukai",
-    blurb: "Semua pelepasan cukai pendapatan TT 2024 hingga 2027, dan cukai yang anda bayar.",
-    points: ["TT 2024, 2025, 2026 dan 2027 (Bajet 2027)", "Had dan had kongsi dikira untuk anda", "Cukai, rebat, zakat dan bayaran balik", "Apa yang baru setiap tahun"],
+    blurb: "Semua pelepasan cukai pendapatan 2027, 2026, 2025 dan 2024, dan cukai yang anda bayar.",
+    points: ["2027 (Bajet 2027), 2026, 2025 dan 2024", "Had dan had kongsi dikira untuk anda", "Cukai, rebat, zakat dan bayaran balik", "Apa yang baru setiap tahun"],
     meta: {
-      title: "Pelepasan Cukai Malaysia 2026 (TT 2024–2027) | Kalkulator Cukai",
-      socialTitle: "Kalkulator Pelepasan Cukai TT 2024–2027 | Techub Software",
+      title: "Kalkulator Pelepasan Cukai Malaysia 2027, 2026, 2025, 2024",
+      socialTitle: "Kalkulator Pelepasan Cukai Malaysia 2027, 2026, 2025, 2024 | Techub Software",
       description:
-        "Semua pelepasan cukai pendapatan individu di Malaysia untuk TT 2024, 2025, 2026 dan 2027 (cadangan Bajet 2027), dengan kalkulator percuma untuk pendapatan bercukai, cukai, rebat, zakat dan bayaran balik. Berdasarkan LHDN dan Akta Kewangan.",
+        "Kalkulator pelepasan cukai Malaysia percuma untuk 2027, 2026, 2025 dan 2024. Semua pelepasan cukai pendapatan individu dan hadnya, kemudian pendapatan bercukai, cukai, rebat, zakat dan bayaran balik. Berdasarkan LHDN; 2027 ikut cadangan Bajet 2027.",
       keywords: [
+        "kalkulator pelepasan cukai 2027",
+        "kalkulator pelepasan cukai 2026",
+        "kalkulator pelepasan cukai 2025",
+        "kalkulator pelepasan cukai 2024",
         "pelepasan cukai 2026",
-        "pelepasan cukai 2025",
         "kalkulator cukai pendapatan",
         "pelepasan cukai LHDN",
         "pelepasan cukai Bajet 2027",
@@ -340,7 +343,7 @@ const ms: ToolsDict = {
       ],
     },
     eyebrow: "Kalkulator pelepasan cukai",
-    title: "Pelepasan cukai Malaysia, *TT 2024 hingga 2027*",
+    title: "Kalkulator pelepasan cukai Malaysia *2027, 2026, 2025, 2024*",
     intro: "Pilih tahun, masukkan pendapatan dan perbelanjaan anda. Kami kira setiap had dan tunjuk cukai yang anda bayar.",
     form: {
       year: "Tahun taksiran",
@@ -443,7 +446,7 @@ const ms: ToolsDict = {
     },
     tables: {
       eyebrow: "Senarai pelepasan cukai",
-      title: "Semua pelepasan cukai, *TT 2024 hingga 2027*",
+      title: "Semua pelepasan cukai, *2027, 2026, 2025, 2024*",
       intro: "Had dalam RM. Had yang berubah ditanda biru.",
       relief: "Pelepasan",
       note: "* TT 2027: cadangan Bajet 2027, belum jadi undang-undang. Sumber: LHDN (TT 2024, 2025), Akta Kewangan 2025 (TT 2026), Bajet 2027.",
@@ -457,7 +460,7 @@ const ms: ToolsDict = {
     },
     faq: [
       {
-        q: "Berapa pelepasan cukai individu di Malaysia untuk TT 2026?",
+        q: "Berapa pelepasan cukai individu di Malaysia untuk 2026?",
         a: "RM 9,000 untuk setiap pemastautin cukai. Bajet 2027 mencadangkan kenaikan ke RM 12,000 mulai TT 2027.",
       },
       {

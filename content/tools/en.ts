@@ -61,7 +61,7 @@ const en = {
       title: "Free Business Tools Malaysia | Invoice, Payroll & Tax Relief",
       socialTitle: "Free Business Tools for Malaysia | Techub Software",
       description:
-        "Free tools for businesses in Malaysia: an invoice generator with your logo, a payroll calculator with EPF, SOCSO, EIS and PCB payslips, and a tax relief calculator for YA 2024 to 2027. No sign-up; your data stays on your device.",
+        "Free tools for businesses in Malaysia: an invoice generator with your logo, a payroll calculator with EPF, SOCSO, EIS and PCB payslips, and a Malaysia tax relief calculator for 2027, 2026, 2025 and 2024. No sign-up; your data stays on your device.",
       keywords: [
         "free business tools Malaysia",
         "invoice generator Malaysia",
@@ -320,25 +320,28 @@ const en = {
 
   tax: {
     name: "Tax Relief Calculator",
-    blurb: "Every income tax relief for YA 2024 to 2027, and the tax you pay.",
-    points: ["YA 2024, 2025, 2026 and 2027 (Budget 2027)", "Limits and shared caps applied for you", "Tax, rebate, zakat and refund worked out", "What's new each year"],
+    blurb: "Every income tax relief for 2027, 2026, 2025 and 2024, and the tax you pay.",
+    points: ["2027 (Budget 2027), 2026, 2025 and 2024", "Limits and shared caps applied for you", "Tax, rebate, zakat and refund worked out", "What's new each year"],
     meta: {
-      title: "Malaysia Tax Relief 2026 (YA 2024–2027) | Income Tax Calculator",
-      socialTitle: "Malaysia Tax Relief Calculator YA 2024–2027 | Techub Software",
+      title: "Malaysia Tax Relief Calculator 2027, 2026, 2025, 2024",
+      socialTitle: "Malaysia Tax Relief Calculator 2027, 2026, 2025, 2024 | Techub Software",
       description:
-        "Every personal income tax relief in Malaysia for YA 2024, 2025, 2026 and 2027 (Budget 2027 proposals), with a free calculator for your chargeable income, tax, rebate, zakat and refund. Based on LHDN and the Finance Act.",
+        "Free Malaysia tax relief calculator for 2027, 2026, 2025 and 2024. Every personal income tax relief and limit, then your chargeable income, tax, rebate, zakat and refund. Based on LHDN; 2027 follows the Budget 2027 proposals.",
       keywords: [
+        "Malaysia tax relief calculator 2027",
+        "Malaysia tax relief calculator 2026",
+        "Malaysia tax relief calculator 2025",
+        "Malaysia tax relief calculator 2024",
         "tax relief Malaysia 2026",
-        "tax relief Malaysia 2025",
         "income tax calculator Malaysia",
-        "LHDN tax relief YA 2026",
+        "LHDN tax relief",
         "Budget 2027 tax relief",
         "personal tax relief Malaysia",
         "e-Filing tax relief",
       ],
     },
     eyebrow: "Tax relief calculator",
-    title: "Malaysia tax relief, *YA 2024 to 2027*",
+    title: "Malaysia tax relief calculator *2027, 2026, 2025, 2024*",
     intro: "Pick the year, enter your income and what you spent. We apply every limit and show the tax you pay.",
     form: {
       year: "Year of assessment",
@@ -441,7 +444,7 @@ const en = {
     },
     tables: {
       eyebrow: "Tax relief list",
-      title: "Every tax relief, *YA 2024 to 2027*",
+      title: "Every tax relief, *2027, 2026, 2025, 2024*",
       intro: "Limits in RM. A changed limit is in blue.",
       relief: "Relief",
       note: "* YA 2027: Budget 2027 proposals, not yet law. Sources: LHDN (YA 2024, 2025), Finance Act 2025 (YA 2026), Budget 2027.",
@@ -455,7 +458,7 @@ const en = {
     },
     faq: [
       {
-        q: "What is the individual tax relief in Malaysia for YA 2026?",
+        q: "What is the individual tax relief in Malaysia for 2026?",
         a: "RM 9,000 for every tax resident. Budget 2027 proposes raising it to RM 12,000 from YA 2027.",
       },
       {
