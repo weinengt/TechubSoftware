@@ -24,16 +24,16 @@
   "date": "2026-10-16"
  },
  "/clinic-management-system/": {
-  "hash": "6e2adb90fa5514cb",
-  "date": "2026-10-16"
+  "hash": "5d2afbeb50c3e0cb",
+  "date": "2026-10-22"
  },
  "/ms/clinic-management-system/": {
-  "hash": "32fdacac4760590d",
-  "date": "2026-10-16"
+  "hash": "4cfe03522921a325",
+  "date": "2026-10-22"
  },
  "/zh/clinic-management-system/": {
-  "hash": "7433fcae21a5ec8d",
-  "date": "2026-10-16"
+  "hash": "4acb8817ec04bb94",
+  "date": "2026-10-22"
  },
  "/salon-appointment-system/": {
   "hash": "65a97d029fb1f96a",
@@ -84,16 +84,16 @@
   "date": "2026-10-16"
  },
  "/inventory-management-system/": {
-  "hash": "fb988a5ac0d5a006",
-  "date": "2026-10-16"
+  "hash": "19455f45161d01e6",
+  "date": "2026-10-22"
  },
  "/ms/inventory-management-system/": {
-  "hash": "86f9c91a3652bf50",
-  "date": "2026-10-16"
+  "hash": "47e1deec8f767986",
+  "date": "2026-10-22"
  },
  "/zh/inventory-management-system/": {
-  "hash": "a34d6a3d5b4320f6",
-  "date": "2026-10-16"
+  "hash": "d363d45735e1d357",
+  "date": "2026-10-22"
  },
  "/use-cases/": {
   "hash": "50dc3cbbdc2c3f96",
@@ -216,160 +216,160 @@
   "date": "2026-10-16"
  },
  "/blog/": {
-  "hash": "7dbd667db78d8014",
-  "date": "2026-10-20"
+  "hash": "e64a12a2d0ffa809",
+  "date": "2026-10-22"
  },
  "/ms/blog/": {
-  "hash": "ac33efdcaf1d7e86",
-  "date": "2026-10-20"
+  "hash": "b4928c72639046ad",
+  "date": "2026-10-22"
  },
  "/zh/blog/": {
-  "hash": "4c3115db238bea74",
-  "date": "2026-10-20"
+  "hash": "1ca89d6917a95834",
+  "date": "2026-10-22"
  },
  "/blog/sme-loans-budget-2027-malaysia-tekun-bsn-bnm/": {
-  "hash": "d46c4c9d9a00be26",
-  "date": "2026-10-20"
+  "hash": "193abd1fb9fa48a8",
+  "date": "2026-10-22"
  },
  "/ms/blog/sme-loans-budget-2027-malaysia-tekun-bsn-bnm/": {
-  "hash": "1654873d10065698",
-  "date": "2026-10-20"
+  "hash": "179366b42f0c113f",
+  "date": "2026-10-22"
  },
  "/zh/blog/sme-loans-budget-2027-malaysia-tekun-bsn-bnm/": {
-  "hash": "ab9e15c910374067",
-  "date": "2026-10-20"
+  "hash": "777d9460cec2027d",
+  "date": "2026-10-22"
  },
  "/blog/minimum-wage-rm2000-june-2027-e-wages/": {
-  "hash": "89442767072a3027",
-  "date": "2026-10-20"
+  "hash": "c8054cea2b3b27fc",
+  "date": "2026-10-22"
  },
  "/ms/blog/minimum-wage-rm2000-june-2027-e-wages/": {
-  "hash": "49dfc287fb7717be",
-  "date": "2026-10-20"
+  "hash": "00f1f7e5e347d1cc",
+  "date": "2026-10-22"
  },
  "/zh/blog/minimum-wage-rm2000-june-2027-e-wages/": {
-  "hash": "418bbb39f4184367",
-  "date": "2026-10-20"
+  "hash": "688e2cd58cc8aa87",
+  "date": "2026-10-22"
  },
  "/blog/rts-link-johor-bahru-2027-business-ready/": {
-  "hash": "20291b0da0f39c2c",
-  "date": "2026-10-20"
+  "hash": "3f90606c20c6db14",
+  "date": "2026-10-22"
  },
  "/ms/blog/rts-link-johor-bahru-2027-business-ready/": {
-  "hash": "c66c698087b5186f",
-  "date": "2026-10-20"
+  "hash": "3030dcc04d55c6df",
+  "date": "2026-10-22"
  },
  "/zh/blog/rts-link-johor-bahru-2027-business-ready/": {
-  "hash": "1cce31f8dffe755c",
-  "date": "2026-10-20"
+  "hash": "8d67e97afe4a7b63",
+  "date": "2026-10-22"
  },
  "/blog/budget-2027-malaysia-clinics-salons-spas/": {
-  "hash": "3b48d24c0e538917",
-  "date": "2026-10-20"
+  "hash": "2e825fcd24a2a76c",
+  "date": "2026-10-22"
  },
  "/ms/blog/budget-2027-malaysia-clinics-salons-spas/": {
-  "hash": "af6eede9707b1b4a",
-  "date": "2026-10-20"
+  "hash": "9ceab654dda46936",
+  "date": "2026-10-22"
  },
  "/zh/blog/budget-2027-malaysia-clinics-salons-spas/": {
-  "hash": "047f59b12df32ffa",
-  "date": "2026-10-20"
+  "hash": "eba7481953990489",
+  "date": "2026-10-22"
  },
  "/blog/how-to-choose-clinic-management-system-malaysia/": {
-  "hash": "295f99a0ff3d8666",
-  "date": "2026-10-20"
+  "hash": "2915f6302d25d483",
+  "date": "2026-10-22"
  },
  "/ms/blog/how-to-choose-clinic-management-system-malaysia/": {
-  "hash": "5f12e1e86f5a8497",
-  "date": "2026-10-20"
+  "hash": "12884b25c980fe11",
+  "date": "2026-10-22"
  },
  "/zh/blog/how-to-choose-clinic-management-system-malaysia/": {
-  "hash": "bf31aebd0b3782e8",
-  "date": "2026-10-20"
+  "hash": "140dad0c886c9635",
+  "date": "2026-10-22"
  },
  "/blog/clinic-queue-system-number-calling/": {
-  "hash": "c49b5676d579992c",
-  "date": "2026-10-20"
+  "hash": "03cff4fd32c8b6aa",
+  "date": "2026-10-22"
  },
  "/ms/blog/clinic-queue-system-number-calling/": {
-  "hash": "5474ee99cebe25f0",
-  "date": "2026-10-20"
+  "hash": "1e529ae5feba957d",
+  "date": "2026-10-22"
  },
  "/zh/blog/clinic-queue-system-number-calling/": {
-  "hash": "7247ef26f0b3917a",
-  "date": "2026-10-20"
+  "hash": "c0d333de8680a67c",
+  "date": "2026-10-22"
  },
  "/blog/reduce-no-shows-whatsapp-reminders-booking-deposits/": {
-  "hash": "c3de3bb3c2e15fef",
-  "date": "2026-10-20"
+  "hash": "b39d50e9ed14b561",
+  "date": "2026-10-22"
  },
  "/ms/blog/reduce-no-shows-whatsapp-reminders-booking-deposits/": {
-  "hash": "b977e3bdd7187ccd",
-  "date": "2026-10-20"
+  "hash": "71629f953132467a",
+  "date": "2026-10-22"
  },
  "/zh/blog/reduce-no-shows-whatsapp-reminders-booking-deposits/": {
-  "hash": "0665153762b8fda5",
-  "date": "2026-10-20"
+  "hash": "4bb883a0a0362483",
+  "date": "2026-10-22"
  },
  "/blog/salon-staff-commission-payroll/": {
-  "hash": "3b3d53ea8f5b7439",
-  "date": "2026-10-20"
+  "hash": "357cdb3136407f00",
+  "date": "2026-10-22"
  },
  "/ms/blog/salon-staff-commission-payroll/": {
-  "hash": "3894976dda6fb0fc",
-  "date": "2026-10-20"
+  "hash": "0662de2a6d7fe086",
+  "date": "2026-10-22"
  },
  "/zh/blog/salon-staff-commission-payroll/": {
-  "hash": "4df6e2be0fb2b168",
-  "date": "2026-10-20"
+  "hash": "6fe50d9419143ded",
+  "date": "2026-10-22"
  },
  "/blog/beauty-centre-packages-memberships/": {
-  "hash": "3c304388a13b85e4",
-  "date": "2026-10-20"
+  "hash": "cecaf8612aced99d",
+  "date": "2026-10-22"
  },
  "/ms/blog/beauty-centre-packages-memberships/": {
-  "hash": "d9ad87e8bd062c99",
-  "date": "2026-10-20"
+  "hash": "9f2d148f7e435564",
+  "date": "2026-10-22"
  },
  "/zh/blog/beauty-centre-packages-memberships/": {
-  "hash": "b8b96c61ee376dc2",
-  "date": "2026-10-20"
+  "hash": "e43efd434263200c",
+  "date": "2026-10-22"
  },
  "/blog/spa-massage-booking-therapists-rooms/": {
-  "hash": "f1da001f17c22bd0",
-  "date": "2026-10-20"
+  "hash": "d29d8b9dd9fd7853",
+  "date": "2026-10-22"
  },
  "/ms/blog/spa-massage-booking-therapists-rooms/": {
-  "hash": "89dd84ed235a7a76",
-  "date": "2026-10-20"
+  "hash": "632319eec98fbfa1",
+  "date": "2026-10-22"
  },
  "/zh/blog/spa-massage-booking-therapists-rooms/": {
-  "hash": "8df1b1007c29127d",
-  "date": "2026-10-20"
+  "hash": "6e6a478ed12f2ac7",
+  "date": "2026-10-22"
  },
  "/blog/stop-overselling-tiktok-facebook-live/": {
-  "hash": "0445a250f47bdf08",
-  "date": "2026-10-20"
+  "hash": "2804b3e0fb36179e",
+  "date": "2026-10-22"
  },
  "/ms/blog/stop-overselling-tiktok-facebook-live/": {
-  "hash": "b67f741e0edd21e5",
-  "date": "2026-10-20"
+  "hash": "56c972819b2b399e",
+  "date": "2026-10-22"
  },
  "/zh/blog/stop-overselling-tiktok-facebook-live/": {
-  "hash": "ba281a8d41469f89",
-  "date": "2026-10-20"
+  "hash": "65dd489a9b798326",
+  "date": "2026-10-22"
  },
  "/blog/lhdn-e-invoice-2026-clinics-salons-spas/": {
-  "hash": "045b29e6187694d9",
-  "date": "2026-10-20"
+  "hash": "865c6f55486e0c97",
+  "date": "2026-10-22"
  },
  "/ms/blog/lhdn-e-invoice-2026-clinics-salons-spas/": {
-  "hash": "ebdfe8cc275447aa",
-  "date": "2026-10-20"
+  "hash": "794b4aadaa335801",
+  "date": "2026-10-22"
  },
  "/zh/blog/lhdn-e-invoice-2026-clinics-salons-spas/": {
-  "hash": "61e62a5ad268656b",
-  "date": "2026-10-20"
+  "hash": "c8dd8660a1613e23",
+  "date": "2026-10-22"
  },
  "/contact/": {
   "hash": "880fe05ea63103ba",
@@ -408,15 +408,15 @@
   "date": "2026-10-16"
  },
  "/tools/": {
-  "hash": "6ac92d64ef6c9a72",
+  "hash": "3da9630b9a6d783a",
   "date": "2026-10-22"
  },
  "/ms/tools/": {
-  "hash": "29bd863f658fb7cf",
+  "hash": "634aabbfb72b71d0",
   "date": "2026-10-22"
  },
  "/zh/tools/": {
-  "hash": "902dec259bcca051",
+  "hash": "310cdcab686cc9d0",
   "date": "2026-10-22"
  },
  "/tools/invoice-generator/": {
@@ -432,27 +432,27 @@
   "date": "2026-10-22"
  },
  "/tools/payroll-calculator/": {
-  "hash": "91005b49095fa7e4",
+  "hash": "fc2200ce71897a1e",
   "date": "2026-10-22"
  },
  "/ms/tools/payroll-calculator/": {
-  "hash": "88e46ac1e5453d66",
+  "hash": "d34d955f6f095379",
   "date": "2026-10-22"
  },
  "/zh/tools/payroll-calculator/": {
-  "hash": "f5fdc042889f0b7e",
+  "hash": "a225491b0c2b1440",
   "date": "2026-10-22"
  },
  "/tools/tax-relief-calculator/": {
-  "hash": "70de7a7079349641",
+  "hash": "394de5f561be0966",
   "date": "2026-10-22"
  },
  "/ms/tools/tax-relief-calculator/": {
-  "hash": "90a8eee6ce1b0b45",
+  "hash": "1a02cca87f0a1583",
   "date": "2026-10-22"
  },
  "/zh/tools/tax-relief-calculator/": {
-  "hash": "fe5c9a3fdd6463dd",
+  "hash": "f3da3da4a6d6b6a8",
   "date": "2026-10-22"
  }
 }

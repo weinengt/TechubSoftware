@@ -61,7 +61,7 @@ const ms: ToolsDict = {
       title: "Alat Bisnes Percuma Malaysia | Invois, Gaji & Pelepasan Cukai",
       socialTitle: "Alat Bisnes Percuma Malaysia | Techub Software",
       description:
-        "Alat percuma untuk bisnes di Malaysia: penjana invois dengan logo anda, kalkulator gaji dengan KWSP, PERKESO, SIP dan PCB serta slip gaji, dan kalkulator pelepasan cukai Malaysia untuk 2027, 2026, 2025 dan 2024. Tak perlu daftar; data kekal dalam peranti anda.",
+        "Alat percuma untuk bisnes di Malaysia: penjana invois dengan logo anda, kalkulator gaji dengan KWSP, PERKESO, SIP dan PCB serta slip gaji, dan kalkulator cukai pendapatan dan pelepasan cukai untuk 2027, 2026, 2025 dan 2024. Tak perlu daftar; data kekal dalam peranti anda.",
       keywords: [
         "alat bisnes percuma Malaysia",
         "penjana invois percuma",
@@ -183,22 +183,24 @@ const ms: ToolsDict = {
     blurb: "KWSP, PERKESO, SIP dan PCB dikira, dengan slip gaji PDF.",
     points: ["KWSP, PERKESO, LINDUNG 24 Jam, SIP dan PCB 2024 hingga 2026", "Bonus, OT, elaun dan zakat", "Slip gaji profesional dengan logo anda", "Muat turun atau kongsi PDF"],
     meta: {
-      title: "Kalkulator Gaji Malaysia 2026 | KWSP, PERKESO, SIP & PCB",
-      socialTitle: "Kalkulator Gaji & Slip Gaji Malaysia | Techub Software",
+      title: "Kalkulator Gaji KWSP, PERKESO, SIP & PCB 2026 | Kira Gaji Bersih Percuma",
+      socialTitle: "Kalkulator KWSP, PERKESO, SIP & PCB | Techub Software",
       description:
-        "Kalkulator gaji Malaysia percuma untuk 2026: KWSP, PERKESO dengan LINDUNG 24 Jam, SIP, PCB (MTD) dan levi HRD Corp dikira ikut peraturan rasmi, dengan slip gaji PDF profesional untuk dimuat turun atau dikongsi. Tak perlu daftar.",
+        "Kalkulator gaji percuma untuk kira KWSP, PERKESO, SIP dan PCB bagi 2026, 2025 dan 2024. Masukkan gaji untuk tengok gaji bersih, dengan LINDUNG 24 Jam dan levi HRD Corp dikira ikut peraturan rasmi, kemudian muat turun atau kongsi slip gaji PDF. Tak perlu daftar.",
       keywords: [
         "kalkulator gaji Malaysia",
+        "kalkulator KWSP PERKESO SIP",
+        "cara kira KWSP pekerja",
+        "cara kira gaji tolak KWSP",
         "kira gaji bersih",
         "kalkulator PCB 2026",
-        "kalkulator KWSP PERKESO SIP",
         "slip gaji percuma",
         "template slip gaji",
         "potongan gaji Malaysia",
       ],
     },
     eyebrow: "Kalkulator gaji percuma",
-    title: "Gaji dan slip gaji Malaysia, *tepat*",
+    title: "Kalkulator KWSP, PERKESO, SIP & PCB, *dengan slip gaji*",
     intro: "Pilih bulan dan masukkan gaji. KWSP, PERKESO, SIP dan PCB dikira ikut peraturan bulan itu, dalam slip gaji yang sedia dihantar.",
     // Sample values stay in English on every language: invoices and payslips in Malaysia are mostly in English.
     example: {
@@ -298,6 +300,10 @@ const ms: ToolsDict = {
         a: "Untuk warganegara Malaysia bawah 60, pekerja caruman 11% dan majikan 13% untuk gaji sehingga RM 5,000, atau 12% jika lebih. Warganegara 60 ke atas 0%, dan majikan 4%. Pekerja asing 2% dan majikan 2%, sejak Oktober 2025.",
       },
       {
+        q: "Cara kira KWSP pekerja dan gaji bersih selepas tolak KWSP?",
+        a: "Contoh gaji RM 3,000 sebulan untuk warganegara Malaysia bawah 60 tahun pada 2026. KWSP: pekerja bayar 11% (RM 330) dan majikan 13% (RM 390). PERKESO dan SIP ikut jadual kadar gaji: pekerja bayar RM 14.75 PERKESO dan RM 5.90 SIP, majikan RM 51.65 dan RM 5.90. LINDUNG 24 Jam tambah RM 22.15 untuk pekerja kecuali dia menarik diri. PCB RM 0 untuk orang bujang pada gaji ini, jadi gaji bersih RM 2,627.20.",
+      },
+      {
         q: "Apa itu PERKESO LINDUNG 24 Jam?",
         a: "Skim PERKESO dari 1 Jun 2026 yang melindungi kemalangan di luar waktu kerja. Pekerja bayar 0.75% gaji sehingga RM 6,000, paling banyak RM 44.65 sebulan. Wajib untuk pekerja asing; pekerja Malaysia boleh menarik diri.",
       },
@@ -325,11 +331,13 @@ const ms: ToolsDict = {
     blurb: "Semua pelepasan cukai pendapatan 2027, 2026, 2025 dan 2024, dan cukai yang anda bayar.",
     points: ["2027 (Bajet 2027), 2026, 2025 dan 2024", "Had dan had kongsi dikira untuk anda", "Cukai, rebat, zakat dan bayaran balik", "Apa yang baru setiap tahun"],
     meta: {
-      title: "Kalkulator Pelepasan Cukai Malaysia 2027, 2026, 2025, 2024",
-      socialTitle: "Kalkulator Pelepasan Cukai Malaysia 2027, 2026, 2025, 2024 | Techub Software",
+      title: "Kalkulator Cukai Pendapatan & Pelepasan Cukai 2027, 2026, 2025, 2024",
+      socialTitle: "Kalkulator Cukai Pendapatan & Pelepasan Cukai 2027, 2026, 2025, 2024 | Techub Software",
       description:
-        "Kalkulator pelepasan cukai Malaysia percuma untuk 2027, 2026, 2025 dan 2024. Semua pelepasan cukai pendapatan individu dan hadnya, kemudian pendapatan bercukai, cukai, rebat, zakat dan bayaran balik. Berdasarkan LHDN; 2027 ikut cadangan Bajet 2027.",
+        "Kalkulator cukai pendapatan Malaysia percuma untuk 2027, 2026, 2025 dan 2024, dengan senarai semua pelepasan cukai dan hadnya. Tengok pendapatan bercukai, cukai, rebat, zakat dan bayaran balik. Berdasarkan LHDN; 2027 ikut cadangan Bajet 2027.",
       keywords: [
+        "kalkulator cukai pendapatan 2027",
+        "senarai pelepasan cukai 2027",
         "kalkulator pelepasan cukai 2027",
         "kalkulator pelepasan cukai 2026",
         "kalkulator pelepasan cukai 2025",
@@ -343,7 +351,7 @@ const ms: ToolsDict = {
       ],
     },
     eyebrow: "Kalkulator pelepasan cukai",
-    title: "Kalkulator pelepasan cukai Malaysia *2027, 2026, 2025, 2024*",
+    title: "Kalkulator cukai pendapatan & pelepasan cukai *2027, 2026, 2025, 2024*",
     intro: "Pilih tahun, masukkan pendapatan dan perbelanjaan anda. Kami kira setiap had dan tunjuk cukai yang anda bayar.",
     form: {
       year: "Tahun taksiran",
@@ -446,7 +454,7 @@ const ms: ToolsDict = {
     },
     tables: {
       eyebrow: "Senarai pelepasan cukai",
-      title: "Semua pelepasan cukai, *2027, 2026, 2025, 2024*",
+      title: "Senarai pelepasan cukai, *2027, 2026, 2025, 2024*",
       intro: "Had dalam RM. Had yang berubah ditanda biru.",
       relief: "Pelepasan",
       note: "* TT 2027: cadangan Bajet 2027, belum jadi undang-undang. Sumber: LHDN (TT 2024, 2025), Akta Kewangan 2025 (TT 2026), Bajet 2027.",
@@ -462,6 +470,14 @@ const ms: ToolsDict = {
       {
         q: "Berapa pelepasan cukai individu di Malaysia untuk 2026?",
         a: "RM 9,000 untuk setiap pemastautin cukai. Bajet 2027 mencadangkan kenaikan ke RM 12,000 mulai TT 2027.",
+      },
+      {
+        q: "Tahun mana perlu dipilih untuk cukai yang saya isi pada 2027?",
+        a: "Pilih 2026. Borang yang anda isi pada 2027 adalah untuk pendapatan tahun 2026, iaitu tahun taksiran (TT) 2026. Pilih 2027 untuk anggar cukai atas pendapatan tahun 2027, ikut cadangan Bajet 2027.",
+      },
+      {
+        q: "Berapa pelepasan cukai untuk insurans nyawa?",
+        a: "Sehingga RM 3,000 setahun untuk insurans nyawa atau takaful keluarga, dalam had gabungan RM 7,000 bersama KWSP (sehingga RM 4,000). Ia meliputi anda dan pasangan, dan anak juga mulai TT 2026.",
       },
       {
         q: "Apa yang berubah dalam Bajet 2027 untuk cukai individu?",

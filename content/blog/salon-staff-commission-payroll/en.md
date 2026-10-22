@@ -1,7 +1,7 @@
 ---
-title: Salon Commission System: How to Calculate Stylist Pay
+title: Hair Salon Commission System: How to Calculate Stylist Pay
 description: How a salon commission system works in Malaysia: commission types, simple RM examples, and payroll with basic salary, commission and allowances.
-keywords: salon commission system, salon payroll system Malaysia, stylist commission calculation
+keywords: hair salon commission, salon commission system, salon payroll system Malaysia, stylist commission calculation
 cta: Want to see commission and payroll worked out for your salon? Book a free demo with us on WhatsApp.
 ---
 To calculate stylist commission, add up each stylist's service and product sales for the month, then multiply each by your commission rate. A salon commission system does this from every POS bill, so payroll is simply basic salary plus commission plus allowances.

@@ -1,7 +1,7 @@
 ---
-title: 2027 年 6 月起最低工资 RM 2,000：谁可以豁免？e-Wages 是什么？
-description: 马来西亚最低工资 2027 年 6 月 1 日起调高到 RM 2,000。年销售额低于 RM 5,000 万的豁免怎么算、集团销售额怎样合并，以及新 e-Wages 系统会查什么。
-keywords: 最低工资RM2000马来西亚, 中小企业最低工资豁免, e-Wages马来西亚
+title: 马来西亚最低工资2027：6月起 RM 2,000，谁可以豁免？e-Wages 是什么？
+description: 马来西亚最低工资（底薪）2027年6月1日起从 RM 1,700 调高到 RM 2,000。条件是什么、年销售额低于 RM 5,000 万的豁免怎么算、日薪和时薪多少，以及新 e-Wages 系统会查什么。
+keywords: 马来西亚最低工资2027, 马来西亚底薪2027, 最低工资RM2000马来西亚, 最低工资时薪, 中小企业最低工资豁免, e-Wages马来西亚
 cta: 想要一套为新最低工资准备好的薪水系统？在 WhatsApp 预约免费 Demo 吧。
 ---
 马来西亚最低工资 2027 年 6 月 1 日起，从每月 RM 1,700 调高到 RM 2,000。年销售额低于 RM 5,000 万的生意目前可以豁免这次调高，但集团销售额要合并计算，而且新的 e-Wages 系统从 2027 年 6 月起会开始检查工资有没有准时发。
@@ -19,6 +19,22 @@ cta: 想要一套为新最低工资准备好的薪水系统？在 WhatsApp 预�
 | 低于 RM 5,000 万，自愿调高 | 可以自愿改为 RM 2,000 |
 
 最低工资适用于所有员工，包括外籍员工。
+
+## 最低工资 RM 2,000：日薪和时薪是多少？
+
+按日或按小时计薪的员工，也有各自的最低工资。以下和月薪一起列出：
+
+| 计薪方式 | 2027年6月1日起 | 现在 |
+|---|---|---|
+| 月薪 | RM 2,000 | RM 1,700 |
+| 日薪，每周做 6 天 | RM 76.92 | RM 65.38 |
+| 日薪，每周做 5 天 | RM 92.31 | RM 78.46 |
+| 日薪，每周做 4 天 | RM 115.38 | RM 98.08 |
+| 时薪 | RM 10.26 | RM 8.72 |
+
+RM 1,700 的数字来自 2024 年最低工资法令。RM 2,000 的日薪和时薪是我们用同样方法算出的估计，正式数字以新法令为准。
+
+新山、吉隆坡、槟城和全马其他地方都用同样的最低工资。
 
 ## RM 5,000 万的集团销售额怎么算？
 
@@ -74,9 +90,15 @@ Techub 的[发廊](/zh/salon-appointment-system/)、[美容中心](/zh/beauty-ap
 
 其他改变可以看我们的 [2027 年财政预算案指南](/zh/blog/budget-2027-malaysia-clinics-salons-spas/)。
 
-资料来源：[The Star](https://thestar.com.my/news/nation/2026/10/16/new-e-wages-system-to-help-implement-minimum-wage-increase-from-june-next-year-says-ramanan)、[Bernama](https://www.bernama.com/en/general/news.php?id=2618956)、[PwC Malaysia](https://www.pwc.com/my/en/media/press-releases/2026/20261009-pwc-malaysia-budget-2027-statement.html)。
+资料来源：[The Star](https://thestar.com.my/news/nation/2026/10/16/new-e-wages-system-to-help-implement-minimum-wage-increase-from-june-next-year-says-ramanan)、[Bernama](https://www.bernama.com/en/general/news.php?id=2618956)、[PwC Malaysia](https://www.pwc.com/my/en/media/press-releases/2026/20261009-pwc-malaysia-budget-2027-statement.html)、[Skrine：2024 年最低工资法令](https://www.skrine.com/insights/alerts/december-2024/minimum-wages-order-2024-gazetted)、[Skrine：2023 年起全国统一最低工资](https://www.skrine.com/insights/alerts/april-2022/minimum-wages-order-2022-gazetted)。
 
 ## 常见问题
+
+### RM 2,000 最低工资的条件是什么？
+2027年6月1日起，年销售额 RM 5,000 万或以上（以整个集团计算）的雇主，每月至少要付 RM 2,000。计算的是底薪，不包括佣金或津贴。低于 RM 5,000 万的雇主目前豁免，继续付至少 RM 1,700，也可以自愿调到 RM 2,000。
+
+### 新山、吉隆坡和槟城的最低工资一样吗？
+一样。马来西亚全国只有一个最低工资，大城市和小镇都一样。现在是 RM 1,700；2027年6月1日起的 RM 2,000，也适用于新山、吉隆坡、槟城和全马其他地方没有豁免的商家。
 
 ### 马来西亚 RM 2,000 最低工资什么时候开始？
 2027 年 6 月 1 日。根据 2027 年财政预算案，最低工资从每月 RM 1,700 调高到 RM 2,000。

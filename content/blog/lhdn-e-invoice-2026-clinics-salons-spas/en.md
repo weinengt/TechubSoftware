@@ -1,7 +1,7 @@
 ---
 title: LHDN e-Invoice 2026: Do Clinics, Salons and Spas Need It?
-description: LHDN e-Invoice in Malaysia since 1 September 2026: who must issue it, why it is voluntary under RM 3 million, and how MyInvois works.
-keywords: LHDN e-Invoice 2026, e-Invoice Malaysia small business, MyInvois
+description: LHDN e-Invoice for clinics, salons and spas in Malaysia since 1 September 2026: who must issue it, why it is voluntary under RM 3 million, and how MyInvois works.
+keywords: LHDN e-Invoice 2026, salon e-Invoice Malaysia, e-Invoice Malaysia small business, MyInvois
 cta: Want to see LHDN e-Invoice working in a clinic, salon, beauty centre or spa system? Book a free demo with us on WhatsApp.
 ---
 If your small business in Malaysia has annual sales below RM 3 million, you generally do not have to issue LHDN e-Invoices. Since 1 September 2026, e-Invoice is voluntary for these businesses, while businesses at RM 3 million and above still follow LHDN's timeline. You can still opt in through LHDN's MyInvois system.

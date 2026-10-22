@@ -1160,7 +1160,7 @@ const ms: Dict = {
         title: "Sistem Pengurusan Klinik Malaysia | KL, JB & Pulau Pinang",
         socialTitle: "Sistem Pengurusan Klinik Malaysia | Techub Software",
         description:
-          "Sistem pengurusan klinik untuk klinik di Kuala Lumpur, Johor Bahru, Pulau Pinang dan seluruh Malaysia: EMR, sistem giliran, stok ubat AI, e-Invois LHDN. Dari RM {price}/bulan setiap outlet.",
+          "Sistem dan software pengurusan klinik untuk klinik GP, gigi dan pakar di Kuala Lumpur, Johor Bahru, Pulau Pinang dan seluruh Malaysia: temujanji, EMR, sistem giliran, stok ubat AI, e-Invois LHDN. Dari RM {price}/bulan setiap outlet.",
         keywords: [
           "sistem temujanji klinik",
           "sistem giliran klinik",
@@ -1330,12 +1330,16 @@ const ms: Dict = {
           a: "Sistem klinik Techub bermula dari RM {price}/bulan setiap outlet (Tawaran Alu-aluan, {welcomeUsers} pengguna pertama), dan klinik baru dapat {months} bulan pertama percuma, termasuk pemasangan dan latihan staf. Custom dicaj ikut jam kerja, dari RM {custom} sejam.",
         },
         {
-          q: "Sistem klinik Techub sesuai untuk klinik kecil?",
-          a: "Sesuai. Ia direka untuk klinik dengan seorang doktor sampailah kumpulan klinik banyak cawangan. Pelan bermula dari RM {price}/bulan setiap outlet (Tawaran Alu-aluan, {welcomeUsers} pengguna pertama) dan klinik baru dapat {months} bulan pertama percuma, termasuk pemasangan dan latihan staf.",
+          q: "Sistem klinik Techub sesuai untuk klinik GP dan klinik gigi yang kecil?",
+          a: "Sesuai. Ia direka untuk klinik GP dengan seorang doktor sampailah kumpulan klinik banyak cawangan, dan sesuai juga untuk klinik gigi, pakar, estetik, fisioterapi dan TCM. Pelan bermula dari RM {price}/bulan setiap outlet (Tawaran Alu-aluan, {welcomeUsers} pengguna pertama) dan klinik baru dapat {months} bulan pertama percuma, termasuk pemasangan dan latihan staf.",
         },
         {
           q: "Boleh rekod data pesakit dan ubat?",
           a: "Boleh. Setiap pesakit ada rekod digital lengkap: lawatan, diagnosis, pelan rawatan, preskripsi dan sejarah ubat yang dikeluarkan. Anda boleh lihat laporan ubat, sejarah diagnosis dan pelan rawatan, serta laporan kesihatan penuh pesakit di satu tempat. Sistem rekod ubat tunjuk dos, kekerapan, batch dan amaran alahan sebelum anda tulis preskripsi.",
+        },
+        {
+          q: "Boleh urus stok ubat, macam software inventori perubatan?",
+          a: "Boleh. Imbas nota penghantaran pembekal dan AI baca setiap item, batch dan tarikh luput, jadi stok dikemas kini sendiri. Stok ditolak bila ubat dikeluarkan, setiap pergerakan direkod, dan anda dapat amaran stok rendah dan tarikh luput.",
         },
         {
           q: "Boleh muat naik laporan makmal atau hospital ke rekod pesakit?",
@@ -2174,7 +2178,7 @@ const ms: Dict = {
     },
     inventory: {
       meta: {
-        title: "Sistem Pengurusan Inventori & ERP Malaysia | KL, JB & Pulau Pinang",
+        title: "Sistem Pengurusan Inventori, Barcode & ERP Malaysia | KL, JB & Pulau Pinang",
         socialTitle: "Sistem Inventori & ERP Malaysia | Techub Software",
         description:
           "Sistem pengurusan inventori dan ERP untuk bisnes di Kuala Lumpur, Johor Bahru, Pulau Pinang dan seluruh Malaysia: stok masuk ikut batch, barcode dan QR, jualan dan akaun berhubung, pulangan satu klik.",

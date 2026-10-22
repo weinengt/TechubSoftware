@@ -1,7 +1,7 @@
 ---
-title: RM 2,000 Minimum Wage from June 2027: Who Is Exempt, and What Is e-Wages?
-description: Malaysia's minimum wage rises to RM 2,000 on 1 June 2027. Who the RM 50 million sales exemption covers, how group sales count, and what the new e-Wages system checks.
-keywords: minimum wage RM2000 Malaysia 2027, minimum wage exemption MSME, e-Wages Malaysia
+title: Malaysia Minimum Wage RM 2,000 from June 2027: Who Is Exempt, and What Is e-Wages?
+description: Malaysia's minimum wage rises from RM 1,700 to RM 2,000 on 1 June 2027. The conditions, who the RM 50 million sales exemption covers, daily and hourly rates, and what the new e-Wages system checks.
+keywords: minimum wage RM2000 Malaysia 2027, minimum wages 2027, minimum wage per hour Malaysia, minimum wage Johor Bahru, minimum wage exemption MSME, e-Wages Malaysia
 cta: Want payroll that is ready for the new minimum wage? Book a free demo with us on WhatsApp.
 ---
 Malaysia's minimum wage goes up from RM 1,700 to RM 2,000 a month on 1 June 2027. Businesses with annual sales below RM 50 million are exempt from the increase for now, but group sales count together, and a new e-Wages system will start checking that wages are paid on time from June 2027.
@@ -18,7 +18,23 @@ The new rate was announced in Budget 2027 on 9 October 2026. On 16 October, Huma
 | Annual sales below RM 50 million | Exempt from the increase for now, so keep paying at least RM 1,700 |
 | Below RM 50 million, by choice | You may move to RM 2,000 voluntarily |
 
-The minimum wage covers all workers, including non-Malaysian staff.
+The minimum wage covers all workers, including foreign staff.
+
+## RM 2,000 minimum wage per day and per hour
+
+Staff paid by the day or by the hour have their own minimum rates. Here they are next to the monthly rate:
+
+| Paid | From 1 June 2027 | Now |
+|---|---|---|
+| Monthly | RM 2,000 | RM 1,700 |
+| Daily, 6 days a week | RM 76.92 | RM 65.38 |
+| Daily, 5 days a week | RM 92.31 | RM 78.46 |
+| Daily, 4 days a week | RM 115.38 | RM 98.08 |
+| Hourly | RM 10.26 | RM 8.72 |
+
+The RM 1,700 rates are from the Minimum Wages Order 2024. The RM 2,000 daily and hourly rates are our estimate, worked out the same way; the official figures come with the new order.
+
+The same rates apply in Johor Bahru, Kuala Lumpur, Penang and everywhere else in Malaysia.
 
 ## How do group sales count towards the RM 50 million?
 
@@ -26,7 +42,7 @@ The minister said companies are assessed as a group. A subsidiary is counted tog
 
 So a single salon with RM 2 million in sales is well below the line. But a clinic that belongs to a bigger healthcare group may have to pay RM 2,000, even if the clinic itself is small.
 
-How long the exemption lasts has not been announced yet. The Malaysian Employers Federation (MEF) has asked for clear eligibility rules, so watch for official guidelines before June 2027.
+How long the exemption lasts has not been announced yet. The main employers' group, MEF, has asked for clear eligibility rules, so watch for official guidelines before June 2027.
 
 ## What is e-Wages?
 
@@ -41,7 +57,7 @@ Under the Employment Act 1955, wages must be paid no later than the 7th day afte
 
 ## How much more will RM 2,000 cost per worker?
 
-If you are not exempt, or you choose to pay RM 2,000, here is a made-up example for one Malaysian worker under 60 moving from RM 1,700:
+If you are not exempt, or you choose to pay RM 2,000, here is a made-up example for one worker under 60 who is a Malaysia citizen, moving from RM 1,700:
 
 | Made-up example, per worker | Each month |
 |---|---|
@@ -74,9 +90,15 @@ Plans start from RM 99/month per outlet with our Welcome offer (12 months plus 2
 
 Read more about the rest of the changes in our [Budget 2027 guide](/blog/budget-2027-malaysia-clinics-salons-spas/).
 
-Sources: [The Star](https://thestar.com.my/news/nation/2026/10/16/new-e-wages-system-to-help-implement-minimum-wage-increase-from-june-next-year-says-ramanan), [Bernama](https://www.bernama.com/en/general/news.php?id=2618956), [PwC Malaysia](https://www.pwc.com/my/en/media/press-releases/2026/20261009-pwc-malaysia-budget-2027-statement.html).
+Sources: [The Star](https://thestar.com.my/news/nation/2026/10/16/new-e-wages-system-to-help-implement-minimum-wage-increase-from-june-next-year-says-ramanan), [Bernama](https://www.bernama.com/en/general/news.php?id=2618956), [PwC Malaysia](https://www.pwc.com/my/en/media/press-releases/2026/20261009-pwc-malaysia-budget-2027-statement.html), [Skrine on the Minimum Wages Order 2024](https://www.skrine.com/insights/alerts/december-2024/minimum-wages-order-2024-gazetted), [Skrine on one national rate since 2023](https://www.skrine.com/insights/alerts/april-2022/minimum-wages-order-2022-gazetted).
 
 ## FAQ
+
+### What are the conditions for the RM 2,000 minimum wage?
+From 1 June 2027, employers with annual sales of RM 50 million or more, counted for the whole group, must pay at least RM 2,000 a month. Basic salary is what counts, not commission or allowances. Employers below RM 50 million are exempt for now and keep paying at least RM 1,700, or may move to RM 2,000 voluntarily.
+
+### Is the minimum wage the same in Johor Bahru, Kuala Lumpur and Penang?
+Yes. Malaysia has one minimum wage for the whole country, in big cities and small towns alike. RM 1,700 applies today, and the RM 2,000 rate from 1 June 2027 will apply in Johor Bahru, Kuala Lumpur, Penang and everywhere else to businesses that are not exempt.
 
 ### When does the RM 2,000 minimum wage start in Malaysia?
 On 1 June 2027. The minimum wage rises from RM 1,700 to RM 2,000 a month, as announced in Budget 2027.

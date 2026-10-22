@@ -1,14 +1,14 @@
 ---
-title: Gaji Minimum RM 2,000 Mulai Jun 2027: Siapa Dikecualikan, dan Apa Itu e-Wages?
-description: Gaji minimum naik ke RM 2,000 pada 1 Jun 2027. Siapa yang dikecualikan bawah RM 50 juta jualan, cara jualan kumpulan dikira, dan apa yang sistem e-Wages semak.
-keywords: gaji minimum RM2000 2027, pengecualian gaji minimum PMKS, e-Wages Malaysia
+title: Syarat Kenaikan Gaji Minimum RM 2,000 Mulai Jun 2027: Siapa Dikecualikan, dan Apa Itu e-Wages?
+description: Gaji minimum naik dari RM 1,700 ke RM 2,000 pada 1 Jun 2027. Syarat kenaikan gaji minimum, siapa dikecualikan bawah RM 50 juta jualan, kadar sehari dan sejam, dan apa yang sistem e-Wages semak.
+keywords: syarat gaji minimum 2000, syarat kenaikan gaji 2027, gaji minimum RM2000 2027, gaji minimum sejam, pengecualian gaji minimum PMKS, e-Wages Malaysia
 cta: Nak sistem gaji yang sedia untuk gaji minimum baru? Tempah demo percuma dengan kami di WhatsApp.
 ---
 Gaji minimum Malaysia naik dari RM 1,700 ke RM 2,000 sebulan pada 1 Jun 2027. Perniagaan dengan jualan tahunan bawah RM 50 juta dikecualikan daripada kenaikan ini buat masa sekarang, tapi jualan kumpulan dikira bersama, dan sistem baru e-Wages akan mula semak gaji dibayar tepat masa mulai Jun 2027.
 
 Panduan ini untuk pemilik klinik, salon, pusat kecantikan dan spa. Ia terangkan siapa perlu bayar RM 2,000, cara semak sama ada anda dikecualikan, apa itu e-Wages, dan cara sediakan sistem gaji anda. Ini maklumat am setakat Oktober 2026, bukan nasihat undang-undang.
 
-## Siapa perlu bayar gaji minimum RM 2,000?
+## Syarat gaji minimum RM 2,000: siapa perlu bayar?
 
 Kadar baru diumumkan dalam Bajet 2027 pada 9 Oktober 2026. Pada 16 Oktober, Menteri Sumber Manusia Datuk Seri R. Ramanan terangkan cara ia berfungsi:
 
@@ -19,6 +19,22 @@ Kadar baru diumumkan dalam Bajet 2027 pada 9 Oktober 2026. Pada 16 Oktober, Ment
 | Bawah RM 50 juta, atas pilihan sendiri | Boleh naik ke RM 2,000 secara sukarela |
 
 Gaji minimum meliputi semua pekerja, termasuk pekerja bukan warganegara.
+
+## Gaji minimum RM 2,000 sehari dan sejam
+
+Pekerja yang dibayar ikut hari atau ikut jam ada kadar minimum sendiri. Ini kadarnya, bersama kadar bulanan:
+
+| Dibayar | Mulai 1 Jun 2027 | Sekarang |
+|---|---|---|
+| Bulanan | RM 2,000 | RM 1,700 |
+| Harian, 6 hari seminggu | RM 76.92 | RM 65.38 |
+| Harian, 5 hari seminggu | RM 92.31 | RM 78.46 |
+| Harian, 4 hari seminggu | RM 115.38 | RM 98.08 |
+| Sejam | RM 10.26 | RM 8.72 |
+
+Kadar RM 1,700 dari Perintah Gaji Minimum 2024. Kadar harian dan sejam untuk RM 2,000 ialah anggaran kami, dikira dengan cara yang sama; angka rasmi akan keluar bersama perintah baru.
+
+Kadar yang sama terpakai di Johor Bahru, Kuala Lumpur, Pulau Pinang dan seluruh Malaysia.
 
 ## Macam mana jualan kumpulan dikira untuk RM 50 juta?
 
@@ -74,9 +90,15 @@ Pelan bermula dari RM 99/bulan setiap outlet dengan Tawaran Alu-aluan (12 bulan 
 
 Baca perubahan lain dalam [panduan Bajet 2027](/ms/blog/budget-2027-malaysia-clinics-salons-spas/) kami.
 
-Sumber: [The Star](https://thestar.com.my/news/nation/2026/10/16/new-e-wages-system-to-help-implement-minimum-wage-increase-from-june-next-year-says-ramanan), [Bernama](https://www.bernama.com/en/general/news.php?id=2618956), [PwC Malaysia](https://www.pwc.com/my/en/media/press-releases/2026/20261009-pwc-malaysia-budget-2027-statement.html).
+Sumber: [The Star](https://thestar.com.my/news/nation/2026/10/16/new-e-wages-system-to-help-implement-minimum-wage-increase-from-june-next-year-says-ramanan), [Bernama](https://www.bernama.com/en/general/news.php?id=2618956), [PwC Malaysia](https://www.pwc.com/my/en/media/press-releases/2026/20261009-pwc-malaysia-budget-2027-statement.html), [Skrine tentang Perintah Gaji Minimum 2024](https://www.skrine.com/insights/alerts/december-2024/minimum-wages-order-2024-gazetted), [Skrine tentang satu kadar seluruh negara sejak 2023](https://www.skrine.com/insights/alerts/april-2022/minimum-wages-order-2022-gazetted).
 
 ## Soalan lazim
+
+### Apa syarat kenaikan gaji minimum RM 2,000?
+Mulai 1 Jun 2027, majikan dengan jualan tahunan RM 50 juta atau lebih, dikira untuk seluruh kumpulan syarikat, mesti bayar sekurang-kurangnya RM 2,000 sebulan. Yang dikira ialah gaji pokok, bukan komisen atau elaun. Majikan bawah RM 50 juta dikecualikan buat masa ini dan terus bayar sekurang-kurangnya RM 1,700, atau boleh naik ke RM 2,000 secara sukarela.
+
+### Adakah gaji minimum sama di Johor Bahru, Kuala Lumpur dan Pulau Pinang?
+Ya. Malaysia ada satu kadar gaji minimum untuk seluruh negara, di bandar besar atau pekan kecil. RM 1,700 terpakai sekarang, dan kadar RM 2,000 mulai 1 Jun 2027 akan terpakai di Johor Bahru, Kuala Lumpur, Pulau Pinang dan tempat lain untuk perniagaan yang tidak dikecualikan.
 
 ### Bila gaji minimum RM 2,000 bermula di Malaysia?
 Pada 1 Jun 2027. Gaji minimum naik dari RM 1,700 ke RM 2,000 sebulan, seperti diumumkan dalam Bajet 2027.

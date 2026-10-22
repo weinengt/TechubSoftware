@@ -61,7 +61,7 @@ const en = {
       title: "Free Business Tools Malaysia | Invoice, Payroll & Tax Relief",
       socialTitle: "Free Business Tools for Malaysia | Techub Software",
       description:
-        "Free tools for businesses in Malaysia: an invoice generator with your logo, a payroll calculator with EPF, SOCSO, EIS and PCB payslips, and a Malaysia tax relief calculator for 2027, 2026, 2025 and 2024. No sign-up; your data stays on your device.",
+        "Free tools for businesses in Malaysia: an invoice generator with your logo, a payroll calculator with EPF, SOCSO, EIS and PCB payslips, and a Malaysia income tax and tax relief calculator for 2027, 2026, 2025 and 2024. No sign-up; your data stays on your device.",
       keywords: [
         "free business tools Malaysia",
         "invoice generator Malaysia",
@@ -182,22 +182,24 @@ const en = {
     blurb: "EPF, SOCSO, EIS and PCB worked out, with a payslip PDF.",
     points: ["EPF, SOCSO, LINDUNG 24 Jam, EIS and PCB for 2024 to 2026", "Bonus, overtime, allowances and zakat", "Professional payslip with your logo", "Download or share the PDF"],
     meta: {
-      title: "Malaysia Payroll Calculator 2026 | EPF, SOCSO, EIS & PCB Payslip",
-      socialTitle: "Malaysia Payroll Calculator & Payslip | Techub Software",
+      title: "EPF, SOCSO, EIS & PCB Calculator 2026 | Free Malaysia Payroll & Payslip",
+      socialTitle: "EPF, SOCSO, EIS & PCB Calculator Malaysia | Techub Software",
       description:
-        "Free Malaysia payroll calculator for 2026: EPF, SOCSO with LINDUNG 24 Jam, EIS, PCB (MTD) and HRD Corp levy worked out by the official rules, with a professional payslip PDF to download or share. No sign-up.",
+        "Free EPF, SOCSO, EIS and PCB calculator for Malaysia payroll in 2026, 2025 and 2024. Enter the salary to see net pay, with LINDUNG 24 Jam and HRD Corp levy worked out by the official rules, then download or share a payslip PDF. No sign-up.",
       keywords: [
-        "payroll calculator Malaysia",
-        "salary calculator Malaysia 2026",
-        "PCB calculator 2026",
         "EPF SOCSO EIS calculator",
+        "EPF SOCSO EIS PCB calculator",
+        "EPF SOCSO calculator",
+        "payroll calculator Malaysia",
+        "free payroll Malaysia",
+        "PCB calculator 2026",
         "payslip generator Malaysia",
         "payslip template Malaysia",
         "net salary calculator Malaysia",
       ],
     },
     eyebrow: "Free payroll calculator",
-    title: "Malaysia payroll and payslip, *done right*",
+    title: "EPF, SOCSO, EIS & PCB calculator, *with payslip*",
     intro: "Pick the month and enter the pay. EPF, SOCSO, EIS and PCB are worked out by that month's rules, on a payslip ready to send.",
     example: {
       coName: "Sinar Trading Sdn. Bhd.",
@@ -296,6 +298,10 @@ const en = {
         a: "For Malaysia citizens under 60, the employee pays 11% and the employer 13% on wages up to RM 5,000, or 12% above. Citizens aged 60 and above pay 0% with the employer at 4%. Foreign workers pay 2% and their employer 2%, since October 2025.",
       },
       {
+        q: "How do I calculate EPF, SOCSO and EIS from a salary?",
+        a: "Take RM 3,000 a month for a Malaysia citizen under 60 in 2026. EPF: the employee pays 11% (RM 330) and the employer 13% (RM 390). SOCSO and EIS follow wage bands: the employee pays RM 14.75 SOCSO and RM 5.90 EIS, the employer RM 51.65 and RM 5.90. LINDUNG 24 Jam adds RM 22.15 for the employee unless they opted out. PCB is RM 0 for a single person at this pay, so net pay is RM 2,627.20.",
+      },
+      {
         q: "What is SOCSO LINDUNG 24 Jam?",
         a: "A SOCSO scheme from 1 June 2026 that covers accidents outside work. The employee pays 0.75% of wages up to RM 6,000, at most RM 44.65 a month. It is compulsory for foreign workers; Malaysia employees could opt out.",
       },
@@ -323,25 +329,27 @@ const en = {
     blurb: "Every income tax relief for 2027, 2026, 2025 and 2024, and the tax you pay.",
     points: ["2027 (Budget 2027), 2026, 2025 and 2024", "Limits and shared caps applied for you", "Tax, rebate, zakat and refund worked out", "What's new each year"],
     meta: {
-      title: "Malaysia Tax Relief Calculator 2027, 2026, 2025, 2024",
-      socialTitle: "Malaysia Tax Relief Calculator 2027, 2026, 2025, 2024 | Techub Software",
+      title: "Malaysia Income Tax & Tax Relief Calculator 2027, 2026, 2025, 2024",
+      socialTitle: "Malaysia Income Tax & Tax Relief Calculator 2027, 2026, 2025, 2024 | Techub Software",
       description:
-        "Free Malaysia tax relief calculator for 2027, 2026, 2025 and 2024. Every personal income tax relief and limit, then your chargeable income, tax, rebate, zakat and refund. Based on LHDN; 2027 follows the Budget 2027 proposals.",
+        "Free Malaysia income tax calculator for 2027, 2026, 2025 and 2024, with every tax relief and limit. See your chargeable income, tax, rebate, zakat and refund. Based on LHDN; 2027 follows the Budget 2027 proposals.",
       keywords: [
+        "income tax calculator 2027 Malaysia",
+        "tax calculator 2027",
         "Malaysia tax relief calculator 2027",
         "Malaysia tax relief calculator 2026",
         "Malaysia tax relief calculator 2025",
         "Malaysia tax relief calculator 2024",
         "tax relief Malaysia 2026",
-        "income tax calculator Malaysia",
+        "Budget 2027 income tax calculator",
+        "life insurance tax relief",
         "LHDN tax relief",
-        "Budget 2027 tax relief",
         "personal tax relief Malaysia",
         "e-Filing tax relief",
       ],
     },
     eyebrow: "Tax relief calculator",
-    title: "Malaysia tax relief calculator *2027, 2026, 2025, 2024*",
+    title: "Malaysia income tax & tax relief calculator *2027, 2026, 2025, 2024*",
     intro: "Pick the year, enter your income and what you spent. We apply every limit and show the tax you pay.",
     form: {
       year: "Year of assessment",
@@ -444,7 +452,7 @@ const en = {
     },
     tables: {
       eyebrow: "Tax relief list",
-      title: "Every tax relief, *2027, 2026, 2025, 2024*",
+      title: "Malaysia tax relief list, *2027, 2026, 2025, 2024*",
       intro: "Limits in RM. A changed limit is in blue.",
       relief: "Relief",
       note: "* YA 2027: Budget 2027 proposals, not yet law. Sources: LHDN (YA 2024, 2025), Finance Act 2025 (YA 2026), Budget 2027.",
@@ -460,6 +468,14 @@ const en = {
       {
         q: "What is the individual tax relief in Malaysia for 2026?",
         a: "RM 9,000 for every tax resident. Budget 2027 proposes raising it to RM 12,000 from YA 2027.",
+      },
+      {
+        q: "Which year do I pick for the tax I file in 2027?",
+        a: "Pick 2026. The return you file in 2027 is for income you earned in 2026, called year of assessment (YA) 2026. Pick 2027 to estimate the tax on income you earn in 2027, under the Budget 2027 proposals.",
+      },
+      {
+        q: "How much tax relief can I claim for life insurance?",
+        a: "Up to RM 3,000 a year for life insurance or family takaful, inside a combined RM 7,000 limit with EPF (up to RM 4,000). It covers you and your spouse, and from YA 2026 your child too.",
       },
       {
         q: "What changed in Budget 2027 for personal tax?",

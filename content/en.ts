@@ -1169,14 +1169,18 @@ const en = {
   products: {
     clinic: {
       meta: {
-        title: "Clinic Management System Malaysia | KL, JB & Penang",
+        title: "Clinic Management System & Software Malaysia | KL, JB & Penang",
         socialTitle: "Clinic Management System Malaysia | Techub Software",
         description:
-          "Clinic management system for clinics in Kuala Lumpur, Johor Bahru, Penang and all of Malaysia: EMR, queue calling, AI medicine stock, LHDN e-Invoice. From RM {price}/month per outlet.",
+          "Clinic management system and software for GP, dental and specialist clinics in Kuala Lumpur, Johor Bahru, Penang and all of Malaysia: appointments, EMR, queue calling, AI medicine stock, LHDN e-Invoice. From RM {price}/month per outlet.",
         keywords: [
           "clinic system Malaysia",
           "clinic queue system",
           "clinic management system Malaysia",
+          "clinic management software Malaysia",
+          "clinic appointment system Malaysia",
+          "medical inventory software Malaysia",
+          "doctor management system",
           "clinic system",
           "sistem klinik",
           "clinic software",
@@ -1312,12 +1316,16 @@ const en = {
           a: "Techub's clinic system in Malaysia starts from RM {price}/month per outlet (Welcome offer, first {welcomeUsers} users), and new clinics get the first {months} months free, including installation and staff training. Customisation is charged by the work hour, from RM {custom} an hour.",
         },
         {
-          q: "Is the Techub clinic system suitable for small clinics?",
-          a: "Yes. It is designed for single-doctor clinics up to multi-branch groups. Plans start from RM {price}/month per outlet (Welcome offer, first {welcomeUsers} users) and new clinics get the first {months} months free, including installation and staff training.",
+          q: "Is the Techub clinic system suitable for small GP and dental clinics?",
+          a: "Yes. It is designed for single-doctor GP clinics up to multi-branch groups, and fits dental, specialist, aesthetic, physiotherapy and TCM clinics too. Plans start from RM {price}/month per outlet (Welcome offer, first {welcomeUsers} users) and new clinics get the first {months} months free, including installation and staff training.",
         },
         {
           q: "Can I track patient records and medication?",
           a: "Yes. Each patient has a digital record with visits, diagnoses, treatment plans, prescriptions and dispensing history. You can view a patient's medication report, diagnosis and treatment plan history and full health report in one place. The medication tracking system shows dosage, frequency, batch and allergy alerts before you prescribe.",
+        },
+        {
+          q: "Does it manage medicine stock, like medical inventory software?",
+          a: "Yes. Scan the supplier's delivery note and AI reads each item, batch and expiry date, so stock updates itself. Stock is deducted when you dispense, every movement is logged, and you get low-stock and expiry alerts.",
         },
         {
           q: "Can I upload lab or hospital reports to a patient's record?",
@@ -2073,17 +2081,18 @@ const en = {
     },
     inventory: {
       meta: {
-        title: "Inventory Management & ERP System Malaysia | KL, JB & Penang",
+        title: "Inventory Management, Barcode & ERP System Malaysia | KL, JB & Penang",
         socialTitle: "Inventory & ERP System Malaysia | Techub Software",
         description:
-          "Inventory management and ERP system for businesses in Kuala Lumpur, Johor Bahru, Penang and all of Malaysia: batch stock in, barcode and QR, sales and accounting linked, one-click returns.",
+          "Inventory management, barcode and ERP system for businesses in Kuala Lumpur, Johor Bahru, Penang and all of Malaysia: batch stock in, barcode and QR labels, sales and accounting linked, one-click returns.",
         keywords: [
           "inventory management system Malaysia",
           "inventory system Malaysia",
           "stock control system Malaysia",
           "ERP system Malaysia",
           "ERP software Malaysia",
-          "barcode inventory system",
+          "barcode inventory system Malaysia",
+          "barcode inventory software Malaysia",
           "QR code inventory system",
           "stock tracking system",
           "sales and accounting system Malaysia",
