@@ -23,8 +23,16 @@ const cells = (row: string) =>
     .split("|")
     .map((c) => c.trim());
 
-/** Keeps an amount like "− RM 1,791.50" on one line in a narrow table column. */
-const keepAmounts = (c: string) => c.replace(/(?:([−–-]) )?\bRM (?=\d)/g, (_, sign) => `${sign ? `${sign}\u00a0` : ""}RM\u00a0`);
+const months =
+  "January|February|March|April|May|June|July|August|September|October|November|December|Januari|Februari|Mac|Mei|Jun|Julai|Ogos|Oktober|Disember|Jan|Feb|Mar|Apr|Jul|Aug|Ogo|Sep|Oct|Okt|Nov|Dec|Dis";
+const date = new RegExp(`\\b(?:\\d{1,2} )?(?:${months}) \\d{4}\\b`, "g");
+
+/** Keeps an amount like "− RM 1,791.50", or a date like "18 Nov 2026" or "2026年11月18日", on one line in a narrow table column. */
+const keepTogether = (c: string) =>
+  c
+    .replace(/(?:([−–-]) )?\bRM (?=\d)/g, (_, sign) => `${sign ? `${sign}\u00a0` : ""}RM\u00a0`)
+    .replace(date, (d) => d.replace(/ /g, "\u00a0"))
+    .replace(/(?:\d{4} ?年 ?)?\d{1,2} ?月(?: ?\d{1,2} ?日)?/g, (d) => d.replace(/ /g, "\u00a0").replace(/(\d)(?=[年月日])|([年月])(?=\d)/g, "$1$2\u2060"));
 
 export function parseBlocks(text: string): Block[] {
   const blocks: Block[] = [];
@@ -113,11 +121,11 @@ function BlockView({ b }: { b: Block }) {
         <div className="mt-5 overflow-x-auto rounded-2xl ring-1 ring-slate-200">
           <table className={`w-full border-collapse text-left text-sm ${b.head.length > 3 ? "min-w-[30rem]" : ""}`}>
             <thead className="bg-slate-50 text-slate-900">
-              <tr>{b.head.map((c, i) => <th key={i} scope="col" className="px-3 py-3 font-semibold sm:px-4"><Inline text={keepAmounts(c)} /></th>)}</tr>
+              <tr>{b.head.map((c, i) => <th key={i} scope="col" className="px-3 py-3 font-semibold sm:px-4"><Inline text={keepTogether(c)} /></th>)}</tr>
             </thead>
             <tbody className="divide-y divide-slate-200 text-slate-600">
               {b.rows.map((r, i) => (
-                <tr key={i}>{r.map((c, j) => <td key={j} className="px-3 py-3 align-top sm:px-4"><Inline text={keepAmounts(c)} /></td>)}</tr>
+                <tr key={i}>{r.map((c, j) => <td key={j} className="px-3 py-3 align-top sm:px-4"><Inline text={keepTogether(c)} /></td>)}</tr>
               ))}
             </tbody>
           </table>

@@ -3229,6 +3229,18 @@ const ms: Dict = {
       title: "Cara kira KWSP, PERKESO, SIP dan PCB 2026",
       alt: "Slip gaji rekaan RM 3,000 untuk Oktober 2026: KWSP RM 330, PERKESO RM 14.75, LINDUNG 24 Jam RM 22.15, SIP RM 5.90 dan PCB RM 0, jadi gaji bersih RM 2,627.20, dan majikan bayar RM 447.55 lagi. Di sebelahnya, kadar 2026 untuk pekerja dan majikan",
     },
+    clinicMeds: {
+      title: "Stok ubat klinik: batch dan tarikh luput",
+      alt: "Contoh rekaan pantau tarikh luput klinik: Omeprazole 20mg luput dalam 27 hari, inhaler salbutamol dalam 41 hari dan vaksin influenza (disimpan pada 2–8°C) dalam 48 hari, dengan nasihat beri dulu batch yang paling awal luput. Di sebelahnya, cadangan order AI untuk Amoxicillin 250mg dan nota hantaran yang dibaca AI",
+    },
+    clinicMedsMs: {
+      title: "Stok ubat klinik: batch dan tarikh luput",
+      alt: "Contoh rekaan pantau tarikh luput klinik: Omeprazole 20mg luput dalam 27 hari, inhaler salbutamol dalam 41 hari dan vaksin influenza (disimpan pada 2–8°C) dalam 48 hari, dengan nasihat beri dulu batch yang paling awal luput. Di sebelahnya, cadangan order AI untuk Amoxicillin 250mg dan nota hantaran yang dibaca AI",
+    },
+    clinicMedsZh: {
+      title: "Stok ubat klinik: batch dan tarikh luput",
+      alt: "Contoh rekaan pantau tarikh luput klinik: Omeprazole 20mg luput dalam 27 hari, inhaler salbutamol dalam 41 hari dan vaksin influenza (disimpan pada 2–8°C) dalam 48 hari, dengan nasihat beri dulu batch yang paling awal luput. Di sebelahnya, cadangan order AI untuk Amoxicillin 250mg dan nota hantaran yang dibaca AI",
+    },
     eInvoice: {
       title: "e-Invois LHDN",
       alt: "e-Invois yang disahkan melalui LHDN MyInvois, dengan nombor pengenalan unik dan kod QR",

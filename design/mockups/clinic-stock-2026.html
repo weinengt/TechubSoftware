@@ -1,0 +1,146 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<style>
+  /* Clinic medicine stock, batches and expiry: the picture for the clinic medicine stock blog post. ?lang=en|ms|zh
+     Made-up stock, the same items as the clinic stock screen (inventory.html), as at 22 October 2026. */
+  :root { --w: 1000px; --h: 625px; }
+  body { background: linear-gradient(145deg, #f2f8fd 0%, #e4f1fb 58%, #d8eefa 100%); position: relative; }
+  body::before { content: ""; position: absolute; right: -140px; top: -190px; width: 540px; height: 540px; border-radius: 50%; background: radial-gradient(circle, rgba(0,207,203,.2), rgba(0,207,203,0) 70%); }
+  .wrap { position: relative; z-index: 1; height: 100%; padding: 36px 48px 0; display: flex; flex-direction: column; }
+  .tag { align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; background: #fff; border: 1px solid #cfe3f2; border-radius: 99px; padding: 6px 14px 6px 8px; font-size: 13px; font-weight: 750; letter-spacing: .08em; color: var(--navy); }
+  .tag i { width: 22px; height: 22px; border-radius: 99px; background: linear-gradient(135deg, #0396d9, #0050a0); display: grid; place-items: center; }
+  .tag i svg { width: 13px; height: 13px; stroke: #fff; fill: none; stroke-width: 2.3; stroke-linecap: round; stroke-linejoin: round; }
+  h1 { margin-top: 14px; font-size: 33px; line-height: 1.15; font-weight: 850; letter-spacing: -.02em; color: var(--navy); }
+  h1 em { font-style: normal; color: #0396d9; }
+  .row { margin-top: 22px; flex: 1; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 18px; min-height: 0; }
+  .card { background: #fff; border-radius: 18px; padding: 18px 22px; box-shadow: 0 20px 40px -26px rgba(11,47,85,.45); border: 1px solid #e3edf6; display: flex; flex-direction: column; min-height: 0; }
+  .card h2 { font-size: 15px; font-weight: 800; color: var(--navy); display: flex; align-items: center; gap: 9px; }
+  .card h2 .ic { width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center; color: #fff; background: linear-gradient(135deg, #0396d9, #0050a0); flex-shrink: 0; }
+  .card h2 .ic.am { background: linear-gradient(135deg, #f59e0b, #d97706); }
+  .card h2 svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2.1; stroke-linecap: round; stroke-linejoin: round; }
+  .card h2 small { margin-left: auto; font-size: 11.5px; font-weight: 700; color: #0369a1; background: #eef9fe; border: 1px solid #cdeefc; border-radius: 99px; padding: 3px 10px; white-space: nowrap; }
+  /* Expiry watch */
+  .list { margin-top: 10px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+  .it { display: flex; align-items: center; gap: 12px; padding: 9px 0; border-bottom: 1px dashed #e1e9f2; }
+  .it:last-child { border-bottom: 0; }
+  .it .pic { width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; flex-shrink: 0; background: #eef6fc; color: #0369a1; }
+  .it .pic svg { width: 19px; height: 19px; stroke: currentColor; fill: none; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+  .it .pic.cold { background: #ecfeff; color: #0891b2; }
+  .it .tx { min-width: 0; flex: 1; }
+  .it b { display: block; font-size: 14.5px; font-weight: 750; color: var(--navy); white-space: nowrap; }
+  .it b span { font-weight: 600; color: var(--muted); font-size: 12.5px; margin-left: 6px; }
+  .it small { display: block; margin-top: 2px; font-size: 12px; color: var(--muted); white-space: nowrap; }
+  .it small em { font-style: normal; font-weight: 700; color: var(--ink2); }
+  .it .d { flex-shrink: 0; font-size: 12.5px; font-weight: 800; padding: 5px 11px; border-radius: 99px; white-space: nowrap; }
+  .d.red { background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
+  .d.amb { background: #fffbeb; color: #b45309; border: 1px solid #fde68a; }
+  .d.ok { background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; }
+  .fefo { margin-top: 8px; display: flex; align-items: center; gap: 9px; background: #f4f8fc; border-radius: 11px; padding: 8px 11px; font-size: 12.5px; font-weight: 650; color: var(--ink2); }
+  .fefo svg { width: 16px; height: 16px; stroke: #0396d9; fill: none; stroke-width: 2.1; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+  /* Low stock */
+  .low { margin-top: 14px; border-radius: 14px; padding: 13px 15px; color: #fff; background: radial-gradient(circle at calc(100% - 18px) 12px, rgba(255,255,255,.13) 40px, transparent 41px), linear-gradient(135deg, #0b2f55, #0a4a7a); }
+  .low .k { display: flex; align-items: center; gap: 7px; font-size: 11px; font-weight: 750; color: #8fd8ff; letter-spacing: .06em; }
+  .low .k i { width: 7px; height: 7px; border-radius: 99px; background: #fbbf24; box-shadow: 0 0 0 3px rgba(251,191,36,.25); }
+  .low .n { margin-top: 7px; font-size: 16px; font-weight: 800; }
+  .low .bar { margin-top: 9px; height: 8px; border-radius: 99px; background: rgba(255,255,255,.16); overflow: hidden; }
+  .low .bar span { display: block; width: 18%; height: 100%; border-radius: 99px; background: linear-gradient(90deg, #fbbf24, #f59e0b); }
+  .low p { margin-top: 9px; font-size: 13px; line-height: 1.45; color: #d6e8f7; }
+  .low p b { color: #fff; }
+  .dn { margin-top: 12px; display: flex; align-items: center; gap: 12px; border: 1px solid #e3edf6; border-radius: 14px; padding: 11px 13px; }
+  .dn .pic { width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center; flex-shrink: 0; background: linear-gradient(135deg, #8b5cf6, #6d28d9); color: #fff; }
+  .dn .pic svg { width: 19px; height: 19px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .dn b { display: block; font-size: 13.5px; font-weight: 750; color: var(--navy); }
+  .dn small { display: block; margin-top: 2px; font-size: 12px; color: var(--muted); }
+  ul { list-style: none; margin-top: auto; padding-top: 14px; display: flex; flex-direction: column; gap: 11px; }
+  li { display: flex; align-items: center; gap: 11px; font-size: 13.5px; font-weight: 650; color: var(--ink2); }
+  li i { width: 22px; height: 22px; flex-shrink: 0; border-radius: 99px; background: linear-gradient(135deg, #10b981, #047857); display: grid; place-items: center; }
+  li i svg { width: 12px; height: 12px; stroke: #fff; fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+  .ft { display: flex; align-items: center; gap: 10px; padding: 16px 0 18px; font-size: 12px; color: var(--muted); }
+  .ft img { width: 26px; height: 26px; border-radius: 7px; background: #fff; padding: 3px; box-shadow: 0 2px 6px rgba(11,47,85,.15); }
+  .ft b { color: var(--navy); font-weight: 750; }
+  .ft .r { margin-left: auto; }
+  html[lang="zh"] h1 { letter-spacing: 0; font-size: 31px; }
+</style></head>
+<body>
+<div class="wrap">
+  <div class="tag"><i><svg viewBox="0 0 24 24"><rect x="4" y="9" width="16" height="6" rx="3" transform="rotate(-45 12 12)"/><path d="M9.5 9.5l5 5"/></svg></i><span data-t="tag"></span></div>
+  <h1 data-t="title"></h1>
+  <div class="row">
+    <div class="card">
+      <h2><span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><span data-t="watch"></span><small data-t="today"></small></h2>
+      <div class="list" id="list"></div>
+      <div class="fefo"><svg viewBox="0 0 24 24"><path d="M4 7h11M4 12h8M4 17h5M17 9l3 3-3 3M20 12h-6"/></svg><span data-t="fefo"></span></div>
+    </div>
+    <div class="card">
+      <h2><span class="ic am"><svg viewBox="0 0 24 24"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17h.01"/></svg></span><span data-t="lowT"></span></h2>
+      <div class="low"><div class="k"><i></i><span data-t="ai"></span></div><div class="n">Amoxicillin 250mg</div><div class="bar"><span></span></div><p data-t="aiP"></p></div>
+      <div class="dn"><span class="pic"><svg viewBox="0 0 24 24"><path d="M4 7V5a1 1 0 0 1 1-1h2M17 4h2a1 1 0 0 1 1 1v2M20 17v2a1 1 0 0 1-1 1h-2M7 20H5a1 1 0 0 1-1-1v-2"/><path d="M8 9h8M8 12h8M8 15h5"/></svg></span><div><b data-t="dnT"></b><small data-t="dnS"></small></div></div>
+      <ul id="checks"></ul>
+    </div>
+  </div>
+  <div class="ft"><img src="icon.png" alt=""><b>Techub Software</b><span class="r" data-t="note"></span></div>
+</div>
+<script>
+const lang = new URLSearchParams(location.search).get("lang") || "en";
+document.documentElement.lang = lang;
+const T = {
+  en: {
+    tag: "CLINIC MEDICINE STOCK", title: "Track every <em>batch and expiry date</em> in your clinic",
+    watch: "Expiry watch", today: "22 Oct 2026", batch: "Batch", exp: "Exp",
+    rows: [
+      ["Omeprazole 20mg", "40 caps", "OM0533", "18 Nov 2026", "27 days", "red"],
+      ["Salbutamol inhaler", "6 units", "SB1120", "2 Dec 2026", "41 days", "amb"],
+      ["Influenza vaccine", "12 doses", "FV0926", "9 Dec 2026 · 2–8°C", "48 days", "amb", 1],
+      ["Paracetamol 500mg", "1,240 tabs", "B2409", "Aug 2028", "OK", "ok"],
+    ],
+    fefo: "Dispense the batch that expires first",
+    lowT: "Low stock", ai: "AI REORDER SUGGESTION",
+    aiP: "About <b>4&nbsp;days</b> left at today's use. Order <b>500&nbsp;caps</b> today.",
+    dnT: "AI read the delivery note", dnS: "6 items added with batch and expiry",
+    checks: ["Batch and expiry on every dispense", "Stock deducts when you dispense", "Every movement logged"],
+    note: "Made-up example",
+  },
+  ms: {
+    tag: "STOK UBAT KLINIK", title: "Jejak setiap <em>batch dan tarikh luput</em> di klinik anda",
+    watch: "Pantau tarikh luput", today: "22 Okt 2026", batch: "Batch", exp: "Luput",
+    rows: [
+      ["Omeprazole 20mg", "40 kapsul", "OM0533", "18 Nov 2026", "27 hari", "red"],
+      ["Inhaler salbutamol", "6 unit", "SB1120", "2 Dis 2026", "41 hari", "amb"],
+      ["Vaksin influenza", "12 dos", "FV0926", "9 Dis 2026 · 2–8°C", "48 hari", "amb", 1],
+      ["Paracetamol 500mg", "1,240 biji", "B2409", "Ogo 2028", "OK", "ok"],
+    ],
+    fefo: "Beri dulu batch yang paling awal luput",
+    lowT: "Stok rendah", ai: "CADANGAN ORDER AI",
+    aiP: "Cukup untuk lebih kurang <b>4&nbsp;hari</b> lagi. Order <b>500&nbsp;kapsul</b> hari ini.",
+    dnT: "AI baca nota hantaran", dnS: "6 item ditambah dengan batch dan tarikh luput",
+    checks: ["Batch dan tarikh luput setiap kali beri ubat", "Stok ditolak bila ubat diberi", "Setiap pergerakan stok direkod"],
+    note: "Contoh rekaan",
+  },
+  zh: {
+    tag: "诊所药物库存", title: "诊所每一批药的<em>批号和有效期</em>都记清楚",
+    watch: "有效期提醒", today: "2026年10月22日", batch: "批号", exp: "到期",
+    rows: [
+      ["Omeprazole 20mg", "40 粒", "OM0533", "2026年11月18日", "27 天", "red"],
+      ["Salbutamol 吸入器", "6 支", "SB1120", "2026年12月2日", "41 天", "amb"],
+      ["流感疫苗", "12 剂", "FV0926", "2026年12月9日 · 2–8°C", "48 天", "amb", 1],
+      ["Paracetamol 500mg", "1,240 粒", "B2409", "2028年8月", "OK", "ok"],
+    ],
+    fefo: "先配最早到期的批次",
+    lowT: "库存不足", ai: "AI 订货建议",
+    aiP: "按今天的用量，大约 <b>4&nbsp;天</b>后用完。今天就订 <b>500&nbsp;粒</b>。",
+    dnT: "AI 读取送货单", dnS: "6 项药物连批号和有效期一起入库",
+    checks: ["每次配药都记录批号和有效期", "配药时自动扣库存", "每一笔进出都有记录"],
+    note: "虚构例子",
+  },
+}[lang];
+document.querySelectorAll("[data-t]").forEach((el) => (el.innerHTML = T[el.dataset.t]));
+const pill = '<svg viewBox="0 0 24 24"><rect x="4" y="9" width="16" height="6" rx="3" transform="rotate(-45 12 12)"/><path d="M9.5 9.5l5 5"/></svg>';
+const snow = '<svg viewBox="0 0 24 24"><path d="M12 2v20M4.9 6.5l14.2 11M19.1 6.5L4.9 17.5M9 4l3 2 3-2M9 20l3-2 3 2"/></svg>';
+document.getElementById("list").innerHTML = T.rows
+  .map(([name, qty, batch, exp, days, tone, cold]) =>
+    `<div class="it"><span class="pic${cold ? " cold" : ""}">${cold ? snow : pill}</span><div class="tx"><b>${name}<span>${qty}</span></b><small>${T.batch} <em>${batch}</em> · ${T.exp} ${exp}</small></div><span class="d ${tone}">${days}</span></div>`)
+  .join("");
+const tick = '<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+document.getElementById("checks").innerHTML = T.checks.map((x) => `<li><i>${tick}</i>${x}</li>`).join("");
+</script>
+</body></html>

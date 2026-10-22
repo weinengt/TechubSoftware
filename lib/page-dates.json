@@ -228,27 +228,39 @@
   "date": "2026-10-22"
  },
  "/blog/": {
-  "hash": "7b67878b94bbde9b",
+  "hash": "ff19db7bc83eb6ca",
   "date": "2026-10-22"
  },
  "/ms/blog/": {
-  "hash": "db03e5909f8ca756",
+  "hash": "4ab24678937b7c19",
   "date": "2026-10-22"
  },
  "/zh/blog/": {
-  "hash": "308812f741e57fa7",
+  "hash": "6ed6b3044410df85",
+  "date": "2026-10-22"
+ },
+ "/blog/clinic-medicine-stock-batch-expiry-malaysia/": {
+  "hash": "0b301b17a7877ae9",
+  "date": "2026-10-22"
+ },
+ "/ms/blog/clinic-medicine-stock-batch-expiry-malaysia/": {
+  "hash": "04077a01b48078e6",
+  "date": "2026-10-22"
+ },
+ "/zh/blog/clinic-medicine-stock-batch-expiry-malaysia/": {
+  "hash": "6c86ef18ad930892",
   "date": "2026-10-22"
  },
  "/blog/how-to-calculate-epf-socso-eis-pcb-2026/": {
-  "hash": "9f65cd366978ca42",
+  "hash": "36e33b89666a93e1",
   "date": "2026-10-22"
  },
  "/ms/blog/how-to-calculate-epf-socso-eis-pcb-2026/": {
-  "hash": "e4e186569c3e97ed",
+  "hash": "4e587f7e56a8ee71",
   "date": "2026-10-22"
  },
  "/zh/blog/how-to-calculate-epf-socso-eis-pcb-2026/": {
-  "hash": "7476b1ed9bb660a0",
+  "hash": "4ed0dedb00666939",
   "date": "2026-10-22"
  },
  "/blog/sme-loans-budget-2027-malaysia-tekun-bsn-bnm/": {
@@ -268,11 +280,11 @@
   "date": "2026-10-22"
  },
  "/ms/blog/minimum-wage-rm2000-june-2027-e-wages/": {
-  "hash": "6c744ea1d10f915e",
+  "hash": "71f6716d66bc01a0",
   "date": "2026-10-22"
  },
  "/zh/blog/minimum-wage-rm2000-june-2027-e-wages/": {
-  "hash": "f7fa3997627fb790",
+  "hash": "29b65dd9ba04fcfe",
   "date": "2026-10-22"
  },
  "/blog/rts-link-johor-bahru-2027-business-ready/": {
@@ -300,87 +312,87 @@
   "date": "2026-10-22"
  },
  "/blog/how-to-choose-clinic-management-system-malaysia/": {
-  "hash": "f321ee504c8f6053",
+  "hash": "1f92c6a6feced0b4",
   "date": "2026-10-22"
  },
  "/ms/blog/how-to-choose-clinic-management-system-malaysia/": {
-  "hash": "c6e0a1cf7c99f400",
+  "hash": "2b5ad68939f3a0bc",
   "date": "2026-10-22"
  },
  "/zh/blog/how-to-choose-clinic-management-system-malaysia/": {
-  "hash": "c3e664ecbafaa8f9",
+  "hash": "e5961b6458871bff",
   "date": "2026-10-22"
  },
  "/blog/clinic-queue-system-number-calling/": {
-  "hash": "9fdb86c530e59c09",
+  "hash": "320e60a8eeee90b1",
   "date": "2026-10-22"
  },
  "/ms/blog/clinic-queue-system-number-calling/": {
-  "hash": "9f4f6928273246a2",
+  "hash": "75cdcfebaabd6bd1",
   "date": "2026-10-22"
  },
  "/zh/blog/clinic-queue-system-number-calling/": {
-  "hash": "34f7738ecc2e00db",
+  "hash": "4916b6843bf0a275",
   "date": "2026-10-22"
  },
  "/blog/reduce-no-shows-whatsapp-reminders-booking-deposits/": {
-  "hash": "737d71566f268108",
+  "hash": "c143bf163e05f899",
   "date": "2026-10-22"
  },
  "/ms/blog/reduce-no-shows-whatsapp-reminders-booking-deposits/": {
-  "hash": "c2dfd866e2b96974",
+  "hash": "ae5c2205d25751c3",
   "date": "2026-10-22"
  },
  "/zh/blog/reduce-no-shows-whatsapp-reminders-booking-deposits/": {
-  "hash": "b14aa68644de80fa",
+  "hash": "1a725c985968235a",
   "date": "2026-10-22"
  },
  "/blog/salon-staff-commission-payroll/": {
-  "hash": "3ab2a66958906ca2",
+  "hash": "d15e23e095b72d00",
   "date": "2026-10-22"
  },
  "/ms/blog/salon-staff-commission-payroll/": {
-  "hash": "3fa7235880fe9610",
+  "hash": "a23ca5f4a03397a1",
   "date": "2026-10-22"
  },
  "/zh/blog/salon-staff-commission-payroll/": {
-  "hash": "67dbe3baec201f8a",
+  "hash": "dfb46009c46cdecf",
   "date": "2026-10-22"
  },
  "/blog/beauty-centre-packages-memberships/": {
-  "hash": "586d96b63a4a47dd",
+  "hash": "60b09746e9e3c68c",
   "date": "2026-10-22"
  },
  "/ms/blog/beauty-centre-packages-memberships/": {
-  "hash": "bf187a283cd382d2",
+  "hash": "8c4ef60a5315f03e",
   "date": "2026-10-22"
  },
  "/zh/blog/beauty-centre-packages-memberships/": {
-  "hash": "b0627048128a75d7",
+  "hash": "ae4064b825f3d082",
   "date": "2026-10-22"
  },
  "/blog/spa-massage-booking-therapists-rooms/": {
-  "hash": "c21d06d42cc9b1aa",
+  "hash": "5e0c8fc80d5dcdeb",
   "date": "2026-10-22"
  },
  "/ms/blog/spa-massage-booking-therapists-rooms/": {
-  "hash": "66ca9a1992c91c92",
+  "hash": "b370cec1a6913d52",
   "date": "2026-10-22"
  },
  "/zh/blog/spa-massage-booking-therapists-rooms/": {
-  "hash": "ff390da6633b3850",
+  "hash": "459400cac3c81381",
   "date": "2026-10-22"
  },
  "/blog/stop-overselling-tiktok-facebook-live/": {
-  "hash": "bab33f0422c40289",
+  "hash": "f8e51bbc336d1994",
   "date": "2026-10-22"
  },
  "/ms/blog/stop-overselling-tiktok-facebook-live/": {
-  "hash": "583b427a97ef007e",
+  "hash": "2941e31d42f37fff",
   "date": "2026-10-22"
  },
  "/zh/blog/stop-overselling-tiktok-facebook-live/": {
-  "hash": "13c0d45239beb9bd",
+  "hash": "5c1992edb3bd025b",
   "date": "2026-10-22"
  },
  "/blog/lhdn-e-invoice-2026-clinics-salons-spas/": {

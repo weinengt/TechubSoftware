@@ -186,6 +186,9 @@ export const shotFiles = {
   epfSocso: { w: 1500, h: 938, kind: "paper", file: "epf-socso-eis-pcb-2026-en" },
   epfSocsoMs: { w: 1500, h: 938, kind: "paper", file: "epf-socso-eis-pcb-2026-ms" },
   epfSocsoZh: { w: 1500, h: 938, kind: "paper", file: "epf-socso-eis-pcb-2026-zh" },
+  clinicMeds: { w: 1500, h: 938, kind: "paper", file: "clinic-medicine-stock-en" },
+  clinicMedsMs: { w: 1500, h: 938, kind: "paper", file: "clinic-medicine-stock-ms" },
+  clinicMedsZh: { w: 1500, h: 938, kind: "paper", file: "clinic-medicine-stock-zh" },
 } satisfies Record<string, Omit<Shot, "title" | "alt">>;
 
 export type ShotKey = keyof typeof shotFiles;

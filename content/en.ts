@@ -3140,6 +3140,18 @@ const en = {
       title: "How to calculate EPF, SOCSO, EIS and PCB in 2026",
       alt: "A made-up RM 3,000 payslip for October 2026: EPF RM 330, SOCSO RM 14.75, LINDUNG 24 Jam RM 22.15, EIS RM 5.90 and PCB RM 0 leave net pay of RM 2,627.20, and the employer pays RM 447.55 on top. Beside it, the 2026 rates for staff and employer",
     },
+    clinicMeds: {
+      title: "Clinic medicine stock: batches and expiry",
+      alt: "A made-up clinic expiry watch: Omeprazole 20mg expires in 27 days, a salbutamol inhaler in 41 days and the influenza vaccine (kept at 2–8°C) in 48 days, with the advice to dispense the batch that expires first. Beside it, an AI reorder suggestion for Amoxicillin 250mg and a delivery note read by AI",
+    },
+    clinicMedsMs: {
+      title: "Clinic medicine stock: batches and expiry",
+      alt: "A made-up clinic expiry watch: Omeprazole 20mg expires in 27 days, a salbutamol inhaler in 41 days and the influenza vaccine (kept at 2–8°C) in 48 days, with the advice to dispense the batch that expires first. Beside it, an AI reorder suggestion for Amoxicillin 250mg and a delivery note read by AI",
+    },
+    clinicMedsZh: {
+      title: "Clinic medicine stock: batches and expiry",
+      alt: "A made-up clinic expiry watch: Omeprazole 20mg expires in 27 days, a salbutamol inhaler in 41 days and the influenza vaccine (kept at 2–8°C) in 48 days, with the advice to dispense the batch that expires first. Beside it, an AI reorder suggestion for Amoxicillin 250mg and a delivery note read by AI",
+    },
     eInvoice: {
       title: "LHDN e-Invoice",
       alt: "An e-Invoice validated through LHDN MyInvois, with its unique identifier and QR code",

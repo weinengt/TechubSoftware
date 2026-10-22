@@ -3107,6 +3107,18 @@ const zh: Dict = {
       title: "EPF、SOCSO、EIS 和 PCB 怎么算",
       alt: "一张虚构的 RM 3,000 工资单（2026 年 10 月）：EPF RM 330、SOCSO RM 14.75、LINDUNG 24 Jam RM 22.15、EIS RM 5.90、PCB RM 0，实拿工资 RM 2,627.20，雇主另付 RM 447.55。旁边是 2026 年员工和雇主的费率",
     },
+    clinicMeds: {
+      title: "诊所药物库存：批号和有效期",
+      alt: "虚构的诊所有效期提醒：Omeprazole 20mg 27 天后到期，Salbutamol 吸入器 41 天后到期，流感疫苗（2–8°C 冷藏）48 天后到期，并提醒先配最早到期的批次。旁边是 Amoxicillin 250mg 的 AI 订货建议，以及由 AI 读取的送货单",
+    },
+    clinicMedsMs: {
+      title: "诊所药物库存：批号和有效期",
+      alt: "虚构的诊所有效期提醒：Omeprazole 20mg 27 天后到期，Salbutamol 吸入器 41 天后到期，流感疫苗（2–8°C 冷藏）48 天后到期，并提醒先配最早到期的批次。旁边是 Amoxicillin 250mg 的 AI 订货建议，以及由 AI 读取的送货单",
+    },
+    clinicMedsZh: {
+      title: "诊所药物库存：批号和有效期",
+      alt: "虚构的诊所有效期提醒：Omeprazole 20mg 27 天后到期，Salbutamol 吸入器 41 天后到期，流感疫苗（2–8°C 冷藏）48 天后到期，并提醒先配最早到期的批次。旁边是 Amoxicillin 250mg 的 AI 订货建议，以及由 AI 读取的送货单",
+    },
     eInvoice: {
       title: "LHDN 电子发票",
       alt: "通过 LHDN MyInvois 验证的电子发票，附唯一识别码和 QR 码",
