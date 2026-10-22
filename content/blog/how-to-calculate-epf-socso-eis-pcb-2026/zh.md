@@ -1,5 +1,5 @@
 ---
-title: EPF 公积金、SOCSO 社险、EIS 和 PCB 怎么算？2026 年薪水例子
+title: EPF 公积金、SOCSO 社险、EIS 和 PCB 怎么算？2026年薪水例子
 description: 2026 年马来西亚薪水的 EPF 公积金、SOCSO 社险、EIS、LINDUNG 24 Jam 和 PCB 怎么算：最新费率、员工和雇主各付多少，以及 RM 3,000 和 RM 5,500 薪水的计算例子和实拿工资。
 keywords: EPF SOCSO EIS 怎么算, 公积金怎么算, 社险怎么算, PCB 怎么算 2026, 马来西亚公积金比例 2026, 马来西亚薪水计算, 实拿工资计算
 cta: 想让每位员工的 EPF、SOCSO、EIS 和 PCB 都自动算好，工资单直接发到 WhatsApp？在 WhatsApp 预约免费 Demo 吧。
