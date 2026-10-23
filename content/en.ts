@@ -3152,6 +3152,18 @@ const en = {
       title: "Clinic medicine stock: batches and expiry",
       alt: "A made-up clinic expiry watch: Omeprazole 20mg expires in 27 days, a salbutamol inhaler in 41 days and the influenza vaccine (kept at 2–8°C) in 48 days, with the advice to dispense the batch that expires first. Beside it, an AI reorder suggestion for Amoxicillin 250mg and a delivery note read by AI",
     },
+    clinicEmr: {
+      title: "Public clinics go digital, private clinics on paper?",
+      alt: "MOH's RM 1 billion push puts 150 public hospitals and 2,000 health clinics on electronic medical records, with a 2029 target. Lost paper patient cards next to a made-up digital record with an allergy alert and an uploaded lab report",
+    },
+    clinicEmrMs: {
+      title: "Public clinics go digital, private clinics on paper?",
+      alt: "MOH's RM 1 billion push puts 150 public hospitals and 2,000 health clinics on electronic medical records, with a 2029 target. Lost paper patient cards next to a made-up digital record with an allergy alert and an uploaded lab report",
+    },
+    clinicEmrZh: {
+      title: "Public clinics go digital, private clinics on paper?",
+      alt: "MOH's RM 1 billion push puts 150 public hospitals and 2,000 health clinics on electronic medical records, with a 2029 target. Lost paper patient cards next to a made-up digital record with an allergy alert and an uploaded lab report",
+    },
     eInvoice: {
       title: "LHDN e-Invoice",
       alt: "An e-Invoice validated through LHDN MyInvois, with its unique identifier and QR code",

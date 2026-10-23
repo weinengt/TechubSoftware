@@ -22,6 +22,7 @@ export type PostInfo = {
 
 /** Newest first. */
 export const posts: PostInfo[] = [
+  { slug: "clinic-paper-records-to-emr-malaysia-2026", date: "2026-10-23", system: "clinic", image: "clinicEmr", images: { ms: "clinicEmrMs", zh: "clinicEmrZh" } },
   { slug: "clinic-medicine-stock-batch-expiry-malaysia", date: "2026-10-22", system: "clinic", image: "clinicMeds", images: { ms: "clinicMedsMs", zh: "clinicMedsZh" } },
   { slug: "how-to-calculate-epf-socso-eis-pcb-2026", date: "2026-10-22", system: "payroll", image: "epfSocso", images: { ms: "epfSocsoMs", zh: "epfSocsoZh" } },
   { slug: "sme-loans-budget-2027-malaysia-tekun-bsn-bnm", date: "2026-10-20", system: null, image: "smeLoans", images: { ms: "smeLoansMs", zh: "smeLoansZh" } },

@@ -3241,6 +3241,18 @@ const ms: Dict = {
       title: "Stok ubat klinik: batch dan tarikh luput",
       alt: "Contoh rekaan pantau tarikh luput klinik: Omeprazole 20mg luput dalam 27 hari, inhaler salbutamol dalam 41 hari dan vaksin influenza (disimpan pada 2–8°C) dalam 48 hari, dengan nasihat beri dulu batch yang paling awal luput. Di sebelahnya, cadangan order AI untuk Amoxicillin 250mg dan nota hantaran yang dibaca AI",
     },
+    clinicEmr: {
+      title: "Klinik kerajaan guna digital, klinik swasta masih kertas?",
+      alt: "Dana RM 1 bilion KKM letak rekod perubatan elektronik di 150 hospital kerajaan dan 2,000 klinik kesihatan, dengan sasaran 2029. Kad pesakit kertas yang hilang di sebelah rekod digital rekaan dengan amaran alahan dan laporan makmal dimuat naik",
+    },
+    clinicEmrMs: {
+      title: "Klinik kerajaan guna digital, klinik swasta masih kertas?",
+      alt: "Dana RM 1 bilion KKM letak rekod perubatan elektronik di 150 hospital kerajaan dan 2,000 klinik kesihatan, dengan sasaran 2029. Kad pesakit kertas yang hilang di sebelah rekod digital rekaan dengan amaran alahan dan laporan makmal dimuat naik",
+    },
+    clinicEmrZh: {
+      title: "Klinik kerajaan guna digital, klinik swasta masih kertas?",
+      alt: "Dana RM 1 bilion KKM letak rekod perubatan elektronik di 150 hospital kerajaan dan 2,000 klinik kesihatan, dengan sasaran 2029. Kad pesakit kertas yang hilang di sebelah rekod digital rekaan dengan amaran alahan dan laporan makmal dimuat naik",
+    },
     eInvoice: {
       title: "e-Invois LHDN",
       alt: "e-Invois yang disahkan melalui LHDN MyInvois, dengan nombor pengenalan unik dan kod QR",

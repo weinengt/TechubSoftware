@@ -189,6 +189,9 @@ export const shotFiles = {
   clinicMeds: { w: 1500, h: 938, kind: "paper", file: "clinic-medicine-stock-en" },
   clinicMedsMs: { w: 1500, h: 938, kind: "paper", file: "clinic-medicine-stock-ms" },
   clinicMedsZh: { w: 1500, h: 938, kind: "paper", file: "clinic-medicine-stock-zh" },
+  clinicEmr: { w: 1500, h: 938, kind: "paper", file: "clinic-emr-2026-en" },
+  clinicEmrMs: { w: 1500, h: 938, kind: "paper", file: "clinic-emr-2026-ms" },
+  clinicEmrZh: { w: 1500, h: 938, kind: "paper", file: "clinic-emr-2026-zh" },
 } satisfies Record<string, Omit<Shot, "title" | "alt">>;
 
 export type ShotKey = keyof typeof shotFiles;

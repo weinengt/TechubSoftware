@@ -115,6 +115,7 @@ export const screens = [
   ...["en", "ms", "zh"].map((l) => ({ name: `sme-loans-2027-${l}`, file: `sme-loans-2027.html?lang=${l}`, w: 1000, h: 625, scale: 1.5 })),
   ...["en", "ms", "zh"].map((l) => ({ name: `epf-socso-eis-pcb-2026-${l}`, file: `payroll-2026.html?lang=${l}`, w: 1000, h: 625, scale: 1.5 })),
   ...["en", "ms", "zh"].map((l) => ({ name: `clinic-medicine-stock-${l}`, file: `clinic-stock-2026.html?lang=${l}`, w: 1000, h: 625, scale: 1.5 })),
+  ...["en", "ms", "zh"].map((l) => ({ name: `clinic-emr-2026-${l}`, file: `clinic-emr-2026.html?lang=${l}`, w: 1000, h: 625, scale: 1.5 })),
   { name: "custom-erp-desktop", file: "erp.html", ...desktop },
   { name: "number-plate-scanner-desktop", file: "plate-scanner.html", ...desktop },
   { name: "ai-object-detection-desktop", file: "object-detection.html", ...desktop },
